@@ -361,8 +361,8 @@
                         <form action="{{ route('payments.store') }}" method="POST" id="payment-form">
                             @csrf
                             <input type="hidden" name="amount" value="{{ (int) $level->price }}">
-                            <input type="hidden" name="level_name" value="Level A">
-                            <input type="hidden" name="level_id" value="1">
+                            <input type="hidden" name="level_name" value="Level B">
+                            <input type="hidden" name="level_id" value="2">
                         
                             <button class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition hover:scale-105 shadow-lg hover:shadow-xl">
                                 <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

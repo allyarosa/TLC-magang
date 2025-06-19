@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Asesi;
 
 use Log;
 use App\Models\ExamA;
+use Barryvdh\DomPDF\PDF;
 use App\Models\CategoryA;
 use App\Models\QuestionA;
 use App\Models\Testimonial;

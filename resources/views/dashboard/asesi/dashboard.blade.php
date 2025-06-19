@@ -1215,7 +1215,13 @@
                             @break
 
                             @case('B')
-                                @if ($user->hasPermissionTo('level_A_completed'))
+                                @if ($user->hasPermissionTo('access_level_B'))
+                                    <button
+                                        class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed"
+                                        disabled>
+                                        Sudah Terdaftar
+                                    </button>
+                                @elseif ($user->hasPermissionTo('level_A_completed'))
                                     <a href="{{ route('payments.create', Hashids::encode($levels[1]->id)) }}"
                                         class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                                         Daftar Sekarang
@@ -1229,7 +1235,13 @@
                             @break
 
                             @case('C')
-                                @if ($user->hasPermissionTo('level_B_completed'))
+                                @if ($user->hasPermissionTo('access_level_C'))
+                                    <button
+                                        class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed"
+                                        disabled>
+                                        Sudah Terdaftar
+                                    </button>
+                                @elseif ($user->hasPermissionTo('level_B_completed'))
                                     <a href="{{ route('payments.create', Hashids::encode($levels[2]->id)) }}"
                                         class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                                         Daftar Sekarang
@@ -1242,6 +1254,7 @@
                                 @endif
                             @break
                         @endswitch
+
                     </div>
                 </div>
             </div>
@@ -1653,292 +1666,185 @@
         </section>
         {{-- End Langkah Pembayaran --}}
 
-{{-- Testimoni --}}
-{{-- <section class="w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50" id="testimonials">
-    <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <div class="text-center mb-8 sm:mb-10 lg:mb-12">
-            <span class="inline-block px-4 sm:px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-xs sm:text-sm font-semibold tracking-wide shadow-sm mb-3 sm:mb-4">
-                TESTIMONI PENGGUNA
-            </span>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D4E89] mb-3 sm:mb-4">Apa Kata Mereka?</h2>
-            <p class="text-sm sm:text-base lg:text-lg text-gray-700 max-w-2xl mx-auto px-4">
-                Pengalaman dan testimonial dari para pengguna program TLC
-            </p>
-        </div>
+        {{-- Testimoni --}}
+        <section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50"
+            id="testimoni">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <span
+                        class="inline-block px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">
+                        TESTIMONI PENGGUNA
+                    </span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-[#1D4E89] mb-4">Apa Kata Mereka?</h2>
+                    <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                        Pengalaman dan testimonial dari para pengguna program TLC
+                    </p>
+                </div>
 
-        @if(isset($featuredTestimonials) && $featuredTestimonials->count() > 0)
-            <!-- Grid Testimonials - Responsive -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                @foreach($featuredTestimonials as $index => $testimonial)
-                    <div class="testimonial-card bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        <!-- Rating Stars -->
-                        <div class="flex justify-center mb-3 sm:mb-4">
-                            <div class="flex text-base sm:text-lg text-yellow-400">
-                                @for($i = 1; $i <= 5; $i++)
-                                    <span class="mr-0.5">★</span>
-                                @endfor
-                            </div>
-                        </div>
+                @if (isset($featuredTestimonials) && $featuredTestimonials->count() > 0)
+                    <!-- Grid Testimonials -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                        @foreach ($featuredTestimonials as $index => $testimonial)
+                            <div
+                                class="testimonial-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+                                <!-- Rating Stars -->
+                                <div class="flex justify-center mb-4">
+                                    <div class="flex text-lg text-yellow-400">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <span>★</span>
+                                        @endfor
+                                    </div>
+                                </div>
 
-                        <!-- Quote -->
-                        <div class="mb-4 sm:mb-6">
-                            <p class="text-gray-700 italic leading-relaxed text-center text-sm sm:text-base">
-                                "{{ Str::limit($testimonial->content, 100) }}"
-                            </p>
-                        </div>
+                                <!-- Quote -->
+                                <div class="mb-6 flex-grow">
+                                    <p class="text-gray-700 italic text-center text-base leading-relaxed line-clamp-4">
+                                        "{{ Str::limit($testimonial->content, 150) }}"
+                                    </p>
+                                </div>
 
-                        <!-- User Profile -->
-                        <div class="flex flex-col items-center">
-                            <!-- Avatar with Initials -->
-                            @php
-                                $nameParts = explode(' ', $testimonial->user->name);
-                                $initials = strtoupper(substr($testimonial->user->name, 0, 1) . (isset($nameParts[1]) ? substr($nameParts[1], 0, 1) : (strlen($testimonial->user->name) > 1 ? substr($testimonial->user->name, 1, 1) : '')));
-                                $colors = ['bg-[#E76F51]', 'bg-[#1D4E89]', 'bg-yellow-500', 'bg-green-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500'];
-                                $colorIndex = $index % count($colors);
-                                $selectedColor = $colors[$colorIndex];
-                            @endphp
-                            
-                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-2 sm:mb-3 shadow-md">
-                                <span class="text-sm sm:text-lg font-bold text-white">{{ $initials }}</span>
-                            </div>
+                                <!-- User Profile -->
+                                <div class="flex flex-col items-center">
+                                    <!-- Avatar with Initials -->
+                                    @php
+                                        $nameParts = explode(' ', $testimonial->user->name);
+                                        $initials = strtoupper(
+                                            substr($testimonial->user->name, 0, 1) .
+                                                (isset($nameParts[1]) ? substr($nameParts[1], 0, 1) : ''),
+                                        );
+                                        $colors = [
+                                            'bg-[#E76F51]',
+                                            'bg-[#1D4E89]',
+                                            'bg-yellow-500',
+                                            'bg-green-500',
+                                            'bg-purple-500',
+                                        ];
+                                        $colorIndex = $index % count($colors);
+                                        $selectedColor = $colors[$colorIndex];
+                                    @endphp
 
-                            <!-- User Info -->
-                            <div class="text-center">
-                                <h4 class="text-base sm:text-lg font-semibold text-[#1D4E89] mb-1">
-                                    {{ $testimonial->user->name }}
-                                </h4>
-                                <p class="text-xs sm:text-sm text-gray-600 mb-2">
-                                    {{ $testimonial->user->position ?? 'Peserta Program TLC' }}
-                                </p>
-                                @if($testimonial->category)
-                                    <span class="inline-block px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                                        {{ $testimonial->category->name }}
+                                    <div
+                                        class="w-12 h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-3 shadow-md">
+                                        <span class="text-lg font-bold text-white">{{ $initials }}</span>
+                                    </div>
+
+                                    <!-- User Info -->
+                                    <div class="text-center">
+                                        <h4 class="text-lg font-semibold text-[#1D4E89] mb-1">
+                                            {{ $testimonial->user->name }}
+                                        </h4>
+                                        <p class="text-sm text-gray-600 mb-2">
+                                            {{ $testimonial->user->position ?? 'Peserta Program TLC' }}
+                                        </p>
+                                        @if ($testimonial->category)
+                                            <span
+                                                class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                                                {{ $testimonial->category->name }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Date -->
+                                <div class="text-center mt-4 pt-4 border-t border-gray-100">
+                                    <span class="text-xs text-gray-500">
+                                        {{ $testimonial->created_at->format('d M Y') }}
                                     </span>
-                                @endif
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
+                    </div>
 
-                        <!-- Date -->
-                        <div class="text-center mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
-                            <span class="text-xs text-gray-500">
-                                {{ $testimonial->created_at->format('d M Y') }}
-                            </span>
+                    <!-- Show More Button -->
+                    @if ($featuredTestimonials->count() > 3)
+                        <div class="text-center mt-10">
+                            <button
+                                class="px-6 py-3 bg-[#1D4E89] text-white rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg">
+                                Lihat Testimonial Lainnya
+                            </button>
+                        </div>
+                    @endif
+                @else
+                    <!-- Empty State -->
+                    <div class="text-center py-12">
+                        <div class="max-w-sm mx-auto">
+                            <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum Ada Testimonial</h3>
+                            <p class="text-gray-500">Testimonial dari pengguna akan muncul di sini setelah disetujui oleh
+                                admin.</p>
                         </div>
                     </div>
-                @endforeach
+                @endif
             </div>
+        </section>
 
-            <!-- Show More Button (Optional) - Only show on larger screens -->
-            @if($featuredTestimonials->count() >= 6)
-                <div class="text-center mt-6 sm:mt-8 lg:mt-10">
-                    <button class="px-4 sm:px-6 py-2 sm:py-3 bg-[#1D4E89] text-white text-sm sm:text-base rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#1D4E89] focus:ring-offset-2">
-                        Lihat Testimonial Lainnya
-                    </button>
-                </div>
-            @endif
+        <style>
+            .testimonial-card {
+                animation: fadeInUp 0.6s ease-out forwards;
+                opacity: 0;
+            }
 
-        @else
-            <!-- Empty State - Responsive -->
-            <div class="text-center py-8 sm:py-12">
-                <div class="max-w-sm mx-auto px-4">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                        <svg class="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-600 mb-2">Belum Ada Testimonial</h3>
-                    <p class="text-sm sm:text-base text-gray-500">Testimonial dari pengguna akan muncul di sini setelah disetujui oleh admin.</p>
-                </div>
-            </div>
-        @endif
-    </div>
-</section>
+            /* Staggered animation */
+            .testimonial-card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
 
-<style>
-    /* Custom animations for better user experience */
-    .testimonial-card {
-        animation: fadeInUp 0.6s ease-out forwards;
-        opacity: 0;
-    }
-    
-    .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
-    .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
-    .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
-    .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
-    .testimonial-card:nth-child(5) { animation-delay: 0.5s; }
-    .testimonial-card:nth-child(6) { animation-delay: 0.6s; }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    /* Responsive grid adjustments */
-    @media (max-width: 640px) {
-        .testimonial-card {
-            margin-bottom: 0.5rem;
-        }
-    }
-    
-    /* Better hover effects */
-    .testimonial-card:hover {
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-</style> --}}
+            .testimonial-card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
 
-{{-- Testimoni --}}
-<section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50" id="testimoni">
-    <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <div class="text-center mb-12">
-            <span class="inline-block px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">
-                TESTIMONI PENGGUNA
-            </span>
-            <h2 class="text-3xl lg:text-4xl font-bold text-[#1D4E89] mb-4">Apa Kata Mereka?</h2>
-            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                Pengalaman dan testimonial dari para pengguna program TLC
-            </p>
-        </div>
+            .testimonial-card:nth-child(3) {
+                animation-delay: 0.3s;
+            }
 
-        @if(isset($featuredTestimonials) && $featuredTestimonials->count() > 0)
-            <!-- Grid Testimonials -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                @foreach($featuredTestimonials as $index => $testimonial)
-                    <div class="testimonial-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
-                        <!-- Rating Stars -->
-                        <div class="flex justify-center mb-4">
-                            <div class="flex text-lg text-yellow-400">
-                                @for($i = 1; $i <= 5; $i++)
-                                    <span>★</span>
-                                @endfor
-                            </div>
-                        </div>
+            .testimonial-card:nth-child(4) {
+                animation-delay: 0.4s;
+            }
 
-                        <!-- Quote -->
-                        <div class="mb-6 flex-grow">
-                            <p class="text-gray-700 italic text-center text-base leading-relaxed line-clamp-4">
-                                "{{ Str::limit($testimonial->content, 150) }}"
-                            </p>
-                        </div>
+            .testimonial-card:nth-child(5) {
+                animation-delay: 0.5s;
+            }
 
-                        <!-- User Profile -->
-                        <div class="flex flex-col items-center">
-                            <!-- Avatar with Initials -->
-                            @php
-                                $nameParts = explode(' ', $testimonial->user->name);
-                                $initials = strtoupper(substr($testimonial->user->name, 0, 1) . (isset($nameParts[1]) ? substr($nameParts[1], 0, 1) : ''));
-                                $colors = ['bg-[#E76F51]', 'bg-[#1D4E89]', 'bg-yellow-500', 'bg-green-500', 'bg-purple-500'];
-                                $colorIndex = $index % count($colors);
-                                $selectedColor = $colors[$colorIndex];
-                            @endphp
-                            
-                            <div class="w-12 h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-3 shadow-md">
-                                <span class="text-lg font-bold text-white">{{ $initials }}</span>
-                            </div>
+            .testimonial-card:nth-child(6) {
+                animation-delay: 0.6s;
+            }
 
-                            <!-- User Info -->
-                            <div class="text-center">
-                                <h4 class="text-lg font-semibold text-[#1D4E89] mb-1">
-                                    {{ $testimonial->user->name }}
-                                </h4>
-                                <p class="text-sm text-gray-600 mb-2">
-                                    {{ $testimonial->user->position ?? 'Peserta Program TLC' }}
-                                </p>
-                                @if($testimonial->category)
-                                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                                        {{ $testimonial->category->name }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
 
-                        <!-- Date -->
-                        <div class="text-center mt-4 pt-4 border-t border-gray-100">
-                            <span class="text-xs text-gray-500">
-                                {{ $testimonial->created_at->format('d M Y') }}
-                            </span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-            <!-- Show More Button -->
-            @if($featuredTestimonials->count() > 3)
-                <div class="text-center mt-10">
-                    <button class="px-6 py-3 bg-[#1D4E89] text-white rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg">
-                        Lihat Testimonial Lainnya
-                    </button>
-                </div>
-            @endif
-        @else
-            <!-- Empty State -->
-            <div class="text-center py-12">
-                <div class="max-w-sm mx-auto">
-                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum Ada Testimonial</h3>
-                    <p class="text-gray-500">Testimonial dari pengguna akan muncul di sini setelah disetujui oleh admin.</p>
-                </div>
-            </div>
-        @endif
-    </div>
-</section>
+            /* Line clamping for text */
+            .line-clamp-4 {
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
 
-<style>
-    .testimonial-card {
-        animation: fadeInUp 0.6s ease-out forwards;
-        opacity: 0;
-    }
-    
-    /* Staggered animation */
-    .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
-    .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
-    .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
-    .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
-    .testimonial-card:nth-child(5) { animation-delay: 0.5s; }
-    .testimonial-card:nth-child(6) { animation-delay: 0.6s; }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    /* Line clamping for text */
-    .line-clamp-4 {
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .testimonial-card {
-            margin-bottom: 1.5rem;
-        }
-    }
-</style>
-{{-- Testimoni --}}
-
-
-
-
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .testimonial-card {
+                    margin-bottom: 1.5rem;
+                }
+            }
+        </style>
+        {{-- Testimoni --}}
     </section>
 
     <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>

@@ -84,7 +84,9 @@
                                         <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Text
                                             Soal</label>
                                         <textarea name="question_text" id="editor" rows="5"
-                                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">{!! $question->question_text !!}</textarea>
+                                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+                                            {!! $question->question_text !!}
+                                        </textarea>
                                     </div>
                                     <x-input-error :messages="$errors->get('question_text')" class="mt-1 text-xs" />
                                 </div>

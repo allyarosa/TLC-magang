@@ -41,6 +41,10 @@ Route::get('register2', function () {
     return view('register2');
 })->name('register2');
 
+Route::get('sertifikat', function () {
+    return view('sertifikat');
+})->name('sertifikat');
+
 // SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI 
 Route::get('/permission', function () {
     return view('permission');
@@ -97,8 +101,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(function () {
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');
-    Route::get('/sertifikat/{id}', [SertifikasiController::class, 'mySertifikat'])->name('asesi.sertifikat');
+    // Route::get('/sertifikat/{id}', [SertifikasiController::class, 'mySertifikat'])->name('asesi.sertifikat');
+    // Routes
     Route::get('/sertifikasi', [SertifikasiController::class, 'index'])->name('asesi.sertifikasi');
+    Route::get('/sertifikat-a/{id}', [SertifikasiController::class, 'sertifikatA'])->name('asesi.sertifikat.a');
+    Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
+    Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
+    Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
     Route::get('/register/2', [AuthController::class, 'registerStepTwo'])->name('asesi.registerStepTwo');
@@ -120,6 +129,12 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     Route::get('/sertifikasi/level/b/ppt', [LevelBController::class, 'formPPT'])->name('asesi.sertifikasi.level.b.ppt');
     Route::get('/sertifikasi/level/b/modul', [LevelBController::class, 'formModulAjar'])->name('asesi.sertifikasi.level.b.modulajar');
     Route::post('/sertifikasi/level/b/modul/store', [LevelBController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.b.store');
+
+    // LEVEL C ASESI
+    Route::post('/sertifikasi/level/c/instruction', [LevelCController::class, 'instruction'])->name('asesi.sertifikasi.level.c.instruction');
+    Route::get('/sertifikasi/level/c/essay', [LevelCController::class, 'formEssay'])->name('asesi.sertifikasi.level.c.essay');
+    Route::get('/sertifikasi/level/c/video', [LevelCController::class, 'formVideoUpload'])->name('asesi.sertifikasi.level.c.video');
+    Route::post('/sertifikasi/level/c/essay/store', [LevelCController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.c.store');
 });
 
 Route::middleware(['auth'])->prefix('asesi')->group(function () {
@@ -260,9 +275,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     Route::delete('/testimonials/{testimonial}', [\App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])
         ->name('admin.testimonials.destroy');
-
-
-
 });
 
 // AUTH ASESOR
@@ -275,16 +287,16 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
     Route::get('/list-asesi', [AsesorDashboardController::class, 'listAsesi'])->name('asesor.list-asesi');
 
     Route::get('/list-asesi/grade/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.asesi');
+    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'ShowGradeDetail'])->name('asesor.gradeB.show');
     Route::post('/list-asesi/grade/{id}', [LevelBGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeB.store');
 
     Route::get('/notifikasi', [AsesorDashboardController::class, 'notifikasi'])->name('asesor.notifikasi');
     Route::get('/form-penilaian', [AsesorDashboardController::class, 'formPenilaian'])->name('asesor.form-penilaian');
     Route::get('/riwayat-penilaian', [AsesorDashboardController::class, 'riwayatPenilaian'])->name('asesor.riwayat-penilaian');
+    Route::get('/riwayat-penilaian/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianDetail'])->name('asesor.riwayat-penilaian-detail');
     Route::get('/riwayat-aktifitas', [AsesorDashboardController::class, 'riwayatAktifitas'])->name('asesor.riwayat-aktifitas');
     Route::get('/download-nilai', [AsesorDashboardController::class, 'downloadNilai'])->name('asesor.download-nilai');
     Route::get('/profile-setting', [AsesorDashboardController::class, 'profileSetting'])->name('asesor.profile-setting');
-
-
 });
 
 // INDOREGION

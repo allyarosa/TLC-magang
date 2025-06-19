@@ -1,6 +1,6 @@
 @extends('layouts.exam')
 
-@section('title', 'Pengerjaan Level B - PPT')
+@section('title', 'Pengerjaan Level C - Video Pembelajaran')
 
 @section('content')
 <div class="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl mx-auto mt-6 sm:mt-8 md:mt-10 px-4 sm:px-6">
@@ -8,15 +8,15 @@
         <div class="p-4 sm:p-6 md:p-8">
             <div class="text-center mb-6 sm:mb-8">
                 <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-                    Upload Presentasi PPT
+                    Upload Video Pembelajaran
                 </h1>
                 <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">
-                    Silakan upload file presentasi PPT Anda beserta deskripsinya
+                    Silakan masukkan link video YouTube Anda beserta deskripsinya
                 </p>
             </div>
 
             {{-- Tampilkan pesan error umum --}}
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-800 dark:text-red-300 rounded-lg">
                     <div class="flex items-start">
                         <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -32,53 +32,52 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif --}}
 
-            <form id="pptForm" action="{{ route('asesi.sertifikasi.level.b.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <form id="videoForm" action="" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 
                 <div class="space-y-2">
-                    <label for="file_ppt" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
-                        Upload File PPT
+                    <label for="video_url" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
+                        Link Video YouTube
                         <span class="text-red-500">*</span>
                     </label>
-                    <div class="relative">
-                        <input type="file" id="file_ppt" name="file_ppt" required
-                            accept=".ppt,.pptx"
-                            class="block w-full text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-600 dark:file:text-gray-300">
-                    </div>
+                    <input type="url" id="video_url" name="video_url" required
+                        value=""
+                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200"
+                        placeholder="https://www.youtube.com/watch?v=...">
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                        Format yang didukung: PPT, PPTX (Maksimal 15MB)
+                        Pastikan video diunggah ke YouTube dengan visibilitas "Unlisted"
                     </p>
-                    @error('file_ppt')
+                    {{-- @error('video_url')
                         <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
                             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                             </svg>
                             {{ $message }}
                         </p>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 <div class="space-y-2">
                     <label for="description" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
-                        Deskripsi Modul Ajar
+                        Deskripsi Video Pembelajaran
                         <span class="text-red-500">*</span>
                     </label>
                     <textarea id="description" name="description" rows="4" required
-                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 resize-none"
-                        placeholder="Tuliskan deskripsi singkat tentang presentasi PPT Anda...">{{ old('description') }}</textarea>
+                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 resize-none"
+                        placeholder="Tuliskan deskripsi singkat tentang video pembelajaran Anda..."></textarea>
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                         Minimal 10 karakter, maksimal 500 karakter
                     </p>
-                    @error('description')
+                    {{-- @error('description')
                         <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
                             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                             </svg>
                             {{ $message }}
                         </p>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
@@ -87,12 +86,12 @@
                         Kembali
                     </button>
                     <button type="submit"
-                        class="w-full sm:flex-1 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+                        class="w-full sm:flex-1 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:bg-indigo-700 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
                         <span class="flex items-center justify-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                             </svg>
-                            Upload PPT
+                            Upload Video
                         </span>
                     </button>
                 </div>
@@ -105,8 +104,8 @@
 <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-sm w-full mx-4 transform transition-all">
         <div class="p-6">
-            <div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full">
-                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-indigo-100 dark:bg-indigo-900 rounded-full">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
             </div>
@@ -114,7 +113,7 @@
                 Konfirmasi Upload
             </h3>
             <p class="text-sm text-gray-600 dark:text-gray-300 text-center mb-6">
-                Apakah Anda yakin ingin mengupload file PPT ini? Pastikan file dan deskripsi sudah benar.
+                Apakah Anda yakin ingin mengupload video pembelajaran ini? Pastikan link dan deskripsi sudah benar.
             </p>
             <div class="flex gap-3">
                 <button id="cancelBtn" type="button"
@@ -122,7 +121,7 @@
                     Batal
                 </button>
                 <button id="confirmBtn" type="button"
-                    class="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    class="flex-1 px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors">
                     Ya, Upload
                 </button>
             </div>
@@ -132,11 +131,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('pptForm');
+        const form = document.getElementById('videoForm');
         const modal = document.getElementById('confirmModal');
         const cancelBtn = document.getElementById('cancelBtn');
         const confirmBtn = document.getElementById('confirmBtn');
-        const fileInput = document.getElementById('file_ppt');
+        const videoInput = document.getElementById('video_url');
         const descriptionInput = document.getElementById('description');
     
         // Prevent default form submission
@@ -144,14 +143,14 @@
             e.preventDefault();
             
             // Validate form
-            if (!fileInput.files[0]) {
-                alert('Silakan pilih file PPT terlebih dahulu');
-                fileInput.focus();
+            if (!videoInput.value.trim()) {
+                alert('Silakan masukkan link video YouTube terlebih dahulu');
+                videoInput.focus();
                 return;
             }
             
             if (!descriptionInput.value.trim()) {
-                alert('Silakan isi deskripsi modul ajar');
+                alert('Silakan isi deskripsi video pembelajaran');
                 descriptionInput.focus();
                 return;
             }
@@ -159,6 +158,14 @@
             if (descriptionInput.value.trim().length < 10) {
                 alert('Deskripsi minimal 10 karakter');
                 descriptionInput.focus();
+                return;
+            }
+            
+            // Validate YouTube URL
+            const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+            if (!youtubeRegex.test(videoInput.value.trim())) {
+                alert('Harap masukkan link YouTube yang valid');
+                videoInput.focus();
                 return;
             }
             
@@ -205,18 +212,6 @@
             }
         });
     
-        // File size validation (15MB for PPT)
-        fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const maxSize = 15 * 1024 * 1024; // 15MB
-                if (file.size > maxSize) {
-                    alert('Ukuran file terlalu besar. Maksimal 15MB');
-                    this.value = '';
-                }
-            }
-        });
-    
         // Character counter for description
         descriptionInput.addEventListener('input', function() {
             const current = this.value.length;
@@ -242,4 +237,5 @@
             }
         });
     });
-    </script>
+</script>
+@endsection

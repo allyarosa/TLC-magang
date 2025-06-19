@@ -4,30 +4,29 @@
     <section class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8 bg-gray-50 min-h-screen">
         @php use Vinkla\Hashids\Facades\Hashids; @endphp
         <!-- List Header -->
-        <div class="mb-4 sm:mb-6">
+        {{-- <div class="mb-4 sm:mb-6">
             <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-black border-b-4 border-yellow-500 pb-2 inline-block">
-                List Asesi B & C
+                List Asesi Level B
             </h1>
-        </div>
+        </div> --}}
 
         <div class="bg-white rounded-lg shadow-md p-3 sm:p-4 lg:p-6 mb-4 sm:mb-6">
             <div class="mb-4 sm:mb-6">
-                <h2 class="text-lg sm:text-xl font-bold text-gray-800">Daftar Asesi</h2>
-                <p class="text-xs sm:text-sm text-gray-600 mt-1">Kelola dan nilai asesi kategori B dan C</p>
+                <h2 class="text-xl sm:text-xl font-bold text-gray-800">Daftar Asesi</h2>
+                <p class="text-xs sm:text-sm text-gray-600 mt-1">Kelola dan nilai Asesi Level B </p>
             </div>
 
             <div class="flex flex-col space-y-3 sm:space-y-4 lg:flex-row lg:justify-between lg:space-y-0 mb-4 sm:mb-6">
                 <!-- Search -->
                 <div class="relative w-full lg:w-auto">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    <input type="text" placeholder="Cari asesi..."
-                        class="pl-8 sm:pl-10 pr-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg w-full lg:w-64 xl:w-72 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 text-sm sm:text-base">
+                    <form method="GET" action="{{ route('asesor.list-asesi') }}"
+                        class="flex flex-col sm:flex-row gap-2 sm:items-center mb-4">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari asesi..."
+                            class="pl-8 sm:pl-10 pr-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg w-full lg:w-64 xl:w-72 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 text-sm sm:text-base">
+                        <button type="submit"
+                            class="px-4 py-2 bg-blue-800 text-white rounded-lg text-sm hover:bg-blue-700 transition">Cari</button>
+                    </form>
+
                 </div>
 
                 <!-- Filters -->
@@ -53,12 +52,17 @@
                         </button>
                     </div>
                     <div class="relative">
-                        <select
-                            class="appearance-none border border-gray-300 rounded-lg pl-3 sm:pl-4 pr-8 sm:pr-10 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 w-full sm:w-auto text-xs sm:text-sm">
-                            <option>Semua Kategori</option>
-                            <option>Kategori B</option>
-                            <option>Kategori C</option>
-                        </select>
+                        <form method="GET" action="{{ route('asesor.list-asesi') }}" class="mb-4">
+                            <select name="kategori" onchange="this.form.submit()"
+                                class="appearance-none border border-gray-300 rounded-lg pl-3 sm:pl-4 pr-8 sm:pr-10 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 w-full sm:w-auto text-xs sm:text-sm">
+                                <option value="">Semua Kategori</option>
+                                <option value="modul_ajar" {{ request('kategori') === 'modul_ajar' ? 'selected' : '' }}>
+                                    Modul Ajar
+                                </option>
+                                <option value="file_ppt" {{ request('kategori') === 'file_ppt' ? 'selected' : '' }}>PPT
+                                </option>
+                            </select>
+                        </form>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg class="fill-current h-3 w-3 sm:h-4 sm:w-4" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20">
@@ -129,10 +133,26 @@
 
                                 {{-- STATUS --}}
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                        {{ Str::ucfirst($index->status) }}
-                                    </span>
+                                    @php
+                                        $status = $index->status;
+                                    @endphp
+
+                                    @if ($status === 'pending')
+                                        <span
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            Menunggu
+                                        </span>
+                                    @elseif ($status === 'reviewed')
+                                        <span
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Lulus
+                                        </span>
+                                    @elseif ($status === 'rejected')
+                                        <span
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            Tidak Lulus
+                                        </span>
+                                    @endif
                                 </td>
 
                                 {{-- LAST UPDATED --}}
@@ -149,16 +169,23 @@
                                     @endif
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex justify-end">
-                                    <a href="{{ route('asesor.gradeB.asesi', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}"
-                                        class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg flex items-center gap-1 transition duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        Nilai
-                                    </a>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm flex justify-end">
+                                    @if ($index->score)
+                                        <a href="{{ route('asesor.gradeB.show', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}"
+                                            class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            Sudah Dinilai
+                                        </a>
+                                    @else
+                                        <a href="{{ route('asesor.gradeB.asesi', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}"
+                                            class="bg-red-500 hover:bg-red-400 text-white px-3 py-1 rounded-lg flex items-center gap-1 border border-red-600 font-semibold">
+                                            Belum Dinilai
+                                        </a>
+                                    @endif
                                     <button class="text-gray-500 hover:text-gray-700 ml-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +198,7 @@
                         @empty
                             <p>empty</p>
                         @endforelse
-                        <tr class="hover:bg-blue-50">
+                        {{-- <tr class="hover:bg-blue-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Budi Santoso</div>
                             </td>
@@ -211,9 +238,9 @@
                                     </svg>
                                 </button>
                             </td>
-                        </tr>
+                        </tr> --}}
 
-                        <tr class="hover:bg-blue-50">
+                        {{-- <tr class="hover:bg-blue-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Siti Rahayu</div>
                             </td>
@@ -253,8 +280,8 @@
                                     </svg>
                                 </button>
                             </td>
-                        </tr>
-
+                        </tr> --}}
+                        {{-- 
                         <tr class="hover:bg-blue-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Agus Wijaya</div>
@@ -295,9 +322,12 @@
                                     </svg>
                                 </button>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
+            </div>
+            <div class="mt-6">
+                {{ $levelB->links() }}
             </div>
 
             <div class="lg:hidden space-y-4">
@@ -420,12 +450,12 @@
             </div>
 
             <!-- Pagination -->
-            <div class="mt-6 flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4">
+            {{-- <div class="mt-6 flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <button
                     class="bg-blue-800 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 transition duration-200 text-sm sm:text-base w-full sm:w-auto">
                     Lihat Semua Asesi
                 </button>
-            </div>
+            </div> --}}
         </div>
 
         <script>

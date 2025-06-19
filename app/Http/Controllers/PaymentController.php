@@ -38,8 +38,8 @@ class PaymentController extends Controller
     {
         $decoded = Hashids::decode($id);
 
-        if(empty($decoded)) {
-            abort(404,'ID Tidak Valid');
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
         }
 
         $id = $decoded[0];
@@ -246,14 +246,33 @@ class PaymentController extends Controller
     {
         $payment = Payment::where('order_id', $id)->first();
 
+        //JIKA WEBHOOK TIDAK JALAN
+        $payment->update([
+            'status' => 'success'
+        ]);
+        $user = User::firstWhere('id', $payment->user_id);
+
+        switch ($payment->level_id) {
+            case 1:
+                $user->givePermissionTo('access_level_A');
+                break;
+            case 2:
+                $user->givePermissionTo('access_level_B');
+                break;
+            case 3:
+                $user->givePermissionTo('access_level_C');
+                break;
+            default:
+                break;
+        }
+        //JIKA WEBHOOK TIDAK JALAN
+
         if (!$payment) {
-            // return redirect()->route('asesi.transaksi')->with('error', 'Data pembayaran tidak ditemukan');
-            return 'error';
+            abort(404);
         }
 
         $level = Level::find($payment->level_id);
         $levelName = $level ? $level->level_name : '-';
-
         return view('payments.finish', [
             'payment' => $payment,
             'levelName' => $levelName,

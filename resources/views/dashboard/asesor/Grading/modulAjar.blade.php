@@ -97,8 +97,7 @@
                         @endif
                     </div>
 
-                    <p class="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-6">Deskripsi:
-                        <span>{{ $asesi->description }}</span>
+                    <p class="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-6">Deskripsi: <span>{!! $asesi->description !!}</span>
                     </p>
                 </div>
 
@@ -111,17 +110,19 @@
                         <h3 class="text-gray-700 mb-3 text-sm sm:text-base font-medium">Penilaian</h3>
                         <div class="space-y-2 sm:space-y-3">
                             <div class="flex items-center">
-                                <input id="kompeten" name="assessment" type="radio" value="passed" checked
+                                <input id="kompeten" name="assessment" type="radio" value="passed"
+                                    @checked(old('assessment', $asesi->is_passed) === 'passed')
                                     class="h-4 w-4 text-blue-800 focus:ring-blue-800 focus:ring-2">
                                 <label for="kompeten"
                                     class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">Kompeten</label>
                             </div>
                             <div class="flex items-center">
                                 <input id="belum-kompeten" name="assessment" type="radio" value="rejected"
+                                    @checked(old('assessment', $asesi->is_passed) === 'rejected')
                                     class="h-4 w-4 text-blue-800 focus:ring-blue-800 focus:ring-2">
                                 <label for="belum-kompeten"
-                                    class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">
-                                    Belum Kompeten</label>
+                                    class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">Belum
+                                    Kompeten</label>
                             </div>
                             <x-input-error :messages="$errors->get('assessment')" class="mt-1 text-xs" />
                         </div>
@@ -132,11 +133,15 @@
                         <div class="relative">
                             <select name="score" required
                                 class="block w-full bg-white border border-gray-300 text-gray-700 py-2 sm:py-3 px-3 sm:px-4 pr-8 rounded-lg sm:rounded-full leading-tight focus:outline-none focus:border-blue-800 text-sm sm:text-base">
-                                <option>Pilih skor</option>
-                                <option value="90-100">90-100 (Sangat Baik)</option>
-                                <option value="80-89">80-89 (Baik)</option>
-                                <option value="70-79">70-79 (Cukup)</option>
-                                <option value="60-69">60-69 (Kurang)</option>
+                                <option disabled {{ old('score', $asesi->score) ? '' : 'selected' }}>Pilih skor</option>
+                                <option value="90-100" {{ old('score', $asesi->score) === '90-100' ? 'selected' : '' }}>
+                                    90-100 (Sangat Baik)</option>
+                                <option value="80-89" {{ old('score', $asesi->score) === '80-89' ? 'selected' : '' }}>80-89
+                                    (Baik)</option>
+                                <option value="70-79" {{ old('score', $asesi->score) === '70-79' ? 'selected' : '' }}>
+                                    70-79 (Cukup)</option>
+                                <option value="60-69" {{ old('score', $asesi->score) === '60-69' ? 'selected' : '' }}>
+                                    60-69 (Kurang)</option>
                             </select>
                             <x-input-error :messages="$errors->get('score')" class="mt-1 text-xs" />
                             <div
@@ -152,8 +157,10 @@
                         <label for="description" class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">
                             Komentar</label>
                         <textarea name="comment_asesor" id="editor" rows="2"
-                            class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">{!! $asesi->commentar_asesor !!}</textarea>
-                            <x-input-error :messages="$errors->get('comment_asesor')" class="mt-1 text-xs" />
+                            class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">
+                            {!! $asesi->comment_asesor !!}
+                        </textarea>
+                        <x-input-error :messages="$errors->get('comment_asesor')" class="mt-1 text-xs" />
                     </div>
 
                     <div class="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">

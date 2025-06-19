@@ -55,20 +55,15 @@
                                 </svg>
                             </button>
                         @else
-                            <form action="{{ route('asesi.sertifikasi.level.b.instruction') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="category_id" value="1">
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                <button
-                                    class="px-5 py-2 bg-gradient-to-r from-orange-500 to-orange-700 text-white rounded-xl text-sm font-medium shadow-md transform transition duration-100 hover:shadow-xl hover:-translate-y-0.5 flex items-center">
-                                    Dalam Penilaian
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </button>
-                            </form>
+                            <button disabled
+                                class="px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-not-allowed opacity-60">
+                                Dalam Penilaian
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
                         @endif
                     @elseif (Auth::user()->hasPermissionTo('access_level_B'))
                         <form action="{{ route('asesi.sertifikasi.level.b.instruction') }}" method="POST">
@@ -149,20 +144,15 @@
                                 </svg>
                             </button>
                         @else
-                            <form action="{{ route('asesi.sertifikasi.level.b.instruction') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="category_id" value="2">
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                <button
-                                    class="px-5 py-2 bg-gradient-to-r from-orange-500 to-orange-700 text-white rounded-xl text-sm font-medium shadow-md transform transition duration-100 hover:shadow-xl hover:-translate-y-0.5 flex items-center">
-                                    Dalam Penilaian
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </button>
-                            </form>
+                            <button disabled
+                                class="px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-not-allowed opacity-60">
+                                Dalam Penilaian
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
                         @endif
                     @elseif (Auth::user()->hasPermissionTo('access_level_B'))
                         <form action="{{ route('asesi.sertifikasi.level.b.instruction') }}" method="POST">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Asesor;
 
+use App\Events\GradingCompleted;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAssessmentRequest;
+use App\Models\LevelBHistory;
 
 class LevelBGradedController extends Controller
 {
@@ -65,18 +67,39 @@ class LevelBGradedController extends Controller
         $levelB = LevelBSubmission::find($id);
         $user = User::where('id', $levelB->user_id)->first();
         $levelB->update([
-            'score' => 100,
+            'score' => $request->score,
             'status' => $request->status,
             'is_passed' => $request->assessment,
             'comment_asesor' => $request->comment_asesor,
         ]);
 
+        $category = null;
+        if ($levelB->modul_ajar) {
+            $category = 'Modul Ajar';
+        } else {
+            $category = 'PPT';
+        }
+
+        LevelBHistory::create([
+            'user_id' => $levelB->user_id,
+            'category' => $category,
+            'file_ppt' => $levelB->file_ppt ?? null,
+            'modul_ajar' => $levelB->modul_ajar ?? null,
+            'score' => 100,
+            'comment_asesor' => $request->comment_asesor,
+        ]);
+
+
+
         if ($request->assessment === 'passed') {
             if ($levelB->modul_ajar) {
                 $user->givePermissionTo('MODUL_AJAR_COMPLETED');
+                $user->givePermissionTo('MODUL_AJAR');
             } elseif ($levelB->file_ppt) {
                 $user->givePermissionTo('PPT_COMPLETED');
+                $user->givePermissionTo('PPT_UPLOAD');
             }
+            
         } elseif ($request->assessment === 'rejected') {
             if ($levelB->modul_ajar) {
                 $user->revokePermissionTo('MODUL_AJAR');
@@ -86,13 +109,9 @@ class LevelBGradedController extends Controller
                 $levelB->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
             }
         }
-
+        
+        event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');
         return redirect()->route('asesor.list-asesi');
     }
-
-
-
-
-
 }

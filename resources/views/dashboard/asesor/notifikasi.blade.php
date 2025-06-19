@@ -32,11 +32,12 @@
                         </svg>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <h2 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                        <h2
+                            class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                             Menunggu Penilaian</h2>
                         <div class="flex items-center mt-1">
                             <span
-                                class="text-xl sm:text-2xl font-bold text-gray-800 mr-2 group-hover:text-blue-600 transition-colors duration-300">8</span>
+                                class="text-xl sm:text-2xl font-bold text-gray-800 mr-2 group-hover:text-blue-600 transition-colors duration-300">{{ $levelBPending }}</span>
                             <span class="text-xs text-gray-600">Asets yang menunggu untuk dinilai</span>
                         </div>
                         <button
@@ -62,7 +63,8 @@
                         </svg>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <h2 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                        <h2
+                            class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                             Tenggat Dekat</h2>
                         <div class="flex items-center mt-1">
                             <span
@@ -92,7 +94,8 @@
                         </svg>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <h2 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                        <h2
+                            class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                             Jadwal Hari Ini</h2>
                         <div class="flex items-center mt-1">
                             <span
@@ -126,21 +129,24 @@
             <!-- Notifikasi List -->
             <div class="divide-y divide-gray-200">
                 <!-- Notification Item 1 -->
-                <div class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
+                <div
+                    class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
                     <div class="flex items-start">
                         <div
                             class="bg-blue-100 group-hover:bg-blue-200 rounded-full p-2 mr-3 flex-shrink-0 transition-all duration-300 transform group-hover:rotate-12">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" viewBox="0 0 20 20"
-                                fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
+                                viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
                         <div class="flex-grow min-w-0 pr-16 sm:pr-20">
-                            <h3 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                            <h3
+                                class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                                 Asets Baru Menunggu Penilaian</h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
+                            <p
+                                class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
                                 Ahmad Fauzi (ID: ASE-001) telah menyelesaikan tugas dan menunggu penilaian.</p>
                             <button
                                 class="mt-2 bg-blue-800 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium py-1.5 px-2 sm:px-3 rounded-md transform transition duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
@@ -155,21 +161,24 @@
                 </div>
 
                 <!-- Notification Item 2 -->
-                <div class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
+                <div
+                    class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
                     <div class="flex items-start">
                         <div
                             class="bg-blue-100 group-hover:bg-blue-200 rounded-full p-2 mr-3 flex-shrink-0 transition-all duration-300 transform group-hover:rotate-12">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" viewBox="0 0 20 20"
-                                fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
+                                viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
                         <div class="flex-grow min-w-0 pr-16 sm:pr-20">
-                            <h3 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                            <h3
+                                class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                                 Asets Baru Menunggu Penilaian</h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
+                            <p
+                                class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
                                 Siti Nurhaliza (ID: ASE-002) telah menyelesaikan tugas dan menunggu penilaian.</p>
                             <button
                                 class="mt-2 bg-blue-800 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium py-1.5 px-2 sm:px-3 rounded-md transform transition duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
@@ -184,7 +193,8 @@
                 </div>
 
                 <!-- Notification Item 3 -->
-                <div class="px-3 sm:px-4 py-3 relative hover:bg-yellow-50 transition-colors duration-300 cursor-pointer group">
+                <div
+                    class="px-3 sm:px-4 py-3 relative hover:bg-yellow-50 transition-colors duration-300 cursor-pointer group">
                     <div class="flex items-start">
                         <div
                             class="bg-yellow-100 group-hover:bg-yellow-200 rounded-full p-2 mr-3 flex-shrink-0 transition-all duration-300">
@@ -197,9 +207,11 @@
                             </svg>
                         </div>
                         <div class="flex-grow min-w-0 pr-16 sm:pr-20">
-                            <h3 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                            <h3
+                                class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                                 Tenggat Waktu Penilaian</h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
+                            <p
+                                class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
                                 Penilaian untuk Budi Santoso (ID: ASE-003) harus diselesaikan dalam 24 jam.</p>
                             <button
                                 class="mt-2 bg-blue-800 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium py-1.5 px-2 sm:px-3 rounded-md transform transition duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
@@ -214,21 +226,24 @@
                 </div>
 
                 <!-- Notification Item 4 -->
-                <div class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
+                <div
+                    class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
                     <div class="flex items-start">
                         <div
                             class="bg-blue-100 group-hover:bg-blue-200 rounded-full p-2 mr-3 flex-shrink-0 transition-all duration-300 transform group-hover:rotate-12">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" viewBox="0 0 20 20"
-                                fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
+                                viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
                         <div class="flex-grow min-w-0 pr-16 sm:pr-20">
-                            <h3 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                            <h3
+                                class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                                 Penilaian Berhasil Disimpan</h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
+                            <p
+                                class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
                                 Penilaian untuk Dian Kartika (ID: ASE-004) telah berhasil disimpan.</p>
                         </div>
                     </div>
@@ -239,21 +254,24 @@
                 </div>
 
                 <!-- Notification Item 5 -->
-                <div class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
+                <div
+                    class="px-3 sm:px-4 py-3 relative hover:bg-blue-50 transition-colors duration-300 cursor-pointer group">
                     <div class="flex items-start">
                         <div
                             class="bg-blue-100 group-hover:bg-blue-200 rounded-full p-2 mr-3 flex-shrink-0 transition-all duration-300 transform group-hover:rotate-12">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" viewBox="0 0 20 20"
-                                fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
+                                viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1v-3a1 1 0 00-1-1z"
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
                         <div class="flex-grow min-w-0 pr-16 sm:pr-20">
-                            <h3 class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
+                            <h3
+                                class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-black transition-colors duration-300">
                                 Asets Baru Diopaskan</h3>
-                            <p class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
+                            <p
+                                class="text-xs sm:text-sm text-gray-600 mt-1 group-hover:text-gray-700 transition-colors duration-300 break-words">
                                 5 asets baru telah ditugaskan kepada Anda untuk dinilai.</p>
                         </div>
                     </div>

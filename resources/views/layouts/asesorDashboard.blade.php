@@ -19,6 +19,8 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link rel="icon" href="{{ asset('assets/img/tlc.png') }}" type="image/png">
     <script>
         tailwind.config = {
             theme: {
@@ -161,18 +163,44 @@
                 <!-- User Section -->
                 <div class="flex items-center space-x-3">
                     <!-- Search -->
-                    <div class="relative hidden md:block">
+                    {{-- <div class="relative hidden md:block">
                         <input type="text" placeholder="Cari asesi, penilaian..."
                             class="bg-white/20 backdrop-blur-sm text-white placeholder-white/70 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 transition-smooth w-48 lg:w-64">
                         <i
                             class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 text-sm"></i>
+                    </div> --}}
+                    <div class="bg-white rounded-lg px-3 py-2 transition-all duration-300">
+                        <div class="flex items-center space-x-2">
+                            <div class="relative">
+                                <svg class="h-5 w-5 text-[#1D4E89]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                    </path>
+                                </svg>
+                                <div
+                                    class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-sm font-medium text-gray-700">Selamat datang,</span>
+                                <span class="ml-1 font-bold text-[#1D4E89]">{{ Auth::user()->name }}</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Notification -->
-                    <a href="{{ route('asesor.notifikasi') }}"
-                        class="relative p-2 text-white hover:bg-white/20 rounded-lg transition-smooth">
-                        <i class="fas fa-bell text-lg"></i>
-                    </a>
+                    <div class="relative">
+                        </button>
+                        <a href="{{ route('asesor.notifikasi') }}"
+                            class="relative p-2 text-white hover:bg-white/20 rounded-lg transition-smooth">
+                            <i class="fas fa-bell text-lg"></i>
+                        </a>
+                        <span
+                            class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
+                            {{ $levelBPending ?? '0' }}
+                        </span>
+                    </div>
 
                     <!-- User Dropdown -->
                     <div class="relative">
@@ -264,9 +292,17 @@
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
                             <i
                                 class="fas fa-users w-5 h-5 {{ Request::routeIs('asesor.list-asesi') ? 'text-white' : 'text-secondary' }}"></i>
-                            <span class="ml-3">List Asesi B & C</span>
+                            <span class="ml-3">List Penilaian Level B</span>
                         </a>
                     </li>
+                    {{-- <li>
+                        <a href="{{ route('asesor.list-asesi') }}"
+                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
+                            <i
+                                class="fas fa-users w-5 h-5 {{ Request::routeIs('asesor.list-asesi') ? 'text-white' : 'text-secondary' }}"></i>
+                            <span class="ml-3">List Penilaian Level C</span>
+                        </a>
+                    </li> --}}
                     <li>
                         <a href="{{ route('asesor.notifikasi') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.notifikasi') ? 'menu-active' : 'menu-inactive' }}">
@@ -275,20 +311,20 @@
                             <span class="ml-3">Notifikasi</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('asesor.form-penilaian') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.form-penilaian') ? 'menu-active' : 'menu-inactive' }}">
                             <i
                                 class="fas fa-clipboard-list w-5 h-5 {{ Request::routeIs('asesor.form-penilaian') ? 'text-white' : 'text-green-500' }}"></i>
                             <span class="ml-3">Form Penilaian</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('asesor.riwayat-penilaian') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian') ? 'menu-active' : 'menu-inactive' }}">
                             <i
                                 class="fas fa-chart-line w-5 h-5 {{ Request::routeIs('asesor.riwayat-penilaian') ? 'text-white' : 'text-primary' }}"></i>
-                            <span class="ml-3">Riwayat Penilaian</span>
+                            <span class="ml-3">Riwayat Penilaian B</span>
                         </a>
                     </li>
                     <li>

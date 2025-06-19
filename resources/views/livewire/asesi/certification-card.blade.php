@@ -1,8 +1,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Level A Card -->
-    @php
-        use Vinkla\Hashids\Facades\Hashids;
-    @endphp
+    @php use Vinkla\Hashids\Facades\Hashids; @endphp
+    {{-- Level A Card --}}
     <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden opacity-0 slide-in border border-gray-100"
         style="animation-delay: 0.1s">
         <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
@@ -94,7 +93,8 @@
             @else
                 <p class="text-sm text-gray-500 italic mb-6">
                     Belum dibuka - Lakukan pembayaran terlebih dahulu
-                    <a href="{{ route('payments.create', Hashids::encode(1)) }}" class="text-blue-600 underline hover:text-blue-800">
+                    <a href="{{ route('payments.create', Vinkla\Hashids\Facades\Hashids::encode(1)) }}"
+                        class="text-blue-600 underline hover:text-blue-800">
                         disini
                     </a>
                 </p>
@@ -103,7 +103,7 @@
             <div class="flex gap-3">
                 @if ($hasAccessA)
                     @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                        <a href="{{ route('asesi.sertifikat', Auth::id()) }}"
+                        <a href="{{ route('asesi.sertifikat.a', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}"
                             class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
                             Lihat Sertifikat Anda
                         </a>
@@ -186,7 +186,8 @@
                 @if (Auth::user()->hasPermissionTo('level_A_completed'))
                     <p class="text-sm text-gray-500 italic mb-6">
                         Belum dibuka - Lakukan pembayaran terlebih dahulu
-                        <a href="{{ route('payments.create', Hashids::encode(2)) }}" class="text-blue-600 underline hover:text-blue-800">
+                        <a href="{{ route('payments.create', Hashids::encode(2)) }}"
+                            class="text-blue-600 underline hover:text-blue-800">
                             disini
                         </a>
                     </p>
@@ -198,8 +199,8 @@
 
             <div class="flex gap-3">
                 @if ($hasAccessB)
-                    @if (Auth::user()->hasPermissionTo('level_C_completed'))
-                        <a href="{{ route('asesi.sertifikat', Auth::id()) }}"
+                    @if (Auth::user()->hasPermissionTo('level_B_completed'))
+                        <a href="{{ route('asesi.sertifikat.b', Vinkla\Hashids\Facades\Hashids::encode(2)) }}"
                             class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
                             Lihat Sertifikat Anda
                         </a>
@@ -214,71 +215,100 @@
     </div>
 
     <!-- Level C Card -->
-    <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden opacity-0 slide-in border border-gray-100"
-        style="animation-delay: 0.3s">
-        <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
-        <div class="p-8">
-            <div class="flex items-center mb-6">
-                <div
-                    class="w-12 h-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-[#1D4E89]" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+<!-- Level C Card -->
+<div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden opacity-0 slide-in border border-gray-100"
+    style="animation-delay: 0.3s">
+    <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
+    <div class="p-8">
+        <div class="flex items-center mb-6">
+            <div
+                class="w-12 h-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[#1D4E89]" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800">Level C: Teaching Mastery Certification</h2>
+        </div>
+
+        <p class="text-gray-600 mb-6 leading-relaxed">Tunjukkan video praktik dan refleksi mendalam
+            untuk sertifikasi akhir.</p>
+
+        <div class="space-y-4 mb-8">
+            <div class="flex items-center">
+                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
                     </svg>
                 </div>
-                <h2 class="text-2xl font-bold text-gray-800">Level C: Teaching Mastery Certification</h2>
+                <span class="text-gray-500">Video mengajar (YouTube)</span>
             </div>
-
-            <p class="text-gray-600 mb-6 leading-relaxed">Tunjukkan video praktik dan refleksi mendalam
-                untuk sertifikasi akhir.</p>
-
-            <div class="space-y-4 mb-8">
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-500">Video mengajar (YouTube)</span>
+            <div class="flex items-center">
+                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
                 </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-500">Refleksi tertulis</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-500">Umpan balik asesor</span>
-                </div>
+                <span class="text-gray-500">Refleksi tertulis</span>
             </div>
-
-            <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level B selesai</p>
-
-            <div class="flex gap-3">
-                @if ($hasAccessC)
-                    <livewire:component.button-status-badge status="progress" />
-                    <livewire:component.button-certificate status="lihat_sertifikat">
-                    @else
-                        {{-- <livewire:component.button-status-badge status="belum_tersedia" /> --}}
-                        <livewire:component.button-certificate status="belum_tersedia">
-                @endif
+            <div class="flex items-center">
+                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <span class="text-gray-500">Umpan balik asesor</span>
             </div>
         </div>
+
+        @if ($hasAccessC)
+            @if (Auth::user()->hasPermissionTo('level_C_completed'))
+                <p class="text-sm text-green-600 italic mb-6">
+                    <i class="fas fa-check-circle mr-1"></i>
+                    Anda telah menyelesaikan kategori Level C dan berhak mendapatkan sertifikat
+                </p>
+            @else
+                <p class="text-sm text-gray-500 italic mb-6">
+                    <i class="fas fa-info-circle mr-1"></i>
+                    Selesaikan kategori Level C terlebih dahulu untuk mendapatkan sertifikat
+                </p>
+            @endif
+        @else
+            @if (Auth::user()->hasPermissionTo('level_B_completed'))
+                <p class="text-sm text-gray-500 italic mb-6">
+                    Belum dibuka - Lakukan pembayaran terlebih dahulu
+                    <a href="{{ route('payments.create', Hashids::encode(3)) }}"
+                        class="text-blue-600 underline hover:text-blue-800">
+                        disini
+                    </a>
+                </p>
+            @else
+                <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level B selesai</p>
+            @endif
+        @endif
+
+        <div class="flex gap-3">
+            @if ($hasAccessC)
+                @if (Auth::user()->hasPermissionTo('level_C_completed'))
+                    <a href="{{ route('asesi.sertifikat.c') }}"
+                        class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
+                        Lihat Sertifikat Anda
+                    </a>
+                @else
+                    <livewire:component.button-certificate status="sedang_berjalan">
+                @endif
+            @else
+                <livewire:component.button-certificate status="belum_tersedia">
+            @endif
+        </div>
     </div>
-    <script src="{{ asset('assets/js/certificationLevelCard.js') }}"></script>
+</div>    <script src="{{ asset('assets/js/certificationLevelCard.js') }}"></script>
     <style>
         @keyframes ripple {
             to {
