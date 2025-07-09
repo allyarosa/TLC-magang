@@ -211,7 +211,7 @@
                                 AS
                             </div>
                             <div class="text-left hidden md:block">
-                                <p class="text-white font-medium text-sm">Asesor</p>
+                                <p class="text-white font-medium text-sm">{{ Auth::user()->name }}</p>
                             </div>
                             <svg class="w-4 h-4 text-white/70 transition-transform duration-200" id="dropdown-arrow"
                                 fill="currentColor" viewBox="0 0 20 20">

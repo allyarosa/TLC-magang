@@ -24,7 +24,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Foto Profil</h3>
                         <div class="flex flex-col sm:flex-row items-center gap-6">
                             <div class="relative">
-                                <img class="rounded-full w-32 h-32 object-cover border-4 border-gray-100" src="#" alt="Foto Profil">
+                                <img class="rounded-full w-32 h-32 object-cover border-4 border-gray-100" src="{{ asset) }}" alt="Foto Profil">
                                 <div class="absolute -bottom-2 -right-2 bg-blue-500 rounded-full p-2 shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />

@@ -71,11 +71,13 @@ class User extends Authenticatable
         return $this->hasOne(\App\Models\AdminsProfile::class, 'user_id', 'id');
     }
 
-    public function payment() {
+    public function payment()
+    {
         return $this->hasOne(Payment::class);
     }
 
-    public function LevelBSubmission() {
+    public function LevelBSubmission()
+    {
         return $this->hasMany(LevelBSubmission::class);
     }
     public function isProfileComplete()
@@ -83,7 +85,7 @@ class User extends Authenticatable
         if (!$this->userProfile) {
             return false;
         }
-    
+
         // Define required fields
         $requiredFields = [
             'nama_depan',
@@ -96,18 +98,28 @@ class User extends Authenticatable
             // 'latar_belakang_pendidikan',
             // 'nama_universitas'
         ];
-    
+
         foreach ($requiredFields as $field) {
             if (empty($this->userProfile->$field)) {
                 return false;
             }
         }
-    
+
         return true;
     }
     public function testimonials()
     {
         return $this->hasMany(Testimonial::class);
+    }
+
+    public function userAnswers()
+    {
+        return $this->hasMany(UserAnswerC::class);
+    }
+
+    public function examSessions()
+    {
+        return $this->hasMany(ExamSessionC::class);
     }
 
 

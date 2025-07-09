@@ -35,7 +35,7 @@ class LevelAController extends Controller
                 'banner_img' => $category->banner_img ?? 'blankCategories.jpg',
                 'time_limit' => $category->time_limit ?? 0,
                 'is_locked' => $category->is_locked ?? false,
-                'passing_score' => $category->passing_score?? 0,
+                'passing_score' => $category->passing_score ?? 0,
                 'question_count' => $count ?? 'null, data not found'
             ];
         });
@@ -89,61 +89,63 @@ class LevelAController extends Controller
         }
     }
 
-   public function categoriesUpdate(Request $request, string $id)
-{
-    try {
-        DB::beginTransaction();
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'banner_img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'time_limit' => 'required|integer',
-            'is_locked' => 'required|boolean',
-            'passing_score' => 'required|integer'
-        ]);
+    public function categoriesUpdate(Request $request, string $id)
+    {
+        try {
+            DB::beginTransaction();
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'banner_img' => 'nullable|mimes:jpg,jpeg,png,gif,svg|max:2048',
+                'time_limit' => 'required|integer',
+                'is_locked' => 'required|boolean',
+                'passing_score' => 'required|integer'
+            ]);
 
-        $categoriesBaseID = CategoryA::find($id);
+            $categoriesBaseID = CategoryA::find($id);
 
-        if (!$categoriesBaseID) {
-            Log::warning('Category update failed: Category A with ID ' . $id . ' not found');
-            return redirect()->route('admin.categories.a.index')
-                ->with('error', 'Data kategori A tidak ditemukan.');
-        }
-
-        if ($request->hasFile('banner_img')) {
-            if ($categoriesBaseID->banner_img && 
-                Storage::disk('public')->exists($categoriesBaseID->banner_img) && 
-                $categoriesBaseID->banner_img !== 'blankCategories.jpg') {
-                Storage::disk('public')->delete($categoriesBaseID->banner_img);
+            if (!$categoriesBaseID) {
+                Log::warning('Category update failed: Category A with ID ' . $id . ' not found');
+                return redirect()->route('admin.categories.a.index')
+                    ->with('error', 'Data kategori A tidak ditemukan.');
             }
-            
-            $imagePath = $request->file('banner_img')->store('categories/images', 'public');
-            $validated['banner_img'] = $imagePath;
-        } else {
-            unset($validated['banner_img']);
+
+            if ($request->hasFile('banner_img')) {
+                if (
+                    $categoriesBaseID->banner_img &&
+                    Storage::disk('public')->exists($categoriesBaseID->banner_img) &&
+                    $categoriesBaseID->banner_img !== 'blankCategories.jpg'
+                ) {
+                    Storage::disk('public')->delete($categoriesBaseID->banner_img);
+                }
+
+                $imagePath = $request->file('banner_img')->store('categories/images', 'public');
+                $validated['banner_img'] = $imagePath;
+            } else {
+                unset($validated['banner_img']);
+            }
+
+            $categoriesBaseID->update($validated);
+            $categoriesBaseID->save();
+
+            Log::info('Category A with ID ' . $id . ' has been updated successfully by user ' . auth()->user()->id);
+
+            DB::commit();
+            Alert::success('Berhasil', 'Data kategori A berhasil diubah.');
+            return redirect()->route('admin.categories.a.index')
+                ->with('success', 'Data kategori A berhasil diubah.');
+
+        } catch (ValidationException $e) {
+            DB::rollBack();
+            Log::error('Category update validation failed: ' . json_encode($e->errors()));
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        } catch (Exception $e) {
+            DB::rollback();
+            Log::error('Category update failed with exception: ' . $e->getMessage());
+            return redirect()->route('admin.categories.a.edit')
+                ->with('error', 'Terjadi kesalahan saat mengubah data kategori A. Silakan coba lagi.');
         }
-
-        $categoriesBaseID->update($validated);
-        $categoriesBaseID->save();
-
-        Log::info('Category A with ID ' . $id . ' has been updated successfully by user ' . auth()->user()->id);
-
-        DB::commit();
-        Alert::success('Berhasil', 'Data kategori A berhasil diubah.');
-        return redirect()->route('admin.categories.a.index')
-            ->with('success', 'Data kategori A berhasil diubah.');
-
-    } catch (ValidationException $e) {
-        DB::rollBack();
-        Log::error('Category update validation failed: ' . json_encode($e->errors()));
-        return redirect()->back()->withErrors($e->errors())->withInput();
-    } catch (Exception $e) {
-        DB::rollback();
-        Log::error('Category update failed with exception: ' . $e->getMessage());
-        return redirect()->route('admin.categories.a.edit')
-            ->with('error', 'Terjadi kesalahan saat mengubah data kategori A. Silakan coba lagi.');
     }
-}
 
     public function bankSoalIndex(Request $request)
     {

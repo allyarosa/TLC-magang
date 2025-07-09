@@ -49,12 +49,12 @@
                 <div class="hidden lg:flex lg:items-center lg:space-x-4">
                     <a href="{{ route('login') }}">
                         <button
-                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#f1e686] hover:text-white hover:font-bold transition duration-300">
+                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:border-[#3A6EA5] hover:text-white hover:font-bold transition duration-300">
                             Masuk</button>
                     </a>
                     <a href="{{ route('register') }}">
                         <button
-                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#f1e686] hover:text-white hover:font-bold transition duration-300">Daftar Sekarang
+                            class="border-2 border-[#3A6EA5] font-bold text-white text-sm px-3 py-1.5 rounded-lg bg-[#3A6EA5] hover:bg-[#184575] hover:text-white hover:font-bold transition duration-300">Daftar Sekarang
                             </button>
                     </a>
                 </div>
@@ -78,7 +78,7 @@
                     </a>
                     <a href="{{ route('register') }}" class="w-full">
                         <button
-                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#f1e686] hover:text-white hover:font-bold transition duration-300 w-full">Daftar Sekarang
+                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#90BE6D] hover:text-white hover:font-bold transition duration-300 w-full">Daftar Sekarang
                             </button>
                     </a>
                 </div>

@@ -56,6 +56,9 @@ class RolePermissionSeeders extends Seeder
 
             'ESSAY',
             'VIDEO_UPLOAD',
+
+            'VIDEO_UPLOAD_COMPLETED',
+
             'YES_NO_QUESTIONS',
             'EXPIRED_KATEGORY',
         ];

@@ -36,7 +36,7 @@
 
     {{-- Kategori Level --}}
     <section
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 shadow-xl rounded-3xl border border-orange-100 p-8 mb-10 bg-gradient-to-br from-blue-50 via-white to-orange-50">
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 shadow-xl rounded-3xl border border-orange-100 p-8 mb-36 bg-gradient-to-br from-blue-50 via-white to-orange-50">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
             <div class="flex items-center space-x-3">
                 <div class="bg-gradient-to-r from-[#1D4E89] to-[#5396ae] text-white p-3 rounded-xl shadow-lg">
@@ -169,14 +169,14 @@
         });
 
         // Add pulse animation to gradient icons
-        document.querySelectorAll('.bg-gradient-to-r').forEach(icon => {
-            setInterval(() => {
-                icon.style.animation = 'pulse 2s ease-in-out';
-                setTimeout(() => {
-                    icon.style.animation = '';
-                }, 2000);
-            }, 5000);
-        });
+        // document.querySelectorAll('.bg-gradient-to-r').forEach(icon => {
+        //     setInterval(() => {
+        //         icon.style.animation = 'pulse 2s ease-in-out';
+        //         setTimeout(() => {
+        //             icon.style.animation = '';
+        //         }, 2000);
+        //     }, 5000);
+        // });
 
         // Add CSS animations
         const style = document.createElement('style');

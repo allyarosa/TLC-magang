@@ -7,7 +7,7 @@
     <section>
 
         {{-- Riwayat Transaksi --}}
-        <section class="max-w-6xl mx-auto px-6 py-8">
+        <section class="max-w-6xl mx-auto px-6 py-8 mb-36">
             <!-- Header with gradient background -->
             <div class="gradient-bg rounded-2xl p-8 mb-8 text-white">
                 <div class="flex items-center justify-between">

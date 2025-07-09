@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('nik', 20)->nullable();
+            $table->char('nik', 20)->nullable();
             $table->string('nama_depan', 30)->nullable();
             $table->string('instansi', 50)->nullable();
 
@@ -26,11 +26,11 @@ return new class extends Migration
             $table->string('nama_universitas', 50)->nullable();
             $table->string('program_studi', 50)->nullable();
             $table->string('tahun_studi', 50)->nullable();
-            
+
             $table->string('tempat_lahir', 25)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
-            $table->string('no_wa', 20)->nullable();
+            $table->char('no_wa', 13)->nullable();
             $table->string('profile_image', 150)->nullable();
             $table->string('custom_instansi', 40)->nullable();
 
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('kecamatan', 30)->nullable();
             $table->string('kabupaten', 30)->nullable();
             $table->string('kelurahan', 30)->nullable();
-            
+
             $table->timestamps();
         });
     }

@@ -112,4 +112,8 @@ class SertifikasiController extends Controller
         // Download PDF
         return $pdf->download($filename);
     }
+
+    public function dicoding(string $id) {
+        return view('');
+    }
 }

@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use App\Models\LevelCSubmission;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\StoreAssessmentRequestC;
 
 class LevelCController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('admin.level.level-c-index');
 
     }
@@ -102,7 +104,42 @@ class LevelCController extends Controller
 
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Gagal mengirim video pembelajaran: '. $e->getMessage());
+                ->with('error', 'Gagal mengirim video pembelajaran: ' . $e->getMessage());
+        }
+    }
+
+    public function storeSubmission(StoreAssessmentRequestC $request)
+    {
+        DB::beginTransaction();
+        try {
+            $validated = $request->validated();
+            $user = Auth::user();
+
+            // Create submission record
+            $levelC = LevelCSubmission::create([
+                'user_id' => $user->id,
+                'url_video' => $validated['url_video'],
+                'description' => $validated['description'],
+                'status' => 'pending',
+            ]);
+            DB::commit();
+            $user->givePermissionTo('VIDEO_UPLOAD');
+
+            Alert::success('Berhasil Dikirim', 'Silahkan tunggu pengecekan oleh Asesor.');
+            return redirect()->route('asesi.sertifikasi');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::channel('level_c')->error('Failed to store Level C submission', [
+                'user_id' => $user->id ?? null,
+                'error_message' => $e->getMessage(),
+                'error_file' => $e->getFile(),
+                'error_line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return redirect()->back()->with('error', 'Gagal mengirim permohonan sertifikasi Level C: ' . $e->getMessage());
         }
     }
 }

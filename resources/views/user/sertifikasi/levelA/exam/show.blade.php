@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Enhanced Navbar with Glass Effect -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg shadow-xl border-b border-[#3A6EA5]/20">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg shadow-md border-b border-[#3A6EA5]/20">
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Left section - Logo and Category -->
@@ -17,15 +17,14 @@
                             </div>
                         </div>
                         <span
-                            class="ml-2 text-xl font-bold bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] bg-clip-text text-transparent hidden sm:block">TLC</span>
+                            class="ml-2 text-xl font-bold bg-[#3A6EA5] bg-clip-text text-transparent hidden sm:block">TLC</span>
                     </div>
 
                     <!-- Enhanced Category Badge -->
                     <div class="hidden md:block">
                         <div class="flex items-center space-x-2">
                             <div class="relative overflow-hidden">
-                                <span
-                                    class="relative px-4 py-2 bg-gradient-to-r from-[#3A6EA5] via-[#4A7EBA] to-[#90BE6D] text-white text-sm font-semibold rounded-full shadow-lg">
+                                <span class="relative px-4 py-2 bg-[#3A6EA5] text-white text-sm font-semibold shadow-lg">
                                     <span class="relative z-10">Sertifikasi Level A -
                                         {{ $category->name ?? 'Tidak ada Kategori' }}</span>
                                     <div
@@ -44,8 +43,26 @@
                     </div>
                 </div>
 
+                <form action="{{ route('asesi.sertifikasi.level.a.finish', $exam) }}" method="POST" id="finishExamForm"
+                    class="inline-block hidden">
+                    @csrf
+                    <button type="button" onclick="confirmFinish()"
+                        class="group relative overflow-hidden flex items-center bg-gradient-to-r from-[#90BE6D] to-[#3A6EA5] hover:from-[#7FA85C] hover:to-[#2E5A8A] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700">
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 relative z-10" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="relative z-10 hidden sm:inline">Selesaikan Ujian</span>
+                        <span class="relative z-10 sm:hidden">Selesai</span>
+                    </button>
+                </form>
+
                 <!-- Enhanced Finish Button -->
-                <div class="flex items-center">
+                {{-- <div class="flex items-center">
                     @if ($answeredQuestions == $totalQuestions)
                         <form action="{{ route('asesi.sertifikasi.level.a.finish', $exam) }}" method="POST"
                             id="finishExamForm" class="inline-block">
@@ -74,7 +91,7 @@
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Enhanced Mobile dropdown -->
@@ -117,7 +134,7 @@
                         </div>
 
                         <!-- Enhanced Question Header -->
-                        <div class="relative bg-gradient-to-r from-[#3A6EA5] via-[#4A7EBA] to-[#90BE6D] px-6 py-5">
+                        <div class="relative bg-[#3A6EA5] px-6 py-5">
                             <div class="flex justify-between items-center">
                                 <h3 class="text-xl font-bold text-white flex items-center">
                                     <span
@@ -147,8 +164,7 @@
                         <div class="p-8 relative z-10">
                             <div class="prose prose-lg max-w-none mb-8">
                                 <div class="relative">
-                                    <p
-                                        class="text-gray-800 text-lg leading-relaxed font-medium bg-gradient-to-r from-gray-50 to-blue-50/30 p-6 rounded-xl border-l-4 border-[#3A6EA5] shadow-sm">
+                                    <p class="select-none">
                                         {!! $question->question_text !!}
                                     </p>
                                 </div>
@@ -194,37 +210,26 @@
 
                                     @foreach ($options as $key => $option)
                                         @if ($option)
-                                            <div class="group relative">
+                                            <div class="mb-2">
                                                 <input type="radio" name="user_answer" id="answer_{{ $key }}"
-                                                    value="{{ $key }}"
-                                                    {{ $userAnswer == $key ? 'checked' : '' }} class="sr-only peer">
+                                                    value="{{ $key }}" {{ $userAnswer == $key ? 'checked' : '' }}
+                                                    class="peer hidden">
                                                 <label for="answer_{{ $key }}"
-                                                    class="flex items-center p-4 bg-gradient-to-r from-gray-50 to-blue-50/30 hover:from-[#3A6EA5]/5 hover:to-[#90BE6D]/5 
-                                                              peer-checked:from-[#3A6EA5]/10 peer-checked:to-[#90BE6D]/10 
-                                                              rounded-xl cursor-pointer transition-all duration-300 
-                                                              border-2 border-gray-200 hover:border-[#3A6EA5]/30 
-                                                              peer-checked:border-[#3A6EA5] peer-checked:shadow-lg 
-                                                              transform hover:scale-[1.01] peer-checked:scale-[1.02]">
+                                                    class="flex items-center gap-3 p-3 border rounded-lg cursor-pointer
+                       peer-checked:border-blue-600 peer-checked:bg-blue-50 transition">
                                                     <div
-                                                        class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-gray-300 
-                                                                peer-checked:border-[#3A6EA5] peer-checked:bg-[#3A6EA5] 
-                                                                transition-all duration-200 mr-4 flex-shrink-0">
+                                                        class="w-5 h-5 rounded-full border border-gray-400 flex items-center justify-center">
                                                         <div
-                                                            class="w-4 h-4 rounded-full bg-white opacity-0 peer-checked:opacity-100 transform scale-0 peer-checked:scale-100 transition-all duration-200">
+                                                            class="w-2.5 h-2.5 rounded-full bg-blue-600 scale-0 peer-checked:scale-100 transition-transform">
                                                         </div>
-                                                        <span
-                                                            class="absolute text-sm font-bold text-gray-600 peer-checked:text-white transition-colors duration-200">
-                                                            {{ strtoupper($key) }}
-                                                        </span>
                                                     </div>
-                                                    <span
-                                                        class="text-gray-700 peer-checked:text-gray-900 font-medium transition-colors duration-200 flex-1">
-                                                        {{ $option }}
-                                                    </span>
+                                                    <span class="font-medium text-gray-800">{{ strtoupper($key) }}.
+                                                        {{ $option }}</span>
                                                 </label>
                                             </div>
                                         @endif
                                     @endforeach
+
                                 </div>
 
                                 <!-- Enhanced Navigation Buttons -->
@@ -250,7 +255,7 @@
                                             <input type="hidden" name="next_question"
                                                 value="{{ $questions->currentPage() + 1 }}">
                                             <button type="submit"
-                                                class="group relative overflow-hidden flex-1 sm:flex-none flex items-center justify-center bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] hover:from-[#2E5A8A] hover:to-[#7FA85C] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                class="group relative overflow-hidden flex-1 sm:flex-none flex items-center justify-center bg-[#3A6EA5] hover:from-[#2E5A8A] hover:to-[#7FA85C] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                                 <div
                                                     class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700">
                                                 </div>
@@ -280,21 +285,30 @@
 
                                             @if ($answeredQuestions == $totalQuestions)
                                                 <form action="{{ route('asesi.sertifikasi.level.a.finish', $exam) }}"
-                                                    method="POST" id="finishExamForm" class="flex-1 sm:flex-none">
+                                                    method="POST" id="finishExamForm"
+                                                    class="flex-1 sm:flex-none hidden">
                                                     @csrf
                                                     <button type="button" onclick="confirmFinish()"
-                                                        class="group relative overflow-hidden w-full flex items-center justify-center bg-gradient-to-r from-[#90BE6D] to-[#3A6EA5] hover:from-[#7FA85C] hover:to-[#2E5A8A] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                        class="group relative overflow-hidden w-full flex items-center justify-center bg-[#2E5A8A] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                                         <div
                                                             class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700">
                                                         </div>
-                                                        <span class="relative z-10 hidden sm:inline">Selesaikan
-                                                            Ujian</span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="h-5 w-5 mr-2 relative z-10" fill="none"
+                                                            viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                        <span class="relative z-10 hidden sm:inline">
+                                                            Selesaikan Ujian
+                                                        </span>
                                                         <span class="relative z-10 sm:hidden">Selesai</span>
                                                     </button>
                                                 </form>
                                             @else
                                                 <button type="submit"
-                                                    class="group relative overflow-hidden flex-1 sm:flex-none bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] hover:from-[#2E5A8A] hover:to-[#7FA85C] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                    class="group relative overflow-hidden flex-1 sm:flex-none bg-[#2E5A8A] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                                                     <div
                                                         class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700">
                                                     </div>
@@ -318,9 +332,9 @@
                     <!-- Enhanced Header -->
                     <div class="bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] p-6">
                         <h3 class="text-xl font-bold text-white flex items-center">
-                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            {{-- <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                            </svg> --}}
                             Navigasi Soal
                         </h3>
                         <p class="text-white/80 text-sm mt-1">Klik nomor untuk berpindah soal</p>

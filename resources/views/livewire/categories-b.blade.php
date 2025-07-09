@@ -8,9 +8,9 @@
             class="bg-white rounded-3xl shadow-lg overflow-hidden border border-blue-100 transform transition duration-500 hover:shadow-xl group">
             {{-- Gambar banner --}}
             <div class="relative">
-                <img src="#" alt="#" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                <img src="{{ asset('/storage/blankCategories.svg') }}" alt="#" class="w-full h-48 object-cover group-hover:opacity-90 transition">
 
-                <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-blue-200 to-transparent"></div>
             </div>
 
             {{-- Isi konten --}}
@@ -101,9 +101,9 @@
             class="bg-white rounded-3xl shadow-lg overflow-hidden border border-blue-100 transform transition duration-500 hover:shadow-xl group">
             {{-- Gambar banner --}}
             <div class="relative">
-                <img src="#" alt="#" class="w-full h-48 object-cover group-hover:opacity-90 transition">
+                <img src="{{ asset('/storage/blankCategories.svg') }}" alt="#" class="w-full h-48 object-cover group-hover:opacity-90 transition">
 
-                <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-blue-200 to-transparent"></div>
             </div>
 
             {{-- Isi konten --}}

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Asesi;
 
+use App\Models\User;
 use App\Models\CategoryB;
+use Exception;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use App\Models\LevelBSubmission;
 use Illuminate\Support\Facades\DB;
@@ -10,8 +13,8 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\StoreSubmissionRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\StoreSubmissionRequest;
 
 class LevelBController extends Controller
 {
@@ -112,7 +115,7 @@ class LevelBController extends Controller
                 'trace' => $e->getTraceAsString()
             ]);
 
-            return redirect()->back()->with('error', 'Gagal mengirim permohonan sertifikasi Level B: '. $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal mengirim permohonan sertifikasi Level B: ' . $e->getMessage());
         }
     }
 }

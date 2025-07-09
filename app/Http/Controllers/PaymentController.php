@@ -64,6 +64,7 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
+        
         $user = User::with('userProfile')->where('id', Auth::id())->first();
 
         if (!$user->isProfileComplete()) {

@@ -137,6 +137,14 @@ return [
             'replace_placeholders' => true,
         ],
 
+        'level_c' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/level_c.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
+        
         'grading' => [
             'driver' => 'daily',
             'path' => storage_path('logs/grading.log'),

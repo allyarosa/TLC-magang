@@ -19,24 +19,28 @@ class CategoryASeeders extends Seeder
                 'description' => 'Higher Order Thinking Skills - Kemampuan berpikir tingkat tinggi',
                 'time_limit' => '30',
                 'passing_score' => '75',
+                'banner_img'=> 'blankCategories.svg',
             ],
             [
                 'name' => 'PCK',
                 'description' => 'Pedagogical Content Knowledge - Pengetahuan konten pedagogis',
                 'time_limit' => '30',
                 'passing_score' => '75',
+                'banner_img'=> 'blankCategories.svg',
             ],
             [
                 'name' => 'LITERASI',
                 'description' => 'Kemampuan membaca dan memahami informasi',
                 'time_limit' => '30',
                 'passing_score' => '75',
+                'banner_img'=> 'blankCategories.svg',
             ],
             [
                 'name' => 'NUMERASI',
                 'description' => 'Kemampuan menggunakan angka dan simbol terkait matematika',
                 'time_limit' => '30',
                 'passing_score' => '75',
+                'banner_img'=> 'blankCategories.svg',
             ],
         ];
 

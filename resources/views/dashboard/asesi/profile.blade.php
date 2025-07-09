@@ -65,7 +65,7 @@
                             <div
                                 class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-100 overflow-hidden border-4 border-white shadow-md">
                                 <img id="profileImage"
-                                    src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? 'assets/images/default-profile.png')) }}"
+                                    src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/blankProfile.png')) }}"
                                     alt="Foto Profil" class="w-full h-full object-cover">
                             </div>
                             <label for="profileInput"
@@ -90,10 +90,10 @@
                                 <span
                                     class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap">Bergabung
                                     {{ auth()->user()->created_at->format('M Y') }}</span>
-                                <span
+                                {{-- <span
                                     class="{{ auth()->user()->userProfile ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }} text-xs font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap">
                                     {{ auth()->user()->userProfile ? 'Profil Lengkap' : 'Profil Belum Lengkap' }}
-                                </span>
+                                </span> --}}
                             </div>
                         </div>
                     </div>
@@ -128,11 +128,12 @@
                         <div id="personalContent" class="tab-content active">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-medium text-gray-700">Nama Lengkap <span
-                                            class="text-red-500">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700">Nama Lengkap + Gelar</label>
                                     <input type="text" name="nama_depan" required
                                         value="{{ old('nama_depan', auth()->user()->userProfile->nama_depan ?? auth()->user()->name) }}"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')"
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base">
+
                                     @error('nama_depan')
                                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                                     @enderror
@@ -141,6 +142,7 @@
                                 <div class="space-y-2">
                                     <label class="block text-sm font-medium text-gray-700">NIK</label>
                                     <input type="text" name="nik" maxlength="16"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);"
                                         value="{{ old('nik', auth()->user()->userProfile->nik ?? '') }}"
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base"
                                         placeholder="16 digit NIK">
@@ -149,10 +151,12 @@
                                     @enderror
                                 </div>
 
+
                                 <div class="space-y-2">
                                     <label class="block text-sm font-medium text-gray-700">Tempat Lahir</label>
-                                    <input type="text" name="tempat_lahir"
+                                    <input type="text" name="tempat_lahir" maxlength="25"
                                         value="{{ old('tempat_lahir', auth()->user()->userProfile->tempat_lahir ?? '') }}"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')"
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base">
                                 </div>
 
@@ -179,11 +183,13 @@
 
                                 <div class="space-y-2">
                                     <label class="block text-sm font-medium text-gray-700">Nomor WhatsApp</label>
-                                    <input type="number" name="no_wa"
+                                    <input type="tel" name="no_wa" pattern="\d{10,13}" maxlength="13"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);"
                                         value="{{ old('no_wa', auth()->user()->userProfile->no_wa ?? '') }}"
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base"
                                         placeholder="08xxxxxxxxxx">
                                 </div>
+
                             </div>
                         </div>
 
@@ -286,7 +292,7 @@
 
                                 <div class="space-y-2">
                                     <label class="block text-sm font-medium text-gray-700">Profesi</label>
-                                    <input type="text" name="profesi"
+                                    <input type="text" name="profesi" maxlength="50"
                                         value="{{ old('profesi', auth()->user()->userProfile->profesi ?? '') }}"
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base"
                                         placeholder="Contoh: Manager, Staff IT, Dokter">
@@ -336,7 +342,7 @@
                                 <!-- Provinsi -->
                                 <div class="space-y-2">
                                     <label for="province" class="block text-sm font-medium text-gray-700">Provinsi
-                                        Domisili <span class="text-red-500">*</span></label>
+                                        Domisili</label>
                                     <select id="province" name="provinsi"
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base">
                                         <option value="">Pilih Provinsi</option>
@@ -355,7 +361,7 @@
                                 <!-- Kabupaten/Kota -->
                                 <div class="space-y-2">
                                     <label for="regency" class="block text-sm font-medium text-gray-700">Kabupaten/Kota
-                                        Domisili <span class="text-red-500">*</span></label>
+                                        Domisili</label>
                                     <select id="regency" name="kabupaten" disabled
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base disabled:bg-gray-100 disabled:cursor-not-allowed">
                                         <option value="">Pilih Kabupaten/Kota</option>
@@ -375,7 +381,7 @@
                                 <!-- Kecamatan -->
                                 <div class="space-y-2">
                                     <label for="district" class="block text-sm font-medium text-gray-700">Kecamatan
-                                        Domisili <span class="text-red-500">*</span></label>
+                                        Domisili</label>
                                     <select id="district" name="kecamatan" disabled
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base disabled:bg-gray-100 disabled:cursor-not-allowed">
                                         <option value="">Pilih Kecamatan</option>
@@ -395,7 +401,7 @@
                                 <!-- Kelurahan -->
                                 <div class="space-y-2">
                                     <label for="village" class="block text-sm font-medium text-gray-700">Kelurahan
-                                        Domisili <span class="text-red-500">*</span></label>
+                                        Domisili</label>
                                     <select id="village" name="kelurahan" disabled
                                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm sm:text-base disabled:bg-gray-100 disabled:cursor-not-allowed">
                                         <option value="">Pilih Kelurahan</option>

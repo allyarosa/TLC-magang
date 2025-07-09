@@ -9,9 +9,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Models\LevelBHistory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AsesorDashboardController extends Controller
 {
+    // Dashboard Methods
     public function index()
     {
         $users = User::role('asesi')->get();
@@ -28,15 +31,6 @@ class AsesorDashboardController extends Controller
             'levelBReviewed' => $levelBReviewedCount ?: 'Belum Ada',
         ]);
     }
-
-
-    // public function listAsesi(Request $request)
-    // {
-    //     $levelB = LevelBSubmission::with('user')->paginate(10);
-    //     return view('dashboard.asesor.listasesi', [
-    //         'levelB' => $levelB,
-    //     ]);
-    // }
 
     public function listAsesi(Request $request)
     {
@@ -65,8 +59,7 @@ class AsesorDashboardController extends Controller
         ]);
     }
 
-
-
+    // Simple View Methods
     public function notifikasi()
     {
         $levelBPendingCount = LevelBSubmission::where('status', 'pending')->count();
@@ -116,8 +109,83 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.downloadnilai');
     }
 
+    // Profile Methods
     public function profileSetting()
     {
-        return view('dashboard.asesor.profilesetting');
+        $user = auth()->user()->load(['userProfile', 'asesorProfile']);
+        return view('dashboard.asesor.profilesetting', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255'
+        ]);
+
+        $user->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ]);
+
+        $user->userProfile()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'no_wa' => $validated['phone'],
+                'alamat' => $validated['address']
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Password saat ini tidak sesuai']);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with('success', 'Password berhasil diubah');
+    }
+
+    public function updatePhoto(Request $request)
+    {
+        $request->validate([
+            'profile_photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $user = auth()->user();
+        
+        if ($request->hasFile('profile_photo')) {
+            if ($user->asesorProfile->profile_image && $user->asesorProfile->profile_image != 'blankProfile.png') {
+                Storage::delete('public/profile_images/'.$user->asesorProfile->profile_image);
+            }
+
+            $filename = 'profile_'.$user->id.'_'.time().'.'.$request->file('profile_photo')->getClientOriginalExtension();
+            $path = $request->file('profile_photo')->storeAs('public/profile_images', $filename);
+
+            $user->asesorProfile()->update([
+                'profile_image' => $filename
+            ]);
+
+            return back()->with('success', 'Foto profil berhasil diperbarui');
+        }
+
+        return back()->withErrors(['profile_photo' => 'Gagal mengupload foto profil']);
     }
 }

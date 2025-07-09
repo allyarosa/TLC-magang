@@ -126,7 +126,7 @@
                     </div>
 
                     <!-- Notification -->
-                    <div class="relative">
+                    {{-- <div class="relative">
                         <button
                             class="p-2.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
                             <svg class="h-5 w-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@
                             class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
                             3
                         </span>
-                    </div>
+                    </div> --}}
 
                     <!-- Profile Dropdown -->
                     <div class="relative">
@@ -175,6 +175,23 @@
                                         </svg>
                                     </div>
                                     <span class="font-medium">Lihat Profil</span>
+                                </a>
+
+                                <div class="border-t border-gray-100 my-1"></div>
+
+                                <a href="{{ route('asesi.profile') }}"
+                                    class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
+                                    <div
+                                        class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="text-blue-600">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">Riwayat Transaksi</span>
                                 </a>
 
                                 <div class="border-t border-gray-100 my-1"></div>
@@ -290,7 +307,7 @@
                 const closeIcon = document.getElementById('close-icon');
 
                 // if (mobileMenuToggle && mobileMenu) {
-                    if (mobileMenuToggle && mobileMenu && hamburgerIcon && closeIcon) {
+                if (mobileMenuToggle && mobileMenu && hamburgerIcon && closeIcon) {
                     mobileMenuToggle.addEventListener('click', function() {
                         // Check if menu is currently hidden
                         const isHidden = mobileMenu.classList.contains('opacity-0');
@@ -334,7 +351,7 @@
                 const profileArrow = document.getElementById('profile-arrow');
 
                 // if (profileButton && profileMenu) {
-                    if (profileButton && profileMenu && profileArrow) {
+                if (profileButton && profileMenu && profileArrow) {
                     profileButton.addEventListener('click', function() {
                         profileMenu.classList.toggle('hidden');
                         profileArrow.classList.toggle('rotate-180');
@@ -524,6 +541,8 @@
 
         <!-- FontAwesome Script untuk Icon -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @include('sweetalert::alert')
     </footer>
 
     @livewireScripts

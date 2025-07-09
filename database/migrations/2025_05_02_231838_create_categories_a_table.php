@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('banner_img')->default('blankCategories.jpg')->nullable();
+            $table->string('banner_img')->nullable();
             $table->string('time_limit')->nullable();
             $table->integer('passing_score')->nullable();
             $table->boolean('is_locked')->default(false);

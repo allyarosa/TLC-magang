@@ -17,18 +17,20 @@
 </head>
 
 <body>
+    <!-- Header -->
     <header>
         <nav
-            class="fixed top-0 z-50 w-full bg-gradient-to-r from-blue-700 to-indigo-800 dark:bg-gray-800 dark:border-gray-700">
-            <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            class="fixed top-0 z-50 w-full bg-gradient-to-r from-[#1D4E89] to-[#0D3A6E] shadow-lg border-b-2 border-[#E76F51] backdrop-blur-sm">
+            <div class="px-4 py-2 lg:px-6">
                 <div class="flex items-center justify-between">
-                    {{-- logo TLC start --}}
-                    <div class="flex items-center justify-start rtl:justify-end">
+                    <!-- Logo Section -->
+                    <div class="flex items-center">
                         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                             aria-controls="logo-sidebar" type="button"
-                            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-kuning focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                            class="inline-flex items-center p-2 text-sm rounded-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all duration-300 group">
                             <span class="sr-only">Open sidebar</span>
-                            <svg class="w-6 h-6" aria-hidden="true" fill="#ffffff" viewBox="0 0 20 20"
+                            <svg class="w-5 h-5 text-white group-hover:text-[#E76F51] transition-colors duration-300"
+                                aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" fill-rule="evenodd"
                                     d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
@@ -36,347 +38,365 @@
                             </svg>
                         </button>
                         <a href="#"
-                            class="flex items-center justify-center bg-white w-8 h-8 rounded-md shadow-lg ms-2 md:me-24">
-                            <img src="{{ asset('images/logoTlcPng.png') }}" class="h-8" alt="FlowBite Logo" />
+                            class="flex items-center justify-center ml-3 bg-white/20 backdrop-blur-sm w-9 h-9 rounded-lg shadow-md hover:scale-105 transition-all duration-300 border border-white/30">
+                            <img src="{{ asset('images/logoTlcPng.png') }}" class="h-6" alt="TLC Logo" />
                         </a>
-                        {{-- <span class="self-center hidden text-xl font-bold text-white md:block whitespace-nowrap">Testing</span> --}}
+                        <div class="ml-3 hidden md:block">
+                            <h1 class="text-lg font-bold text-white">TLC Admin Dashboard</h1>
+                            <p class="text-xs text-white/80">Teacher Learning Center</p>
+                        </div>
                     </div>
-                    {{-- logo TLC end --}}
 
-                    <div class="flex items-center">
-                        <div class="flex items-center ms-3">
-                            {{-- user foto start --}}
-                            <div class="pr-2">
-                                <button type="button"
-                                    class="flex items-center space-x-2 py-1 px-2 text-sm bg-gray-800 rounded-md hover:bg-gray-700 focus:ring-4 focus:ring-indigo-500 dark:focus:ring-gray-600 transition-all duration-300 ease-in-out"
-                                    aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                                    <span class="sr-only">Open user menu</span>
-                                    <!-- Image Profile -->
-                                    @if (auth()->user()->hasRole('admin') && auth()->user()->adminsProfile && auth()->user()->adminsProfile->profile_image)
-                                        <img src="{{ asset('storage/' . auth()->user()->adminsProfile->profile_image) }}"
-                                            class="w-[40px] h-[40px] rounded-full object-cover shadow-md border-2 border-indigo-500 transform transition-all duration-300 ease-in-out hover:scale-105">
-                                    @else
-                                        <img src="{{ asset('img/blank_profile.png') }}"
-                                            class="w-[40px] h-[40px] rounded-full object-cover shadow-md border-2 border-gray-500 transform transition-all duration-300 ease-in-out hover:scale-105">
-                                    @endif
-                                    <!-- User Email -->
-                                    <div class="text-left">
-                                        <p class="text-sm text-white">
-                                            <span>Welcome,</span>
-                                            {{ auth()->user()->name }}
-                                        </p>
+                    <!-- User Section -->
+                    <div class="flex items-center space-x-3">
+                        <!-- Search -->
+                        {{-- <div class="relative hidden md:block">
+                            <input type="text" placeholder="Cari ..........."
+                                class="bg-white/20 backdrop-blur-sm text-white placeholder-white/70 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 transition-smooth w-48 lg:w-64">
+                            <i
+                                class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 text-sm"></i>
+                        </div> --}}
+
+                        <!-- Mobile Search Button -->
+                        {{-- <button class="md:hidden p-2 rounded-lg hover:bg-white/20 transition-all duration-300">
+                            <i class="fas fa-search text-white text-lg"></i>
+                        </button> --}}
+
+                        <!-- Notification Bell -->
+                        {{-- <button class="relative p-2 rounded-lg hover:bg-white/20 transition-all duration-300 group">
+                            <i
+                                class="fas fa-bell text-lg text-white group-hover:text-[#E76F51] transition-colors duration-300"></i>
+                            <span
+                                class="absolute -top-1 -right-1 w-3 h-3 bg-[#E76F51] rounded-full flex items-center justify-center text-xs text-white font-bold">3</span>
+                        </button> --}}
+
+                        <!-- User Profile -->
+                        <div class="relative">
+                            <button type="button"
+                                class="flex items-center space-x-2 py-1 px-3 text-sm rounded-lg hover:bg-white/20 focus:ring-2 focus:ring-white/30 transition-all duration-300 group"
+                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                <!-- Image Profile -->
+                                @if (auth()->user()->hasRole('admin') && auth()->user()->adminsProfile && auth()->user()->adminsProfile->profile_image)
+                                    <img src="{{ asset('storage/' . auth()->user()->adminsProfile->profile_image) }}"
+                                        class="w-8 h-8 rounded-full object-cover shadow-sm border border-white/50 group-hover:border-[#E76F51] transition-all duration-300">
+                                @else
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-gradient-to-r from-[#E76F51] to-[#1D4E89] flex items-center justify-center text-white font-bold shadow-sm border border-white/50 group-hover:border-[#E76F51] transition-all duration-300">
+                                        {{ substr(auth()->user()->name, 0, 1) }}
                                     </div>
-                                </button>
-                            </div>
-                            {{-- user foto end --}}
-
-                            {{-- toggle user menu start --}}
-                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
-                                id="dropdown-user">
-                                <div class="px-4 py-3" role="none">
-                                    <p class="text-sm font-medium text-gray-900 truncate" role="none">
-                                        {{ auth()->user()->email }}
-                                    </p>
+                                @endif
+                                <!-- User Info -->
+                                <div class="text-left hidden lg:block">
+                                    <p class="text-sm font-medium text-white">{{ auth()->user()->name }}</p>
+                                    <p class="text-xs text-white/70">Admin</p>
                                 </div>
-                                <ul class="py-1" role="none">
+                                <svg class="w-4 h-4 text-white/70 ml-1 group-hover:text-[#E76F51] transition-colors duration-300"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="z-50 hidden absolute right-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200"
+                                id="dropdown-user">
+                                <div class="px-4 py-3 border-b border-gray-200/50">
+                                    <div class="flex items-center space-x-3">
+                                        @if (auth()->user()->hasRole('admin') && auth()->user()->adminsProfile && auth()->user()->adminsProfile->profile_image)
+                                            <img src="{{ asset('storage/' . auth()->user()->adminsProfile->profile_image) }}"
+                                                class="w-10 h-10 rounded-full object-cover shadow-sm border border-[#1D4E89]">
+                                        @else
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-gradient-to-r from-[#E76F51] to-[#1D4E89] flex items-center justify-center text-white font-bold shadow-sm border border-[#1D4E89]">
+                                                {{ substr(auth()->user()->name, 0, 1) }}
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <p class="text-sm font-bold text-gray-900">{{ auth()->user()->name }}</p>
+                                            <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="py-1">
                                     <li>
                                         <a href="{{ route('admin.settings.edit') }}"
-                                            class="flex items-center px-4 py-2 text-sm text-gray-700 font-medium hover:bg-gray-100"
-                                            role="menuitem">
-                                            <i class="fa-solid fa-gear mr-2 text-gray-500"></i>
-                                            Settings
+                                            class="flex items-center px-4 py-2 text-gray-700 font-medium hover:bg-[#1D4E89]/10 transition-all duration-300">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user-cog text-[#1D4E89] text-sm"></i>
+                                            </div>
+                                            <span>Profile Settings</span>
                                         </a>
                                     </li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <button type="submit"
-                                                class="flex items-center w-full text-left px-4 py-2 text-sm text-red-400 font-medium hover:bg-gray-100"
-                                                role="menuitem">
-                                                <i class="fa-solid fa-right-from-bracket mr-2 text-red-500"></i>
-                                                Log Out
+                                                class="flex items-center w-full px-4 py-2 text-red-500 font-medium hover:bg-red-50 transition-all duration-300">
+                                                <div
+                                                    class="w-7 h-7 rounded-lg bg-red-100 flex items-center justify-center mr-3">
+                                                    <i class="fas fa-sign-out-alt text-red-500 text-sm"></i>
+                                                </div>
+                                                <span>Log Out</span>
                                             </button>
                                         </form>
                                     </li>
                                 </ul>
                             </div>
-                            {{-- toggle user menu end --}}
                         </div>
                     </div>
-
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- Sidebar -->
     <aside id="logo-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-gray-700 border-gray-200"
-        aria-label="Sidebar">
-        <div class="h-full px-3 pb-4 overflow-y-auto bg-gray-700">
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-16 transition-transform -translate-x-full bg-gradient-to-b from-blue-50 via-white to-orange-50 shadow-xl border-r-2 border-[#1D4E89] backdrop-blur-sm">
+        <div class="h-full px-3 pb-8 overflow-y-auto">
+            <div class="mb-4"></div>
+
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="{{ route('admin.dashboard') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#FBCB04" viewBox="0 0 22 21">
-                            <path
-                                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                            <path
-                                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                        </svg>
-                        <span class="ms-3">Dashboard</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md {{ Request::routeIs('admin.dashboard') ? 'bg-white/90 border border-[#1D4E89]' : '' }}">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-home text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Dashboard</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
                 <li>
-                    <button
-                        class="flex items-center w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" type="button">
-
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#FBCB04" viewBox="0 0 20 18">
-                            <path
-                                d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                        </svg>
-                        <span class="flex justify-start ms-3 whitespace-nowrap">Users</span>
-                        <div class="ml-auto">
-                            <i class="fa-solid fa-angle-down"></i>
+                    <button type="button"
+                        class="flex items-center w-full p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E76F51] flex items-center justify-center text-white shadow-md group-hover:bg-[#1D4E89] transition-all duration-300">
+                            <i class="fas fa-users text-sm"></i>
                         </div>
+                        <span class="ms-3 text-base font-semibold">Users</span>
+                        <i
+                            class="fas fa-angle-down text-gray-500 ml-auto transform transition-transform duration-300"></i>
                     </button>
-
-                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                    <ul id="dropdown-example" class="hidden py-1 space-y-1 pl-12">
                         <li>
                             <a href="{{ route('admin.asesi.index') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-user-graduate"></i>
-                                <p>Asesi</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.asesi.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
+                                <div class="w-6 h-6 rounded-md bg-[#E76F51]/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-user-graduate text-[#E76F51] text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Asesi</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.asesor.index') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-chalkboard-teacher"></i>
-                                <p>Asesor</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.asesor.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
+                                <div class="w-6 h-6 rounded-md bg-[#1D4E89]/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-chalkboard-teacher text-[#1D4E89] text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Asesor</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.admins.index') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-user-shield"></i>
-                                <p>Admin</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.admins.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
+                                <div class="w-6 h-6 rounded-md bg-yellow-500/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-user-shield text-yellow-600 text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Admin</span>
                             </a>
                         </li>
                     </ul>
-
                 </li>
-
                 <li>
-                    <button
-                        class="flex items-center w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group"
-                        aria-controls="dropdown-level" data-collapse-toggle="dropdown-level" type="button">
-
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#FBCB04"
-                            viewBox="0 0 18 20">
-                            <path
-                                d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                        </svg>
-                        <span class="flex justify-start ms-3 whitespace-nowrap">Levels</span>
-                        <div class="ml-auto">
-                            <i class="fa-solid fa-angle-down"></i>
+                    <button type="button"
+                        class="flex items-center w-full p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md"
+                        aria-controls="dropdown-level" data-collapse-toggle="dropdown-level">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-layer-group text-sm"></i>
                         </div>
+                        <span class="ms-3 text-base font-semibold">Levels</span>
+                        <i
+                            class="fas fa-angle-down text-gray-500 ml-auto transform transition-transform duration-300"></i>
                     </button>
-
-                    <ul id="dropdown-level" class="hidden py-2 space-y-2">
-                        {{-- Level A --}}
+                    <ul id="dropdown-level" class="hidden py-1 space-y-1 pl-12">
                         <li>
                             <a href="{{ route('admin.level.a.index') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-layer-group"></i>
-                                <p>A</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.level.a.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
+                                <div class="w-6 h-6 rounded-md bg-[#E76F51]/20 flex items-center justify-center mr-2">
+                                    <span class="font-bold text-[#E76F51] text-xs">A</span>
+                                </div>
+                                <span class="font-medium text-sm">Level A</span>
                             </a>
                         </li>
-                        {{-- Level B --}}
                         <li>
                             <a href="#"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-layer-group"></i>
-                                <p>B</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
+                                <div class="w-6 h-6 rounded-md bg-[#1D4E89]/20 flex items-center justify-center mr-2">
+                                    <span class="font-bold text-[#1D4E89] text-xs">B</span>
+                                </div>
+                                <span class="font-medium text-sm">Level B</span>
                             </a>
                         </li>
-
-                        {{-- Level C --}}
                         <li>
                             <a href="#"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-layer-group"></i>
-                                <p>C</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
+                                <div class="w-6 h-6 rounded-md bg-yellow-500/20 flex items-center justify-center mr-2">
+                                    <span class="font-bold text-yellow-600 text-xs">C</span>
+                                </div>
+                                <span class="font-medium text-sm">Level C</span>
                             </a>
                         </li>
-
-                        {{-- Settings --}}
                         <li>
                             <a href="{{ route('admin.level.settings.index') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-solid fa-gear"></i>
-                                <p>Settings</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.level.settings.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
+                                <div class="w-6 h-6 rounded-md bg-gray-500/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-gear text-gray-600 text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Settings</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
                 <li>
-                    <button
-                        class="flex items-center w-full p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group"
-                        aria-controls="dropdown-payment" data-collapse-toggle="dropdown-payment" type="button">
-
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#FBCB04"
-                            viewBox="0 0 18 20">
-                            <path
-                                d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                        </svg>
-                        <span class="flex justify-start ms-3 whitespace-nowrap">Payments</span>
-                        <div class="ml-auto">
-                            <i class="fa-solid fa-angle-down"></i>
+                    <button type="button"
+                        class="flex items-center w-full p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md"
+                        aria-controls="dropdown-payment" data-collapse-toggle="dropdown-payment">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E76F51] flex items-center justify-center text-white shadow-md group-hover:bg-[#1D4E89] transition-all duration-300">
+                            <i class="fas fa-money-bill-wave text-sm"></i>
                         </div>
+                        <span class="ms-3 text-base font-semibold">Payments</span>
+                        <i
+                            class="fas fa-angle-down text-gray-500 ml-auto transform transition-transform duration-300"></i>
                     </button>
-
-                    <ul id="dropdown-payment" class="hidden py-2 space-y-2">
-
-                        {{-- Transaksi --}}
+                    <ul id="dropdown-payment" class="hidden py-1 space-y-1 pl-12">
                         <li>
                             <a href="{{ route('admin.payments.index') }}"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-money-check-dollar"></i>
-                                <p>Transaksi</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.payments.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
+                                <div class="w-6 h-6 rounded-md bg-[#E76F51]/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-exchange-alt text-[#E76F51] text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Transaksi</span>
                             </a>
                         </li>
-
-                        {{-- Price --}}
-                        <li>
-                            <a href="#  "
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-sack-dollar"></i>
-                                <p>Price</p>
-                            </a>
-                        </li>
-
-                        {{-- Settings --}}
                         <li>
                             <a href="#"
-                                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-red-500 hover:text-kuning dark:text-white dark:hover:bg-gray-700">
-                                <i class="mr-2 fa-solid fa-gear"></i>
-                                <p>Settings</p>
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
+                                <div class="w-6 h-6 rounded-md bg-[#1D4E89]/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-tag text-[#1D4E89] text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Price</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
+                                <div class="w-6 h-6 rounded-md bg-yellow-500/20 flex items-center justify-center mr-2">
+                                    <i class="fas fa-gear text-yellow-600 text-xs"></i>
+                                </div>
+                                <span class="font-medium text-sm">Settings</span>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="{{ route('admin.categories.index') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="#FBCB04" viewBox="0 0 24 24">
-                            <path d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Level A History</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md {{ Request::routeIs('admin.categories.index') ? 'bg-white/90 border border-[#1D4E89]' : '' }}">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-history text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Level A History</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ Route('admin.resulta.index') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="#FBCB04" viewBox="0 0 24 24">
-                            <path d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Result Exam A</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md {{ Request::routeIs('admin.resulta.index') ? 'bg-white/90 border border-[#1D4E89]' : '' }}">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E76F51] flex items-center justify-center text-white shadow-md group-hover:bg-[#1D4E89] transition-all duration-300">
+                            <i class="fas fa-poll text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Result Exam A</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.questions.index') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="#FBCB04" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M12 2a10 10 0 100 20 10 10 0 000-20zm.25 15a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zm-1-3.5a1 1 0 01-1-1v-.25c0-.66.26-1.3.73-1.77l.84-.84a1.73 1.73 0 10-2.45-2.45 1 1 0 11-1.41-1.41 3.73 3.73 0 115.27 5.27l-.84.84a.75.75 0 00-.22.53V12a1 1 0 01-1 1z"
-                                clip-rule="evenodd" />
-                        </svg>
-
-
-                        <span class="flex-1 ms-3 whitespace-nowrap">Questions</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md {{ Request::routeIs('admin.questions.index') ? 'bg-white/90 border border-[#1D4E89]' : '' }}">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-question-circle text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Questions</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
                 <li>
                     <a href="#"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="#FBCB04" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-width="2"
-                                d="M3 11h18M3 15h18m-9-4v8m-8 0h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
-                        </svg>
-
-                        <span class="flex-1 ms-3 whitespace-nowrap">Certificate</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E76F51] flex items-center justify-center text-white shadow-md group-hover:bg-[#1D4E89] transition-all duration-300">
+                            <i class="fas fa-certificate text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Certificate</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
-
                 <li>
                     <a href="#"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:text-gray-800">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FBCB04"
-                            viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M13 10a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2H14a1 1 0 0 1-1-1Z"
-                                clip-rule="evenodd" />
-                            <path fill-rule="evenodd"
-                                d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12c0 .556-.227 1.06-.593 1.422A.999.999 0 0 1 20.5 20H4a2.002 2.002 0 0 1-2-2V6Zm6.892 12 3.833-5.356-3.99-4.322a1 1 0 0 0-1.549.097L4 12.879V6h16v9.95l-3.257-3.619a1 1 0 0 0-1.557.088L11.2 18H8.892Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Dashboard Image</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-image text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Dashboard Image</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.news.index') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:text-gray-800">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FBCB04"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-9 12V8l6 4-6 4z" />
-                            <path d="M4 7h16v2H4zm0 4h5v2H4zm0 4h5v2H4z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Portal Berita</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md {{ Request::routeIs('admin.news.index') ? 'bg-white/90 border border-[#1D4E89]' : '' }}">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E76F51] flex items-center justify-center text-white shadow-md group-hover:bg-[#1D4E89] transition-all duration-300">
+                            <i class="fas fa-newspaper text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Portal Berita</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.testimonials.index') }}"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group hover:text-gray-800">
-                        <svg class="w-6 h-6 text-yellow-400 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.846L3 20l1.344-4.03A8.987 8.987 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Testimonial</span>
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-user-plus text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Testimonials</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </li>
-                
-                {{-- <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#FBCB04"
-                            viewBox="0 0 20 20">
-                            <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
-                            <path
-                                d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
-                            <path
-                                d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-                    </a>
-                </li> --}}
             </ul>
         </div>
     </aside>
@@ -395,4 +415,5 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     @livewireScripts()
 </body>
+
 </html>
