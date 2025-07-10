@@ -47,12 +47,12 @@ Route::get('sertifikat', function () {
     return view('sertifikat');
 })->name('sertifikat');
 
-// SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI 
+// SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI
 Route::get('/permission', function () {
     return view('permission');
 })->middleware(['auth'])->name('permission');
 
-// SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI 
+// SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI
 Route::post('/permission', function (Request $request) {
     $permission = $request->input('permission');
     $user = Auth::user();
@@ -327,7 +327,10 @@ Route::get('/villages/{districtId}', [IndoRegionController::class, 'getVillages'
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+    // Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+    Route::post('/testimonials/show-form', [TestimonialController::class, 'showForm'])->name('testimonials.show-form');
+    Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
+    
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

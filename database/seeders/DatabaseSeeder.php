@@ -75,8 +75,8 @@ class DatabaseSeeder extends Seeder
             LevelSeeders::class,
             QuestionSeeders::class,
             
-            PaymentSeeders::class,
-            LevelBSeeders::class,
+            // PaymentSeeders::class,
+            // LevelBSeeders::class,
             LevelCQuestionSeeders::class,
         ]);
     }

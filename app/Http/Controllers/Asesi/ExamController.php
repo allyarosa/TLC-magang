@@ -183,7 +183,7 @@ class ExamController extends Controller
         $answeredQuestions = $exam->questionsA()->wherePivotNotNull('user_answer')->count();
         // dd($answeredQuestions);
         // $answeredQuestions = $exam->questionsA()
-        //     ->where('category_a_id', 2) 
+        //     ->where('category_a_id', 2)
         //     ->wherePivotNotNull('user_answer')
         //     ->count();
 
@@ -299,6 +299,8 @@ class ExamController extends Controller
                 'ip_address' => request()->ip(),
                 'user_agent' => request()->userAgent()
             ]);
+
+            abort(403, 'Unauthorized access');
         }
 
         $totalQuestions = $exam->questionsA()->count();
@@ -315,14 +317,20 @@ class ExamController extends Controller
             $category = (object) ['name' => 'Kategori Tidak Ditemukan'];
         }
 
+        // Set flash message berdasarkan hasil ujian
         if ($exam->is_passed) {
             $user = $exam->user;
             event(new ExamCompleted($user, $category->name));
-            Alert::success('Ujian Selesai', 'Selamat, Anda telah lulus ujian pada kategori ' . $category->name);
+
+            // Hanya tampilkan alert jika bukan dari redirect testimonial
+            if (!session('testimonial_success') && !session('show_testimonial_form')) {
+                Alert::success('Ujian Selesai', 'Selamat, Anda telah lulus ujian pada kategori ' . $category->name);
+            }
         } else {
             Alert::error('Ujian Selesai', 'Maaf, Anda belum lulus ujian pada kategori ' . $category->name);
         }
 
+        // Cek apakah user sudah memberikan testimonial untuk kategori ini
         $userHasTestimonial = Testimonial::where('user_id', Auth::id())
             ->where('category_a_id', $categoryId)
             ->exists();
@@ -337,7 +345,6 @@ class ExamController extends Controller
             'userHasTestimonial'
         ));
     }
-
     public function continue()
     {
         return 'ok';

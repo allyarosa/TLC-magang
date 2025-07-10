@@ -214,18 +214,33 @@
                     <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
                         @if ($exam->is_passed)
                             {{-- Success Message --}}
-                            <div id="testimonialSuccess"
-                                class="hidden mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-check-circle mr-2"></i>
-                                    <p>Terima kasih atas testimonial Anda! Testimonial akan ditampilkan setelah disetujui
-                                        admin.</p>
+                            @if (session('testimonial_success'))
+                                <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check-circle mr-2"></i>
+                                        <p>{{ session('testimonial_success') }}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
+                            {{-- Error Messages --}}
+                            @if ($errors->any())
+                                <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                                        <p class="font-medium">Terjadi kesalahan:</p>
+                                    </div>
+                                    <ul class="list-disc list-inside">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             {{-- Testimonial Form Section --}}
-                            @if (!($userHasTestimonial ?? false))
-                                <div id="testimonialFormSection" class="mb-6">
+                            @if (!($userHasTestimonial ?? false) && !session('testimonial_success'))
+                                <div class="mb-6">
                                     <div class="text-center mb-6">
                                         <div class="text-green-600 text-3xl mb-3">
                                             <i class="fas fa-trophy"></i>
@@ -235,70 +250,105 @@
                                         </p>
                                     </div>
 
-                                    <div class="bg-white rounded-lg p-6 shadow-sm border">
-                                        <h5 class="text-lg font-semibold text-gray-800 mb-4">
-                                            <i class="fas fa-comment-alt mr-2 text-blue-600"></i>
-                                            Berikan Testimonial Anda
-                                        </h5>
-
-                                        <form id="testimonialForm">
-                                            @csrf
-                                            {{-- Field name sesuai dengan migration dan controller --}}
-                                            <input type="hidden" name="category_a_id"
-                                                value="{{ $exam->category_a_id }}">
-                                            <input type="hidden" name="exam_a_id" value="{{ $exam->id }}">
-                                            <input type="hidden" name="rating" id="ratingValue" value="5">
-
-                                            {{-- Rating Section --}}
-                                            <div class="mb-4">
-                                                <label class="block text-sm font-medium text-gray-700 mb-2">
-                                                    Rating Pengalaman Anda
-                                                </label>
-                                                <div class="flex space-x-1">
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        <button type="button"
-                                                            class="rating-star text-2xl focus:outline-none"
-                                                            data-rating="{{ $i }}">
-                                                            <i class="fas fa-star text-yellow-500"></i>
-                                                        </button>
-                                                    @endfor
-                                                </div>
-                                                <p class="text-sm text-gray-500 mt-1">Klik bintang untuk memberikan rating
-                                                </p>
-                                            </div>
-
-                                            {{-- Testimonial Content --}}
-                                            <div class="mb-4">
-                                                <label for="content"
-                                                    class="block text-sm font-medium text-gray-700 mb-2">
-                                                    Ceritakan Pengalaman Anda
-                                                </label>
-                                                <textarea name="content" id="content" rows="4"
-                                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
-                                                    placeholder="Bagikan pengalaman Anda mengikuti ujian ini... (minimal 10 karakter)" required></textarea>
-                                                <div id="contentError" class="hidden text-red-600 text-sm mt-1"></div>
-                                                <div class="flex justify-between text-sm text-gray-500 mt-1">
-                                                    <span id="charCount">0 karakter</span>
-                                                    <span>Minimal 10 karakter</span>
-                                                </div>
-                                            </div>
-
-                                            {{-- Submit Button --}}
-                                            <div class="flex justify-end space-x-3">
-                                                <button type="button" id="skipButton"
-                                                    class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                                                    Lewati
+                                    {{-- Show/Hide Form Toggle --}}
+                                    @if (!session('show_testimonial_form'))
+                                        <div class="text-center mb-6">
+                                            <form method="POST" action="{{ route('testimonials.show-form') }}">
+                                                @csrf
+                                                <input type="hidden" name="exam_id" value="{{ $exam->id }}">
+                                                <input type="hidden" name="category_id"
+                                                    value="{{ $exam->category_a_id }}">
+                                                <button type="submit"
+                                                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                                    <i class="fas fa-comment-alt mr-2"></i>
+                                                    Berikan Testimonial
                                                 </button>
-                                                <button type="submit" id="submitButton"
-                                                    class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                                                    <span id="submitSpinner" class="hidden">
-                                                        <i class="fas fa-spinner fa-spin mr-2"></i>
-                                                    </span>
-                                                    <span id="submitText">Kirim Testimonial</span>
-                                                </button>
+                                            </form>
+                                            <div class="mt-3">
+                                                <a href="{{ route('asesi.sertifikasi') }}"
+                                                    class="text-gray-600 hover:text-gray-800">
+                                                    Lewati untuk sekarang
+                                                </a>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    @else
+                                        {{-- Testimonial Form --}}
+                                        <div class="bg-white rounded-lg p-6 shadow-sm border">
+                                            <h5 class="text-lg font-semibold text-gray-800 mb-4">
+                                                <i class="fas fa-comment-alt mr-2 text-blue-600"></i>
+                                                Berikan Testimonial Anda
+                                            </h5>
+
+                                            <form method="POST" action="{{ route('testimonials.store') }}">
+                                                @csrf
+                                                <input type="hidden" name="category_a_id"
+                                                    value="{{ $exam->category_a_id }}">
+                                                <input type="hidden" name="exam_a_id" value="{{ $exam->id }}">
+
+                                                {{-- Rating Section --}}
+                                                <div class="mb-4">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                                        Rating Pengalaman Anda
+                                                    </label>
+                                                    <div class="flex flex-col space-y-2">
+                                                        @for ($i = 5; $i >= 1; $i--)
+                                                            <label class="flex items-center cursor-pointer">
+                                                                <input type="radio" name="rating"
+                                                                    value="{{ $i }}" class="mr-2"
+                                                                    {{ $i == 5 ? 'checked' : '' }}>
+                                                                <div class="flex items-center">
+                                                                    @for ($j = 1; $j <= 5; $j++)
+                                                                        <i
+                                                                            class="fas fa-star {{ $j <= $i ? 'text-yellow-500' : 'text-gray-300' }}"></i>
+                                                                    @endfor
+                                                                    <span class="ml-2 text-gray-700">
+                                                                        @if ($i == 5)
+                                                                            Sangat Baik
+                                                                        @elseif ($i == 4)
+                                                                            Baik
+                                                                        @elseif ($i == 3)
+                                                                            Cukup
+                                                                        @elseif ($i == 2)
+                                                                            Kurang
+                                                                        @else
+                                                                            Sangat Kurang
+                                                                        @endif
+                                                                    </span>
+                                                                </div>
+                                                            </label>
+                                                        @endfor
+                                                    </div>
+                                                </div>
+
+                                                {{-- Testimonial Content --}}
+                                                <div class="mb-4">
+                                                    <label for="content"
+                                                        class="block text-sm font-medium text-gray-700 mb-2">
+                                                        Ceritakan Pengalaman Anda
+                                                    </label>
+                                                    <textarea name="content" id="content" rows="4"
+                                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none @error('content') border-red-500 @enderror"
+                                                        placeholder="Bagikan pengalaman Anda mengikuti ujian ini... (minimal 10 karakter)" required>{{ old('content') }}</textarea>
+                                                    @error('content')
+                                                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                                    @enderror
+                                                    <p class="text-sm text-gray-500 mt-1">Minimal 10 karakter</p>
+                                                </div>
+
+                                                {{-- Submit Button --}}
+                                                <div class="flex justify-end space-x-3">
+                                                    <a href="{{ route('asesi.sertifikasi') }}"
+                                                        class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                                                        Lewati
+                                                    </a>
+                                                    <button type="submit"
+                                                        class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                                        Kirim Testimonial
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </div>
                             @else
                                 {{-- Already submitted testimonial --}}
@@ -310,152 +360,6 @@
                                     <p class="text-gray-700">Anda telah memberikan testimonial untuk kategori ini.</p>
                                 </div>
                             @endif
-
-                            @push('scripts')
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        const form = document.getElementById('testimonialForm');
-                                        const contentTextarea = document.getElementById('content');
-                                        const charCount = document.getElementById('charCount');
-
-                                        if (!form) return; // Form tidak ada jika user sudah submit testimonial
-
-                                        // Character counter
-                                        contentTextarea.addEventListener('input', function() {
-                                            const count = this.value.length;
-                                            charCount.textContent = count + ' karakter';
-
-                                            if (count >= 10) {
-                                                charCount.classList.remove('text-red-500');
-                                                charCount.classList.add('text-green-600');
-                                            } else {
-                                                charCount.classList.remove('text-green-600');
-                                                charCount.classList.add('text-red-500');
-                                            }
-                                        });
-
-                                        // Rating stars initialization - semua bintang aktif secara default
-                                        document.querySelectorAll('.rating-star').forEach((star, index) => {
-                                            const icon = star.querySelector('i');
-                                            icon.classList.add('text-yellow-500');
-                                            icon.classList.remove('text-gray-300');
-                                        });
-
-                                        // Rating stars click handler
-                                        document.querySelectorAll('.rating-star').forEach(star => {
-                                            star.addEventListener('click', function() {
-                                                const rating = parseInt(this.getAttribute('data-rating'));
-                                                document.getElementById('ratingValue').value = rating;
-
-                                                document.querySelectorAll('.rating-star').forEach((s, index) => {
-                                                    const icon = s.querySelector('i');
-                                                    if (index < rating) {
-                                                        icon.classList.add('text-yellow-500');
-                                                        icon.classList.remove('text-gray-300');
-                                                    } else {
-                                                        icon.classList.remove('text-yellow-500');
-                                                        icon.classList.add('text-gray-300');
-                                                    }
-                                                });
-                                            });
-                                        });
-
-                                        // Skip button
-                                        document.getElementById('skipButton').addEventListener('click', function() {
-                                            document.getElementById('testimonialFormSection').style.display = 'none';
-                                        });
-
-                                        // Form submission dengan error handling yang lebih baik
-                                        form.addEventListener('submit', async function(e) {
-                                            e.preventDefault();
-                                            const content = contentTextarea.value.trim();
-                                            const submitButton = document.getElementById('submitButton');
-                                            const contentError = document.getElementById('contentError');
-
-                                            // Reset error
-                                            contentError.classList.add('hidden');
-
-                                            // Validasi client-side
-                                            if (content.length < 10) {
-                                                contentError.textContent = 'Testimonial harus minimal 10 karakter.';
-                                                contentError.classList.remove('hidden');
-                                                contentTextarea.focus();
-                                                return;
-                                            }
-
-                                            // Loading state
-                                            submitButton.disabled = true;
-                                            document.getElementById('submitText').textContent = 'Mengirim...';
-                                            document.getElementById('submitSpinner').classList.remove('hidden');
-
-                                            try {
-                                                const formData = new FormData(this);
-
-                                                // Debug: log data yang akan dikirim
-                                                console.log('Sending testimonial data:');
-                                                for (let [key, value] of formData.entries()) {
-                                                    console.log(`${key}: ${value}`);
-                                                }
-
-                                                const response = await fetch('{{ route('testimonials.store') }}', {
-                                                    method: 'POST',
-                                                    body: formData,
-                                                    headers: {
-                                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                                        'Accept': 'application/json'
-                                                    }
-                                                });
-
-                                                console.log('Response status:', response.status);
-
-                                                // Check if response is ok
-                                                if (!response.ok) {
-                                                    const errorText = await response.text();
-                                                    console.error('Server error:', errorText);
-                                                    throw new Error(`HTTP error! status: ${response.status}`);
-                                                }
-
-                                                const data = await response.json();
-                                                console.log('Response data:', data);
-
-                                                if (data.success) {
-                                                    // Berhasil submit
-                                                    document.getElementById('testimonialFormSection').style.display = 'none';
-                                                    document.getElementById('testimonialSuccess').classList.remove('hidden');
-                                                    // Scroll to success message
-                                                    document.getElementById('testimonialSuccess').scrollIntoView({
-                                                        behavior: 'smooth',
-                                                        block: 'center'
-                                                    });
-                                                } else if (data.errors) {
-                                                    // Tampilkan validation errors
-                                                    console.log('Validation errors:', data.errors);
-                                                    if (data.errors.content && data.errors.content.length > 0) {
-                                                        contentError.textContent = data.errors.content[0];
-                                                        contentError.classList.remove('hidden');
-                                                    } else {
-                                                        // Tampilkan error pertama yang ditemukan
-                                                        const firstError = Object.values(data.errors)[0];
-                                                        if (Array.isArray(firstError) && firstError.length > 0) {
-                                                            alert(firstError[0]);
-                                                        }
-                                                    }
-                                                } else {
-                                                    alert(data.message || 'Terjadi kesalahan. Silakan coba lagi.');
-                                                }
-                                            } catch (error) {
-                                                console.error('Network or parsing error:', error);
-                                                alert('Terjadi kesalahan jaringan atau server. Silakan coba lagi.');
-                                            } finally {
-                                                // Reset button state
-                                                submitButton.disabled = false;
-                                                document.getElementById('submitText').textContent = 'Kirim Testimonial';
-                                                document.getElementById('submitSpinner').classList.add('hidden');
-                                            }
-                                        });
-                                    });
-                                </script>
-                            @endpush
                         @else
                             {{-- Pesan gagal --}}
                             <div class="text-center">
