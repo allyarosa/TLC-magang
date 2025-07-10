@@ -1410,7 +1410,7 @@
         <!-- End Portal Berita Kegiatan TLC -->
 
         <!-- Buku HAFECS Section -->
-        <section id="books" class="w-full px-5 py-20 bg-gray-50 text-gray-900">
+        {{-- <section id="books" class="w-full px-5 py-20 bg-gray-50 text-gray-900">
             <div class="text-center mb-12 md:mb-16">
                 <span
                     class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">KOLEKSI
@@ -1610,7 +1610,7 @@
 
                 </div>
             </div>
-        </section>
+        </section> --}}
         {{-- End Buku HAFECS Section --}}
 
         <!-- FAQ Section -->

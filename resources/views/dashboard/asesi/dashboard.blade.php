@@ -1662,7 +1662,7 @@
                 }
             </style>
         </section> --}}
-        <section class="relative mt-32 max-w-6xl mx-auto px-4 py-12">
+        {{-- <section class="relative mt-32 max-w-6xl mx-auto px-4 py-12">
             <!-- Header with gradient background -->
             <div class="bg-gradient-to-r from-teal-400 to-blue-500 rounded-3xl p-8 text-white shadow-2xl mb-12">
                 <h1 class="text-2xl md:text-3xl font-bold text-center mb-4">
@@ -1801,7 +1801,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         {{-- End Langkah Pembayaran --}}
 
         {{-- Testimoni --}}

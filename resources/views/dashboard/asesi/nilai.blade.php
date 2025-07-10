@@ -33,7 +33,7 @@
         </div>
 
         <!-- Enhanced Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <!-- Total Lulus -->
             <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 card-hover border border-teal-100">
                 <div class="flex items-center justify-between">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Enhanced Results Table -->
         <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-orange-200/30">
@@ -143,7 +143,7 @@
                                     </div>
                                 </td>
                                 <td class="px-8 py-6">
-                                    <a href="{{ route('asesi.sertifikasi.level.a.result', $data->id) }}" 
+                                    <a href="{{ route('asesi.sertifikasi.level.a.result', $data->id) }}"
                                        class="bg-blue-50 hover:bg-blue-100 text-[#1D4E89] px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-200 font-medium hover-lift">
                                         <i class="fas fa-eye"></i>
                                         Detail
@@ -160,7 +160,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             {{-- Jika menggunakan pagination --}}
             @if(isset($paginatedExams))
                 <div class="mt-4">

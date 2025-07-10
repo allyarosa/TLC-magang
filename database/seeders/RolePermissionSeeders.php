@@ -55,8 +55,9 @@ class RolePermissionSeeders extends Seeder
             'MODUL_AJAR_COMPLETED',
 
             'ESSAY',
-            'VIDEO_UPLOAD',
+            'ESSAY_COMPLETED',
 
+            'VIDEO_UPLOAD',
             'VIDEO_UPLOAD_COMPLETED',
 
             'YES_NO_QUESTIONS',

@@ -28,7 +28,7 @@
                         <p class="text-gray-600 text-lg font-bold">{{ $category->name }}</p>
 
                         <!-- Status Badge -->
-                        @if ($exam->is_passed === 1)
+                        @if ($exam->is_passed)
                             <div
                                 class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800 mt-3">
                                 <i class="fas fa-check-circle mr-2"></i>
@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                            @if ($exam->is_passed === 0)
+                            @if (!$exam->is_passed)
                                 <form action="{{ route('asesi.sertifikasi.level.a.instruction') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="category_id" value="{{ $category->id }}">
@@ -212,7 +212,7 @@
 
                     <!-- Motivational Message -->
                     <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                        @if ($exam->is_passed === 1)
+                        @if ($exam->is_passed)
                             {{-- Success Message --}}
                             <div id="testimonialSuccess"
                                 class="hidden mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
@@ -474,8 +474,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Custom Styles for Print -->
     <style>

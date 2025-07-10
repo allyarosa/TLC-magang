@@ -8,6 +8,7 @@ use App\Models\UserAnswerC;
 use App\Models\ExamSessionC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,14 +32,22 @@ class ExamControllerC extends Controller
         }
 
         $answeredQuestions = UserAnswerC::where('user_id', $user->id)
-            ->whereIn('question_id', $questions->pluck('id'))
+            ->whereIn('question_c_id', $questions->pluck('id'))
             ->count();
         // BELUM
-        return view('exam.index', compact('examSession', 'totalQuestions', 'answeredQuestions'));
+        return view('user.sertifikasi.levelC.exam.index', compact('examSession', 'totalQuestions', 'answeredQuestions'));
     }
 
     public function show($questionNumber)
     {
+        $decoded = Hashids::decode($questionNumber);
+
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $questionNumber = $decoded[0];
+
         $user = Auth::user();
         $questions = QuestionC::active()->ordered()->get();
 
@@ -48,13 +57,13 @@ class ExamControllerC extends Controller
 
         $question = $questions[$questionNumber - 1];
         $userAnswer = UserAnswerC::where('user_id', $user->id)
-            ->where('question_id', $question->id)
+            ->where('question_c_id', $question->id)
             ->first();
 
         $totalQuestions = $questions->count();
         $currentQuestion = $questionNumber;
 
-        return view('exam.question', compact(
+        return view('user.sertifikasi.levelC.exam.question', compact(
             'question',
             'userAnswer',
             'currentQuestion',
@@ -80,7 +89,7 @@ class ExamControllerC extends Controller
         UserAnswerC::updateOrCreate(
             [
                 'user_id' => $user->id,
-                'question_id' => $question->id,
+                'question_c_id' => $question->id,
             ],
             [
                 'answer' => $request->answer,
@@ -94,7 +103,9 @@ class ExamControllerC extends Controller
             return redirect()->route('exam.summary');
         }
 
-        return redirect()->route('exam.question', $questionNumber + 1);
+        $user->givePermissionTo('ESSAY');
+
+        return redirect()->route('exam.question', Hashids::encode($questionNumber + 1));
     }
 
     public function summary()
@@ -103,15 +114,15 @@ class ExamControllerC extends Controller
         $questions = QuestionC::active()->ordered()->get();
 
         $userAnswers = UserAnswerC::where('user_id', $user->id)
-            ->whereIn('question_id', $questions->pluck('id'))
+            ->whereIn('question_c_id', $questions->pluck('id'))
             ->with('question')
             ->get()
-            ->keyBy('question_id');
+            ->keyBy('question_c_id');
 
         $totalQuestions = $questions->count();
         $answeredQuestions = $userAnswers->count();
 
-        return view('exam.summary', compact(
+        return view('user.sertifikasi.levelC.exam.summary', compact(
             'questions',
             'userAnswers',
             'totalQuestions',
@@ -141,7 +152,7 @@ class ExamControllerC extends Controller
 
     public function completed()
     {
-        return view('exam.completed');
+        return view('user.sertifikasi.levelC.exam.completed');
     }
 
 

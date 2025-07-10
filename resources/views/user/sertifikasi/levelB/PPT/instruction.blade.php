@@ -7,11 +7,12 @@
         <div class="container mx-auto max-w-5xl p-3 py-6 sm:p-4 sm:py-8 lg:p-12">
 
             {{-- Header Section - Changed to emerald like modul ajar --}}
-            <div class="mb-6 rounded-xl bg-gradient-to-br from-emerald-700 to-emerald-800 p-4 text-white shadow-xl sm:mb-8 sm:rounded-2xl sm:p-6 md:p-8">
-                <h1 class="mb-3 text-xl font-bold leading-tight text-white sm:text-2xl lg:text-4xl">
-                    Instruksi Pengerjaan Level B: Materi Ajar PPT
+            <div
+            class="mb-6 rounded-xl bg-gradient-to-br from-indigo-700 to-indigo-800 p-4 text-white shadow-xl sm:mb-8 sm:rounded-2xl sm:p-6 md:p-8">
+            <h1 class="mb-3 text-xl font-bold leading-tight text-white sm:text-2xl lg:text-4xl">
+                Instruksi Pengerjaan Level B: Materi Ajar PPT
                 </h1>
-                <p class="text-emerald-50 text-sm sm:text-base lg:text-lg">
+                <p class="text-indigo-50 text-sm sm:text-base lg:text-lg">
                     Penilaian oleh Asesor untuk pembuatan Materi Ajar dalam bentuk PowerPoint yang berkualitas
                 </p>
                 {{-- @if(isset($user_id))
@@ -34,7 +35,7 @@
                         <div class="text-base font-bold text-slate-800 sm:text-lg">Materi PPT</div>
                     </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:space-x-4 sm:rounded-2xl sm:p-5">
                     <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 sm:h-12 sm:w-12">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -46,7 +47,7 @@
                         <div class="text-base font-bold text-slate-800 sm:text-lg">120 Menit</div>
                     </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:space-x-4 sm:rounded-2xl sm:p-5">
                     <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 sm:h-12 sm:w-12">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -58,7 +59,7 @@
                         <div class="text-base font-bold text-slate-800 sm:text-lg">15-25 Slide</div>
                     </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:space-x-4 sm:rounded-2xl sm:p-5">
                     <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-700 sm:h-12 sm:w-12">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -214,7 +215,7 @@
                             </svg>
                             <span>Kembali ke Sertifikasi</span>
                         </a>
-                        <a href="{{ route('asesi.sertifikasi.level.b.ppt') }}" class="inline-flex items-center justify-center rounded-lg bg-emerald-700 px-4 py-2.5 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:bg-emerald-800 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:px-6 sm:py-3">
+                        <a href="{{ route('asesi.sertifikasi.level.b.ppt') }}" class="inline-flex items-center justify-center rounded-lg bg-indigo-700 px-4 py-2.5 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:bg-indigo-800 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:px-6 sm:py-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                             </svg>

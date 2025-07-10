@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Asesi\ExamControllerC;
 use App\Http\Controllers\Asesor\LevelBGradedController;
 use App\Models\Testimonial;
 use App\Exports\AsesiExport;
@@ -135,7 +136,20 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     Route::get('/sertifikasi/level/c/essay', [LevelCController::class, 'formEssay'])->name('asesi.sertifikasi.level.c.essay');
     Route::get('/sertifikasi/level/c/video', [LevelCController::class, 'formVideoUpload'])->name('asesi.sertifikasi.level.c.video');
     Route::post('/sertifikasi/level/c/essay/store', [LevelCController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.c.store');
+
+    // EXAM LEVEL C
+    Route::prefix('essay')->name('exam.')->group(function () {
+        Route::get('/', [ExamControllerC::class, 'index'])->name('index');
+        Route::get('/question/{number}', [ExamControllerC::class, 'show'])->name('question');
+        Route::post('/question/{number}', [ExamControllerC::class, 'store'])->name('store');
+        Route::get('/summary', [ExamControllerC::class, 'summary'])->name('summary');
+        Route::post('/complete', [ExamControllerC::class, 'complete'])->name('complete');
+        Route::get('/completed', [ExamControllerC::class, 'completed'])->name('completed');
+    });
 });
+
+
+
 
 Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');

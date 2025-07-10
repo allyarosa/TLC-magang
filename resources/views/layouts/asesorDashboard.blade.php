@@ -190,7 +190,7 @@
                     </div>
 
                     <!-- Notification -->
-                    <div class="relative">
+                    {{-- <div class="relative">
                         </button>
                         <a href="{{ route('asesor.notifikasi') }}"
                             class="relative p-2 text-white hover:bg-white/20 rounded-lg transition-smooth">
@@ -200,7 +200,7 @@
                             class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
                             {{ $levelBPending ?? '0' }}
                         </span>
-                    </div>
+                    </div> --}}
 
                     <!-- User Dropdown -->
                     <div class="relative">
@@ -240,7 +240,7 @@
 
                             <!-- Menu Items -->
                             <ul class="py-1" role="none">
-                                <li>
+                                {{-- <li>
                                     <a href="#"
                                         class="flex items-center px-4 py-3 text-sm text-gray-700 font-medium hover:bg-gray-100"
                                         role="menuitem">
@@ -249,7 +249,7 @@
                                         </div>
                                         Profil Saya
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
@@ -303,14 +303,14 @@
                             <span class="ml-3">List Penilaian Level C</span>
                         </a>
                     </li> --}}
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('asesor.notifikasi') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.notifikasi') ? 'menu-active' : 'menu-inactive' }}">
                             <i
                                 class="fas fa-bell w-5 h-5 {{ Request::routeIs('asesor.notifikasi') ? 'text-white' : 'text-yellow-500' }}"></i>
                             <span class="ml-3">Notifikasi</span>
                         </a>
-                    </li>
+                    </li> --}}
                     {{-- <li>
                         <a href="{{ route('asesor.form-penilaian') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.form-penilaian') ? 'menu-active' : 'menu-inactive' }}">
@@ -327,14 +327,14 @@
                             <span class="ml-3">Riwayat Penilaian B</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('asesor.riwayat-aktifitas') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'menu-active' : 'menu-inactive' }}">
                             <i
                                 class="fa fa-history w-5 h-5 {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'text-white' : 'text-secondary' }}"></i>
                             <span class="ml-3">Riwayat Aktivitas</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('asesor.download-nilai') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.download-nilai') ? 'menu-active' : 'menu-inactive' }}">
@@ -343,14 +343,14 @@
                             <span class="ml-3">Download Nilai</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('asesor.profile-setting') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.profile-setting') ? 'menu-active' : 'menu-inactive' }}">
                             <i
                                 class="fas fa-cog w-5 h-5 {{ Request::routeIs('asesor.profile-setting') ? 'text-white' : 'text-gray-500' }}"></i>
                             <span class="ml-3">Profile Setting</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

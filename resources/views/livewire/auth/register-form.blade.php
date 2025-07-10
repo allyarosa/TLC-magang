@@ -118,7 +118,7 @@
                     @enderror
                 </div>
 
-                <div class="flex items-center">
+                {{-- <div class="flex items-center">
                     <input type="checkbox" id="terms" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
                     <label for="terms" class="ml-2 text-sm text-gray-600">
                         Saya menyetujui
@@ -126,7 +126,7 @@
                         serta
                         <a href="#" class="text-blue-600 font-semibold hover:underline">kebijakan privasi</a>
                     </label>
-                </div>
+                </div> --}}
 
                 <button type="submit" wire:loading.attr="disabled"
                     class="w-full bg-gradient-to-r from-[#0C548C] to-[#2E4D69] text-white py-3 rounded-lg hover:from-[#063B67] hover:to-[#1C3A58] transition-all duration-200 font-semibold disabled:opacity-50">
