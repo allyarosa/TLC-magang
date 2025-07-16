@@ -1,0 +1,138 @@
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .md\:px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .carousel-slide {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.article-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.article-image {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.article-card:hover .article-image {
+    transform: scale(1.05);
+}
+
+.article-badge {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.article-card:hover .article-badge {
+    transform: scale(1.05);
+}
+
+.article-title {
+    transition: color 0.3s ease;
+}
+
+.article-card:hover .article-title {
+    color: #0891b2;
+}
+
+/* Custom dot navigation */
+.dot {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot:hover {
+    transform: scale(1.2);
+}
+
+/* Navigation arrows */
+.nav-arrow {
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-arrow:hover {
+    background-color: #14b8a6;
+}
+
+.nav-arrow:hover svg {
+    color: white;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.course-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.course-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.course-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #38B2AC, #4FD1C5);
+    border-radius: 10px;
+}
+
+.course-scroll {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+}

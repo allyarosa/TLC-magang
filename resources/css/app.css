@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import FontAwesome */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+/* Import Flowbite */
+@import 'flowbite/dist/flowbite.css';
+
+/* Aturan font kustom */
+@layer base {
+    html {
+        font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    }
+}
