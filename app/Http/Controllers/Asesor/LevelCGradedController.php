@@ -32,8 +32,8 @@ class LevelCGradedController extends Controller
         }
 
         $id = $decoded[0];
-        // Changed from ExamAsesi to LevelCSubmission
-        $asesiSubmission = \App\Models\ExamAsesi::with(['user', 'questionC'])->find($id);
+        // Assuming ExamAsesi stores Level C submissions and has a relationship to User
+        $asesiSubmission = ExamAsesi::with('user')->find($id);
 
         if (!$asesiSubmission) {
             abort(404, 'Pengajuan Level C tidak ditemukan.');
@@ -43,7 +43,7 @@ class LevelCGradedController extends Controller
 
         // You need to determine if it's an essay or video submission.
         // This logic depends on how you store Level C submissions.
-        // For example, if LevelCSubmission has a 'type' column or specific fields.
+        // For example, if ExamAsesi has a 'type' column or specific fields.
         if ($asesiSubmission->type === 'essay') { // Example: if there's a 'type' column
             return view('dashboard.asesor.Grading.essay', [
                 'asesiSubmission' => $asesiSubmission,
@@ -76,7 +76,7 @@ class LevelCGradedController extends Controller
         }
         $id = $decoded[0];
 
-        $asesiSubmission = \App\Models\ExamAsesi::find($id); // Changed from ExamAsesi
+        $asesiSubmission = ExamAsesi::find($id); // Assuming ExamAsesi stores Level C submissions
 
         if (!$asesiSubmission) {
             abort(404, 'Pengajuan Level C tidak ditemukan.');

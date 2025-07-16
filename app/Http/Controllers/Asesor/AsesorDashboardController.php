@@ -66,6 +66,8 @@ class AsesorDashboardController extends Controller
         // $search = $request->input('search');
 
         $query = LevelCSubmission::with('user');
+        
+
         $levelC = $query->latest()->paginate(10)->withQueryString();
 
         return view('dashboard.asesor.listasesiC', [

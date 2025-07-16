@@ -1,1 +1,9 @@
-vendor/
+# .gitignore untuk Laravel
+/vendor/
+/node_modules/
+/.env
+/public/storage
+/storage/*.key
+.idea/
+/*.log
+.DS_Store

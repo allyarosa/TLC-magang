@@ -302,7 +302,7 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
     Route::get('/list-asesi-c', [AsesorDashboardController::class, 'listAsesiC'])->name('asesor.list-asesi-c');
 
     Route::get('/list-asesi/grade/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.asesi');
-    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'ShowGradeDetail'])->name('asesor.gradeB.show');
+    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.show');
     Route::post('/list-asesi/grade/{id}', [LevelBGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeB.store');
 
     Route::get('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'showGradingPage'])->name('asesor.gradeC.asesi');
