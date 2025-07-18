@@ -6,7 +6,7 @@ use App\Events\GradingCompleted;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
-use App\Models\ExamAsesi; // Assuming ExamAsesi stores Level C submissions
+use App\Models\LevelCSubmission;
 use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
@@ -33,7 +33,7 @@ class LevelCGradedController extends Controller
 
         $id = $decoded[0];
         // Assuming ExamAsesi stores Level C submissions and has a relationship to User
-        $asesiSubmission = ExamAsesi::with('user')->find($id);
+        $asesiSubmission = LevelCSubmission::with('user')->find($id);
 
         if (!$asesiSubmission) {
             abort(404, 'Pengajuan Level C tidak ditemukan.');
@@ -76,7 +76,7 @@ class LevelCGradedController extends Controller
         }
         $id = $decoded[0];
 
-        $asesiSubmission = ExamAsesi::find($id); // Assuming ExamAsesi stores Level C submissions
+        $asesiSubmission = LevelCSubmission::find($id); // Assuming ExamAsesi stores Level C submissions
 
         if (!$asesiSubmission) {
             abort(404, 'Pengajuan Level C tidak ditemukan.');

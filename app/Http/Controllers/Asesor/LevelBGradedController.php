@@ -99,7 +99,6 @@ class LevelBGradedController extends Controller
                 $user->givePermissionTo('PPT_COMPLETED');
                 $user->givePermissionTo('PPT_UPLOAD');
             }
-            
         } elseif ($request->assessment === 'rejected') {
             if ($levelB->modul_ajar) {
                 $user->revokePermissionTo('MODUL_AJAR');
@@ -109,7 +108,7 @@ class LevelBGradedController extends Controller
                 $levelB->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
             }
         }
-        
+
         event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');
         return redirect()->route('asesor.list-asesi');

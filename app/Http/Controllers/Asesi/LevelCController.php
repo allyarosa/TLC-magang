@@ -16,6 +16,7 @@ class LevelCController extends Controller
 {
     public function storeSubmission(StoreAssessmentRequestC $request)
     {
+        dd($request);
         DB::beginTransaction();
         try {
             $validated = $request->validated();
@@ -32,7 +33,6 @@ class LevelCController extends Controller
 
             Alert::success('Permohonan sertifikasi Level C berhasil dikirim. Silahkan tunggu pengecekan oleh Asesor.');
             return redirect()->route('asesi.sertifikasi');
-
         } catch (\Exception $e) {
             DB::rollBack();
 
