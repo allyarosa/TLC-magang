@@ -22,7 +22,7 @@ class QuestionSeeders extends Seeder
                     'option_b'         => 'Proses akan gagal karena sistem tidak mendukung iterasi dalam kondisi saat ini.',
                     'option_c'         => 'Hasilnya akan berbeda tergantung pada parameter eksternal yang diberikan.',
                     'option_d'         => 'Proses tidak akan berjalan sama sekali karena telah mencapai batas maksimum.',
-                    'correct_answer'   => 'C',
+                    'correct_answer'   => 'c',
                 ]);
             }
         }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
+use App\Models\LevelCSubmission;
 use Illuminate\Support\Facades\Auth;
 
 class ExamControllerC extends Controller
@@ -144,6 +145,14 @@ class ExamControllerC extends Controller
                     'completed_at' => now(),
                     'is_completed' => true,
                 ]);
+
+                // Create a new submission record for the assessor to grade
+                LevelCSubmission::create([
+                    'user_id' => $user->id,
+                    'type' => 'essay',
+                    'status' => 'pending',
+                    'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
+                ]);
             }
         });
 
@@ -154,6 +163,4 @@ class ExamControllerC extends Controller
     {
         return view('user.sertifikasi.levelC.exam.completed');
     }
-
-
 }
