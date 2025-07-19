@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Requests\StoreAssessmentRequest; // Re-using for Level C, adjust if needed
-use App\Models\LevelCHistory; // Placeholder for Level C history
+use App\Http\Requests\StoreAssessmentRequest;
+use App\Models\LevelCHistory;
 
 class LevelCGradedController extends Controller
 {
@@ -21,7 +21,7 @@ class LevelCGradedController extends Controller
         $decoded = Hashids::decode($id);
 
         if (empty($decoded)) {
-            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading Level C.', [
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
                 'encoded_id' => $id,
                 'reason' => 'ID tidak valid atau tidak dapat didecode',
                 'ip_address' => request()->ip(),
@@ -32,32 +32,13 @@ class LevelCGradedController extends Controller
         }
 
         $id = $decoded[0];
-        // Assuming ExamAsesi stores Level C submissions and has a relationship to User
-        $asesiSubmission = LevelCSubmission::with('user')->find($id);
+        $asesi = LevelCSubmission::with('user')->find($id);
+        $userProfile = UserProfile::where('user_id', $asesi->user_id)->first();
 
-        if (!$asesiSubmission) {
-            abort(404, 'Pengajuan Level C tidak ditemukan.');
-        }
-
-        $userProfile = UserProfile::where('user_id', $asesiSubmission->user_id)->first();
-
-        // You need to determine if it's an essay or video submission.
-        // This logic depends on how you store Level C submissions.
-        // For example, if ExamAsesi has a 'type' column or specific fields.
-        if ($asesiSubmission->type === 'essay') { // Example: if there's a 'type' column
-            return view('dashboard.asesor.Grading.essay', [
-                'asesiSubmission' => $asesiSubmission,
-                'userProfile' => $userProfile,
-            ]);
-        } elseif ($asesiSubmission->type === 'video') { // Example: if there's a 'type' column
-            return view('dashboard.asesor.Grading.video', [
-                'asesiSubmission' => $asesiSubmission,
-                'userProfile' => $userProfile,
-            ]);
-        } else {
-            // Fallback or error if type is not recognized
-            abort(404, 'Tipe pengajuan Level C tidak dikenal.');
-        }
+        return view('dashboard.asesor.Grading.levelC', [
+            'asesi' => $asesi,
+            'userProfile' => $userProfile,
+        ]);
     }
 
     public function storeAssessmentAsesi(StoreAssessmentRequest $request, string $id)
@@ -65,7 +46,7 @@ class LevelCGradedController extends Controller
         $decoded = Hashids::decode($id);
 
         if (empty($decoded)) {
-            Log::channel('grading')->warning('Gagal decode ID Hashids saat menyimpan penilaian Level C.', [
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
                 'encoded_id' => $id,
                 'reason' => 'ID tidak valid atau tidak dapat didecode',
                 'ip_address' => request()->ip(),
@@ -76,59 +57,29 @@ class LevelCGradedController extends Controller
         }
         $id = $decoded[0];
 
-        $asesiSubmission = LevelCSubmission::find($id); // Assuming ExamAsesi stores Level C submissions
-
-        if (!$asesiSubmission) {
-            abort(404, 'Pengajuan Level C tidak ditemukan.');
-        }
-
-        $user = User::where('id', $asesiSubmission->user_id)->first();
-
-        $asesiSubmission->update([
+        $levelC = LevelCSubmission::find($id);
+        $user = User::where('id', $levelC->user_id)->first();
+        $levelC->update([
             'score' => $request->score,
-            'status' => $request->status, // e.g., 'graded', 'pending_review'
-            'is_passed' => $request->assessment, // 'passed' or 'rejected'
+            'status' => $request->status,
+            'is_passed' => $request->assessment,
             'comment_asesor' => $request->comment_asesor,
         ]);
 
-        $category = null;
-        if ($asesiSubmission->type === 'essay') { // Example: if there's a 'type' column
-            $category = 'Essay';
-        } elseif ($asesiSubmission->type === 'video') { // Example: if there's a 'type' column
-            $category = 'Video';
-        }
-
-        // Create Level C History (adjust fields as per your LevelCHistory model)
-        // You might need to create a LevelCHistory model and migration if it doesn't exist.
-        // LevelCHistory::create([
-        //     'user_id' => $asesiSubmission->user_id,
-        //     'category' => $category,
-        //     'submission_id' => $asesiSubmission->id, // Link to the submission
-        //     'score' => $request->score,
-        //     'comment_asesor' => $request->comment_asesor,
-        //     'is_passed' => $request->assessment,
-        // ]);
+        LevelCHistory::create([
+            'user_id' => $levelC->user_id,
+            'url_video' => $levelC->url_video,
+            'description' => $levelC->description,
+            'score' => 100,
+            'comment_asesor' => $request->comment_asesor,
+        ]);
 
         if ($request->assessment === 'passed') {
-            if ($asesiSubmission->type === 'essay') {
-                $user->givePermissionTo('ESSAY_COMPLETED');
-                // Add other permissions if needed, e.g., 'ESSAY_GRADED'
-            } elseif ($asesiSubmission->type === 'video') {
-                $user->givePermissionTo('VIDEO_COMPLETED');
-                // Add other permissions if needed, e.g., 'VIDEO_GRADED'
-            }
-        } elseif ($request->assessment === 'rejected') {
-            if ($asesiSubmission->type === 'essay') {
-                $user->revokePermissionTo('ESSAY_COMPLETED');
-                $asesiSubmission->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
-            } elseif ($asesiSubmission->type === 'video') {
-                $user->revokePermissionTo('VIDEO_COMPLETED');
-                $asesiSubmission->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
-            }
+            $user->givePermissionTo('access_level_C');
         }
 
         event(new GradingCompleted($user));
-        Alert::success('Berhasil mengubah status penilaian Level C.');
-        return redirect()->route('asesor.gradeC.index');
+        Alert::success('Berhasil mengubah status assessment');
+        return redirect()->route('asesor.list-asesi-c');
     }
 }

@@ -4,19 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LevelCSubmission extends Model
+class LevelCHistory extends Model
 {
-    protected $table = 'level_c_submissions';
-
     protected $fillable = [
         'user_id',
-        'category',
         'url_video',
         'description',
-        'is_passed',
-        'status',
-        'comment_asesor',
         'score',
+        'comment_asesor',
     ];
 
     public function user()

@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('level_c_submissions', function (Blueprint $table) {
+        Schema::create('level_c_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('category')->nullable();
-            $table->string('url_video')->nullable();
-            $table->text('description')->nullable();
-            $table->enum('status', ['pending', 'reviewed', 'rejected'])->default('pending');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('url_video');
+            $table->text('description');
             $table->enum('is_passed', ['passed', 'rejected', 'reviewed'])->nullable()->default('reviewed');
             $table->text('comment_asesor')->nullable();
-            $table->string('score')->nullable();
+            $table->integer('score');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('level_c_submissions');
+        Schema::dropIfExists('level_c_histories');
     }
 };

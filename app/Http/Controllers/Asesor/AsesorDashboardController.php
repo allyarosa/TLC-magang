@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Models\LevelBHistory;
+use App\Models\LevelCHistory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -60,18 +61,22 @@ class AsesorDashboardController extends Controller
         ]);
     }
 
-    public function listAsesiC()
+    public function listAsesiC(Request $request)
     {
-        // $kategori = $request->input('kategori');
-        // $search = $request->input('search');
+        $search = $request->input('search');
 
-        $query = LevelCSubmission::with('user');
-        
+        $query = LevelCSubmission::with('user')
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', '%' . $search . '%');
+                });
+            });
 
         $levelC = $query->latest()->paginate(10)->withQueryString();
 
         return view('dashboard.asesor.listasesiC', [
             'levelC' => $levelC,
+            'search' => $search,
         ]);
     }
 
@@ -120,6 +125,12 @@ class AsesorDashboardController extends Controller
     public function riwayatAktifitas()
     {
         return view('dashboard.asesor.riwayataktifitas');
+    }
+
+    public function riwayatPenilaianC()
+    {
+        $history = LevelCHistory::with('user')->latest()->paginate(10);
+        return view('dashboard.asesor.riwayatpenilaianC', compact('history'));
     }
 
     public function downloadNilai()

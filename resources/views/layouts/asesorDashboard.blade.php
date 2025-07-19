@@ -337,10 +337,10 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('asesor.riwayat-penilaian') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift">
+                        <a href="{{ route('asesor.riwayat-penilaian-c') }}"
+                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'menu-active' : 'menu-inactive' }}">
                             <i
-                                class="fas fa-chart-line w-5 h-5 text-primary"></i>
+                                class="fas fa-chart-line w-5 h-5 {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'text-white' : 'text-primary' }}"></i>
                             <span class="ml-3">Riwayat Penilaian C</span>
                         </a>
                     </li>
