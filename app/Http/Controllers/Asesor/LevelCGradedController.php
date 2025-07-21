@@ -75,9 +75,25 @@ class LevelCGradedController extends Controller
         ]);
 
         if ($request->assessment === 'passed') {
+            if ($levelC->category === 'essay') {
+                $user->givePermissionTo('ESSAY_COMPLETED');
+            } elseif ($levelC->category === 'video') {
+                $user->givePermissionTo('VIDEO_COMPLETED');
+            }
             $user->givePermissionTo('access_level_C');
+        } elseif ($request->assessment === 'rejected') {
+            if ($levelC->category === 'essay') {
+                $user->revokePermissionTo('ESSAY_UPLOAD');
+                $levelC->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
+            } elseif ($levelC->category === 'video') {
+                $user->revokePermissionTo('VIDEO_UPLOAD');
+                $levelC->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
+            }
         }
 
+
+
+    
         event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');
         return redirect()->route('asesor.list-asesi-c');
