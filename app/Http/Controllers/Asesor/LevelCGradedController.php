@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAssessmentRequest;
 use App\Models\LevelCHistory;
+use App\Models\UserAnswerC;
 
 class LevelCGradedController extends Controller
 {
@@ -34,6 +35,7 @@ class LevelCGradedController extends Controller
 
         $id = $decoded[0];
         $asesi = LevelCSubmission::with('user')->find($id);
+        $queryEssay = UserAnswerC::with('user')->find($id);
 
         if (!$asesi) {
             abort(404, 'Submission tidak ditemukan');
@@ -41,10 +43,17 @@ class LevelCGradedController extends Controller
 
         $userProfile = UserProfile::where('user_id', $asesi->user_id)->first();
 
-        return view('dashboard.asesor.Grading.levelC', [
-            'asesi' => $asesi,
-            'userProfile' => $userProfile,
-        ]);
+        if ($asesi->category === 'video') {
+            return view('dashboard.asesor.Grading.levelC', [
+                'asesi' => $asesi,
+                'userProfile' => $userProfile,
+            ]);
+        } else {
+            return view('dashboard.asesor.Grading.levelCesay', [
+                'queryEssay' => $queryEssay,
+                'userProfile' => $userProfile,
+            ]);
+        }
     }
 
     public function storeAssessmentAsesi(StoreAssessmentRequest $request, string $id)

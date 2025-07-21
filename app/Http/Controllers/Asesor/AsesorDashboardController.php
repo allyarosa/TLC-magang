@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Models\LevelBHistory;
 use App\Models\LevelCHistory;
+use App\Models\UserAnswerC;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -72,10 +73,18 @@ class AsesorDashboardController extends Controller
                 });
             });
 
+        $queryEssay = UserAnswerC::with('user')
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', '%' . $search . '%');
+                });
+            })->get()->groupBy('user_id');
+
         $levelC = $query->latest()->paginate(10)->withQueryString();
 
         return view('dashboard.asesor.listasesiC', [
             'levelC' => $levelC,
+            'queryEssay' => $queryEssay,
             'search' => $search,
         ]);
     }

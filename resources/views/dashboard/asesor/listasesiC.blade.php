@@ -164,6 +164,23 @@
                         </td>
                     </tr>
                     @endforelse
+                    {{-- esay --}}
+                    @forelse ($queryEssay as $user_id => $answers)
+                    <tr>
+                        <td>{{ $answers->first()->user->name }}</td>
+                        <td>
+                            @foreach($answers as $answer)
+                            Soal {{ $answer->soal_no }}: {{ $answer->jawaban }}<br>
+                            @endforeach
+                             </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            Tidak ada pengajuan Level C yang perlu dinilai saat ini.
+                        </td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
