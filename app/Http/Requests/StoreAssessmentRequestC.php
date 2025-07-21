@@ -22,10 +22,18 @@ class StoreAssessmentRequestC extends FormRequest
     public function rules(): array
     {
         return [
+<<<<<<< HEAD
             'user_id' => 'nullable', 
             'url_video' => 'required|url', 
             'description' => 'required|string|max:1000', 
         ];
     }
 
+=======
+            'user_id' => 'nullable',
+            'url_video' => 'required|url',
+            'description' => 'required|string|max:1000',
+        ];
+    }
+>>>>>>> feat/kelasc
 }

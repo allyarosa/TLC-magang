@@ -38,6 +38,7 @@ use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
+use App\Http\Controllers\Asesor\LevelCGradedController;
 
 Route::get('register2', function () {
     return view('register2');
@@ -298,14 +299,19 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () {
     Route::get('/dashboard', [AsesorDashboardController::class, 'index'])->name('asesor.dashboard');
     Route::get('/list-asesi', [AsesorDashboardController::class, 'listAsesi'])->name('asesor.list-asesi');
+    Route::get('/list-asesi-c', [AsesorDashboardController::class, 'listAsesiC'])->name('asesor.list-asesi-c');
 
     Route::get('/list-asesi/grade/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.asesi');
-    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'ShowGradeDetail'])->name('asesor.gradeB.show');
+    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.show');
     Route::post('/list-asesi/grade/{id}', [LevelBGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeB.store');
+
+    Route::get('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'showGradingPage'])->name('asesor.gradeC.asesi');
+    Route::post('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeC.store');
 
     Route::get('/notifikasi', [AsesorDashboardController::class, 'notifikasi'])->name('asesor.notifikasi');
     Route::get('/form-penilaian', [AsesorDashboardController::class, 'formPenilaian'])->name('asesor.form-penilaian');
     Route::get('/riwayat-penilaian', [AsesorDashboardController::class, 'riwayatPenilaian'])->name('asesor.riwayat-penilaian');
+    Route::get('/riwayat-penilaian-c', [AsesorDashboardController::class, 'riwayatPenilaianC'])->name('asesor.riwayat-penilaian-c');
     Route::get('/riwayat-penilaian/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianDetail'])->name('asesor.riwayat-penilaian-detail');
     Route::get('/riwayat-penilaian/export', function () {
         return Excel::download(new RiwayatPenilaianBExport, 'Riwayat Penilaian B.xlsx');

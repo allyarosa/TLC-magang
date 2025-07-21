@@ -106,6 +106,7 @@
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $asesi->user->id }}">
                     <input type="hidden" name="status" value="reviewed">
+<<<<<<< HEAD
                     <div class="mb-4 sm:mb-5 lg:mb-6">
                         <h3 class="text-gray-700 mb-3 text-sm sm:text-base font-medium">Penilaian</h3>
                         <div class="space-y-2 sm:space-y-3">
@@ -127,6 +128,9 @@
                             <x-input-error :messages="$errors->get('assessment')" class="mt-1 text-xs" />
                         </div>
                     </div>
+=======
+                  
+>>>>>>> feat/kelasc
 
                     <div class="mb-4 sm:mb-5 lg:mb-6">
                         <label class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">Skor</label>

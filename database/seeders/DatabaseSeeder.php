@@ -75,8 +75,13 @@ class DatabaseSeeder extends Seeder
             LevelSeeders::class,
             QuestionSeeders::class,
             
+<<<<<<< HEAD
             PaymentSeeders::class,
             LevelBSeeders::class,
+=======
+            // PaymentSeeders::class,
+            // LevelBSeeders::class,
+>>>>>>> feat/kelasc
             LevelCQuestionSeeders::class,
         ]);
     }

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Asesor;
 
 use App\Models\LevelBSubmission;
+use App\Models\LevelCSubmission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Models\LevelBHistory;
+use App\Models\LevelCHistory;
+use App\Models\UserAnswerC;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,6 +62,33 @@ class AsesorDashboardController extends Controller
         ]);
     }
 
+    public function listAsesiC(Request $request)
+    {
+        $search = $request->input('search');
+
+        $query = LevelCSubmission::with('user')
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', '%' . $search . '%');
+                });
+            });
+
+        $queryEssay = UserAnswerC::with('user')
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', '%' . $search . '%');
+                });
+            })->get()->groupBy('user_id');
+
+        $levelC = $query->latest()->paginate(10)->withQueryString();
+
+        return view('dashboard.asesor.listasesiC', [
+            'levelC' => $levelC,
+            'queryEssay' => $queryEssay,
+            'search' => $search,
+        ]);
+    }
+
     // Simple View Methods
     public function notifikasi()
     {
@@ -104,6 +134,12 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.riwayataktifitas');
     }
 
+    public function riwayatPenilaianC()
+    {
+        $history = LevelCHistory::with('user')->latest()->paginate(10);
+        return view('dashboard.asesor.riwayatpenilaianC', compact('history'));
+    }
+
     public function downloadNilai()
     {
         return view('dashboard.asesor.downloadnilai');
@@ -119,10 +155,10 @@ class AsesorDashboardController extends Controller
     public function updateProfile(Request $request)
     {
         $user = auth()->user();
-        
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:255'
         ]);
@@ -170,13 +206,13 @@ class AsesorDashboardController extends Controller
         ]);
 
         $user = auth()->user();
-        
+
         if ($request->hasFile('profile_photo')) {
             if ($user->asesorProfile->profile_image && $user->asesorProfile->profile_image != 'blankProfile.png') {
-                Storage::delete('public/profile_images/'.$user->asesorProfile->profile_image);
+                Storage::delete('public/profile_images/' . $user->asesorProfile->profile_image);
             }
 
-            $filename = 'profile_'.$user->id.'_'.time().'.'.$request->file('profile_photo')->getClientOriginalExtension();
+            $filename = 'profile_' . $user->id . '_' . time() . '.' . $request->file('profile_photo')->getClientOriginalExtension();
             $path = $request->file('profile_photo')->storeAs('public/profile_images', $filename);
 
             $user->asesorProfile()->update([

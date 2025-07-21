@@ -16,7 +16,10 @@ class LevelCController extends Controller
     public function index()
     {
         return view('admin.level.level-c-index');
+<<<<<<< HEAD
 
+=======
+>>>>>>> feat/kelasc
     }
 
     public function instructionEssay()
@@ -40,7 +43,10 @@ class LevelCController extends Controller
             return view('user.sertifikasi.levelC.ESSAY.instruction', [
                 'user_id' => $validated['user_id'],
             ]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> feat/kelasc
         } else if ($validated['category_id'] == 2) {
             return view('user.sertifikasi.levelC.VIDEO.instruction', [
                 'user_id' => $validated['user_id'],
@@ -90,7 +96,10 @@ class LevelCController extends Controller
 
             Alert::success('Video pembelajaran berhasil dikirim. Silahkan tunggu pengecekan oleh Asesor.');
             return redirect()->route('asesi.sertifikasi');
+<<<<<<< HEAD
 
+=======
+>>>>>>> feat/kelasc
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -127,7 +136,10 @@ class LevelCController extends Controller
 
             Alert::success('Berhasil Dikirim', 'Silahkan tunggu pengecekan oleh Asesor.');
             return redirect()->route('asesi.sertifikasi');
+<<<<<<< HEAD
 
+=======
+>>>>>>> feat/kelasc
         } catch (\Exception $e) {
             DB::rollBack();
 
