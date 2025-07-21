@@ -106,27 +106,7 @@
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $asesi->user->id }}">
                     <input type="hidden" name="status" value="reviewed">
-                    <div class="mb-4 sm:mb-5 lg:mb-6">
-                        <h3 class="text-gray-700 mb-3 text-sm sm:text-base font-medium">Penilaian</h3>
-                        <div class="space-y-2 sm:space-y-3">
-                            <div class="flex items-center">
-                                <input id="kompeten" name="assessment" type="radio" value="passed"
-                                    @checked(old('assessment', $asesi->is_passed) === 'passed')
-                                    class="h-4 w-4 text-blue-800 focus:ring-blue-800 focus:ring-2">
-                                <label for="kompeten"
-                                    class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">Kompeten</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="belum-kompeten" name="assessment" type="radio" value="rejected"
-                                    @checked(old('assessment', $asesi->is_passed) === 'rejected')
-                                    class="h-4 w-4 text-blue-800 focus:ring-blue-800 focus:ring-2">
-                                <label for="belum-kompeten"
-                                    class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">Belum
-                                    Kompeten</label>
-                            </div>
-                            <x-input-error :messages="$errors->get('assessment')" class="mt-1 text-xs" />
-                        </div>
-                    </div>
+                  
 
                     <div class="mb-4 sm:mb-5 lg:mb-6">
                         <label class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">Skor</label>
