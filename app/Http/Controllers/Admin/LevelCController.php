@@ -118,7 +118,7 @@ class LevelCController extends Controller
             if (!$categoriesBaseID) {
                 Log::warning('Category update failed: Category C with ID ' . $id . ' not found');
                 return redirect()->route('admin.categories.c.index')
-                    ->with('error', 'Data kategori C tidak ditemukan.');
+                    ->with('<error></error>', 'Data kategori C tidak ditemukan.');
             }
 
             if ($request->hasFile('image_url')) {
