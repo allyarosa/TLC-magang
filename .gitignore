@@ -1,7 +1,7 @@
 # .gitignore for Laravel
 /vendor/
 /node_modules/
-/.env
+.env
 .env.backup
 .env.production
 /public/build
