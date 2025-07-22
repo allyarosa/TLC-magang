@@ -109,11 +109,7 @@ class TestimonialController extends Controller
             'exam_a_id.exists' => 'Data ujian tidak ditemukan.',
             'category_a_id.required' => 'Data kategori tidak valid.',
             'category_a_id.exists' => 'Data kategori tidak ditemukan.'
-<<<<<<< HEAD
         ]);
-=======
-        ]); 
->>>>>>> feat/kelasc
 
         $exam = ExamA::findOrFail($request->exam_a_id);
 

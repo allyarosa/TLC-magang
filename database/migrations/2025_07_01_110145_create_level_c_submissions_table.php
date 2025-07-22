@@ -17,10 +17,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->string('url_video')->nullable();
             $table->text('description')->nullable();
-<<<<<<< HEAD
-=======
             $table->enum('status', ['pending', 'reviewed', 'rejected'])->default('pending');
->>>>>>> feat/kelasc
             $table->enum('is_passed', ['passed', 'rejected', 'reviewed'])->nullable()->default('reviewed');
             $table->text('comment_asesor')->nullable();
             $table->string('score')->nullable();

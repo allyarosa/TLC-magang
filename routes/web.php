@@ -237,6 +237,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/a/category/show/{id}', [LevelAController::class, 'categoriesShow'])->name('admin.categories.a.show');
     Route::put('/dashboard/level/a/category/update/{id}', [LevelAController::class, 'categoriesUpdate'])->name('admin.categories.a.update');
 
+    Route::get('/dashboard/level/b/category', [LevelBController::class, 'categoriesIndex'])->name('admin.categories.b.index');
+    Route::get('/dashboard/level/b/category/{id}/edit', [LevelBController::class, 'categoriesEdit'])->name('admin.categories.b.edit');
+    Route::get('/dashboard/level/b/category/show/{id}', [LevelBController::class, 'categoriesShow'])->name('admin.categories.b.show');
+    Route::put('/dashboard/level/b/category/update/{id}', [LevelBController::class, 'categoriesUpdate'])->name('admin.categories.b.update');
+
+    Route::get('/dashboard/level/c/category', [LevelCController::class, 'categoriesIndex'])->name('admin.categories.c.index');
+    Route::get('/dashboard/level/c/category/{id}/edit', [LevelCController::class, 'categoriesEdit'])->name('admin.categories.c.edit');
+    Route::get('/dashboard/level/c/category/show/{id}', [LevelCController::class, 'categoriesShow'])->name('admin.categories.c.show');
+    Route::put('/dashboard/level/c/category/update/{id}', [LevelCController::class, 'categoriesUpdate'])->name('admin.categories.c.update');
+
     Route::get('/dashboard/level/a/question', [LevelAController::class, 'bankSoalIndex'])->name('admin.question.a.index');
     Route::get('/dashboard/level/a/question/create', [LevelAController::class, 'bankSoalCreate'])->name('admin.question.a.create');
     Route::get('/dashboard/level/a/question/{id}/show', [LevelAController::class, 'bankSoalShow'])->name('admin.question.a.show');
@@ -246,10 +256,24 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/dashboard/level/a/question/{id}/delete', [LevelAController::class, 'bankSoalDestroy'])->name('admin.question.a.destroy');
 
     // Route Level B
-    Route::get('/dashboard/level/b', [LevelBController::class, 'index'])->name('admin.level.b.index');
+    Route::get('/dashboard/level/b', [App\Http\Controllers\Admin\LevelBController::class, 'index'])->name('admin.level.b.index');
+    Route::get('/dashboard/level/b/question', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalIndex'])->name('admin.question.b.index');
+    Route::get('/dashboard/level/b/question/create', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalCreate'])->name('admin.question.b.create');
+    Route::get('/dashboard/level/b/question/{id}/show', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalShow'])->name('admin.question.b.show');
+    Route::post('/dashboard/level/b/question/store', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalStore'])->name('admin.question.b.store');
+    Route::get('/dashboard/level/b/question/{id}/edit', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalEdit'])->name('admin.question.b.edit');
+    Route::put('/dashboard/level/b/question/{id}/update', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalUpdate'])->name('admin.question.b.update');
+    Route::delete('/dashboard/level/b/question/{id}/delete', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalDestroy'])->name('admin.question.b.destroy');
 
     // Route Level C
     Route::get('/dashboard/level/c', [LevelCController::class, 'index'])->name('admin.level.c.index');
+    Route::get('/dashboard/level/c/question', [LevelCController::class, 'bankSoalIndex'])->name('admin.question.c.index');
+    Route::get('/dashboard/level/c/question/create', [LevelCController::class, 'bankSoalCreate'])->name('admin.question.c.create');
+    Route::get('/dashboard/level/c/question/{id}/show', [LevelCController::class, 'bankSoalShow'])->name('admin.question.c.show');
+    Route::post('/dashboard/level/c/question/store', [LevelCController::class, 'bankSoalStore'])->name('admin.question.c.store');
+    Route::get('/dashboard/level/c/question/{id}/edit', [LevelCController::class, 'bankSoalEdit'])->name('admin.question.c.edit');
+    Route::put('/dashboard/level/c/question/{id}/update', [LevelCController::class, 'bankSoalUpdate'])->name('admin.question.c.update');
+    Route::delete('/dashboard/level/c/question/{id}/delete', [LevelCController::class, 'bankSoalDestroy'])->name('admin.question.c.destroy');
 
     // Route Level Settings
     Route::get('/dashboard/level/settings/index', [LevelSettingsController::class, 'index'])->name('admin.level.settings.index');
@@ -313,6 +337,7 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
     Route::get('/riwayat-penilaian', [AsesorDashboardController::class, 'riwayatPenilaian'])->name('asesor.riwayat-penilaian');
     Route::get('/riwayat-penilaian-c', [AsesorDashboardController::class, 'riwayatPenilaianC'])->name('asesor.riwayat-penilaian-c');
     Route::get('/riwayat-penilaian/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianDetail'])->name('asesor.riwayat-penilaian-detail');
+    Route::get('/riwayat-penilaian-c/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianCDetail'])->name('asesor.riwayat-penilaian-c-detail');
     Route::get('/riwayat-penilaian/export', function () {
         return Excel::download(new RiwayatPenilaianBExport, 'Riwayat Penilaian B.xlsx');
     })->name('asesor.riwayat-penilaian-b.export');

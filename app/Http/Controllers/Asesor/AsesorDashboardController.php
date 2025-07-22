@@ -64,28 +64,45 @@ class AsesorDashboardController extends Controller
 
     public function listAsesiC(Request $request)
     {
+        $kategori = $request->input('kategori');
         $search = $request->input('search');
+        $sort = $request->input('sort', 'latest'); // Default sort by latest
 
         $query = LevelCSubmission::with('user')
             ->when(!empty($search), function ($q) use ($search) {
                 $q->whereHas('user', function ($userQuery) use ($search) {
                     $userQuery->where('name', 'like', '%' . $search . '%');
                 });
+            })
+            ->when($kategori === 'essay', function ($q) {
+                $q->where('category', 'essay');
+            })
+            ->when($kategori === 'video', function ($q) {
+                $q->where('category', 'video');
             });
 
-        $queryEssay = UserAnswerC::with('user')
-            ->when(!empty($search), function ($q) use ($search) {
-                $q->whereHas('user', function ($userQuery) use ($search) {
-                    $userQuery->where('name', 'like', '%' . $search . '%');
-                });
-            })->get()->groupBy('user_id');
+        // Apply sorting
+        if ($sort === 'name_asc') {
+            $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
+                  ->orderBy('users.name', 'asc')
+                  ->select('level_c_submissions.*'); // Select all columns from level_c_submissions
+        } elseif ($sort === 'name_desc') {
+            $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
+                  ->orderBy('users.name', 'desc')
+                  ->select('level_c_submissions.*');
+        } elseif ($sort === 'oldest') {
+            $query->oldest();
+        } else { // Default to latest
+            $query->latest();
+        }
 
-        $levelC = $query->latest()->paginate(10)->withQueryString();
+        $levelC = $query->paginate(10)->withQueryString();
 
         return view('dashboard.asesor.listasesiC', [
             'levelC' => $levelC,
-            'queryEssay' => $queryEssay,
             'search' => $search,
+            'kategori' => $kategori,
+            'sort' => $sort,
         ]);
     }
 
@@ -138,6 +155,26 @@ class AsesorDashboardController extends Controller
     {
         $history = LevelCHistory::with('user')->latest()->paginate(10);
         return view('dashboard.asesor.riwayatpenilaianC', compact('history'));
+    }
+
+    public function riwayatPenilaianCDetail(string $id)
+    {
+        $decoded = Hashids::decode($id);
+
+        if (empty($decoded)) {
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
+                'encoded_id' => $id,
+                'reason' => 'ID tidak valid atau tidak dapat didecode',
+                'ip_address' => request()->ip(),
+                'user_id' => auth()->id(),
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $id = $decoded[0];
+        $detail = LevelCHistory::with('user')->findOrFail($id);
+        return view('dashboard.asesor.riwayatpenilaiandetailC', compact('detail'));
     }
 
     public function downloadNilai()

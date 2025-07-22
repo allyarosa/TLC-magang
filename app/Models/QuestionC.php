@@ -23,6 +23,11 @@ class QuestionC extends Model
         return $this->hasMany(UserAnswerC::class);
     }
 
+    public function categoryC()
+    {
+        return $this->belongsTo(CategoryC::class);
+    }
+
     public function scopeActive($query)
     {
         return $query->where('is_active', true);

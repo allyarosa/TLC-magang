@@ -107,7 +107,7 @@
                                         class="px-3 py-1 @if($item->is_passed == 'passed') bg-green-500 @elseif($item->is_passed == 'rejected') bg-red-500 @else bg-yellow-500 @endif text-white rounded-full text-xs font-medium">{{ Str::ucfirst($item->is_passed) }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-right">
-                                    <a href="{{ route('asesor.riwayat-penilaian-detail', Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}"
+                                    <a href="{{ route('asesor.riwayat-penilaian-c-detail', Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}"
                                         class="text-blue-800 hover:text-blue-600">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">

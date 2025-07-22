@@ -3,17 +3,13 @@
 namespace App\Http\Controllers\Asesi;
 
 use App\Models\QuestionC;
-use App\Models\Question_C;
 use App\Models\UserAnswerC;
 use App\Models\ExamSessionC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-=======
 use App\Models\LevelCSubmission;
->>>>>>> feat/kelasc
 use Illuminate\Support\Facades\Auth;
 
 class ExamControllerC extends Controller
@@ -148,8 +144,6 @@ class ExamControllerC extends Controller
                     'completed_at' => now(),
                     'is_completed' => true,
                 ]);
-<<<<<<< HEAD
-=======
 
                 // Create a new submission record for the assessor to grade
                 LevelCSubmission::create([
@@ -158,7 +152,6 @@ class ExamControllerC extends Controller
                     'status' => 'pending',
                     'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
                 ]);
->>>>>>> feat/kelasc
             }
         });
 
@@ -169,9 +162,4 @@ class ExamControllerC extends Controller
     {
         return view('user.sertifikasi.levelC.exam.completed');
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> feat/kelasc
 }

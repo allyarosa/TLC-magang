@@ -14,10 +14,7 @@ class LevelCSubmission extends Model
         'url_video',
         'description',
         'is_passed',
-<<<<<<< HEAD
-=======
         'status',
->>>>>>> feat/kelasc
         'comment_asesor',
         'score',
     ];
@@ -26,10 +23,4 @@ class LevelCSubmission extends Model
     {
         return $this->belongsTo(User::class);
     }
-<<<<<<< HEAD
-
-    
 }
-=======
-}
->>>>>>> feat/kelasc

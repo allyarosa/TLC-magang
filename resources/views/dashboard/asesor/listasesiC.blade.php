@@ -14,10 +14,9 @@
             <!-- Search -->
             <div class="relative w-full lg:w-auto">
                 <form method="GET" action="{{ route('asesor.list-asesi-c') }}" class="flex flex-col sm:flex-row gap-2 sm:items-center mb-4">
-                    <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Cari asesi..." class="pl-8 sm:pl-10 pr-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg w-full lg:w-64 xl:w-72 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 text-sm sm:text-base">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari asesi..." class="pl-8 sm:pl-10 pr-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg w-full lg:w-64 xl:w-72 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 text-sm sm:text-base">
                     <button type="submit" class="px-4 py-2 bg-blue-800 text-white rounded-lg text-sm hover:bg-blue-700 transition">Cari</button>
                 </form>
-
             </div>
 
             <!-- Filters -->
@@ -38,6 +37,7 @@
                 </div>
                 <div class="relative">
                     <form method="GET" action="{{ route('asesor.list-asesi-c') }}" class="mb-4">
+                        <input type="hidden" name="search" value="{{ request('search') }}">
                         <select name="kategori" onchange="this.form.submit()" class="appearance-none border border-gray-300 rounded-lg pl-3 sm:pl-4 pr-8 sm:pr-10 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-blue-800 w-full sm:w-auto text-xs sm:text-sm">
                             <option value="">Semua Kategori</option>
                             <option value="essay" {{ request('kategori') === 'essay' ? 'selected' : '' }}>Esai
@@ -45,13 +45,14 @@
                             <option value="video" {{ request('kategori') === 'video' ? 'selected' : '' }}>Video
                             </option>
                         </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-3 w-3 sm:h-4 sm:w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
                     </form>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-3 w-3 sm:h-4 sm:w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -63,7 +64,7 @@
                             Nama Asesi
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                            Kategori
+                            kategori
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                             Status
@@ -82,27 +83,26 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse ($levelC as $index)
                     <tr class="hover:bg-blue-50">
-                        {{-- NAME --}}
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm font-medium text-gray-700">
                                 {{ Str::ucfirst($index->user->name ?? 'N/A') }}
                             </div>
                         </td>
-
-                        {{-- CATEGORY --}}
                         <td class="px-6 py-4 whitespace-nowrap">
-                            @if ($index->category !== 'video')
+                            @if ($index->category !== 'vidio')
                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                vidio pembelajaran
+                                vidio
+                            </span>
+                            @elseif ($index->category === 'video')
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
+                                esay
                             </span>
                             @else
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
-                                Esai
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                N/A
                             </span>
                             @endif
                         </td>
-
-                        {{-- STATUS --}}
                         <td class="px-6 py-4 whitespace-nowrap">
                             @php
                             $status = $index->status;
@@ -110,25 +110,21 @@
 
                             @if ($status === 'pending')
                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Menunggu
+                                Menunggu Dinilai
                             </span>
                             @elseif ($status === 'reviewed')
                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Lulus
+                                Sudah Dinilai
                             </span>
                             @elseif ($status === 'rejected')
                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                Tidak Lulus
+                                Ditolak
                             </span>
                             @endif
                         </td>
-
-                        {{-- LAST UPDATED --}}
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $index->updated_at->diffForHumans() }}
                         </td>
-
-                        {{-- NILAI --}}
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             @if ($index->score == 0 || is_null($index->score))
                             Belum Dinilai
@@ -136,43 +132,23 @@
                             {{ $index->score }}
                             @endif
                         </td>
-
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm flex justify-end">
-                            @if ($index->score)
+                            @if ($index->status === 'pending')
+                            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Nilai
+                            </a>
+                            @else
                             <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                 </svg>
-                                Sudah Dinilai
-                            </a>
-                            @else
-                            <a href="{{ route('asesor.gradeC.asesi', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}" class="bg-red-500 hover:bg-red-400 text-white px-3 py-1 rounded-lg flex items-center gap-1 border border-red-600 font-semibold">
-                                Belum Dinilai
+                                Lihat Detail
                             </a>
                             @endif
-                            <button class="text-gray-500 hover:text-gray-700 ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
                         </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            Tidak ada pengajuan Level C yang perlu dinilai saat ini.
-                        </td>
-                    </tr>
-                    @endforelse
-                    {{-- esay --}}
-                    @forelse ($queryEssay as $user_id => $answers)
-                    <tr>
-                        <td>{{ $answers->first()->user->name }}</td>
-                        <td>
-                            @foreach($answers as $answer)
-                            Soal {{ $answer->soal_no }}: {{ $answer->jawaban }}<br>
-                            @endforeach
-                             </td>
                     </tr>
                     @empty
                     <tr>
@@ -199,24 +175,32 @@
                             <p class="text-xs text-gray-500 mt-1">{{ $index->updated_at->diffForHumans() }}</p>
                         </div>
                         <div class="flex flex-col items-end space-y-2">
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                Video Pembelajaran
-                            </span>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if ($index->category !== "vidio")
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    vidio
+                                </span>
+                                @else
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
+                                    esay
+                                </span>
+                                @endif
+
+                            </td>
                             @php
                             $status = $index->status;
                             @endphp
-
                             @if ($status === 'pending')
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Menunggu
+                                Menunggu Dinilai
                             </span>
                             @elseif ($status === 'reviewed')
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                Lulus
+                                Sudah Dinilai
                             </span>
                             @elseif ($status === 'rejected')
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
-                                Tidak Lulus
+                                Ditolak
                             </span>
                             @endif
                         </div>
@@ -233,13 +217,13 @@
                             </span>
                         </div>
                         <div class="flex space-x-2">
-                            @if ($index->score)
-                            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs transition duration-200">
-                                Lihat Detail
-                            </a>
-                            @else
+                            @if ($index->status === 'pending')
                             <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs transition duration-200">
                                 Nilai
+                            </a>
+                            @else
+                            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs transition duration-200">
+                                Lihat Detail
                             </a>
                             @endif
                         </div>

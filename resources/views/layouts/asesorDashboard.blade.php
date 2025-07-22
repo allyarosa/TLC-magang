@@ -295,9 +295,6 @@
                             <span class="ml-3">List Penilaian Level B</span>
                         </a>
                     </li>
-<<<<<<< HEAD
-=======
-
                     <li>
                         <a href="{{ route('asesor.list-asesi-c') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi-c') ? 'menu-active' : 'menu-inactive' }}">
@@ -305,7 +302,6 @@
                             <span class="ml-3">List Penilaian Level C</span>
                         </a>
                     </li>
->>>>>>> feat/kelasc
                     {{-- <li>
                         <a href="{{ route('asesor.list-asesi') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
@@ -338,9 +334,6 @@
                             <span class="ml-3">Riwayat Penilaian B</span>
                         </a>
                     </li>
-<<<<<<< HEAD
-=======
-
                     <li>
                         <a href="{{ route('asesor.riwayat-penilaian-c') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'menu-active' : 'menu-inactive' }}">
@@ -349,7 +342,6 @@
                             <span class="ml-3">Riwayat Penilaian C</span>
                         </a>
                     </li>
->>>>>>> feat/kelasc
                     {{-- <li>
                         <a href="{{ route('asesor.riwayat-aktifitas') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'menu-active' : 'menu-inactive' }}">

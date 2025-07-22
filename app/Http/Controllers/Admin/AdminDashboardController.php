@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AsesiStoreRequest;
-use App\Models\Categories;
+use App\Models\CategoryA;
 use App\Models\Level;
 use App\Models\Questions;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -651,22 +651,22 @@ class AdminDashboardController extends Controller
     //     ]);
     // }
 
-    // public function categories()
-    // {
-    //     $search = request('search');
-    //     $kategori = Categories::query();
+    public function categories()
+    {
+        $search = request('search');
+        $kategori = CategoryA::with('level');
 
-    //     if ($search) {
-    //         $kategori->where('name', 'like', '%' . $search . '%');
-    //     }
+        if ($search) {
+            $kategori->where('name', 'like', '%' . $search . '%');
+        }
 
-    //     $kategori = $kategori->get();
-    //     return view('admin.categories.index', [
-    //         'title' => 'Create Categories',
-    //         'navTitle' => 'Create Categories',
-    //         'kategori' => $kategori
-    //     ]);
-    // }
+        $kategori = $kategori->get();
+        return view('admin.categories.index', [
+            'title' => 'Create Categories',
+            'navTitle' => 'Create Categories',
+            'kategori' => $kategori
+        ]);
+    }
 
     // public function levelCreate()
     // {

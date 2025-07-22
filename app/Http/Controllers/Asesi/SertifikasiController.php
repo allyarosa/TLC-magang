@@ -86,11 +86,7 @@ class SertifikasiController extends Controller
         $id = $decoded[0];
         $userProfile = UserProfile::firstWhere('user_id', $id);
 
-<<<<<<< HEAD
-        $backgroundPath = public_path('assets/sertifikat/sertifikat.png');
-=======
         $backgroundPath = public_path('assets/sertifikat/sertifikat.jpg');
->>>>>>> feat/kelasc
         $backgroundImage = base64_encode(file_get_contents($backgroundPath));
 
         $data = [

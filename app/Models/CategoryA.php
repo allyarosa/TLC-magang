@@ -20,6 +20,11 @@ class CategoryA extends Model
         return $this->hasMany(QuestionA::class,'category_a_id' );
     }
 
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
     // public function questions(){
     //     return $this->hasMany(Questions::class, 'category_id');
     // }
