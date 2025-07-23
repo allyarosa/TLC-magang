@@ -43,12 +43,12 @@ class LevelCGradedController extends Controller
 
         $userProfile = UserProfile::where('user_id', $asesi->user_id)->first();
 
-        if ($asesi->category === 'video') {
+        if ($asesi) {
             return view('dashboard.asesor.Grading.levelC', [
                 'asesi' => $asesi,
                 'userProfile' => $userProfile,
             ]);
-        } else {
+        } else{
             return view('dashboard.asesor.Grading.levelCEssay', [
                 'queryEssay' => $queryEssay,
                 'userProfile' => $userProfile,
