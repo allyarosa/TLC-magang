@@ -80,16 +80,34 @@ class AsesorDashboardController extends Controller
             ->when($kategori === 'video', function ($q) {
                 $q->where('category', 'video');
             });
+        $queryEssay = UserAnswerC::with('user')
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', '%' . $search . '%');
+                });
+            })
+            ->when($kategori === 'essay', function ($q) {
+                $q->where('category', 'essay');
+            })
+            ->when($kategori === 'video', function ($q) {
+                $q->where('category', 'video');
+            })
+            ->get()
+            ->groupBy('user_id');
 
         // Apply sorting
         if ($sort === 'name_asc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
                   ->orderBy('users.name', 'asc')
-                  ->select('level_c_submissions.*'); // Select all columns from level_c_submissions
+                  ->select('level_c_submissions.*') // Select all columns from level_c_submissions
+                  ->orderBy('users.name', 'asc')
+                  ->select('user_answers_c.*');
         } elseif ($sort === 'name_desc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
                   ->orderBy('users.name', 'desc')
-                  ->select('level_c_submissions.*');
+                  ->select('level_c_submissions.*')
+                  ->orderBy('users.name', 'desc')
+                  ->select('user_answers_c.*');
         } elseif ($sort === 'oldest') {
             $query->oldest();
         } else { // Default to latest
@@ -97,9 +115,11 @@ class AsesorDashboardController extends Controller
         }
 
         $levelC = $query->paginate(10)->withQueryString();
+        $levelCEssay = $queryEssay;
 
         return view('dashboard.asesor.listasesiC', [
             'levelC' => $levelC,
+            'levelCEssay' => $levelCEssay,
             'search' => $search,
             'kategori' => $kategori,
             'sort' => $sort,

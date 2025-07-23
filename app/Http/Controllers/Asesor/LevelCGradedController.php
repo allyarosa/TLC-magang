@@ -49,8 +49,8 @@ class LevelCGradedController extends Controller
                 'userProfile' => $userProfile,
             ]);
         } else {
-            return view('dashboard.asesor.Grading.levelCesay', [
-                'asesi' => $asesi,
+            return view('dashboard.asesor.Grading.levelCEssay', [
+                'queryEssay' => $queryEssay,
                 'userProfile' => $userProfile,
             ]);
         }

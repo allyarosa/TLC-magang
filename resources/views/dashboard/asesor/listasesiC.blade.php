@@ -82,6 +82,7 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse ($levelC as $index)
+                    <!-- video -->
                     <tr class="hover:bg-blue-50">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm font-medium text-gray-700">
@@ -89,19 +90,9 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            @if ($index->category !== 'vidio')
                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                 Video
                             </span>
-                            @elseif ($index->category === 'video')
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
-                                esay
-                            </span>
-                            @else
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                N/A
-                            </span>
-                            @endif
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @php
@@ -152,11 +143,80 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            Tidak ada pengajuan Level C yang perlu dinilai saat ini.
+                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                            Tidak Ada Data
                         </td>
                     </tr>
                     @endforelse
+
+                    <!-- essay -->
+                   @forelse ($levelCEssay as $user_id => $essays)
+<tr class="hover:bg-blue-50">
+    <td class="px-6 py-4 whitespace-nowrap">
+        <div class="text-sm font-medium text-gray-700">
+            {{ $essays->first()->user->name ?? 'N/A' }}
+        </div>
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap">
+        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+            Essay
+        </span>
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap">
+        @if ($essays->whereNotNull('score')->count() === $essays->count())
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                Sudah Dinilai
+            </span>
+        @else
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                Belum Dinilai
+            </span>
+        @endif
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        {{ $essays->max('updated_at')->diffForHumans() }}
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        @if ($essays->whereNotNull('score')->isEmpty())
+            Belum Dinilai
+        @else
+            {{ $essays->whereNotNull('score')->max('score') }}
+        @endif
+    </td>
+
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm flex justify-end">
+        @if ($essays->whereNull('score')->count() > 0)
+            <a href="{{ route('asesor.gradeC.asesi', \Vinkla\Hashids\Facades\Hashids::encode($user_id)) }}"
+               class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Nilai
+            </a>
+        @else
+            <a href="{{ route('asesor.gradeC.asesi', \Vinkla\Hashids\Facades\Hashids::encode($user_id)) }}"
+               class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Lihat Detail
+            </a>
+        @endif
+    </td>
+</tr>
+@empty
+<tr>
+    <td colspan="6" class="text-center text-gray-500 py-4">
+        Tidak ada data essay.
+    </td>
+</tr>
+@endforelse
+
+
                 </tbody>
             </table>
         </div>
