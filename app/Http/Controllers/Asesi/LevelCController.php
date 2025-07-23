@@ -24,6 +24,7 @@ class LevelCController extends Controller
             // Create submission record
             $levelC = LevelCSubmission::create([
                 'user_id' => $userId,
+                'category' => 'video',
                 'url_video' => $validated['url_video'],
                 'description' => $validated['description'],
                 'status' => 'pending',
