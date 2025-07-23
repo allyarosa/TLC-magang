@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('is_passed', ['passed', 'rejected', 'reviewed'])->nullable()->default('reviewed');
             $table->text('comment_asesor')->nullable();
-            $table->integer('score');
+            $table->string('score');
             $table->timestamps();
         });
     }

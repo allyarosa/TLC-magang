@@ -85,7 +85,7 @@ class LevelBGradedController extends Controller
             'category' => $category,
             'file_ppt' => $levelB->file_ppt ?? null,
             'modul_ajar' => $levelB->modul_ajar ?? null,
-            'score' => 100,
+            'score' => $levelB->score,
             'comment_asesor' => $request->comment_asesor,
         ]);
 
@@ -108,7 +108,7 @@ class LevelBGradedController extends Controller
                 $levelB->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
             }
         }
-        
+
         event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');
         return redirect()->route('asesor.list-asesi');

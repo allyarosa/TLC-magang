@@ -51,7 +51,12 @@
                         @if ($detail->modul_ajar)
                             <a href="{{ asset('storage/' . $detail->modul_ajar) }}" target="_blank"
                                 class="text-sm sm:text-base sm:ml-1 text-blue-600 underline hover:text-blue-800 transition">
-                                Lihat File
+                                Lihat File Modul Ajar
+                            </a>
+                        @elseif ($detail->file_ppt)
+                            <a href="{{ asset('storage/' . $detail->file_ppt) }}" target="_blank"
+                                class="text-sm sm:text-base sm:ml-1 text-blue-600 underline hover:text-blue-800 transition">
+                                Lihat File PPT
                             </a>
                         @else
                             <span class="text-sm sm:text-base sm:ml-1 text-red-600">Belum ada file</span>

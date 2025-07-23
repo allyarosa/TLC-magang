@@ -278,7 +278,7 @@
             <!-- Menu Utama -->
             <div class="mb-6 mt-4">
                 <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-3">Menu Utama</h3>
-                <ul class="space-y-2">
+                <ul  class="space-y-2">
                     <li>
                         <a href="{{ route('asesor.dashboard') }}"
                             class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.dashboard') ? 'menu-active' : 'menu-inactive' }}">

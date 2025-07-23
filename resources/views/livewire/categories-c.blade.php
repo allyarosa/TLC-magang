@@ -144,7 +144,7 @@
                                 class="px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-not-allowed opacity-60">
                                 Dalam Penilaian
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    viewBox="0 0 24 24" stroke="cucbrrentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
@@ -168,7 +168,7 @@
                     @else
                         <button disabled
                             class="px-5 py-2 bg-gradient-to-r from-gray-400 to-gray-500 text-gray-200 rounded-xl text-sm font-medium shadow-md cursor-not-allowed flex items-center opacity-60">
-                            Terkunci
+                            Terkunci 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
