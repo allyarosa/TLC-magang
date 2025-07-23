@@ -48,27 +48,11 @@ class LevelCGradedController extends Controller
                 'asesi' => $asesi,
                 'userProfile' => $userProfile,
             ]);
-<<<<<<< HEAD
         } else {
             return view('dashboard.asesor.Grading.levelCEssay', [
                 'queryEssay' => $queryEssay,
-=======
-        } elseif ($asesi->category === 'essay') {
-            return view('dashboard.asesor.Grading.levelCesay', [
-                'asesi' => $asesi,
->>>>>>> 348c25b9 (fix bug: history PPT kelas C)
                 'userProfile' => $userProfile,
-                'queryEssay' => $queryEssay,
             ]);
-        } else {
-            // This handles NULL or any other unexpected category.
-            Log::channel('grading')->error('Submission has an invalid or missing category.', [
-                'submission_id' => $asesi->id,
-                'category' => $asesi->category,
-                'ip_address' => request()->ip(),
-                'user_id' => auth()->id(),
-            ]);
-            abort(404, 'Kategori submission tidak valid atau tidak ditemukan.');
         }
     }
 
@@ -128,9 +112,6 @@ class LevelCGradedController extends Controller
                 'new_is_passed' => $finalIsPassed,
                 'assessment' => $request->assessment,
             ]);
-
-            
-      
 
             // Create history record
             LevelCHistory::create([

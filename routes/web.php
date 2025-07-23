@@ -331,7 +331,6 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
 
     Route::get('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'showGradingPage'])->name('asesor.gradeC.asesi');
     Route::post('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeC.store');
-    Route::post('/list-asesi/grade/{id}', [LevelCGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeC.store');
 
     Route::get('/notifikasi', [AsesorDashboardController::class, 'notifikasi'])->name('asesor.notifikasi');
     Route::get('/form-penilaian', [AsesorDashboardController::class, 'formPenilaian'])->name('asesor.form-penilaian');
