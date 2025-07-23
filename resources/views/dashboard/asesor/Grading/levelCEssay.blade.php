@@ -35,17 +35,17 @@
             <div class="bg-blue-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-5 lg:mb-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <div class="rounded-full h-12 w-12 sm:h-16 sm:w-16 overflow-hidden flex-shrink-0 mx-auto sm:mx-0">
-                        <img src="{{ $userProfile && $userProfile->profile_image
-                            ? asset('/storage/' . $userProfile->profile_image)
+                        <img src="{{ $userProfileE && $userProfileE->profile_image
+                            ? asset('/storage/' . $userProfileE->profile_image)
                             : asset('/storage/blankProfile.png') }}"
                             alt="Foto Profil" class="object-cover h-full w-full">
 
                     </div>
                     <div class="text-center sm:text-left w-full sm:w-auto">
                         <h3 class="font-bold text-gray-800 text-sm sm:text-base">
-                            {{ Str::ucfirst($queryEssay->user->name) }}
+                            {{ Str::ucfirst($answerC->user->name) }}
                         </h3>
-                        <p class="text-xs sm:text-sm text-gray-600">Email: {{ $queryEssay->user->email }}</p>
+                        <p class="text-xs sm:text-sm text-gray-600">Email: {{ $answerC->user->email }}</p>
                         <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1">
                             Kategori C</span>
                     </div>
@@ -63,38 +63,30 @@
                         <h3 class="font-bold text-sm sm:text-base">Video Pembelajaran:</h3>
                     </div>
 
-                    @if ($queryEssay->url_video)
-                        <a href="{{ $asesi->url_video }}" target="_blank"
-                            class="text-sm sm:text-base sm:ml-1 text-blue-600 underline hover:text-blue-800 transition">
-                            Lihat Video
-                        </a>
-                    @else
-                        <span class="text-sm sm:text-base sm:ml-1 text-red-600">Belum ada video</span>
-                    @endif
                 </div>
 
-                <p class="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-6">Deskripsi: <span>{!! $queryEssay->description !!}</span>
+                <p class="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-6">Deskripsi: <span>{!! $answerC->description !!}</span>
                 </p>
             </div>
 
-            <form action="{{ route('asesor.gradeC.store', Vinkla\Hashids\Facades\Hashids::encode($queryEssay->id)) }}"
+            <form action="{{ route('asesor.gradeC.store', Vinkla\Hashids\Facades\Hashids::encode($answerC->id)) }}"
                 method="POST">
                 @csrf
-                <input type="hidden" name="user_id" value="{{ $queryEssay->user->id }}">
+                <input type="hidden" name="user_id" value="{{ $answerC->user->id }}">
                 <input type="hidden" name="status" value="reviewed">
                 <div class="mb-4 sm:mb-5 lg:mb-6">
                     <h3 class="text-gray-700 mb-3 text-sm sm:text-base font-medium">Penilaian</h3>
                     <div class="space-y-2 sm:space-y-3">
                         <div class="flex items-center">
                             <input id="kompeten" name="assessment" type="radio" value="passed"
-                                @checked(old('assessment', $queryEssay->is_passed) === 'passed')
+                                @checked(old('assessment', $answerC->is_passed) === 'passed')
                                 class="h-4 w-4 text-blue-800 focus:ring-blue-800 focus:ring-2">
                             <label for="kompeten"
                                 class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">Kompeten</label>
                         </div>
                         <div class="flex items-center">
                             <input id="belum-kompeten" name="assessment" type="radio" value="rejected"
-                                @checked(old('assessment', $queryEssay->is_passed) === 'rejected')
+                                @checked(old('assessment', $answerC->is_passed) === 'rejected')
                                 class="h-4 w-4 text-blue-800 focus:ring-blue-800 focus:ring-2">
                             <label for="belum-kompeten"
                                 class="ml-2 sm:ml-3 block text-gray-700 text-sm sm:text-base cursor-pointer">Belum
@@ -109,14 +101,14 @@
                     <div class="relative">
                         <select name="score" required
                             class="block w-full bg-white border border-gray-300 text-gray-700 py-2 sm:py-3 px-3 sm:px-4 pr-8 rounded-lg sm:rounded-full leading-tight focus:outline-none focus:border-blue-800 text-sm sm:text-base">
-                            <option disabled {{ old('score', $queryEssay->score) ? '' : 'selected' }}>Pilih skor</option>
-                            <option value="90-100" {{ old('score', $queryEssay->score) === '90-100' ? 'selected' : '' }}>
+                            <option disabled {{ old('score', $answerC->score) ? '' : 'selected' }}>Pilih skor</option>
+                            <option value="90-100" {{ old('score', $answerC->score) === '90-100' ? 'selected' : '' }}>
                                 90-100 (Sangat Baik)</option>
-                            <option value="80-89" {{ old('score', $queryEssay->score) === '80-89' ? 'selected' : '' }}>80-89
+                            <option value="80-89" {{ old('score', $answerC->score) === '80-89' ? 'selected' : '' }}>80-89
                                 (Baik)</option>
-                            <option value="70-79" {{ old('score', $queryEssay->score) === '70-79' ? 'selected' : '' }}>
+                            <option value="70-79" {{ old('score', $answerC->score) === '70-79' ? 'selected' : '' }}>
                                 70-79 (Cukup)</option>
-                            <option value="60-69" {{ old('score', $queryEssay->score) === '60-69' ? 'selected' : '' }}>
+                            <option value="60-69" {{ old('score', $answerC->score) === '60-69' ? 'selected' : '' }}>
                                 60-69 (Kurang)</option>
                         </select>
                         <x-input-error :messages="$errors->get('score')" class="mt-1 text-xs" />
@@ -134,7 +126,7 @@
                         Komentar</label>
                     <textarea name="comment_asesor" id="editor" rows="2"
                         class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">
-                        {!! $queryEssay->comment_asesor !!}
+                        {!! $answerC->comment_asesor !!}
                     </textarea>
                     <x-input-error :messages="$errors->get('comment_asesor')" class="mt-1 text-xs" />
                 </div>

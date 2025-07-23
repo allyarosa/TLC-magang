@@ -81,141 +81,95 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @forelse ($levelC as $index)
-                    <!-- video -->
-                    <tr class="hover:bg-blue-50">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-700">
-                                {{ Str::ucfirst($index->user->name ?? 'N/A') }}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                Video
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @php
-                            $status = $index->status;
-                            @endphp
+    {{-- Video --}}
+    @forelse ($levelC as $video)
+    <tr class="hover:bg-blue-50">
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm font-medium text-gray-700">
+                {{ Str::ucfirst($video->user->name ?? 'N/A') }}
+            </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                Video
+            </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            @if ($video->status === 'pending')
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                Menunggu Dinilai
+            </span>
+            @elseif ($video->status === 'reviewed')
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                Sudah Dinilai
+            </span>
+            @elseif ($video->status === 'rejected')
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                Ditolak
+            </span>
+            @endif
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{ $video->updated_at->diffForHumans() }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{ $video->score ?? 'Belum Dinilai' }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($video->id)) }}" class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg shadow-md">
+                {{ $video->status === 'pending' ? 'Nilai' : 'Lihat Detail' }}
+            </a>
+        </td>
+    </tr>
+    @empty
+    <tr>
+        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">Tidak ada data video.</td>
+    </tr>
+    @endforelse
 
-                            @if ($status === 'pending')
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Menunggu Dinilai
-                            </span>
-                            @elseif ($status === 'reviewed')
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Sudah Dinilai
-                            </span>
-                            @elseif ($status === 'rejected')
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                Ditolak
-                            </span>
-                            @endif
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $index->updated_at->diffForHumans() }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            @if ($index->score == 0 || is_null($index->score))
-                            Belum Dinilai
-                            @else
-                            {{ $index->score }}
-                            @endif
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm flex justify-end">
-                            @if ($index->status === 'pending')
-                            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                Nilai
-                            </a>
-                            @else
-                            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($index->id)) }}" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                Lihat Detail
-                            </a>
-                            @endif
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                            Tidak Ada Data
-                        </td>
-                    </tr>
-                    @endforelse
+    {{-- Essay --}}
+    @forelse ($queryEssay as $essay)
+    <tr class="hover:bg-blue-50">
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm font-medium text-gray-700">
+                {{ Str::ucfirst($essay['nama_asesi'] ?? 'N/A') }}
+            </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
+                Essay
+            </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            @if ($essay['status'] === 'Sudah Dinilai')
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                Sudah Dinilai
+            </span>
+            @else
+            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                Menunggu Dinilai
+            </span>
+            @endif
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{ \Carbon\Carbon::parse($essay['updated_at'])->diffForHumans() }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{ $essay['nilai'] ?? 'Belum Dinilai' }}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
+            <a href="{{ route('asesor.gradeC.asesi', Hashids::encode($essay['user_id'])) }}" class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg shadow-md">
+                Nilai
+            </a>
+        </td>
+    </tr>
+    @empty
+    <tr>
+        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">Tidak ada data essay.</td>
+    </tr>
+    @endforelse
+</tbody>
 
-                    <!-- essay -->
-                    @forelse ($levelCEssay as $user_id => $essays)
-                    <tr class="hover:bg-blue-50">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-700">
-                                {{ $essays->first()->user->name ?? 'N/A' }}
-                            </div>
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                Essay
-                            </span>
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @if ($essays->whereNotNull('score')->count() === $essays->count())
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Sudah Dinilai
-                            </span>
-                            @else
-                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Belum Dinilai
-                            </span>
-                            @endif
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $essays->max('updated_at')->diffForHumans() }}
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            @if ($essays->whereNotNull('score')->isEmpty())
-                            Belum Dinilai
-                            @else
-                            {{ $essays->whereNotNull('score')->max('score') }}
-                            @endif
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm flex justify-end">
-                            @if ($essays->whereNull('score')->count() > 0)
-                            <a href="{{ route('asesor.gradeC.asesi', \Vinkla\Hashids\Facades\Hashids::encode($user_id)) }}" class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                Nilai
-                            </a>
-                            @else
-                            <a href="{{ route('asesor.gradeC.asesi', \Vinkla\Hashids\Facades\Hashids::encode($user_id)) }}" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                Lihat Detail
-                            </a>
-                            @endif
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="text-center text-gray-500 py-4">
-                            Tidak ada data essay.
-                        </td>
-                    </tr>
-                    @endforelse
-
-
-                </tbody>
             </table>
         </div>
         <div class="mt-6">

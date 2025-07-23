@@ -98,6 +98,7 @@ class ExamControllerC extends Controller
             ]
         );
 
+
         // Check if this is the last question
         if ($questionNumber == $questions->count()) {
             return redirect()->route('exam.summary');

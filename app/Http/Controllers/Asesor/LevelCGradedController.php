@@ -14,47 +14,43 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAssessmentRequest;
 use App\Models\LevelCHistory;
+use App\Models\QuestionC;
 use App\Models\UserAnswerC;
 
 class LevelCGradedController extends Controller
 {
     public function showGradingPage(string $id)
-    {
-        $decoded = Hashids::decode($id);
+{
+    $decoded = Hashids::decode($id);
 
-        if (empty($decoded)) {
-            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
-                'encoded_id' => $id,
-                'reason' => 'ID tidak valid atau tidak dapat didecode',
-                'ip_address' => request()->ip(),
-                'user_id' => auth()->id(),
-                'timestamp' => now()->toDateTimeString(),
-            ]);
-            abort(404, 'ID Tidak Valid');
-        }
-
-        $id = $decoded[0];
-        $asesi = LevelCSubmission::with('user')->find($id);
-        $queryEssay = UserAnswerC::with('user')->find($id);
-
-        if (!$asesi) {
-            abort(404, 'Submission tidak ditemukan');
-        }
-
-        $userProfile = UserProfile::where('user_id', $asesi->user_id)->first();
-
-        if ($asesi) {
-            return view('dashboard.asesor.Grading.levelC', [
-                'asesi' => $asesi,
-                'userProfile' => $userProfile,
-            ]);
-        } else {
-            return view('dashboard.asesor.Grading.levelCEssay', [
-                'queryEssay' => $queryEssay,
-                'userProfile' => $userProfile,
-            ]);
-        }
+    if (empty($decoded)) {
+        abort(404, 'ID Tidak Valid');
     }
+
+    $id = $decoded[0];
+    $asesi = LevelCSubmission::with('user')->find($id);
+    $answerC = UserAnswerC::with('user')->find($id);
+
+    if (!$asesi) {
+        abort(404, 'Submission tidak ditemukan');
+    }
+
+    $userProfile = UserProfile::where('user_id', $asesi->user_id)->first();
+    $userProfileE = UserProfile::where('user_id', $answerC->user_id)->first();
+
+    if ($asesi->category === "video") {
+        return view('dashboard.asesor.Grading.levelC', [
+            'asesi' => $asesi,
+            'userProfile' => $userProfile,
+        ]);
+    } else {
+        return view('dashboard.asesor.Grading.levelCEssay', [
+            'answerC' => $answerC,
+            'userProfileE' => $userProfileE,
+        ]);
+    }
+}
+
 
     public function storeAssessmentAsesi(StoreAssessmentRequest $request, string $id)
     {

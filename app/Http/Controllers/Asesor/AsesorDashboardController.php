@@ -80,20 +80,28 @@ class AsesorDashboardController extends Controller
             ->when($kategori === 'video', function ($q) {
                 $q->where('category', 'video');
             });
+
         $queryEssay = UserAnswerC::with('user')
-            ->when(!empty($search), function ($q) use ($search) {
-                $q->whereHas('user', function ($userQuery) use ($search) {
-                    $userQuery->where('name', 'like', '%' . $search . '%');
-                });
-            })
-            ->when($kategori === 'essay', function ($q) {
-                $q->where('category', 'essay');
-            })
-            ->when($kategori === 'video', function ($q) {
-                $q->where('category', 'video');
-            })
+            ->select('id', 'user_id', 'score', 'updated_at') // hanya kolom yg dibutuhkan
             ->get()
-            ->groupBy('user_id');
+            ->groupBy('user_id')
+            ->map(function ($answers) {
+                $first = $answers->first();
+                $total_soal = $answers->count();
+                $sudah_dinilai = $answers->whereNotNull('score')->count();
+                $rata2_skor = $answers->avg('score');
+
+                return [
+                    'user_id' => $first->user_id,
+                    'nama_asesi' => $first->user->name,
+                    'kategori' => 'Essay',
+                    'total_soal' => $total_soal,
+                    'sudah_dinilai' => $sudah_dinilai,
+                    'status' => ($sudah_dinilai === $total_soal) ? 'Sudah Dinilai' : 'Menunggu Dinilai',
+                    'updated_at' => $answers->max('updated_at'),
+                    'nilai' => $rata2_skor ? round($rata2_skor, 2) : 'Belum Dinilai',
+                ];
+            })->values();
 
         // Apply sorting
         if ($sort === 'name_asc') {
@@ -115,11 +123,10 @@ class AsesorDashboardController extends Controller
         }
 
         $levelC = $query->paginate(10)->withQueryString();
-        $levelCEssay = $queryEssay;
 
         return view('dashboard.asesor.listasesiC', [
+            'queryEssay' => $queryEssay,
             'levelC' => $levelC,
-            'levelCEssay' => $levelCEssay,
             'search' => $search,
             'kategori' => $kategori,
             'sort' => $sort,
