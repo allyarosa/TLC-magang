@@ -229,7 +229,7 @@
                     </div>
                     <div class="text-sm text-gray-600">
                         <span class="font-medium">Jawaban Esai:</span>
-                        <p class="text-gray-800">{{ Str::limit($index->userAnswerC->answer_c ?? 'N/A', 100) }}</p>
+                        <p class="text-gray-800"></p>
                     </div>
                     <div class="flex justify-between items-center pt-2 border-t border-gray-100">
                         <div cs="text-sm">
