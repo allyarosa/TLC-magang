@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('level_c_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('category')->nullable();
             $table->string('url_video');
             $table->text('description');
             $table->enum('is_passed', ['passed', 'rejected', 'reviewed'])->nullable()->default('reviewed');

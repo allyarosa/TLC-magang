@@ -60,7 +60,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                         </svg>
-                        <h3 class="font-bold text-sm sm:text-base">Video Pembelajaran:</h3>
+                        <h3 class="font-bold text-sm sm:text-base">Essay:</h3>
                     </div>
 
                 </div>
@@ -72,7 +72,62 @@
             <form action="{{ route('asesor.gradeC.store', Vinkla\Hashids\Facades\Hashids::encode($asesi->id)) }}"
                 method="POST">
                 @csrf
-                <input type="hidden" name="user_id" value="{{ $asesi->user->id }}">
+                <div class="mb-4 sm:mb-5 lg:mb-6 Row-2">
+                    <label class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">Soal</label>
+                    <div class="relative">
+                <!-- Questions Summary -->
+                <div class="space-y-6 mb-8">
+                    @foreach ($questions as $index => $question)
+                    <div class="border rounded-lg p-6 bg-green-50 border-green-200 mb-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Soal {{ $index + 1 }}: {{ $question->title }}
+                            </h3>
+                        </div>
+
+                        <div class="text-gray-700 mb-4">
+                            <strong>Pertanyaan:</strong> {{ $question->question }}
+                        </div>
+
+                        @php
+                            $answer = $userAnswers->firstWhere('question_c_id', $question->id);
+                        @endphp
+
+                        <div class="bg-white p-4 rounded border">
+                            <strong class="text-gray-700">Jawaban Anda:</strong>
+                            <div class="mt-2 text-gray-800">
+                               {{ $answer?->answer }}
+                            </div>
+                        </div>
+
+        <!-- Skor dan lainnya bisa diletakkan di sini -->
+                    </div>
+
+                        <div class="mb-4">
+                            <!-- Skor -->
+                    <label class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">Skor</label>
+                    <div class="relative">
+                        <select name="score" required
+                            class="block bg-white border border-gray-300 text-gray-700 py-2 sm:py-3 px-3 sm:px-4 pr-8 rounded-lg sm:rounded-full leading-tight focus:outline-none focus:border-blue-800 text-sm sm:text-base">
+                            <option disabled {{ old('score', $asesi->score) ? '' : 'selected' }}>Pilih skor</option>
+                            <option value="90-100" {{ old('score', $asesi->score) === '90-100' ? 'selected' : '' }}>
+                                90-100 (Sangat Baik)</option>
+                            <option value="80-89" {{ old('score', $asesi->score) === '80-89' ? 'selected' : '' }}>80-89
+                                (Baik)</option>
+                            <option value="70-79" {{ old('score', $asesi->score) === '70-79' ? 'selected' : '' }}>
+                                70-79 (Cukup)</option>
+                            <option value="60-69" {{ old('score', $asesi->score) === '60-69' ? 'selected' : '' }}>
+                                60-69 (Kurang)</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('score')" class="mt-1 text-xs" />
+                    </div>
+                <!-- penilaian -->
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="user_id" value="{{ $asesi->user->id }}">
                 <input type="hidden" name="status" value="reviewed">
                 <div class="mb-4 sm:mb-5 lg:mb-6">
                     <h3 class="text-gray-700 mb-3 text-sm sm:text-base font-medium">Penilaian</h3>
@@ -96,41 +151,6 @@
                     </div>
                 </div>
 
-                <div class="mb-4 sm:mb-5 lg:mb-6">
-                    <label class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">Skor</label>
-                    <div class="relative">
-                        <select name="score" required
-                            class="block w-full bg-white border border-gray-300 text-gray-700 py-2 sm:py-3 px-3 sm:px-4 pr-8 rounded-lg sm:rounded-full leading-tight focus:outline-none focus:border-blue-800 text-sm sm:text-base">
-                            <option disabled {{ old('score', $asesi->score) ? '' : 'selected' }}>Pilih skor</option>
-                            <option value="90-100" {{ old('score', $asesi->score) === '90-100' ? 'selected' : '' }}>
-                                90-100 (Sangat Baik)</option>
-                            <option value="80-89" {{ old('score', $asesi->score) === '80-89' ? 'selected' : '' }}>80-89
-                                (Baik)</option>
-                            <option value="70-79" {{ old('score', $asesi->score) === '70-79' ? 'selected' : '' }}>
-                                70-79 (Cukup)</option>
-                            <option value="60-69" {{ old('score', $asesi->score) === '60-69' ? 'selected' : '' }}>
-                                60-69 (Kurang)</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('score')" class="mt-1 text-xs" />
-                        <div
-                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-4 sm:mb-8">
-                    <label for="description" class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">
-                        Komentar</label>
-                    <textarea name="comment_asesor" id="editor" rows="2"
-                        class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">
-                        {!! $asesi->comment_asesor !!}
-                    </textarea>
-                    <x-input-error :messages="$errors->get('comment_asesor')" class="mt-1 text-xs" />
-                </div>
-
                 <div class="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">
                     <div>
                         <a href="{{ route('asesor.list-asesi-c') }}"
@@ -147,6 +167,7 @@
                         class="w-full sm:w-auto order-1 sm:order-2 bg-blue-800 text-white rounded-lg px-4 sm:px-5 py-2 sm:py-3 hover:bg-blue-700 transition duration-200 text-sm sm:text-base font-medium">
                         Kirim Penilaian
                     </button>
+                </div>
                 </div>
             </form>
 

@@ -8,6 +8,7 @@ class LevelCHistory extends Model
 {
     protected $fillable = [
         'user_id',
+        'category',
         'url_video',
         'description',
         'score',
