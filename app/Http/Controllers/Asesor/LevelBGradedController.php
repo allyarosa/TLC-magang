@@ -48,7 +48,7 @@ class LevelBGradedController extends Controller
         }
     }
 
-    public function storeAssessmentAsesi(StoreAssessmentRequest $request, string $id)
+    public function storeAssessmentAsesi(StoreAssessmentRequest $request, String $id)
     {
         $decoded = Hashids::decode($id);
 
