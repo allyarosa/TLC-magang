@@ -14,8 +14,6 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAssessmentRequest;
 use App\Models\LevelCHistory;
-use App\Models\QuestionC;
-use App\Models\UserAnswerC;
 
 class LevelCGradedController extends Controller
 {
@@ -29,14 +27,12 @@ class LevelCGradedController extends Controller
 
     $id = $decoded[0];
     $asesi = LevelCSubmission::with('user')->find($id);
-    $answerC = UserAnswerC::with('user')->find($id);
 
     if (!$asesi) {
         abort(404, 'Submission tidak ditemukan');
     }
 
     $userProfile = UserProfile::where('user_id', $asesi->user_id)->first();
-    $userProfileE = UserProfile::where('user_id', $answerC->user_id)->first();
 
     if ($asesi->category === "video") {
         return view('dashboard.asesor.Grading.levelC', [
@@ -45,8 +41,8 @@ class LevelCGradedController extends Controller
         ]);
     } else {
         return view('dashboard.asesor.Grading.levelCEssay', [
-            'answerC' => $answerC,
-            'userProfileE' => $userProfileE,
+            'asesi' => $asesi,
+            'userProfile' => $userProfile,
         ]);
     }
 }
@@ -123,7 +119,7 @@ class LevelCGradedController extends Controller
                 if ($levelC->category === 'essay') {
                     $user->givePermissionTo('ESSAY_COMPLETED');
                 } elseif ($levelC->category === 'video') {
-                    $user->givePermissionTo('VIDEO_COMPLETED');
+                    $user->givePermissionTo('VIDEO_UPLOAD_COMPLETED');
                 }
                 $user->givePermissionTo('access_level_C');
             } elseif ($request->assessment === 'rejected') {

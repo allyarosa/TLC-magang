@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\DB;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use App\Models\LevelCSubmission;
+use Dotenv\Util\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ExamControllerC extends Controller
 {
@@ -98,7 +100,6 @@ class ExamControllerC extends Controller
             ]
         );
 
-
         // Check if this is the last question
         if ($questionNumber == $questions->count()) {
             return redirect()->route('exam.summary');
@@ -131,33 +132,30 @@ class ExamControllerC extends Controller
         ));
     }
 
-    public function complete()
-    {
-        $user = Auth::user();
+        public function complete()
+        {
+            $user = Auth::user();
 
-        DB::transaction(function () use ($user) {
-            $examSession = ExamSessionC::where('user_id', $user->id)
-                ->where('is_completed', false)
-                ->first();
+            DB::beginTransaction();
 
-            if ($examSession) {
-                $examSession->update([
-                    'completed_at' => now(),
-                    'is_completed' => true,
-                ]);
+                try {
+                        // Create submission record
+                        LevelCSubmission::create([
+                            'user_id' => $user->id,
+                            'category' => 'essay',
+                            'status' => 'pending',
+                            'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
+                        ]);
+                    DB::commit();
 
-                // Create a new submission record for the assessor to grade
-                LevelCSubmission::create([
-                    'user_id' => $user->id,
-                    'type' => 'essay',
-                    'status' => 'pending',
-                    'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
-                ]);
-            }
-        });
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    dd($e->getMessage()); // tampilkan error
+                }
 
-        return redirect()->route('exam.completed');
-    }
+                return redirect()->route('exam.completed');
+        }
+
 
     public function completed()
     {

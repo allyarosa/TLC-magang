@@ -81,28 +81,6 @@ class AsesorDashboardController extends Controller
                 $q->where('category', 'video');
             });
 
-        $queryEssay = UserAnswerC::with('user')
-            ->select('id', 'user_id', 'score', 'updated_at') // hanya kolom yg dibutuhkan
-            ->get()
-            ->groupBy('user_id')
-            ->map(function ($answers) {
-                $first = $answers->first();
-                $total_soal = $answers->count();
-                $sudah_dinilai = $answers->whereNotNull('score')->count();
-                $rata2_skor = $answers->avg('score');
-
-                return [
-                    'user_id' => $first->user_id,
-                    'nama_asesi' => $first->user->name,
-                    'kategori' => 'Essay',
-                    'total_soal' => $total_soal,
-                    'sudah_dinilai' => $sudah_dinilai,
-                    'status' => ($sudah_dinilai === $total_soal) ? 'Sudah Dinilai' : 'Menunggu Dinilai',
-                    'updated_at' => $answers->max('updated_at'),
-                    'nilai' => $rata2_skor ? round($rata2_skor, 2) : 'Belum Dinilai',
-                ];
-            })->values();
-
         // Apply sorting
         if ($sort === 'name_asc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
@@ -125,7 +103,6 @@ class AsesorDashboardController extends Controller
         $levelC = $query->paginate(10)->withQueryString();
 
         return view('dashboard.asesor.listasesiC', [
-            'queryEssay' => $queryEssay,
             'levelC' => $levelC,
             'search' => $search,
             'kategori' => $kategori,

@@ -35,8 +35,8 @@
             <div class="bg-blue-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-5 lg:mb-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
                     <div class="rounded-full h-12 w-12 sm:h-16 sm:w-16 overflow-hidden flex-shrink-0 mx-auto sm:mx-0">
-                        <img src="{{ $userProfileE && $userProfileE->profile_image
-                            ? asset('/storage/' . $userProfileE->profile_image)
+                        <img src="{{ $userProfile && $userProfile->profile_image
+                            ? asset('/storage/' . $userProfile->profile_image)
                             : asset('/storage/blankProfile.png') }}"
                             alt="Foto Profil" class="object-cover h-full w-full">
 
