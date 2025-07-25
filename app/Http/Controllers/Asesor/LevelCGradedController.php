@@ -102,7 +102,8 @@ class LevelCGradedController extends Controller
                 $user->givePermissionTo('VIDEO_UPLOAD');
             } elseif ($levelC->category === "essay") {
                 $user->givePermissionTo('ESSAY_COMPLETED');
-                $user->givePermissionTo('ESSAY_UPLOAD');
+                //tidak perlu memberikan izin ESSAY_UPLOAD karena sudah diberikan sebelumnya
+                // $user->givePermissionTo('ESSAY_UPLOAD');
             }
         } elseif ($request->assessment === 'rejected') {
             if ($levelC->category === "video") {

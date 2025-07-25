@@ -141,8 +141,8 @@
 
                 <div class="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">
                     <div>
-                        <a href="{{ route('asesor.list-asesi-c') }}"
-                            class="w-full sm:w-auto order-2 sm:order-1 border border-gray-300 text-gray-700 rounded-lg px-4 sm:px-5 py-2 sm:py-3 hover:bg-gray-100 transition duration-200 text-sm sm:text-base font-medium">
+                        <a  href="{{ route('asesor.list-asesi-c') }}"
+                            class="w-full  sm:w-auto order-2 sm:order-1 border border-gray-300 text-gray-700 rounded-lg px-4 sm:px-5 py-2 sm:py-3 hover:bg-gray-100 transition duration-200 text-sm sm:text-base font-medium">
                             Kembali
                         </a>
                         <button

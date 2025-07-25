@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('category')->nullable();
-            $table->string('url_video');
+            $table->string('url_video')->nullable();
             $table->text('description');
             $table->enum('is_passed', ['passed', 'rejected', 'reviewed'])->nullable()->default('reviewed');
             $table->text('comment_asesor')->nullable();

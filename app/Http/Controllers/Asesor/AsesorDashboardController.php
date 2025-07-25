@@ -14,6 +14,7 @@ use App\Models\LevelCHistory;
 use App\Models\UserAnswerC;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\AsesorCExport;
 
 class AsesorDashboardController extends Controller
 {
@@ -159,6 +160,11 @@ class AsesorDashboardController extends Controller
     {
         $history = LevelCHistory::with('user')->latest()->paginate(10);
         return view('dashboard.asesor.riwayatpenilaianC', compact('history'));
+    }
+
+    public function exportC()
+    {
+        return Excel::download(new AsesorCExport, 'riwayat_penilaian_c.xlsx');
     }
 
     public function riwayatPenilaianCDetail(string $id)

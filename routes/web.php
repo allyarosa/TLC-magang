@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
 use App\Exports\RiwayatPenilaianBExport;
+use App\Exports\RiwayatPenilaianCExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
@@ -339,9 +340,16 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
     Route::get('/riwayat-penilaian-c', [AsesorDashboardController::class, 'riwayatPenilaianC'])->name('asesor.riwayat-penilaian-c');
     Route::get('/riwayat-penilaian/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianDetail'])->name('asesor.riwayat-penilaian-detail');
     Route::get('/riwayat-penilaian-c/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianCDetail'])->name('asesor.riwayat-penilaian-c-detail');
+
+    // Riwayat Penilainan B export
     Route::get('/riwayat-penilaian/export', function () {
         return Excel::download(new RiwayatPenilaianBExport, 'Riwayat Penilaian B.xlsx');
     })->name('asesor.riwayat-penilaian-b.export');
+    // Riwayat Penilainan C export
+    Route::get('/riwayat-penilaian-c/export', function () {
+        return Excel::download(new RiwayatPenilaianCExport, 'Riwayat Penilaian C.xlsx');
+    })->name('asesor.riwayat-penilaian-c.export');
+
     Route::get('/riwayat-aktifitas', [AsesorDashboardController::class, 'riwayatAktifitas'])->name('asesor.riwayat-aktifitas');
     Route::get('/download-nilai', [AsesorDashboardController::class, 'downloadNilai'])->name('asesor.download-nilai');
     Route::get('/profile-setting', [AsesorDashboardController::class, 'profileSetting'])->name('asesor.profile-setting');
@@ -362,7 +370,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
     Route::post('/testimonials/show-form', [TestimonialController::class, 'showForm'])->name('testimonials.show-form');
     Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
-
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

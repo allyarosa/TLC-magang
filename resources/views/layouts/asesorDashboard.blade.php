@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,18 +25,19 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1D4E89',
-                        secondary: '#E76F51',
-                        accent: '#F8C82A',
-                        dark: '#00549D',
-                        light: '#0083D0',
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                }
+                        primary: '#1D4E89'
+                        , secondary: '#E76F51'
+                        , accent: '#F8C82A'
+                        , dark: '#00549D'
+                        , light: '#0083D0'
+                    , }
+                    , fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    , }
+                , }
             }
         }
+
     </script>
 
     <style>
@@ -127,6 +127,7 @@
             background: linear-gradient(135deg, rgba(29, 78, 137, 0.1) 0%, rgba(231, 111, 81, 0.1) 100%);
             color: #1D4E89;
         }
+
     </style>
 
     @stack('styles')
@@ -139,18 +140,15 @@
             <div class="flex items-center justify-between w-full">
                 <!-- Logo Section -->
                 <div class="flex items-center">
-                    <button onclick="toggleSidebar()"
-                        class="inline-flex items-center p-2 text-sm text-white rounded-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-smooth">
+                    <button onclick="toggleSidebar()" class="inline-flex items-center p-2 text-sm text-white rounded-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-smooth">
                         <span class="sr-only">Open sidebar</span>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
                             </path>
                         </svg>
                     </button>
                     <div class="flex items-center ml-3">
-                        <div
-                            class="bg-white/20 backdrop-blur-sm w-10 h-10 rounded-lg flex items-center justify-center shadow-md hover:scale-110 transition-smooth">
+                        <div class="bg-white/20 backdrop-blur-sm w-10 h-10 rounded-lg flex items-center justify-center shadow-md hover:scale-110 transition-smooth">
                             <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
                         <div class="ml-3">
@@ -172,14 +170,11 @@
                     <div class="bg-white rounded-lg px-3 py-2 transition-all duration-300">
                         <div class="flex items-center space-x-2">
                             <div class="relative">
-                                <svg class="h-5 w-5 text-[#1D4E89]" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                <svg class="h-5 w-5 text-[#1D4E89]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
                                     </path>
                                 </svg>
-                                <div
-                                    class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
+                                <div class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
                                 </div>
                             </div>
                             <div>
@@ -193,54 +188,46 @@
                     {{-- <div class="relative">
                         </button>
                         <a href="{{ route('asesor.notifikasi') }}"
-                            class="relative p-2 text-white hover:bg-white/20 rounded-lg transition-smooth">
-                            <i class="fas fa-bell text-lg"></i>
-                        </a>
-                        <span
-                            class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
-                            {{ $levelBPending ?? '0' }}
-                        </span>
-                    </div> --}}
+                    class="relative p-2 text-white hover:bg-white/20 rounded-lg transition-smooth">
+                    <i class="fas fa-bell text-lg"></i>
+                    </a>
+                    <span class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
+                        {{ $levelBPending ?? '0' }}
+                    </span>
+                </div> --}}
 
-                    <!-- User Dropdown -->
-                    <div class="relative">
-                        <button type="button" onclick="toggleUserDropdown()"
-                            class="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-smooth">
-                            <div
-                                class="bg-gradient-to-r from-[#E76F51] to-[#1D4E89] w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
-                                AS
-                            </div>
-                            <div class="text-left hidden md:block">
-                                <p class="text-white font-medium text-sm">{{ Auth::user()->name }}</p>
-                            </div>
-                            <svg class="w-4 h-4 text-white/70 transition-transform duration-200" id="dropdown-arrow"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
+                <!-- User Dropdown -->
+                <div class="relative">
+                    <button type="button" onclick="toggleUserDropdown()" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-smooth">
+                        <div class="bg-gradient-to-r from-[#E76F51] to-[#1D4E89] w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
+                            AS
+                        </div>
+                        <div class="text-left hidden md:block">
+                            <p class="text-white font-medium text-sm">{{ Auth::user()->name }}</p>
+                        </div>
+                        <svg class="w-4 h-4 text-white/70 transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
 
-                        <!-- Dropdown Menu -->
-                        <div id="user-dropdown"
-                            class="z-50 hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 dropdown-z">
-                            <div class="px-4 py-3 border-b border-gray-100" role="none">
-                                <div class="flex items-center space-x-3">
-                                    <div
-                                        class="bg-gradient-to-r from-[#E76F51] to-[#1D4E89] w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                                        AS
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-900" role="none">
-                                            {{ Auth::user()->name }}</p>
-                                        <p class="text-sm text-gray-500" role="none">{{ Auth::user()->email }}</p>
-                                    </div>
+                    <!-- Dropdown Menu -->
+                    <div id="user-dropdown" class="z-50 hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 dropdown-z">
+                        <div class="px-4 py-3 border-b border-gray-100" role="none">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-gradient-to-r from-[#E76F51] to-[#1D4E89] w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                                    AS
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900" role="none">
+                                        {{ Auth::user()->name }}</p>
+                                    <p class="text-sm text-gray-500" role="none">{{ Auth::user()->email }}</p>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Menu Items -->
-                            <ul class="py-1" role="none">
-                                {{-- <li>
+                        <!-- Menu Items -->
+                        <ul class="py-1" role="none">
+                            {{-- <li>
                                     <a href="#"
                                         class="flex items-center px-4 py-3 text-sm text-gray-700 font-medium hover:bg-gray-100"
                                         role="menuitem">
@@ -250,121 +237,102 @@
                                         Profil Saya
                                     </a>
                                 </li> --}}
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit"
-                                            class="flex items-center w-full text-left px-4 py-3 text-sm text-red-400 font-medium hover:bg-gray-100"
-                                            role="menuitem">
-                                            <div class="bg-red-100 p-2 rounded-lg mr-3">
-                                                <i class="fas fa-sign-out-alt text-red-600"></i>
-                                            </div>
-                                            Keluar
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="flex items-center w-full text-left px-4 py-3 text-sm text-red-400 font-medium hover:bg-gray-100" role="menuitem">
+                                        <div class="bg-red-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-sign-out-alt text-red-600"></i>
+                                        </div>
+                                        Keluar
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </header>
 
     <!-- Sidebar -->
-    <aside id="sidebar"
-        class="fixed top-0 left-0 sidebar-z w-64 h-screen pt-16 transition-transform -translate-x-full bg-white/95 backdrop-blur-md shadow-xl border-r border-white/50">
+    <aside id="sidebar" class="fixed top-0 left-0 sidebar-z w-64 h-screen pt-16 transition-transform -translate-x-full bg-white/95 backdrop-blur-md shadow-xl border-r border-white/50">
         <div class="h-full px-3 pb-4 overflow-y-auto">
             <!-- Menu Utama -->
             <div class="mb-6 mt-4">
                 <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-3">Menu Utama</h3>
-                <ul  class="space-y-2">
+                <ul class="space-y-2">
                     <li>
-                        <a href="{{ route('asesor.dashboard') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.dashboard') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-home w-5 h-5 {{ Request::routeIs('asesor.dashboard') ? 'text-white' : 'text-blue-500' }}"></i>
+                        <a href="{{ route('asesor.dashboard') }}" class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.dashboard') ? 'menu-active' : 'menu-inactive' }}">
+                            <i class="fas fa-home w-5 h-5 {{ Request::routeIs('asesor.dashboard') ? 'text-white' : 'text-blue-500' }}"></i>
                             <span class="ml-3 font-medium">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('asesor.list-asesi') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-users w-5 h-5 {{ Request::routeIs('asesor.list-asesi') ? 'text-white' : 'text-secondary' }}"></i>
+                        <a href="{{ route('asesor.list-asesi') }}" class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
+                            <i class="fas fa-users w-5 h-5 {{ Request::routeIs('asesor.list-asesi') ? 'text-white' : 'text-secondary' }}"></i>
                             <span class="ml-3">List Penilaian Level B</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('asesor.list-asesi-c') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi-c') ? 'menu-active' : 'menu-inactive' }}">
+                        <a href="{{ route('asesor.list-asesi-c') }}" class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi-c') ? 'menu-active' : 'menu-inactive' }}">
                             <i class="fas fa-users w-5 h-5 text-secondary "></i>
                             <span class="ml-3">List Penilaian Level C</span>
                         </a>
                     </li>
                     {{-- <li>
                         <a href="{{ route('asesor.list-asesi') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-users w-5 h-5 {{ Request::routeIs('asesor.list-asesi') ? 'text-white' : 'text-secondary' }}"></i>
-                            <span class="ml-3">List Penilaian Level C</span>
-                        </a>
+                    class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.list-asesi') ? 'menu-active' : 'menu-inactive' }}">
+                    <i class="fas fa-users w-5 h-5 {{ Request::routeIs('asesor.list-asesi') ? 'text-white' : 'text-secondary' }}"></i>
+                    <span class="ml-3">List Penilaian Level C</span>
+                    </a>
                     </li> --}}
                     {{-- <li>
                         <a href="{{ route('asesor.notifikasi') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.notifikasi') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-bell w-5 h-5 {{ Request::routeIs('asesor.notifikasi') ? 'text-white' : 'text-yellow-500' }}"></i>
-                            <span class="ml-3">Notifikasi</span>
-                        </a>
+                    class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.notifikasi') ? 'menu-active' : 'menu-inactive' }}">
+                    <i class="fas fa-bell w-5 h-5 {{ Request::routeIs('asesor.notifikasi') ? 'text-white' : 'text-yellow-500' }}"></i>
+                    <span class="ml-3">Notifikasi</span>
+                    </a>
                     </li> --}}
                     {{-- <li>
                         <a href="{{ route('asesor.form-penilaian') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.form-penilaian') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-clipboard-list w-5 h-5 {{ Request::routeIs('asesor.form-penilaian') ? 'text-white' : 'text-green-500' }}"></i>
-                            <span class="ml-3">Form Penilaian</span>
-                        </a>
+                    class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.form-penilaian') ? 'menu-active' : 'menu-inactive' }}">
+                    <i class="fas fa-clipboard-list w-5 h-5 {{ Request::routeIs('asesor.form-penilaian') ? 'text-white' : 'text-green-500' }}"></i>
+                    <span class="ml-3">Form Penilaian</span>
+                    </a>
                     </li> --}}
                     <li>
-                        <a href="{{ route('asesor.riwayat-penilaian') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-chart-line w-5 h-5 {{ Request::routeIs('asesor.riwayat-penilaian') ? 'text-white' : 'text-primary' }}"></i>
+                        <a href="{{ route('asesor.riwayat-penilaian') }}" class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian') ? 'menu-active' : 'menu-inactive' }}">
+                            <i class="fas fa-chart-line w-5 h-5 {{ Request::routeIs('asesor.riwayat-penilaian') ? 'text-white' : 'text-primary' }}"></i>
                             <span class="ml-3">Riwayat Penilaian B</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('asesor.riwayat-penilaian-c') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-chart-line w-5 h-5 {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'text-white' : 'text-primary' }}"></i>
+                        <a href="{{ route('asesor.riwayat-penilaian-c') }}" class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'menu-active' : 'menu-inactive' }}">
+                            <i class="fas fa-chart-line w-5 h-5 {{ Request::routeIs('asesor.riwayat-penilaian-c') ? 'text-white' : 'text-primary' }}"></i>
                             <span class="ml-3">Riwayat Penilaian C</span>
                         </a>
                     </li>
                     {{-- <li>
                         <a href="{{ route('asesor.riwayat-aktifitas') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fa fa-history w-5 h-5 {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'text-white' : 'text-secondary' }}"></i>
-                            <span class="ml-3">Riwayat Aktivitas</span>
-                        </a>
+                    class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'menu-active' : 'menu-inactive' }}">
+                    <i class="fa fa-history w-5 h-5 {{ Request::routeIs('asesor.riwayat-aktifitas') ? 'text-white' : 'text-secondary' }}"></i>
+                    <span class="ml-3">Riwayat Aktivitas</span>
+                    </a>
                     </li> --}}
                     <li>
-                        <a href="{{ route('asesor.download-nilai') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.download-nilai') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-download w-5 h-5 {{ Request::routeIs('asesor.download-nilai') ? 'text-white' : 'text-teal-500' }}"></i>
+                        <a href="{{ route('asesor.download-nilai') }}" class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.download-nilai') ? 'menu-active' : 'menu-inactive' }}">
+                            <i class="fas fa-download w-5 h-5 {{ Request::routeIs('asesor.download-nilai') ? 'text-white' : 'text-teal-500' }}"></i>
                             <span class="ml-3">Download Nilai</span>
                         </a>
                     </li>
                     {{-- <li>
                         <a href="{{ route('asesor.profile-setting') }}"
-                            class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.profile-setting') ? 'menu-active' : 'menu-inactive' }}">
-                            <i
-                                class="fas fa-cog w-5 h-5 {{ Request::routeIs('asesor.profile-setting') ? 'text-white' : 'text-gray-500' }}"></i>
-                            <span class="ml-3">Profile Setting</span>
-                        </a>
+                    class="flex items-center p-3 rounded-xl transition-smooth hover-lift {{ Request::routeIs('asesor.profile-setting') ? 'menu-active' : 'menu-inactive' }}">
+                    <i class="fas fa-cog w-5 h-5 {{ Request::routeIs('asesor.profile-setting') ? 'text-white' : 'text-gray-500' }}"></i>
+                    <span class="ml-3">Profile Setting</span>
+                    </a>
                     </li> --}}
                 </ul>
             </div>
@@ -513,6 +481,7 @@
                 sidebarOpen = false;
             }
         });
+
     </script>
 
     @stack('scripts')
