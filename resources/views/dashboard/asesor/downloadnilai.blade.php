@@ -29,156 +29,97 @@
                 </div>
 
                 <!-- Filters -->
-                <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
-                    <div class="relative flex-1 sm:flex-none">
-                        <select class="appearance-none bg-white border border-gray-300 rounded-md py-2 px-3 sm:px-4 pr-8 w-full sm:w-56 text-sm sm:text-base">
-                            <option>Semua Kategori</option>
-                            <option>Kategori A</option>
-                            <option>Kategori B</option>
-                            <option>Kategori C</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
+                <form action="{{ route('asesor.download-nilai') }}" method="GET">
+                    <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div class="relative flex-1 sm:flex-none">
+                            <select name="kategori" onchange="this.form.submit()" class="appearance-none bg-white border border-gray-300 rounded-md py-2 px-3 sm:px-4 pr-8 w-full sm:w-56 text-sm sm:text-base">
+                                <option value="">Semua Kategori</option>
+                                <option value="level_b" {{ request('kategori') == 'level_b' ? 'selected' : '' }}>Kategori B</option>
+                                <option value="level_c" {{ request('kategori') == 'level_c' ? 'selected' : '' }}>Kategori C</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="relative flex-1 sm:flex-none">
+                            <select name="month" onchange="this.form.submit()" class="appearance-none bg-white border border-gray-300 rounded-md py-2 px-3 sm:px-4 pr-8 w-full sm:w-56 text-sm sm:text-base">
+                                <option value="">Semua Bulan</option>
+                                @foreach($months as $month)
+                                    <option value="{{ $month }}" {{ request('month') == $month ? 'selected' : '' }}>{{ \Carbon\Carbon::parse($month)->format('F Y') }}</option>
+                                @endforeach
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-2 sm:ml-auto">
+                            <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-gray-300 rounded bg-white text-sm sm:text-base">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                </svg>
+                                Cetak
+                            </button>
+                            <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-gray-300 rounded bg-white text-sm sm:text-base">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                                PDF
+                            </button>
+                            <a href="{{ route('asesor.riwayat-penilaian-b.export') }}" class="flex items-center justify-center px-3 sm:px-4 py-2 border border-blue-900 rounded bg-blue-800 text-white text-sm sm:text-base">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Excel
+                            </a>
                         </div>
                     </div>
-
-                    <div class="relative flex-1 sm:flex-none">
-                        <select class="appearance-none bg-white border border-gray-300 rounded-md py-2 px-3 sm:px-4 pr-8 w-full sm:w-56 text-sm sm:text-base">
-                            <option>April 2023</option>
-                            <option>Maret 2023</option>
-                            <option>Februari 2023</option>
-                            <option>Januari 2023</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-2 sm:ml-auto">
-                        <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-gray-300 rounded bg-white text-sm sm:text-base">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                            </svg>
-                            Cetak
-                        </button>
-                        <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-gray-300 rounded bg-white text-sm sm:text-base">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
-                            PDF
-                        </button>
-                        <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-blue-900 rounded bg-blue-800 text-white text-sm sm:text-base">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Excel
-                        </button>
-                    </div>
-                </div>
+                </form>
 
                 <div class="block sm:hidden space-y-3">
-                    <div class="bg-gray-50 rounded-lg p-4 border">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500 mr-3">
-                                <div>
-                                    <h3 class="font-medium text-sm">Budi Santoso</h3>
-                                    <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs mt-1 inline-block">Kategori B</span>
+                    @forelse ($history as $item)
+                        <div class="bg-gray-50 rounded-lg p-4 border">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500 mr-3">
+                                    <div>
+                                        <h3 class="font-medium text-sm">{{ $item->user?->name }}</h3>
+                                        <span class="{{ $item instanceof App\Models\LevelBHistory ? 'bg-blue-500' : 'bg-yellow-500' }} text-white px-2 py-1 rounded-full text-xs mt-1 inline-block">Kategori {{ $item instanceof App\Models\LevelBHistory ? 'B' : 'C' }}</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="{{ $item instanceof App\Models\LevelBHistory ? 'text-blue-600' : 'text-yellow-500' }} font-medium text-lg">{{ $item->score }}</div>
+                                    <div class="text-gray-500 text-xs">{{ $item->created_at->format('d M Y') }}</div>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <div class="text-blue-600 font-medium text-lg">85</div>
-                                <div class="text-gray-500 text-xs">12 Apr 2023</div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                    PDF
+                                </button>
+                                <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Excel
+                                </button>
                             </div>
                         </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                </svg>
-                                PDF
-                            </button>
-                            <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                                Excel
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 rounded-lg p-4 border">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500 mr-3">
-                                <div>
-                                    <h3 class="font-medium text-sm">Siti Rahayu</h3>
-                                    <span class="bg-yellow-500 text-white px-2 py-1 rounded-full text-xs mt-1 inline-block">Kategori C</span>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-yellow-500 font-medium text-lg">78</div>
-                                <div class="text-gray-500 text-xs">15 Apr 2023</div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                </svg>
-                                PDF
-                            </button>
-                            <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                                Excel
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 rounded-lg p-4 border">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500 mr-3">
-                                <div>
-                                    <h3 class="font-medium text-sm">Agus Wijaya</h3>
-                                    <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs mt-1 inline-block">Kategori B</span>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-purple-600 font-medium text-lg">92</div>
-                                <div class="text-gray-500 text-xs">18 Apr 2023</div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                </svg>
-                                PDF
-                            </button>
-                            <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                                Excel
-                            </button>
-                        </div>
-                    </div>
+                    @empty
+                        <p class="text-center py-10 text-gray-500">Data tidak ditemukan</p>
+                    @endforelse
                 </div>
 
                 <div class="hidden sm:block overflow-x-auto">
@@ -193,101 +134,48 @@
                                 <th class="pb-3">Tanggal Penilaian</th>
                                 <th class="pb-3">Nilai</th>
                                 <th class="pb-3 text-right">Aksi</th>
-                            </tr>
                         </thead>
                         <tbody>
-                            <!-- Row 1 -->
-                            <tr class="border-t border-gray-100">
-                                <td class="py-4 pr-4">
-                                    <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500">
-                                </td>
-                                <td class="py-4 font-medium">Budi Santoso</td>
-                                <td class="py-4">
-                                    <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs">Kategori B</span>
-                                </td>
-                                <td class="py-4">12 Apr 2023</td>
-                                <td class="py-4 text-blue-600 font-medium">85</td>
-                                <td class="py-4">
-                                    <div class="flex justify-end gap-2">
-                                        <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                            </svg>
-                                            <span class="ml-1">PDF</span>
-                                        </button>
-                                        <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                            <span class="ml-1">Excel</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <!-- Row 2 -->
-                            <tr class="border-t border-gray-100">
-                                <td class="py-4 pr-4">
-                                    <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500">
-                                </td>
-                                <td class="py-4 font-medium">Siti Rahayu</td>
-                                <td class="py-4">
-                                    <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs">Kategori C</span>
-                                </td>
-                                <td class="py-4">15 Apr 2023</td>
-                                <td class="py-4 text-yellow-500 font-medium">78</td>
-                                <td class="py-4">
-                                    <div class="flex justify-end gap-2">
-                                        <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                            </svg>
-                                            <span class="ml-1">PDF</span>
-                                        </button>
-                                        <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                            <span class="ml-1">Excel</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <!-- Row 3 -->
-                            <tr class="border-t border-gray-100">
-                                <td class="py-4 pr-4">
-                                    <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500">
-                                </td>
-                                <td class="py-4 font-medium">Agus Wijaya</td>
-                                <td class="py-4">
-                                    <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs">Kategori B</span>
-                                </td>
-                                <td class="py-4">18 Apr 2023</td>
-                                <td class="py-4 text-purple-600 font-medium">92</td>
-                                <td class="py-4">
-                                    <div class="flex justify-end gap-2">
-                                        <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                            </svg>
-                                            <span class="ml-1">PDF</span>
-                                        </button>
-                                        <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                            <span class="ml-1">Excel</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @forelse ($history as $item)
+                                <tr class="border-t border-gray-100">
+                                    <td class="py-4 pr-4">
+                                        <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500">
+                                    </td>
+                                    <td class="py-4 font-medium">{{ $item->user?->name }}</td>
+                                    <td class="py-4">
+                                        <span class="{{ $item instanceof App\Models\LevelBHistory ? 'bg-blue-500' : 'bg-yellow-500' }} text-white px-3 py-1 rounded-full text-xs">Kategori {{ $item instanceof App\Models\LevelBHistory ? 'B' : 'C' }}</span>
+                                    </td>
+                                    <td class="py-4">{{ $item->created_at->format('d M Y') }}</td>
+                                    <td class="py-4 {{ $item instanceof App\Models\LevelBHistory ? 'text-blue-600' : 'text-yellow-500' }} font-medium">{{ $item->score }}</td>
+                                    <td class="py-4">
+                                        <div class="flex justify-end gap-2">
+                                            <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                                </svg>
+                                                <span class="ml-1">PDF</span>
+                                            </button>
+                                            <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                </svg>
+                                                <span class="ml-1">Excel</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-10 text-gray-500">
+                                        <div class="flex flex-col items-center">
+                                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <p class="mt-2 font-semibold">Data tidak ditemukan</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

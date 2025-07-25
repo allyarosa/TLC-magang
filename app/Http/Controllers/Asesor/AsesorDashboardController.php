@@ -125,10 +125,19 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.formpenilaian');
     }
 
-    public function riwayatPenilaian()
+    public function riwayatPenilaian(Request $request)
     {
-        $history = LevelBHistory::with('user')->latest()->paginate(10);
-        return view('dashboard.asesor.riwayatpenilaian', compact('history'));
+        $search = $request->input('search');
+        $query = LevelBHistory::with('user');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $history = $query->latest()->paginate(10);
+        return view('dashboard.asesor.riwayatpenilaian', compact('history', 'search'));
     }
 
     public function riwayatPenilaianDetail(string $id)
@@ -156,10 +165,19 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.riwayataktifitas');
     }
 
-    public function riwayatPenilaianC()
+    public function riwayatPenilaianC(Request $request)
     {
-        $history = LevelCHistory::with('user')->latest()->paginate(10);
-        return view('dashboard.asesor.riwayatpenilaianC', compact('history'));
+        $search = $request->input('search');
+        $query = LevelCHistory::with('user');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $history = $query->latest()->paginate(10);
+        return view('dashboard.asesor.riwayatpenilaianC', compact('history', 'search'));
     }
 
     public function exportC()
@@ -187,9 +205,46 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.riwayatpenilaiandetailC', compact('detail'));
     }
 
-    public function downloadNilai()
+    public function downloadNilai(Request $request)
     {
-        return view('dashboard.asesor.downloadnilai');
+        $kategori = $request->input('kategori');
+        $month = $request->input('month');
+
+        $levelBQuery = LevelBHistory::with('user');
+        $levelCQuery = LevelCHistory::with('user');
+
+        if ($kategori === 'level_b') {
+            $levelCQuery->where('id', -1); // Effectively empty
+        }
+        if ($kategori === 'level_c') {
+            $levelBQuery->where('id', -1); // Effectively empty
+        }
+
+        if ($month) {
+            $year = substr($month, 0, 4);
+            $mon = substr($month, 5, 2);
+            $levelBQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+            $levelCQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+        }
+
+        $levelB = $levelBQuery->latest()->get();
+        $levelC = $levelCQuery->latest()->get();
+
+        $history = $levelB->concat($levelC)->sortByDesc('created_at');
+
+        $months = LevelBHistory::selectRaw("strftime('%Y-%m', created_at) as month")
+            ->union(LevelCHistory::selectRaw("strftime('%Y-%m', created_at) as month"))
+            ->distinct()
+            ->orderBy('month', 'desc')
+            ->get()
+            ->pluck('month');
+
+        return view('dashboard.asesor.downloadnilai', [
+            'history' => $history,
+            'kategori' => $kategori,
+            'months' => $months,
+            'selectedMonth' => $month,
+        ]);
     }
 
     // Profile Methods

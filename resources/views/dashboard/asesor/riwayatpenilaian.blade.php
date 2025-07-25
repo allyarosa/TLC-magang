@@ -20,12 +20,12 @@
             </div>
 
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 lg:ml-auto">
-                <div class="relative">
-                    <input type="text" placeholder="Cari asesi..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-200 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-800 text-sm">
+                <form action="{{ route('asesor.riwayat-penilaian') }}" method="GET" class="relative">
+                    <input type="text" name="search" placeholder="Cari asesi..." value="{{ $search ?? '' }}" class="pl-10 pr-4 py-2 rounded-lg border border-gray-200 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-800 text-sm">
                     <svg class="w-5 h-5 absolute left-3 top-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
-                </div>
+                </form>
                 <div class="flex space-x-2">
                     <button class="flex-1 sm:flex-none px-4 py-2 bg-blue-800 border border-blue-900 rounded-lg text-white font-medium hover:bg-blue-700 text-sm">
                         Filter
@@ -82,7 +82,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    @foreach ($history as $item)
+                    @forelse ($history as $item)
                     <tr class="hover:bg-blue-50">
                         <td class="py-4 px-6 text-sm font-medium text-gray-900">{{ $item->user?->name }}</td>
                         <td class="py-4 px-6 text-sm text-gray-700">
@@ -116,7 +116,19 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center py-10 text-gray-500">
+                                <div class="flex flex-col items-center">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <p class="mt-2 font-semibold">Data tidak ditemukan</p>
+                                    @if($search)
+                                    <p class="text-sm">Coba gunakan kata kunci lain.</p>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
