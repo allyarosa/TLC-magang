@@ -173,11 +173,11 @@
                                 @if ($index->score)
                                     <a href="{{ route('asesor.gradeB.show', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}"
                                         class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded-lg flex items-center gap-1 shadow-md font-semibold">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        <sv g xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7" />
-                                        </svg>
+                                        </sv>
                                         Sudah Dinilai
                                     </a>
                                 @else
@@ -335,122 +335,86 @@
         </div>
 
         <div class="lg:hidden space-y-4">
-            <!-- Card 1 -->
-            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                <div class="flex flex-col space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-gray-900 text-sm sm:text-base">Budi Santoso</h3>
-                            <p class="text-xs text-gray-500 mt-1">2 jam yang lalu</p>
-                        </div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                Kategori B
-                            </span>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Menunggu
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
-                        <div class="text-sm">
-                            <span class="text-gray-600">Nilai: </span>
-                            <span class="font-medium text-gray-500">-</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs transition duration-200">
-                                Nilai
-                            </button>
-                            <button class="text-gray-500 hover:text-gray-700 p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @forelse ($levelB as $index)
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="flex flex-col space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 text-sm sm:text-base">{{ Str::ucfirst($index->user->name) }}</h3>
+                                <p class="text-xs text-gray-500 mt-1">{{ $index->updated_at->diffForHumans() }}</p>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                @if ($index->file_ppt == null)
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        Modul Ajar
+                                    </span>
+                                @else
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">
+                                        PPT
+                                    </span>
+                                @endif
 
-            <!-- Card 2 -->
-            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                <div class="flex flex-col space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-gray-900 text-sm sm:text-base">Siti Rahayu</h3>
-                            <p class="text-xs text-gray-500 mt-1">3 jam yang lalu</p>
-                        </div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-pink-100 text-pink-800">
-                                Kategori C
-                            </span>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Menunggu
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
-                        <div class="text-sm">
-                            <span class="text-gray-600">Nilai: </span>
-                            <span class="font-medium text-gray-500">-</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-blue-800 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs transition duration-200">
-                                Nilai
-                            </button>
-                            <button class="text-gray-500 hover:text-gray-700 p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                @php
+                                    $status = $index->status;
+                                @endphp
 
-            <!-- Card 3 -->
-            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                <div class="flex flex-col space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-gray-900 text-sm sm:text-base">Agus Wijaya</h3>
-                            <p class="text-xs text-gray-500 mt-1">1 hari yang lalu</p>
+                                @if ($status === 'pending')
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        Menunggu
+                                    </span>
+                                @elseif ($status === 'reviewed')
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                        Lulus
+                                    </span>
+                                @elseif ($status === 'rejected')
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                                        Tidak Lulus
+                                    </span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                                Kategori B
-                            </span>
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                                Lulus
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
-                        <div class="text-sm">
-                            <span class="text-gray-600">Nilai: </span>
-                            <span class="font-medium" style="color: #0083D0;">85</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button
-                                class="border border-blue-800 text-blue-800 hover:bg-blue-50 px-3 py-1.5 rounded-lg text-xs transition duration-200">
-                                Unduh
-                            </button>
-                            <button class="text-gray-500 hover:text-gray-700 p-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                </svg>
-                            </button>
+                        <div class="flex flex-col items-start space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 pt-2 border-t border-gray-100">
+                            <div class="text-sm">
+                                <span class="text-gray-600">Nilai: </span>
+                                @if ($index->score == 0 || is_null($index->score))
+                                    <span class="font-medium text-gray-500">-</span>
+                                @else
+                                    <span class="font-medium" style="color: #0083D0;">{{ $index->score }}</span>
+                                @endif
+                            </div>
+                            <div class="flex space-x-2 w-full sm:w-auto">
+                                @if ($index->score)
+                                    <a href="{{ route('asesor.gradeB.show', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}"
+                                        class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs flex items-center justify-center gap-1 shadow-md font-semibold w-full sm:w-auto">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Sudah Dinilai
+                                    </a>
+                                @else
+                                    <a href="{{ route('asesor.gradeB.asesi', Vinkla\Hashids\Facades\Hashids::encode($index->id)) }}"
+                                        class="bg-red-500 hover:bg-red-400 text-white px-3 py-1.5 rounded-lg text-xs border border-red-600 font-semibold w-full text-center justify-center sm:w-auto">
+                                        Belum Dinilai
+                                    </a>
+                                @endif
+                                <button class="text-gray-500 hover:text-gray-700 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @empty
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm text-center text-gray-500">
+                    Tidak ada pengajuan Level B yang perlu dinilai saat ini.
+                </div>
+            @endforelse
         </div>
 
         <!-- Pagination -->

@@ -147,13 +147,16 @@
                             </path>
                         </svg>
                     </button>
-                    <div class="flex items-center ml-3">
+                    <div class="flex items-center ml-2">
                         <div class="bg-white/20 backdrop-blur-sm w-10 h-10 rounded-lg flex items-center justify-center shadow-md hover:scale-110 transition-smooth">
                             <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
                         <div class="ml-3">
-                            <h1 class="text-white font-bold text-lg">Dashboard Asesor</h1>
-                            <p class="text-white/80 text-xs">Sistem Penilaian Kompetensi</p>
+                            <h1 class="text-white font-semibold text-sm md:text-base leading-tight">Dashboard Asesor</h1>
+
+                            <p class="hidden md:block text-white/70 text-[9px] md:text-xs">
+                                Sistem Penilaian Kompetensi
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -177,10 +180,11 @@
                                 <div class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
                                 </div>
                             </div>
-                            <div>
-                                <span class="text-sm font-medium text-gray-700">Selamat datang,</span>
-                                <span class="ml-1 font-bold text-[#1D4E89]">{{ Auth::user()->name }}</span>
+                            <div class="flex flex-wrap items-center text-[10px] md:text-sm gap-x-1">
+                                <span class="font-medium text-gray-700">Selamat datang,</span>
+                                <span class="font-semibold text-[#1D4E89]">{{ Auth::user()->name }}</span>
                             </div>
+
                         </div>
                     </div>
 
@@ -211,19 +215,23 @@
                     </button>
 
                     <!-- Dropdown Menu -->
-                    <div id="user-dropdown" class="z-50 hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 dropdown-z">
-                        <div class="px-4 py-3 border-b border-gray-100" role="none">
-                            <div class="flex items-center space-x-3">
-                                <div class="bg-gradient-to-r from-[#E76F51] to-[#1D4E89] w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                    <div id="user-dropdown" class="z-50 hidden absolute right-0 mt-2 w-56 md:w-64 bg-white rounded-xl shadow-xl border border-gray-100">
+                        <div class="px-3 py-2 md:px-4 md:py-3 border-b border-gray-100">
+                            <div class="flex items-center space-x-2 md:space-x-3">
+                                <div class="bg-gradient-to-r from-[#E76F51] to-[#1D4E89] w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white text-sm md:text-base font-bold shadow-lg">
                                     AS
                                 </div>
                                 <div>
-                                    <p class="text-sm font-medium text-gray-900" role="none">
-                                        {{ Auth::user()->name }}</p>
-                                    <p class="text-sm text-gray-500" role="none">{{ Auth::user()->email }}</p>
+                                    <p class="text-[10px] md:text-sm font-medium text-gray-900">
+                                        {{ Auth::user()->name }}
+                                    </p>
+                                    <p class="text-[9px] md:text-sm text-gray-500">
+                                        {{ Auth::user()->email }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Menu Items -->
                         <ul class="py-1" role="none">
@@ -240,14 +248,15 @@
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="flex items-center w-full text-left px-4 py-3 text-sm text-red-400 font-medium hover:bg-gray-100" role="menuitem">
-                                        <div class="bg-red-100 p-2 rounded-lg mr-3">
-                                            <i class="fas fa-sign-out-alt text-red-600"></i>
+                                    <button type="submit" class="flex items-center w-full text-left px-3 py-2 md:px-4 md:py-3 text-[10px] md:text-sm text-red-400 font-medium hover:bg-gray-100">
+                                        <div class="bg-red-100 p-2 rounded-lg mr-2 md:mr-3">
+                                            <i class="fas fa-sign-out-alt text-red-600 text-xs md:text-sm"></i>
                                         </div>
                                         Keluar
                                     </button>
                                 </form>
                             </li>
+
                         </ul>
                     </div>
                 </div>

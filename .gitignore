@@ -2,7 +2,6 @@
 /vendor/
 /node_modules/
 .env
-.franken
 .env.backup
 .env.production
 /public/build

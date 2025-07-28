@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full flex items-center justify-center p-4">
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full flex items-center justify-center p-2 sm:p-4">
     <style>
         @keyframes fadeIn {
             from {
@@ -125,7 +125,7 @@
     </style>
 
     <div
-        class="bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
+        class="bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
         <!-- Left Section - Enhanced -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-[#A6BFCF] via-[#5F809C] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -151,14 +151,13 @@
         </div>
 
         <!-- Right Section - Enhanced -->
-        <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white">
+        <div class="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center bg-white">
             <!-- Mobile Header -->
-            <div class="md:hidden text-center mb-8 animate-fadeIn">
-                <h1
-                    class="text-3xl font-bold bg-gradient-to-r from-[#0C548C] to-[#2E4D69] bg-clip-text text-transparent">
+            <div class="md:hidden text-center mb-6 animate-fadeIn">
+                <h1 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#0C548C] to-[#2E4D69] bg-clip-text text-transparent">
                     Selamat Datang
                 </h1>
-                <p class="text-[#5F809C] text-sm mt-2">Welcome to our platform</p>
+                <p class="text-[#5F809C] text-xs sm:text-sm mt-1">Welcome to our platform</p>
             </div>
 
             <!-- Header -->
@@ -253,17 +252,17 @@
                 </div>
 
                 <!-- Remember & Forgot Password -->
-                <div class="flex justify-between items-center mb-8 animate-slideIn animation-delay-400">
+                <div class="flex justify-between items-center mb-6 animate-slideIn animation-delay-400">
                     <div class="flex items-center group cursor-pointer">
                         <input type="checkbox" id="remember" wire:model="remember" name="remember"
                             class="w-4 h-4 text-[#0C548C] border-gray-300 rounded focus:ring-[#0C548C] transition-all duration-200 hover:scale-110">
                         <label for="remember"
-                            class="ml-2 text-sm text-[#2E4D69] cursor-pointer transition-colors hover:text-[#0C548C] select-none">
+                            class="ml-2 text-xs sm:text-sm text-[#2E4D69] cursor-pointer transition-colors hover:text-[#0C548C] select-none">
                             Remember me
                         </label>
                     </div>
                     <a href="{{ route('forgot.password.request') }}"
-                        class="text-sm text-[#0C548C] hover:text-[#2E4D69] transition-all duration-200 relative group font-medium">
+                        class="text-xs sm:text-sm text-[#0C548C] hover:text-[#2E4D69] transition-all duration-200 relative group font-medium">
                         Lupa password?
                         <span
                             class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-[#0C548C] transition-all duration-300 group-hover:w-full"></span>
