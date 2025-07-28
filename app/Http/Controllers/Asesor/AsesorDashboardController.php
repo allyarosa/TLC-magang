@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Asesor;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\LevelBSubmission;
 use App\Models\LevelCSubmission;
 use App\Models\User;
@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Models\LevelBHistory;
 use App\Models\LevelCHistory;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use App\Models\UserAnswerC;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -205,47 +207,52 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.riwayatpenilaiandetailC', compact('detail'));
     }
 
+
     public function downloadNilai(Request $request)
-    {
-        $kategori = $request->input('kategori');
-        $month = $request->input('month');
+{
+    $kategori = $request->input('kategori');
+    $month = $request->input('month');
 
-        $levelBQuery = LevelBHistory::with('user');
-        $levelCQuery = LevelCHistory::with('user');
+    $levelBQuery = LevelBHistory::with('user');
+    $levelCQuery = LevelCHistory::with('user');
 
-        if ($kategori === 'level_b') {
-            $levelCQuery->where('id', -1); // Effectively empty
-        }
-        if ($kategori === 'level_c') {
-            $levelBQuery->where('id', -1); // Effectively empty
-        }
-
-        if ($month) {
-            $year = substr($month, 0, 4);
-            $mon = substr($month, 5, 2);
-            $levelBQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
-            $levelCQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
-        }
-
-        $levelB = $levelBQuery->latest()->get();
-        $levelC = $levelCQuery->latest()->get();
-
-        $history = $levelB->concat($levelC)->sortByDesc('created_at');
-
-        $months = LevelBHistory::selectRaw("strftime('%Y-%m', created_at) as month")
-            ->union(LevelCHistory::selectRaw("strftime('%Y-%m', created_at) as month"))
-            ->distinct()
-            ->orderBy('month', 'desc')
-            ->get()
-            ->pluck('month');
-
-        return view('dashboard.asesor.downloadnilai', [
-            'history' => $history,
-            'kategori' => $kategori,
-            'months' => $months,
-            'selectedMonth' => $month,
-        ]);
+    if ($kategori === 'level_b') {
+        $levelCQuery->where('id', -1); // Kosongkan level C
     }
+    if ($kategori === 'level_c') {
+        $levelBQuery->where('id', -1); // Kosongkan level B
+    }
+
+    if ($month) {
+        $year = substr($month, 0, 4);
+        $mon = substr($month, 5, 2);
+        $levelBQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+        $levelCQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+    }
+
+    $levelB = $levelBQuery->latest()->get();
+    $levelC = $levelCQuery->latest()->get();
+
+    $history = $levelB->concat($levelC)->sortByDesc('created_at');
+
+    // Gabungkan semua tanggal created_at lalu ambil distinct month
+    $allDates = LevelBHistory::select('created_at')->get()
+        ->concat(LevelCHistory::select('created_at')->get())
+        ->map(function ($item) {
+            return Carbon::parse($item->created_at)->format('Y-m');
+        })
+        ->unique()
+        ->sortDesc()
+        ->values();
+
+    return view('dashboard.asesor.downloadnilai', [
+        'history' => $history,
+        'kategori' => $kategori,
+        'months' => $allDates,
+        'selectedMonth' => $month,
+    ]);
+}
+
 
     // Profile Methods
     public function profileSetting()
