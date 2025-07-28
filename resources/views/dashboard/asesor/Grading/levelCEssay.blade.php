@@ -151,6 +151,16 @@
                     </div>
                 </div>
 
+                 <div class="mb-4 sm:mb-8">
+                    <label for="description" class="block text-gray-700 mb-2 text-sm sm:text-base font-medium">
+                        Komentar</label>
+                    <textarea name="comment_asesor" id="editor" rows="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">
+                        {!! $asesi->comment_asesor !!}
+                    </textarea>
+                    <x-input-error :messages="$errors->get('comment_asesor')" class="mt-1 text-xs" />
+                </div>
+
                 <div class="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">
                     <div>
                         <a href="{{ route('asesor.list-asesi-c') }}"

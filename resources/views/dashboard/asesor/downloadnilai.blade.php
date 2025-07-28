@@ -59,23 +59,23 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-2 sm:ml-auto">
-                            <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-gray-300 rounded bg-white text-sm sm:text-base">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                                 </svg>
                                 Cetak
                             </button>
-                            <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-gray-300 rounded bg-white text-sm sm:text-base">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <button class="flex items-center justify-center px-3 sm:px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                 </svg>
                                 PDF
                             </button>
-                            <a href="{{ route('asesor.riwayat-penilaian-b.export') }}" class="flex items-center justify-center px-3 sm:px-4 py-2 border border-blue-900 rounded bg-blue-800 text-white text-sm sm:text-base">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <a href="{{ route('asesor.riwayat-penilaian-b.export') }}" class="flex items-center justify-center px-3 sm:px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                                 Excel
@@ -89,7 +89,7 @@
                         <div class="bg-gray-50 rounded-lg p-4 border">
                             <div class="flex items-start justify-between mb-3">
                                 <div class="flex items-center">
-                                    <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500 mr-3">
+                                    <input type="checkbox" class="row-checkbox rounded border-gray-300 text-blue-800 focus:ring-blue-500 mr-3">
                                     <div>
                                         <h3 class="font-medium text-sm">{{ $item->user?->name }}</h3>
                                         <span class="{{ $item instanceof App\Models\LevelBHistory ? 'bg-blue-500' : 'bg-yellow-500' }} text-white px-2 py-1 rounded-full text-xs mt-1 inline-block">Kategori {{ $item instanceof App\Models\LevelBHistory ? 'B' : 'C' }}</span>
@@ -101,14 +101,14 @@
                                 </div>
                             </div>
                             <div class="flex gap-2">
-                                <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
+                                <button class="flex-1 px-3 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                     </svg>
                                     PDF
                                 </button>
-                                <button class="flex-1 px-3 py-2 border border-gray-300 rounded flex items-center justify-center text-sm">
+                                <button class="flex-1 px-3 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -127,7 +127,7 @@
                         <thead>
                             <tr class="text-left text-gray-600">
                                 <th class="pb-3 pr-4">
-                                    <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500">
+                                    <input type="checkbox" id="select-all-checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500 w-4 h-4">
                                 </th>
                                 <th class="pb-3">Nama Asesi</th>
                                 <th class="pb-3">Kategori</th>
@@ -139,7 +139,7 @@
                             @forelse ($history as $item)
                                 <tr class="border-t border-gray-100">
                                     <td class="py-4 pr-4">
-                                        <input type="checkbox" class="rounded border-gray-300 text-blue-800 focus:ring-blue-500">
+                                        <input type="checkbox" class="row-checkbox rounded border-gray-300 text-blue-800 focus:ring-blue-500 w-4 h-4">
                                     </td>
                                     <td class="py-4 font-medium">{{ $item->user?->name }}</td>
                                     <td class="py-4">
@@ -149,14 +149,14 @@
                                     <td class="py-4 {{ $item instanceof App\Models\LevelBHistory ? 'text-blue-600' : 'text-yellow-500' }} font-medium">{{ $item->score }}</td>
                                     <td class="py-4">
                                         <div class="flex justify-end gap-2">
-                                            <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
+                                            <button class="px-3 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out flex items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                                 </svg>
                                                 <span class="ml-1">PDF</span>
                                             </button>
-                                            <button class="px-3 py-2 border border-gray-300 rounded flex items-center">
+                                            <button class="px-3 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out flex items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -458,6 +458,30 @@
 
                 document.getElementById('view-individual').classList.add('hidden');
                 document.getElementById('view-laporan').classList.remove('hidden');
+            });
+
+            const selectAllCheckbox = document.getElementById('select-all-checkbox');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+
+            if (selectAllCheckbox) {
+                selectAllCheckbox.addEventListener('click', function () {
+                    rowCheckboxes.forEach(checkbox => {
+                        checkbox.checked = this.checked;
+                    });
+                });
+            }
+
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function () {
+                    if (!this.checked) {
+                        if(selectAllCheckbox) selectAllCheckbox.checked = false;
+                    } else {
+                        const allChecked = Array.from(rowCheckboxes).every(c => c.checked);
+                        if (allChecked) {
+                            if(selectAllCheckbox) selectAllCheckbox.checked = true;
+                        }
+                    }
+                });
             });
         </script>
     </section>
