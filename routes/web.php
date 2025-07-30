@@ -40,6 +40,7 @@ use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Asesor\LevelCGradedController;
+use App\Livewire\Asesi\CertificationDetail;
 
 Route::get('register2', function () {
     return view('register2');
@@ -111,6 +112,9 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     Route::get('/sertifikat-a/{id}', [SertifikasiController::class, 'sertifikatA'])->name('asesi.sertifikat.a');
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
+
+    Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
+    
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');

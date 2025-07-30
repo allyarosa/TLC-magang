@@ -19,10 +19,12 @@ class SertifikasiController extends Controller
 {
     public function index()
     {
-        $exams = ExamA::with('user', 'categoryA')
-            ->where('user_id', Auth::id())
-            ->paginate(10);
-        return view('dashboard.asesi.sertifikasi', compact('exams'));
+        $user = Auth::user();
+        $hasAccessA = $user->hasPermissionTo('access_level_A');
+        $hasAccessB = $user->hasPermissionTo('access_level_B');
+        $hasAccessC = $user->hasPermissionTo('access_level_C');
+
+        return view('dashboard.asesi.sertifikasi', compact('hasAccessA', 'hasAccessB', 'hasAccessC'));
     }
 
     public function nilai()
