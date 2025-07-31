@@ -113,8 +113,9 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
 
+    // riwarayat sertifikasi
     Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
-    
+
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');

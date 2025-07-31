@@ -7,8 +7,8 @@
         <div class="p-8">
             <div class="flex items-center mb-6">
                 <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-[#1D4E89]" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg class="w-6 h-6 text-[#1D4E89]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                     </svg>
                 </div>
                 <h2 class="text-2xl font-bold text-gray-800">Level A: Teaching Knowledge Certification</h2>
@@ -20,7 +20,8 @@
             <div class="space-y-4 mb-8">
                 <div class="flex items-center">
                     <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-4 h-4 text-green-600" fill="
+                        currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                         </svg>
                     </div>
@@ -94,14 +95,13 @@
             <div class="flex gap-3">
                 @if ($hasAccessA)
                 @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
-                    Koordinator kelas
-                </a>
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
+                                    Lihat Sertifikat Anda
+                                </a>
                 @else
                 <livewire:component.button-certificate status="sedang_berjalan">
                     @endif
                     @else
-                    {{-- <livewire:component.button-status-badge status="belum_tersedia" /> --}}
                     <livewire:component.button-certificate status="belum_tersedia">
                         @endif
             </div>
@@ -180,7 +180,7 @@
             <div class="flex gap-3">
                 @if ($hasAccessB)
                 @if (Auth::user()->hasPermissionTo('level_B_completed'))
-                <a wire:navigate href="{{ route('asesi.sertifikat.b', Vinkla\Hashids\Facades\Hashids::encode(2)) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Vinkla\Hashids\Facades\Hashids::encode(2)]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
                     Lihat Sertifikat Anda
                 </a>
                 @else

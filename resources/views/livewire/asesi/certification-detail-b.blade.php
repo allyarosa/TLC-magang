@@ -1,4 +1,4 @@
-<!-- Halaman 2: Detail Sertifikasi Level C -->
+<!-- Halaman 2: Detail Sertifikasi Level B -->
 <div id="detail_sertifikasi_page" class="page-section py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
@@ -14,14 +14,14 @@
 
         <!-- Main Content Card -->
         <div class="bg-white rounded-lg shadow-sm p-4 sm:p-6 lg:p-8">
-            <h1 class="text-sm sm:text-xl lg:text-3xl  font-bold text-gray-800 mb-6">Progres Teaching Mastery Certification Level A</h1>
+            <h1 class="text-base sm:text-lg lg:text-2xl font-bold text-gray-800 mb-6">Progres Teaching Mastery Certification Level B</h1>
 
             <!-- Certificate Summary -->
             <div class="bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
                 <div class="flex items-center">
                     {{-- <img src="/" alt="Certificate Icon" class="w-12 h-12 sm:w-14 sm:h-14 mr-4 sm:mr-5"> --}}
                     <div>
-                        <p class="text-lg sm:text-xl font-bold text-white mb-1">Teaching Mastery Certification Level A</p>
+                        <p class="text-base sm:text-lg font-bold text-white mb-1">Teaching Mastery Certification Level B</p>
                         <p class="text-white text-xs sm:text-sm">Selamat! Anda telah menyelesaikan semua persyaratan sertifikasi.</p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
                 <!-- Riwayat Submisi -->
                 <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2">Riwayat Submition</h2>
+                    <h2 class="text-base sm:text-lg lg:text-xl font-bold text-gray-800 mb-2">Riwayat Submisi</h2>
                     <div class="w-20 sm:w-24 h-1 bg-yellow-400 mb-6"></div>
 
                     <div class="overflow-x-auto">
@@ -46,21 +46,45 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead class="bg-yellow-300">
                                         <tr>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tugas</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Status</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Tugas</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Terakhir</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Status</th>
                                         </tr>
-                                        @forelse($exams as $exam)
                                     </thead>
+                                    @forelse ($submissions as $tugas)
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         <tr class="hover:bg-gray-50 transition-colors">
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->categoryA->name }}</td>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->start_time->format('d M Y') }}</td>
                                             <td class="px-3 py-4">
-                                                @if($exam->is_passed)
-                                                    <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">Lulus</span>
+                                                @if ($tugas->file_ppt == null)
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    Modul Ajar
+                                                </span>
                                                 @else
-                                                    <span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">Tidak Lulus</span>
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
+                                                    PPT
+                                                </span>
+                                                @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {{ $tugas->updated_at->diffForHumans() }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @php
+                                                $tugas = $tugas->status;
+                                                @endphp
+
+                                                @if ($tugas === 'pending')
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Menunggu
+                                                </span>
+                                                @elseif ($tugas === 'reviewed')
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Lulus
+                                                </span>
+                                                @elseif ($tugas === 'rejected')
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                    Tidak Lulus
+                                                </span>
                                                 @endif
                                             </td>
                                         </tr>
@@ -78,7 +102,7 @@
 
                 <!-- Riwayat Ujian Penilaian -->
                 <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2">Riwayat Ujian Penilaian</h2>
+                    <h2 class="text-base sm:text-lg lg:text-xl font-bold text-gray-800 mb-2">Riwayat Ujian Penilaian</h2>
                     <div class="w-20 sm:w-24 h-1 bg-yellow-400 mb-6"></div>
 
                     <div class="overflow-x-auto">
@@ -87,17 +111,30 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead class="bg-yellow-300">
                                         <tr>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Kategori</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Nilai</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Kategori</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Nilai</th>
                                         </tr>
                                     </thead>
+                                    @forelse($history as $riwayat)
                                     <tbody class="bg-white divide-y divide-gray-200">
-                                        @forelse($exams as $exam)
                                         <tr>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->categoryA->name }}</td>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->start_time->format('d M Y') }}</td>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700">{{ $exam->score }}</td>
+                                            <td class="px-3 py-4">
+                                                @if ($riwayat->file_ppt == null)
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    Modul Ajar
+                                                </span>
+                                                @else
+                                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800">
+                                                    PPT
+                                                </span>
+                                                @endif
+                                            </td>
+                                            <td class="px-3 py-4 text-md text-gray-700">
+                                                {{ $riwayat->created_at->format('d M Y') }}
+                                            </td>
+                                           
+                                            <td class="px-3 py-4 text-md text-gray-700">{{ $riwayat->score }}</td>
                                         </tr>
                                         @empty
                                         <tr>
