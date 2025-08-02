@@ -25,12 +25,19 @@
                         <p class="text-white text-xs sm:text-sm">Selamat! Anda telah menyelesaikan semua persyaratan sertifikasi.</p>
                     </div>
                 </div>
-                <a wire:navigate href="{{ route('asesi.sertifikat.b', Vinkla\Hashids\Facades\Hashids::encode(2)) }}" class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 sm:px-6 rounded-lg shadow transition duration-200 ease-in-out transform hover:scale-105 flex items-center whitespace-nowrap text-sm sm:text-base">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
-                    </svg>
-                    Lihat Sertifikat Anda
-                </a>
+                <div class="flex gap-3">
+                    @if ($hasAccessB)
+                    @if (Auth::user()->hasPermissionTo('level_B_completed'))
+                    <a wire:navigate href="{{ route('asesi.sertifikat.b', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
+                        Lihat Sertifikat Anda
+                    </a>
+                    @else
+                    <livewire:component.button-certificate status="sedang_berjalan" />
+                    @endif
+                    @else
+                    <livewire:component.button-certificate status="belum_tersedia" />
+                    @endif
+                </div>
             </div>
 
             <!-- Tables Container -->
@@ -114,6 +121,7 @@
                                             <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Kategori</th>
                                             <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
                                             <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Nilai</th>
+                                            <th class="px-3 py-3 text-left text-md font-bold text-gray-700 uppercase tracking-wider">Komentar</th>
                                         </tr>
                                     </thead>
                                     @forelse($history as $riwayat)
@@ -133,8 +141,9 @@
                                             <td class="px-3 py-4 text-md text-gray-700">
                                                 {{ $riwayat->created_at->format('d M Y') }}
                                             </td>
-                                           
+
                                             <td class="px-3 py-4 text-md text-gray-700">{{ $riwayat->score }}</td>
+                                            <td class="px-3 py-4 text-md text-gray-700">{{ $riwayat->comment_asesor }}</td>
                                         </tr>
                                         @empty
                                         <tr>

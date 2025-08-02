@@ -88,7 +88,7 @@ class LevelBController extends Controller
                 'user_id' => $userId,
                 'file_ppt' => $filePptPath ?? null,
                 'modul_ajar' => $modulAjarPath ?? null,
-                'description' => $validated['description'],
+                'description' => strip_tags($validated['description']),
                 'status' => 'pending',
             ]);
             DB::commit();

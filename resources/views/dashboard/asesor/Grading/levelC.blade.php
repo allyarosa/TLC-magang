@@ -73,7 +73,7 @@
                     @endif
                 </div>
 
-                <p class="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-6">Deskripsi: <span>{!! $asesi->description !!}</span>
+                <p class="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-6">Deskripsi: <span>{{ $asesi->description }}</span>
                 </p>
             </div>
 
@@ -168,6 +168,7 @@
                 console.error(error);
             });
         if (performance.navigation.type === 2) {
+        
             // If page is accessed via Back button, reload to clear session flash
             location.reload();
         }

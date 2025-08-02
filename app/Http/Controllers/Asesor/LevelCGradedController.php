@@ -78,11 +78,15 @@ class LevelCGradedController extends Controller
 
         $levelC = LevelCSubmission::find($id);
         $user = User::where('id', $levelC->user_id)->first();
+
+        // Sanitize the comment input
+        $cleaned_comment = strip_tags($request->comment_asesor);
+
         $levelC->update([
             'score' => $request->score,
             'status' => $request->status,
             'is_passed' => $request->assessment,
-            'comment_asesor' => $request->comment_asesor,
+            'comment_asesor' => $cleaned_comment,
         ]);
 
         LevelCHistory::create([
@@ -91,7 +95,7 @@ class LevelCGradedController extends Controller
             'description' => $levelC->description,
             'category' => $levelC->category,
             'score' => $levelC->score,
-            'comment_asesor' => $request->comment_asesor,
+            'comment_asesor' => $cleaned_comment,
         ]);
 
 
@@ -102,8 +106,14 @@ class LevelCGradedController extends Controller
                 $user->givePermissionTo('VIDEO_UPLOAD');
             } elseif ($levelC->category === "essay") {
                 $user->givePermissionTo('ESSAY_COMPLETED');
-                //tidak perlu memberikan izin ESSAY_UPLOAD karena sudah diberikan sebelumnya
-                // $user->givePermissionTo('ESSAY_UPLOAD');
+            }
+
+            // Forget cache and check again
+            $user->forgetCachedPermissions();
+            $user = $user->fresh();
+
+            if ($user->hasPermissionTo('VIDEO_UPLOAD_COMPLETED') && $user->hasPermissionTo('ESSAY_COMPLETED')) {
+                $user->givePermissionTo('level_C_completed');
             }
         } elseif ($request->assessment === 'rejected') {
             if ($levelC->category === "video") {

@@ -66,11 +66,15 @@ class LevelBGradedController extends Controller
 
         $levelB = LevelBSubmission::find($id);
         $user = User::where('id', $levelB->user_id)->first();
+
+        // Sanitize the comment input
+        $cleaned_comment = strip_tags($request->comment_asesor);
+
         $levelB->update([
             'score' => $request->score,
             'status' => $request->status,
             'is_passed' => $request->assessment,
-            'comment_asesor' => $request->comment_asesor,
+            'comment_asesor' => $cleaned_comment,
         ]);
 
         $category = null;
@@ -86,7 +90,7 @@ class LevelBGradedController extends Controller
             'file_ppt' => $levelB->file_ppt ?? null,
             'modul_ajar' => $levelB->modul_ajar ?? null,
             'score' => $levelB->score,
-            'comment_asesor' => $request->comment_asesor,
+            'comment_asesor' => $cleaned_comment,
         ]);
 
 

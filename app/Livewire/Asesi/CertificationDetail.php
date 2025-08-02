@@ -17,6 +17,11 @@ class CertificationDetail extends Component
     public $history = [];
     public $exams = [];
 
+
+    public bool $hasAccessA = false;
+    public bool $hasAccessB = false;
+    public bool $hasAccessC = false;
+
     public function mount($level)
     {
         $this->level = $level;
@@ -24,12 +29,15 @@ class CertificationDetail extends Component
 
         if ($this->level == 'A') {
             $this->exams = ExamA::where('user_id', $user->id)->with('categoryA')->get();
+            $this->hasAccessA = $user->hasPermissionTo('access_level_A');
         } elseif ($this->level == 'B') {
             $this->submissions = LevelBSubmission::where('user_id', $user->id)->get();
             $this->history = LevelBHistory::where('user_id', $user->id)->get();
+            $this->hasAccessB = $user->hasPermissionTo('access_level_B');
         } elseif ($this->level == 'C') {
             $this->submissions = LevelCSubmission::where('user_id', $user->id)->get();
             $this->history = LevelCHistory::where('user_id', $user->id)->get();
+            $this->hasAccessC = $user->hasPermissionTo('access_level_C');
         }
     }
 
