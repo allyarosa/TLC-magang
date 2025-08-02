@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Asesor;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\LevelBSubmission;
 use App\Models\LevelCSubmission;
@@ -26,15 +27,19 @@ class AsesorDashboardController extends Controller
         $users = User::role('asesi')->get();
         $levelBPendingCount = LevelBSubmission::where('status', 'pending')->count();
         $levelBReviewedCount = LevelBSubmission::where('status', 'reviewed')->count();
+        $levelCPendingCount = LevelCSubmission::where('status', 'pending')->count();
+        $levelCReviewedCount = LevelCSubmission::where('status', 'reviewed')->count();
 
         $asesiEligibleCount = $users->filter(function ($user) {
-            return $user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B');
+            return $user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B') && $user->hasPermissionTo('access_level_C');
         })->count();
+        $levelPendingCount = $levelBPendingCount + $levelCPendingCount;
+        $levelReviewedCount = $levelBReviewedCount + $levelCReviewedCount;
 
         return view('dashboard.asesor.dashboard', [
             'asesiEligible' => $asesiEligibleCount ?: 'Belum Ada',
-            'levelBPending' => $levelBPendingCount ?: 'Belum Ada',
-            'levelBReviewed' => $levelBReviewedCount ?: 'Belum Ada',
+            'levelPendingCount' => $levelPendingCount ?: 'Belum Ada',
+            'levelReviewedCount' => $levelReviewedCount ?: 'Belum Ada',
         ]);
     }
 
@@ -87,16 +92,16 @@ class AsesorDashboardController extends Controller
         // Apply sorting
         if ($sort === 'name_asc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
-                  ->orderBy('users.name', 'asc')
-                  ->select('level_c_submissions.*') // Select all columns from level_c_submissions
-                  ->orderBy('users.name', 'asc')
-                  ->select('user_answers_c.*');
+                ->orderBy('users.name', 'asc')
+                ->select('level_c_submissions.*') // Select all columns from level_c_submissions
+                ->orderBy('users.name', 'asc')
+                ->select('user_answers_c.*');
         } elseif ($sort === 'name_desc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
-                  ->orderBy('users.name', 'desc')
-                  ->select('level_c_submissions.*')
-                  ->orderBy('users.name', 'desc')
-                  ->select('user_answers_c.*');
+                ->orderBy('users.name', 'desc')
+                ->select('level_c_submissions.*')
+                ->orderBy('users.name', 'desc')
+                ->select('user_answers_c.*');
         } elseif ($sort === 'oldest') {
             $query->oldest();
         } else { // Default to latest
@@ -209,49 +214,49 @@ class AsesorDashboardController extends Controller
 
 
     public function downloadNilai(Request $request)
-{
-    $kategori = $request->input('kategori');
-    $month = $request->input('month');
+    {
+        $kategori = $request->input('kategori');
+        $month = $request->input('month');
 
-    $levelBQuery = LevelBHistory::with('user');
-    $levelCQuery = LevelCHistory::with('user');
+        $levelBQuery = LevelBHistory::with('user');
+        $levelCQuery = LevelCHistory::with('user');
 
-    if ($kategori === 'level_b') {
-        $levelCQuery->where('id', -1); // Kosongkan level C
+        if ($kategori === 'level_b') {
+            $levelCQuery->where('id', -1); // Kosongkan level C
+        }
+        if ($kategori === 'level_c') {
+            $levelBQuery->where('id', -1); // Kosongkan level B
+        }
+
+        if ($month) {
+            $year = substr($month, 0, 4);
+            $mon = substr($month, 5, 2);
+            $levelBQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+            $levelCQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+        }
+
+        $levelB = $levelBQuery->latest()->get();
+        $levelC = $levelCQuery->latest()->get();
+
+        $history = $levelB->concat($levelC)->sortByDesc('created_at');
+
+        // Gabungkan semua tanggal created_at lalu ambil distinct month
+        $allDates = LevelBHistory::select('created_at')->get()
+            ->concat(LevelCHistory::select('created_at')->get())
+            ->map(function ($item) {
+                return Carbon::parse($item->created_at)->format('Y-m');
+            })
+            ->unique()
+            ->sortDesc()
+            ->values();
+
+        return view('dashboard.asesor.downloadnilai', [
+            'history' => $history,
+            'kategori' => $kategori,
+            'months' => $allDates,
+            'selectedMonth' => $month,
+        ]);
     }
-    if ($kategori === 'level_c') {
-        $levelBQuery->where('id', -1); // Kosongkan level B
-    }
-
-    if ($month) {
-        $year = substr($month, 0, 4);
-        $mon = substr($month, 5, 2);
-        $levelBQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
-        $levelCQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
-    }
-
-    $levelB = $levelBQuery->latest()->get();
-    $levelC = $levelCQuery->latest()->get();
-
-    $history = $levelB->concat($levelC)->sortByDesc('created_at');
-
-    // Gabungkan semua tanggal created_at lalu ambil distinct month
-    $allDates = LevelBHistory::select('created_at')->get()
-        ->concat(LevelCHistory::select('created_at')->get())
-        ->map(function ($item) {
-            return Carbon::parse($item->created_at)->format('Y-m');
-        })
-        ->unique()
-        ->sortDesc()
-        ->values();
-
-    return view('dashboard.asesor.downloadnilai', [
-        'history' => $history,
-        'kategori' => $kategori,
-        'months' => $allDates,
-        'selectedMonth' => $month,
-    ]);
-}
 
 
     // Profile Methods

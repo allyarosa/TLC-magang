@@ -273,7 +273,7 @@
                     Lihat Sertifikat Anda
                 </a>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-white cursor-pointer text-center block hover:scale-105 active:scale-95">
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-black cursor-pointer text-center block hover:scale-105 active:scale-95">
                     Sedang Berjalan
                 </a>
                 @endif
@@ -336,6 +336,5 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-
     </style>
 </div>

@@ -143,7 +143,7 @@
                                             </td>
 
                                             <td class="px-3 py-4 text-md text-gray-700">{{ $riwayat->score }}</td>
-                                            <td class="px-3 py-4 text-md text-gray-700">{{ $riwayat->comment_asesor }}</td>
+                                            <td class="px-3 py-4 text-md text-gray-700">{{ strip_tags($riwayat->comment_asesor) }}</td>
                                         </tr>
                                         @empty
                                         <tr>

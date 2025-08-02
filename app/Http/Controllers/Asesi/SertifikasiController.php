@@ -71,11 +71,31 @@ class SertifikasiController extends Controller
     }
     public function sertifikatB(string $id)
     {
-        return view('user.sertifikasi.mySertifikasi.sertifikat-b');
+        $decoded = Hashids::decode($id);
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
+        }
+        // userId
+        $id = $decoded[0];
+        $userProfile = UserProfile::firstWhere('user_id', $id);
+        return view('user.sertifikasi.mySertifikasi.sertifikat-b', [
+            'namaGelar' => $userProfile->nama_depan,
+            'id' => $userProfile->user_id,
+        ]);
     }
     public function sertifikatC(string $id)
     {
-        return view('user.sertifikasi.mySertifikasi.sertifikat-c');
+        $decoded = Hashids::decode($id);
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
+        }
+        // userId
+        $id = $decoded[0];
+        $userProfile = UserProfile::firstWhere('user_id', $id);
+        return view('user.sertifikasi.mySertifikasi.sertifikat-c', [
+            'namaGelar' => $userProfile->nama_depan,
+            'id' => $userProfile->user_id,
+        ]);
     }
 
     public function downloadCertificate(string $id)
@@ -102,7 +122,7 @@ class SertifikasiController extends Controller
         // Set paper size dan orientasi
         // $pdf->setPaper('A4', 'landscape');
         $pdf->setPaper([0, 0, 1414, 2000], 'landscape');
-        
+
         $pdf->setOptions([
             'isRemoteEnabled' => false,
             'isPhpEnabled' => true,
@@ -115,7 +135,8 @@ class SertifikasiController extends Controller
         return $pdf->download($filename);
     }
 
-    public function dicoding(string $id) {
+    public function dicoding(string $id)
+    {
         return view('');
     }
 }

@@ -4,7 +4,7 @@
 @section('content')
 
 {{-- Main Content --}}
-<div  class="min-h-screen bg-gray-50 py-8">
+<div class="min-h-screen bg-gray-50 py-8">
     {{-- Back Button --}}
     <div class="max-w-4xl mx-auto px-4 mb-6">
         <a href="{{ route('asesi.sertifikasi') }}">
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="text-center mb-8">
-                    <h3 class="text-4xl font-bold text-blue-600 mb-2">Hamas Akif Sanie</h3>
+                    <h3 class="text-4xl font-bold text-blue-600 mb-2">{{ $namaGelar }}</h3>
                     <p class="text-gray-600">atas pencapaian dalam menyelesaikan sertifikasi</p>
                 </div>
 
@@ -86,9 +86,9 @@
 
         {{-- Verification Button --}}
         <div class="text-center mt-6">
-            <button class="bg-gray-700 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                Periksa Sertifikat
-            </button>
+            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-gray-700 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                Download Sertifikat
+            </a>
         </div>
     </div>
 
@@ -226,7 +226,7 @@
                                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-800 mb-2">Hamas Akif Sanie</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $namaGelar }}</h3>
                         <p class="text-gray-600 text-sm mb-4">TLC-B-2024001</p>
                     </div>
 
