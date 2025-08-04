@@ -41,15 +41,9 @@
                 <div class="flex justify-between items-center">
                     @if ($user->hasPermissionTo('ESSAY'))
                         @if ($user->hasPermissionTo('ESSAY_COMPLETED'))
-                            <button disabled
-                                class="px-5 py-2 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-default">
-                                Selesai
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                            </button>
+                            <a wire:navigate href="{{ route('asesi.sertifikat.c', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-white cursor-pointer text-center block">
+                                Lihat Sertifikat Anda
+                            </a>
                         @else
                             <button disabled
                                 class="px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-not-allowed opacity-60">

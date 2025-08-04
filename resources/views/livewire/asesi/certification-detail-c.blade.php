@@ -28,7 +28,7 @@
                 <div class="flex gap-3">
                     @if ($hasAccessC)
                     @if (Auth::user()->hasPermissionTo('level_C_completed'))
-                    <a wire:navigate href="{{ route('asesi.sertifikat.c', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
+                    <a wire:navigate href="{{ route('asesi.sertifikat.c', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-black cursor-pointer text-center block">
                         Lihat Sertifikat Anda
                     </a>
                     @else
