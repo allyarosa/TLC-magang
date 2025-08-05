@@ -6,7 +6,7 @@
 <section class="max-w-7xl mx-auto px-4 py-8">
     <!-- Header dengan gradient yang menarik -->
     <div class="mb-8 relative overflow-hidden animate-fadeIn">
-        <div class="bg-gradient-to-r from-[#1D4E89] via-[#2A5AAF] to-[#E76F51] rounded-2xl p-8 text-white relative">
+        <div class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#6ad9f2] rounded-2xl p-8 text-white relative">
             <div class="absolute inset-0 bg-black opacity-10"></div>
             <div class="relative z-10">
                 <div class="flex items-center mb-2">
@@ -51,22 +51,6 @@
                 KATEGORI LEVEL</h2>
         </div>
         <div class="flex items-center space-x-4">
-            {{-- <span
-                    class="px-4 py-2 bg-orange-100 text-[#E76F51] font-medium rounded-full border border-orange-200 shadow-sm flex items-center">
-                    <span class="inline-block w-2 h-2 bg-[#E76F51] rounded-full mr-2 animate-pulse"></span>
-                    Dalam Progres
-                </span> --}}
-            {{-- TAMPILAN SELESAI --}}
-            {{-- <span class="px-4 py-2 bg-green-100 text-green-700 font-medium rounded-full border border-green-200 shadow-sm flex items-center w-fit">
-                    <span class="inline-block w-2 h-2 bg-green-600 rounded-full mr-2"></span>
-                    Selesai
-                </span> --}}
-
-            {{-- TAMPILAN BELUM DIMULAI --}}
-            {{-- <span class="px-4 py-2 bg-gray-100 text-gray-600 font-medium rounded-full border border-gray-200 shadow-sm flex items-center w-fit">
-                    <span class="inline-block w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
-                    Belum Dimulai
-                </span> --}}
             <button
                 class="px-6 py-2 bg-gradient-to-r from-[#1D4E89] to-[#14406B] text-white rounded-xl font-medium shadow-lg hover:shadow-xl focus:ring-4 focus:ring-blue-200">
                 <a href="{{ route('asesi.nilai') }}">Lihat Nilai</a>

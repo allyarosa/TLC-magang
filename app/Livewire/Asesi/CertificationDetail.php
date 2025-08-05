@@ -26,28 +26,25 @@ class CertificationDetail extends Component
     {
         $this->level = $level;
         $user = Auth::user();
+        $levelUpper = strtoupper($this->level);
 
-        if ($this->level == 'A') {
+        $this->{'hasAccess' . $levelUpper} = $user->hasPermissionTo('access_level_' . $levelUpper);
+
+        if ($this->level === 'A') {
             $this->exams = ExamA::where('user_id', $user->id)->with('categoryA')->get();
-            $this->hasAccessA = $user->hasPermissionTo('access_level_A');
-        } elseif ($this->level == 'B') {
-            $this->submissions = LevelBSubmission::where('user_id', $user->id)->get();
-            $this->history = LevelBHistory::where('user_id', $user->id)->get();
-            $this->hasAccessB = $user->hasPermissionTo('access_level_B');
-        } elseif ($this->level == 'C') {
-            $this->submissions = LevelCSubmission::where('user_id', $user->id)->get();
-            $this->history = LevelCHistory::where('user_id', $user->id)->get();
-            $this->hasAccessC = $user->hasPermissionTo('access_level_C');
+        } else if (in_array($this->level, ['B', 'C'])) {
+            $submissionModel = "App\Models\Level{$levelUpper}Submission";
+            $historyModel = "App\Models\Level{$levelUpper}History";
+            $this->submissions = $submissionModel::where('user_id', $user->id)->get();
+            $this->history = $historyModel::where('user_id', $user->id)->get();
         }
     }
 
     public function render()
     {
         $view = 'livewire.asesi.certification-detail';
-        if ($this->level == 'B') {
-            $view = 'livewire.asesi.certification-detail-b';
-        } elseif ($this->level == 'C') {
-            $view = 'livewire.asesi.certification-detail-c';
+        if (in_array($this->level, ['B', 'C'])) {
+            $view .= '-' . strtolower($this->level);
         }
 
         return view($view, [

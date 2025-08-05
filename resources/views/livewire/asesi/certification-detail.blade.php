@@ -17,7 +17,8 @@
             <h1 class="text-sm sm:text-xl lg:text-3xl  font-bold text-gray-800 mb-6">Progres Teaching Mastery Certification Level A</h1>
 
             <!-- Certificate Summary -->
-            <div class="bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
+
+            <div class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#1D4E89] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
                 <div class="flex items-center">
                     {{-- <img src="/" alt="Certificate Icon" class="w-12 h-12 sm:w-14 sm:h-14 mr-4 sm:mr-5"> --}}
                     <div>
@@ -28,8 +29,8 @@
                 <div class="flex gap-3">
                     @if ($hasAccessA)
                     @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                    <a wire:navigate href="{{ route('asesi.sertifikat.a', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-black cursor-pointer text-center block">
-                        Lihat Sertifikat Anda
+                    <a wire:navigate href="{{ route('asesi.sertifikat.a', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-gray-800 cursor-pointer text-center block">
+                        Lihat Sertifikat Anda <i class="fas fa-award mr-2"></i>
                     </a>
                     @else
                     <livewire:component.button-certificate status="sedang_berjalan" />
