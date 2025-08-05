@@ -90,7 +90,7 @@
             {{-- Left Column - Course Info --}}
             <div class="lg:col-span-2">
                 <div class="flex items-start space-x-6 mb-8">
-                    <img src="https://via.placeholder.com/120x120" alt="Course thumbnail" class="w-24 h-24 rounded-lg object-cover">
+                    <img src="{{ asset('/images/svg/blankCategories.svg') }}" alt="Course thumbnail" class="w-24 h-24 rounded-lg object-cover">
                     <div class="flex-1">
                         <h2 class="text-2xl font-bold text-gray-800 mb-2">Teaching Mastery Certification Level C</h2>
                         <p class="text-gray-600 mb-2">Disusun oleh: Teaching & Learning Certification (TLC) HAFECS</p>

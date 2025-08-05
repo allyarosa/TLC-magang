@@ -7,7 +7,7 @@
                 <div>
                     <h2 class="text-3xl font-bold text-gray-800 mb-1">👤 Profil Saya</h2>
                     <p class="text-gray-500">Kelola informasi akun Anda</p>
-                </div>
+        </div>
                 <div class="mt-4 md:mt-0">
                     <div class="flex items-center bg-blue-50 rounded-full px-4 py-2">
                         <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
@@ -65,7 +65,7 @@
                             <div
                                 class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-100 overflow-hidden border-4 border-white shadow-md">
                                 <img id="profileImage"
-                                    src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/blankProfile.png')) }}"
+                                    src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/images/blankProfile.png')) }}"
                                     alt="Foto Profil" class="w-full h-full object-cover">
                             </div>
                             <label for="profileInput"
