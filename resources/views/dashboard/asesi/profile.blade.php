@@ -65,7 +65,7 @@
                         <div
                             class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-100 overflow-hidden border-4 border-white shadow-md">
                             <img id="profileImage"
-                                src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/blankProfile.png')) }}"
+                                src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/images/blankProfile.png')) }}"
                                 alt="Foto Profil" class="w-full h-full object-cover">
                         </div>
                         <label for="profileInput"

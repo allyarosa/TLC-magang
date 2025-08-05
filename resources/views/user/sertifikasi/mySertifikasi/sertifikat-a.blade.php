@@ -83,7 +83,7 @@
 
         {{-- Verification Button --}}
         <div class="text-center mt-6">
-            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-blue-700 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-blue-700 hover:bg-blue- text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                 Download Sertifikat
             </a>
         </div>
@@ -95,7 +95,7 @@
             {{-- Left Column - Course Info --}}
             <div class="lg:col-span-2">
                 <div class="flex items-start space-x-6 mb-8">
-                    <img src="https://via.placeholder.com/120x120" alt="Course thumbnail" class="w-24 h-24 rounded-lg object-cover">
+                   <img src="{{ asset('/images/svg/blankCategories.svg') }}" alt="Course thumbnail" class="w-24 h-24 rounded-lg object-cover">
                     <div class="flex-1">
                         <h2 class="text-2xl font-bold text-gray-800 mb-2">Teaching Knowledge Certification Level A</h2>
                         <p class="text-gray-600 mb-2">Disusun oleh: HAFECS Indonesia</p>
