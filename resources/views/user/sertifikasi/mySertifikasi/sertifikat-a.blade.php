@@ -23,7 +23,7 @@
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
 
         {{-- Certificate Header --}}
-        <div class="bg-gradient-to-r from-blue-800 via-green-700 to-yellow-400 px-8 py-6">
+        <div class="bg-gradient-to-r from-blue-800 via-blue-800 to-blue-400 px-8 py-6">
             <div class="flex items-center space-x-4">
                 <div class="bg-white rounded-full p-2">
                     <img src="{{ asset('images/tlc.png') }}" class="w-14 h-14 object-contain" alt="logo">

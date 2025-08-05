@@ -100,8 +100,8 @@
                     Lihat Sertifikat Anda
                 </a>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-black cursor-pointer text-center block hover:scale-105 active:scale-95">
-                    <i class="fas text-gray-700 fa-hourglass-half mr-2"></i>
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-gray-500 cursor-pointer text-center block hover:scale-105 active:scale-95">
+                    <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
                     Sedang Berjalan
                 </a>
                 @endif
@@ -189,8 +189,8 @@
                     Lihat Sertifikat Anda
                 </a>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-black cursor-pointer text-center block hover:scale-105 active:scale-95">
-                    <i class="fas text-gray-700 fa-hourglass-half mr-2"></i>
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-gray-500 cursor-pointer text-center block hover:scale-105 active:scale-95">
+                    <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
                     Sedang Berjalan
                 </a>
                 @endif
@@ -278,8 +278,8 @@
                     Lihat Sertifikat Anda
                 </a>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-black cursor-pointer text-center block hover:scale-105 active:scale-95">
-                    <i class="fas text-gray-700 fa-hourglass-half mr-2"></i>
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-gray-500 cursor-pointer text-center block hover:scale-105 active:scale-95">
+                    <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
                     Sedang Berjalan
                 </a>
                 @endif
