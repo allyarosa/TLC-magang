@@ -16,6 +16,20 @@ class AsesiLevelCController extends Controller
 {
     public function storeSubmission(StoreAssessmentRequestC $request)
     {
+        $decoded = Hashids::decode($id);
+
+        if (empty($decoded)) {
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
+                'encoded_id' => $id,
+                'reason' => 'ID tidak valid atau tidak dapat didecode',
+                'ip_address' => request()->ip(),
+                'user_id' => auth()->id(),
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $id = $decoded[0];
         DB::beginTransaction();
         try {
             $validated = $request->validated();

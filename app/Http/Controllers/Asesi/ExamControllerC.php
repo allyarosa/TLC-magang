@@ -18,6 +18,20 @@ class ExamControllerC extends Controller
 {
     public function index()
     {
+        $decoded = Hashids::decode($id);
+
+        if (empty($decoded)) {
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
+                'encoded_id' => $id,
+                'reason' => 'ID tidak valid atau tidak dapat didecode',
+                'ip_address' => request()->ip(),
+                'user_id' => auth()->id(),
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $id = $decoded[0];
         $user = Auth::user();
         $examSession = ExamSessionC::where('user_id', $user->id)
             ->where('is_completed', false)
@@ -132,29 +146,28 @@ class ExamControllerC extends Controller
         ));
     }
 
-        public function complete()
-        {
-            $user = Auth::user();
+    public function complete()
+    {
+        $user = Auth::user();
 
-            DB::beginTransaction();
+        DB::beginTransaction();
 
-                try {
-                        // Create submission record
-                        LevelCSubmission::create([
-                            'user_id' => $user->id,
-                            'category' => 'essay',
-                            'status' => 'pending',
-                            'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
-                        ]);
-                    DB::commit();
-
-                } catch (\Exception $e) {
-                    DB::rollBack();
-                    dd($e->getMessage()); // tampilkan error
-                }
-
-                return redirect()->route('exam.completed');
+        try {
+            // Create submission record
+            LevelCSubmission::create([
+                'user_id' => $user->id,
+                'category' => 'essay',
+                'status' => 'pending',
+                'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e->getMessage()); // tampilkan error
         }
+
+        return redirect()->route('exam.completed');
+    }
 
 
     public function completed()

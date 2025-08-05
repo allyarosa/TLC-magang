@@ -174,7 +174,7 @@
                 </a>
             </p>
             @else
-            <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level B selesai</p>
+            <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level A selesai</p>
             @endif
 
             @endif
@@ -264,12 +264,13 @@
             @else
             <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level B selesai</p>
             @endif
+
             @endif
 
             <div class="flex gap-3">
                 @if ($hasAccessC)
                 @if (Auth::user()->hasPermissionTo('level_C_completed'))
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(2)]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(3)]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
                     Lihat Sertifikat Anda
                 </a>
                 @else
@@ -283,6 +284,13 @@
             </div>
         </div>
     </div>
+
+    <p class="text-sl text-gray-500 italic mb-6 ">
+        Ingin Akses ke semua level terkunci? Anda dapat menggunakan paket bundling. Selesaikan pembayaran paket bundling untuk melanjutkannya.
+        <a href="{{ route('payments.create', Hashids::encode(4)) }}" class="text-blue-600 underline hover:text-blue-800">
+            disini
+        </a>
+    </p>
     <script src="{{ asset('assets/js/certificationLevelCard.js') }}"></script>
     <style>
         @keyframes ripple {
@@ -336,6 +344,5 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-
     </style>
 </div>

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class AsesiDashboardController extends Controller
 {
     public function index() {
-        $levels = Level::where('id', '!=', 4)->get();
+        $levels = Level::all();
         
         // Ambil testimonial yang sudah di-feature dan disetujui
         $featuredTestimonials = Testimonial::with(['user', 'category'])

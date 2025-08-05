@@ -54,7 +54,7 @@
                         </svg>
                     </button>
                     @endif
-                    @elseif (Auth::user()->hasPermissionTo('access_level_B'))
+                    @elseif (Auth::user()->hasPermissionTo('access_level_B') && (Auth::user()->hasAnyPermission(['level_A_completed'])))
                     <form action="{{ route('asesi.sertifikasi.level.b.instruction') }}" method="POST">
                         @csrf
                         <input type="hidden" name="category_id" value="1">
@@ -126,7 +126,7 @@
                         </svg>
                     </button>
                     @endif
-                    @elseif (Auth::user()->hasPermissionTo('access_level_B'))
+                    @elseif (Auth::user()->hasPermissionTo('access_level_B') && (Auth::user()->hasAnyPermission(['level_A_completed'])))
                     <form action="{{ route('asesi.sertifikasi.level.b.instruction') }}" method="POST">
                         @csrf
                         <input type="hidden" name="category_id" value="2">
