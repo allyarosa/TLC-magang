@@ -17,7 +17,7 @@
             <h1 class="text-base sm:text-lg lg:text-2xl font-bold text-gray-800 mb-6">Progres Teaching Mastery Certification Level C</h1>
 
             <!-- Certificate Summary -->
-          <div class="bg-gradient-to-r from-[#1D4E89] via-[#3C9B5F] to-[#F7C21B] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
+          <div class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#1D4E89] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
 
                 <div class="flex items-center">
                     {{-- <img src="/" alt="Certificate Icon" class="w-12 h-12 sm:w-14 sm:h-14 mr-4 sm:mr-5"> --}}

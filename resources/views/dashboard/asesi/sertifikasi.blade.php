@@ -6,7 +6,7 @@
     <section class="max-w-7xl mx-auto px-4 py-8">
         <!-- Header dengan gradient yang menarik -->
         <div class="mb-8 relative overflow-hidden animate-fadeIn">
-            <div class="bg-gradient-to-r  from-[#1D4E89] via-[#3C9B5F] to-[#F7C21B]  rounded-2xl p-8 text-white relative">
+            <div class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#6ad9f2] rounded-2xl p-8 text-white relative">
                 <div class="absolute inset-0 bg-black opacity-10"></div>
                 <div class="relative z-10">
                     <div class="flex items-center mb-2">
@@ -61,7 +61,7 @@
                     <span class="inline-block w-2 h-2 bg-green-600 rounded-full mr-2"></span>
                     Selesai
                 </span> --}}
-
+                
                 {{-- TAMPILAN BELUM DIMULAI --}}
                 {{-- <span class="px-4 py-2 bg-gray-100 text-gray-600 font-medium rounded-full border border-gray-200 shadow-sm flex items-center w-fit">
                     <span class="inline-block w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
