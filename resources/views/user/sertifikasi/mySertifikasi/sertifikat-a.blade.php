@@ -83,7 +83,7 @@
 
         {{-- Verification Button --}}
         <div class="text-center mt-6">
-            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-blue-700 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-blue-700 hover:bg-blue-900 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                 Download Sertifikat
             </a>
         </div>

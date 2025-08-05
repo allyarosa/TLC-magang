@@ -21,25 +21,17 @@
     <div class="max-w-4xl mx-auto px-4 mb-12">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             {{-- Certificate Header --}}
-            <div class="bg-gradient-to-r from-blue-600 via-blue-800 to-blue-400 px-8 py-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-white rounded-full p-3">
-                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-bold text-white">HAFECS</h1>
-                            <p class="text-blue-100 text-sm">SERTIFIKAT</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-blue-100 text-sm">SERTIFIKAT</p>
-                        <p class="text-white font-semibold">KOMPETENSI</p>
-                    </div>
+           <div class="bg-gradient-to-r from-blue-800 via-blue-800 to-blue-400 px-8 py-6">
+            <div class="flex items-center space-x-4">
+                <div class="bg-white rounded-full p-2">
+                    <img src="{{ asset('images/tlc.png') }}" class="w-14 h-14 object-contain" alt="logo">
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold text-white">Sertifikat</h1>
+                    <p class="text-white/80 text-base">Level C</p>
                 </div>
             </div>
+        </div>
 
             {{-- Certificate Body --}}
             <div class="px-8 py-12">
@@ -86,7 +78,7 @@
 
         {{-- Verification Button --}}
         <div class="text-center mt-6">
-            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-gray-700 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-blue-800 hover:bg-blue-900 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                 Download Sertifikat
             </a>
         </div>
