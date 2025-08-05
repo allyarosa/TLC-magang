@@ -29,8 +29,8 @@
                 <div class="flex gap-3">
                     @if ($hasAccessC)
                     @if (Auth::user()->hasPermissionTo('level_C_completed'))
-                    <a wire:navigate href="{{ route('asesi.sertifikat.c', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-black cursor-pointer text-center block">
-                        Lihat Sertifikat Anda
+                    <a wire:navigate href="{{ route('asesi.sertifikat.c', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-gray-800 cursor-pointer text-center block">
+                        Lihat Sertifikat Anda <i class="fas fa-award mr-2"></i>
                     </a>
                     @else
                     <livewire:component.button-certificate status="sedang_berjalan" />
