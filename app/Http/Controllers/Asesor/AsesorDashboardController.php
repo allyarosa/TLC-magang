@@ -70,6 +70,13 @@ class AsesorDashboardController extends Controller
         ]);
     }
 
+    return view('dashboard.asesor.listasesi', [
+            'levelB' => $levelB,
+            'kategori' => $kategori,
+            'search' => $search,
+        ]);
+    }
+
     public function listAsesiC(Request $request)
     {
         $kategori = $request->input('kategori');
@@ -93,15 +100,11 @@ class AsesorDashboardController extends Controller
         if ($sort === 'name_asc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
                 ->orderBy('users.name', 'asc')
-                ->select('level_c_submissions.*') // Select all columns from level_c_submissions
-                ->orderBy('users.name', 'asc')
-                ->select('user_answers_c.*');
+                ->select('level_c_submissions.*');
         } elseif ($sort === 'name_desc') {
             $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
                 ->orderBy('users.name', 'desc')
-                ->select('level_c_submissions.*')
-                ->orderBy('users.name', 'desc')
-                ->select('user_answers_c.*');
+                ->select('level_c_submissions.*');
         } elseif ($sort === 'oldest') {
             $query->oldest();
         } else { // Default to latest
