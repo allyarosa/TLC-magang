@@ -24,7 +24,6 @@
                         </svg>
                     </div>
                 </form>
-
                 <!-- Actions -->
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.resulta.export') }}"
@@ -259,6 +258,9 @@
             </div>
         </div>
     </div>
+
+
+
 
     <!-- User Statistics Dropdown -->
     <div id="dropdownUser"
