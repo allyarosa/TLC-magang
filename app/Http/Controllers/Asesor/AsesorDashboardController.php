@@ -70,13 +70,6 @@ class AsesorDashboardController extends Controller
         ]);
     }
 
-    return view('dashboard.asesor.listasesi', [
-            'levelB' => $levelB,
-            'kategori' => $kategori,
-            'search' => $search,
-        ]);
-    }
-
     public function listAsesiC(Request $request)
     {
         $kategori = $request->input('kategori');

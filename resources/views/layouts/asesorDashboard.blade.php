@@ -262,7 +262,6 @@
                 </div>
             </div>
         </div>
-        </div>
     </header>
 
     <!-- Sidebar -->
