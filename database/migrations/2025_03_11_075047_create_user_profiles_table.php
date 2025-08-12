@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('tempat_lahir', 25)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
-            $table->char('no_wa', 13)->nullable();
+            $table->char('no_wa', 15)->nullable();
             $table->string('profile_image', 150)->nullable();
             $table->string('custom_instansi', 40)->nullable();
 

@@ -137,7 +137,7 @@
                             Tanyakan langsung, diskusi langsung, belajar langsung. Terhubung dengan para expert dan mentor bersertifikat untuk memecahkan kasus nyata yang kamu hadapi di kelas atau proyekmu.
                         </p>
                         <div class="text-right">
-                            <a href="#" class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
+                            <a href="https://chat.whatsapp.com/GpICk4Co6H1Fv3kgnxhRJ5" class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
                                 Ke forum diskusi <span class="ml-1">&rarr;</span>
                             </a>
                         </div>

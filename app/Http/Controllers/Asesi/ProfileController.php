@@ -37,13 +37,13 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $provinces = Province::all();
-    
+
         // Jika belum ada profil, buat baru
         if (session()->has('payment_redirect')) {
             $redirectInfo = session('payment_redirect');
             session()->flash('warning', $redirectInfo['message']);
         }
-    
+
         if (!$user->userProfile) {
             UserProfile::create([
                 'user_id' => $user->id,
@@ -51,18 +51,30 @@ class ProfileController extends Controller
             ]);
             $user->refresh();
         }
-    
+
         return view('dashboard.asesi.profile', compact('user', 'provinces'));
     }
 
 
     public function update(Request $request)
     {
+        // Clean no_wa before validation and processing
+        $cleanedNoWa = str_replace(' ', '', $request->input('no_wa'));
+        // if (\Illuminate\Support\Str::startsWith($cleanedNoWa, '+62')) {
+        //     $cleanedNoWa = \Illuminate\Support\Str::after($cleanedNoWa, '+62');
+        // }
+        $cleanedNoWa = preg_replace('/[^0-9]/', '', $cleanedNoWa); // Ensure only digits
+        $request->merge(['no_wa' => $cleanedNoWa]);
+        // $request->merge([
+        //     'no_wa' => str_replace(' ', '', $request->no_wa),
+        // ]);
+
+
         $user = Auth::user();
-        
+
         // Check if user comes from payment redirect
         $isFromPayment = session()->has('payment_redirect');
-        
+
         // Different validation rules based on source
         if ($isFromPayment) {
             // Complete profile validation for payment users
@@ -91,7 +103,7 @@ class ProfileController extends Controller
                 'district_id' => 'required',
                 'village_id' => 'required',
             ];
-    
+
             $messages = [
                 'profile_image.image' => 'File harus berupa gambar.',
                 'profile_image.mimes' => 'Format file harus jpeg, png, atau jpg.',
@@ -143,7 +155,7 @@ class ProfileController extends Controller
                 'district_id' => 'nullable',
                 'village_id' => 'nullable',
             ];
-    
+
             $messages = [
                 'profile_image.image' => 'File harus berupa gambar.',
                 'profile_image.mimes' => 'Format file harus jpeg, png, atau jpg.',
@@ -151,39 +163,41 @@ class ProfileController extends Controller
                 'nik.digits' => 'NIK harus terdiri dari 16 digit.',
             ];
         }
-    
+
         // Store payment redirect data temporarily before validation
         $paymentRedirectData = null;
         if ($isFromPayment) {
             $paymentRedirectData = session()->get('payment_redirect');
         }
-    
+
         $validator = \Validator::make($request->all(), $rules, $messages);
-    
+
         if ($validator->fails()) {
             // Restore payment redirect session if it was from payment
             if ($paymentRedirectData) {
                 session()->put('payment_redirect', $paymentRedirectData);
             }
-            
+
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput()
-                ->with('error', $isFromPayment ? 
-                    'Mohon lengkapi semua data yang diperlukan untuk melanjutkan pembayaran.' : 
-                    'Terjadi kesalahan dalam validasi data.'
+                ->with(
+                    'error',
+                    $isFromPayment ?
+                        'Mohon lengkapi semua data yang diperlukan untuk melanjutkan pembayaran.' :
+                        'Terjadi kesalahan dalam validasi data.'
                 );
         }
-    
+
         try {
             // Handle profile image upload
             if ($request->hasFile('profile_image')) {
                 if ($user->userProfile && $user->userProfile->profile_image) {
                     Storage::disk('public')->delete($user->userProfile->profile_image);
                 }
-    
+
                 $imagePath = $request->file('profile_image')->store('profile_images', 'public');
-    
+
                 if ($user->userProfile) {
                     $user->userProfile->update(['profile_image' => $imagePath]);
                 } else {
@@ -194,17 +208,34 @@ class ProfileController extends Controller
                     ]);
                 }
             }
-    
+
             // Prepare profile data (only include non-null values for regular users)
             $profileData = [];
             $fieldsToUpdate = [
-                'nama_depan', 'nik', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 
-                'no_wa', 'latar_belakang_pendidikan', 'nama_universitas', 'program_studi', 
-                'tahun_studi', 'instansi', 'custom_instansi', 'profesi', 'lama_masa_kerja',
-                'provinsi', 'kabupaten', 'kecamatan', 'kelurahan', 'province_id', 
-                'regency_id', 'district_id', 'village_id'
+                'nama_depan',
+                'nik',
+                'tempat_lahir',
+                'tanggal_lahir',
+                'jenis_kelamin',
+                'no_wa',
+                'latar_belakang_pendidikan',
+                'nama_universitas',
+                'program_studi',
+                'tahun_studi',
+                'instansi',
+                'custom_instansi',
+                'profesi',
+                'lama_masa_kerja',
+                'provinsi',
+                'kabupaten',
+                'kecamatan',
+                'kelurahan',
+                'province_id',
+                'regency_id',
+                'district_id',
+                'village_id'
             ];
-    
+
             foreach ($fieldsToUpdate as $field) {
                 if ($isFromPayment) {
                     // For payment users, include all fields
@@ -216,7 +247,7 @@ class ProfileController extends Controller
                     }
                 }
             }
-    
+
             // Update or create user profile
             if ($user->userProfile) {
                 $user->userProfile->update($profileData);
@@ -224,26 +255,26 @@ class ProfileController extends Controller
                 $profileData['user_id'] = $user->id;
                 UserProfile::create($profileData);
             }
-    
+
             // Update user name if nama_depan is provided and different
             if ($request->has('nama_depan') && $request->nama_depan && $user->name !== $request->nama_depan) {
                 $user->update(['name' => $request->nama_depan]);
             }
-    
+
             // Handle payment redirect logic
             if ($isFromPayment) {
                 $user->load('userProfile');
                 if ($user->isProfileComplete()) {
                     $redirectInfo = session()->get('payment_redirect');
                     session()->forget('payment_redirect');
-    
+
                     // Build redirect URL properly
                     if (isset($redirectInfo['route_name']) && isset($redirectInfo['parameters'])) {
                         $redirectUrl = route($redirectInfo['route_name'], $redirectInfo['parameters']);
                     } else {
                         $redirectUrl = $redirectInfo['route'] ?? route('payments.index');
                     }
-    
+
                     return redirect($redirectUrl)
                         ->with('success', 'Profil berhasil dilengkapi! Silakan lanjutkan pembayaran Anda.')
                         ->with('info', $redirectInfo['message'] ?? null);
@@ -254,22 +285,21 @@ class ProfileController extends Controller
                         ->with('warning', 'Profil berhasil diperbarui, namun masih ada beberapa data yang perlu dilengkapi untuk melanjutkan pembayaran.');
                 }
             }
-    
+
             // Regular update success
             return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
-    
         } catch (\Exception $e) {
             // Restore payment redirect session on error
             if ($paymentRedirectData) {
                 session()->put('payment_redirect', $paymentRedirectData);
             }
-            
+
             \Log::error('Profile Update Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui profil. Silakan coba lagi.');
         }
-    }            
-    
-        public function uploadPhoto(Request $request)
+    }
+
+    public function uploadPhoto(Request $request)
     {
         $request->validate([
             'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
@@ -279,18 +309,18 @@ class ProfileController extends Controller
             'profile_image.mimes' => 'Format file harus jpeg, png, atau jpg.',
             'profile_image.max' => 'Ukuran file maksimal 2MB.'
         ]);
-    
+
         try {
             $user = Auth::user();
-            
+
             // Hapus foto lama jika ada
             if ($user->userProfile && $user->userProfile->profile_image) {
                 Storage::disk('public')->delete($user->userProfile->profile_image);
             }
-            
+
             // Upload foto baru
             $imagePath = $request->file('profile_image')->store('profile_images', 'public');
-            
+
             // Update atau buat profile
             if ($user->userProfile) {
                 $user->userProfile->update(['profile_image' => $imagePath]);
@@ -301,15 +331,14 @@ class ProfileController extends Controller
                     'profile_image' => $imagePath
                 ]);
             }
-            
+
             return redirect()->back()->with('success', 'Foto profile berhasil diperbarui!');
-            
         } catch (\Exception $e) {
             \Log::error('Upload Photo Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload foto.');
         }
     }
-    
+
     protected function getLocationNames($request)
     {
         return [

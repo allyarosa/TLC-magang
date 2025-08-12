@@ -18,7 +18,7 @@
 
     <div class="bg-white shadow-md rounded-lg p-6">
         {{-- <h2 class="text-2xl font-bold mb-4">Threads</h2> --}}
-        <div class="threads-container">
+        <div wire:poll class="threads-container">
             @forelse ($threads as $thread)
             <div class="mb-4 pb-4 border-b border-gray-200">
                 <div class="flex justify-between items-center">
