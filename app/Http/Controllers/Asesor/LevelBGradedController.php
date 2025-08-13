@@ -48,7 +48,7 @@ class LevelBGradedController extends Controller
         }
     }
 
-    public function storeAssessmentAsesi(StoreAssessmentRequest $request, string $id)
+    public function storeAssessmentAsesi(StoreAssessmentRequest $request, String $id)
     {
         $decoded = Hashids::decode($id);
 
@@ -66,11 +66,15 @@ class LevelBGradedController extends Controller
 
         $levelB = LevelBSubmission::find($id);
         $user = User::where('id', $levelB->user_id)->first();
+
+        // Sanitize the comment input
+        $cleaned_comment = strip_tags($request->comment_asesor);
+
         $levelB->update([
             'score' => $request->score,
             'status' => $request->status,
             'is_passed' => $request->assessment,
-            'comment_asesor' => $request->comment_asesor,
+            'comment_asesor' => $cleaned_comment,
         ]);
 
         $category = null;
@@ -85,8 +89,8 @@ class LevelBGradedController extends Controller
             'category' => $category,
             'file_ppt' => $levelB->file_ppt ?? null,
             'modul_ajar' => $levelB->modul_ajar ?? null,
-            'score' => 100,
-            'comment_asesor' => $request->comment_asesor,
+            'score' => $levelB->score,
+            'comment_asesor' => $cleaned_comment,
         ]);
 
 
@@ -99,7 +103,6 @@ class LevelBGradedController extends Controller
                 $user->givePermissionTo('PPT_COMPLETED');
                 $user->givePermissionTo('PPT_UPLOAD');
             }
-            
         } elseif ($request->assessment === 'rejected') {
             if ($levelB->modul_ajar) {
                 $user->revokePermissionTo('MODUL_AJAR');
@@ -109,7 +112,7 @@ class LevelBGradedController extends Controller
                 $levelB->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
             }
         }
-        
+
         event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');
         return redirect()->route('asesor.list-asesi');

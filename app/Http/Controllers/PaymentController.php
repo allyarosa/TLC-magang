@@ -56,6 +56,8 @@ class PaymentController extends Controller
                 return view('payments.createB', ['level' => $level]);
             case '3':
                 return view('payments.createC', ['level' => $level]);
+            case '4':
+                return view('payments.createAll', ['level' => $level]);
             default:
                 return view('payments.create', ['level' => $level]);
         }
@@ -64,7 +66,6 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
-        
         $user = User::with('userProfile')->where('id', Auth::id())->first();
 
         if (!$user->isProfileComplete()) {
@@ -144,7 +145,6 @@ class PaymentController extends Controller
 
             // Redirect to checkout page
             return redirect()->route('payments.checkout', ['id' => $payment->id]);
-
         } catch (\Exception $e) {
             \Log::error('Midtrans Error:', [
                 'message' => $e->getMessage(),
@@ -262,6 +262,9 @@ class PaymentController extends Controller
                 break;
             case 3:
                 $user->givePermissionTo('access_level_C');
+                break;
+            case 4:
+                $user->givePermissionTo('access_level_C', 'access_level_B', 'access_level_A');
                 break;
             default:
                 break;

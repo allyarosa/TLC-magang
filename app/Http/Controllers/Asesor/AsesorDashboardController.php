@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Asesor;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\LevelBSubmission;
 use App\Models\LevelCSubmission;
 use App\Models\User;
@@ -10,8 +11,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Models\LevelBHistory;
+use App\Models\LevelCHistory;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use App\Models\UserAnswerC;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\AsesorCExport;
 
 class AsesorDashboardController extends Controller
 {
@@ -21,15 +27,19 @@ class AsesorDashboardController extends Controller
         $users = User::role('asesi')->get();
         $levelBPendingCount = LevelBSubmission::where('status', 'pending')->count();
         $levelBReviewedCount = LevelBSubmission::where('status', 'reviewed')->count();
+        $levelCPendingCount = LevelCSubmission::where('status', 'pending')->count();
+        $levelCReviewedCount = LevelCSubmission::where('status', 'reviewed')->count();
 
         $asesiEligibleCount = $users->filter(function ($user) {
-            return $user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B');
+            return $user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B') && $user->hasPermissionTo('access_level_C');
         })->count();
+        $levelPendingCount = $levelBPendingCount + $levelCPendingCount;
+        $levelReviewedCount = $levelBReviewedCount + $levelCReviewedCount;
 
         return view('dashboard.asesor.dashboard', [
             'asesiEligible' => $asesiEligibleCount ?: 'Belum Ada',
-            'levelBPending' => $levelBPendingCount ?: 'Belum Ada',
-            'levelBReviewed' => $levelBReviewedCount ?: 'Belum Ada',
+            'levelPendingCount' => $levelPendingCount ?: 'Belum Ada',
+            'levelReviewedCount' => $levelReviewedCount ?: 'Belum Ada',
         ]);
     }
 
@@ -60,20 +70,49 @@ class AsesorDashboardController extends Controller
         ]);
     }
 
-    public function listAsesiC()
+    public function listAsesiC(Request $request)
     {
-        // $kategori = $request->input('kategori');
-        // $search = $request->input('search');
+        $kategori = $request->input('kategori');
+        $search = $request->input('search');
+        $sort = $request->input('sort', 'latest'); // Default sort by latest
 
-        $query = LevelCSubmission::with('user');
-        $levelB = $query->latest()->paginate(10)->withQueryString();
+        $query = LevelCSubmission::with('user')
+            ->when(!empty($search), function ($q) use ($search) {
+                $q->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', '%' . $search . '%');
+                });
+            })
+            ->when($kategori === 'essay', function ($q) {
+                $q->where('category', 'essay');
+            })
+            ->when($kategori === 'video', function ($q) {
+                $q->where('category', 'video');
+            });
+
+        // Apply sorting
+        if ($sort === 'name_asc') {
+            $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
+                ->orderBy('users.name', 'asc')
+                ->select('level_c_submissions.*');
+        } elseif ($sort === 'name_desc') {
+            $query->join('users', 'level_c_submissions.user_id', '=', 'users.id')
+                ->orderBy('users.name', 'desc')
+                ->select('level_c_submissions.*');
+        } elseif ($sort === 'oldest') {
+            $query->oldest();
+        } else { // Default to latest
+            $query->latest();
+        }
+
+        $levelC = $query->paginate(10)->withQueryString();
 
         return view('dashboard.asesor.listasesiC', [
-            'levelB' => $levelB,
+            'levelC' => $levelC,
+            'search' => $search,
+            'kategori' => $kategori,
+            'sort' => $sort,
         ]);
     }
-
-
 
     // Simple View Methods
     public function notifikasi()
@@ -89,10 +128,19 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.formpenilaian');
     }
 
-    public function riwayatPenilaian()
+    public function riwayatPenilaian(Request $request)
     {
-        $history = LevelBHistory::with('user')->latest()->paginate(10);
-        return view('dashboard.asesor.riwayatpenilaian', compact('history'));
+        $search = $request->input('search');
+        $query = LevelBHistory::with('user');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $history = $query->latest()->paginate(10);
+        return view('dashboard.asesor.riwayatpenilaian', compact('history', 'search'));
     }
 
     public function riwayatPenilaianDetail(string $id)
@@ -120,10 +168,92 @@ class AsesorDashboardController extends Controller
         return view('dashboard.asesor.riwayataktifitas');
     }
 
-    public function downloadNilai()
+    public function riwayatPenilaianC(Request $request)
     {
-        return view('dashboard.asesor.downloadnilai');
+        $search = $request->input('search');
+        $query = LevelCHistory::with('user');
+
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $history = $query->latest()->paginate(10);
+        return view('dashboard.asesor.riwayatpenilaianC', compact('history', 'search'));
     }
+
+    public function exportC()
+    {
+        return Excel::download(new AsesorCExport, 'riwayat_penilaian_c.xlsx');
+    }
+
+    public function riwayatPenilaianCDetail(string $id)
+    {
+        $decoded = Hashids::decode($id);
+
+        if (empty($decoded)) {
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
+                'encoded_id' => $id,
+                'reason' => 'ID tidak valid atau tidak dapat didecode',
+                'ip_address' => request()->ip(),
+                'user_id' => auth()->id(),
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $id = $decoded[0];
+        $detail = LevelCHistory::with('user')->findOrFail($id);
+        return view('dashboard.asesor.riwayatpenilaiandetailC', compact('detail'));
+    }
+
+
+    public function downloadNilai(Request $request)
+    {
+        $kategori = $request->input('kategori');
+        $month = $request->input('month');
+
+        $levelBQuery = LevelBHistory::with('user');
+        $levelCQuery = LevelCHistory::with('user');
+
+        if ($kategori === 'level_b') {
+            $levelCQuery->where('id', -1); // Kosongkan level C
+        }
+        if ($kategori === 'level_c') {
+            $levelBQuery->where('id', -1); // Kosongkan level B
+        }
+
+        if ($month) {
+            $year = substr($month, 0, 4);
+            $mon = substr($month, 5, 2);
+            $levelBQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+            $levelCQuery->whereYear('created_at', $year)->whereMonth('created_at', $mon);
+        }
+
+        $levelB = $levelBQuery->latest()->get();
+        $levelC = $levelCQuery->latest()->get();
+
+        $history = $levelB->concat($levelC)->sortByDesc('created_at');
+
+        // Gabungkan semua tanggal created_at lalu ambil distinct month
+        $allDates = LevelBHistory::select('created_at')->get()
+            ->concat(LevelCHistory::select('created_at')->get())
+            ->map(function ($item) {
+                return Carbon::parse($item->created_at)->format('Y-m');
+            })
+            ->unique()
+            ->sortDesc()
+            ->values();
+
+        return view('dashboard.asesor.downloadnilai', [
+            'history' => $history,
+            'kategori' => $kategori,
+            'months' => $allDates,
+            'selectedMonth' => $month,
+        ]);
+    }
+
 
     // Profile Methods
     public function profileSetting()

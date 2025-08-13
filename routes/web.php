@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
 use App\Exports\RiwayatPenilaianBExport;
+use App\Exports\RiwayatPenilaianCExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,11 @@ use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
+use App\Http\Controllers\Asesor\LevelCGradedController;
+use App\Livewire\Asesi\CertificationDetail;
+use App\Livewire\Forum;
+use App\Events\MyEvent;
+use App\Events\testing;
 
 Route::get('register2', function () {
     return view('register2');
@@ -109,6 +115,10 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     Route::get('/sertifikat-a/{id}', [SertifikasiController::class, 'sertifikatA'])->name('asesi.sertifikat.a');
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
+
+    // riwarayat sertifikasi
+    Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
+
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
@@ -148,8 +158,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     });
 });
 
-
-
+Route::get('/forum', Forum::class)->name('forum');
 
 Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
@@ -200,8 +209,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/asesor/{id}/edit', [AdminDashboardController::class, 'asesorEdit'])->name('admin.asesor.edit');
     Route::put('/dashboard/asesor/{id}', [AdminDashboardController::class, 'asesorUpdate'])->name('admin.asesor.update');
 
-    Route::get('/dashboard/admins', [AdminDashboardController::class, 'adminsIndex'])->name('admin.admins.index');
-    Route::get('/dashboard/admins/create', [AdminDashboardController::class, 'adminsCreate'])->name('admin.admins.create');
+    Route::get('//admins', [AdminDashboardController::class, 'adminsIndex'])->name('admin.admins.index');
+    Route::get('/dashboard/adminsdashboard/create', [AdminDashboardController::class, 'adminsCreate'])->name('admin.admins.create');
     Route::post('/dashboard/admins/store', [AdminDashboardController::class, 'adminsStore'])->name('admin.admins.store');
     Route::delete('/dashboard/admins/delete/{id}', [AdminDashboardController::class, 'adminsDestroy'])->name('admin.admins.destroy');
     Route::get('/dashboard/admins/{id}', [AdminDashboardController::class, 'adminsShow'])->name('admin.admins.show');
@@ -236,6 +245,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/a/category/show/{id}', [LevelAController::class, 'categoriesShow'])->name('admin.categories.a.show');
     Route::put('/dashboard/level/a/category/update/{id}', [LevelAController::class, 'categoriesUpdate'])->name('admin.categories.a.update');
 
+    Route::get('/dashboard/level/b/category', [LevelBController::class, 'categoriesIndex'])->name('admin.categories.b.index');
+    Route::get('/dashboard/level/b/category/{id}/edit', [LevelBController::class, 'categoriesEdit'])->name('admin.categories.b.edit');
+    Route::get('/dashboard/level/b/category/show/{id}', [LevelBController::class, 'categoriesShow'])->name('admin.categories.b.show');
+    Route::put('/dashboard/level/b/category/update/{id}', [LevelBController::class, 'categoriesUpdate'])->name('admin.categories.b.update');
+
+    Route::get('/dashboard/level/c/category', [LevelCController::class, 'categoriesIndex'])->name('admin.categories.c.index');
+    Route::get('/dashboard/level/c/category/{id}/edit', [LevelCController::class, 'categoriesEdit'])->name('admin.categories.c.edit');
+    Route::get('/dashboard/level/c/category/show/{id}', [LevelCController::class, 'categoriesShow'])->name('admin.categories.c.show');
+    Route::put('/dashboard/level/c/category/update/{id}', [LevelCController::class, 'categoriesUpdate'])->name('admin.categories.c.update');
+
     Route::get('/dashboard/level/a/question', [LevelAController::class, 'bankSoalIndex'])->name('admin.question.a.index');
     Route::get('/dashboard/level/a/question/create', [LevelAController::class, 'bankSoalCreate'])->name('admin.question.a.create');
     Route::get('/dashboard/level/a/question/{id}/show', [LevelAController::class, 'bankSoalShow'])->name('admin.question.a.show');
@@ -245,10 +264,24 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/dashboard/level/a/question/{id}/delete', [LevelAController::class, 'bankSoalDestroy'])->name('admin.question.a.destroy');
 
     // Route Level B
-    Route::get('/dashboard/level/b', [LevelBController::class, 'index'])->name('admin.level.b.index');
+    Route::get('/dashboard/level/b', [App\Http\Controllers\Admin\LevelBController::class, 'index'])->name('admin.level.b.index');
+    Route::get('/dashboard/level/b/question', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalIndex'])->name('admin.question.b.index');
+    Route::get('/dashboard/level/b/question/create', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalCreate'])->name('admin.question.b.create');
+    Route::get('/dashboard/level/b/question/{id}/show', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalShow'])->name('admin.question.b.show');
+    Route::post('/dashboard/level/b/question/store', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalStore'])->name('admin.question.b.store');
+    Route::get('/dashboard/level/b/question/{id}/edit', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalEdit'])->name('admin.question.b.edit');
+    Route::put('/dashboard/level/b/question/{id}/update', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalUpdate'])->name('admin.question.b.update');
+    Route::delete('/dashboard/level/b/question/{id}/delete', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalDestroy'])->name('admin.question.b.destroy');
 
     // Route Level C
     Route::get('/dashboard/level/c', [LevelCController::class, 'index'])->name('admin.level.c.index');
+    Route::get('/dashboard/level/c/question', [LevelCController::class, 'bankSoalIndex'])->name('admin.question.c.index');
+    Route::get('/dashboard/level/c/question/create', [LevelCController::class, 'bankSoalCreate'])->name('admin.question.c.create');
+    Route::get('/dashboard/level/c/question/{id}/show', [LevelCController::class, 'bankSoalShow'])->name('admin.question.c.show');
+    Route::post('/dashboard/level/c/question/store', [LevelCController::class, 'bankSoalStore'])->name('admin.question.c.store');
+    Route::get('/dashboard/level/c/question/{id}/edit', [LevelCController::class, 'bankSoalEdit'])->name('admin.question.c.edit');
+    Route::put('/dashboard/level/c/question/{id}/update', [LevelCController::class, 'bankSoalUpdate'])->name('admin.question.c.update');
+    Route::delete('/dashboard/level/c/question/{id}/delete', [LevelCController::class, 'bankSoalDestroy'])->name('admin.question.c.destroy');
 
     // Route Level Settings
     Route::get('/dashboard/level/settings/index', [LevelSettingsController::class, 'index'])->name('admin.level.settings.index');
@@ -298,18 +331,32 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () {
     Route::get('/dashboard', [AsesorDashboardController::class, 'index'])->name('asesor.dashboard');
     Route::get('/list-asesi', [AsesorDashboardController::class, 'listAsesi'])->name('asesor.list-asesi');
+    Route::get('/list-asesi-c', [AsesorDashboardController::class, 'listAsesiC'])->name('asesor.list-asesi-c');
 
     Route::get('/list-asesi/grade/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.asesi');
-    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'ShowGradeDetail'])->name('asesor.gradeB.show');
+    Route::get('/list-asesi/grade/show/{id}', [LevelBGradedController::class, 'showGradingPage'])->name('asesor.gradeB.show');
     Route::post('/list-asesi/grade/{id}', [LevelBGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeB.store');
+
+    Route::get('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'showGradingPage'])->name('asesor.gradeC.asesi');
+    Route::get('/list-asesi-c/grade/show/{id}', [LevelCGradedController::class, 'showGradingPage'])->name('asesor.gradeC.show');
+    Route::post('/list-asesi-c/grade/{id}', [LevelCGradedController::class, 'storeAssessmentAsesi'])->name('asesor.gradeC.store');
 
     Route::get('/notifikasi', [AsesorDashboardController::class, 'notifikasi'])->name('asesor.notifikasi');
     Route::get('/form-penilaian', [AsesorDashboardController::class, 'formPenilaian'])->name('asesor.form-penilaian');
     Route::get('/riwayat-penilaian', [AsesorDashboardController::class, 'riwayatPenilaian'])->name('asesor.riwayat-penilaian');
+    Route::get('/riwayat-penilaian-c', [AsesorDashboardController::class, 'riwayatPenilaianC'])->name('asesor.riwayat-penilaian-c');
     Route::get('/riwayat-penilaian/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianDetail'])->name('asesor.riwayat-penilaian-detail');
+    Route::get('/riwayat-penilaian-c/detail/{id}', [AsesorDashboardController::class, 'riwayatPenilaianCDetail'])->name('asesor.riwayat-penilaian-c-detail');
+
+    // Riwayat Penilainan B export
     Route::get('/riwayat-penilaian/export', function () {
         return Excel::download(new RiwayatPenilaianBExport, 'Riwayat Penilaian B.xlsx');
     })->name('asesor.riwayat-penilaian-b.export');
+    // Riwayat Penilainan C export
+    Route::get('/riwayat-penilaian-c/export', function () {
+        return Excel::download(new RiwayatPenilaianCExport, 'Riwayat Penilaian C.xlsx');
+    })->name('asesor.riwayat-penilaian-c.export');
+
     Route::get('/riwayat-aktifitas', [AsesorDashboardController::class, 'riwayatAktifitas'])->name('asesor.riwayat-aktifitas');
     Route::get('/download-nilai', [AsesorDashboardController::class, 'downloadNilai'])->name('asesor.download-nilai');
     Route::get('/profile-setting', [AsesorDashboardController::class, 'profileSetting'])->name('asesor.profile-setting');
@@ -330,7 +377,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
     Route::post('/testimonials/show-form', [TestimonialController::class, 'showForm'])->name('testimonials.show-form');
     Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
-    
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -406,5 +452,15 @@ Route::get('/real', function () {
 Route::get('/iseng', function () {
     return view('iseng');
 })->name('iseng');
+
+
+// tetsing event gg bisa pertama kali 
+Route::get('/test-event', function () {
+    event(new testing());
+    return 'Event dispatched!';
+});
+
+
+
 
 require __DIR__ . '/auth.php';

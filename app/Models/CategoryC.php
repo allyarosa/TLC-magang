@@ -16,4 +16,9 @@ class CategoryC extends Model
         'status',
         'image_url'
     ];
+
+    public function questionsC()
+    {
+        return $this->hasMany(QuestionC::class);
+    }
 }

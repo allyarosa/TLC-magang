@@ -17,6 +17,8 @@ class CategoryB extends Model
         'image_url'
     ];
 
-
-
+    public function questionsB()
+    {
+        return $this->hasMany(QuestionB::class);
+    }
 }

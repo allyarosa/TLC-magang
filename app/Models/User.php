@@ -122,5 +122,9 @@ class User extends Authenticatable
         return $this->hasMany(ExamSessionC::class);
     }
 
-
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
 }
+

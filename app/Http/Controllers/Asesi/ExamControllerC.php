@@ -3,19 +3,35 @@
 namespace App\Http\Controllers\Asesi;
 
 use App\Models\QuestionC;
-use App\Models\Question_C;
 use App\Models\UserAnswerC;
 use App\Models\ExamSessionC;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
+use App\Models\LevelCSubmission;
+use Dotenv\Util\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ExamControllerC extends Controller
 {
     public function index()
     {
+        $decoded = Hashids::decode($id);
+
+        if (empty($decoded)) {
+            Log::channel('grading')->warning('Gagal decode ID Hashids pada halaman grading.', [
+                'encoded_id' => $id,
+                'reason' => 'ID tidak valid atau tidak dapat didecode',
+                'ip_address' => request()->ip(),
+                'user_id' => auth()->id(),
+                'timestamp' => now()->toDateTimeString(),
+            ]);
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $id = $decoded[0];
         $user = Auth::user();
         $examSession = ExamSessionC::where('user_id', $user->id)
             ->where('is_completed', false)
@@ -134,26 +150,28 @@ class ExamControllerC extends Controller
     {
         $user = Auth::user();
 
-        DB::transaction(function () use ($user) {
-            $examSession = ExamSessionC::where('user_id', $user->id)
-                ->where('is_completed', false)
-                ->first();
+        DB::beginTransaction();
 
-            if ($examSession) {
-                $examSession->update([
-                    'completed_at' => now(),
-                    'is_completed' => true,
-                ]);
-            }
-        });
+        try {
+            // Create submission record
+            LevelCSubmission::create([
+                'user_id' => $user->id,
+                'category' => 'essay',
+                'status' => 'pending',
+                'description' => 'Pengajuan hasil ujian esai untuk dinilai oleh asesor.',
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e->getMessage()); // tampilkan error
+        }
 
         return redirect()->route('exam.completed');
     }
+
 
     public function completed()
     {
         return view('user.sertifikasi.levelC.exam.completed');
     }
-
-
 }

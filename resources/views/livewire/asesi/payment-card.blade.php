@@ -41,7 +41,7 @@
                  <li>✔ Forum diskusi interaktif</li>
                  <li>✔ Akses penuh selama 3 bulan</li>
              </ul>
-             <a href="{{ route('payments.create', $levels[0]->id) }}"
+             <a href="{{ route('payments.create',Vinkla\Hashids\Facades\Hashids::encode($levels[0]->id) }}"
                  class="mt-6 bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105 active:scale-95">
                  Mulai Sekarang
              </a>

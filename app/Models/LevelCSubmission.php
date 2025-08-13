@@ -14,6 +14,7 @@ class LevelCSubmission extends Model
         'url_video',
         'description',
         'is_passed',
+        'status',
         'comment_asesor',
         'score',
     ];
@@ -22,6 +23,4 @@ class LevelCSubmission extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    
 }
