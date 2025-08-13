@@ -756,10 +756,10 @@
                                 {{-- Bagian Bawah: Tombol --}}
                                 <div>
                                     <div class="flex items-center justify-between">
-                                        @if ($user->hasPermissionTo('access_level_A') &&
-                                        $user->hasPermissionTo('access_level_B') &&
+                                        @if ($user->hasPermissionTo('access_level_A') OR
+                                        $user->hasPermissionTo('access_level_B') OR
                                         $user->hasPermissionTo('access_level_C'))
-                                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
+                                        <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
                                             class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
                                             Detail Program
                                         </button>
