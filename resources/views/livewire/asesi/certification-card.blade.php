@@ -290,11 +290,25 @@
         </div>
     </div>
 
-    <p class="text-sl text-gray-500 italic mb-6 ">
-        Ingin Akses ke semua level terkunci? Anda dapat menggunakan paket bundling. Selesaikan pembayaran paket bundling untuk melanjutkannya.
+    @if (
+    !Auth::user()->hasPermissionTo('access_level_A') &&
+    !Auth::user()->hasPermissionTo('access_level_B') &&
+    !Auth::user()->hasPermissionTo('access_level_C')
+    )
+    <p class="text-sm text-gray-500 italic mb-6">
+        Ingin akses ke semua level terkunci? Anda dapat menggunakan paket bundling. Selesaikan pembayaran paket bundling untuk melanjutkannya.
         <a href="{{ route('payments.create', Hashids::encode(4)) }}" class="text-blue-600 underline hover:text-blue-800">
             disini
         </a>
+    </p>
+    @else
+    <p class="text-gray-500 italic mb-6">
+        Anda sudah membayar paket bundling
+    </p>
+    @endif
+
+
+
     </p>
     <script src="{{ asset('assets/js/certificationLevelCard.js') }}"></script>
     <style>

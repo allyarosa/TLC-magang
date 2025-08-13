@@ -649,10 +649,72 @@
                                     <div class="flex items-center space-x-3">
                                         <div class="w-3 h-3 bg-white rounded-full"></div>
                                         <span class="text-sm font-medium">Uji Higher Order Thinking Skills (HOTS)</span>
+=======
+            @php
+            $user = Auth::user();
+            @endphp
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+                <!-- Level A -->
+                <div class="relative group card-hover">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-orange-400 to-orange-500 rounded-3xl blur opacity-20 group-hover:opacity-30">
+                    </div>
+                    <div
+                        class="relative h-[600px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+
+                        {{-- <div class="absolute top-6 right-6 z-20"> --}}
+                        {{-- <span
+                                            class="inline-flex items-center px-4 py-2 bg-orange-500 text-white text-xs font-bold rounded-full pulse-glow">
+                                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            POPULER
+                                        </span> --}}
+                        {{-- </div> --}}
+
+
+                        <div class="absolute inset-0 card-bg-level-a opacity-90"></div>
+
+
+                        <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            <div>
+                                <div class="mb-6">
+                                    <span
+                                        class="inline-flex items-center px-4 py-2 bg-white/20 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                        LEVEL A
+                                    </span>
+                                </div>
+                                <h3 class="text-4xl font-black mb-4 leading-tight">
+                                    {{-- Sertifikasi<br>Dasar --}}
+                                    Teaching Knowledge Certification
+                                </h3>
+                                {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+                                                Fondasi pengajaran efektif untuk semua guru yang ingin memulai perjalanan
+                                                profesional
+                                            </p> --}}
+                            </div>
+
+                            <div>
+                                <div class="grid grid-cols-1 gap-3 mb-8">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Uji Literasi Numerasi</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Uji Pedagogical Content Kowledge (PCK)</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Uji Higher Order Thinking Skills
+                                            (HOTS)</span>
+
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between">
+
                                     @if ($user->hasPermissionTo('access_level_A'))
                                     <button onclick="document.getElementById('modalA').classList.remove('hidden')"
                                         class="bg-white text-orange-600 px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
@@ -665,10 +727,30 @@
                                     </button>
                                     @endif
                                 </div>
+=======
+                                    {{-- <div>
+                                                    <span class="text-3xl font-black">
+                                                        Rp.{{ number_format($levels[0]->price, 0, ',', '.') }}
+                                    </span>
+                                    <span class="block text-sm text-white/70">Per sertifikasi</span>
+                                </div> --}}
+                                @if ($user->hasPermissionTo('access_level_A'))
+                                <button onclick="document.getElementById('modalA').classList.remove('hidden')"
+                                    class="bg-white text-orange-500 px-6 py-3 font-bold rounded-xl hover:bg-orange-50 transition-all  shadow-lg">
+                                    Detail Program
+                                </button>
+                                @else
+                                <button onclick="document.getElementById('modalA').classList.remove('hidden')"
+                                    class="bg-white text-orange-500 px-6 py-3 font-bold rounded-xl hover:bg-orange-50 transition-all  shadow-lg">
+                                    Mulai Sekarang
+                                </button>
+                                @endif
+>>>>>>> f2e4b55fc1319e8b5a9c2ea144648332f9470c23
                             </div>
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                     <!-- Level B -->
                     <div class="relative group card-hover">
 
@@ -687,9 +769,44 @@
                                         Teaching Activation Certification
                                     </h3>
                                     {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+=======
+            </div>
+
+            <!-- Level B -->
+            <div class="relative group card-hover">
+                <div
+                    class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-30">
+                </div>
+                <div
+                    class="relative h-[600px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+
+                    <div class="absolute inset-0 card-bg-level-b opacity-90"></div>
+
+
+                    <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                        <div>
+                            <div class="mb-6">
+                                <span
+                                    class="inline-flex items-center px-4 py-2 bg-white/20 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                    LEVEL B
+                                </span>
+                            </div>
+                            <h3 class="text-4xl font-black mb-4 leading-tight">
+                                Teaching Activation Certification
+                            </h3>
+                            {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+>>>>>>> f2e4b55fc1319e8b5a9c2ea144648332f9470c23
                                                 Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
                                             </p> --}}
+                        </div>
+
+                        <div>
+                            <div class="grid grid-cols-1 gap-3 mb-8">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    <span class="text-sm font-medium">Merancang modul ajar/RPP</span>
                                 </div>
+<<<<<<< HEAD
 
                                 <div>
                                     <div class="grid grid-cols-1 gap-3 mb-8">
@@ -726,11 +843,43 @@
                                             </button>
                                         @endif
                                     </div>
+=======
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    <span class="text-sm font-medium">Menyusun materi ajar (PPT)</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                    <span class="text-sm font-medium">Merancang LKS</span>
+>>>>>>> f2e4b55fc1319e8b5a9c2ea144648332f9470c23
                                 </div>
                             </div>
+
+                            <div class="flex items-center justify-between">
+                                {{-- <div>
+                                                    <span class="text-3xl font-black">
+                                                        Rp.{{ number_format($levels[1]->price, 0, ',', '.') }}
+                                </span>
+                                <span class="block text-sm text-white/70">Per sertifikasi</span>
+                            </div> --}}
+                            @if ($user->hasPermissionTo('level_A_completed'))
+                            <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                class="bg-white text-blue-600 px-6 py-3 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                Mulai Sekarang
+                            </button>
+                            @else
+                            <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                class="bg-white text-blue-600 px-6 py-3 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                Detail Program
+                            </button>
+                            @endif
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
+<<<<<<< HEAD
                     <!-- Level C -->
                     <div class="relative group card-hover">
     <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
@@ -755,6 +904,74 @@
                     <div class="flex items-center space-x-3">
                         <div class="w-3 h-3 bg-white rounded-full"></div>
                         <span class="text-sm font-medium">Self Review</span>
+=======
+        <!-- Level C -->
+        <div class="relative group card-hover">
+            <div
+                class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-3xl blur opacity-20 group-hover:opacity-30">
+            </div>
+            <div
+                class="relative h-[600px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+
+                {{-- <div class="absolute top-6 right-6 z-20">
+                                        <span
+                                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-full pulse-glow">
+                                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                            </svg>
+                                            PREMIUM
+                                        </span>
+                                    </div> --}}
+
+
+                <div class="absolute inset-0 card-bg-level-c opacity-90"></div>
+
+
+                <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                    <div>
+                        <div class="mb-6">
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-white/20 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                LEVEL C
+                            </span>
+                        </div>
+                        <h3 class="text-4xl font-black mb-4 leading-tight">
+                            Teaching Mastery Certification
+                        </h3>
+                        {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+                                                Pengajaran kreatif tingkat mahir untuk pemimpin pendidikan masa depan
+                                            </p> --}}
+                    </div>
+
+                    <div>
+                        <div class="grid grid-cols-1 gap-3 mb-8">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                                <span class="text-sm font-medium">Melaksanakan Pengajaran berbasis TMF</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                                <span class="text-sm font-medium">Self Review</span>
+                            </div>
+                            {{-- <div class="flex items-center space-x-3">
+                                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                                    <span class="text-sm font-medium">Publikasi Karya Ilmiah</span>
+                                                </div> --}}
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            {{-- <div>
+                                                    <span class="text-3xl font-black">
+                                                        Rp.{{ number_format($levels[2]->price, 0, ',', '.') }}
+                            </span>
+                            <span class="block text-sm text-white/70">Per sertifikasi</span>
+                        </div> --}}
+                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
+                            class="bg-white text-blue-700 px-6 py-3 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                            Detail Program
+                        </button>
+>>>>>>> f2e4b55fc1319e8b5a9c2ea144648332f9470c23
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
@@ -786,7 +1003,17 @@
                             Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
                         </p> --}}
             </div>
+        </div>
+        </div>
+        <!-- Level Bundling -->
+        <div class="relative group card-hover">
+            <div
+                class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-3xl blur opacity-20 group-hover:opacity-30">
+            </div>
+            <div
+                class="relative h-[600px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
 
+<<<<<<< HEAD
             <div>
                 <div class="grid grid-cols-1 gap-3 mb-8">
                     <div class="flex items-center space-x-3">
@@ -814,6 +1041,74 @@
     </div>
 </div>
 
+=======
+                {{-- <div class="absolute top-6 right-6 z-20">
+                                        <span
+                                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-full pulse-glow">
+                                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                            </svg>
+                                            PREMIUM
+                                        </span>
+                                    </div> --}}
+
+
+                <div class="absolute inset-0 card-bg-level-c opacity-90"></div>
+
+
+                <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                    <div>
+                        <div class="mb-6">
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-white/20 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                LEVEL
+                            </span>
+                        </div>
+                        <h3 class="text-4xl font-black mb-4 leading-tight">
+                            Teaching Mastery Certification
+                        </h3>
+                        {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+                                                Pengajaran kreatif tingkat mahir untuk pemimpin pendidikan masa depan
+                                            </p> --}}
+                    </div>
+
+                    <div>
+                        <div class="grid grid-cols-1 gap-3 mb-8">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                                <span class="text-sm font-medium">Melaksanakan Pengajaran berbasis TMF</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-white rounded-full"></div>
+                                <span class="text-sm font-medium">Self Review</span>
+                            </div>
+                            {{-- <div class="flex items-center space-x-3">
+                                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                                    <span class="text-sm font-medium">Publikasi Karya Ilmiah</span>
+                                                </div> --}}
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            {{-- <div>
+                                                    <span class="text-3xl font-black">
+                                                        Rp.{{ number_format($levels[2]->price, 0, ',', '.') }}
+                            </span>
+                            <span class="block text-sm text-white/70">Per sertifikasi</span>
+                        </div> --}}
+                        <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
+                            class="bg-white text-blue-700 px-6 py-3 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                            Detail Program
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+>>>>>>> f2e4b55fc1319e8b5a9c2ea144648332f9470c23
         <script>
             document.addEventListener('mousemove', (e) => {
                 if (Math.random() > 0.9) {
@@ -2021,4 +2316,8 @@
 <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="{{ asset('assets/js/asesiDashboard.js') }}" defer></script>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> f2e4b55fc1319e8b5a9c2ea144648332f9470c23
