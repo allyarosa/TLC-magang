@@ -290,22 +290,59 @@
         </div>
     </div>
 
+    {{-- Tidak punya akses sama sekali --}}
     @if (
     !Auth::user()->hasPermissionTo('access_level_A') &&
     !Auth::user()->hasPermissionTo('access_level_B') &&
     !Auth::user()->hasPermissionTo('access_level_C')
     )
     <p class="text-sm text-gray-500 italic mb-6">
-        Ingin akses ke semua level terkunci? Anda dapat menggunakan paket bundling. Selesaikan pembayaran paket bundling untuk melanjutkannya.
-        <a href="{{ route('payments.create', Hashids::encode(4)) }}" class="text-blue-600 underline hover:text-blue-800">
+        Ingin akses ke semua level terkunci? Anda dapat menggunakan paket bundling.
+        Selesaikan pembayaran paket bundling untuk melanjutkannya.
+        <a href="{{ route('payments.create', Hashids::encode(4)) }}"
+            class="text-blue-600 underline hover:text-blue-800">
             disini
         </a>
     </p>
-    @else
+
+    {{-- Punya semua akses --}}
+    @elseif (
+    Auth::user()->hasPermissionTo('access_level_A') &&
+    Auth::user()->hasPermissionTo('access_level_B') &&
+    Auth::user()->hasPermissionTo('access_level_C')
+    )
     <p class="text-gray-500 italic mb-6">
-        Anda sudah membayar paket bundling
+        Anda sudah mendapatkan semua level
+    </p>
+
+    {{-- Punya akses A dan B --}}
+    @elseif (
+    Auth::user()->hasPermissionTo('access_level_A') &&
+    Auth::user()->hasPermissionTo('access_level_B')
+    )
+    <p class="text-gray-500 italic mb-6">
+        Anda sudah mendapatkan akses level A dan B
+    </p>
+
+    {{-- Hanya akses A --}}
+    @elseif (Auth::user()->hasPermissionTo('access_level_A'))
+    <p class="text-gray-500 italic mb-6">
+        Anda sudah mendapatkan akses level A
+    </p>
+
+    {{-- Hanya akses B --}}
+    @elseif (Auth::user()->hasPermissionTo('access_level_B'))
+    <p class="text-gray-500 italic mb-6">
+        Anda sudah mendapatkan akses level B
+    </p>
+
+    {{-- Hanya akses C --}}
+    @elseif (Auth::user()->hasPermissionTo('access_level_C'))
+    <p class="text-gray-500 italic mb-6">
+        Anda sudah mendapatkan akses level C
     </p>
     @endif
+
 
 
 

@@ -6,118 +6,82 @@
 <section class="bg-abu">
 
     {{-- Main Tampilan Awal --}}
-    <main id="beranda"
-        class="w-full px-5 py-16 bg-gradient-to-br from-blue-50 via-white to-orange-50 relative overflow-hidden">
+    <main id="beranda" class="w-full px-5 py-16 bg-gradient-to-br from-blue-50 via-white to-orange-50 relative overflow-hidden">
         <!-- Warna Baground -->
         <div class="absolute inset-0 pointer-events-none">
             <div class="absolute top-10 left-10 w-2 h-2 bg-orange-300 rounded-full animate-sparkle"></div>
-            <div class="absolute top-20 right-20 w-3 h-3 bg-blue-300 rounded-full animate-sparkle"
-                style="animation-delay: 1s;"></div>
-            <div class="absolute top-40 left-1/4 w-1 h-1 bg-yellow-400 rounded-full animate-sparkle"
-                style="animation-delay: 2s;"></div>
-            <div class="absolute bottom-40 right-1/3 w-2 h-2 bg-pink-300 rounded-full animate-sparkle"
-                style="animation-delay: 0.5s;"></div>
+            <div class="absolute top-20 right-20 w-3 h-3 bg-blue-300 rounded-full animate-sparkle" style="animation-delay: 1s;"></div>
+            <div class="absolute top-40 left-1/4 w-1 h-1 bg-yellow-400 rounded-full animate-sparkle" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-40 right-1/3 w-2 h-2 bg-pink-300 rounded-full animate-sparkle" style="animation-delay: 0.5s;"></div>
         </div>
 
-        <div
-            class="container mx-auto max-w-7xl grid grid-cols-12 transition-all duration-500 ease-in-out mb-14 gap-6 relative z-10">
+        <div class="container mx-auto max-w-7xl grid grid-cols-12 transition-all duration-500 ease-in-out mb-14 gap-6 relative z-10">
             <!-- Sebelah kiri -->
             <div class="col-span-12 lg:col-span-7 p-5 transform transition-all duration-500">
                 <!-- Program Unggulan -->
-                <div class="inline-flex items-center bg-orange-100 text-[#1D4E89] px-4 py-2 rounded-full mb-6 backdrop-blur-sm border border-orange-200 hover-lift animate-glow-border cursor-pointer magnetic-effect"
-                    onmouseover="this.classList.add('animate-wiggle')"
-                    onmouseleave="this.classList.remove('animate-wiggle')"
-                    onclick="this.classList.add('animate-shake'); setTimeout(() => this.classList.remove('animate-shake'), 500)">
+                <div class="inline-flex items-center bg-orange-100 text-[#1D4E89] px-4 py-2 rounded-full mb-6 backdrop-blur-sm border border-orange-200 hover-lift animate-glow-border cursor-pointer magnetic-effect" onmouseover="this.classList.add('animate-wiggle')" onmouseleave="this.classList.remove('animate-wiggle')" onclick="this.classList.add('animate-shake'); setTimeout(() => this.classList.remove('animate-shake'), 500)">
                     <span class="text-[#E76F51] mr-2 animate-bounce-subtle">✨</span>
                     <span class="text-sm font-medium">PROGRAM UNGGULAN 2025</span>
                     <span class="text-[#E76F51] ml-2 animate-bounce-subtle" style="animation-delay: 0.3s;">✨</span>
                 </div>
 
                 <div class="animate-fadeIn">
-                    <h1
-                        class="text-5xl lg:text-6xl font-extrabold leading-tight mt-2 text-[#1D4E89] hover:cursor-default">
+                    <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight mt-2 text-[#1D4E89] hover:cursor-default">
                         <span class="block hover:animate-text-glow transition-all duration-300">Sertifikasi Guru</span>
-                        <span class="block hover:animate-text-glow transition-all duration-300"
-                            style="transition-delay: 0.1s;">Modern di</span>
+                        <span class="block hover:animate-text-glow transition-all duration-300" style="transition-delay: 0.1s;">Modern di</span>
                         <span class="text-[#E76F51]  hover:scale-105 transition-transform duration-300 inline-block">TLC
                             Program</span>
                     </h1>
-                    <p
-                        class="text-xl text-gray-700 mt-6 leading-relaxed max-w-2xl hover:text-gray-800 transition-colors duration-300">
+                    <p class="text-xl text-gray-700 mt-6 leading-relaxed max-w-2xl hover:text-gray-800 transition-colors duration-300">
                         Program pengembangan kompetensi guru yang dirancang untuk transformasi pendidikan Indonesia.
                         Tingkatkan kualifikasi dan perluas pengaruh Anda dalam komunitas pendidikan.
                     </p>
                 </div>
 
                 <div class="flex flex-wrap my-8 gap-4">
-                    <a href="#sertifikasi"
-                        class="button-primary bg-[#1D4E89] hover:bg-[#14406B] text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center relative z-10">
+                    <a href="#sertifikasi" class="button-primary bg-[#1D4E89] hover:bg-[#14406B] text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center relative z-10">
                         <span>Mulai Sertifikasi</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform duration-300"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </a>
-                    <a href="#testimoni"
-                        class="bg-transparent border-2 border-[#E76F51] text-[#E76F51] hover:bg-[#E76F51] hover:text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 hover-lift relative overflow-hidden group">
+                    <a href="#testimoni" class="bg-transparent border-2 border-[#E76F51] text-[#E76F51] hover:bg-[#E76F51] hover:text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 hover-lift relative overflow-hidden group">
                         <span class="relative z-10">Lihat Testimoni TLC Program</span>
-                        <div
-                            class="absolute inset-0 bg-[#E76F51] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                        <div class="absolute inset-0 bg-[#E76F51] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
                         </div>
                     </a>
                 </div>
 
                 <!-- Kurikulum -->
                 <div class="grid grid-cols-2 gap-4 mt-12">
-                    <div
-                        class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
-                        <div
-                            class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
+                    <div class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                        <div class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <span class="font-medium">Kurikulum Tervalidasi</span>
                     </div>
-                    <div
-                        class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
-                        <div
-                            class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
+                    <div class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                        <div class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <span class="font-medium">Sertifikat Terakreditasi</span>
                     </div>
-                    <div
-                        class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
-                        <div
-                            class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
+                    <div class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                        <div class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <span class="font-medium">Mentor Berpengalaman</span>
                     </div>
-                    <div
-                        class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
-                        <div
-                            class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
+                    <div class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                        <div class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white transition-transform duration-300 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <span class="font-medium">Jaringan Pendidik Nasional</span>
@@ -127,44 +91,34 @@
 
             <!-- Sebalah Kanan -->
             <div class="col-span-12 lg:col-span-5 relative flex items-center justify-center">
-                <div
-                    class="interactive-card bg-white/90 backdrop-blur-lg border border-blue-200 rounded-3xl p-8 w-full max-w-md shadow-3xl hover:shadow-3xl transition-all duration-500 animate-card-float shadow-glow">
+                <div class="interactive-card bg-white/90 backdrop-blur-lg border border-blue-200 rounded-3xl p-8 w-full max-w-md shadow-3xl hover:shadow-3xl transition-all duration-500 animate-card-float shadow-glow">
                     <!-- Icon -->
                     <div class="flex justify-center mb-6">
-                        <div class="w-16 h-16 bg-[#E76F51]/20 rounded-full flex items-center justify-center animate-pulse-glow hover:scale-110 transition-transform duration-300 cursor-pointer"
-                            onclick="this.style.animation = 'pulse-glow 0.5s ease-in-out'; setTimeout(() => this.style.animation = 'pulse-glow 3s ease-in-out infinite', 500)">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-8 w-8 text-[#E76F51] transition-transform duration-300 hover:rotate-12"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        <div class="w-16 h-16 bg-[#E76F51]/20 rounded-full flex items-center justify-center animate-pulse-glow hover:scale-110 transition-transform duration-300 cursor-pointer" onclick="this.style.animation = 'pulse-glow 0.5s ease-in-out'; setTimeout(() => this.style.animation = 'pulse-glow 3s ease-in-out infinite', 500)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#E76F51] transition-transform duration-300 hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                             </svg>
                         </div>
                     </div>
 
-                    <h3
-                        class="text-2xl font-bold text-[#1D4E89] text-center mb-2 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <h3 class="text-2xl font-bold text-[#1D4E89] text-center mb-2 hover:scale-105 transition-transform duration-300 cursor-default">
                         Teaching & Learning Certification
                     </h3>
-                    <p
-                        class="text-gray-700 text-center mb-8 leading-relaxed hover:text-gray-800 transition-colors duration-300">
+                    <p class="text-gray-700 text-center mb-8 leading-relaxed hover:text-gray-800 transition-colors duration-300">
                         Kembangkan keterampilan mengajar Anda dan dapatkan sertifikasi yang diakui secara nasional
                     </p>
 
                     <!-- Guru Tersertifikasi -->
                     <div class="grid grid-cols-3 gap-4 text-center">
-                        <div class="stat-card bg-blue-50 rounded-2xl p-4 border border-blue-200 hover:bg-blue-100 transition-all duration-300"
-                            onclick="this.querySelector('.stat-number').style.animation = 'bounce-subtle 0.6s ease'">
+                        <div class="stat-card bg-blue-50 rounded-2xl p-4 border border-blue-200 hover:bg-blue-100 transition-all duration-300" onclick="this.querySelector('.stat-number').style.animation = 'bounce-subtle 0.6s ease'">
                             <div class="stat-number text-3xl font-bold text-[#1D4E89] mb-1">1000+</div>
                             <div class="text-sm text-gray-600">Guru Tersertifikasi</div>
                         </div>
-                        <div class="stat-card bg-orange-50 rounded-2xl p-4 border border-orange-200 hover:bg-orange-100 transition-all duration-300"
-                            onclick="this.querySelector('.stat-number').style.animation = 'bounce-subtle 0.6s ease'">
+                        <div class="stat-card bg-orange-50 rounded-2xl p-4 border border-orange-200 hover:bg-orange-100 transition-all duration-300" onclick="this.querySelector('.stat-number').style.animation = 'bounce-subtle 0.6s ease'">
                             <div class="stat-number text-3xl font-bold text-[#E76F51] mb-1">300+</div>
                             <div class="text-sm text-gray-600">Sekolah Mitra</div>
                         </div>
-                        <div class="stat-card bg-blue-50 rounded-2xl p-4 border border-blue-200 hover:bg-blue-100 transition-all duration-300"
-                            onclick="this.querySelector('.stat-number').style.animation = 'bounce-subtle 0.6s ease'">
+                        <div class="stat-card bg-blue-50 rounded-2xl p-4 border border-blue-200 hover:bg-blue-100 transition-all duration-300" onclick="this.querySelector('.stat-number').style.animation = 'bounce-subtle 0.6s ease'">
                             <div class="stat-number text-3xl font-bold text-[#1D4E89] mb-1">34</div>
                             <div class="text-sm text-gray-600">Provinsi</div>
                         </div>
@@ -172,16 +126,11 @@
                 </div>
 
                 <!-- Element-element -->
-                <div class="absolute top-4 -left-4 w-20 h-20 bg-[#E76F51]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer"
-                    onclick="this.style.animation = 'float 1s ease-in-out'; setTimeout(() => this.style.animation = 'float 6s ease-in-out infinite', 1000)">
+                <div class="absolute top-4 -left-4 w-20 h-20 bg-[#E76F51]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer" onclick="this.style.animation = 'float 1s ease-in-out'; setTimeout(() => this.style.animation = 'float 6s ease-in-out infinite', 1000)">
                 </div>
-                <div class="absolute bottom-8 -right-6 w-16 h-16 bg-yellow-300/40 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer"
-                    style="animation-delay: 2s;"
-                    onclick="this.style.animation = 'float 1s ease-in-out'; setTimeout(() => this.style.animation = 'float 6s ease-in-out infinite', 1000)">
+                <div class="absolute bottom-8 -right-6 w-16 h-16 bg-yellow-300/40 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer" style="animation-delay: 2s;" onclick="this.style.animation = 'float 1s ease-in-out'; setTimeout(() => this.style.animation = 'float 6s ease-in-out infinite', 1000)">
                 </div>
-                <div class="absolute top-1/2 -right-8 w-12 h-12 bg-[#1D4E89]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer"
-                    style="animation-delay: 4s;"
-                    onclick="this.style.animation = 'float 1s ease-in-out'; setTimeout(() => this.style.animation = 'float 6s ease-in-out infinite', 1000)">
+                <div class="absolute top-1/2 -right-8 w-12 h-12 bg-[#1D4E89]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer" style="animation-delay: 4s;" onclick="this.style.animation = 'float 1s ease-in-out'; setTimeout(() => this.style.animation = 'float 6s ease-in-out infinite', 1000)">
                 </div>
             </div>
         </div>
@@ -257,6 +206,7 @@
                     element.style.transform += ` translate(${x}px, ${y}px)`;
                 });
             });
+
         </script>
         <style>
             @keyframes fadeIn {
@@ -571,6 +521,7 @@
             .magnetic-effect {
                 transition: transform 0.2s ease;
             }
+
         </style>
     </main>
     {{-- End Main Tampilan Awal --}}
@@ -594,8 +545,7 @@
             <!-- Header Section -->
             <div class="text-center mb-20 floating-animation">
                 <div class="inline-block mb-6">
-                    <span
-                        class="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
+                    <span class="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -815,7 +765,6 @@
         </div>
     </div>
 </div>
-
         <script>
             document.addEventListener('mousemove', (e) => {
                 if (Math.random() > 0.9) {
@@ -850,6 +799,7 @@
                         }
                         `;
             document.head.appendChild(style);
+
         </script>
 
         <style>
@@ -949,22 +899,18 @@
                     opacity: 0;
                 }
             }
+
         </style>
     </section>
     {{-- End Pilih Jalur Sertifikasi --}}
 
     {{-- @livewire('asesi.payment-card') --}}
     @foreach (['A', 'B', 'C', 'BUNDLING'] as $level)
-    <div id="modal{{ $level }}"
-        class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300">
-        <div
-            class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative transform transition-all duration-500 scale-100">
-            <button onclick="document.getElementById('modal{{ $level }}').classList.add('hidden')"
-                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12" />
+    <div id="modal{{ $level }}" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative transform transition-all duration-500 scale-100">
+            <button onclick="document.getElementById('modal{{ $level }}').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
 
@@ -1032,38 +978,26 @@
                     @switch($level)
                     @case('A')
                     <div class="flex items-center p-3 bg-orange-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Manajemen Kelas</span>
                     </div>
                     <div class="flex items-center p-3 bg-orange-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Strategi Motivasi</span>
                     </div>
                     <div class="flex items-center p-3 bg-orange-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Desain Pembelajaran</span>
                     </div>
                     <div class="flex items-center p-3 bg-orange-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Teknik Asesmen</span>
                     </div>
@@ -1071,38 +1005,26 @@
 
                     @case('B')
                     <div class="flex items-center p-3 bg-blue-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Modul Interaktif</span>
                     </div>
                     <div class="flex items-center p-3 bg-blue-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Literasi Digital</span>
                     </div>
                     <div class="flex items-center p-3 bg-blue-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Project Based</span>
                     </div>
                     <div class="flex items-center p-3 bg-blue-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Analisis Pembelajaran</span>
                     </div>
@@ -1110,38 +1032,26 @@
 
                     @case('C')
                     <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Praktik Video</span>
                     </div>
                     <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Mentoring 1-on-1</span>
                     </div>
                     <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Publikasi</span>
                     </div>
                     <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium">Kepemimpinan</span>
                     </div>
@@ -1149,20 +1059,14 @@
 
                     @case('BUNDLING')
                     <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium"></span>
                     </div>
                     <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                         </svg>
                         <span class="text-sm font-medium"></span>
                     </div>
@@ -1216,14 +1120,11 @@
                 @switch($level)
                 @case('A')
                 @if ($user->hasPermissionTo('access_level_A'))
-                <button
-                    class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed"
-                    disabled>
+                <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed" disabled>
                     Sudah Terdaftar
                 </button>
                 @else
-                <a href="{{ route('payments.create', Hashids::encode($levels[0]->id)) }}"
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
+                <a href="{{ route('payments.create', Hashids::encode($levels[0]->id)) }}" class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                     Daftar Sekarang
                 </a>
                 @endif
@@ -1231,19 +1132,15 @@
 
                 @case('B')
                 @if ($user->hasPermissionTo('access_level_B'))
-                <button
-                    class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed"
-                    disabled>
+                <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed" disabled>
                     Sudah Terdaftar
                 </button>
                 @elseif ($user->hasPermissionTo('level_A_completed'))
-                <a href="{{ route('payments.create', Hashids::encode($levels[1]->id)) }}"
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
+                <a href="{{ route('payments.create', Hashids::encode($levels[1]->id)) }}" class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                     Daftar Sekarang
                 </a>
                 @else
-                <button disabled
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg opacity-60 cursor-not-allowed">
+                <button disabled class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg opacity-60 cursor-not-allowed">
                     Belum Dibuka
                 </button>
                 @endif
@@ -1251,19 +1148,15 @@
 
                 @case('C')
                 @if ($user->hasPermissionTo('access_level_C'))
-                <button
-                    class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed"
-                    disabled>
+                <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed" disabled>
                     Sudah Terdaftar
                 </button>
                 @elseif ($user->hasPermissionTo('level_B_completed'))
-                <a href="{{ route('payments.create', Hashids::encode($levels[2]->id)) }}"
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
+                <a href="{{ route('payments.create', Hashids::encode($levels[2]->id)) }}" class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                     Daftar Sekarang
                 </a>
                 @else
-                <button disabled
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg opacity-60 cursor-not-allowed">
+                <button disabled class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg opacity-60 cursor-not-allowed">
                     Belum Dibuka
                 </button>
                 @endif
@@ -1271,19 +1164,15 @@
 
                 @case('BUNDLING')
                 @if ($user->hasPermissionTo('access_level_C'))
-                <button
-                    class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed"
-                    disabled>
+                <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed" disabled>
                     Sudah Terdaftar
                 </button>
                 @elseif ($user->hasPermissionTo('level_B_completed'))
-                <a href="{{ route('payments.create', Hashids::encode($levels[4]->id)) }}"
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
+                <a href="{{ route('payments.create', Hashids::encode($levels[4]->id)) }}" class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                     Daftar Sekarang
                 </a>
                 @else
-                <button disabled
-                    class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg opacity-60 cursor-not-allowed">
+                <button disabled class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg opacity-60 cursor-not-allowed">
                     Belum Dibuka
                 </button>
                 @endif
@@ -1301,12 +1190,10 @@
         <div class="container mx-auto max-w-7xl">
             <!-- Header Section -->
             <div class="text-center mb-16 animate-fadeIn">
-                <span
-                    class="text-lg text-[#E76F51] font-semibold inline-block px-6 py-2 bg-orange-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 mb-6">
+                <span class="text-lg text-[#E76F51] font-semibold inline-block px-6 py-2 bg-orange-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 mb-6">
                     #MANFAAT PROGRAM TLC
                 </span>
-                <h2
-                    class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 hover:scale-105 transition-transform duration-300">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 hover:scale-105 transition-transform duration-300">
                     <span class="relative inline-block">
                         <span class="relative z-10">Apa yang akan</span>
                         <span class="absolute -bottom-2 left-0 w-full h-3 bg-yellow-300 opacity-50 z-0"></span>
@@ -1327,15 +1214,12 @@
             <!-- Manfaat -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Box 1: Sertifikasi Terakreditasi -->
-                <div
-                    class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
-                    <div
-                        class="bg-gradient-to-br from-teal-400 to-teal-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                    <div class="bg-gradient-to-br from-teal-400 to-teal-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
                         <i class="fas fa-award text-white text-2xl group-hover:animate-bounce relative z-10"></i>
                     </div>
-                    <h3
-                        class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-teal-600 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-teal-600 transition-colors duration-300">
                         Sertifikasi Terakreditasi
                     </h3>
                     <p class="text-gray-700 leading-relaxed">
@@ -1344,16 +1228,12 @@
                 </div>
 
                 <!-- Box 2: Kurikulum Terkini -->
-                <div
-                    class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
-                    <div
-                        class="bg-gradient-to-br from-blue-400 to-blue-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                    <div class="bg-gradient-to-br from-blue-400 to-blue-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/20 animate-ping"></div>
-                        <i
-                            class="fas fa-graduation-cap text-white text-2xl group-hover:animate-pulse relative z-10"></i>
+                        <i class="fas fa-graduation-cap text-white text-2xl group-hover:animate-pulse relative z-10"></i>
                     </div>
-                    <h3
-                        class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-blue-600 transition-colors duration-300">
                         Kurikulum Terkini
                     </h3>
                     <p class="text-gray-700 leading-relaxed">
@@ -1362,20 +1242,15 @@
                 </div>
 
                 <!-- Box 3: Pengembangan Keterampilan -->
-                <div
-                    class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl hover-lift border-2 border-[#E76F51]/30 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full -translate-y-10 translate-x-10 opacity-30 animate-pulse">
+                <div class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl hover-lift border-2 border-[#E76F51]/30 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full -translate-y-10 translate-x-10 opacity-30 animate-pulse">
                     </div>
-                    <div
-                        class="bg-gradient-to-br from-[#E76F51] to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative z-10 overflow-hidden">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer">
+                    <div class="bg-gradient-to-br from-[#E76F51] to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative z-10 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer">
                         </div>
                         <i class="fas fa-rocket text-white text-2xl group-hover:animate-spin relative z-10"></i>
                     </div>
-                    <h3
-                        class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-[#E76F51] transition-colors duration-300 relative z-10">
+                    <h3 class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-[#E76F51] transition-colors duration-300 relative z-10">
                         Pengembangan Keterampilan
                     </h3>
                     <p class="text-gray-700 leading-relaxed relative z-10">
@@ -1384,15 +1259,12 @@
                 </div>
 
                 <!-- Box 4: Jaringan Profesional -->
-                <div
-                    class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
-                    <div
-                        class="bg-gradient-to-br from-orange-400 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                    <div class="bg-gradient-to-br from-orange-400 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
                         <i class="fas fa-users text-white text-2xl group-hover:animate-bounce relative z-10"></i>
                     </div>
-                    <h3
-                        class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-orange-600 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-orange-600 transition-colors duration-300">
                         Jaringan Profesional
                     </h3>
                     <p class="text-gray-700 leading-relaxed">
@@ -1402,15 +1274,12 @@
                 </div>
 
                 <!-- Box 5: Peningkatan Karir -->
-                <div
-                    class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
-                    <div
-                        class="bg-gradient-to-br from-pink-400 to-pink-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/20 animate-ping"></div>
                         <i class="fas fa-chart-line text-white text-2xl group-hover:animate-pulse relative z-10"></i>
                     </div>
-                    <h3
-                        class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-pink-600 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-pink-600 transition-colors duration-300">
                         Peningkatan Karir
                     </h3>
                     <p class="text-gray-700 leading-relaxed">
@@ -1420,15 +1289,12 @@
                 </div>
 
                 <!-- Box 6: Pengakuan Profesional -->
-                <div
-                    class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
-                    <div
-                        class="bg-gradient-to-br from-green-400 to-green-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
                         <i class="fas fa-star text-white text-2xl group-hover:animate-spin relative z-10"></i>
                     </div>
-                    <h3
-                        class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-green-600 transition-colors duration-300">
+                    <h3 class="text-xl font-bold text-[#1D4E89] mb-4 group-hover:text-green-600 transition-colors duration-300">
                         Pengakuan Profesional
                     </h3>
                     <p class="text-gray-700 leading-relaxed">
@@ -1530,173 +1396,12 @@
                     opacity: 0;
                 }
             }
+
         </style>
     </section>
     {{-- End Apa yang guru dapatkan --}}
 
     {{-- Langkah Pembayaran --}}
-    {{-- <section class="relative mt-32 max-w-6xl mx-auto px-4 py-12">
-            <!-- Header with gradient background -->
-            <div class="bg-gradient-to-r from-teal-400 to-blue-500 rounded-3xl p-8 text-white shadow-2xl mb-12">
-                <h1 class="text-2xl md:text-3xl font-bold text-center mb-4">
-                    Cara Transaksi Paket di Teaching & Learning Certification
-                </h1>
-                <p class="text-center text-lg opacity-90">
-                    Ikuti langkah-langkah mudah berikut untuk memulai sertifikasi Anda
-                </p>
-            </div>
-
-            <!-- Main content container -->
-            <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 border border-gray-200">
-
-                <!-- Steps 1-4 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                    <!-- Step 1 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-play text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            1
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Kunjungi tlc.com</h3>
-                        <p class="text-gray-600 text-sm">Ketik TLC.com di browser</p>
-
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-check text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            2
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Pastikan kategori sesuai</h3>
-                        <p class="text-gray-600 text-sm">Pilih kategori sesuai paket</p>
-                        <div class="flex justify-center mt-4">
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-shopping-cart text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            3
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Pilih produk TLC</h3>
-                        <p class="text-gray-600 text-sm">Pilih produk TLC</p>
-                        <div class="flex justify-center mt-4">
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-bookmark text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            4
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Pilih paket langganan</h3>
-                        <p class="text-gray-600 text-sm">Pilih paket langganan</p>
-                        <div class="flex justify-center mt-4">
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Steps 5-8 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <!-- Step 5 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-file-alt text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            5
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Pilih kode diskon</h3>
-                        <p class="text-gray-600 text-sm">Pilih kode diskon</p>
-                        <div class="flex justify-center mt-4">
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Step 6 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-file-invoice text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            6
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Halaman draft invoice</h3>
-                        <p class="text-gray-600 text-sm">Halaman draft invoice</p>
-                        <div class="flex justify-center mt-4">
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Step 7 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-credit-card text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            7
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Pilih metode pembayaran</h3>
-                        <p class="text-gray-600 text-sm">Pilih metode pembayaran</p>
-                        <div class="flex justify-center mt-4">
-                            <i class="fas fa-arrow-right text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <!-- Step 8 -->
-                    <div class="step-card bg-gray-50 rounded-2xl p-6 text-center relative">
-                        <div
-                            class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                            <i class="fas fa-download text-white text-2xl"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm absolute top-4 right-4">
-                            8
-                        </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Lihat invoice pembayaran</h3>
-                        <p class="text-gray-600 text-sm">Lihat invoice pembayaran</p>
-                    </div>
-                </div>
-            </div>
-            <style>
-                .step-card {
-                    transition: all 0.3s ease;
-                }
-
-                .step-card:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-                }
-            </style>
-        </section> --}}
     {{-- <section class="relative mt-32 max-w-6xl mx-auto px-4 py-12">
             <!-- Header with gradient background -->
             <div class="bg-gradient-to-r from-teal-400 to-blue-500 rounded-3xl p-8 text-white shadow-2xl mb-12">
@@ -1839,14 +1544,146 @@
         </section> --}}
     {{-- End Langkah Pembayaran --}}
 
+    {{-- Tutorial Penggunaan --}}
+    <section class="w-full px-5 py-20 bg-white" id="tutorial">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Header Section -->
+            <div class="text-center mb-16 animate-fadeIn">
+                <span class="text-lg text-[#1D4E89] font-semibold inline-block px-6 py-2 bg-blue-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 mb-6">
+                    #PANDUAN PENGGUNA
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 hover:scale-105 transition-transform duration-300">
+                    <span class="relative inline-block">
+                        <span class="relative z-10">Tutorial Penggunaan</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-3 bg-orange-300 opacity-50 z-0"></span>
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                    Ikuti video tutorial dan langkah-langkah berikut untuk memaksimalkan pengalaman Anda dalam program sertifikasi TLC.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+                <!-- YouTube Video -->
+                <div class="lg:col-span-3 w-full">
+                    <div class="w-full aspect-w-16 aspect-h-9 rounded-2xl shadow-2xl overflow-hidden" style="min-height:320px;">
+                        <iframe src="https://www.youtube.com/embed/euFMXmg1LoQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full min-h-[320px]" style="min-height:320px;"></iframe>
+                    </div>
+                </div>
+
+                <!-- Tutorial Steps -->
+                <div class="lg:col-span-2 hidden lg:block">
+                    <div class="grid grid-cols-1 gap-6 sm:gap-8">
+                        <!-- Step 1: Daftar & Login -->
+                        <div class="tutorial-step bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-start sm:items-center transform hover:-translate-y-1 border border-gray-100 hover:border-[#1D4E89]/20">
+                            <div class="bg-gradient-to-br from-blue-400 to-blue-600 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-6 shadow-lg flex-shrink-0">
+                                <i class="fas fa-user-plus text-white text-xl sm:text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <h3 class="text-xl font-bold text-[#1D4E89] mb-2">1. Daftar & Login</h3>
+                                </div>
+                                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                    Buat akun baru atau masuk jika sudah memiliki akun untuk memulai.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Pilih Sertifikasi -->
+                        <div class="tutorial-step bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-start sm:items-center transform hover:-translate-y-1 border border-gray-100 hover:border-[#1D4E89]/20">
+                            <div class="bg-gradient-to-br from-orange-400 to-orange-600 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-6 shadow-lg flex-shrink-0">
+                                <i class="fas fa-tasks text-white text-xl sm:text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <h3 class="text-lg sm:text-xl font-bold text-[#1D4E89]">2. Pilih Sertifikasi</h3>
+                                </div>
+                                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                    Pilih level sertifikasi (A, B, atau C) yang sesuai dengan tujuan karir Anda.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Ikuti Ujian -->
+                        <div class="tutorial-step bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-start sm:items-center transform hover:-translate-y-1 border border-gray-100 hover:border-[#1D4E89]/20">
+                            <div class="bg-gradient-to-br from-teal-400 to-teal-600 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-6 shadow-lg flex-shrink-0">
+                                <i class="fas fa-file-alt text-white text-xl sm:text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <h3 class="text-lg sm:text-xl font-bold text-[#1D4E89]">3. Ikuti Ujian</h3>
+                                </div>
+                                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                    Selesaikan semua tahapan ujian sesuai dengan level yang Anda pilih.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            /* Responsive aspect ratio for video */
+            @media (max-width: 1023px) {
+                #tutorial .aspect-w-16.aspect-h-9 {
+                    aspect-ratio: 16/9;
+                    min-height: 220px;
+                }
+            }
+
+            @media (max-width: 767px) {
+                #tutorial .aspect-w-16.aspect-h-9 {
+                    aspect-ratio: 16/9;
+                    min-height: 180px;
+                }
+            }
+
+            #tutorial .aspect-w-16.aspect-h-9 {
+                width: 100%;
+                aspect-ratio: 16/9;
+                min-height: 320px;
+            }
+
+            /* #tutorial iframe {
+                width: 100%;
+                height: 100%;
+                min-height: 320px;
+                border-radius: 1rem;
+                display: block;
+            } */
+
+            /* Enhanced tutorial steps styling */
+            .tutorial-step {
+                background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+                backdrop-filter: blur(10px);
+            }
+
+            /* Responsive adjustments for tutorial steps */
+            @media (max-width: 640px) {
+                .tutorial-step {
+                    padding: 1rem;
+                }
+
+                .tutorial-step .flex.items-start {
+                    flex-direction: column;
+                }
+
+                .tutorial-step .flex.items-start .mr-4 {
+                    margin-right: 0;
+                    margin-bottom: 1rem;
+                }
+            }
+
+        </style>
+    </section>
+    {{-- End Tutorial Penggunaan --}}
+
     {{-- Testimoni --}}
-    <section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50"
-        id="testimoni">
+    <section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50" id="testimoni">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
             <div class="text-center mb-12">
-                <span
-                    class="inline-block px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">
+                <span class="inline-block px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">
                     TESTIMONI PENGGUNA
                 </span>
                 <h2 class="text-3xl lg:text-4xl font-bold text-[#1D4E89] mb-4">Apa Kata Mereka?</h2>
@@ -1859,13 +1696,11 @@
             <!-- Grid Testimonials -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
                 @foreach ($featuredTestimonials as $index => $testimonial)
-                <div
-                    class="testimonial-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+                <div class="testimonial-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
                     <!-- Rating Stars -->
                     <div class="flex justify-center mb-4">
                         <div class="flex text-lg text-yellow-400">
-                            @for ($i = 1; $i <= 5; $i++)
-                                <span>★</span>
+                            @for ($i = 1; $i <= 5; $i++) <span>★</span>
                                 @endfor
                         </div>
                     </div>
@@ -1897,8 +1732,7 @@
                         $selectedColor = $colors[$colorIndex];
                         @endphp
 
-                        <div
-                            class="w-12 h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-3 shadow-md">
+                        <div class="w-12 h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-3 shadow-md">
                             <span class="text-lg font-bold text-white">{{ $initials }}</span>
                         </div>
 
@@ -1911,8 +1745,7 @@
                                 {{ $testimonial->user->position ?? 'Peserta Program TLC' }}
                             </p>
                             @if ($testimonial->category)
-                            <span
-                                class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                            <span class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
                                 {{ $testimonial->category->name }}
                             </span>
                             @endif
@@ -1932,8 +1765,7 @@
             <!-- Show More Button -->
             @if ($featuredTestimonials->count() > 3)
             <div class="text-center mt-10">
-                <button
-                    class="px-6 py-3 bg-[#1D4E89] text-white rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg">
+                <button class="px-6 py-3 bg-[#1D4E89] text-white rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg">
                     Lihat Testimonial Lainnya
                 </button>
             </div>
@@ -1943,10 +1775,8 @@
             <div class="text-center py-12">
                 <div class="max-w-sm mx-auto">
                     <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z">
+                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z">
                             </path>
                         </svg>
                     </div>
@@ -2016,6 +1846,7 @@
                 margin-bottom: 1.5rem;
             }
         }
+
     </style>
     {{-- Testimoni --}}
 </section>
@@ -2023,4 +1854,8 @@
 <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="{{ asset('assets/js/asesiDashboard.js') }}" defer></script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 39396723571766c605b7d106ad2bf97ffd05a9bb
 @endsection
