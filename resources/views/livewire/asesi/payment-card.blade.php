@@ -20,6 +20,9 @@
              <div class="flex items-center gap-2">
                  <span class="text-gray-400">🔒</span> Level C
              </div>
+             <div class="flex items-center gap-2">
+                 <span class="text-gray-400">🔒</span> Level BUNDLING
+             </div>
          </div>
      </div>
 
