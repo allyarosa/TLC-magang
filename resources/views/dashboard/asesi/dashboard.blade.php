@@ -923,9 +923,9 @@
             </button>
 
             <div class="flex items-center mb-6">
-                <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
+                <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
                     <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                </div>
+                </div> -->
                 <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
             </div>
 
