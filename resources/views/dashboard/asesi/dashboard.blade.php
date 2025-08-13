@@ -565,7 +565,7 @@
             @php
             $user = Auth::user();
             @endphp
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 <!-- Level A -->
                 <div class="relative group card-hover">
 
@@ -603,7 +603,7 @@
                                 <div class="flex items-center justify-between">
                                     @if ($user->hasPermissionTo('access_level_A'))
                                     <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                        class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                        class="bg-white text-black px-2 py-2  mb-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
                                         Detail Program
                                     </button>
                                     @else
@@ -719,7 +719,7 @@
                 </div>
 
                 <!-- Bundling -->
-                <div class="relative group card-hover col-start-2">
+                <div class="relative group card-hover sm:col-span-2 lg:col-span-1 lg:col-start-2">
                     <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
                         <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(251, 140, 0, 0.9), rgba(255, 204, 0, 0.888));"></div>
                         <div class="relative h-full flex flex-col justify-between p-8 text-white">
@@ -915,7 +915,7 @@
     {{-- @livewire('asesi.payment-card') --}}
     @foreach (['A', 'B', 'C', 'BUNDLING'] as $level)
     <div id="modal{{ $level }}" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative transform transition-all duration-500 scale-100">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-4 sm:p-8 relative transform transition-all duration-500 scale-100">
             <button onclick="document.getElementById('modal{{ $level }}').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
