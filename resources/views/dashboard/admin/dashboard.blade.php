@@ -96,6 +96,10 @@
     </div>
 </div>
 
+<div class="mb-8">
+        <button onclick="document.getElementById('bundlingModal').classList.remove('hidden')"                                                class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">                                                Mulai Sekarang                                            </button>
+</div>
+
 <!-- Main Content Grid -->
 {{-- <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
     <!-- Activity Chart -->
@@ -283,4 +287,78 @@
     </div>
 </div>
 
+@endsection
+
+<!-- Bundling Modal -->
+<div id="bundlingModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50 flex items-center justify-center">
+    <div class="relative p-8 bg-white w-full max-w-md mx-auto rounded-lg shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+        <!-- Modal header -->
+        <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+            <h3 class="text-xl font-semibold text-gray-900">Bundling Options</h3>
+            <button id="closeBundlingModal" class="text-gray-400 hover:text-gray-600">
+                <span class="sr-only">Close modal</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Modal body -->
+        <div class="py-4">
+            <p class="text-sm text-gray-500 mb-4">Here you can manage your bundling options. Add new bundles or modify existing ones.</p>
+            <!-- Bundling Form/Content goes here -->
+            <form>
+                <div class="mb-4">
+                    <label for="bundleName" class="block text-sm font-medium text-gray-700">Bundle Name</label>
+                    <input type="text" id="bundleName" name="bundleName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g., Basic Certification Bundle">
+                </div>
+                <div class="mb-4">
+                    <label for="bundlePrice" class="block text-sm font-medium text-gray-700">Price</label>
+                    <input type="number" id="bundlePrice" name="bundlePrice" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g., 150000">
+                </div>
+                <div class="mb-4">
+                    <label for="bundleDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="bundleDescription" name="bundleDescription" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Brief description of the bundle"></textarea>
+                </div>
+                <!-- Add more fields as needed for bundling, e.g., included items -->
+            </form>
+        </div>
+        <!-- Modal footer -->
+        <div class="flex justify-end pt-4 border-t border-gray-200">
+            <button type="button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mr-2" id="cancelBundlingModal">
+                Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-gradient-to-r from-[#1D4E89] to-[#E76F51] text-white rounded-md hover:from-[#2563eb] hover:to-[#ea580c] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Save Bundle
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const openModalBtn = document.getElementById('openBundlingModal');
+        const closeModalBtn = document.getElementById('closeBundlingModal');
+        const cancelModalBtn = document.getElementById('cancelBundlingModal');
+        const bundlingModal = document.getElementById('bundlingModal');
+
+        openModalBtn.addEventListener('click', function() {
+            bundlingModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            bundlingModal.classList.add('hidden');
+        });
+
+        cancelModalBtn.addEventListener('click', function() {
+            bundlingModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside of it
+        bundlingModal.addEventListener('click', function(event) {
+            if (event.target === bundlingModal) {
+                bundlingModal.classList.add('hidden');
+            }
+        });
+    });
+</script>
 @endsection
