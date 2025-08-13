@@ -1935,6 +1935,115 @@
         </section> --}}
     {{-- End Langkah Pembayaran --}}
 
+    {{-- Tutorial Penggunaan --}}
+    <section class="w-full px-5 py-20 bg-white" id="tutorial">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Header Section -->
+            <div class="text-center mb-16 animate-fadeIn">
+                <span class="text-lg text-[#1D4E89] font-semibold inline-block px-6 py-2 bg-blue-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 mb-6">
+                    #PANDUAN PENGGUNA
+                </span>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 hover:scale-105 transition-transform duration-300">
+                    <span class="relative inline-block">
+                        <span class="relative z-10">Tutorial Penggunaan</span>
+                        <span class="absolute -bottom-2 left-0 w-full h-3 bg-orange-300 opacity-50 z-0"></span>
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                    Ikuti video tutorial dan langkah-langkah berikut untuk memaksimalkan pengalaman Anda dalam program sertifikasi TLC.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+                <!-- YouTube Video -->
+                <div class="lg:col-span-3 w-full">
+                    <div class="w-full aspect-w-16 aspect-h-9 rounded-2xl shadow-2xl overflow-hidden" style="min-height:320px;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/euFMXmg1LoQ" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            class="w-full h-full min-h-[320px]"
+                            style="min-height:320px;"
+                        ></iframe>
+                    </div>
+                </div>
+
+                <!-- Tutorial Steps -->
+                <div class="lg:col-span-2 relative hidden lg:block">
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Step 1: Daftar & Login -->
+                        <div class="tutorial-step bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center">
+                            <div class="bg-gradient-to-br from-blue-400 to-blue-600 w-16 h-16 rounded-full flex items-center justify-center mr-6 shadow-lg">
+                                <i class="fas fa-user-plus text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#1D4E89] mb-2">1. Daftar & Login</h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Buat akun baru atau masuk jika sudah memiliki akun untuk memulai.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Pilih Sertifikasi -->
+                        <div class="tutorial-step bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center">
+                            <div class="bg-gradient-to-br from-orange-400 to-orange-600 w-16 h-16 rounded-full flex items-center justify-center mr-6 shadow-lg">
+                                <i class="fas fa-tasks text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#1D4E89] mb-2">2. Pilih Sertifikasi</h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Pilih level sertifikasi (A, B, atau C) yang sesuai dengan tujuan karir Anda.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Ikuti Ujian -->
+                        <div class="tutorial-step bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center">
+                            <div class="bg-gradient-to-br from-teal-400 to-teal-600 w-16 h-16 rounded-full flex items-center justify-center mr-6 shadow-lg">
+                                <i class="fas fa-file-alt text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#1D4E89] mb-2">3. Ikuti Ujian</h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Selesaikan semua tahapan ujian sesuai dengan level yang Anda pilih.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            /* Responsive aspect ratio for video */
+            @media (max-width: 1023px) {
+                #tutorial .aspect-w-16.aspect-h-9 {
+                    aspect-ratio: 16/9;
+                    min-height: 220px;
+                }
+            }
+            @media (max-width: 767px) {
+                #tutorial .aspect-w-16.aspect-h-9 {
+                    aspect-ratio: 16/9;
+                    min-height: 180px;
+                }
+            }
+            #tutorial .aspect-w-16.aspect-h-9 {
+                width: 100%;
+                aspect-ratio: 16/9;
+                min-height: 320px;
+            }
+            #tutorial iframe {
+                width: 100%;
+                height: 100%;
+                min-height: 320px;
+                border-radius: 1rem;
+                display: block;
+            }
+        </style>
+    </section>
+    {{-- End Tutorial Penggunaan --}}
+
     {{-- Testimoni --}}
     <section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50"
         id="testimoni">
