@@ -41,6 +41,9 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Asesor\LevelCGradedController;
 use App\Livewire\Asesi\CertificationDetail;
+use App\Livewire\Forum;
+use App\Events\MyEvent;
+use App\Events\testing;
 
 Route::get('register2', function () {
     return view('register2');
@@ -155,8 +158,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     });
 });
 
-
-
+Route::get('/forum', Forum::class)->name('forum');
 
 Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
@@ -450,5 +452,15 @@ Route::get('/real', function () {
 Route::get('/iseng', function () {
     return view('iseng');
 })->name('iseng');
+
+
+// tetsing event gg bisa pertama kali 
+Route::get('/test-event', function () {
+    event(new testing());
+    return 'Event dispatched!';
+});
+
+
+
 
 require __DIR__ . '/auth.php';

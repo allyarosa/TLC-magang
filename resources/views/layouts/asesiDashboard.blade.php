@@ -19,23 +19,20 @@
     .rotate-180 {
         transform: rotate(180deg);
     }
+
 </style>
 
 <body>
     <header class="mb-16">
-        <nav
-            class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] shadow-lg border-b border-white/20 overflow-visible">
+        <nav class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] shadow-lg border-b border-white/20 overflow-visible">
             <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-3 px-4 lg:px-8">
                 <!-- Brand Section -->
                 <div class="flex items-center space-x-2 sm:space-x-3 group flex-1 min-w-0 lg:flex-none">
                     <div class="relative flex-shrink-0">
-                        <img src="{{ asset('assets/img/tlc.png') }}"
-                            class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-lg drop-shadow-[0_0_15px_rgba(29,78,137,0.2)] transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(29,78,137,0.4)] group-hover:scale-103"
-                            alt="TLC Logo">
+                        <img src="{{ asset('assets/img/tlc.png') }}" class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-lg drop-shadow-[0_0_15px_rgba(29,78,137,0.2)] transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(29,78,137,0.4)] group-hover:scale-103" alt="TLC Logo">
                     </div>
                     <div class="select-none min-w-0 flex-1 lg:flex-none">
-                        <h1
-                            class="text-sm sm:text-lg md:text-2xl font-black bg-gradient-to-br from-[#1D4E89] to-[#667eea] bg-clip-text text-transparent tracking-tight capitalize truncate">
+                        <h1 class="text-sm sm:text-lg md:text-2xl font-black bg-gradient-to-br from-[#1D4E89] to-[#667eea] bg-clip-text text-transparent tracking-tight capitalize truncate">
                             TLC Program
                         </h1>
                         <p class="text-[10px] sm:text-xs text-slate-600 font-medium tracking-wide capitalize truncate">
@@ -48,74 +45,60 @@
                 <div class="lg:hidden flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
                     <!-- Notification Icon for Mobile -->
                     <div class="relative">
-                        <button
-                            class="p-1.5 sm:p-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
-                            <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-700" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
+                        <button class="p-1.5 sm:p-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
+                            <svg class="h-4 w-4 sm:h-5 sm:w-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
                                 </path>
                             </svg>
-                            <span
-                                class="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-[10px] sm:text-xs font-bold rounded-full px-1 sm:px-1.5 py-0.5 shadow-lg animate-pulse">
+                            <span class="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-[10px] sm:text-xs font-bold rounded-full px-1 sm:px-1.5 py-0.5 shadow-lg animate-pulse">
                                 3
                             </span>
                         </button>
                     </div>
-                    <button id="mobile-menu-toggle"
-                        class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
-                        <svg id="hamburger-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
+                    <button id="mobile-menu-toggle" class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
+                        <svg id="hamburger-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
-                        <svg id="close-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 hidden"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"></path>
+                        <svg id="close-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
 
                 <!-- Navigation Menu for Desktop - Centered -->
                 <div class="hidden lg:flex items-center justify-center space-x-6 flex-1">
-                    <a href="{{ route('asesi.dashboard') }}"
-                        class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.dashboard') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                    <a href="{{ route('asesi.dashboard') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.dashboard') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
                         Dashboard
-                        <span
-                            class="{{ request()->routeIs('asesi.dashboard') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                        <span class="{{ request()->routeIs('asesi.dashboard') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
 
-                    <a href="{{ route('asesi.sertifikasi') }}"
-                        class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.sertifikasi') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                    <a href="{{ route('asesi.sertifikasi') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.sertifikasi') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
                         Sertifikasi
-                        <span
-                            class="{{ request()->routeIs('asesi.sertifikasi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                        <span class="{{ request()->routeIs('asesi.sertifikasi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
 
-                    <a href="{{ route('asesi.transaksi') }}"
-                        class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.transaksi') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                    <a href="{{ route('asesi.transaksi') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.transaksi') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
                         Transaksi
-                        <span
-                            class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                        <span class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                    </a>
+
+                    <a href="{{ route('forum') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('forum') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                        Forum
+                        <span class="{{ request()->routeIs('forum') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
                 </div>
 
                 <!-- Right Section (Profile & Notifications) for Desktop -->
                 <div class="hidden lg:flex items-center space-x-4 flex-shrink-0">
                     <!-- Welcome Message -->
-                    <div
-                        class="bg-gradient-to-br from-[#1D4E89]/10 to-[#667eea]/10 border border-[#1D4E89]/20 hover:bg-gradient-to-br hover:from-[#1D4E89]/15 hover:to-[#667eea]/15 hover:translate-y-[-1px] hover:shadow-[0_4px_15px_rgba(29,78,137,0.08)] rounded-lg px-3 py-2 transition-all duration-300">
+                    <div class="bg-gradient-to-br from-[#1D4E89]/10 to-[#667eea]/10 border border-[#1D4E89]/20 hover:bg-gradient-to-br hover:from-[#1D4E89]/15 hover:to-[#667eea]/15 hover:translate-y-[-1px] hover:shadow-[0_4px_15px_rgba(29,78,137,0.08)] rounded-lg px-3 py-2 transition-all duration-300">
                         <div class="flex items-center space-x-2">
                             <div class="relative">
-                                <svg class="h-5 w-5 text-[#1D4E89]" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                <svg class="h-5 w-5 text-[#1D4E89]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
                                     </path>
                                 </svg>
-                                <div
-                                    class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
+                                <div class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
                                 </div>
                             </div>
                             <div>
@@ -143,33 +126,21 @@
 
                     <!-- Profile Dropdown -->
                     <div class="relative">
-                        <button id="profile-button-asesi"
-                            class="flex items-center space-x-2 p-1.5 rounded-xl hover:bg-white/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
-                            <div
-                                class="p-[2px] bg-gradient-to-br from-[#1D4E89] to-[#667eea] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_4px_15px_rgba(29,78,137,0.2)]">
-                                <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}"
-                                    alt="Profile Image" class="w-9 h-9 rounded-full object-cover">
+                        <button id="profile-button-asesi" class="flex items-center space-x-2 p-1.5 rounded-xl hover:bg-white/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
+                            <div class="p-[2px] bg-gradient-to-br from-[#1D4E89] to-[#667eea] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_4px_15px_rgba(29,78,137,0.2)]">
+                                <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}" alt="Profile Image" class="w-9 h-9 rounded-full object-cover">
                             </div>
-                            <svg id="profile-arrow" class="h-4 w-4 text-gray-600 transition-transform duration-300"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7"></path>
+                            <svg id="profile-arrow" class="h-4 w-4 text-gray-600 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
 
                         <!-- Dropdown Menu -->
-                        <div id="profile-menu-asesi"
-                            class="absolute right-0 top-12 mt-2 w-48 bg-white/95 backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 hidden overflow-hidden z-[999]">
+                        <div id="profile-menu-asesi" class="absolute right-0 top-12 mt-2 w-48 bg-white/95 backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 hidden overflow-hidden z-[999]">
                             <div class="py-2">
-                                <a href="{{ route('asesi.profile') }}"
-                                    class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
-                                    <div
-                                        class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="text-blue-600">
+                                <a href="{{ route('asesi.profile') }}" class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
+                                    <div class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
@@ -182,14 +153,9 @@
 
 
 
-                                <a href="{{ route('asesi.profile') }}"
-                                    class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
-                                    <div
-                                        class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="text-blue-600">
+                                <a href="{{ route('asesi.profile') }}" class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
+                                    <div class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
                                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                             <polyline points="14 2 14 8 20 8"></polyline>
                                             <line x1="16" y1="13" x2="8" y2="13">
@@ -207,18 +173,12 @@
                                 <div>
                                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                                         @csrf
-                                        <button type="submit"
-                                            class="w-full flex items-center space-x-3 px-4 py-3 text-red-500 hover:bg-red-50 transition-all duration-300 group">
-                                            <div
-                                                class="p-1.5 bg-red-100 rounded-lg group-hover:bg-red-200 transition-colors duration-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="text-red-600">
+                                        <button type="submit" class="w-full flex items-center space-x-3 px-4 py-3 text-red-500 hover:bg-red-50 transition-all duration-300 group">
+                                            <div class="p-1.5 bg-red-100 rounded-lg group-hover:bg-red-200 transition-colors duration-300">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
                                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                                                     <polyline points="16 17 21 12 16 7"></polyline>
-                                                    <line x1="21" y1="12" x2="9"
-                                                        y2="12"></line>
+                                                    <line x1="21" y1="12" x2="9" y2="12"></line>
                                                 </svg>
                                             </div>
                                             <span class="font-medium">Logout</span>
@@ -231,52 +191,38 @@
                 </div>
 
                 <!-- Navigation Menu for Mobile -->
-                <div id="mobile-menu"
-                    class="lg:hidden fixed inset-x-0 top-16 bg-white/95 backdrop-blur-[20px] border border-gray-200/50 mx-4 rounded-2xl shadow-xl transition-all duration-300 overflow-hidden opacity-0 -translate-y-4 pointer-events-none z-50 lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto lg:static lg:flex lg:bg-transparent lg:border-0 lg:mx-0 lg:rounded-none lg:shadow-none">
-                    <div
-                        class="container mx-auto px-6 lg:px-0 flex flex-col lg:flex-row items-center space-y-1 lg:space-y-0 lg:space-x-6 py-6 lg:py-0">
-                        <a href="{{ route('asesi.dashboard') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.dashboard') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                <div id="mobile-menu" class="lg:hidden fixed inset-x-0 top-16 bg-white/95 backdrop-blur-[20px] border border-gray-200/50 mx-4 rounded-2xl shadow-xl transition-all duration-300 overflow-hidden opacity-0 -translate-y-4 pointer-events-none z-50 lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto lg:static lg:flex lg:bg-transparent lg:border-0 lg:mx-0 lg:rounded-none lg:shadow-none">
+                    <div class="container mx-auto px-6 lg:px-0 flex flex-col lg:flex-row items-center space-y-1 lg:space-y-0 lg:space-x-6 py-6 lg:py-0">
+                        <a href="{{ route('asesi.dashboard') }}" class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.dashboard') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
                             Dashboard
-                            <span
-                                class="{{ request()->routeIs('asesi.dashboard') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                            <span class="{{ request()->routeIs('asesi.dashboard') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
-                        <a href="{{ route('asesi.sertifikasi') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.sertifikasi') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                        <a href="{{ route('asesi.sertifikasi') }}" class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.sertifikasi') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
                             Sertifikasi
-                            <span
-                                class="{{ request()->routeIs('asesi.sertifikasi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                            <span class="{{ request()->routeIs('asesi.sertifikasi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
-                        <a href="{{ route('asesi.transaksi') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.transaksi') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                        <a href="{{ route('asesi.transaksi') }}" class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.transaksi') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
                             Transaksi
-                            <span
-                                class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                            <span class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
-                        <a href="{{ route('asesi.profile') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                        <a href="{{ route('asesi.profile') }}" class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
                             Profile
-                            <span
-                                class="{{ request()->routeIs('asesi.profile') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                            <span class="{{ request()->routeIs('asesi.profile') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
-                        <a href="{{ route('asesi.profile') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                        <a href="{{ route('asesi.profile') }}" class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
                             Sertifikat Saya
-                            <span
-                                class="{{ request()->routeIs('asesi.profile') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                            <span class="{{ request()->routeIs('asesi.profile') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
-                            <button type="submit"
-                                class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative text-red-500 hover:text-red-600 hover:bg-red-50/50 lg:hover:bg-transparent group">
+                            <button type="submit" class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative text-red-500 hover:text-red-600 hover:bg-red-50/50 lg:hover:bg-transparent group">
                                 Logout
-                                <span
-                                    class="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-red-400 to-red-600 rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full"></span>
+                                <span class="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-red-400 to-red-600 rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full"></span>
                             </button>
                         </form>
                     </div>
@@ -359,10 +305,10 @@
                         // Check if we're in mobile view and menu is open
                         if (window.innerWidth < 1024 && !mobileMenu.classList.contains('opacity-0')) {
                             // Hide menu
-                            mobileMenu.classList.remove('opacity-100', 'translate-y-0',
-                                'pointer-events-auto');
-                            mobileMenu.classList.add('opacity-0', '-translate-y-4',
-                                'pointer-events-none');
+                            mobileMenu.classList.remove('opacity-100', 'translate-y-0'
+                                , 'pointer-events-auto');
+                            mobileMenu.classList.add('opacity-0', '-translate-y-4'
+                                , 'pointer-events-none');
 
                             // Reset icons
                             hamburgerIcon.classList.remove('hidden');
@@ -371,6 +317,7 @@
                     });
                 });
             });
+
         </script>
 
     </header>
@@ -385,8 +332,7 @@
         </div>
 
         <div class="absolute inset-0 opacity-5">
-            <div
-                class="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYtMi42ODYgNi02cy0yLjY4Ni02LTYtNmMtMy4zMTQgMC02IDIuNjg2LTYgNnMyLjY4NiA2IDYgNnptMCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNSIvPjxwYXRoIGQ9Ik0yNCAzNmMzLjMxNCAwIDYtMi42ODYgNi02cy0yLjY4Ni02LTYtNmMtMy4zMTQgMC02IDIuNjg2LTYgNnMyLjY4NiA2IDYgNnptMCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNSIvPjwvZz48L3N2Zz4=')]">
+            <div class="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYtMi42ODYgNi02cy0yLjY4Ni02LTYtNmMtMy4zMTQgMC02IDIuNjg2LTYgNnMyLjY4NiA2IDYgNnptMCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNSIvPjxwYXRoIGQ9Ik0yNCAzNmMzLjMxNCAwIDYtMi42ODYgNi02cy0yLjY4Ni02LTYtNmMtMy4zMTQgMC02IDIuNjg2LTYgNnMyLjY4NiA2IDYgNnptMCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNSIvPjwvZz48L3N2Zz4=')]">
             </div>
         </div>
 
@@ -425,50 +371,40 @@
                         </h2>
                         <ul class="space-y-2 text-sm">
                             <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                <a href="#" class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span class="transform group-hover:translate-x-2 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
                                         Tentang TLC
                                     </span>
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                <a href="#" class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span class="transform group-hover:translate-x-2 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
                                         Manfaat
                                     </span>
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                <a href="#" class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span class="transform group-hover:translate-x-2 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
                                         Kurikulum
                                     </span>
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                <a href="#" class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span class="transform group-hover:translate-x-2 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
                                         Paket Harga
                                     </span>
                                 </a>
                             </li>
                             <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                <a href="#" class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span class="transform group-hover:translate-x-2 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
                                         Pendaftaran
                                     </span>
@@ -485,25 +421,20 @@
                     </h2>
                     <ul class="space-y-3 text-sm">
                         <li class="flex items-start md:justify-end group">
-                            <i
-                                class="fas fa-map-marker-alt text-orange-400 text-lg mt-1 md:order-2 md:ml-3 group-hover:animate-bounce"></i>
+                            <i class="fas fa-map-marker-alt text-orange-400 text-lg mt-1 md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span class="ml-3 md:ml-0 text-gray-300 md:text-right md:order-1">
                                 Jl. Pendidikan No. 123, Jakarta Pusat, Indonesia
                             </span>
                         </li>
                         <li class="flex items-center md:justify-end group">
-                            <i
-                                class="fas fa-phone-alt text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
-                            <span
-                                class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
+                            <i class="fas fa-phone-alt text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
+                            <span class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
                                 <a href="tel:+6221123456789">+62 21 1234 5678</a>
                             </span>
                         </li>
                         <li class="flex items-center md:justify-end group">
-                            <i
-                                class="fas fa-envelope text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
-                            <span
-                                class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
+                            <i class="fas fa-envelope text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
+                            <span class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
                                 <a href="mailto:info@tlcprogram.id">info@tlcprogram.id</a>
                             </span>
                         </li>

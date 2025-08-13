@@ -1,4 +1,3 @@
 import './bootstrap';
-import './welcome.js';
-import "flowbite";
-
+import './libs';
+import './echo'
