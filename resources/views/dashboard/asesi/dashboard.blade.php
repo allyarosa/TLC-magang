@@ -206,7 +206,6 @@
                     element.style.transform += ` translate(${x}px, ${y}px)`;
                 });
             });
-
         </script>
         <style>
             @keyframes fadeIn {
@@ -521,7 +520,6 @@
             .magnetic-effect {
                 transition: transform 0.2s ease;
             }
-
         </style>
     </main>
     {{-- End Main Tampilan Awal --}}
@@ -564,25 +562,25 @@
             </div>
 
             <!-- Card Section -->
-                @php
-                    $user = Auth::user();
-                @endphp
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
-                    <!-- Level A -->
+            @php
+            $user = Auth::user();
+            @endphp
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+                <!-- Level A -->
                 <div class="relative group card-hover">
 
-                        <div
-                            class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden  bg-white border border-gray-200">
-                           <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181,227));"></div>
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white">
-                                <div>
+                    <div
+                        class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden  bg-white border border-gray-200">
+                        <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181,227));"></div>
+                        <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            <div>
                                 <div class="mb-6">
                                     <span
                                         class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
                                         LEVEL A
                                     </span>
                                 </div>
-                               <h3 class="text-3xl font-black mb-4 leading-tight">
+                                <h3 class="text-3xl font-black mb-4 leading-tight">
                                     Teaching Knowledge Certification
                                 </h3>
                             </div>
@@ -606,7 +604,7 @@
                                     @if ($user->hasPermissionTo('access_level_A'))
                                     <button onclick="document.getElementById('modalA').classList.remove('hidden')"
                                         class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                                Detail Program
+                                        Detail Program
                                     </button>
                                     @else
                                     <button onclick="document.getElementById('modalA').classList.remove('hidden')"
@@ -619,50 +617,97 @@
                         </div>
                     </div>
                 </div>
-                    <!-- Level B -->
-                    <div class="relative group card-hover">
+                <!-- Level B -->
+                <div class="relative group card-hover">
 
-                        <div
-                            class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden  bg-white border border-gray-200">
-                            <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));"></div>
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white">
-                                <div>
-                                    <div class="mb-6">
-                                        <span
-                                            class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
-                                            LEVEL B
-                                        </span>
-                                    </div>
-                                    <h3 class="text-3xl font-black mb-4 leading-tight">
-                                        Teaching Activation Certification
-                                    </h3>
-                                    {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+                    <div
+                        class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden  bg-white border border-gray-200">
+                        <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));"></div>
+                        <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            <div>
+                                <div class="mb-6">
+                                    <span
+                                        class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                        LEVEL B
+                                    </span>
+                                </div>
+                                <h3 class="text-3xl font-black mb-4 leading-tight">
+                                    Teaching Activation Certification
+                                </h3>
+                                {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
                                                 Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
                                             </p> --}}
+                            </div>
+                            <div class="grid grid-cols-1 gap-3 mb-8">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                                    <span class="text-sm font-medium">Merancang modul ajar RPP</span>
                                 </div>
-                                 <div class="grid grid-cols-1 gap-3 mb-8">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                                        <span class="text-sm font-medium">Merancang modul ajar RPP</span>
-                                    </div>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                                        <span class="text-sm font-medium">Menyusun materi ajar (PPT)</span>
-                                    </div>
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                                        <span class="text-sm font-medium">Menyusun LKS</span>
-                                    </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                                    <span class="text-sm font-medium">Menyusun materi ajar (PPT)</span>
                                 </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                                    <span class="text-sm font-medium">Menyusun LKS</span>
+                                </div>
+                            </div>
 
+                            <div class="flex items-center justify-between">
+                                @if ($user->hasPermissionTo('access_level_B'))
+                                <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                    class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                    Detail Program
+                                </button>
+                                @else
+                                <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                    class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
+                                    Mulai Sekarang
+                                </button>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level C -->
+                <div class="relative group card-hover">
+                    <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+                        <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));"></div>
+                        <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            {{-- Bagian Atas: Level, Judul, dan Poin --}}
+                            <div>
+                                <div class="mb-6">
+                                    <span class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                        LEVEL C
+                                    </span>
+                                </div>
+                                <h3 class="text-3xl font-black mb-6 leading-tight">
+                                    Teaching Mastery Certification
+                                </h3>
+                                {{-- Poin-poin dipindahkan ke sini --}}
+                                <div class="grid grid-cols-1 gap-3 mb-8">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Melaksanakan Pengajaran berbasis TMF</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Self Review</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Bagian Bawah: Tombol --}}
+                            <div>
                                 <div class="flex items-center justify-between">
-                                    @if ($user->hasPermissionTo('access_level_B'))
-                                    <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                    @if ($user->hasPermissionTo('access_level_C'))
+                                    <button onclick="document.getElementById('modalC').classList.remove('hidden')"
                                         class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                                Detail Program
+                                        Detail Program
                                     </button>
                                     @else
-                                    <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                    <button onclick="document.getElementById('modalC').classList.remove('hidden')"
                                         class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
                                         Mulai Sekarang
                                     </button>
@@ -671,236 +716,199 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Level C -->
-                   <div class="relative group card-hover">
-    <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
-        <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));"></div>
-        <div class="relative h-full flex flex-col justify-between p-8 text-white">
-            {{-- Bagian Atas: Level, Judul, dan Poin --}}
-            <div>
-                <div class="mb-6">
-                    <span class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
-                        LEVEL C
-                    </span>
-                </div>
-                <h3 class="text-3xl font-black mb-6 leading-tight">
-                    Teaching Mastery Certification
-                </h3>
-                {{-- Poin-poin dipindahkan ke sini --}}
-                <div class="grid grid-cols-1 gap-3 mb-8">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                        <span class="text-sm font-medium">Melaksanakan Pengajaran berbasis TMF</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                        <span class="text-sm font-medium">Self Review</span>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Bagian Bawah: Tombol --}}
-            <div>
-                <div class="flex items-center justify-between">
-                    @if ($user->hasPermissionTo('access_level_C'))
-                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                            class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                            Detail Program
-                        </button>
-                    @else
-                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                            class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
-                            Mulai Sekarang
-                        </button>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bundling -->
-<div class="relative group card-hover col-start-2">
-        <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
-           <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(251, 140, 0, 0.9), rgba(255, 204, 0, 0.888));"></div>
-            <div class="relative h-full flex flex-col justify-between p-8 text-white">
-                <div>
-                <div class="mb-6">
-                    <span class="inline-flex items-center px-6 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
-                        BUNDLING
-                    </span>
-                </div>
-                <h3 class="text-4xl font-black mb-4 leading-tight">
-                   Paket Bundling Sertifikasi
-                </h3>
-                {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
+                <!-- Bundling -->
+                <div class="relative group card-hover col-start-2">
+                    <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+                        <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(251, 140, 0, 0.9), rgba(255, 204, 0, 0.888));"></div>
+                        <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            <div>
+                                <div class="mb-6">
+                                    <span class="inline-flex items-center px-6 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                        BUNDLING
+                                    </span>
+                                </div>
+                                <h3 class="text-4xl font-black mb-4 leading-tight">
+                                    Paket Bundling Sertifikasi
+                                </h3>
+                                {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
                             Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
                         </p> --}}
-            </div>
+                            </div>
 
-            <div>
-                <div class="grid grid-cols-1 gap-3 mb-8">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                        <span class="text-sm font-medium">Bundel Level A+B+C</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                        <span class="text-sm font-medium">Bonus: Konsultasi Gratis</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 bg-white rounded-full"></div>
-                        <span class="text-sm font-medium">Pembayaran Cepat</span>
+                            <div>
+                                <div class="grid grid-cols-1 gap-3 mb-8">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Bundel Level A+B+C</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Bonus: Konsultasi Gratis</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Pembayaran Cepat</span>
+                                    </div>
+                                </div>
+
+                                {{-- Bagian Bawah: Tombol --}}
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        @if ($user->hasPermissionTo('access_level_A') &&
+                                        $user->hasPermissionTo('access_level_B') &&
+                                        $user->hasPermissionTo('access_level_C'))
+                                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
+                                            class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                            Detail Program
+                                        </button>
+                                        @else
+                                        <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
+                                            class="bg-white text-orange-400 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
+                                            Mulai Sekarang
+                                        </button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <script>
+                    document.addEventListener('mousemove', (e) => {
+                        if (Math.random() > 0.9) {
+                            createSparkle(e.clientX, e.clientY);
+                        }
+                    });
 
-                <div class="flex items-center justify-between">
-                    <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
-                        class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                        Detail Program
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        <script>
-            document.addEventListener('mousemove', (e) => {
-                if (Math.random() > 0.9) {
-                    createSparkle(e.clientX, e.clientY);
-                }
-            });
+                    function createSparkle(x, y) {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'absolute w-1 h-1 bg-orange-400 rounded-full pointer-events-none z-50';
+                        sparkle.style.left = x + 'px';
+                        sparkle.style.top = y + 'px';
+                        sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                        document.body.appendChild(sparkle);
 
-            function createSparkle(x, y) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'absolute w-1 h-1 bg-orange-400 rounded-full pointer-events-none z-50';
-                sparkle.style.left = x + 'px';
-                sparkle.style.top = y + 'px';
-                sparkle.style.animation = 'sparkle 1s ease-out forwards';
-                document.body.appendChild(sparkle);
+                        setTimeout(() => {
+                            sparkle.remove();
+                        }, 1000);
+                    }
 
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
-            }
-
-            function showModal(modalId) {
-                alert(`Showing details for ${modalId}`);
-            }
+                    function showModal(modalId) {
+                        alert(`Showing details for ${modalId}`);
+                    }
 
 
-            const style = document.createElement('style');
-            style.textContent = `
+                    const style = document.createElement('style');
+                    style.textContent = `
                         @keyframes sparkle {
                             0% { transform: scale(0) rotate(0deg); opacity: 1; }
                             50% { transform: scale(1) rotate(180deg); opacity: 1; }
                             100% { transform: scale(0) rotate(360deg); opacity: 0; }
                         }
                         `;
-            document.head.appendChild(style);
+                    document.head.appendChild(style);
+                </script>
 
-        </script>
+                <style>
+                    * {
+                        font-family: 'Inter', sans-serif;
+                    }
 
-        <style>
-            * {
-                font-family: 'Inter', sans-serif;
-            }
+                    .gradient-bg {
+                        background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #fff7ed 100%);
+                    }
 
-            .gradient-bg {
-                background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #fff7ed 100%);
-            }
+                    .card-hover {
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
 
-            .card-hover {
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            }
+                    .card-hover:hover {
+                        transform: translateY(-8px) scale(1.02);
+                    }
 
-            .card-hover:hover {
-                transform: translateY(-8px) scale(1.02);
-            }
+                    .glass-effect {
+                        backdrop-filter: blur(20px);
+                        -webkit-backdrop-filter: blur(20px);
+                    }
 
-            .glass-effect {
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-            }
+                    .glow-effect {
+                        box-shadow: 0 0 30px rgba(234, 88, 12, 0.2);
+                    }
 
-            .glow-effect {
-                box-shadow: 0 0 30px rgba(234, 88, 12, 0.2);
-            }
+                    .floating-animation {
+                        animation: float 6s ease-in-out infinite;
+                    }
 
-            .floating-animation {
-                animation: float 6s ease-in-out infinite;
-            }
+                    @keyframes float {
 
-            @keyframes float {
+                        0%,
+                        100% {
+                            transform: translateY(0px);
+                        }
 
-                0%,
-                100% {
-                    transform: translateY(0px);
-                }
+                        50% {
+                            transform: translateY(-10px);
+                        }
+                    }
 
-                50% {
-                    transform: translateY(-10px);
-                }
-            }
+                    .pulse-glow {
+                        animation: pulse-glow 2s infinite;
+                    }
 
-            .pulse-glow {
-                animation: pulse-glow 2s infinite;
-            }
+                    @keyframes pulse-glow {
 
-            @keyframes pulse-glow {
+                        0%,
+                        100% {
+                            box-shadow: 0 0 20px rgba(234, 88, 12, 0.4);
+                        }
 
-                0%,
-                100% {
-                    box-shadow: 0 0 20px rgba(234, 88, 12, 0.4);
-                }
+                        50% {
+                            box-shadow: 0 0 40px rgba(234, 88, 12, 0.8);
+                        }
+                    }
 
-                50% {
-                    box-shadow: 0 0 40px rgba(234, 88, 12, 0.8);
-                }
-            }
+                    .card-bg-level-a {
+                        background: linear-gradient(135deg, #ea5a0c 0%, #f97316 100%);
+                    }
 
-            .card-bg-level-a {
-                background: linear-gradient(135deg, #ea5a0c 0%, #f97316 100%);
-            }
+                    .card-bg-level-b {
+                        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+                    }
 
-            .card-bg-level-b {
-                background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
-            }
+                    .card-bg-level-c {
+                        background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+                    }
 
-            .card-bg-level-c {
-                background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
-            }
+                    .particle {
+                        position: absolute;
+                        background: rgba(234, 88, 12, 0.1);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        animation: particle-float 8s infinite linear;
+                    }
 
-            .particle {
-                position: absolute;
-                background: rgba(234, 88, 12, 0.1);
-                border-radius: 50%;
-                pointer-events: none;
-                animation: particle-float 8s infinite linear;
-            }
+                    @keyframes particle-float {
+                        0% {
+                            transform: translateY(100vh) rotate(0deg);
+                            opacity: 0;
+                        }
 
-            @keyframes particle-float {
-                0% {
-                    transform: translateY(100vh) rotate(0deg);
-                    opacity: 0;
-                }
+                        10% {
+                            opacity: 1;
+                        }
 
-                10% {
-                    opacity: 1;
-                }
+                        90% {
+                            opacity: 1;
+                        }
 
-                90% {
-                    opacity: 1;
-                }
-
-                100% {
-                    transform: translateY(-100px) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-
-        </style>
+                        100% {
+                            transform: translateY(-100px) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                </style>
     </section>
     {{-- End Pilih Jalur Sertifikasi --}}
 
@@ -1163,12 +1171,15 @@
                 @break
 
                 @case('BUNDLING')
-                @if ($user->hasPermissionTo('access_level_C'))
+                @if ($user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B') && $user->hasPermissionTo('access_level_C'))
                 <button class="bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow-lg cursor-not-allowed" disabled>
                     Sudah Terdaftar
                 </button>
-                @elseif ($user->hasPermissionTo('level_B_completed'))
-                <a href="{{ route('payments.create', Hashids::encode($levels[4]->id)) }}" class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
+                @elseif (
+                !$user->hasPermissionTo('access_level_A') &&
+                !$user->hasPermissionTo('access_level_B') &&
+                !$user->hasPermissionTo('access_level_C'))
+                <a href="{{ route('payments.create', Hashids::encode($levels[3]->id)) }}" class="bg-gradient-to-r from-[#F4A261] to-[#E76F51] hover:from-[#E76F51] hover:to-[#E76F51] text-white px-6 py-3 rounded-lg font-bold shadow-lg transform transition-all hover:scale-105">
                     Daftar Sekarang
                 </a>
                 @else
@@ -1396,7 +1407,6 @@
                     opacity: 0;
                 }
             }
-
         </style>
     </section>
     {{-- End Apa yang guru dapatkan --}}
@@ -1673,7 +1683,6 @@
                     margin-bottom: 1rem;
                 }
             }
-
         </style>
     </section>
     {{-- End Tutorial Penggunaan --}}
@@ -1846,7 +1855,6 @@
                 margin-bottom: 1.5rem;
             }
         }
-
     </style>
     {{-- Testimoni --}}
 </section>
@@ -1854,8 +1862,4 @@
 <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="{{ asset('assets/js/asesiDashboard.js') }}" defer></script>
-<<<<<<< HEAD
-=======
-
->>>>>>> 39396723571766c605b7d106ad2bf97ffd05a9bb
 @endsection
