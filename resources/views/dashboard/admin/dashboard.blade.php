@@ -97,7 +97,7 @@
 </div>
 
 <div class="mb-8">
-        <button id="openBundlingModal"                                                class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">                                                Mulai Sekarang                                            </button>
+        <button id="openBundlingModal" class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">                                                Mulai Sekarang                                            </button>
 </div>
 
 <!-- Main Content Grid -->

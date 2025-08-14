@@ -585,7 +585,7 @@
                                 </h3>
                             </div>
                             <div>
-                                <div class="grid grid-cols-1 gap-3 mb-8">
+                                <div class="grid grid-cols-1 gap-3 mb-8 ">
                                     <div class="flex items-center space-x-3">
                                         <div class="w-3 h-3 bg-white rounded-full"></div>
                                         <span class="text-sm font-medium">Uji Literasi Numerasi</span>
@@ -600,10 +600,10 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-center  justify-between">
                                     @if ($user->hasPermissionTo('access_level_A'))
                                     <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                        class="bg-white text-black px-2 py-2  mb-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                        class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
                                         Detail Program
                                     </button>
                                     @else
@@ -638,33 +638,35 @@
                                                 Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
                                             </p> --}}
                             </div>
-                            <div class="grid grid-cols-1 gap-3 mb-8">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-3 h-3 bg-white rounded-full"></div>
-                                    <span class="text-sm font-medium">Merancang modul ajar RPP</span>
+                            <div>
+                                <div class="grid grid-cols-1 gap-3 mb-8">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Merancang modul ajar RPP</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Menyusun materi ajar (PPT)</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        <span class="text-sm font-medium">Menyusun LKS</span>
+                                    </div>
                                 </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-3 h-3 bg-white rounded-full"></div>
-                                    <span class="text-sm font-medium">Menyusun materi ajar (PPT)</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-3 h-3 bg-white rounded-full"></div>
-                                    <span class="text-sm font-medium">Menyusun LKS</span>
-                                </div>
-                            </div>
 
-                            <div class="flex items-center justify-between">
-                                @if ($user->hasPermissionTo('access_level_B'))
-                                <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                    class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                    Detail Program
-                                </button>
-                                @else
-                                <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                    class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
-                                    Mulai Sekarang
-                                </button>
-                                @endif
+                                <div class="flex items-center justify-between">
+                                    @if ($user->hasPermissionTo('access_level_B'))
+                                    <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                        class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                        Detail Program
+                                    </button>
+                                    @else
+                                    <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                        class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
+                                        Mulai Sekarang
+                                    </button>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -672,7 +674,7 @@
 
                 <!-- Level C -->
                 <div class="relative group card-hover">
-                    <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+                    <div class="relative min-h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
                         <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));"></div>
                         <div class="relative h-full flex flex-col justify-between p-8 text-white">
                             {{-- Bagian Atas: Level, Judul, dan Poin --}}
@@ -685,6 +687,10 @@
                                 <h3 class="text-3xl font-black mb-6 leading-tight">
                                     Teaching Mastery Certification
                                 </h3>
+                            </div>
+
+                            {{-- Bagian Bawah: Tombol --}}
+                            <div>
                                 {{-- Poin-poin dipindahkan ke sini --}}
                                 <div class="grid grid-cols-1 gap-3 mb-8">
                                     <div class="flex items-center space-x-3">
@@ -696,10 +702,6 @@
                                         <span class="text-sm font-medium">Self Review</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            {{-- Bagian Bawah: Tombol --}}
-                            <div>
                                 <div class="flex items-center justify-between">
                                     @if ($user->hasPermissionTo('access_level_C'))
                                     <button onclick="document.getElementById('modalC').classList.remove('hidden')"
@@ -719,8 +721,8 @@
                 </div>
 
                 <!-- Bundling -->
-                <div class="relative group card-hover sm:col-span-2 lg:col-span-1 lg:col-start-2">
-                    <div class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+                <div class="relative group card-hover lg:col-span-1 lg:col-start-2">
+                    <div class="relative min-h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
                         <div class="absolute inset-0 opacity-90" style="background-image: linear-gradient(to bottom, rgba(251, 140, 0, 0.9), rgba(255, 204, 0, 0.888));"></div>
                         <div class="relative h-full flex flex-col justify-between p-8 text-white">
                             <div>
@@ -754,22 +756,20 @@
                                 </div>
 
                                 {{-- Bagian Bawah: Tombol --}}
-                                <div>
-                                    <div class="flex items-center justify-between">
-                                        @if ($user->hasPermissionTo('access_level_A') OR
-                                        $user->hasPermissionTo('access_level_B') OR
-                                        $user->hasPermissionTo('access_level_C'))
-                                        <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
-                                            class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                            Detail Program
-                                        </button>
-                                        @else
-                                        <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
-                                            class="bg-white text-orange-400 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
-                                            Mulai Sekarang
-                                        </button>
-                                        @endif
-                                    </div>
+                                <div class="flex items-center justify-between">
+                                    @if ($user->hasPermissionTo('access_level_A') OR
+                                    $user->hasPermissionTo('access_level_B') OR
+                                    $user->hasPermissionTo('access_level_C'))
+                                    <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
+                                        class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
+                                        Detail Program
+                                    </button>
+                                    @else
+                                    <button onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
+                                        class="bg-white text-orange-400 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
+                                        Mulai Sekarang
+                                    </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -1577,7 +1577,9 @@
                 <!-- YouTube Video -->
                 <div class="lg:col-span-3 w-full">
                     <div class="w-full aspect-w-16 aspect-h-9 rounded-2xl shadow-2xl overflow-hidden" style="min-height:320px;">
-                        <iframe src="https://www.youtube.com/embed/euFMXmg1LoQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full min-h-[320px]" style="min-height:320px;"></iframe>
+                        <iframe src="https://www.youtube.com/embed/euFMXmg1LoQ" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen class="w-full h-full min-h-[320px]" style="min-height:320px;"></iframe>
                     </div>
                 </div>
 
