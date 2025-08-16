@@ -158,7 +158,9 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     });
 });
 
-Route::get('/forum', Forum::class)->name('forum');
+
+// HIDE FITUR FORUM
+// Route::get('/forum', Forum::class)->name('forum');
 
 Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');

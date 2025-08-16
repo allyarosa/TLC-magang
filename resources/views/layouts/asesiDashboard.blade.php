@@ -81,11 +81,11 @@
                         Transaksi
                         <span class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
-
-                    <a href="{{ route('forum') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('forum') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                    {{-- HIde FORUM --}}
+                    {{-- <a href="{{ route('forum') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('forum') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
                         Forum
                         <span class="{{ request()->routeIs('forum') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
-                    </a>
+                    </a> --}}
                 </div>
 
                 <!-- Right Section (Profile & Notifications) for Desktop -->
