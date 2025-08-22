@@ -83,8 +83,8 @@
                     </a>
                     {{-- HIde FORUM --}}
                     {{-- <a href="{{ route('forum') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('forum') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
-                        Forum
-                        <span class="{{ request()->routeIs('forum') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
+                    Forum
+                    <span class="{{ request()->routeIs('forum') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a> --}}
                 </div>
 
@@ -109,20 +109,12 @@
                     </div>
 
                     <!-- Notification -->
-                    {{-- <div class="relative">
-                        <button
-                            class="p-2.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
-                            <svg class="h-5 w-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
-                                </path>
-                            </svg>
-                        </button>
-                        <span
-                            class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
-                            3
-                        </span>
-                    </div> --}}
+
+
+                    @livewire('notification-modal')
+
+                    <!-- Messages -->
+                    
 
                     <!-- Profile Dropdown -->
                     <div class="relative">
@@ -282,18 +274,34 @@
                 const profileMenu = document.getElementById('profile-menu-asesi');
                 const profileArrow = document.getElementById('profile-arrow');
 
-                // if (profileButton && profileMenu) {
+
                 if (profileButton && profileMenu && profileArrow) {
                     profileButton.addEventListener('click', function() {
                         profileMenu.classList.toggle('hidden');
                         profileArrow.classList.toggle('rotate-180');
                     });
 
-                    // Close dropdown when clicking outside
                     document.addEventListener('click', function(event) {
                         if (!profileButton.contains(event.target)) {
                             profileMenu.classList.add('hidden');
                             profileArrow.classList.remove('rotate-180');
+                        }
+                    });
+                }
+
+                // Notification modal functionality
+                const notificationButton = document.getElementById('notification-button');
+                const notificationModal = document.getElementById('notification-modal');
+
+                if (notificationButton && notificationModal) {
+                    notificationButton.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                        notificationModal.classList.toggle('hidden');
+                    });
+
+                    document.addEventListener('click', function(event) {
+                        if (!notificationModal.contains(event.target) && !notificationButton.contains(event.target)) {
+                            notificationModal.classList.add('hidden');
                         }
                     });
                 }

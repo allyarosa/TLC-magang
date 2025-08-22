@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 use App\Events\PaymentSuccessful;
+use App\Notifications\TransactionNotification;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,6 +81,9 @@ class PaymentController extends Controller
                 'status' => 'pending',
             ]);
 
+            // Kirim notifikasi ke user
+            $user->notify(new TransactionNotification($payment));
+
             // Store payment redirect information with proper structure
             session()->put('payment_redirect', [
                 'route_name' => 'payments.checkout',
@@ -142,6 +146,8 @@ class PaymentController extends Controller
                 'snap_token' => $snapToken, // Token yang valid
                 'status' => 'pending',
             ]);
+
+            $user->notify(new TransactionNotification($payment));
 
             // Redirect to checkout page
             return redirect()->route('payments.checkout', ['id' => $payment->id]);
@@ -219,6 +225,9 @@ class PaymentController extends Controller
                 $snapToken = Snap::getSnapToken($params);
                 $payment->update(['snap_token' => $snapToken]);
 
+                // Notify user about the new snap token
+                $user->notify(new TransactionNotification($payment));
+
                 \Log::info('Snap token regenerated successfully:', [
                     'payment_id' => $payment->id,
                     'order_id' => $payment->order_id,
@@ -251,6 +260,8 @@ class PaymentController extends Controller
         $payment->update([
             'status' => 'success'
         ]);
+
+        // Grant access based on level_id
         $user = User::firstWhere('id', $payment->user_id);
 
         switch ($payment->level_id) {
@@ -269,6 +280,9 @@ class PaymentController extends Controller
             default:
                 break;
         }
+
+        $user->notify(new TransactionNotification($payment));
+
         //JIKA WEBHOOK TIDAK JALAN
 
         if (!$payment) {
@@ -316,6 +330,9 @@ class PaymentController extends Controller
         $payment->payment_time = now();
         $payment->payment_details = json_decode(json_encode($notif), true);
         $payment->save();
+
+
+        $payment->user->notify(new TransactionNotification($payment));
 
         if ($payment->status == 'success') {
             event(new PaymentSuccessful($payment));

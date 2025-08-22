@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreSubmissionRequest;
+use App\Notifications\LevelBCompletedNotification;
 
 class LevelBController extends Controller
 {
@@ -80,6 +81,7 @@ class LevelBController extends Controller
                 $modulAjarName = time() . '_modul_' . $userId . '.' . $modulAjar->getClientOriginalExtension();
                 $modulAjarPath = $modulAjar->storeAs('level_b/modul_ajar', $modulAjarName, 'public');
                 $user->givePermissionTo('MODUL_AJAR');
+                $user->givePermissionTo('MODUL_AJAR_COMPLETED');
             }
 
             // Create submission record
@@ -90,6 +92,10 @@ class LevelBController extends Controller
                 'description' => strip_tags($validated['description']),
                 'status' => 'pending',
             ]);
+            
+            // Send notification to the user
+            $user->notify(new LevelBCompletedNotification());
+            
             DB::commit();
 
             Alert::success('Permohonan sertifikasi Level B berhasil dikirim. Silahkan tunggu pengecekan oleh Asesor.');

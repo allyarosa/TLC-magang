@@ -256,19 +256,24 @@ class ExamController extends Controller
 
         $score = $totalQuestions > 0 ? round(($correctAnswers / $totalQuestions) * 100, 2) : 0;
 
+        $passing_score = 70;
+        if ($category) {
+            $passing_score = $category->passing_score ?? 70;
+        }
+
         // Update exam
         $exam->update([
             'status' => 'finished',
             'end_time' => now(),
             'score' => $score,
-            'is_passed' => $score >= ($category->passing_score ?? 70),
+            'is_passed' => $score >= $passing_score,
             'correct_answers' => $correctAnswers,
             'wrong_answers' => $exam->questionsA()->wherePivot('is_correct', false)->count(),
             'total_questions' => $totalQuestions,
             'unanswered_questions' => $totalQuestions - $exam->questionsA()->wherePivotNotNull('user_answer')->count(),
         ]);
 
-        if ($exam->is_passed) {
+        if ($exam->is_passed && $category) {
             $user = $exam->user;
             event(new ExamCompleted($user, $category));
         }
@@ -319,9 +324,6 @@ class ExamController extends Controller
 
         // Set flash message berdasarkan hasil ujian
         if ($exam->is_passed) {
-            $user = $exam->user;
-            event(new ExamCompleted($user, $category->name));
-
             // Hanya tampilkan alert jika bukan dari redirect testimonial
             if (!session('testimonial_success') && !session('show_testimonial_form')) {
                 Alert::success('Ujian Selesai', 'Selamat, Anda telah lulus ujian pada kategori ' . $category->name);

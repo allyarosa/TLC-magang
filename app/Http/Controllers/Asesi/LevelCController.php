@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAssessmentRequestC;
 use Vinkla\Hashids\Facades\Hashids;
+use App\Notifications\LevelCCompletedNotification;
 
 class LevelCController extends Controller
 {
@@ -36,6 +37,7 @@ class LevelCController extends Controller
         try {
             $validated = $request->validated();
             $userId = Auth::id();
+            $user = Auth::user();
 
             // Create submission record
             $levelC = LevelCSubmission::create([
@@ -45,6 +47,10 @@ class LevelCController extends Controller
                 'description' => $validated['description'],
                 'status' => 'pending',
             ]);
+            
+            // Send notification to the user
+            $user->notify(new LevelCCompletedNotification());
+            
             DB::commit();
 
             Alert::success('Permohonan sertifikasi Level C berhasil dikirim. Silahkan tunggu pengecekan oleh Asesor.');

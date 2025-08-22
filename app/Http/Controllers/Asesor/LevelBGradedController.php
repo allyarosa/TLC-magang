@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreAssessmentRequest;
 use App\Models\LevelBHistory;
+use App\Notifications\LevelBGradedNotification;
 
 class LevelBGradedController extends Controller
 {
@@ -112,6 +113,9 @@ class LevelBGradedController extends Controller
                 $levelB->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
             }
         }
+
+        // Send notification to the user about the grading result
+        $user->notify(new LevelBGradedNotification($request->score));
 
         event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');

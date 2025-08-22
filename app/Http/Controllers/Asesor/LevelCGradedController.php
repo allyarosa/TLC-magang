@@ -17,6 +17,7 @@ use App\Models\LevelCHistory;
 use App\Models\QuestionC;
 use App\Models\UserAnswerC;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\LevelCGradedNotification;
 
 class LevelCGradedController extends Controller
 {
@@ -124,6 +125,9 @@ class LevelCGradedController extends Controller
                 $levelC->update(['status' => 'rejected', 'is_passed' => 'rejected',]);
             }
         }
+
+        // Send notification to the user about the grading result
+        $user->notify(new LevelCGradedNotification($request->score));
 
         event(new GradingCompleted($user));
         Alert::success('Berhasil mengubah status assessment');

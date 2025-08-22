@@ -76,13 +76,12 @@
 </head>
 <body>
     <div class="background-container">
-        <img src="data:image/png;base64,{{ $backgroundImage ?? '' }}" class="background-image" alt="Certificate Background">
+        <img src="data:image/jpeg;base64,{{ $backgroundImage ?? '' }}" class="background-image" alt="Certificate Background">
     </div>
     
     <div class="certificate-content">
-        <div class="name">{{ Auth::user()->name ?? 'hamas akif sanie' }}</div>
-        {{-- <div class="course">{{ $course ?? 'Level A' }}</div> --}}
-        {{-- <div class="date">Tanggal: {{ $date ?? '18 Juni 2025' }}</div> --}}
+        <div class="name">{{ $name ?? 'hamas akif sanie' }}</div>
+        <div class="date">Tanggal: {{ $date ?? '18 Juni 2025' }}</div>
     </div>
 </body>
 </html>

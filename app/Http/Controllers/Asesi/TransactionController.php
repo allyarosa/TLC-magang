@@ -24,7 +24,7 @@ class TransactionController extends Controller
         $paymentPendingCount = Payment::where('user_id', $userId)
             ->where('status', 'pending')
             ->count();
-
+        
         return view('dashboard.asesi.transaksi', [
             'paymentCount' => $paymentCount,
             'paymentSuccessCount' => $paymentSuccessCount,
