@@ -28,16 +28,12 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                         <path d="M8,12H16V14H8V12M8,16H13V18H8V16Z" />
-                    </svg>c
+                    </svg>
                     {{-- <span class="ml-2 text-sm text-gray-600">{{ $index['question_count'] }} Soal</span> --}}
                 </div>
 
                 {{-- Tombol Mulai --}}
                 <div class="flex justify-between items-center">
-                    {{-- <div class="text-sm text-gray-500">
-                        <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
-                        Terbuka
-                    </div> --}}
                     @if ($user->hasPermissionTo('MODUL_AJAR'))
                     @if ($user->hasPermissionTo('MODUL_AJAR_COMPLETED'))
                     <button disabled class="px-5 py-2 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-default">

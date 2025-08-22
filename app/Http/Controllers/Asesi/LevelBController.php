@@ -65,24 +65,22 @@ class LevelBController extends Controller
             $userId = Auth::id();
             $user = Auth::user();
 
-            $filePptPath = null;
             $modulAjarPath = null;
+            $filePptPath = null;
 
             // Handle file_ppt upload
-            if ($request->hasFile('file_ppt')) {
+            if ($request->hasFile('modul_ajar')) {
+                $modulAjar = $request->file('modul_ajar');
+                $modulAjarName = time() . '_modul_ajar_' . $userId . '.' . $modulAjar->getClientOriginalExtension();
+                $modulAjarPath = $modulAjar->storeAs('level_b/modul_ajar', $modulAjarName, 'public');
+                $user->givePermissionTo('MODUL_AJAR');
+            } elseif ($request->hasFile('file_ppt')) {
                 $filePpt = $request->file('file_ppt');
                 $filePptName = time() . '_ppt_' . $userId . '.' . $filePpt->getClientOriginalExtension();
                 $filePptPath = $filePpt->storeAs('level_b/ppt', $filePptName, 'public');
                 $user->givePermissionTo('PPT_UPLOAD');
             }
 
-            if ($request->hasFile('modul_ajar')) {
-                $modulAjar = $request->file('modul_ajar');
-                $modulAjarName = time() . '_modul_' . $userId . '.' . $modulAjar->getClientOriginalExtension();
-                $modulAjarPath = $modulAjar->storeAs('level_b/modul_ajar', $modulAjarName, 'public');
-                $user->givePermissionTo('MODUL_AJAR');
-                $user->givePermissionTo('MODUL_AJAR_COMPLETED');
-            }
 
             // Create submission record
             $levelB = LevelBSubmission::create([
@@ -92,10 +90,10 @@ class LevelBController extends Controller
                 'description' => strip_tags($validated['description']),
                 'status' => 'pending',
             ]);
-            
+
             // Send notification to the user
             $user->notify(new LevelBCompletedNotification());
-            
+
             DB::commit();
 
             Alert::success('Permohonan sertifikasi Level B berhasil dikirim. Silahkan tunggu pengecekan oleh Asesor.');

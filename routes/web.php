@@ -139,7 +139,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(f
     Route::post('/sertifikasi/level/b/instruction', [LevelBController::class, 'instruction'])->name('asesi.sertifikasi.level.b.instruction');
     Route::get('/sertifikasi/level/b/ppt', [LevelBController::class, 'formPPT'])->name('asesi.sertifikasi.level.b.ppt');
     Route::get('/sertifikasi/level/b/modul', [LevelBController::class, 'formModulAjar'])->name('asesi.sertifikasi.level.b.modulajar');
-    Route::post('/sertifikasi/level/b/modul/store', [LevelBController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.b.store');
+    Route::post('/sertifikasi/level/b/store', [LevelBController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.b.store');
 
     // LEVEL C ASESI
     Route::post('/sertifikasi/level/c/instruction', [LevelCController::class, 'instruction'])->name('asesi.sertifikasi.level.c.instruction');

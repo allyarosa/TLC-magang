@@ -17,26 +17,26 @@
 
             {{-- Tampilkan pesan error umum --}}
             @if ($errors->any())
-                <div class="mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-800 dark:text-red-300 rounded-lg">
-                    <div class="flex items-start">
-                        <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                        </svg>
-                        <div>
-                            <strong class="font-semibold">Terjadi kesalahan:</strong>
-                            <ul class="mt-2 list-disc list-inside text-sm">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+            <div class="mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-800 dark:text-red-300 rounded-lg">
+                <div class="flex items-start">
+                    <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="font-semibold">Terjadi kesalahan:</strong>
+                        <ul class="mt-2 list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
+            </div>
             @endif
 
             <form id="pptForm" action="{{ route('asesi.sertifikasi.level.b.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
-                
+
                 <div class="space-y-2">
                     <label for="file_ppt" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
                         Upload File PPT
@@ -51,33 +51,33 @@
                         Format yang didukung: PPT, PPTX (Maksimal 15MB)
                     </p>
                     @error('file_ppt')
-                        <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                            </svg>
-                            {{ $message }}
-                        </p>
+                    <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        {{ $message }}
+                    </p>
                     @enderror
                 </div>
 
                 <div class="space-y-2">
                     <label for="description" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
-                        Deskripsi Modul Ajar
+                        Deskripsi Presentasi
                         <span class="text-red-500">*</span>
                     </label>
-                    <textarea id="description" name="description" rows="4" required
-                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 resize-none"
-                        placeholder="Tuliskan deskripsi singkat tentang presentasi PPT Anda...">{{ old('description') }}</textarea>
+                    <textarea name="description" id="description" rows="2" class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">
+                    {{-- {!! $asesi->comment_asesor !!} --}}
+                    </textarea>
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                         Minimal 10 karakter, maksimal 500 karakter
                     </p>
                     @error('description')
-                        <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                            </svg>
-                            {{ $message }}
-                        </p>
+                    <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        {{ $message }}
+                    </p>
                     @enderror
                 </div>
 
@@ -138,49 +138,49 @@
         const confirmBtn = document.getElementById('confirmBtn');
         const fileInput = document.getElementById('file_ppt');
         const descriptionInput = document.getElementById('description');
-    
+
         // Prevent default form submission
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Validate form
             if (!fileInput.files[0]) {
                 alert('Silakan pilih file PPT terlebih dahulu');
                 fileInput.focus();
                 return;
             }
-            
+
             if (!descriptionInput.value.trim()) {
-                alert('Silakan isi deskripsi modul ajar');
+                alert('Silakan isi deskripsi ');
                 descriptionInput.focus();
                 return;
             }
-    
+
             if (descriptionInput.value.trim().length < 10) {
                 alert('Deskripsi minimal 10 karakter');
                 descriptionInput.focus();
                 return;
             }
-            
+
             // Show confirmation modal
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
         });
-    
+
         // Cancel button
         cancelBtn.addEventListener('click', function() {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = 'auto';
         });
-    
+
         // Confirm button
         confirmBtn.addEventListener('click', function() {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = 'auto';
-            
+
             // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
@@ -193,18 +193,18 @@
                     Mengupload...
                 </span>
             `;
-            
+
             // Submit form
             form.submit();
         });
-    
+
         // Close modal when clicking outside
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 cancelBtn.click();
             }
         });
-    
+
         // File size validation (15MB for PPT)
         fileInput.addEventListener('change', function() {
             const file = this.files[0];
@@ -216,12 +216,12 @@
                 }
             }
         });
-    
+
         // Character counter for description
         descriptionInput.addEventListener('input', function() {
             const current = this.value.length;
             const max = 500;
-            
+
             // Update counter if element exists
             let counter = document.getElementById('charCounter');
             if (!counter) {
@@ -230,9 +230,9 @@
                 counter.className = 'text-xs text-gray-500 dark:text-gray-400 text-right mt-1';
                 this.parentNode.appendChild(counter);
             }
-            
+
             counter.textContent = `${current}/${max} karakter`;
-            
+
             if (current > max) {
                 counter.classList.add('text-red-500');
                 counter.classList.remove('text-gray-500', 'dark:text-gray-400');
@@ -242,4 +242,4 @@
             }
         });
     });
-    </script>
+</script>
