@@ -37,7 +37,7 @@ class LevelCGradedNotification extends Notification
      * @return array<string, mixed>
      */
     public function toArray(object $notifiable): array
-    {
+    {   
         return [
             'message' => 'Ujian Level C Anda telah dinilai oleh asesor. Nilai Anda: ' . $this->score,
             'url' => route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => \Vinkla\Hashids\Facades\Hashids::encode($notifiable->id)]),

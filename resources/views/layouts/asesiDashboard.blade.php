@@ -44,7 +44,7 @@
                 <!-- Mobile Menu Toggle -->
                 <div class="lg:hidden flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
                     <!-- Notification Icon for Mobile -->
-                <livewire:notification-modal />
+                    <livewire:notification-modal />
                     <button id="mobile-menu-toggle" class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
                         <svg id="hamburger-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -104,7 +104,7 @@
                     @livewire('notification-modal')
 
                     <!-- Messages -->
-                    
+
 
                     <!-- Profile Dropdown -->
                     <div class="relative">
