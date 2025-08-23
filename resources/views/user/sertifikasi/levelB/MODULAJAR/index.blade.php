@@ -3,6 +3,7 @@
 @section('title', 'Pengerjaan Level B - Modul Ajar')
 
 @section('content')
+
 <div class="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl mx-auto mt-6 sm:mt-8 md:mt-10 px-4 sm:px-6">
     <div class="bg-white rounded-xl shadow-lg dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
         <div class="p-4 sm:p-6 md:p-8">
@@ -11,7 +12,7 @@
                     Upload Modul Ajar
                 </h1>
                 <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300">
-                    Silakan upload file Modul Ajar Anda beserta deskripsinya
+                    Silakan upload file modul ajar Anda beserta deskripsinya
                 </p>
             </div>
 
@@ -34,8 +35,9 @@
             </div>
             @endif
 
-            <form id="pptForm" action="{{ route('asesi.sertifikasi.level.b.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <form id="modulAjarForm" action="{{ route('asesi.sertifikasi.level.b.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
+                @method('post')
 
                 <div class="space-y-2">
                     <label for="modul_ajar" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
@@ -43,9 +45,7 @@
                         <span class="text-red-500">*</span>
                     </label>
                     <div class="relative">
-                        <input type="file" id="modul_ajar" name="modul_ajar" required
-                            accept=".pdf,.doc,.docx,.ppt,.pptx"
-                            class="block w-full text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-600 dark:file:text-gray-300">
+                        <input type="file" id="modul_ajar" name="modul_ajar" required class="block w-full text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-600 dark:file:text-gray-300">
                     </div>
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                         Format yang didukung: PDF, DOC, DOCX, PPT, PPTX (Maksimal 10MB)
@@ -82,15 +82,14 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
-                    <button type="button" onclick="window.history.back()"
-                        class="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200">
+                    <button type="button" onclick="window.history.back()" class="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200">
                         Kembali
                     </button>
-                    <button type="submit"
-                        class="w-full sm:flex-1 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+                    <button type="submit" class="w-full sm:flex-1 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
                         <span class="flex items-center justify-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                </path>
                             </svg>
                             Upload Modul Ajar
                         </span>
@@ -107,32 +106,41 @@
         <div class="p-6">
             <div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full">
                 <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                    </path>
                 </svg>
             </div>
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center mb-2">
                 Konfirmasi Upload
             </h3>
             <p class="text-sm text-gray-600 dark:text-gray-300 text-center mb-6">
-                Apakah Anda yakin ingin mengupload file Modul Ajar ini? Pastikan file dan deskripsi sudah benar.
+                Apakah Anda yakin ingin mengupload modul ajar ini? Pastikan file dan deskripsi sudah benar.
             </p>
             <div class="flex gap-3">
-                <button id="cancelBtn" type="button"
-                    class="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
+                <button id="cancelBtn" type="button" class="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
                     Batal
                 </button>
-                <button id="confirmBtn" type="button"
-                    class="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="confirmBtn" type="button" class="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
                     Ya, Upload
                 </button>
             </div>
         </div>
     </div>
 </div>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
+    ClassicEditor
+        .create(document.querySelector('#description'))
+        .catch(error => {
+            console.error(error);
+        });
+    if (performance.navigation.type === 2) {
+        // If page is accessed via Back button, reload to clear session flash
+        location.reload();
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('formModulAjar');
+        const form = document.getElementById('modulAjarForm');
         const modal = document.getElementById('confirmModal');
         const cancelBtn = document.getElementById('cancelBtn');
         const confirmBtn = document.getElementById('confirmBtn');
@@ -145,7 +153,7 @@
 
             // Validate form
             if (!fileInput.files[0]) {
-                alert('Silakan pilih file Modul Ajar terlebih dahulu');
+                alert('Silakan pilih file modul ajar terlebih dahulu');
                 fileInput.focus();
                 return;
             }
@@ -182,17 +190,8 @@
             document.body.style.overflow = 'auto';
 
             // Show loading state
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `
-                <span class="flex items-center justify-center">
-                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Mengupload...
-                </span>
-            `;
+            confirmBtn.innerHTML = 'Mengupload...';
+            confirmBtn.disabled = true;
 
             // Submit form
             form.submit();
@@ -205,11 +204,11 @@
             }
         });
 
-        // File size validation (15MB for PPT)
+        // File size validation
         fileInput.addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
-                const maxSize = 10 * 1024 * 1024; // 15MB
+                const maxSize = 10 * 1024 * 1024; // 10MB
                 if (file.size > maxSize) {
                     alert('Ukuran file terlalu besar. Maksimal 10MB');
                     this.value = '';
@@ -242,4 +241,8 @@
             }
         });
     });
+
 </script>
+
+
+@endsection

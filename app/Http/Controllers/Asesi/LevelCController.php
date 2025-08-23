@@ -31,6 +31,7 @@ class LevelCController extends Controller
             abort(404, 'ID Tidak Valid');
         }
 
+
         $id = $decoded[0];
 
         DB::beginTransaction();
@@ -47,10 +48,10 @@ class LevelCController extends Controller
                 'description' => $validated['description'],
                 'status' => 'pending',
             ]);
-            
+
             // Send notification to the user
             $user->notify(new LevelCCompletedNotification());
-            
+
             DB::commit();
 
             Alert::success('Permohonan sertifikasi Level C berhasil dikirim. Silahkan tunggu pengecekan oleh Asesor.');

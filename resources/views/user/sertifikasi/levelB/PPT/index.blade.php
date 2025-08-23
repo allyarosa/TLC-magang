@@ -43,9 +43,7 @@
                         <span class="text-red-500">*</span>
                     </label>
                     <div class="relative">
-                        <input type="file" id="file_ppt" name="file_ppt" required
-                            accept=".ppt,.pptx"
-                            class="block w-full text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-600 dark:file:text-gray-300">
+                        <input type="file" id="file_ppt" name="file_ppt" required accept=".ppt,.pptx" class="block w-full text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-600 dark:file:text-gray-300">
                     </div>
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                         Format yang didukung: PPT, PPTX (Maksimal 15MB)
@@ -62,12 +60,10 @@
 
                 <div class="space-y-2">
                     <label for="description" class="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200">
-                        Deskripsi Presentasi
+                        Deskripsi Modul Ajar
                         <span class="text-red-500">*</span>
                     </label>
-                    <textarea name="description" id="description" rows="2" class="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-gray-700 focus:outline-none focus:border-blue-800 focus:ring-1 focus:ring-blue-800 text-sm sm:text-base resize-y min-h-[100px]">
-                    {{-- {!! $asesi->comment_asesor !!} --}}
-                    </textarea>
+                    <textarea id="description" name="description" rows="4" required class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 resize-none" placeholder="Tuliskan deskripsi singkat tentang presentasi PPT Anda...">{{ old('description') }}</textarea>
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                         Minimal 10 karakter, maksimal 500 karakter
                     </p>
@@ -82,12 +78,10 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
-                    <button type="button" onclick="window.history.back()"
-                        class="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200">
+                    <button type="button" onclick="window.history.back()" class="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200">
                         Kembali
                     </button>
-                    <button type="submit"
-                        class="w-full sm:flex-1 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+                    <button type="submit" class="w-full sm:flex-1 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
                         <span class="flex items-center justify-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
@@ -117,12 +111,10 @@
                 Apakah Anda yakin ingin mengupload file PPT ini? Pastikan file dan deskripsi sudah benar.
             </p>
             <div class="flex gap-3">
-                <button id="cancelBtn" type="button"
-                    class="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
+                <button id="cancelBtn" type="button" class="flex-1 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors">
                     Batal
                 </button>
-                <button id="confirmBtn" type="button"
-                    class="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="confirmBtn" type="button" class="flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
                     Ya, Upload
                 </button>
             </div>
@@ -151,7 +143,7 @@
             }
 
             if (!descriptionInput.value.trim()) {
-                alert('Silakan isi deskripsi ');
+                alert('Silakan isi deskripsi modul ajar');
                 descriptionInput.focus();
                 return;
             }
@@ -242,4 +234,5 @@
             }
         });
     });
+
 </script>
