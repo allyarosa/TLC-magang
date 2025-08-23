@@ -48,7 +48,7 @@
                         <input type="file" id="modul_ajar" name="modul_ajar" required class="block w-full text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-600 dark:file:text-gray-300">
                     </div>
                     <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                        Format yang didukung: PDF, DOC, DOCX, PPT, PPTX (Maksimal 10MB)
+                        Format yang didukung: PDF, DOC, PPT, PPTX (Maksimal 10MB)
                     </p>
                     @error('modul_ajar')
                     <p class="text-red-500 dark:text-red-400 text-sm mt-1 flex items-center">
@@ -241,7 +241,6 @@
             }
         });
     });
-
 </script>
 
 
