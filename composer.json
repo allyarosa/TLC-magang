@@ -12,6 +12,7 @@
         "php": "^8.2",
         "azishapidin/indoregion": "^3.0",
         "barryvdh/laravel-dompdf": "^3.1",
+        "doctrine/dbal": "^4.3",
         "laravel-lang/common": "^6.7",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "*",
@@ -20,10 +21,10 @@
         "livewire/livewire": "^3.6",
         "maatwebsite/excel": "^3.1",
         "midtrans/midtrans-php": "^2.6",
+        "pusher/pusher-php-server": "^7.2",
         "realrashid/sweet-alert": "^7.3",
         "spatie/laravel-permission": "^6.17",
-        "vinkla/hashids": "^13.0",
-        "pusher/pusher-php-server": "^7.2"
+        "vinkla/hashids": "^13.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",

@@ -30,7 +30,8 @@ class QuestionARequest extends FormRequest
             'option_b' => 'required|string',
             'option_c' => 'required|string',
             'option_d' => 'required|string',
-            'correct_answer' => 'required|in:a,b,c,d',
+            'option_e' => 'required|string',
+            'correct_answer' => 'required|in:a,b,c,d,e',
         ];
     }
 }

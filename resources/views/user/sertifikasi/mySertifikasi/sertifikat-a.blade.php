@@ -82,11 +82,11 @@
         </div>
 
         {{-- Verification Button --}}
-        <div class="text-center mt-6">
+        {{-- <div class="text-center mt-6">
             <a href="{{ route('asesi.downloadCertificate',Vinkla\Hashids\Facades\Hashids::encode($id)) }}" class="bg-blue-700 hover:bg-blue- text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                 Download Sertifikat
             </a>
-        </div>
+        </div> --}}
     </div>
 
     {{-- Course Details Section --}}
@@ -227,27 +227,27 @@
                             </svg>
                         </div>
                         <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $namaGelar }}</h3>
-                        <p class="text-gray-600 text-sm mb-4">TKC-A-2024001</p>
+                        {{-- <p class="text-gray-600 text-sm mb-4">TKC-A-2024001</p> --}}
                     </div>
 
                     <div class="space-y-4 text-sm">
-                        <div>
+                        {{-- <div>
                             <p class="text-gray-500 mb-1">Dikeluarkan pada</p>
                             <p class="font-semibold">Juni 18, 2024</p>
-                        </div>
-                        <div>
+                        </div> --}}
+                        {{-- <div>
                             <p class="text-gray-500 mb-1">Berlaku sampai</p>
                             <p class="font-semibold">Juni 18, 2027</p>
-                        </div>
-                        <div>
+                        </div> --}}
+                        {{-- <div>
                             <p class="text-gray-500 mb-1">NPSN</p>
                             <p class="font-semibold">20401234</p>
-                        </div>
+                        </div> --}}
                         <div>
                             <p class="text-gray-500 mb-1">Level Sertifikasi</p>
                             <p class="font-semibold text-blue-600">Level A - Teaching Knowledge</p>
                         </div>
-                        <div class="pt-4 border-t">
+                        {{-- <div class="pt-4 border-t">
                             <p class="text-gray-500 mb-2">Bagikan sertifikat:</p>
                             <div class="flex space-x-3">
                                 <a href="#" class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -271,12 +271,12 @@
                                     </svg>
                                 </a>
                             </div>
-                        </div>
-                        <div class="pt-4">
+                        </div> --}}
+                        {{-- <div class="pt-4">
                             <a href="#" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 px-4 rounded font-semibold transition-colors inline-block">
                                 TAMBAHKAN KE LINKEDIN
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

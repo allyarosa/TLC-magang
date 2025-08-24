@@ -214,7 +214,7 @@ class ExamController extends Controller
 
         $validated = $request->validate([
             'question_a_id' => 'required|exists:questions_a,id',
-            'user_answer' => 'required|in:a,b,c,d',
+            'user_answer' => 'required|in:a,b,c,d,e',
         ]);
 
         // Get the question

@@ -31,7 +31,7 @@
                 </h3>
             </div>
 
-             @if ($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="mb-0">
                         @foreach ($errors->all() as $error)
@@ -43,7 +43,8 @@
 
             <!-- Form body -->
             <div class="p-2">
-                <form action="{{ route('admin.question.a.update', $question->id) }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('admin.question.a.update', $question->id) }}" enctype="multipart/form-data"
+                    method="post">
                     @csrf
                     @method('put')
 
@@ -67,7 +68,8 @@
                                         </div>
                                         <select id="category_a_id" name="category_a_id" onchange="showCustomInput()"
                                             class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                            <option value="{{ $categoriesEdit->id }}" selected>--{{ $categoriesEdit->name }}--</option>
+                                            <option value="{{ $categoriesEdit->id }}" selected>
+                                                --{{ $categoriesEdit->name }}--</option>
                                             @foreach ($categoriesA as $category)
                                                 <option value="{{ $category->id }}"
                                                     {{ old('category_a_id') == $category->id ? 'selected' : '' }}>
@@ -148,6 +150,18 @@
                                     <x-input-error :messages="$errors->get('option_d')" class="mt-1 text-xs" />
                                 </div>
 
+                                <!-- Opsi E -->
+                                <div>
+                                    <label for="option_e" class="block mb-2 text-sm font-medium text-gray-700">
+                                        Opsi D <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" name="option_e" id="option_e" required
+                                        placeholder="Input option E"
+                                        class="pl-3 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value="{{ $question->option_e }}">
+                                    <x-input-error :messages="$errors->get('option_e')" class="mt-1 text-xs" />
+                                </div>
+
                                 <!-- Correct Answer -->
                                 <div>
                                     <label for="correct_answer" class="block mb-2 text-sm font-medium text-gray-700">
@@ -155,7 +169,8 @@
                                     </label>
                                     <select id="correct_answer" name="correct_answer"
                                         class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                        <option selected value="{{ $question->correct_answer }}" >--{{ Str::upper($question->correct_answer) }}--</option>
+                                        <option selected value="{{ $question->correct_answer }}">
+                                            --{{ Str::upper($question->correct_answer) }}--</option>
                                         <option value="a" {{ old('correct_answer') == 'a' ? 'selected' : '' }}>A
                                         </option>
                                         <option value="b" {{ old('correct_answer') == 'b' ? 'selected' : '' }}>B
@@ -163,6 +178,8 @@
                                         <option value="c" {{ old('correct_answer') == 'c' ? 'selected' : '' }}>C
                                         </option>
                                         <option value="d" {{ old('correct_answer') == 'd' ? 'selected' : '' }}>D
+                                        </option>
+                                        <option value="e" {{ old('correct_answer') == 'e' ? 'selected' : '' }}>E
                                         </option>
                                     </select>
                                     <x-input-error :messages="$errors->get('correct_answer')" class="mt-1 text-xs" />

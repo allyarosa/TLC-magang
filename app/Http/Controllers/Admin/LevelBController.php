@@ -152,7 +152,8 @@ class LevelBController extends Controller
                     ->orWhere('option_a', 'like', "%{$keyword}%")
                     ->orWhere('option_b', 'like', "%{$keyword}%")
                     ->orWhere('option_c', 'like', "%{$keyword}%")
-                    ->orWhere('option_d', 'like', "%{$keyword}%");
+                    ->orWhere('option_d', 'like', "%{$keyword}%")
+                    ->orWhere('option_e', 'like', "%{$keyword}%");
             });
             $emptyStateMessage = 'Tidak ditemukan soal yang cocok dengan kata kunci: ' . $keyword;
         }

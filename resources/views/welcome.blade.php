@@ -1124,7 +1124,7 @@
         <!-- End Paket Harga -->
 
         <!-- Success Stories Section -->
-        <section class="w-full px-5 py-20 bg-gradient-to-br from-blue-50 via-gray-50 to-white text-gray-900 shadow-xl"
+        {{-- <section class="w-full px-5 py-20 bg-gradient-to-br from-blue-50 via-gray-50 to-white text-gray-900 shadow-xl"
             id="testimonials">
             <div class="text-center px-4 sm:px-6">
                 <span
@@ -1321,7 +1321,7 @@
                 </div>
             </div>
 
-        </section>
+        </section> --}}
         <!-- End Success Stories -->
 
         <!-- Video TLC Section -->

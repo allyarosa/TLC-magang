@@ -205,6 +205,7 @@
                                             'b' => $question->option_b,
                                             'c' => $question->option_c,
                                             'd' => $question->option_d,
+                                            'e' => $question->option_e,
                                         ];
                                     @endphp
 
@@ -498,7 +499,8 @@
                         '1': 'a',
                         '2': 'b',
                         '3': 'c',
-                        '4': 'd'
+                        '4': 'd',
+                        '5': 'e'
                     };
                     const radio = document.getElementById('answer_' + optionMap[e.key]);
                     if (radio) radio.click();
