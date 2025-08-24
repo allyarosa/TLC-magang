@@ -101,7 +101,7 @@ class ExamController extends Controller
 
             // Get random questions for this category
             $questions = QuestionA::where('category_a_id', $validated['category_id'])
-                ->inRandomOrder()
+                // ->inRandomOrder()
                 ->limit(30)
                 ->get();
 

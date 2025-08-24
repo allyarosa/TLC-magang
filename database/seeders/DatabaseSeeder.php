@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
             AsesorSeeders::class,
             CategoryASeeders::class,
             LevelSeeders::class,
-            QuestionSeeders::class,
+            // QuestionSeeders::class,
             
             // PaymentSeeders::class,
             // LevelBSeeders::class,
