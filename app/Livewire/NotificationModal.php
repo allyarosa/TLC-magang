@@ -9,6 +9,7 @@ class NotificationModal extends Component
 {
     public $notifications;
     public $unreadCount;
+    public $isOpen = false; // Tambah state modal
 
     protected $listeners = ['notification-new' => 'loadNotifications'];
 
@@ -25,10 +26,14 @@ class NotificationModal extends Component
             $this->unreadCount = $user->unreadNotifications->count();
         } else {
             $this->notifications = collect();
-
             $this->unreadCount = 0;
         }
-    }                   
+    }
+
+    public function toggle()
+    {
+        $this->isOpen = !$this->isOpen;
+    }
 
     public function markAsRead($notificationId)
     {
@@ -38,7 +43,7 @@ class NotificationModal extends Component
             if ($notification) {
                 $notification->markAsRead();
                 $this->loadNotifications();
-                
+
                 if (isset($notification->data['url'])) {
                     return redirect($notification->data['url']);
                 }
