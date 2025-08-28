@@ -256,9 +256,9 @@ class ExamController extends Controller
 
         $score = $totalQuestions > 0 ? round(($correctAnswers / $totalQuestions) * 100, 2) : 0;
 
-        $passing_score = 70;
+        $passing_score = 75;
         if ($category) {
-            $passing_score = $category->passing_score ?? 70;
+            $passing_score = $category->passing_score ?? 75;
         }
 
         // Update exam
