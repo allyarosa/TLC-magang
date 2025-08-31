@@ -310,7 +310,10 @@ class AdminDashboardController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             Alert::success('Gagal', 'Terjadi Error!');
-            Log::error('gagal delete akun asesi di admin dashboard: ' . $e->getMessage());
+            Log::error('Error delete asesi: ', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
             return redirect()->route('admin.asesi.index')->with('error', 'Error deleting user: ' . $e->getMessage());
         }
     }
@@ -943,4 +946,5 @@ class AdminDashboardController extends Controller
     //         return redirect()->back()->with('error', 'questions update failed!');
     //     }
     // }
+
 }

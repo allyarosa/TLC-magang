@@ -109,6 +109,13 @@
       0 => 'LaravelLang\\StarterKits\\ServiceProvider',
     ),
   ),
+  'laravel/nightwatch' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Nightwatch\\NightwatchServiceProvider',
+    ),
+  ),
   'laravel/pail' => 
   array (
     'providers' => 
