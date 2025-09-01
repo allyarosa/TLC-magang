@@ -1,26 +1,29 @@
 <?php
 
-use App\Http\Controllers\Asesi\ExamControllerC;
-use App\Http\Controllers\Asesor\LevelBGradedController;
+use App\Events\MyEvent;
+use App\Events\testing;
+use App\Livewire\Forum;
 use App\Models\Testimonial;
 use App\Exports\AsesiExport;
 use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
-use App\Exports\RiwayatPenilaianBExport;
-use App\Exports\RiwayatPenilaianCExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Exports\RiwayatPenilaianBExport;
+use App\Exports\RiwayatPenilaianCExport;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WelcomeController;
+use App\Livewire\Asesi\CertificationDetail;
 use App\Http\Controllers\Admin\ResultExamsA;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Asesi\ExamController;
 use App\Http\Controllers\IndoRegionController;
+use App\Http\Controllers\Asesi\ExamControllerC;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Admin\LevelAController;
@@ -29,21 +32,19 @@ use App\Http\Controllers\Asesi\LevelBController;
 use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\Asesi\SertifikasiController;
 use App\Http\Controllers\Asesi\TransactionController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Admin\ResultExamsAController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\LevelSettingsController;
 use App\Http\Controllers\Admin\PaymentDetailController;
+use App\Http\Controllers\Asesor\LevelBGradedController;
+use App\Http\Controllers\Asesor\LevelCGradedController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
-use App\Http\Controllers\Asesor\LevelCGradedController;
-use App\Livewire\Asesi\CertificationDetail;
-use App\Livewire\Forum;
-use App\Events\MyEvent;
-use App\Events\testing;
 
 Route::get('register2', function () {
     return view('register2');
@@ -57,6 +58,18 @@ Route::get('sertifikat', function () {
 Route::get('/permission', function () {
     return view('permission');
 })->middleware(['auth'])->name('permission');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::post('/email/verification-notification', [VerificationController::class, 'send'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
 
 // SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI
 Route::post('/permission', function (Request $request) {
@@ -106,7 +119,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 
 // AUTH ASESI
-Route::middleware(['auth', 'role:asesi', 'last_seen'])->prefix('asesi')->group(function () {
+Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('asesi')->group(function () {
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');
     // Route::get('/sertifikat/{id}', [SertifikasiController::class, 'mySertifikat'])->name('asesi.sertifikat');

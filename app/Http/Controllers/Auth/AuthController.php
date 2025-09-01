@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\AsesiRegisterTwoRequest;
-use App\Models\User;
 use Exception;
+use App\Models\User;
+use App\Models\Province;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserProfile;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
-use App\Models\Province;
+use Illuminate\Auth\Events\Registered;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\AsesiRegisterTwoRequest;
 
 class AuthController extends Controller
 {
@@ -81,9 +82,11 @@ class AuthController extends Controller
 
             Alert::success('Berhasil!', 'Akun berhasil dibuat')->autoClose(3000);
             DB::commit();
-            Auth::login($user);
-            return redirect()->route('asesi.dashboard'); //ARAHKAN KEARAH DASHBORD
-
+            // Auth::login($user);
+            event(new Registered($user));
+            return redirect()->route('verification.notice');
+            // return redirect()->route('asesi.dashboard'); 
+            
         } catch (Exception $e) {
             DB::rollBack();
             Log::error('User registration failed', ['error' => $e->getMessage()]);

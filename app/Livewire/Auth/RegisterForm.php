@@ -2,15 +2,16 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Component;
+use Exception;
 use App\Models\User;
+use Livewire\Component;
 use App\Models\UserProfile;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 use RealRashid\SweetAlert\Facades\Alert;
-use Exception;
 
 class RegisterForm extends Component
 {
@@ -56,10 +57,18 @@ class RegisterForm extends Component
             ]);
 
             Alert::success('Berhasil!', 'Akun berhasil dibuat')->autoClose(3000);
-            DB::commit();
-
             Auth::login($user);
-            return redirect()->route('asesi.dashboard');
+            
+            try {
+                $user->sendEmailVerificationNotification();
+                $status = 'Registrasi berhasil! Email verifikasi telah dikirim.';
+            } catch (Exception $e) {
+                \Log::error('Email verification failed: ' . $e->getMessage());
+                $status = 'Registrasi berhasil! Anda dapat meminta email verifikasi dari halaman berikutnya.';
+            }
+
+            DB::commit();
+            return redirect()->route('verification.notice')->with('success', 'Akun berhasil dibuat. Silakan verifikasi email Anda.');
 
         } catch (Exception $e) {
             DB::rollBack();

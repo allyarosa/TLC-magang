@@ -7,45 +7,18 @@
                 <div class="absolute w-40 h-40 rounded-full bg-white top-10 left-10 animate-pulse"></div>
                 <div class="absolute w-20 h-20 rounded-full bg-white bottom-10 right-20 animate-ping"></div>
             </div>
-
-            <h2 class="text-4xl font-extrabold text-white mt-4 text-center drop-shadow-lg">Mulai Perjalanan Anda Di TLC
-            </h2>
-            <p class="text-white text-center mt-4 mb-8">Layanan TLC untuk kenyamanan dan Kepuasan Anda</p>
+            
+            <h1 class="text-4xl font-bold text-white text-center relative z-10 mb-4 animate-slideInUp">
+                Selamat Datang
+            </h1>
+            <p class="text-white text-center mt-4 mb-8">
+                Welcome to our platform
+            </p>
 
             <div
                 class="mt-6 w-40 h-40 bg-white/20 backdrop-blur-sm flex items-center justify-center rounded-full shadow-xl border-4 border-white/30 p-2 hover:rotate-3 transition-all duration-300">
                 <img src="{{ asset('images/logoTlcPng.png') }}" alt="TLC Care Logo"
                     class="max-w-full max-h-full object-contain" loading="lazy">
-            </div>
-
-            <div class="mt-10 text-white/90 flex flex-col gap-3">
-                <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span>Mentor terbaik</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span>Pelayanan 24/7</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span>Harga terjangkau</span>
-                </div>
             </div>
         </div>
 
