@@ -30,6 +30,7 @@ class GoogleController extends Controller
                     'status' => 'active',
                     'last_seen_at' => now(),
                     'remember_token' => Str::random(60),
+                    'email_verified_at' => now(),
                 ],
             );
             
