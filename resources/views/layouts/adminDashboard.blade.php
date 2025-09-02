@@ -403,7 +403,7 @@
 
     <main>
         <!-- main content here -->
-        <div class="p-4 mt-8">
+        <div class="p-4 mt-8 bg-gray-50">
             @yield('content')
         </div>
     </main>
