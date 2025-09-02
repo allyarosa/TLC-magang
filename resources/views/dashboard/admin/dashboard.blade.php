@@ -227,15 +227,15 @@
                     <h4 class="text-sm font-semibold text-gray-800 mb-3">Distribusi Level</h4>
                     <div class="grid grid-cols-3 gap-2 text-center">
                         <div class="bg-blue-50 p-2 rounded-lg">
-                            <span class="block text-xl font-bold text-blue-600">{{ $levelCount['A'] }} User</span>
+                            <span class="block text-xl font-bold text-green-600">{{ $levelCount['A'] }} User</span>
                             <span class="text-xs text-gray-600">Level A</span>
                         </div>
                         <div class="bg-purple-50 p-2 rounded-lg">
-                            <span class="block text-xl font-bold text-purple-600">{{ $levelCount['B'] }} User</span>
+                            <span class="block text-xl font-bold text-blue-500">{{ $levelCount['B'] }} User</span>
                             <span class="text-xs text-gray-600">Level B</span>
                         </div>
                         <div class="bg-green-50 p-2 rounded-lg">
-                            <span class="block text-xl font-bold text-green-600">{{ $levelCount['C'] }} User</span>
+                            <span class="block text-xl font-bold text-pink-500">{{ $levelCount['C'] }} User</span>
                             <span class="text-xs text-gray-600">Level C</span>
                         </div>
                     </div>
