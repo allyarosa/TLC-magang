@@ -67,24 +67,31 @@ class AdminDashboardController extends Controller
     {
         // Mengambil input pencarian
         $search = request()->input('search');
+        $category = request()->input('category_name');
+
 
         $userProfiles = UserProfile::with('user')
-            ->when($search, function ($query) use ($search) {
-                $query->where('nama_depan', 'LIKE', '%' . $search . '%')
-                    ->orWhere('nik', 'LIKE', '%' . $search . '%')
-                    ->orWhere('tempat_lahir', 'LIKE', '%' . $search . '%')
-                    ->orWhereHas('user', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', '%' . $search . '%')
-                            ->orWhere('email', 'LIKE', '%' . $search . '%');
-                    });
-            })
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+        ->when($search, function ($query) use ($search) {
+            $query->where('nama_depan', 'LIKE', '%' . $search . '%')
+                ->orWhere('nik', 'LIKE', '%' . $search . '%')
+                ->orWhere('tempat_lahir', 'LIKE', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('email', 'LIKE', '%' . $search . '%');
+                });
+        })
+        ->when($category && $category !== 'ALL', function ($query) use ($category) {
+            $query->whereHas('user.permissions', function ($q) use ($category) {
+                $q->where('name', 'access_level_' . $category);
+            });
+        })
+        ->latest()
+        ->paginate(10)
+        ->withQueryString();
 
         $users = User::role('asesi')->get();
 
-        $userCountAll = User::role('asesi') ? User::role('asesi')->count() : 0;
+        $userCountAll = $userProfiles->total() ?? 0;
 
         // $userCountLevelA = User::permission(('access_level_A'))->count() ?? 0;
         // $userCountLevelB = User::permission(('access_level_B'))->count() ?? 0;
@@ -287,7 +294,6 @@ class AdminDashboardController extends Controller
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui data: ' . $e->getMessage()])->withInput();
         }
     }
-
 
     public function asesiDestroy(string $id)
     {

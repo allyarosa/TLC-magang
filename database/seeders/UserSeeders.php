@@ -17,6 +17,7 @@ class UserSeeders extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $array = ['access_level_A', 'access_level_B', 'access_level_C'];
 
         for ($i = 0; $i < 20; $i++) {
             $user = User::create([
@@ -25,6 +26,7 @@ class UserSeeders extends Seeder
                 'password' => bcrypt('password'),
                 'status' => 'active', 
             ])->assignRole('asesi');
+            $user->givePermissionTo($array[array_rand($array)]);
 
             UserProfile::create([
                 'user_id' => $user->id,

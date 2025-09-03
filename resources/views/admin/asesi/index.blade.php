@@ -34,6 +34,22 @@
                         </svg>
                     </div>
                 </form>
+                
+                <form action="{{ route('admin.asesi.index') }}" method="GET"
+                    class="relative flex items-center space-x-2">
+                    <div>
+                        <select id="category_name" name="category_name"
+                            class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="ALL">-- Semua Kategori --</option>
+                            <option value="A">Level A</option>
+                            <option value="B">Level B</option>
+                            <option value="C">Level C</option>
+                        </select>
+                    </div>
+                    <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded">
+                        Filter
+                    </button>
+                </form>
 
                 <!-- Total Users -->
                 <div class="text-gray-600 text-sm">
