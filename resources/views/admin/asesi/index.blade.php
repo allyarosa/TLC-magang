@@ -34,16 +34,16 @@
                         </svg>
                     </div>
                 </form>
-                
-                <form action="{{ route('admin.asesi.index') }}" method="GET"
-                    class="relative flex items-center space-x-2">
+
+                <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative flex items-center space-x-2">
                     <div>
                         <select id="category_name" name="category_name"
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="ALL">-- Semua Kategori --</option>
-                            <option value="A">Level A</option>
-                            <option value="B">Level B</option>
-                            <option value="C">Level C</option>
+                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua Kategori --</option>
+                            <option value="A" {{ request('category_name') == 'A' ? 'selected' : '' }}>Level A</option>
+                            <option value="B" {{ request('category_name') == 'B' ? 'selected' : '' }}>Level B</option>
+                            <option value="C" {{ request('category_name') == 'C' ? 'selected' : '' }}>Level C</option>
+                        </select>
                         </select>
                     </div>
                     <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded">
@@ -69,20 +69,20 @@
                         data-popover-target="popover-export" data-popover-trigger="hover">
                         Export
                     </a>
-                    <button class="p-2 border rounded text-gray-500 hover:bg-gray-100">
+                    {{-- <button class="p-2 border rounded text-gray-500 hover:bg-gray-100">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                         </svg>
-                    </button>
-                    <button class="p-2 border rounded text-red-500 hover:bg-red-50" data-modal-toggle="popup-modal"
+                    </button> --}}
+                    {{-- <button class="p-2 border rounded text-red-500 hover:bg-red-50" data-modal-toggle="popup-modal"
                         data-popover-target="popover-delete" data-popover-trigger="hover">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                 clip-rule="evenodd" />
                         </svg>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </nav>
