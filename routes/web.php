@@ -475,7 +475,16 @@ Route::get('/test-event', function () {
     return 'Event dispatched!';
 });
 
+// Preview PDF inline di browser
+Route::get('/certificate/preview-pdf/{id}', [SertifikasiController::class, 'previewCertificate'])
+    ->name('certificate.preview.pdf');
 
+// Preview HTML di browser
+Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewCertificateHTML'])
+    ->name('certificate.preview');
 
+// Download PDF (yang sudah ada)
+Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])
+    ->name('certificate.download');
 
 require __DIR__ . '/auth.php';

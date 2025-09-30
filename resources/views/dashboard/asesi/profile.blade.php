@@ -1,6 +1,5 @@
 @extends('layouts.asesiDashboard')
 
-
 @section('content')
 <section class="w-full min-h-screen bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-6">
     <div class="max-w-5xl mx-auto">

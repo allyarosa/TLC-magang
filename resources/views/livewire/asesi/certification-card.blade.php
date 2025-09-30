@@ -100,9 +100,9 @@
                     Lihat Sertifikat Anda
                 </a>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-gray-500 cursor-pointer text-center block hover:scale-105 active:scale-95">
+                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block hover:scale-105 active:scale-95">
                     <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
-                    Sedang Berjalan
+                    Lihat Progres Anda
                 </a>
                 @endif
                 @else

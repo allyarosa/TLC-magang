@@ -80,7 +80,7 @@ class ProfileController extends Controller
             // Complete profile validation for payment users
             $rules = [
                 'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-                'nama_depan' => 'required|max:100',
+                'nama_depan' => 'required|max:191',
                 'nik' => 'required|digits:16|unique:user_profiles,nik,' . optional($user->userProfile)->id,
                 'tempat_lahir' => 'required|max:100',
                 'tanggal_lahir' => 'required|date',
@@ -132,7 +132,7 @@ class ProfileController extends Controller
             // Flexible validation for regular users
             $rules = [
                 'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-                'nama_depan' => 'nullable|max:100',
+                'nama_depan' => 'nullable|max:191',
                 'nik' => 'nullable|digits:16|unique:user_profiles,nik,' . optional($user->userProfile)->id,
                 'tempat_lahir' => 'nullable|max:100',
                 'tanggal_lahir' => 'nullable|date',

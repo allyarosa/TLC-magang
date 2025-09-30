@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class SertifikasiController extends Controller
 {
@@ -104,39 +105,159 @@ class SertifikasiController extends Controller
         if (empty($decoded)) {
             abort(404, 'ID Tidak Valid');
         }
+
         // userId
         $id = $decoded[0];
         $userProfile = UserProfile::firstWhere('user_id', $id);
 
-        $backgroundPath = public_path('assets/sertifikat/sertifikat.jpg');
+        $formatted = $this->formatNamaSertifikat($userProfile->nama_depan ?? 'name not found');
+
+        $examsA = ExamA::where('user_id', $id)
+            ->get()
+            ->groupBy('category_a_id')
+            ->map(function ($exams) {
+                return $exams->sortByDesc('score')->first();
+            })
+            ->values();
+
+        $backgroundPath = public_path('assets/sertifikat/sertifikat_tlc.png');
         $backgroundImage = base64_encode(file_get_contents($backgroundPath));
 
+        $backgroundPath2 = public_path('assets/sertifikat/sertifikat_tlc2.png');
+        $backgroundImage2 = base64_encode(file_get_contents($backgroundPath2));
+
         $data = [
-            'name' => $userProfile->namaDepan,
+            // Page 1
+            'name' => $formatted['nama'],
             'date' => now()->format('d F Y'),
             'backgroundImage' => $backgroundImage,
+            'fontSize' => $formatted['fontSize'],
+
+            // Page 2
+            'backgroundImage2' => $backgroundImage2,
+            'competency1' => 'High Order Thinking Skills (HOTS)',
+            'competency2' => 'Pedagogical Content Knowledge (PCK)',
+            'competency3' => 'Literasi',
+            'competency4' => 'Numerasi',
+            'competency5' => 'Jam Pelatihan (JP)',
+
+            // Nilai Teori Page 2
+            'theory1' => $examsA[0]->score ?? 'Data not available',
+            'theory2' => $examsA[1]->score ?? 'Data not available',
+            'theory3' => $examsA[2]->score ?? 'Data not available',
+            'theory4' => $examsA[3]->score ?? 'Data not available',
+            'theory5' => '36',
         ];
 
         // Generate PDF menggunakan DomPDF
         $pdf = Pdf::loadView('sertifikat', $data);
-        // Set paper size dan orientasi
-        // $pdf->setPaper('A4', 'landscape');
-        $pdf->setPaper([0, 0, 1414, 2000], 'landscape');
+
+        // Set paper size ke A4 landscape
+        $pdf->setPaper('A4', 'landscape');
 
         $pdf->setOptions([
-            'isRemoteEnabled' => false,
+            'isRemoteEnabled' => true, 
             'isPhpEnabled' => true,
             'isHtml5ParserEnabled' => true,
             'debugKeepTemp' => false,
+            'dpi' => 300, 
+            'defaultFont' => 'Calibri',
+            'enable_font_subsetting' => false,
+            'isFontSubsettingEnabled' => false,
         ]);
-        // Set nama file
-        $filename = 'Sertifikat_' . str_replace(' ', '_', $data['name']) . '_' . date('Y-m-d') . '.pdf';
-        // Download PDF
+
+        $filename = 'Sertifikat_TLC_A_' . str_replace(' ', '_', $data['name']) . '_' . date('Y-m-d') . '.pdf';
         return $pdf->download($filename);
     }
 
-    public function dicoding(string $id)
+    public function previewCertificate(string $id)
     {
-        return view('');
+        $decoded = Hashids::decode($id);
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
+        }
+
+        // userId
+        $id = $decoded[0];
+        $userProfile = UserProfile::firstWhere('user_id', $id);
+
+        $backgroundPath = public_path('assets/sertifikat/sertifikat_tlc.png');
+        $backgroundImage = base64_encode(file_get_contents($backgroundPath));
+
+        $data = [
+            'name' => $userProfile->nama_depan,
+            'date' => now()->format('d F Y'),
+            'backgroundImage' => $backgroundImage,
+        ];
+
+        // Generate PDF
+        $pdf = Pdf::loadView('sertifikat', $data);
+        $pdf->setPaper('A4', 'landscape');
+        $pdf->setOptions([
+            'isRemoteEnabled' => true,
+            'isPhpEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+            'debugKeepTemp' => false,
+            'dpi' => 300,
+            'defaultFont' => 'Arial',
+            'enable_font_subsetting' => false,
+            'isFontSubsettingEnabled' => false,
+        ]);
+
+        return $pdf->stream('Preview_Sertifikat_' . str_replace(' ', '_', $data['name']) . '.pdf');
+    }
+
+    // Method untuk preview HTML langsung (tanpa PDF)
+    public function previewCertificateHTML(string $id)
+    {
+        $decoded = Hashids::decode($id);
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
+        }
+
+        // userId
+        $id = $decoded[0];
+        $userProfile = UserProfile::firstWhere('user_id', $id);
+
+        $backgroundPath = public_path('assets/sertifikat/sertifikat_tlc.png');
+        $backgroundImage = base64_encode(file_get_contents($backgroundPath));
+
+        $data = [
+            'name' => $userProfile->nama_depan,
+            'date' => now()->format('d F Y'),
+            'backgroundImage' => $backgroundImage,
+        ];
+
+        // Return view HTML untuk preview
+        return view('sertifikat-preview', $data);
+    }
+
+    private function formatNamaSertifikat(string $nama): array
+    {
+        // --- Convert ke Title Case kalau semua huruf besar ---
+        if (mb_strtoupper($nama, 'UTF-8') === $nama) {
+            $nama = mb_convert_case(strtolower($nama), MB_CASE_TITLE, "UTF-8");
+        }
+
+        $defaultFontSize = 200;
+        $fontSize = 0;
+        $minFontSize = 150;
+        $panjangNama = mb_strlen($nama, 'UTF-8');
+
+        if ($panjangNama <= 25) {
+            // $fontSize = max($minFontSize, $defaultFontSize - ($panjangNama - 25) * 0.5);
+            $fontSize = 200;
+        } else if ($panjangNama <= 35) {
+            $fontSize = 140;
+        } else if ($panjangNama <= 45) {
+            $fontSize = 130;
+        } else {
+            $fontSize = 130;
+        }
+
+        return [
+            'nama' => $nama,
+            'fontSize' => $fontSize,
+        ];
     }
 }

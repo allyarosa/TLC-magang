@@ -2,7 +2,7 @@
 <div id="detail_sertifikasi_page" class="page-section py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
-        <div class="flex items-center mb-4">
+        {{-- <div class="flex items-center mb-4">
             <!-- Link "Kembali ke Status Sertifikasi" -->
             <a wire:navigate href="{{ route('asesi.sertifikasi') }}" class="mt-5 flex items-center text-blue-600 hover:text-blue-800 transition duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -10,33 +10,43 @@
                 </svg>
                 <span class="font-medium text-sm sm:text-base">Kembali ke Status Sertifikasi</span>
             </a>
-        </div>
+        </div> --}}
 
         <!-- Main Content Card -->
         <div class="bg-white rounded-lg shadow-sm p-4 sm:p-6 lg:p-8">
-            <h1 class="text-sm sm:text-xl lg:text-3xl  font-bold text-gray-800 mb-6">Progres Teaching Mastery Certification Level A</h1>
+            {{-- <h1 class="text-sm sm:text-xl lg:text-3xl  font-bold text-gray-700 mb-6">Progres Teaching Mastery Certification Level A</h1> --}}
 
             <!-- Certificate Summary -->
 
-            <div class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#1D4E89] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
+            <div
+                class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#1D4E89] p-4 sm:p-6 rounded-xl mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg border gap-4">
                 <div class="flex items-center">
                     {{-- <img src="/" alt="Certificate Icon" class="w-12 h-12 sm:w-14 sm:h-14 mr-4 sm:mr-5"> --}}
                     <div>
-                        <p class="text-lg sm:text-xl font-bold text-white mb-1">Teaching Mastery Certification Level A</p>
-                        <p class="text-white text-xs sm:text-sm">Selamat! Anda telah menyelesaikan semua persyaratan sertifikasi.</p>
+                        <p class="text-3xl  font-bold text-white mb-1">Teaching Mastery Certification Level A
+                        </p>
+                        @if (Auth::user()->hasPermissionTo('level_A_completed'))
+                            <p class="text-white text-xs sm:text-sm">Selamat! Anda telah menyelesaikan semua persyaratan
+                                sertifikasi.</p>
+                        @else
+                            <p class="text-white text-xs sm:text-sm">Lanjutkan progres anda untuk menyelesaikan
+                                sertifikasi Level A</p>
+                        @endif
                     </div>
                 </div>
                 <div class="flex gap-3">
                     @if ($hasAccessA)
-                    @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                    <a wire:navigate href="{{ route('asesi.sertifikat.a', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-gray-800 cursor-pointer text-center block">
-                        Lihat Sertifikat Anda <i class="fas fa-award mr-2"></i>
-                    </a>
+                        @if (Auth::user()->hasPermissionTo('level_A_completed'))
+                            <a 
+                                href="{{ route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}"
+                                class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-gray-800 cursor-pointer text-center block">
+                                Download Sertifikat <i class="fas fa-award mr-2"></i>
+                            </a>
+                        @else
+                            <livewire:component.button-certificate status="sedang_berjalan" />
+                        @endif
                     @else
-                    <livewire:component.button-certificate status="sedang_berjalan" />
-                    @endif
-                    @else
-                    <livewire:component.button-certificate status="belum_tersedia" />
+                        <livewire:component.button-certificate status="belum_tersedia" />
                     @endif
                 </div>
             </div>
@@ -44,7 +54,8 @@
             <!-- Tables Container -->
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
                 <!-- Riwayat Submisi -->
-                <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2">Riwayat Ujian Penilaian</h2>
                     <div class="w-20 sm:w-24 h-1 bg-yellow-400 mb-6"></div>
 
@@ -54,29 +65,42 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead class="bg-yellow-300">
                                         <tr>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tugas</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Status</th>
+                                            <th
+                                                class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Tugas</th>
+                                            <th
+                                                class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Tanggal</th>
+                                            <th
+                                                class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Status</th>
                                         </tr>
                                     </thead>
                                     @forelse($exams as $exam)
-                                    <tbody class="bg-white divide-y divide-gray-200">
-                                        <tr class="hover:bg-gray-50 transition-colors">
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->categoryA->name }}</td>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->start_time->format('d M Y') }}</td>
-                                            <td class="px-3 py-4">
-                                                @if($exam->is_passed)
-                                                <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">Lulus</span>
-                                                @else
-                                                <span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">Tidak Lulus</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr class="hover:bg-gray-50 transition-colors">
+                                                <td
+                                                    class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">
+                                                    {{ $exam->categoryA->name }}</td>
+                                                <td
+                                                    class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">
+                                                    {{ $exam->start_time->format('d M Y') }}</td>
+                                                <td class="px-3 py-4">
+                                                    @if ($exam->is_passed)
+                                                        <span
+                                                            class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full">Lulus</span>
+                                                    @else
+                                                        <span
+                                                            class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-200 rounded-full">Tidak
+                                                            Lulus</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     @empty
-                                    <tr>
-                                        <td colspan="3" class="text-center py-4">Belum ada data</td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-center py-4">Belum ada data</td>
+                                        </tr>
                                     @endforelse
                                 </table>
                             </div>
@@ -85,7 +109,8 @@
                 </div>
 
                 <!-- Riwayat Ujian Penilaian -->
-                <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                     <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-2">Riwayat Ujian Penilaian</h2>
                     <div class="w-20 sm:w-24 h-1 bg-yellow-400 mb-6"></div>
 
@@ -95,22 +120,33 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead class="bg-yellow-300">
                                         <tr>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Kategori</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tanggal</th>
-                                            <th class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Nilai</th>
+                                            <th
+                                                class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Kategori</th>
+                                            <th
+                                                class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Tanggal</th>
+                                            <th
+                                                class="px-3 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Nilai</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         @forelse($exams as $exam)
-                                        <tr>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->categoryA->name }}</td>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">{{ $exam->start_time->format('d M Y') }}</td>
-                                            <td class="px-3 py-4 text-xs sm:text-sm text-gray-700">{{ $exam->score }}</td>
-                                        </tr>
+                                            <tr>
+                                                <td
+                                                    class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">
+                                                    {{ $exam->categoryA->name }}</td>
+                                                <td
+                                                    class="px-3 py-4 text-xs sm:text-sm text-gray-700 whitespace-nowrap">
+                                                    {{ $exam->start_time->format('d M Y') }}</td>
+                                                <td class="px-3 py-4 text-xs sm:text-sm text-gray-700">
+                                                    {{ $exam->score }}</td>
+                                            </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="3" class="text-center py-4">Belum ada data</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="3" class="text-center py-4">Belum ada data</td>
+                                            </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -122,46 +158,64 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Forum Diskusi Card -->
 
-                <div class="bg-[#1D4E89] rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div
+                    class="bg-[#1D4E89] rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                     <div class="h-3"></div>
                     <div class="bg-white rounded-t-xl p-6">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            <div
+                                class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                    </path>
                                 </svg>
                             </div>
                             <h2 class="text-xl font-bold text-gray-800">Forum diskusi</h2>
                         </div>
                         <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Tanyakan langsung, diskusi langsung, belajar langsung. Terhubung dengan para expert dan mentor bersertifikat untuk memecahkan kasus nyata yang kamu hadapi di kelas atau proyekmu.
+                            Tanyakan langsung, diskusi langsung, belajar langsung. Terhubung dengan para expert dan
+                            mentor bersertifikat untuk memecahkan kasus nyata yang kamu hadapi di kelas atau proyekmu.
                         </p>
                         <div class="text-right">
-                            <a href="https://chat.whatsapp.com/GpICk4Co6H1Fv3kgnxhRJ5" class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
+                            {{-- <a href="https://chat.whatsapp.com/GpICk4Co6H1Fv3kgnxhRJ5" class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
                                 Ke forum diskusi <span class="ml-1">&rarr;</span>
-                            </a>
+                            </a> --}}
+                            <p class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
+                                Coming Soon <span class="ml-1">&rarr;</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-[#1D4E89] rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div
+                    class="bg-[#1D4E89] rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                     <div class="h-3"></div>
                     <div class="bg-white rounded-t-xl p-6">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-gray-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.124-1.282-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.124-1.282.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            <div
+                                class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-gray-50" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.124-1.282-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.124-1.282.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                                    </path>
                                 </svg>
                             </div>
                             <h2 class="text-xl font-bold text-gray-800">Mentoring Platform</h2>
                         </div>
                         <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Tanyakan langsung, diskusi langsung, belajar langsung. Terhubung dengan para expert dan mentor bersertifikat untuk memecahkan kasus nyata yang kamu hadapi di kelas atau proyekmu.
+                            Tanyakan langsung, diskusi langsung, belajar langsung. Terhubung dengan para expert dan
+                            mentor bersertifikat untuk memecahkan kasus nyata yang kamu hadapi di kelas atau proyekmu.
                         </p>
                         <div class="text-right">
-                            <a href="#" class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
+                            {{-- <a href="#" class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
                                 Ke mentoring platform <span class="ml-1">&rarr;</span>
-                            </a>
+                            </a> --}}
+                            <p class="text-sm font-semibold text-[#1D4E89] hover:text-blue-800">
+                                Coming Soon <span class="ml-1">&rarr;</span>
+                            </p>
                         </div>
                     </div>
                 </div>

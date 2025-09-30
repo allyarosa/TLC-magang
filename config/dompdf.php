@@ -179,7 +179,14 @@ return [
          *
          * @var string
          */
-        'default_font' => 'serif',
+        'default_font' => 'arial',
+
+        'fonts' => [
+            'calibri' => [
+                'normal' => storage_path('fonts/calibri-bold-italic.ttf'),
+                'bold' => storage_path('fonts/calibri-bold.ttf'),
+            ]
+        ],
 
         /**
          * Image DPI setting
