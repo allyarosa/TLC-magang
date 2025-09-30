@@ -7,9 +7,11 @@ use App\Models\ExamA;
 use App\Models\Payment;
 use App\Models\CategoryA;
 use App\Models\QuestionA;
+use App\Models\Certificate;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Vinkla\Hashids\Facades\Hashids;
 use App\Http\Controllers\Controller;
@@ -120,6 +122,28 @@ class SertifikasiController extends Controller
             })
             ->values();
 
+        try {
+            DB::beginTransaction();
+            $certificate = Certificate::getByUserThisYear($id);
+
+            if (!$certificate) {
+                $certificateNumber = Certificate::generateCertificateNumber();
+
+                $certificate = Certificate::create([
+                    'user_id' => $id,
+                    'certificate_number' => $certificateNumber,
+                    'name' => $formatted['nama'],
+                    'issue_date' => now()
+                ]);
+            }
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            abort(500, 'Gagal generate nomor sertifikat: ' . $e->getMessage());
+        }
+
         $backgroundPath = public_path('assets/sertifikat/sertifikat_tlc.png');
         $backgroundImage = base64_encode(file_get_contents($backgroundPath));
 
@@ -132,6 +156,7 @@ class SertifikasiController extends Controller
             'date' => now()->format('d F Y'),
             'backgroundImage' => $backgroundImage,
             'fontSize' => $formatted['fontSize'],
+            'certificateNumber' => $certificate->certificate_number,
 
             // Page 2
             'backgroundImage2' => $backgroundImage2,
@@ -142,10 +167,10 @@ class SertifikasiController extends Controller
             'competency5' => 'Jam Pelatihan (JP)',
 
             // Nilai Teori Page 2
-            'theory1' => $examsA[0]->score ?? 'Data not available',
-            'theory2' => $examsA[1]->score ?? 'Data not available',
-            'theory3' => $examsA[2]->score ?? 'Data not available',
-            'theory4' => $examsA[3]->score ?? 'Data not available',
+            'theory1' => isset($examsA[0]) ? $this->convertScoreToGrade($examsA[0]->score) : 'Data not available',
+            'theory2' => isset($examsA[1]) ? $this->convertScoreToGrade($examsA[1]->score) : 'Data not available',
+            'theory3' => isset($examsA[2]) ? $this->convertScoreToGrade($examsA[2]->score) : 'Data not available',
+            'theory4' => isset($examsA[3]) ? $this->convertScoreToGrade($examsA[3]->score) : 'Data not available',
             'theory5' => '36',
         ];
 
@@ -156,11 +181,11 @@ class SertifikasiController extends Controller
         $pdf->setPaper('A4', 'landscape');
 
         $pdf->setOptions([
-            'isRemoteEnabled' => true, 
+            'isRemoteEnabled' => true,
             'isPhpEnabled' => true,
             'isHtml5ParserEnabled' => true,
             'debugKeepTemp' => false,
-            'dpi' => 300, 
+            'dpi' => 300,
             'defaultFont' => 'Calibri',
             'enable_font_subsetting' => false,
             'isFontSubsettingEnabled' => false,
@@ -259,5 +284,22 @@ class SertifikasiController extends Controller
             'nama' => $nama,
             'fontSize' => $fontSize,
         ];
+    }
+
+    private function convertScoreToGrade($score): string
+    {
+        if ($score >= 85 && $score <= 100) {
+            return 'A (Sangat Baik)';
+        } elseif ($score >= 70 && $score < 85) {
+            return 'B (Baik)';
+        } elseif ($score >= 55 && $score < 70) {
+            return 'C (Cukup)';
+        } elseif ($score >= 40 && $score < 55) {
+            return 'D (Kurang)';
+        } elseif ($score >= 0 && $score < 40) {
+            return 'E (Sangat Kurang)';
+        }
+
+        return 'Tidak Valid';
     }
 }

@@ -70,6 +70,21 @@
             font-family: 'calibri', cursive;
         }
 
+        .page-1 .certificate {
+            position: absolute;
+            top: 26.5%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 50px;
+            color: #0b214b;
+            text-align: center;
+            width: 100%;
+            line-height: 1.2;
+            font-family: Arial, Helvetica, sans-serif, cursive;
+        }
+
+
         .page-1 .date {
             position: absolute;
             top: 60.1%;
@@ -225,6 +240,15 @@
             letter-spacing: 1px;
         }
 
+        .certificate-number {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
         /* RESPONSIVE ADJUSTMENTS untuk padding yang lebih baik */
         @media screen and (max-width: 1200px) {
             .page-2 .assessment-table th {
@@ -262,6 +286,7 @@
         $topSize = 38;
     }
 @endphp
+
 <body>
     <!-- HALAMAN 1: Sertifikat Utama -->
     <div class="page page-1 page-break">
@@ -269,7 +294,14 @@
             alt="Certificate Background">
 
         <div class="certificate-content">
-            <div class="name" style="font-size: {{ $fontSize }}px; top: {{ $topSize ?? 35 }}%">{{ $name }}</div>
+            <div class="certificate">
+                <p>Nomor : {{ $certificateNumber }}</p>
+            </div>
+        </div>
+
+        <div class="certificate-content">
+            <div class="name" style="font-size: {{ $fontSize }}px; top: {{ $topSize ?? 35 }}%">{{ $name }}
+            </div>
         </div>
     </div>
     <!-- HALAMAN 2: Tabel Uji Kompetensi - CENTERED dengan PADDING DIPERLUAS -->
@@ -321,4 +353,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -37,9 +37,8 @@
                 <div class="flex gap-3">
                     @if ($hasAccessA)
                         @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                            <a 
-                                href="{{ route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}"
-                                class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-500 hover:bg-yellow-400 text-gray-800 cursor-pointer text-center block">
+                            <a href="{{ route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}"
+                                class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none bg-yellow-400 hover:bg-yellow-400 text-gray-800 cursor-pointer text-center block border-2 border-gray-600">
                                 Download Sertifikat <i class="fas fa-award mr-2"></i>
                             </a>
                         @else
