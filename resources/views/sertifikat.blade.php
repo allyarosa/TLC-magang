@@ -72,11 +72,11 @@
 
         .page-1 .certificate {
             position: absolute;
-            top: 26.5%;
+            top: 25%;
             left: 50%;
             transform: translateX(-50%);
             font-weight: bold;
-            font-size: 50px;
+            font-size: 70px;
             color: #0b214b;
             text-align: center;
             width: 100%;

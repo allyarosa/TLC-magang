@@ -261,7 +261,22 @@ class SertifikasiController extends Controller
     {
         // --- Convert ke Title Case kalau semua huruf besar ---
         if (mb_strtoupper($nama, 'UTF-8') === $nama) {
-            $nama = mb_convert_case(strtolower($nama), MB_CASE_TITLE, "UTF-8");
+            // Ubah semua ke lowercase dulu
+            $nama = mb_strtolower($nama, 'UTF-8');
+
+            // Pisahkan nama dan gelar berdasarkan koma
+            $parts = explode(',', $nama);
+
+            // Title case untuk nama (bagian sebelum koma)
+            $parts[0] = mb_convert_case($parts[0], MB_CASE_TITLE, 'UTF-8');
+
+            // Untuk gelar (bagian setelah koma), biarkan huruf pertama kapital saja
+            if (isset($parts[1])) {
+                $parts[1] = ucfirst($parts[1]);
+            }
+
+            // Gabungkan kembali
+            $nama = implode(',', $parts);
         }
 
         $defaultFontSize = 200;
@@ -270,7 +285,6 @@ class SertifikasiController extends Controller
         $panjangNama = mb_strlen($nama, 'UTF-8');
 
         if ($panjangNama <= 25) {
-            // $fontSize = max($minFontSize, $defaultFontSize - ($panjangNama - 25) * 0.5);
             $fontSize = 200;
         } else if ($panjangNama <= 35) {
             $fontSize = 140;
