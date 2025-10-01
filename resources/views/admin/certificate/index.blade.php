@@ -44,7 +44,6 @@
                             <option value="B" {{ request('category_name') == 'B' ? 'selected' : '' }}>Level B</option>
                             <option value="C" {{ request('category_name') == 'C' ? 'selected' : '' }}>Level C</option>
                         </select>
-                        </select>
                     </div>
                     <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded">
                         Filter
@@ -53,7 +52,7 @@
 
                 <!-- Total Users -->
                 <div class="text-gray-600 text-sm">
-                    👥 0 Asesi
+                    👥 {{ $certificates->total() ?? 0 }} Asesi
                 </div>
 
                 <!-- Actions -->
@@ -73,6 +72,7 @@
             </div>
         </nav>
     </div>
+
     <!-- User Table -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="overflow-x-auto">
@@ -97,51 +97,82 @@
                         </th>
                         <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
-                            No Sertifikat
+                            Tanggal Terbit
                         </th>
                         <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                            Jumlah Download
+                        </th>
+                        <th scope="col"
+                            class="px-4 py-3 text-xs font-medium text-center text-white uppercase tracking-wider">
                             Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    {{-- @forelse ($userProfile as $index => $user) --}}
+                    @forelse ($certificates as $index => $certificate)
                         <tr class="hover:bg-gray-50 transition-colors">
                             <!-- Row Number -->
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                111
+                                {{ $certificates->firstItem() + $index }}
                             </td>
 
-                            <!-- Phone -->
+                            <!-- Nama Asesi -->
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 font-medium">
+                                {{ $certificate->name }}
+                            </td>
+
+                            <!-- Level (dari user profile) -->
+                            <td class="px-4 py-3 whitespace-nowrap text-sm">
+                                @if($certificate->user && $certificate->user->profile && $certificate->user->profile->category_name)
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full
+                                        @if($certificate->user->profile->category_name == 'A') bg-green-100 text-green-800
+                                        @elseif($certificate->user->profile->category_name == 'B') bg-blue-100 text-blue-800
+                                        @elseif($certificate->user->profile->category_name == 'C') bg-purple-100 text-purple-800
+                                        @else bg-gray-100 text-gray-800
+                                        @endif">
+                                        Level {{ $certificate->user->profile->category_name }}
+                                    </span>
+                                @else
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                        -
+                                    </span>
+                                @endif
+                            </td>
+
+                            <!-- No Sertifikat -->
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                0812312312312
+                                {{ $certificate->certificate_number }}
                             </td>
 
-                            <!-- Institution -->
-                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 max-w-xs truncate">
-                                instansi
-                            </td>
-
-                            <!-- Created At -->
+                            <!-- Tanggal Terbit -->
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-c                                2023-10-10                                
+                                {{ \Carbon\Carbon::parse($certificate->issue_date)->format('d M Y') }}
                             </td>
 
-                            <!-- Last Seen -->
+                            <!-- Jumlah Download -->
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                -
+                                <div class="flex items-center gap-1">
+                                    <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    {{ $certificate->download_count }}x
+                                </div>
+                                @if($certificate->last_downloaded_at)
+                                    <div class="text-xs text-gray-400 mt-1">
+                                        {{ \Carbon\Carbon::parse($certificate->last_downloaded_at)->diffForHumans() }}
+                                    </div>
+                                @endif
                             </td>
 
                             <!-- Actions -->
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                <div class="flex space-x-2">
+                                <div class="flex justify-center space-x-2">
                                     <!-- View -->
-                                    <a href="#"
+                                    <a href="{{ route('admin.asesi.show', $certificate->id) }}"
                                         class="p-2 text-amber-600 bg-amber-50 rounded-md hover:bg-amber-100 transition-colors"
                                         title="View Details">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                                             <path fill-rule="evenodd"
                                                 d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
@@ -150,11 +181,10 @@ c                                2023-10-10
                                     </a>
 
                                     <!-- Edit -->
-                                    <a href="#"
+                                    <a href="{{ route('admin.asesi.edit', $certificate->id) }}"
                                         class="p-2 text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors"
-                                        title="Edit User">
-                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                        title="Edit Certificate">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path
                                                 d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
                                             </path>
@@ -162,17 +192,16 @@ c                                2023-10-10
                                     </a>
 
                                     <!-- Delete -->
-                                    <form action="" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                    <form action="{{ route('admin.asesi.destroy', $certificate->id) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus sertifikat {{ $certificate->name }}?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                             class="p-2 text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors"
-                                            title="Delete User">
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                            title="Delete Certificate">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    d="M9 2a1 1 0 00-.894x`.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                     clip-rule="evenodd"></path>
                                             </svg>
                                         </button>
@@ -180,7 +209,20 @@ c                                2023-10-10
                                 </div>
                             </td>
                         </tr>
-                
+                    @empty
+                        <tr>
+                            <td colspan="7" class="px-4 py-8 text-center text-gray-500">
+                                <div class="flex flex-col items-center justify-center">
+                                    <svg class="w-12 h-12 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    <p class="text-lg font-medium">Tidak ada data sertifikat</p>
+                                    <p class="text-sm text-gray-400">Silakan tambahkan asesi baru</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -188,7 +230,7 @@ c                                2023-10-10
 
     <!-- Pagination -->
     <div class="mt-6">
-        user links
+        {{ $certificates->links() }}
     </div>
 
     <!-- Delete Modal -->
@@ -247,7 +289,7 @@ c                                2023-10-10
                 <a href="#" class="block px-4 py-2 hover:bg-gray-100">
                     <div class="flex justify-between items-center">
                         <span>Non Level</span>
-                        <span class="font-semibold text-indigo-600">42</span>
+                        <span class="font-semibold text-indigo-600">{{ $stats['non_level'] ?? 0 }}</span>
                     </div>
                 </a>
             </li>
@@ -255,7 +297,7 @@ c                                2023-10-10
                 <a href="#" class="block px-4 py-2 hover:bg-gray-100">
                     <div class="flex justify-between items-center">
                         <span>Level A</span>
-                        <span class="font-semibold text-indigo-600">24</span>
+                        <span class="font-semibold text-indigo-600">{{ $stats['level_a'] ?? 0 }}</span>
                     </div>
                 </a>
             </li>
@@ -263,7 +305,7 @@ c                                2023-10-10
                 <a href="#" class="block px-4 py-2 hover:bg-gray-100">
                     <div class="flex justify-between items-center">
                         <span>Level B</span>
-                        <span class="font-semibold text-indigo-600">18</span>
+                        <span class="font-semibold text-indigo-600">{{ $stats['level_b'] ?? 0 }}</span>
                     </div>
                 </a>
             </li>
@@ -271,7 +313,7 @@ c                                2023-10-10
                 <a href="#" class="block px-4 py-2 hover:bg-gray-100">
                     <div class="flex justify-between items-center">
                         <span>Level C</span>
-                        <span class="font-semibold text-indigo-600">9</span>
+                        <span class="font-semibold text-indigo-600">{{ $stats['level_c'] ?? 0 }}</span>
                     </div>
                 </a>
             </li>
