@@ -167,10 +167,10 @@ class SertifikasiController extends Controller
             'competency5' => 'Jam Pelatihan (JP)',
 
             // Nilai Teori Page 2
-            'theory1' => isset($examsA[0]) ? $this->convertScoreToGrade($examsA[0]->score) : 'Data not available',
-            'theory2' => isset($examsA[1]) ? $this->convertScoreToGrade($examsA[1]->score) : 'Data not available',
-            'theory3' => isset($examsA[2]) ? $this->convertScoreToGrade($examsA[2]->score) : 'Data not available',
-            'theory4' => isset($examsA[3]) ? $this->convertScoreToGrade($examsA[3]->score) : 'Data not available',
+            'theory1' => $examsA[0]->score,
+            'theory2' => $examsA[1]->score,
+            'theory3' => $examsA[2]->score,
+            'theory4' => $examsA[3]->score,
             'theory5' => '36',
         ];
 

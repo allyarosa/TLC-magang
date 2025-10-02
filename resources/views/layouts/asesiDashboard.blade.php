@@ -100,11 +100,9 @@
 
                     <!-- Notification -->
 
-
                     {{-- @livewire('notification-modal') --}}
 
                     <!-- Messages -->
-
 
                     <!-- Profile Dropdown -->
                     <div class="relative">
@@ -149,7 +147,7 @@
                                     </div>
                                     <span class="font-medium">Sertifikat Saya</span>
                                 </a>
-
+                                
                                 <div class="border-t border-gray-100 my-1"></div>
 
                                 <div>

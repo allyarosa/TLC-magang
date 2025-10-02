@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\LevelAController;
 use App\Http\Controllers\Admin\LevelCController;
 use App\Http\Controllers\Asesi\LevelBController;
 use App\Http\Controllers\Asesi\ProfileController;
+use App\Http\Controllers\ExamScoreImportController;
 use App\Http\Controllers\Asesi\SertifikasiController;
 use App\Http\Controllers\Asesi\TransactionController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -199,6 +200,15 @@ Route::middleware(['auth'])->prefix('asesi')->group(function () {
 
 // AUTH ADMIN
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+
+    Route::get('/import-scores', [ExamScoreImportController::class, 'showImportForm'])
+        ->name('admin.import.form');
+
+    Route::post('/import-scores', [ExamScoreImportController::class, 'import'])
+        ->name('admin.import.scores');
+
+    Route::get('/import-scores/template', [ExamScoreImportController::class, 'downloadTemplate'])
+        ->name('admin.import.template');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
