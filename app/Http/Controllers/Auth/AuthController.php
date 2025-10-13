@@ -94,7 +94,6 @@ class AuthController extends Controller
             return back()->withInput($request->only('email'))->with('error', 'Akun gagal dibuat');
         }
     }
-
     public function logout()
     {
         Auth::logout();

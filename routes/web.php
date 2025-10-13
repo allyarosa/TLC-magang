@@ -211,11 +211,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         ->name('admin.import.template');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-
     Route::get('/dashboard/asesi', [AdminDashboardController::class, 'asesiIndex'])->name('admin.asesi.index');
     Route::get('/dashboard/asesi/export', function () {
-        return Excel::download(new AsesiExport, 'Asesi.xlsx');
+        return Excel::download(new AsesiExport, 'data_asesi.xlsx');
     })->name('dashboard.asesi.export');
+
+    Route::get('/dashboard/asesi/import', [AdminDashboardController::class, 'showImportForm'])->name('dashboard.asesi.import');
+    Route::post('/dashboard/asesi/import', [AdminDashboardController::class, 'importAsesi'])->name('dashboard.asesi.import.asesi');
+
     Route::get('/dashboard/asesi/create', [AdminDashboardController::class, 'asesiCreate'])->name('admin.asesi.create');
     Route::get('/dashboard/asesi/edit/{id}', [AdminDashboardController::class, 'asesiEdit'])->name('admin.asesi.edit');
     Route::post('/dashboard/asesi/store', [AdminDashboardController::class, 'asesiStore'])->name('admin.asesi.store');

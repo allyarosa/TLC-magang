@@ -39,7 +39,8 @@
                     <div>
                         <select id="category_name" name="category_name"
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua Kategori --</option>
+                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua
+                                Kategori --</option>
                             <option value="A" {{ request('category_name') == 'A' ? 'selected' : '' }}>Level A</option>
                             <option value="B" {{ request('category_name') == 'B' ? 'selected' : '' }}>Level B</option>
                             <option value="C" {{ request('category_name') == 'C' ? 'selected' : '' }}>Level C</option>
@@ -65,9 +66,14 @@
                         </button>
                     </a>
                     <a href="{{ route('dashboard.asesi.export') }}"
-                        class="px-3 py-1.5 border text-gray-600 text-sm rounded hover:bg-gray-50"
+                        class="px-3 py-1.5 border text-white text-sm rounded bg-[#2563EB] hover:bg-blue-700"
                         data-popover-target="popover-export" data-popover-trigger="hover">
                         Export
+                    </a>
+                    <a href="{{ route('dashboard.asesi.import') }}"
+                        class="px-3 py-1.5 border text-white text-sm rounded bg-[#F59E0B] hover:bg-yellow-600"
+                        data-popover-target="popover-export" data-popover-trigger="hover">
+                        Import
                     </a>
                     {{-- <button class="p-2 border rounded text-gray-500 hover:bg-gray-100">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -384,10 +390,10 @@
     <div data-popover id="popover-export" role="tooltip"
         class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
         <div class="px-3 py-2 bg-blue-50 border-b border-gray-200 rounded-t-lg">
-            <h3 class="font-semibold text-blue-600">Export Asesi</h3>
+            <h3 class="font-semibold text-blue-600">Import Asesi</h3>
         </div>
         <div class="px-3 py-2">
-            <p>Tindakan ini akan membuat file excel dari data asesi.</p>
+            <p>Tindakan ini akan membuat menambahkan asesi menggunakan file excel.</p>
         </div>
         <div data-popper-arrow></div>
     </div>

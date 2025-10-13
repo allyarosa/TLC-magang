@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Models\User;
+use App\Models\Level;
 use App\Models\Province;
+use App\Models\CategoryA;
+use App\Models\Questions;
 use App\Models\UserProfile;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Models\AdminsProfile;
 use App\Models\AsesorProfile;
@@ -14,12 +18,10 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AsesiStoreRequest;
-use App\Models\CategoryA;
-use App\Models\Level;
-use App\Models\Questions;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rules\Password;
 
@@ -71,23 +73,23 @@ class AdminDashboardController extends Controller
 
 
         $userProfiles = UserProfile::with('user')
-        ->when($search, function ($query) use ($search) {
-            $query->where('nama_depan', 'LIKE', '%' . $search . '%')
-                ->orWhere('nik', 'LIKE', '%' . $search . '%')
-                ->orWhere('tempat_lahir', 'LIKE', '%' . $search . '%')
-                ->orWhereHas('user', function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('email', 'LIKE', '%' . $search . '%');
+            ->when($search, function ($query) use ($search) {
+                $query->where('nama_depan', 'LIKE', '%' . $search . '%')
+                    ->orWhere('nik', 'LIKE', '%' . $search . '%')
+                    ->orWhere('tempat_lahir', 'LIKE', '%' . $search . '%')
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('email', 'LIKE', '%' . $search . '%');
+                    });
+            })
+            ->when($category && $category !== 'ALL', function ($query) use ($category) {
+                $query->whereHas('user.permissions', function ($q) use ($category) {
+                    $q->where('name', 'access_level_' . $category);
                 });
-        })
-        ->when($category && $category !== 'ALL', function ($query) use ($category) {
-            $query->whereHas('user.permissions', function ($q) use ($category) {
-                $q->where('name', 'access_level_' . $category);
-            });
-        })
-        ->latest()
-        ->paginate(10)
-        ->withQueryString();
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         $users = User::role('asesi')->get();
 
@@ -659,6 +661,24 @@ class AdminDashboardController extends Controller
     //         'level' => $level
     //     ]);
     // }
+
+    public function showImportForm()
+    {
+        return view('admin.import_asesi');
+    }
+
+    public function importAsesi(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv|max:2048'
+        ]);
+        try {
+            Excel::import(new UsersImport, $request->file('file'));
+            return redirect()->back()->with('success', 'Data user berhasil diimport dan permission access_level_A telah diberikan!');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
 
     public function categories()
     {

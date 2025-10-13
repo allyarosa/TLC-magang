@@ -29,11 +29,10 @@ class WelcomeController extends Controller
         return view('welcome', compact('latestNews', 'levelA', 'levelB', 'levelC'));
     }
 
-
-        public function show($slug)
+    public function show($slug)
     {
         // Cari berita berdasarkan ID
-        $news = News::where('slug',$slug)->firstorFail();
+        $news = News::where('slug', $slug)->firstorFail();
 
         // Tampilkan view detail berita
         return view('newsDetail', compact('news'));
