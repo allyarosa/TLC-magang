@@ -185,7 +185,7 @@ class LevelAController extends Controller
         return view('admin.questions.bankSoalIndex', [
             'title' => 'Bank Soal Level A',
             'questions' => $questions,
-            'categories' => $categories, //
+            'categories' => $categories,
             'countSoal' => $categoriesWithCount,
             'emptyStateMessage' => $emptyStateMessage ?? 'Belum ada pertanyaan yang tersedia saat ini',
         ]);
@@ -294,21 +294,19 @@ class LevelAController extends Controller
     {
         try {
             DB::beginTransaction();
-
-            $questionA = QuestionA::find($id)->first();
+            $questionA = QuestionA::findOrFail($id);
 
             $questionData = [
                 'id' => $questionA->id,
                 'title' => $questionA->title ?? 'N/A',
                 'had_image' => !empty($questionA->image)
             ];
-
+            
             if ($questionA->image && Storage::exists($questionA->image)) {
                 Storage::delete($questionA->image);
             }
 
             $questionA->delete();
-
             DB::commit();
 
             Alert::success('success', 'Soal berhasil dihapus.');

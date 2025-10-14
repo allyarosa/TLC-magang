@@ -146,7 +146,7 @@
                         <tr class="hover:bg-gray-50 transition-colors">
                             <!-- Row Number -->
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                {{ $loop->iteration }}
+                                {{ $questions->firstItem() + $loop->index }}
                             </td>
 
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">

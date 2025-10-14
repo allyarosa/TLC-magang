@@ -60,7 +60,7 @@ class CountDownTimer extends Component
             'status' => 'finished',
             'end_time' => now(),
             'score' => $score,
-            'is_passed' => $score >= ($category->passing_score ?? 70),
+            'is_passed' => $score >= ($category->passing_score ?? 75),
             'correct_answers' => $correctAnswers,
             'wrong_answers' => $exam->questionsA()->wherePivot('is_correct', false)->count(),
             'total_questions' => $totalQuestions,
