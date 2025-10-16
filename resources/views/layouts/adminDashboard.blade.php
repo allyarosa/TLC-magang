@@ -346,7 +346,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ route('admin.sertifikat.index') }}"
                         class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md">
                         <div
                             class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#E76F51] flex items-center justify-center text-white shadow-md group-hover:bg-[#1D4E89] transition-all duration-300">

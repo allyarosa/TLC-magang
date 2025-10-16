@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\LevelCController;
 use App\Http\Controllers\Asesi\LevelBController;
 use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\ExamScoreImportController;
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Asesi\SertifikasiController;
 use App\Http\Controllers\Asesi\TransactionController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -349,6 +350,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     Route::delete('/testimonials/{testimonial}', [\App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])
         ->name('admin.testimonials.destroy');
+
+    //ROUTE SERTIFIKAT
+    Route::get('/dashboard/sertifikat/index', [CertificateController::class, 'index'])->name('admin.sertifikat.index');
 });
 
 // AUTH ASESOR
