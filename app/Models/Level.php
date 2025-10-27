@@ -23,4 +23,9 @@ class Level extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class, 'level_id');
+    }
 }

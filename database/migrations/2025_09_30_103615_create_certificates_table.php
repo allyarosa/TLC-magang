@@ -16,10 +16,9 @@ return new class extends Migration {
             $table->string('certificate_number')->unique();
             $table->string('name');
             $table->date('issue_date');
-            $table->integer('download_count')->default(1); 
-            $table->timestamp('last_downloaded_at')->nullable(); 
+            $table->integer('download_count')->default(1);
+            $table->timestamp('last_downloaded_at')->nullable();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

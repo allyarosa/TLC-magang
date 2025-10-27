@@ -28,7 +28,7 @@
                         <p class="text-gray-600 text-lg font-bold">{{ $category->name }}</p>
 
                         <!-- Status Badge -->
-                        @if ($exam->is_passed)
+                        {{-- @if ($exam->is_passed)
                             <div
                                 class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800 mt-3">
                                 <i class="fas fa-check-circle mr-2"></i>
@@ -40,7 +40,7 @@
                                 <i class="fas fa-times-circle mr-2"></i>
                                 TIDAK LULUS
                             </div>
-                        @endif
+                        @endif --}}
                     </div>
 
                     <!-- Statistics Cards -->
@@ -180,7 +180,27 @@
                     <!-- Action Buttons -->
                     <div
                         class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-6 border-t border-gray-200">
-                        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+
+                        {{-- <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        @if (!$exam->is_passed)
+            <form action="{{ route('asesi.sertifikasi.level.a.instruction') }}" method="POST">
+                @csrf
+                <input type="hidden" name="category_id" value="{{ $category->id }}">
+                <button type="submit"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
+                    <i class="fas fa-redo mr-2"></i>
+                    Coba Lagi
+                </button>
+            </form>
+        @endif
+        <a href="{{ route('asesi.nilai') }}"
+            class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
+            <i class="fas fa-eye mr-2"></i>
+            History Ujian
+        </a>
+    </div> --}}
+
+                        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:ml-auto">
                             <!-- Back to Dashboard Button -->
                             <a href="{{ route('asesi.sertifikasi') }}"
                                 class="inline-flex items-center justify-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
@@ -188,32 +208,13 @@
                                 Kembali ke Dashboard
                             </a>
                         </div>
-
-                        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                            @if (!$exam->is_passed)
-                                <form action="{{ route('asesi.sertifikasi.level.a.instruction') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
-                                    <button type="submit"
-                                        class="inline-flex items-center justify-center px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
-                                        <i class="fas fa-redo mr-2"></i>
-                                        Coba Lagi
-                                    </button>
-                                </form>
-                            @endif
-                            <a href="{{ route('asesi.nilai') }}"
-                                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
-                                <i class="fas fa-eye mr-2"></i>
-                                History Ujian
-                            </a>
-
-                        </div>
                     </div>
 
+
                     <!-- Motivational Message -->
-                    <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                    {{-- <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
                         @if ($exam->is_passed)
-                            {{-- Success Message --}}
+                            
                             @if (session('testimonial_success'))
                                 <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
                                     <div class="flex items-center">
@@ -223,7 +224,7 @@
                                 </div>
                             @endif
 
-                            {{-- Error Messages --}}
+                            
                             @if ($errors->any())
                                 <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
                                     <div class="flex items-center mb-2">
@@ -238,7 +239,7 @@
                                 </div>
                             @endif
 
-                            {{-- Testimonial Form Section --}}
+                            
                             @if (!($userHasTestimonial ?? false) && !session('testimonial_success'))
                                 <div class="mb-6">
                                     <div class="text-center mb-6">
@@ -250,7 +251,7 @@
                                         </p>
                                     </div>
 
-                                    {{-- Show/Hide Form Toggle --}}
+                                    
                                     @if (!session('show_testimonial_form'))
                                         <div class="text-center mb-6">
                                             <form method="POST" action="{{ route('testimonials.show-form') }}">
@@ -272,7 +273,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        {{-- Testimonial Form --}}
+                                        
                                         <div class="bg-white rounded-lg p-6 shadow-sm border">
                                             <h5 class="text-lg font-semibold text-gray-800 mb-4">
                                                 <i class="fas fa-comment-alt mr-2 text-blue-600"></i>
@@ -285,7 +286,7 @@
                                                     value="{{ $exam->category_a_id }}">
                                                 <input type="hidden" name="exam_a_id" value="{{ $exam->id }}">
 
-                                                {{-- Rating Section --}}
+                                                
                                                 <div class="mb-4">
                                                     <label class="block text-sm font-medium text-gray-700 mb-2">
                                                         Rating Pengalaman Anda
@@ -320,7 +321,7 @@
                                                     </div>
                                                 </div>
 
-                                                {{-- Testimonial Content --}}
+                                                
                                                 <div class="mb-4">
                                                     <label for="content"
                                                         class="block text-sm font-medium text-gray-700 mb-2">
@@ -335,7 +336,7 @@
                                                     <p class="text-sm text-gray-500 mt-1">Minimal 10 karakter</p>
                                                 </div>
 
-                                                {{-- Submit Button --}}
+                                                
                                                 <div class="flex justify-end space-x-3">
                                                     <a href="{{ route('asesi.sertifikasi') }}"
                                                         class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
@@ -351,7 +352,7 @@
                                     @endif
                                 </div>
                             @else
-                                {{-- Already submitted testimonial --}}
+                                
                                 <div class="text-center">
                                     <div class="text-green-600 text-3xl mb-3">
                                         <i class="fas fa-check-circle"></i>
@@ -361,7 +362,7 @@
                                 </div>
                             @endif
                         @else
-                            {{-- Pesan gagal --}}
+                            
                             <div class="text-center">
                                 <div class="text-orange-600 text-2xl mb-2">
                                     <i class="fas fa-lightbulb"></i>
@@ -373,7 +374,7 @@
                                 </p>
                             </div>
                         @endif
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

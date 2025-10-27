@@ -133,7 +133,8 @@ class SertifikasiController extends Controller
                     'user_id' => $id,
                     'certificate_number' => $certificateNumber,
                     'name' => $formatted['nama'],
-                    'issue_date' => now()
+                    'issue_date' => now(),
+                    'level_id' => 1,
                 ]);
             }
 
@@ -160,8 +161,8 @@ class SertifikasiController extends Controller
 
             // Page 2
             'backgroundImage2' => $backgroundImage2,
-            'competency1' => 'High Order Thinking Skills (HOTS)',
-            'competency2' => 'Pedagogical Content Knowledge (PCK)',
+            'competency1' => 'Pedagogical Content Knowledge (PCK)',
+            'competency2' => 'High Order Thinking Skills (HOTS)',
             'competency3' => 'Literasi',
             'competency4' => 'Numerasi',
             'competency5' => 'Jam Pelatihan (JP)',

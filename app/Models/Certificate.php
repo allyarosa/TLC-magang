@@ -11,7 +11,10 @@ class Certificate extends Model
         'user_id',
         'certificate_number',
         'name',
-        'issue_date'
+        'issue_date',
+        'download_count',
+        'last_downloaded_at',
+        'level_id',
     ];
 
     protected $casts = [
@@ -79,5 +82,10 @@ class Certificate extends Model
         return self::whereYear('issue_date', $year)
             ->whereMonth('issue_date', $month)
             ->count();
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id');
     }
 }

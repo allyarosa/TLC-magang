@@ -24,7 +24,7 @@
                     <span class="text-sm font-medium">PROGRAM UNGGULAN 2025</span>
                     <span class="text-[#E76F51] ml-2 animate-bounce-subtle" style="animation-delay: 0.3s;">✨</span>
                 </div>
-
+                                                                                                                   
                 <div class="animate-fadeIn">
                     <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight mt-2 text-[#1D4E89] hover:cursor-default">
                         <span class="block hover:animate-text-glow transition-all duration-300">Sertifikasi Guru</span>

@@ -32,6 +32,13 @@
       0 => 'Barryvdh\\DomPDF\\ServiceProvider',
     ),
   ),
+  'codezero/browser-locale' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'CodeZero\\BrowserLocale\\Laravel\\BrowserLocaleServiceProvider',
+    ),
+  ),
   'laravel-lang/actions' => 
   array (
     'providers' => 

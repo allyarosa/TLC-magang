@@ -24,7 +24,7 @@
 
 <body>
     <header class="mb-16">
-        <nav class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] shadow-lg border-b border-white/20 overflow-visible">
+        <nav class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] shadow-md border-b border-white/20 overflow-visible">
             <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-3 px-4 lg:px-8">
                 <!-- Brand Section -->
                 <div class="flex items-center space-x-2 sm:space-x-3 group flex-1 min-w-0 lg:flex-none">

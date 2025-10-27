@@ -57,7 +57,7 @@ Route::get('sertifikat', function () {
 })->name('sertifikat');
 
 // SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI
-Route::get('/permission', function () {
+Route::get('/permission/xqjmtlrbavse', function () {
     return view('permission');
 })->middleware(['auth'])->name('permission');
 
@@ -353,6 +353,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     //ROUTE SERTIFIKAT
     Route::get('/dashboard/sertifikat/index', [CertificateController::class, 'index'])->name('admin.sertifikat.index');
+    Route::get('/dashboard/sertifikat/download/{id}', [CertificateController::class, 'downloadSertifikat'])->name('admin.sertifikat.download');
 });
 
 // AUTH ASESOR

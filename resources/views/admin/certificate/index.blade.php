@@ -6,27 +6,31 @@
     <div class="p-4 bg-white rounded-lg mb-2">
         <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
             <!-- Breadcrumb -->
-            <ol class="flex items-center space-x-1 text-gray-600">
-                <li><a href="{{ route('admin.asesi.index') }}"
-                        class="hover:underline {{ request()->routeIs('admin.asesi.*') ? 'text-indigo-600' : '' }}">Asesi</a>
-                </li>
-                <li>/</li>
-                <li><a href="{{ route('admin.asesor.index') }}"
-                        class="hover:underline {{ request()->routeIs('admin.asesor.*') ? 'text-indigo-600' : '' }}">Asesor</a>
-                </li>
-                <li>/</li>
-                <li><a href="{{ route('admin.admins.index') }}"
-                        class="hover:underline {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600' : '' }}">Admin</a>
-                </li>
-            </ol>
+            <div class="flex items-center space-x-6 text-gray-600">
+                <div class="text-sm">
+                    <span class="font-medium">Count Summary : {{ $sertifikatCountAll }} </span>
+                </div>
+                <div class="text-sm">
+                    <span class="font-medium text-green-600">Level A:</span>
+                    <span class="font-semibold">{{ $sertifikatCountA ?? 0 }}</span>
+                </div>
+                <div class="text-sm">
+                    <span class="font-medium text-blue-500">Level B:</span>
+                    <span class="font-semibold">{{ $sertifikatCountB ?? 0 }}</span>
+                </div>
+                <div class="text-sm">
+                    <span class="font-medium text-pink-500">Level C:</span>
+                    <span class="font-semibold">{{ $sertifikatCountC ?? 0 }}</span>
+                </div>
+            </div>
 
             <!-- Search & Info -->
             <div class="flex flex-wrap items-center gap-3">
                 <!-- Search -->
-                <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative">
+                <form action="{{ route('admin.sertifikat.index') }}" method="GET" class="relative">
                     <input type="text" name="search"
                         class="pl-9 pr-3 py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Cari Asesi..." value="{{ request('search') }}">
+                        placeholder="Cari Sertifikat..." value="{{ request('search') }}">
                     <div class="absolute left-2.5 top-2 text-gray-400">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,15 +61,15 @@
                 </div>
 
                 <!-- Actions -->
-                <div class="flex items-center gap-2">
-                    <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
+                <div class="flex items- center gap-2">
+                    {{-- <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
                         <button class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700">
                             + Tambah Asesi
                         </button>
-                    </a>
+                    </a> --}}
                     <a href="{{ route('dashboard.asesi.export') }}"
-                        class="px-3 py-1.5 border text-gray-600 text-sm rounded hover:bg-gray-50"
+                        class="px-3 py-1.5 border bg-[#F59E0B] hover:bg-yellow-600 text-white text-sm rounded "
                         data-popover-target="popover-export" data-popover-trigger="hover">
                         Export
                     </a>
@@ -101,10 +105,6 @@
                             Tanggal Terbit
                         </th>
                         <th scope="col"
-                            class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
-                            Jumlah Download
-                        </th>
-                        <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-center text-white uppercase tracking-wider">
                             Actions
                         </th>
@@ -112,27 +112,81 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse ($sertifikat as $data)
-                        <tr class="hover:bg-gray-700 transition-colors">
+                        <tr class="hover:bg-gray-200 transition-colors">
+                            
+                            {{-- NO --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
+                                {{ $sertifikat->firstItem() + $loop->index }}
                             </td>
+
+                            {{-- NAMA ASESI --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
+                                {{ $data->user->name }}
                             </td>
+
+                            {{-- LEVEL SERTIFIKAT A/B/C --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
+                                Level {{ $data->level->level_name }}
                             </td>
+
+                            {{-- SERTIFIKAT NUMBER --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
+                                {{ $data->certificate_number }}
                             </td>
+
+                            {{-- SERTIFIKAT DIBUAT PADA --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
+                                {{ $data->created_at }}
                             </td>
+
+                            {{-- ACTION --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
-                            </td>
-                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Hamas
+                                <div class="flex space-x-2">
+
+                                    <!-- View -->
+                                    <a href="#"
+                                        class="p-2 text-amber-600 bg-amber-50 rounded-md hover:bg-amber-100 transition-colors"
+                                        title="View Details">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                            <path fill-rule="evenodd"
+                                                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+
+                                    {{-- Download --}}
+                                    <a href="{{ route('admin.sertifikat.download', $data->id) }}"
+                                        class="p-2 text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors"
+                                        title="Download">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                                clip-rule="evenodd"></path>
+                                            <path fill-rule="evenodd"
+                                                d="M10 2a1.5 1.5 0 011.5 1.5v7.086l1.646-1.647a1.5 1.5 0 012.122 2.122l-4 4a1.5 1.5 0 01-2.122 0l-4-4a1.5 1.5 0 012.122-2.122l1.646 1.647V3.5A1.5 1.5 0 0110 2z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+
+                                    <!-- Delete -->
+                                    {{-- <form action="#" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="p-2 text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors"
+                                            title="Delete User">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </form> --}}
+                                </div>
                             </td>
                         </tr>
                     @empty
@@ -150,9 +204,9 @@
     </div>
 
     <!-- Pagination -->
-    {{-- <div class="mt-6">
-        {{ $certificates->links() }}
-    </div> --}}
+    <div class="mt-6">
+        {{ $sertifikat->links() }}
+    </div>
 
     <!-- Delete Modal -->
     <div id="popup-modal" tabindex="-1"
@@ -267,10 +321,10 @@
     <div data-popover id="popover-export" role="tooltip"
         class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
         <div class="px-3 py-2 bg-blue-50 border-b border-gray-200 rounded-t-lg">
-            <h3 class="font-semibold text-blue-600">Export Asesi</h3>
+            <h3 class="font-semibold text-blue-600">Export Data Sertifikat</h3>
         </div>
         <div class="px-3 py-2">
-            <p>Tindakan ini akan membuat file excel dari data asesi.</p>
+            <p>Tindakan ini akan membuat file excel dari data Sertifikat.</p>
         </div>
         <div data-popper-arrow></div>
     </div>

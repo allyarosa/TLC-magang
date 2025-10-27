@@ -323,14 +323,14 @@ class ExamController extends Controller
         }
 
         // Set flash message berdasarkan hasil ujian
-        if ($exam->is_passed) {
-            // Hanya tampilkan alert jika bukan dari redirect testimonial
-            if (!session('testimonial_success') && !session('show_testimonial_form')) {
-                Alert::success('Ujian Selesai', 'Selamat, Anda telah lulus ujian pada kategori ' . $category->name);
-            }
-        } else {
-            Alert::error('Ujian Selesai', 'Maaf, Anda belum lulus ujian pada kategori ' . $category->name);
-        }
+        // if ($exam->is_passed) {
+        //     // Hanya tampilkan alert jika bukan dari redirect testimonial
+        //     if (!session('testimonial_success') && !session('show_testimonial_form')) {
+        //         Alert::success('Ujian Selesai', 'Selamat, Anda telah lulus ujian pada kategori ' . $category->name);
+        //     }
+        // } else {
+        //     Alert::error('Ujian Selesai', 'Maaf, Anda belum lulus ujian pada kategori ' . $category->name);
+        // }
 
         // Cek apakah user sudah memberikan testimonial untuk kategori ini
         $userHasTestimonial = Testimonial::where('user_id', Auth::id())

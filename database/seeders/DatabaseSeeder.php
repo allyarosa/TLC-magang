@@ -77,6 +77,7 @@ class DatabaseSeeder extends Seeder
             // PaymentSeeders::class,
             // LevelBSeeders::class,
             LevelCQuestionSeeders::class,
+            // CertificateSeeders::class, //PRODUCTION COMMENT INI
         ]);
     }
 }
