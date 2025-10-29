@@ -89,7 +89,7 @@ class ExamController extends Controller
                 'category_a_id' => $validated['category_id'],
                 'status' => 'started',
                 'start_time' => now(),
-                'end_time' => now()->addMinutes(30), // 30 minutes duration
+                'end_time' => now()->addMinutes(60), // 30 minutes duration
                 'is_passed' => false,
             ]);
 
@@ -156,8 +156,8 @@ class ExamController extends Controller
         // If end_time is null, set it to 30 minutes from start_time or now
         if (!$exam->end_time) {
             $endTime = $exam->start_time ?
-                $exam->start_time->addMinutes(30) :
-                now()->addMinutes(30);
+                $exam->start_time->addMinutes(60) :
+                now()->addMinutes(60);
 
             $exam->update(['end_time' => $endTime]);
             $exam->refresh();

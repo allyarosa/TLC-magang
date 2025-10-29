@@ -26,18 +26,18 @@ class CountDownTimer extends Component
     {
         if (!$this->timeExpired && $this->examId) {
             $this->timeExpired = true;
-            
+
             Log::channel('exam')->info('Timer expired, auto-finishing exam', [
                 'exam_id' => $this->examId,
                 'user_id' => Auth::id()
             ]);
-            
+
             // Find the exam and finish it automatically
             $exam = ExamA::where('id', $this->examId)
-                         ->where('user_id', Auth::id())
-                         ->where('status', 'started')
-                         ->first();
-            
+                ->where('user_id', Auth::id())
+                ->where('status', 'started')
+                ->first();
+
             if ($exam) {
                 $this->finishExpiredExam($exam);
                 
@@ -52,7 +52,7 @@ class CountDownTimer extends Component
         $category = CategoryA::find($exam->category_a_id);
         $totalQuestions = $exam->questionsA()->count();
         $correctAnswers = $exam->questionsA()->wherePivot('is_correct', true)->count();
-        
+
         $score = $totalQuestions > 0 ? round(($correctAnswers / $totalQuestions) * 100, 2) : 0;
 
         // Update exam
