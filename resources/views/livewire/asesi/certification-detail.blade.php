@@ -93,6 +93,18 @@
                                                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                                     clip-rule="evenodd" />
                                             </svg>
+                                            Total Soal
+                                        </div>
+                                    </th>
+                                    {{-- <th
+                                        class="px-6 py-4 text-left text-xs font-bold text-white uppercase tracking-wider">
+                                        <div class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
                                             Benar
                                         </div>
                                     </th>
@@ -107,7 +119,7 @@
                                             </svg>
                                             Salah
                                         </div>
-                                    </th>
+                                    </th> --}}
                                     <th
                                         class="px-6 py-4 text-left text-xs font-bold text-white uppercase tracking-wider">
                                         <div class="flex items-center">
@@ -120,7 +132,7 @@
                                             Tanggal
                                         </div>
                                     </th>
-                                    <th
+                                    {{-- <th
                                         class="px-6 py-4 text-left text-xs font-bold text-white uppercase tracking-wider">
                                         <div class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2"
@@ -130,7 +142,7 @@
                                             </svg>
                                             Nilai
                                         </div>
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -157,6 +169,12 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
+                                                <span
+                                                    class="text-sm font-medium text-gray-700">{{ $exam->correct_answers + $exam->wrong_answers }} Soal</span>
+                                            </div>
+                                        </td>
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
                                                 <div class="h-2 w-16 bg-gray-200 rounded-full overflow-hidden mr-2">
                                                     <div class="h-full bg-green-500 rounded-full"
                                                         style="width: {{ $exam->correct_answers + $exam->wrong_answers > 0
@@ -180,7 +198,7 @@
                                                 <span
                                                     class="text-sm font-medium text-gray-900">{{ $exam->wrong_answers }}</span>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900">
                                                 {{ $exam->start_time ? $exam->start_time->format('d M Y') : '-' }}
@@ -189,13 +207,13 @@
                                                 {{ $exam->start_time ? $exam->start_time->format('H:i') . ' WIB' : '-' }}
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-sm font-medium text-gray-700">{{ $exam->score ?? 0 }}
                                                     Point
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @empty
                                     <tr>

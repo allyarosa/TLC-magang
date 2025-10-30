@@ -44,64 +44,54 @@
                     </div>
 
                     <!-- Statistics Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div
-                            class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border border-blue-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="text-blue-700 text-lg font-semibold">Skor</div>
-                                <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-trophy text-white"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-blue-800">{{ $exam->correct_answers }}/{{ $totalQuestions }}
-                            </div>
-                            {{-- <div class="text-sm text-blue-600 mt-1">
-                                {{ number_format(($exam->correct_answers / $totalQuestions) * 100, 1) }}%
-                            </div> --}}
-                        </div>
+                    {{-- 
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div
+        class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border border-blue-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
+        <div class="flex items-center justify-between mb-3">
+            <div class="text-blue-700 text-lg font-semibold">Skor</div>
+            <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-trophy text-white"></i>
+            </div>
+        </div>
+        <div class="text-3xl font-bold text-blue-800">{{ $exam->correct_answers }}/{{ $totalQuestions }}
+        </div>
+    </div>
 
-                        <div
-                            class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg border border-green-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="text-green-700 text-lg font-semibold">Benar</div>
-                                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-check text-white"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-green-800">{{ $correctAnswers }}</div>
-                            {{-- <div class="text-sm text-green-600 mt-1">
-                                {{ number_format(($correctAnswers / $totalQuestions) * 100, 1) }}% dari total
-                            </div> --}}
-                        </div>
+    <div
+        class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg border border-green-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
+        <div class="flex items-center justify-between mb-3">
+            <div class="text-green-700 text-lg font-semibold">Benar</div>
+            <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-check text-white"></i>
+            </div>
+        </div>
+        <div class="text-3xl font-bold text-green-800">{{ $correctAnswers }}</div>
+    </div>
 
-                        <div
-                            class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-lg border border-red-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="text-red-700 text-lg font-semibold">Salah</div>
-                                <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-times text-white"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-red-800">{{ $wrongAnswers }}</div>
-                            {{-- <div class="text-sm text-red-600 mt-1">
-                                {{ number_format(($wrongAnswers / $totalQuestions) * 100, 1) }}% dari total
-                            </div> --}}
-                        </div>
+    <div
+        class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-lg border border-red-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
+        <div class="flex items-center justify-between mb-3">
+            <div class="text-red-700 text-lg font-semibold">Salah</div>
+            <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-times text-white"></i>
+            </div>
+        </div>
+        <div class="text-3xl font-bold text-red-800">{{ $wrongAnswers }}</div>
+    </div>
 
-                        <div
-                            class="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="text-gray-700 text-lg font-semibold">Tidak Dijawab</div>
-                                <div class="w-10 h-10 bg-gray-500 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-question text-white"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-gray-800">{{ $unansweredQuestions }}</div>
-                            {{-- <div class="text-sm text-gray-600 mt-1">
-                                {{ number_format(($unansweredQuestions / $totalQuestions) * 100, 1) }}% dari total
-                            </div> --}}
-                        </div>
-                    </div>
+    <div
+        class="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
+        <div class="flex items-center justify-between mb-3">
+            <div class="text-gray-700 text-lg font-semibold">Tidak Dijawab</div>
+            <div class="w-10 h-10 bg-gray-500 rounded-lg flex items-center justify-center">
+                <i class="fas fa-question text-white"></i>
+            </div>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">{{ $unansweredQuestions }}</div>
+    </div>
+</div>
+--}}
 
                     <!-- Score Visualization -->
                     {{-- <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-xl shadow-md mb-8 border border-gray-200">
@@ -167,13 +157,13 @@
                                     {{ ceil($exam->start_time->floatDiffInMinutes($exam->end_time)) }} menit
                                 </div>
                             </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            {{-- <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
                                 <div class="text-gray-600 mb-2 text-sm font-medium">Nilai Akhir</div>
                                 <div class="font-bold text-xl text-gray-800 flex items-center">
                                     <i class="fas fa-star mr-2 text-yellow-500"></i>
                                     {{ number_format($exam->score) }}
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
