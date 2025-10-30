@@ -172,7 +172,7 @@
                                             <div class="flex items-center">
                                                 <div class="h-2 w-16 bg-gray-200 rounded-full overflow-hidden mr-2">
                                                     <div class="h-full bg-red-500 rounded-full"
-                                                        style="width: {{ ($exam->wrong_answers / ($exam->correct_answers + $exam->wrong_answers)) * 100 }}%">
+                                                        style="width: {{ ($exam->wrong_answers / ($exam->correct_answers + $exam->wrong_answers)) * 100 ?? 0 }}%">
                                                     </div>
                                                 </div>
                                                 <span
