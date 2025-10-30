@@ -159,7 +159,9 @@
                                             <div class="flex items-center">
                                                 <div class="h-2 w-16 bg-gray-200 rounded-full overflow-hidden mr-2">
                                                     <div class="h-full bg-green-500 rounded-full"
-                                                        style="width: {{ ($exam->correct_answers / ($exam->correct_answers + $exam->wrong_answers)) * 100 }}%">
+                                                        style="width: {{ $exam->correct_answers + $exam->wrong_answers > 0
+                                                            ? ($exam->correct_answers / ($exam->correct_answers + $exam->wrong_answers)) * 100
+                                                            : 0 }}%">
                                                     </div>
                                                 </div>
                                                 <span
@@ -178,14 +180,17 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $exam->start_time->format('d M Y') }}
+                                            <div class="text-sm text-gray-900">
+                                                {{ $exam->start_time ? $exam->start_time->format('d M Y') : '-' }}
                                             </div>
-                                            <div class="text-xs text-gray-500">{{ $exam->start_time->format('H:i') }}
-                                                WIB</div>
+                                            <div class="text-xs text-gray-500">
+                                                {{ $exam->start_time ? $exam->start_time->format('H:i') . ' WIB' : '-' }}
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-700">{{ $exam->score }} Point
+                                                <div class="text-sm font-medium text-gray-700">{{ $exam->score ?? 0}}
+                                                    Point
                                                 </div>
                                             </div>
                                         </td>
