@@ -155,7 +155,7 @@
                                     <label for="option_e" class="block mb-2 text-sm font-medium text-gray-700">
                                         Opsi D <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text" name="option_e" id="option_e" required
+                                    <input type="text" name="option_e" id="option_e"
                                         placeholder="Input option E"
                                         class="pl-3 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         value="{{ $question->option_e }}">
