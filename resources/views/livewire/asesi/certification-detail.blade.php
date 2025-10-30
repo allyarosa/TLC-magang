@@ -172,7 +172,9 @@
                                             <div class="flex items-center">
                                                 <div class="h-2 w-16 bg-gray-200 rounded-full overflow-hidden mr-2">
                                                     <div class="h-full bg-red-500 rounded-full"
-                                                        style="width: {{ ($exam->wrong_answers / ($exam->correct_answers + $exam->wrong_answers)) * 100 ?? 0 }}%">
+                                                        style="width: {{ $exam->correct_answers + $exam->wrong_answers > 0
+                                                            ? ($exam->wrong_answers / ($exam->correct_answers + $exam->wrong_answers)) * 100
+                                                            : 0 }}%">
                                                     </div>
                                                 </div>
                                                 <span
@@ -189,7 +191,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="text-sm font-medium text-gray-700">{{ $exam->score ?? 0}}
+                                                <div class="text-sm font-medium text-gray-700">{{ $exam->score ?? 0 }}
                                                     Point
                                                 </div>
                                             </div>
