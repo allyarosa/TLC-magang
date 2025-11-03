@@ -46,6 +46,7 @@ class ExamScoresImport implements ToModel, WithHeadingRow, WithValidation, Skips
             $user = DB::table('users')
                 ->where('name', 'LIKE', '%' . trim($row['nama']) . '%')
                 ->first();
+            $users = User::where('name', 'LIKE', '%' . trim($row['nama']) . '%')->first();
 
             if (!$user) {
                 $this->skipCount++;
@@ -79,6 +80,7 @@ class ExamScoresImport implements ToModel, WithHeadingRow, WithValidation, Skips
                         'end_time' => now(),
                     ]);
                 }
+                $users->givePermissionTo(['HOTS', 'PCK', 'LITERASI', 'NUMERASI', 'level_A_completed']);
             }
 
             $this->successCount++;
