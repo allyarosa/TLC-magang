@@ -113,6 +113,7 @@ class SertifikasiController extends Controller
         $userProfile = UserProfile::firstWhere('user_id', $id);
 
         $formatted = $this->formatNamaSertifikat($userProfile->nama_depan ?? 'name not found');
+        $user = User::find($userProfile->user_id);
 
         $examsA = ExamA::where('user_id', $id)
             ->get()
@@ -153,7 +154,7 @@ class SertifikasiController extends Controller
 
         $data = [
             // Page 1
-            'name' => $formatted['nama'],
+            'name' => $userProfile->nama_depan ?? $user->name,
             'date' => now()->format('d F Y'),
             'backgroundImage' => $backgroundImage,
             'fontSize' => $formatted['fontSize'],

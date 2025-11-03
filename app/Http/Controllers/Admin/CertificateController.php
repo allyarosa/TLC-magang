@@ -89,7 +89,7 @@ class CertificateController extends Controller
 
         $data = [
             // Page 1
-            'name' => $userProfile->nama_depan ?? $user->name,
+            'name' => $userProfile->nama_depan ?? $user->name,  
             'date' => $sertifikatDate,
             'backgroundImage' => $backgroundImage,
             'fontSize' => $formatted['fontSize'],

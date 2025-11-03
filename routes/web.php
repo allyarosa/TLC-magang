@@ -131,7 +131,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
 
-    // riwarayat sertifikasi
+    // Riwayat Transaksi
     Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
 
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
@@ -506,3 +506,5 @@ Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloa
     ->name('certificate.download');
 
 require __DIR__ . '/auth.php';
+
+

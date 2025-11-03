@@ -10,7 +10,9 @@
                 <li><a href="{{ route('admin.dashboard') }}" class="hover:text-indigo-600">Dashboard</a></li>
                 <li class="flex items-center">
                     <svg class="w-3 h-3 mx-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
                     </svg>
                     <span>News Management</span>
                 </li>
@@ -32,10 +34,10 @@
                 </form>
 
                 <!-- Total News Count -->
-                @if(isset($newsCount))
-                <div class="text-gray-600 text-sm">
-                    📰 {{ $newsCount }} articles
-                </div>
+                @if (isset($newsCount))
+                    <div class="text-gray-600 text-sm">
+                        📰 {{ $newsCount }} articles
+                    </div>
                 @endif
 
                 <!-- Actions -->
@@ -51,9 +53,11 @@
                         Export
                     </a>
                     <div class="relative">
-                        <button class="p-2 border rounded text-gray-500 hover:bg-gray-100" id="options-menu" aria-expanded="false" aria-haspopup="true">
+                        <button class="p-2 border rounded text-gray-500 hover:bg-gray-100" id="options-menu"
+                            aria-expanded="false" aria-haspopup="true">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                <path
+                                    d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                             </svg>
                         </button>
                     </div>
@@ -126,8 +130,7 @@
                             <td class="px-4 py-3 whitespace-nowrap">
                                 <div class="flex-shrink-0 h-12 w-20">
                                     <img class="h-12 w-20 object-cover rounded border border-gray-200"
-                                         src="{{ asset('storage/' . $item->image) }}"
-                                         alt="{{ $item->title }}">
+                                        src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
                                 </div>
                             </td>
 
@@ -197,11 +200,15 @@
                         <tr>
                             <td colspan="7" class="px-4 py-6 text-center text-gray-500">
                                 <div class="flex flex-col items-center justify-center">
-                                    <svg class="w-12 h-12 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    <svg class="w-12 h-12 text-gray-300 mb-3" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                        </path>
                                     </svg>
                                     <p class="text-lg font-medium">Tidak ada berita yang ditemukan</p>
-                                    <p class="text-sm mt-1">Silakan tambahkan berita baru atau ubah filter pencarian Anda</p>
+                                    <p class="text-sm mt-1">Silakan tambahkan berita baru atau ubah filter pencarian Anda
+                                    </p>
                                 </div>
                             </td>
                         </tr>
@@ -269,6 +276,8 @@
         <div class="px-3 py-2 bg-red-50 border-b border-gray-200 rounded-t-lg">
             <h3 class="font-semibold text-red-600">Delete All News</h3>
         </div>
+
+
         <div class="px-3 py-2">
             <p><strong class="text-red-500">Warning!!</strong> Tindakan ini akan menghapus semua berita dari sistem.</p>
         </div>
