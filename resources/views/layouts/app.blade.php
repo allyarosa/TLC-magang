@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'TLC')    <meta name="csrf-token" content="{{ csrf_token() }}">
-</title>
+    <title>@yield('title', 'TLC')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    </title>
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="icon" href="{{ asset('assets/img/tlc.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -17,13 +18,16 @@
 
     <!-- Navbar -->
     <header class="mb-20">
-        <nav class="fixed w-full z-20 top-0 start-0 bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] shadow-sm border-b border-gray-300">
-            <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-4 sm:px-6 lg:px-12">
+        <nav
+            class="fixed w-full z-20 top-0 start-0 bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] shadow-sm border-b border-gray-300">
+            <div
+                class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-4 sm:px-6 lg:px-12">
                 <a href="#" class="flex items-center space-x-3">
                     <img src="{{ asset('images/logo.svg') }}" class="h-12" alt="TLC Logo" loading="lazy">
                     <div class="flex flex-col">
                         <span class="text-lg font-bold text-white tracking-wide">TLC Program</span>
-                        <span class="text-sm text-[#f1e686] font-medium hidden sm:block">Teaching & Learning Certification</span>
+                        <span class="text-sm text-[#f1e686] font-medium hidden sm:block">Teaching & Learning
+                            Certification</span>
                     </div>
                 </a>
 
@@ -55,8 +59,9 @@
                     </a>
                     <a href="{{ route('register') }}">
                         <button
-                            class="border-2 border-[#3A6EA5] font-bold text-white text-sm px-3 py-1.5 rounded-lg bg-[#3A6EA5] hover:bg-[#184575] hover:text-white hover:font-bold transition duration-300">Daftar Sekarang
-                            </button>
+                            class="border-2 border-[#3A6EA5] font-bold text-white text-sm px-3 py-1.5 rounded-lg bg-[#3A6EA5] hover:bg-[#184575] hover:text-white hover:font-bold transition duration-300">Daftar
+                            Sekarang
+                        </button>
                     </a>
                 </div>
             </div>
@@ -75,12 +80,13 @@
                     <a href="{{ route('login') }}" class="w-full">
                         <button
                             class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#f1e686] hover:text-white hover:font-bold transition duration-300 w-full">Masuk
-                            </button>
+                        </button>
                     </a>
                     <a href="{{ route('register') }}" class="w-full">
                         <button
-                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#90BE6D] hover:text-white hover:font-bold transition duration-300 w-full">Daftar Sekarang
-                            </button>
+                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:bg-[#90BE6D] hover:text-white hover:font-bold transition duration-300 w-full">Daftar
+                            Sekarang
+                        </button>
                     </a>
                 </div>
             </div>
@@ -158,16 +164,20 @@
                         keterampilan mengajar yang efektif.
                     </p>
                     <div class="flex space-x-4 mt-3">
-                        <a href="#" class="text-white hover:text-orange-400 transition-colors">
+                        {{-- FACEBOOK --}}
+                        <a href="https://www.facebook.com/HAFECS/" target="_blank"
+                            class="text-white hover:text-orange-400 transition-colors">
                             <i class="fab fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-orange-400 transition-colors">
-                            <i class="fab fa-twitter text-lg"></i>
-                        </a>
-                        <a href="#" class="text-white hover:text-orange-400 transition-colors">
+
+                        {{-- INSTAGRAM --}}
+                        <a href="https://www.instagram.com/hafecs.id/" target="_blank"
+                            class="text-white hover:text-orange-400 transition-colors">
                             <i class="fab fa-instagram text-lg"></i>
                         </a>
-                        <a href="#" class="text-white hover:text-orange-400 transition-colors">
+
+                        <a href="https://www.linkedin.com/company/hafecs/posts/?feedView=all" target="_blank"
+                            class="text-white hover:text-orange-400 transition-colors">
                             <i class="fab fa-linkedin-in text-lg"></i>
                         </a>
                     </div>
@@ -244,7 +254,8 @@
                             <i
                                 class="fas fa-map-marker-alt text-orange-400 text-lg mt-1 md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span class="ml-3 md:ml-0 text-gray-300 md:text-right md:order-1">
-                                Jl. Pendidikan No. 123, Jakarta Pusat, Indonesia
+                                Jl. Trans Kalimantan KM.12. No 12, RW.12, Sungai Lumbah, Kec. Alalak, Kabupaten Barito
+                                Kuala, Kalimantan Selatan 70582
                             </span>
                         </li>
                         <li class="flex items-center md:justify-end group">
@@ -252,7 +263,11 @@
                                 class="fas fa-phone-alt text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span
                                 class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
-                                <a href="tel:+6221123456789">+62 21 1234 5678</a>
+                                <a href="https://wa.me/6285216164164?text=Halo%20saya%20tertarik%20dengan%20layanan%20Anda"
+                                    target="_blank">
+                                    Chat via WhatsApp
+                                </a>
+
                             </span>
                         </li>
                         <li class="flex items-center md:justify-end group">
@@ -260,7 +275,7 @@
                                 class="fas fa-envelope text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span
                                 class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
-                                <a href="mailto:info@tlcprogram.id">info@tlcprogram.id</a>
+                                <a href="mailto:lskhafecs@gmail.com">lskhafecs@gmail.com</a>
                             </span>
                         </li>
                     </ul>
@@ -280,10 +295,24 @@
                 </div>
             </div>
         </div>
-
+        <!-- WhatsApp Floating Button -->
+        <div>
+            <a href="https://wa.me/6285216164164?text=Saya%20ingin%20bertanya%20tentang%20produk%20Anda"
+                target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp"
+                class="fixed right-4 bottom-4 z-50 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-green-500 shadow-xl transform transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-300">
+                <!-- WhatsApp SVG (simple, retina-ready) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" viewBox="0 0 24 24"
+                    fill="currentColor" aria-hidden="true">
+                    <path
+                        d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.373 0 .002 5.373.002 12c0 2.116.55 4.177 1.594 6.004L0 24l6.221-1.617A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.192-1.24-6.197-3.48-8.52zM12 21.5c-1.89 0-3.74-.51-5.36-1.47l-.38-.22-3.7.96.98-3.62-.24-.37A9.498 9.498 0 0 1 2.5 12 9.5 9.5 0 1 1 12 21.5zm5.21-7.88c-.29-.14-1.72-.85-1.99-.95-.27-.11-.47-.17-.67.17-.2.34-.77.95-.95 1.15-.18.2-.36.23-.65.08-1.77-.9-2.93-1.6-4.11-3.01-.31-.37.31-.34.91-1.11.1-.14.05-.26-.03-.38-.08-.11-.67-1.62-.92-2.22-.24-.57-.49-.49-.67-.5-.17-.01-.37-.01-.57-.01-.19 0-.5.07-.77.34-.27.27-1.03 1.01-1.03 2.46 0 1.45 1.05 2.86 1.2 3.06.15.2 2.07 3.3 5.02 4.5 2.95 1.19 2.95.79 3.48.74.53-.05 1.72-.7 1.97-1.39.25-.69.25-1.28.18-1.39-.07-.11-.27-.17-.56-.31z" />
+                </svg>
+            </a>
+        </div>
         <!-- FontAwesome Script untuk Icon -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
     </footer>
+
+
 </body>
 
 </html>
