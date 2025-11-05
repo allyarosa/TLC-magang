@@ -397,6 +397,19 @@
                         </div>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.testimonials.index') }}"
+                        class="flex items-center p-3 text-gray-900 rounded-lg hover:bg-white/80 group transition-all duration-300 shadow-sm hover:shadow-md">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1D4E89] flex items-center justify-center text-white shadow-md group-hover:bg-[#E76F51] transition-all duration-300">
+                            <i class="fas fa-globe text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-base font-semibold">Site Info</span>
+                        <div
+                            class="ml-auto w-1 h-4 rounded-full bg-[#1D4E89] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
     </aside>

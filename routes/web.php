@@ -48,15 +48,16 @@ use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 
-Route::get('register2', function () {
-    return view('register2');
-})->name('register2');
+// Route::get('register2', function () {
+//     return view('register2');
+// })->name('register2');
 
 Route::get('sertifikat', function () {
     return view('sertifikat');
 })->name('sertifikat');
 
-// SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI
+// SECRET PERMISSION
+// digunakan untuk memberikan direct akses permission kepada user
 Route::get('/permission/xqjmtlrbavse', function () {
     return view('permission');
 })->middleware(['auth'])->name('permission');
@@ -118,7 +119,6 @@ Route::middleware('guest')->group(function () {
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect'); //ROUTE LOGIN SSO
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']); //ROUTE CALLBACK SSO
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth'); //ROUTE LOGOUT
-
 
 // AUTH ASESI
 Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('asesi')->group(function () {
@@ -284,6 +284,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/c/category/show/{id}', [LevelCController::class, 'categoriesShow'])->name('admin.categories.c.show');
     Route::put('/dashboard/level/c/category/update/{id}', [LevelCController::class, 'categoriesUpdate'])->name('admin.categories.c.update');
 
+    // ROUTE LEVEL A QUESTION
     Route::get('/dashboard/level/a/question', [LevelAController::class, 'bankSoalIndex'])->name('admin.question.a.index');
     Route::get('/dashboard/level/a/question/create', [LevelAController::class, 'bankSoalCreate'])->name('admin.question.a.create');
     Route::get('/dashboard/level/a/question/{id}/show', [LevelAController::class, 'bankSoalShow'])->name('admin.question.a.show');
@@ -312,9 +313,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/dashboard/level/c/question/{id}/update', [LevelCController::class, 'bankSoalUpdate'])->name('admin.question.c.update');
     Route::delete('/dashboard/level/c/question/{id}/delete', [LevelCController::class, 'bankSoalDestroy'])->name('admin.question.c.destroy');
 
-    // Route Level Settings
+    // ROUTE LEVEL SETTINGS
     Route::get('/dashboard/level/settings/index', [LevelSettingsController::class, 'index'])->name('admin.level.settings.index');
 
+    // ROUTE BERITA
     Route::get('/dashboard/news', [NewsController::class, 'index'])->name('admin.news.index');
     Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('admin.news.create');
     Route::get('/dashboard/news/edit/{id}', [NewsController::class, 'edit'])->name('admin.news.edit');
@@ -323,6 +325,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/dashboard/news/update/{id}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/dashboard/news/delete/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
 
+    // ROUTE PAYMENT DETAILS
     Route::get('/payments', [PaymentDetailController::class, 'index'])->name('admin.payments.index');
     Route::get('/payments/{id}', [PaymentDetailController::class, 'show'])->name('admin.payments.show');
     Route::get('/payments-export', [PaymentDetailController::class, 'export'])->name('admin.payments.export');
@@ -338,6 +341,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/result-exams-a/export', function () {
         return Excel::download(new ResultExamsAExport, 'Result Exams A.xlsx');
     })->name('admin.resulta.export');
+
+    // ROUTE SITE INFO
 
     Route::get('/testimonials', [\App\Http\Controllers\Admin\TestimonialController::class, 'index'])
         ->name('admin.testimonials.index');
