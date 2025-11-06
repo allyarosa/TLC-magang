@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\LevelAController;
 use App\Http\Controllers\Admin\LevelCController;
 use App\Http\Controllers\Asesi\LevelBController;
 use App\Http\Controllers\Asesi\ProfileController;
+use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\ExamScoreImportController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Asesi\SertifikasiController;
@@ -332,17 +333,21 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/payments/{id}', [PaymentDetailController::class, 'destroy'])->name('admin.payments.destroy');
     Route::patch('/payments/{id}/status', [PaymentDetailController::class, 'updateStatus'])->name('admin.payments.updateStatus');
 
+    // ROUTE PROFILE ADMIN
     Route::get('/profile', [AdminSettingsController::class, 'edit'])->name('admin.settings.edit');
     Route::patch('/profile', [AdminSettingsController::class, 'update'])->name('admin.settings.update');
     Route::delete('/profile', [AdminSettingsController::class, 'destroy'])->name('admin.settings.destroy');
     Route::put('profile', [AdminSettingsController::class, 'updatePassword'])->name('admin.password.update');
 
+    // ROUTE RESULT EXAMS A
     Route::get('/result-exams-a', [ResultExamsAController::class, 'index'])->name('admin.resulta.index');
     Route::get('/result-exams-a/export', function () {
         return Excel::download(new ResultExamsAExport, 'Result Exams A.xlsx');
     })->name('admin.resulta.export');
 
     // ROUTE SITE INFO
+    Route::get('/site-info', [SiteInfoController::class, 'index'])->name('admin.site-info.index');
+
 
     Route::get('/testimonials', [\App\Http\Controllers\Admin\TestimonialController::class, 'index'])
         ->name('admin.testimonials.index');
