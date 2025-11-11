@@ -64,6 +64,8 @@ class ExamController extends Controller
         $validated = $request->validate([
             'category_id' => 'required'
         ]);
+        $categoryA = CategoryA::find($validated['category_id']);
+        $timeLimit = (int) $categoryA->time_limit;
 
         // Check for unfinished exam
         $unfinishedExam = ExamA::where('user_id', Auth::id())
@@ -89,7 +91,7 @@ class ExamController extends Controller
                 'category_a_id' => $validated['category_id'],
                 'status' => 'started',
                 'start_time' => now(),
-                'end_time' => now()->addMinutes(60), // 30 minutes duration
+                'end_time' => now()->addMinutes($timeLimit),
                 'is_passed' => false,
             ]);
 
