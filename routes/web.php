@@ -49,13 +49,12 @@ use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 
-// Route::get('register2', function () {
-//     return view('register2');
-// })->name('register2');
-
 Route::get('sertifikat', function () {
     return view('sertifikat');
 })->name('sertifikat');
+
+// Auth
+Route::view('/login', 'auth.loginPage')->name('login');
 
 // SECRET PERMISSION
 // digunakan untuk memberikan direct akses permission kepada user
@@ -75,7 +74,6 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
 
-// SETELAH PRODUCTION JANGAN LUPA DIHAPUS ROUTE INI
 Route::post('/permission', function (Request $request) {
     $permission = $request->input('permission');
     $user = Auth::user();
@@ -96,22 +94,16 @@ Route::post('/permission', function (Request $request) {
 
 // GUEST
 Route::middleware('guest')->group(function () {
-    // Route::get('/', fn() => view('welcome'));
     Route::get('/', [WelcomeController::class, 'index'])->name('home');
     Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
-
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.post');
-
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerProcess'])->name('register.post');
-
     Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('forgot.password.request');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('forgot.password.store');
-
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'view'])->name('forgot.password.reset');
     Route::post('/reset-password', [ForgotPasswordController::class, 'view'])->name('forgot.password.reset');
-
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'view'])->name('password.reset');
     Route::post('/reset-password', [ForgotPasswordController::class, 'update'])->name('forgot.password.reset.update');
 });
@@ -125,23 +117,17 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('asesi')->group(function () {
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');
-    // Route::get('/sertifikat/{id}', [SertifikasiController::class, 'mySertifikat'])->name('asesi.sertifikat');
-    // Routes
     Route::get('/sertifikasi', [SertifikasiController::class, 'index'])->name('asesi.sertifikasi');
     Route::get('/sertifikat-a/{id}', [SertifikasiController::class, 'sertifikatA'])->name('asesi.sertifikat.a');
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
-
-    // Riwayat Transaksi
     Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
-
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
     Route::get('/register/2', [AuthController::class, 'registerStepTwo'])->name('asesi.registerStepTwo');
     Route::get('/registeraddtional', [AuthController::class, 'registeraddtional'])->name('registeraddtional');
     Route::post('/registeraddtional', [AuthController::class, 'registeraddtionalpost'])->name('registeraddtionalpost');
-
     // EXAM CONTROLLER
     Route::post('/sertifikasi/level/a/instruction', [ExamController::class, 'instruction'])->name('asesi.sertifikasi.level.a.instruction');
     Route::get('/sertifikasi/level/a/{exam}/show', [ExamController::class, 'show'])->name('asesi.sertifikasi.level.a.show');
@@ -150,19 +136,16 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
     Route::post('/sertifikasi/level/a/{exam}/answer', [ExamController::class, 'answer'])->name('asesi.sertifikasi.level.a.answer');
     Route::get('/sertifikasi/level/a/{exam}/result', [ExamController::class, 'result'])->name('asesi.sertifikasi.level.a.result');
     Route::get('/sertifikasi/level/a/{exam}/continue', [ExamController::class, 'continue'])->name('asesi.sertifikasi.level.a.continue');
-
     // LEVEL B ASESI
     Route::post('/sertifikasi/level/b/instruction', [LevelBController::class, 'instruction'])->name('asesi.sertifikasi.level.b.instruction');
     Route::get('/sertifikasi/level/b/ppt', [LevelBController::class, 'formPPT'])->name('asesi.sertifikasi.level.b.ppt');
     Route::get('/sertifikasi/level/b/modul', [LevelBController::class, 'formModulAjar'])->name('asesi.sertifikasi.level.b.modulajar');
     Route::post('/sertifikasi/level/b/store', [LevelBController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.b.store');
-
     // LEVEL C ASESI
     Route::post('/sertifikasi/level/c/instruction', [LevelCController::class, 'instruction'])->name('asesi.sertifikasi.level.c.instruction');
     Route::get('/sertifikasi/level/c/essay', [LevelCController::class, 'formEssay'])->name('asesi.sertifikasi.level.c.essay');
     Route::get('/sertifikasi/level/c/video', [LevelCController::class, 'formVideoUpload'])->name('asesi.sertifikasi.level.c.video');
     Route::post('/sertifikasi/level/c/essay/store', [LevelCController::class, 'storeSubmission'])->name('asesi.sertifikasi.level.c.store');
-
     // EXAM LEVEL C
     Route::prefix('essay')->name('exam.')->group(function () {
         Route::get('/', [ExamControllerC::class, 'index'])->name('index');
@@ -174,10 +157,6 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
     });
 });
 
-
-// HIDE FITUR FORUM
-// Route::get('/forum', Forum::class)->name('forum');
-
 Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payments/finish/{id}', [PaymentController::class, 'finish'])->name('payments.finish');
@@ -187,47 +166,42 @@ Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/{id}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
     Route::get('/payments/{id}', [PaymentController::class, 'detail'])->name('payments.detail');
-
-    // Profile routes
+    // PROFILE ROUTES
     Route::get('/profile', [ProfileController::class, 'index'])->name('asesi.profile');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('asesi.profile.update');
     Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('asesi.profile.upload');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('asesi.password.change');
-
-    // API routes untuk location cascade
+    // API ROUTES UNTUK LOCATION CASCADE
     Route::get('/api/cities/{provinceId}', [ProfileController::class, 'getCities'])->name('asesi.api.cities');
     Route::get('/api/districts/{cityId}', [ProfileController::class, 'getDistricts'])->name('asesi.api.districts');
     Route::get('/api/villages/{districtId}', [ProfileController::class, 'getVillages'])->name('asesi.api.villages');
+    // ASESI TESTIMONIAL
+    Route::post('/testimonials/show-form', [TestimonialController::class, 'showForm'])->name('testimonials.show-form');
+    Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
 });
 
 // AUTH ADMIN
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-
-    Route::get('/import-scores', [ExamScoreImportController::class, 'showImportForm'])
-        ->name('admin.import.form');
-
-    Route::post('/import-scores', [ExamScoreImportController::class, 'import'])
-        ->name('admin.import.scores');
-
-    Route::get('/import-scores/template', [ExamScoreImportController::class, 'downloadTemplate'])
-        ->name('admin.import.template');
+    // IMPORT SCORE
+    Route::get('/import-scores', [ExamScoreImportController::class, 'showImportForm'])->name('admin.import.form');
+    Route::post('/import-scores', [ExamScoreImportController::class, 'import'])->name('admin.import.scores');
+    Route::get('/import-scores/template', [ExamScoreImportController::class, 'downloadTemplate'])->name('admin.import.template');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard/asesi', [AdminDashboardController::class, 'asesiIndex'])->name('admin.asesi.index');
     Route::get('/dashboard/asesi/export', function () {
         return Excel::download(new AsesiExport, 'data_asesi.xlsx');
     })->name('dashboard.asesi.export');
-
+    // ASESI INDEX
     Route::get('/dashboard/asesi/import', [AdminDashboardController::class, 'showImportForm'])->name('dashboard.asesi.import');
     Route::post('/dashboard/asesi/import', [AdminDashboardController::class, 'importAsesi'])->name('dashboard.asesi.import.asesi');
-
     Route::get('/dashboard/asesi/create', [AdminDashboardController::class, 'asesiCreate'])->name('admin.asesi.create');
     Route::get('/dashboard/asesi/edit/{id}', [AdminDashboardController::class, 'asesiEdit'])->name('admin.asesi.edit');
     Route::post('/dashboard/asesi/store', [AdminDashboardController::class, 'asesiStore'])->name('admin.asesi.store');
     Route::get('/dashboard/asesi/{id}', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.show');
     Route::put('/dashboard/asesi/update/{id}', [AdminDashboardController::class, 'asesiUpdate'])->name('admin.asesi.update');
     Route::delete('/dashboard/asesi/delete/{id}', [AdminDashboardController::class, 'asesiDestroy'])->name('admin.asesi.destroy');
-
+    // ASESOR DASHBOARD
     Route::get('/dashboard/asesor', [AdminDashboardController::class, 'asesorIndex'])->name('admin.asesor.index');
     Route::get('/dashboard/asesor/export', function () {
         return Excel::download(new AsesorExport, 'Asesor.xlsx');
@@ -267,7 +241,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/dashboard/questions/delete/{id}', [AdminDashboardController::class, 'questionsDestroy'])->name('admin.questions.destroy');
     Route::get('/dashboard/questions/{id}/edit', [AdminDashboardController::class, 'questionsEdit'])->name('admin.questions.edit');
     Route::put('/dashboard/questions/{id}', [AdminDashboardController::class, 'questionsUpdate'])->name('admin.questions.update');
-
     // Route Level A
     Route::get('/dashboard/level/a', [LevelAController::class, 'index'])->name('admin.level.a.index');
     Route::get('/dashboard/level/a/category', [LevelAController::class, 'categoriesIndex'])->name('admin.categories.a.index');
@@ -284,7 +257,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/c/category/{id}/edit', [LevelCController::class, 'categoriesEdit'])->name('admin.categories.c.edit');
     Route::get('/dashboard/level/c/category/show/{id}', [LevelCController::class, 'categoriesShow'])->name('admin.categories.c.show');
     Route::put('/dashboard/level/c/category/update/{id}', [LevelCController::class, 'categoriesUpdate'])->name('admin.categories.c.update');
-
     // ROUTE LEVEL A QUESTION
     Route::get('/dashboard/level/a/question', [LevelAController::class, 'bankSoalIndex'])->name('admin.question.a.index');
     Route::get('/dashboard/level/a/question/create', [LevelAController::class, 'bankSoalCreate'])->name('admin.question.a.create');
@@ -293,7 +265,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/a/question/{id}/edit', [LevelAController::class, 'bankSoalEdit'])->name('admin.question.a.edit');
     Route::put('/dashboard/level/a/question/{id}/update', [LevelAController::class, 'bankSoalUpdate'])->name('admin.question.a.update');
     Route::delete('/dashboard/level/a/question/{id}/delete', [LevelAController::class, 'bankSoalDestroy'])->name('admin.question.a.destroy');
-
     // Route Level B
     Route::get('/dashboard/level/b', [App\Http\Controllers\Admin\LevelBController::class, 'index'])->name('admin.level.b.index');
     Route::get('/dashboard/level/b/question', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalIndex'])->name('admin.question.b.index');
@@ -303,7 +274,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/b/question/{id}/edit', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalEdit'])->name('admin.question.b.edit');
     Route::put('/dashboard/level/b/question/{id}/update', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalUpdate'])->name('admin.question.b.update');
     Route::delete('/dashboard/level/b/question/{id}/delete', [App\Http\Controllers\Admin\LevelBController::class, 'bankSoalDestroy'])->name('admin.question.b.destroy');
-
     // Route Level C
     Route::get('/dashboard/level/c', [LevelCController::class, 'index'])->name('admin.level.c.index');
     Route::get('/dashboard/level/c/question', [LevelCController::class, 'bankSoalIndex'])->name('admin.question.c.index');
@@ -313,10 +283,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/c/question/{id}/edit', [LevelCController::class, 'bankSoalEdit'])->name('admin.question.c.edit');
     Route::put('/dashboard/level/c/question/{id}/update', [LevelCController::class, 'bankSoalUpdate'])->name('admin.question.c.update');
     Route::delete('/dashboard/level/c/question/{id}/delete', [LevelCController::class, 'bankSoalDestroy'])->name('admin.question.c.destroy');
-
     // ROUTE LEVEL SETTINGS
     Route::get('/dashboard/level/settings/index', [LevelSettingsController::class, 'index'])->name('admin.level.settings.index');
-
     // ROUTE BERITA
     Route::get('/dashboard/news', [NewsController::class, 'index'])->name('admin.news.index');
     Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('admin.news.create');
@@ -325,52 +293,33 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/news/{id}', [NewsController::class, 'show'])->name('admin.news.show');
     Route::put('/dashboard/news/update/{id}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/dashboard/news/delete/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
-
     // ROUTE PAYMENT DETAILS
     Route::get('/payments', [PaymentDetailController::class, 'index'])->name('admin.payments.index');
     Route::get('/payments/{id}', [PaymentDetailController::class, 'show'])->name('admin.payments.show');
     Route::get('/payments-export', [PaymentDetailController::class, 'export'])->name('admin.payments.export');
     Route::delete('/payments/{id}', [PaymentDetailController::class, 'destroy'])->name('admin.payments.destroy');
     Route::patch('/payments/{id}/status', [PaymentDetailController::class, 'updateStatus'])->name('admin.payments.updateStatus');
-
     // ROUTE PROFILE ADMIN
     Route::get('/profile', [AdminSettingsController::class, 'edit'])->name('admin.settings.edit');
     Route::patch('/profile', [AdminSettingsController::class, 'update'])->name('admin.settings.update');
     Route::delete('/profile', [AdminSettingsController::class, 'destroy'])->name('admin.settings.destroy');
     Route::put('profile', [AdminSettingsController::class, 'updatePassword'])->name('admin.password.update');
-
     // ROUTE RESULT EXAMS A
     Route::get('/result-exams-a', [ResultExamsAController::class, 'index'])->name('admin.resulta.index');
     Route::get('/result-exams-a/export', function () {
         return Excel::download(new ResultExamsAExport, 'Result Exams A.xlsx');
     })->name('admin.resulta.export');
-
     // ROUTE SITE INFO
     Route::get('/site-info', [SiteInfoController::class, 'index'])->name('admin.site-info.index');
-
-
-    Route::get('/testimonials', [\App\Http\Controllers\Admin\TestimonialController::class, 'index'])
-        ->name('admin.testimonials.index');
-
-    Route::post('/testimonials/{testimonial}/approve', [\App\Http\Controllers\Admin\TestimonialController::class, 'approve'])
-        ->name('admin.testimonials.approve');
-
-    Route::post('/testimonials/{testimonial}/feature', [\App\Http\Controllers\Admin\TestimonialController::class, 'feature'])
-        ->name('admin.testimonials.feature');
-
-    Route::delete('/testimonials/{testimonial}', [\App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])
-        ->name('admin.testimonials.destroy');
-
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
+    Route::post('/testimonials/{testimonial}/approve', [TestimonialController::class, 'approve'])->name('admin.testimonials.approve');
+    Route::post('/testimonials/{testimonial}/feature', [TestimonialController::class, 'feature'])->name('admin.testimonials.feature');
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
     //ROUTE SERTIFIKAT
     Route::get('/dashboard/sertifikat/index', [CertificateController::class, 'index'])->name('admin.sertifikat.index');
     Route::get('/dashboard/sertifikat/download/{id}', [CertificateController::class, 'downloadSertifikat'])->name('admin.sertifikat.download');
 });
-
-// AUTH ASESOR
-// Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () {
-//     Route::get('/dashboard', [AsesorDashboardController::class, 'index'])->name('asesor.dashboard');
-// });
-
+// ROUTE ASESOR
 Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () {
     Route::get('/dashboard', [AsesorDashboardController::class, 'index'])->name('asesor.dashboard');
     Route::get('/list-asesi', [AsesorDashboardController::class, 'listAsesi'])->name('asesor.list-asesi');
@@ -403,40 +352,15 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
     Route::get('/riwayat-aktifitas', [AsesorDashboardController::class, 'riwayatAktifitas'])->name('asesor.riwayat-aktifitas');
     Route::get('/download-nilai', [AsesorDashboardController::class, 'downloadNilai'])->name('asesor.download-nilai');
     Route::get('/profile-setting', [AsesorDashboardController::class, 'profileSetting'])->name('asesor.profile-setting');
-
-    // Route::get('/profile-setting', [AsesorDashboardController::class, 'profileSetting'])->name('asesor.profile-setting');
     Route::post('/profile-setting/update', [AsesorDashboardController::class, 'updateProfile'])->name('asesor.profile-setting.update');
     Route::post('/profile-setting/update-password', [AsesorDashboardController::class, 'updatePassword'])->name('asesor.profile-setting.update-password');
     Route::post('/profile-setting/update-photo', [AsesorDashboardController::class, 'updatePhoto'])->name('asesor.profile-setting.update-photo');
 });
 
-// INDOREGION
+// INDOREGION UNTUK PROVIDE DATA PROVINSI DAN LAINNYA
 Route::get('/regencies/{provinceId}', [IndoRegionController::class, 'getRegencies']);
 Route::get('/districts/{regencyId}', [IndoRegionController::class, 'getDistricts']);
 Route::get('/villages/{districtId}', [IndoRegionController::class, 'getVillages']);
-
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
-    Route::post('/testimonials/show-form', [TestimonialController::class, 'showForm'])->name('testimonials.show-form');
-    Route::post('/testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
-});
-
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-
-    // Testimonial routes
-    // Route::get('/testimonials', [\App\Http\Controllers\Admin\TestimonialController::class, 'index'])
-    //     ->name('testimonials.index');
-
-    // Route::post('/testimonials/{testimonial}/approve', [\App\Http\Controllers\Admin\TestimonialController::class, 'approve'])
-    //     ->name('testimonials.approve');
-
-    // Route::post('/testimonials/{testimonial}/feature', [\App\Http\Controllers\Admin\TestimonialController::class, 'feature'])
-    //     ->name('testimonials.feature');
-
-    // Route::delete('/testimonials/{testimonial}', [\App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])
-    //     ->name('testimonials.destroy');
-});
 
 Route::get('/featured-testimonials', function () {
     return response()->json(
@@ -448,54 +372,6 @@ Route::get('/featured-testimonials', function () {
             ->get()
     );
 });
-
-// Auth
-Route::get('/login', function () {
-    return view('auth.loginPage');
-})->name('login');
-
-Route::get('/user-dashboard', function () {
-    return view('user.userDashboard.index');
-})->name('userDashboard');
-
-Route::get('/sertifikasi', function () {
-    return view('user.sertifikasi.index');
-})->name('userSertifikasi');
-
-// userDashboard
-Route::get('/index', function () {
-    return view('userDashboard.index');
-})->name('index');
-
-Route::get('/sertifikasi', function () {
-    return view('userDashboard.sertifikasi');
-})->name('sertifikasi');
-
-Route::get('/viewslama', function () {
-    return view('viewslamaDA');
-})->name('viewslama');
-
-Route::get('/transaksi', function () {
-    return view('userDashboard.transaksi');
-})->name('transaksi');
-
-// admin dan asesor
-Route::get('/admin', function () {
-    return view('admin.admin');
-})->name('admin');
-
-Route::get('/asesor', function () {
-    return view('admin.asesor');
-})->name('asesor');
-
-Route::get('/real', function () {
-    return view('real');
-})->name('real');
-
-Route::get('/iseng', function () {
-    return view('iseng');
-})->name('iseng');
-
 
 // tetsing event gg bisa pertama kali 
 Route::get('/test-event', function () {
@@ -514,6 +390,51 @@ Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewC
 // Download PDF (yang sudah ada)
 Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])
     ->name('certificate.download');
+
+// Route::get('/user-dashboard', function () {
+//     return view('user.userDashboard.index');
+// })->name('userDashboard');
+
+// Route::get('/sertifikasi', function () {
+//     return view('user.sertifikasi.index');
+// })->name('userSertifikasi');
+
+// userDashboard
+// Route::get('/index', function () {
+//     return view('userDashboard.index');
+// })->name('index');
+
+// Route::get('/sertifikasi', function () {
+//     return view('userDashboard.sertifikasi');
+// })->name('sertifikasi');
+
+// Route::get('/viewslama', function () {
+//     return view('viewslamaDA');
+// })->name('viewslama');
+
+// Route::get('/transaksi', function () {
+//     return view('userDashboard.transaksi');
+// })->name('transaksi');
+
+// admin dan asesor
+// Route::get('/admin', function () {
+//     return view('admin.admin');
+// })->name('admin');
+
+// Route::get('/asesor', function () {
+//     return view('admin.asesor');
+// })->name('asesor');
+
+// Route::get('/real', function () {
+//     return view('real');
+// })->name('real');
+
+// Route::get('/iseng', function () {
+//     return view('iseng');
+// })->name('iseng');
+
+
+
 
 require __DIR__ . '/auth.php';
 

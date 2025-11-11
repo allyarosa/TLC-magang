@@ -128,12 +128,12 @@
  @endsection --}}
 
 
-@extends('layouts.login')
+ @extends('layouts.login')
 
-@section('title', 'Teaching and Learning Certification')
+ @section('title', 'Teaching and Learning Certification')
 
-@section('content')
-    {{-- <div class="bg-white min-h-screen w-full flex items-center justify-center p-4">
+ @section('content')
+     {{-- <div class="bg-white min-h-screen w-full flex items-center justify-center p-4">
         <div class="bg-[#F4CC7C] shadow-xl rounded-3xl overflow-hidden w-full max-w-4xl flex flex-col md:flex-row">
             <!-- kiri Section -->
             <div class="hidden md:flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-[#A6BFCF] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -262,6 +262,6 @@
         </div>
     </div> --}}
 
-    @livewire('auth.login-form')
+     @livewire('auth.login-form')
 
-@endsection
+ @endsection
