@@ -390,52 +390,7 @@ Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewC
 // Download PDF (yang sudah ada)
 Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])
     ->name('certificate.download');
-
-// Route::get('/user-dashboard', function () {
-//     return view('user.userDashboard.index');
-// })->name('userDashboard');
-
-// Route::get('/sertifikasi', function () {
-//     return view('user.sertifikasi.index');
-// })->name('userSertifikasi');
-
-// userDashboard
-// Route::get('/index', function () {
-//     return view('userDashboard.index');
-// })->name('index');
-
-// Route::get('/sertifikasi', function () {
-//     return view('userDashboard.sertifikasi');
-// })->name('sertifikasi');
-
-// Route::get('/viewslama', function () {
-//     return view('viewslamaDA');
-// })->name('viewslama');
-
-// Route::get('/transaksi', function () {
-//     return view('userDashboard.transaksi');
-// })->name('transaksi');
-
-// admin dan asesor
-// Route::get('/admin', function () {
-//     return view('admin.admin');
-// })->name('admin');
-
-// Route::get('/asesor', function () {
-//     return view('admin.asesor');
-// })->name('asesor');
-
-// Route::get('/real', function () {
-//     return view('real');
-// })->name('real');
-
-// Route::get('/iseng', function () {
-//     return view('iseng');
-// })->name('iseng');
-
-
-
-
+    
 require __DIR__ . '/auth.php';
 
 
