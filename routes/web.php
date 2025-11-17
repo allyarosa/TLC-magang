@@ -373,12 +373,6 @@ Route::get('/featured-testimonials', function () {
     );
 });
 
-// tetsing event gg bisa pertama kali 
-Route::get('/test-event', function () {
-    event(new testing());
-    return 'Event dispatched!';
-});
-
 // Preview PDF inline di browser
 Route::get('/certificate/preview-pdf/{id}', [SertifikasiController::class, 'previewCertificate'])
     ->name('certificate.preview.pdf');
@@ -390,7 +384,7 @@ Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewC
 // Download PDF (yang sudah ada)
 Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])
     ->name('certificate.download');
-    
+
 require __DIR__ . '/auth.php';
 
 
