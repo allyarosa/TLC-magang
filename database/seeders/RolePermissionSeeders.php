@@ -35,7 +35,7 @@ class RolePermissionSeeders extends Seeder
             'EXPIRED_LEVEL',
         ];
 
-        foreach($permission_levels as $permission) {
+        foreach ($permission_levels as $permission) {
             Permission::firstOrCreate([
                 'name' => $permission,
                 'guard_name' => 'web'
@@ -47,6 +47,11 @@ class RolePermissionSeeders extends Seeder
             'PCK',
             'NUMERASI',
             'LITERASI',
+
+            'HOTS_LOCK',
+            'PCK_LOCK',
+            'NUMERASI_LOCK',
+            'LITERASI_LOCK',
 
             'PPT_UPLOAD',
             'PPT_COMPLETED',
@@ -64,7 +69,7 @@ class RolePermissionSeeders extends Seeder
             'EXPIRED_KATEGORY',
         ];
 
-        foreach($permission_kategories as $permission_k) {
+        foreach ($permission_kategories as $permission_k) {
             Permission::firstOrCreate([
                 'name' => $permission_k,
                 'guard_name' => 'web'

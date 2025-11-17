@@ -170,7 +170,7 @@
                             <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
                             {{ $index['time_limit'] }} Menit
                         </div>
-                        @if (Auth::user()->hasPermissionTo($index['name']))
+                        @if (Auth::user()->hasAnyPermission([$index['name'], $index['name'] . '_LOCK']))
                             {{-- Prioritas: kalau sudah HOTS, anggap udah selesai --}}
                             <button disabled
                                 class="px-5 py-2 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-default">

@@ -275,11 +275,13 @@ class ExamController extends Controller
             'unanswered_questions' => $totalQuestions - $exam->questionsA()->wherePivotNotNull('user_answer')->count(),
         ]);
 
+        $exam->user->givePermissionTo($category->name . '_LOCK');
+        
         if ($exam->is_passed && $category) {
             $user = $exam->user;
             event(new ExamCompleted($user, $category));
         }
-
+        Alert::success('success', 'Menyelesaikan ujian');
         return redirect()->route('asesi.sertifikasi.level.a.result', $exam);
     }
 
