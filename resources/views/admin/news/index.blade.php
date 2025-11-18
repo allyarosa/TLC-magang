@@ -276,8 +276,6 @@
         <div class="px-3 py-2 bg-red-50 border-b border-gray-200 rounded-t-lg">
             <h3 class="font-semibold text-red-600">Delete All News</h3>
         </div>
-
-
         <div class="px-3 py-2">
             <p><strong class="text-red-500">Warning!!</strong> Tindakan ini akan menghapus semua berita dari sistem.</p>
         </div>

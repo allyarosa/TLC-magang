@@ -110,12 +110,16 @@
             <div class="max-w-7xl mx-auto w-full">
                 <div class="text-center mb-16">
                     <span
-                        class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] font-semibold rounded-full text-sm mb-3">TENTANG
-                        PROGRAM</span>
-                    <h2 class="text-5xl font-black text-[#1D4E89] mb-2 tracking-tight">Penjelasan Tentang TLC</h2>
+                        class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] font-semibold rounded-full text-sm mb-3">
+                        TENTANG PROGRAM
+                    </span>
+                    <h2 class="text-5xl font-black text-[#1D4E89] mb-2 tracking-tight">
+                        Penjelasan Tentang TLC
+                    </h2>
                     <div class="w-24 h-1 bg-[#E76F51] mt-4 mb-6 mx-auto"></div>
-                    <p class="text-xl text-gray-700 max-w-3xl mx-auto">Program revolusioner yang mengubah cara guru
-                        mengajar dan siswa belajar</p>
+                    <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                        Program revolusioner yang mengubah cara guru mengajar dan siswa belajar
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -1631,8 +1635,8 @@
                 <!-- FAQ List -->
                 <div class="space-y-4 text-left">
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md">
+                        <h3 class="text-sky-700 font-semibold flex justify-between items-center">
                             Apa itu Teaching and Learning Certification (TLC)?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
@@ -1642,8 +1646,8 @@
                     </div>
 
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md">
+                        <h3 class="text-sky-700 font-medium flex justify-between items-center">
                             Apa saja level dalam TLC?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
@@ -1653,8 +1657,8 @@
                     </div>
 
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md ">
+                        <h3 class="text-sky-700 font-medium flex justify-between items-center">
                             Siapa yang bisa mengikuti program TLC?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
@@ -1664,8 +1668,8 @@
                     </div>
 
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md ">
+                        <h3 class="text-sky-700 font-medium flex justify-between items-center">
                             Apa yang dilakukan di Level A?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
@@ -1675,8 +1679,8 @@
                     </div>
 
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md">
+                        <h3 class="text-sky-700 font-medium flex justify-between items-center">
                             Apa saja manfaat mengikuti program ini?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
@@ -1686,8 +1690,8 @@
                     </div>
 
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md">
+                        <h3 class="text-sky-700 font-medium flex justify-between items-center">
                             Bagaimana teknis pelaksanaannya?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
@@ -1697,8 +1701,8 @@
                     </div>
 
                     <div
-                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md active:scale-95">
-                        <h3 class="text-blue-700 font-medium flex justify-between items-center">
+                        class="faq-item bg-white p-4 border border-gray-300 rounded-lg cursor-pointer shadow-sm transition-all duration-300 hover:bg-blue-50 hover:shadow-md">
+                        <h3 class="text-sky-700 font-medium flex justify-between items-center">
                             Apakah program ini bisa diikuti secara online?
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
