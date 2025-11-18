@@ -37,6 +37,12 @@
             'PCK',
             'NUMERASI',
             'LITERASI',
+
+            'HOTS_LOCK',
+            'PCK_LOCK',
+            'NUMERASI_LOCK',
+            'LITERASI_LOCK',
+
             'PPT_UPLOAD',
             'ESSAY',
             'VIDEO_UPLOAD',

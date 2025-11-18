@@ -1749,5 +1749,4 @@
         </section>
         <!-- End FAQ Section -->
     </div>
-
 @endsection
