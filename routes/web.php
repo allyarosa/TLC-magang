@@ -52,10 +52,8 @@ use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialControll
 Route::get('sertifikat', function () {
     return view('sertifikat');
 })->name('sertifikat');
-
 // Auth
 Route::view('/login', 'auth.loginPage')->name('login');
-
 // SECRET PERMISSION
 // digunakan untuk memberikan direct akses permission kepada user
 Route::get('/permission/xqjmtlrbavse', function () {
