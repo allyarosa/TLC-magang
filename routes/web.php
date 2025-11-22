@@ -385,4 +385,3 @@ Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloa
 
 require __DIR__ . '/auth.php';
 
-

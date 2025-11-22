@@ -2,14 +2,15 @@
 
 namespace App\Providers;
 
-use App\Models\Comment;
-use App\Models\Thread;
-use App\Policies\CommentPolicy;
-use App\Policies\ThreadPolicy;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Models\Thread;
 use Livewire\Livewire;
+use App\Models\Comment;
+use App\Policies\ThreadPolicy;
+use App\Policies\CommentPolicy;
 use App\Http\Livewire\EmptyState;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -39,6 +40,16 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::policy(Thread::class, ThreadPolicy::class);
         Gate::policy(Comment::class, CommentPolicy::class);
+
+        // Laravel Pulse Dashboard hanya bisa diakses oleh admin
+        Gate::define('viewPulse', function (User $user) {
+            return $user->hasRole('admin');
+        });
+        
+        // Laravel Telescope juga hanya bisa diakses oleh admin
+        Gate::define('viewTelescope', function ($user) {
+            return $user->hasRole('admin');
+        });
 
         Carbon::setLocale('id');
     }

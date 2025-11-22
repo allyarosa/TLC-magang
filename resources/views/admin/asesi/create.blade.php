@@ -600,10 +600,3 @@
         });
     </script>
 @endsection
-
-
-
-
-
-
-
