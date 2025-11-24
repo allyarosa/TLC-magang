@@ -77,7 +77,7 @@
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gradient-to-r from-indigo-600 to-blue-500">
+                <thead class="bg-primary-500">
                     <tr>
                         <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">

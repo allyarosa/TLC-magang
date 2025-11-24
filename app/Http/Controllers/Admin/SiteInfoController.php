@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\SiteInfo;
 
 class SiteInfoController extends Controller
 {
@@ -12,54 +13,33 @@ class SiteInfoController extends Controller
      */
     public function index()
     {
-        return view('admin.site-info.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $footer = SiteInfo::first();
+        return view('admin.site-info.index', compact('footer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'instagram' => 'nullable|string',
+            'linkedin' => 'nullable|string',
+            'facebook' => 'nullable|string',
+            'youtube' => 'nullable|string',
+            'whatsapp' => 'nullable|string',
+            'email' => 'nullable|email',
+            'address' => 'nullable|string',
+            'description' => 'nullable|string|max:500',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $siteInfo = SiteInfo::first();
+        if (!$siteInfo) {
+            $siteInfo = new SiteInfo();
+        }
+
+        $siteInfo->update($request->all());
+
+        return redirect()->back()->with('success', 'Informasi situs berhasil diperbarui.');
     }
 }

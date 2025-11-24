@@ -25,8 +25,9 @@ class WelcomeController extends Controller
         $levelC = Level::where('level_name', 'C')->value('price');
 
         $latestNews = News::latest()->take(6)->get();
+        $siteInfo = \App\Models\SiteInfo::first();
 
-        return view('welcome', compact('latestNews', 'levelA', 'levelB', 'levelC'));
+        return view('welcome', compact('latestNews', 'levelA', 'levelB', 'levelC', 'siteInfo'));
     }
 
     public function show($slug)

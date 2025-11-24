@@ -235,7 +235,7 @@
                                 <span class="font-medium text-sm">Level A</span>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#"
                                 class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
                                 <div class="w-6 h-6 rounded-md bg-[#1D4E89]/20 flex items-center justify-center mr-2">
@@ -243,8 +243,8 @@
                                 </div>
                                 <span class="font-medium text-sm">Level B</span>
                             </a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="#"
                                 class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
                                 <div class="w-6 h-6 rounded-md bg-yellow-500/20 flex items-center justify-center mr-2">
@@ -252,7 +252,7 @@
                                 </div>
                                 <span class="font-medium text-sm">Level C</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('admin.level.settings.index') }}"
                                 class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300 {{ Request::routeIs('admin.level.settings.index') ? 'bg-[#1D4E89]/10 border-l-2 border-[#E76F51]' : '' }}">
@@ -286,7 +286,7 @@
                                 <span class="font-medium text-sm">Transaksi</span>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#"
                                 class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
                                 <div class="w-6 h-6 rounded-md bg-[#1D4E89]/20 flex items-center justify-center mr-2">
@@ -294,8 +294,8 @@
                                 </div>
                                 <span class="font-medium text-sm">Price</span>
                             </a>
-                        </li>
-                        <li>
+                        </li> --}}
+                        {{-- <li>
                             <a href="#"
                                 class="flex items-center p-2 text-gray-700 rounded-lg hover:bg-[#1D4E89]/10 group transition-all duration-300">
                                 <div class="w-6 h-6 rounded-md bg-yellow-500/20 flex items-center justify-center mr-2">
@@ -303,7 +303,7 @@
                                 </div>
                                 <span class="font-medium text-sm">Settings</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li>

@@ -52,5 +52,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Carbon::setLocale('id');
+
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('site_infos')) {
+                \Illuminate\Support\Facades\View::share('siteInfo', \App\Models\SiteInfo::first());
+            }
+        } catch (\Exception $e) {
+            //
+        }
     }
 }

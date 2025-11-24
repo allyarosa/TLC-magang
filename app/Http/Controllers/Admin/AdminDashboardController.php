@@ -326,6 +326,13 @@ class AdminDashboardController extends Controller
         }
     }
 
+    public function asesiLevelManagementIndex(string $id) {
+        return view('admin.asesi.level_management', [
+            'title' => 'Level Management Title',
+            'id' => $id,
+        ]);
+    }
+
     public function asesorIndex()
     {
         $search = request('search'); // Ambil nilai pencarian dari input GET
@@ -634,8 +641,6 @@ class AdminDashboardController extends Controller
                 $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
                 $admin->update(['profile_image' => $profileImagePath]);
             }
-
-
             DB::commit();
 
             return redirect()->route('admin.admins.index')->with('success', 'Admin berhasil diperbarui.');
@@ -696,6 +701,8 @@ class AdminDashboardController extends Controller
             'kategori' => $kategori
         ]);
     }
+
+    
 
     // public function levelCreate()
     // {

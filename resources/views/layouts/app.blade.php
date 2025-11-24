@@ -160,26 +160,32 @@
                         TLC Program
                     </h2>
                     <p class="text-gray-300 leading-relaxed mb-4 text-sm">
-                        Program sertifikasi untuk memberdayakan pendidik dengan pengetahuan dan
-                        keterampilan mengajar yang efektif.
+                        {!! $siteInfo->description ?? 'Program sertifikasi untuk memberdayakan pendidik dengan pengetahuan dan keterampilan mengajar yang efektif.' !!}
                     </p>
                     <div class="flex space-x-4 mt-3">
                         {{-- FACEBOOK --}}
-                        <a href="https://www.facebook.com/HAFECS/" target="_blank"
+                        <a href="{{ $siteInfo->facebook ?? '#' }}" target="_blank"
                             class="text-white hover:text-orange-400 transition-colors">
                             <i class="fab fa-facebook-f text-lg"></i>
                         </a>
 
                         {{-- INSTAGRAM --}}
-                        <a href="https://www.instagram.com/hafecs.id/" target="_blank"
+                        <a href="{{ $siteInfo->instagram ?? '#' }}" target="_blank"
                             class="text-white hover:text-orange-400 transition-colors">
                             <i class="fab fa-instagram text-lg"></i>
                         </a>
 
-                        <a href="https://www.linkedin.com/company/hafecs/posts/?feedView=all" target="_blank"
+                        <a href="{{ $siteInfo->linkedin ?? '#' }}" target="_blank"
                             class="text-white hover:text-orange-400 transition-colors">
                             <i class="fab fa-linkedin-in text-lg"></i>
                         </a>
+                        
+                        @if(isset($siteInfo->youtube))
+                        <a href="{{ $siteInfo->youtube }}" target="_blank"
+                            class="text-white hover:text-orange-400 transition-colors">
+                            <i class="fab fa-youtube text-lg"></i>
+                        </a>
+                        @endif
                     </div>
                 </div>
 
@@ -254,8 +260,7 @@
                             <i
                                 class="fas fa-map-marker-alt text-orange-400 text-lg mt-1 md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span class="ml-3 md:ml-0 text-gray-300 md:text-right md:order-1">
-                                Jl. Trans Kalimantan KM.12. No 12, RW.12, Sungai Lumbah, Kec. Alalak, Kabupaten Barito
-                                Kuala, Kalimantan Selatan 70582
+                                {!! $siteInfo->address ?? 'Jl. Trans Kalimantan KM.12. No 12, RW.12, Sungai Lumbah, Kec. Alalak, Kabupaten Barito Kuala, Kalimantan Selatan 70582' !!}
                             </span>
                         </li>
                         <li class="flex items-center md:justify-end group">
@@ -263,7 +268,7 @@
                                 class="fas fa-phone-alt text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span
                                 class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
-                                <a href="https://wa.me/6285216164164?text=Halo%20saya%20tertarik%20dengan%20layanan%20Anda"
+                                <a href="https://wa.me/{{ $siteInfo->whatsapp ?? '6285216164164' }}?text=Halo%20saya%20tertarik%20dengan%20layanan%20Anda"
                                     target="_blank">
                                     Chat via WhatsApp
                                 </a>
@@ -275,7 +280,7 @@
                                 class="fas fa-envelope text-orange-400 text-lg md:order-2 md:ml-3 group-hover:animate-bounce"></i>
                             <span
                                 class="ml-3 md:ml-0 text-gray-300 hover:text-orange-400 transition-colors md:order-1">
-                                <a href="mailto:lskhafecs@gmail.com">lskhafecs@gmail.com</a>
+                                <a href="mailto:{{ $siteInfo->email ?? 'lskhafecs@gmail.com' }}">{{ $siteInfo->email ?? 'lskhafecs@gmail.com' }}</a>
                             </span>
                         </li>
                     </ul>
@@ -297,7 +302,7 @@
         </div>
         <!-- WhatsApp Floating Button -->
         <div>
-            <a href="https://wa.me/6285216164164?text=Saya%20ingin%20bertanya%20tentang%20produk%20Anda"
+            <a href="https://wa.me/{{ $siteInfo->whatsapp ?? '6285216164164' }}?text=Saya%20ingin%20bertanya%20tentang%20produk%20Anda"
                 target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp"
                 class="fixed right-4 bottom-4 z-50 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-green-500 shadow-xl transform transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-300">
                 <!-- WhatsApp SVG (simple, retina-ready) -->
@@ -311,8 +316,5 @@
         <!-- FontAwesome Script untuk Icon -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
     </footer>
-
-
 </body>
-
 </html>

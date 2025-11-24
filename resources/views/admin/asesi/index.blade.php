@@ -97,7 +97,7 @@
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gradient-to-r from-indigo-600 to-blue-500">
+                <thead class="bg-blue-600">
                     <tr>
                         <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
@@ -240,6 +240,19 @@
                                             </path>
                                         </svg>
                                     </a>
+
+                                    {{-- Level Management --}}
+                                    <a href="{{ route('admin.asesi.level-management', $user->id) }}"
+                                        class="p-2 text-orange-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors"
+                                        title="Manage Level Asesi">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM2 17.25V18h3v-2.75A3.005 3.005 0 012 17.25z">
+                                            </path>
+                                        </svg>
+                                    </a>
+
 
                                     <!-- Delete -->
                                     <form action="{{ route('admin.asesi.destroy', $user->user->id) }}" method="POST"

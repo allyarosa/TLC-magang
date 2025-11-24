@@ -234,7 +234,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
         Route::post('/complete', [ExamControllerC::class, 'complete'])->name('complete');
         Route::get('/completed', [ExamControllerC::class, 'completed'])->name('completed');
     });
-
+    
     // Transactions
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
 });
@@ -250,7 +250,7 @@ Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments/{id}/create', [PaymentController::class, 'create'])->name('payments.create');
     Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/{id}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
-    Route::get('/payments/{id}', [PaymentController::class, 'detail'])->name('payments.detail');
+    Route::get('/payments/{id}', action: [PaymentController::class, 'detail'])->name('payments.detail');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('asesi.profile');
@@ -337,6 +337,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/asesi/import', [AdminDashboardController::class, 'showImportForm'])->name('dashboard.asesi.import');
     Route::post('/dashboard/asesi/import', [AdminDashboardController::class, 'importAsesi'])->name('dashboard.asesi.import.asesi');
     Route::get('/dashboard/asesi/create', [AdminDashboardController::class, 'asesiCreate'])->name('admin.asesi.create');
+    Route::get('/dashboard/asesi/level-management/{id}', [AdminDashboardController::class, 'asesiLevelManagementIndex'])->name('admin.asesi.level-management');
     Route::get('/dashboard/asesi/edit/{id}', [AdminDashboardController::class, 'asesiEdit'])->name('admin.asesi.edit');
     Route::post('/dashboard/asesi/store', [AdminDashboardController::class, 'asesiStore'])->name('admin.asesi.store');
     Route::get('/dashboard/asesi/{id}', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.show');
@@ -475,6 +476,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     // Site Info & Testimonials
     Route::get('/site-info', [SiteInfoController::class, 'index'])->name('admin.site-info.index');
+    Route::put('/site-info/update', [SiteInfoController::class, 'update'])->name('admin.site-info.update');
     Route::get('/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
     Route::post('/testimonials/{testimonial}/approve', [TestimonialController::class, 'approve'])->name('admin.testimonials.approve');
     Route::post('/testimonials/{testimonial}/feature', [TestimonialController::class, 'feature'])->name('admin.testimonials.feature');
