@@ -24,7 +24,8 @@ class UserSeeders extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => bcrypt('password'),
-                'status' => 'active', 
+                'status' => 'active',
+                'email_verified_at' => now(), 
             ])->assignRole('asesi');
             $user->givePermissionTo($array[array_rand($array)]);
 

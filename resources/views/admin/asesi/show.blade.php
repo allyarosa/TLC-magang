@@ -12,7 +12,7 @@
             <h1 class="text-lg font-semibold text-gray-700 sm:text-2xl">Detail Pengguna Asesi</h1>
         </div>
 
-        <div class="bg-white rounded-xl shadow-2xl p-6 lg:p-8">
+        <div class="bg-white rounded-xl shadow-md p-6 lg:p-8">
 
             <div class="flex flex-col sm:flex-row items-center sm:items-start border-b pb-6 mb-6">
                 <img src="{{ $asesi->profile_image ? asset('storage/' . $asesi->profile_image) : asset('assets/img/blank_profile.png') }}"
@@ -108,45 +108,92 @@
                         </button>
                         <div class="flex flex-wrap gap-2">
                             <span class="text-sm font-medium text-gray-600 self-center mr-1">Nilai Level:</span>
+
                             {{-- LevelA --}}
-                            <button
-                                onclick="window.location.href='{{ route('admin.asesi.level_a.show', ['id' => $asesi->id]) }}'"
-                                class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-lg transition-colors">
-                                Level A
-                            </button>
+                            @if ($userPermission['level_A_completed'])
+                                <button
+                                    onclick="window.location.href='{{ route('admin.asesi.level_a.show', ['id' => $asesi->id]) }}'"
+                                    class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-lg transition-colors">
+                                    Level A
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 bg-gray-300 text-white text-xs font-medium rounded-lg cursor-not-allowed">
+                                    Level A
+                                </button>
+                            @endif
+
                             {{-- LevelB --}}
-                            <button onclick="window.location.href='#'"
-                                class="px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium rounded-lg transition-colors">
-                                Level B
-                            </button>
+                            @if ($userPermission['level_A_completed'])
+                                <button onclick="window.location.href='#'"
+                                    class="px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium rounded-lg transition-colors">
+                                    Level B
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 bg-gray-300 text-white text-xs font-medium rounded-lg cursor-not-allowed">
+                                    Level B
+                                </button>
+                            @endif
+
                             {{-- LevelC --}}
-                            <button onclick="window.location.href='#'"
-                                class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-medium rounded-lg transition-colors">
-                                Level C
-                            </button>
+                            @if ($userPermission['level_C_completed'])
+                                <button onclick="window.location.href='#'"
+                                    class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-medium rounded-lg transition-colors">
+                                    Level C
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 bg-gray-300 text-white text-xs font-medium rounded-lg cursor-not-allowed">
+                                    Level C
+                                </button>
+                            @endif
+
                         </div>
                         {{-- DOWNLOAD SERTIFIKAT --}}
                         <div class="flex flex-wrap gap-2">
                             <span class="text-sm font-medium text-gray-600 self-center mr-1">Download Sertifikat:</span>
 
                             {{-- LevelA --}}
-                            <button
-                                onclick="window.location.href='{{ route('admin.asesi.level_a.show', Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}'"
-                                class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-lg transition-colors">
-                                Level A
-                            </button>
+                            @if ($userPermission['level_A_completed'])
+                                <button
+                                    onclick="window.location.href='{{ route('admin.asesi.level_a.show', Vinkla\Hashids\Facades\Hashids::encode($asesi->id)) }}'"
+                                    class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-lg transition-colors">
+                                    Level A
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 bg-gray-300 text-white text-xs font-medium rounded-lg cursor-not-allowed">
+                                    Level A
+                                </button>
+                            @endif
 
                             {{-- LevelB --}}
-                            <button onclick="window.location.href='#'"
-                                class="px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium rounded-lg transition-colors">
-                                Level B
-                            </button>
+                            @if ($userPermission['level_A_completed'])
+                                <button onclick="window.location.href='#'"
+                                    class="px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium rounded-lg transition-colors">
+                                    Level B
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 bg-gray-300 text-white text-xs font-medium rounded-lg cursor-not-allowed">
+                                    Level B
+                                </button>
+                            @endif
 
                             {{-- LevelC --}}
-                            <button onclick="window.location.href='#'"
-                                class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-medium rounded-lg transition-colors">
-                                Level C
-                            </button>
+                            @if ($userPermission['level_A_completed'])
+                                <button onclick="window.location.href='#'"
+                                    class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-medium rounded-lg transition-colors">
+                                    Level C
+                                </button>
+                            @else
+                                <button
+                                    class="px-3 py-2 bg-gray-300 text-white text-xs font-medium rounded-lg cursor-not-allowed">
+                                    Level C
+                                </button>
+                            @endif
+
                         </div>
                     </div>
                 </div>

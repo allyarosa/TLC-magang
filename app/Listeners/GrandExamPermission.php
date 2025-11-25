@@ -25,7 +25,7 @@ class GrandExamPermission
         $category = $event->category;
         
         $user->givePermissionTo($category->name);
-        $user->givePermissionoTo($category->name . '_LOCK');
+        $user->givePermissionTo($category->name . '_LOCK');
         
         if($user->hasAllPermissions(['HOTS', 'PCK', 'LITERASI', 'NUMERASI'])) {
             $user->givePermissionTo('level_A_completed');

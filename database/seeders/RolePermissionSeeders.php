@@ -75,7 +75,6 @@ class RolePermissionSeeders extends Seeder
                 'guard_name' => 'web'
             ]);
         }
-
         $asesi->givePermissionTo('fresh_user');
     }
 }

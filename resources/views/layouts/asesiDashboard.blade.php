@@ -125,17 +125,14 @@
                     <!-- Profile Dropdown -->
                     <div class="relative">
                         <button id="profile-button-asesi"
-                            class="flex items-center space-x-2 p-1.5 rounded-xl hover:bg-white/50 backdrop-blur-sm transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
-                            <div
-                                class="p-[2px] bg-gradient-to-br from-[#1D4E89] to-[#667eea] rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_4px_15px_rgba(29,78,137,0.2)]">
-                                <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}"
-                                    alt="Profile Image" class="w-9 h-9 rounded-full object-cover">
-                            </div>
-                            <svg id="profile-arrow" class="h-4 w-4 text-gray-600 transition-transform duration-300"
+                            class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/30">
+                            <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}"
+                                alt="Profile Image" class="w-9 h-9 rounded-full object-cover border-2 border-blue-500">
+                            <svg id="profile-arrow" class="w-4 h-4 text-gray-600 transition-transform duration-300"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7"></path>
+                                    d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
 
@@ -158,10 +155,7 @@
                                 </a>
 
                                 <div class="border-t border-gray-100 my-1"></div>
-
-
-
-
+                                
                                 <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                     <div

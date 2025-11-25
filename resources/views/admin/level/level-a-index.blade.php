@@ -1,158 +1,76 @@
 @extends('layouts.adminDashboard')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Level A Management')
 
 @section('content')
-    <div class="p-4 bg-white rounded-lg mb-2">
-        <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
-            <!-- Breadcrumb -->
-            <ol class="flex items-center space-x-1 text-gray-600">
-                <li><a href="{{ route('admin.level.a.index') }}" class="hover:underline text-indigo-600">Level A</a></li>
-                <li>/</li>
-                <li><a href="{{ route('admin.level.c.index') }}" class="hover:underline text-indigo-600">Level B</a></li>
-                <li>/</li>
-                <li><a href="{{ route('admin.level.c.index') }}" class="hover:underline text-indigo-600">Level C</a></li>
-            </ol>
-            <!-- Search & Info -->
-        </nav>
-    </div>
-
-    <!-- Cards for Categories and Questions -->
-    <!-- Cards for Categories and Questions with Improved Design -->
-    <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Workflow Instructions -->
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-md shadow-sm">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0">
-                        <!-- Information Icon -->
-                        <svg class="h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="ml-3">
-                        <h3 class="text-sm font-medium text-blue-800">Alur Pengerjaan Sertifikasi Level A</h3>
-                        <div class="mt-2 text-sm text-blue-700">
-                            <p>Untuk mengelola bank soal dengan efektif, silakan ikuti langkah-langkah berikut:</p>
-                            <ol class="list-decimal list-inside mt-2 ml-2 space-y-1">
-                                <li>Buat dan atur kategori soal terlebih dahulu</li>
-                                <li>Kemudian tambahkan soal-soal sesuai dengan kategori yang telah dibuat</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header & Breadcrumb -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Level A Certification</h1>
+                <p class="text-gray-500 text-sm mt-1">Manage categories and questions for Level A certification.</p>
             </div>
+            <nav class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+                <span class="text-blue-600 font-semibold">Level A</span>
+                <span class="text-gray-300">/</span>
+                <a href="{{ route('admin.level.b.index') }}" class="hover:text-blue-600 transition-colors">Level B</a>
+                <span class="text-gray-300">/</span>
+                <a href="{{ route('admin.level.c.index') }}" class="hover:text-blue-600 transition-colors">Level C</a>
+            </nav>
+        </div>
 
-            <!-- Cards Container -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Kategori Card -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100">
-                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-4">
-                        <div class="flex items-center">
-                            <div class="bg-white bg-opacity-30 rounded-lg p-3">
-                                <i class="fa-solid fa-layer-group" style="font-size: 28px; color: #3b82f6;"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">Kategori Soal</h3>
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="mb-6">
-                            <p class="text-gray-600 mb-2">Langkah 1: Kelola kategori soal sertifikasi untuk mengorganisir
-                                bank soal dengan lebih terstruktur.</p>
-                            <div class="flex items-center text-sm text-gray-500 mt-3">
-                                <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Membuat struktur yang terorganisir</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500 mt-2">
-                                <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Mempermudah manajemen soal</span>
-                            </div>
-                        </div>
-
-                        <a href="{{ route('admin.categories.a.index') }}"
-                            class="block w-full text-center bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300 transform">
-                            <div class="flex items-center justify-center">
-                                <span>Kelola Kategori</span>
-                                <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Bank Soal Card -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg border border-gray-100">
-                    <div class="bg-gradient-to-r from-green-500 to-teal-500 p-4">
-                        <div class="flex items-center">
-                            <div class="bg-white bg-opacity-30 rounded-lg p-3">
-                                <i class="fa-solid fa-circle-question" style="font-size: 30px; color: #14B8A6;"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">Bank Soal</h3>
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="mb-6">
-                            <p class="text-gray-600 mb-2">Langkah 2: Kelola bank soal untuk ujian sertifikasi setelah
-                                kategori selesai dibuat.</p>
-                            <div class="flex items-center text-sm text-gray-500 mt-3">
-                                <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Buat soal-soal berkualitas</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500 mt-2">
-                                <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Atur soal berdasarkan kategori</span>
-                            </div>
-                        </div>
-
-                        <a href="{{ route('admin.question.a.index') }}"
-                            class="block w-full text-center bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-medium py-3 px-4 rounded-lg transition duration-300 transform">
-                            <div class="flex items-center justify-center">
-                                <span>Kelola Soal</span>
-                                <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+        <!-- Info Alert (Simplified) -->
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-8 flex items-start gap-3">
+            <div class="bg-blue-100 text-blue-600 rounded-full p-1.5 shrink-0 mt-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div>
+                <h3 class="font-semibold text-blue-900 text-sm">Workflow Guide</h3>
+                <p class="text-blue-700 text-sm mt-1">
+                    Start by creating <strong>Categories</strong>, then add <strong>Questions</strong> to those categories.
+                </p>
             </div>
         </div>
-    </div>
 
-    <!-- Card for Questions -->
-    </div>
-    </div>
-    </div>
+        <!-- Action Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Categories Card -->
+            <a href="{{ route('admin.categories.a.index') }}" class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all duration-300 flex items-start gap-5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-50 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
+                
+                <div class="bg-blue-50 text-blue-600 rounded-xl p-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 relative z-10">
+                    <i class="fa-solid fa-layer-group text-2xl"></i>
+                </div>
+                <div class="flex-1 relative z-10">
+                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">Question Categories</h3>
+                    <p class="text-gray-500 text-sm mt-1 leading-relaxed">
+                        Create and organize topics for the certification exam structure.
+                    </p>
+                    <div class="mt-4 flex items-center text-blue-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
+                        Manage Categories <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+            </a>
 
-    <!-- Pagination -->
+            <!-- Questions Card -->
+            <a href="{{ route('admin.question.a.index') }}" class="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-teal-200 transition-all duration-300 flex items-start gap-5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-teal-50 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
 
-
+                <div class="bg-teal-50 text-teal-600 rounded-xl p-4 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300 relative z-10">
+                    <i class="fa-solid fa-circle-question text-2xl"></i>
+                </div>
+                <div class="flex-1 relative z-10">
+                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-teal-600 transition-colors">Question Bank</h3>
+                    <p class="text-gray-500 text-sm mt-1 leading-relaxed">
+                        Add, edit, and manage exam questions assigned to categories.
+                    </p>
+                    <div class="mt-4 flex items-center text-teal-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
+                        Manage Questions <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 @endsection

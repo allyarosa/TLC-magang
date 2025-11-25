@@ -50,13 +50,13 @@
                 class="text-3xl font-extrabold text-transparent bg-clip-text bg-[#1D4E89]">
                 KATEGORI LEVEL</h2>
         </div>
-        <div class="flex items-center space-x-4">
+        {{-- <div class="flex items-center space-x-4">
             <button
                 class="px-6 py-2 bg-gradient-to-r from-[#1D4E89] to-[#14406B] text-white rounded-xl font-medium shadow-lg hover:shadow-xl focus:ring-4 focus:ring-blue-200">
                 <a href="{{ route('asesi.nilai') }}">Lihat Nilai</a>
 
             </button>
-        </div>
+        </div> --}}
     </div>
 
     <p class="text-gray-600 text-base mb-10 text-center sm:text-left max-w-2xl">

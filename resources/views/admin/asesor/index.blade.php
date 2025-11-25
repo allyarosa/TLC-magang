@@ -7,17 +7,31 @@
         <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
             <!-- Breadcrumb -->
             <ol class="flex items-center space-x-1 text-gray-600">
-                <li><a href="{{ route('admin.asesi.index') }}"
-                        class="hover:underline {{ request()->routeIs('admin.asesi.*') ? 'text-indigo-600' : '' }}">Asesi</a>
-                </li>
-                <li>/</li>
-                <li><a href="{{ route('admin.asesor.index') }}"
-                        class="hover:underline {{ request()->routeIs('admin.asesor.*') ? 'text-indigo-600' : '' }}">Asesor</a>
-                </li>
-                <li>/</li>
-                <li><a href="{{ route('admin.admins.index') }}"
-                        class="hover:underline {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600' : '' }}">Admin</a>
-                </li>
+                <nav
+                    class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
+
+                    {{-- Asesi Link --}}
+                    <a href="{{ route('admin.asesi.index') }}"
+                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.asesi.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        Asesi
+                    </a>
+
+                    <span class="text-gray-300">/</span>
+
+                    {{-- Asesor Link --}}
+                    <a href="{{ route('admin.asesor.index') }}"
+                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.asesor.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        Asesor
+                    </a>
+
+                    <span class="text-gray-300">/</span>
+
+                    {{-- Admin Link --}}
+                    <a href="{{ route('admin.admins.index') }}"
+                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        Admin
+                    </a>
+                </nav>
             </ol>
 
             <!-- Search & Info -->

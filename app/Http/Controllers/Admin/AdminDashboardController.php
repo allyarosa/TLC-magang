@@ -192,10 +192,16 @@ class AdminDashboardController extends Controller
     public function asesiShow($id)
     {
         $asesi = UserProfile::findOrFail($id); // cari data berdasarkan ID
+        $userPermission = [
+            'level_A_completed' => $asesi->user->hasPermissionTo('level_A_completed'),
+            'level_B_completed' => $asesi->user->hasPermissionTo('level_B_completed'),
+            'level_C_completed' => $asesi->user->hasPermissionTo('level_C_completed'),
+        ];
 
         return view('admin.asesi.show', [
             'title' => 'Detail Asesi',
             'asesi' => $asesi,
+            'userPermission' => $userPermission,
         ]);
     }
 
