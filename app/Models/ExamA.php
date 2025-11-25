@@ -20,13 +20,10 @@ class ExamA extends Model
         'end_time',
         'is_passed',
         'duration',
-
         'total_questions',
-
         'unanswered_questions',
         'correct_answers',
         'wrong_answers',
-
     ];
 
     protected $casts = [

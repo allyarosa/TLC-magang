@@ -1,68 +1,70 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use RealRashid\SweetAlert\Facades\Alert;
-
-// Events
 use App\Events\MyEvent;
 use App\Events\testing;
+use App\Livewire\Forum;
+use App\Models\Testimonial;
+use App\Exports\AsesiExport;
+
+// Events
+use App\Exports\UsersExport;
+use Illuminate\Http\Request;
 
 // Livewire
-use App\Livewire\Forum;
-use App\Livewire\Asesi\CertificationDetail;
-
-// Models
-use App\Models\Testimonial;
-
-// Exports
-use App\Exports\AsesiExport;
-use App\Exports\UsersExport;
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
+
+// Models
+use Illuminate\Support\Facades\Auth;
+
+// Exports
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Route;
 use App\Exports\RiwayatPenilaianBExport;
 use App\Exports\RiwayatPenilaianCExport;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\PaymentController;
 
 // Controllers - Auth
+use App\Http\Controllers\WelcomeController;
+use App\Livewire\Asesi\CertificationDetail;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Admin\NewsController;
 
 // Controllers - General
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Asesi\ExamController;
 use App\Http\Controllers\IndoRegionController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Asesi\ExamControllerC;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\ExamScoreImportController;
+use App\Http\Controllers\PermissionController;
 
 // Controllers - Asesi
-use App\Http\Controllers\Asesi\AsesiDashboardController;
-use App\Http\Controllers\Asesi\SertifikasiController;
-use App\Http\Controllers\Asesi\TransactionController;
-use App\Http\Controllers\Asesi\ExamController;
-use App\Http\Controllers\Asesi\ExamControllerC;
-use App\Http\Controllers\Asesi\LevelBController;
-use App\Http\Controllers\Asesi\ProfileController;
-
-// Controllers - Asesor
-use App\Http\Controllers\Asesor\AsesorDashboardController;
-use App\Http\Controllers\Asesor\LevelBGradedController;
-use App\Http\Controllers\Asesor\LevelCGradedController;
-
-// Controllers - Admin
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\LevelAController;
 use App\Http\Controllers\Admin\LevelCController;
+use App\Http\Controllers\Asesi\LevelBController;
+use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\Admin\SiteInfoController;
+use App\Http\Controllers\ExamScoreImportController;
+use App\Http\Controllers\Admin\AsesiScoreController;
+
+// Controllers - Asesor
 use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Asesi\SertifikasiController;
+use App\Http\Controllers\Asesi\TransactionController;
+
+// Controllers - Admin
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Admin\ResultExamsAController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\LevelSettingsController;
 use App\Http\Controllers\Admin\PaymentDetailController;
+use App\Http\Controllers\Asesor\LevelBGradedController;
+use App\Http\Controllers\Asesor\LevelCGradedController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Asesi\AsesiDashboardController;
+use App\Http\Controllers\Asesor\AsesorDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,27 +155,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('verification.verify');
 
     // Permission Management (Secret & Assign)
-    Route::get('/permission/xqjmtlrbavse', function () {
-        return view('permission');
-    })->name('permission');
-
-    Route::post('/permission', function (Request $request) {
-        $permission = $request->input('permission');
-        $user = Auth::user();
-
-        if (!$user->hasPermissionTo($permission)) {
-            $user->givePermissionTo($permission);
-        }
-        Alert::success("Permission '$permission' diberikan.");
-
-        if ($user->hasRole('admin')) {
-            return redirect()->route('admin.dashboard');
-        } else if ($user->hasRole('asesor')) {
-            return redirect()->route('asesor.dashboard');
-        } else if ($user->hasRole('asesi')) {
-            return redirect()->route('asesi.dashboard');
-        }
-    })->name('assign.permission');
+    Route::get('/permission/xqjmtlrbavse', [PermissionController::class, 'index'])->name('permission');
+    Route::post('/permission', [PermissionController::class, 'store'])->name('assign.permission');
 
     // General Certificate View
     Route::get('sertifikat', function () {
@@ -343,6 +326,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/asesi/{id}', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.show');
     Route::put('/dashboard/asesi/update/{id}', [AdminDashboardController::class, 'asesiUpdate'])->name('admin.asesi.update');
     Route::delete('/dashboard/asesi/delete/{id}', [AdminDashboardController::class, 'asesiDestroy'])->name('admin.asesi.destroy');
+    Route::get('/dashboard/asesi/{id}/level-a', [AsesiScoreController::class, 'showLevelA'])->name('admin.asesi.level_a.show');
+    // Route::get('/dashboard/asesi/{id}/level-a', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.level_b.show');
+    // Route::get('/dashboard/asesi/{id}/level-a', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.level_c.show');
 
     // Asesor
     Route::get('/dashboard/asesor', [AdminDashboardController::class, 'asesorIndex'])->name('admin.asesor.index');

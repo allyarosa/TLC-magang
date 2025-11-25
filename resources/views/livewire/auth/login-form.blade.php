@@ -140,9 +140,6 @@
             <h1 class="text-4xl font-bold text-white text-center relative z-10 mb-4 animate-slideInUp">
                 Selamat Datang
             </h1>
-            <p class="text-white text-center mb-8 animate-slideInUp animation-delay-300 opacity-90">
-                Welcome to our platform
-            </p>
             <div class="mt-6 w-44 h-44 flex items-center justify-center animate-slideInUp animation-delay-500 group">
                 <div class="absolute w-44 h-44 bg-white/5 rounded-full animate-pulse"></div>
                 <img src="images/logoTlcPng.png" alt="Logo"
@@ -157,7 +154,6 @@
                 <h1 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#0C548C] to-[#2E4D69] bg-clip-text text-transparent">
                     Selamat Datang
                 </h1>
-                <p class="text-[#5F809C] text-xs sm:text-sm mt-1">Welcome to our platform</p>
             </div>
 
             <!-- Header -->
