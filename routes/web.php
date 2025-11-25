@@ -381,12 +381,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     // Level A
     Route::get('/dashboard/level/a', [LevelAController::class, 'index'])->name('admin.level.a.index');
-    Route::get('/dashboard/level/a/category', [LevelAController::class, 'categoriesIndex'])->name('admin.categories.a.index');
+    Route::get('/dashboard/level/a/category', [LevelAController::class, 'categoriesIndex'])->name('admin.categories.a.index'); //EDIT INI
     Route::get('/dashboard/level/a/category/{id}/edit', [LevelAController::class, 'categoriesEdit'])->name('admin.categories.a.edit');
     Route::get('/dashboard/level/a/category/show/{id}', [LevelAController::class, 'categoriesShow'])->name('admin.categories.a.show');
     Route::put('/dashboard/level/a/category/update/{id}', [LevelAController::class, 'categoriesUpdate'])->name('admin.categories.a.update');
 
-    Route::get('/dashboard/level/a/question', [LevelAController::class, 'bankSoalIndex'])->name('admin.question.a.index');
+    Route::get('/dashboard/level/a/question', [LevelAController::class, 'bankSoalIndex'])->name('admin.question.a.index'); // EDIT INI
     Route::get('/dashboard/level/a/question/create', [LevelAController::class, 'bankSoalCreate'])->name('admin.question.a.create');
     Route::get('/dashboard/level/a/question/{id}/show', [LevelAController::class, 'bankSoalShow'])->name('admin.question.a.show');
     Route::post('/dashboard/level/a/question/store', [LevelAController::class, 'bankSoalStore'])->name('admin.question.a.store');

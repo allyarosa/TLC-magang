@@ -784,4 +784,3 @@
         </div>
     </div>
 @endsection
-
