@@ -9,13 +9,13 @@
 @section('content')
     <div class="max-w-6xl mx-auto px-4 pt-6 mt-4">
         <!-- Header with breadcrumb -->
-        <div class="flex items-center justify-between p-4 mb-6 bg-blue-600 rounded-xl shadow-lg">
+        {{-- <div class="flex items-center justify-between p-4 mb-6 bg-blue-600 rounded-xl shadow-lg">
             <a href="#"
                 class="inline-flex items-center px-4 py-2 rounded-lg bg-white text-indigo-800 hover:bg-blue-50 transition-colors duration-200 shadow">
                 <i class="mr-2 fa-solid fa-arrow-left-long"></i> Kembali
             </a>
             <h1 class="text-xl font-bold text-white sm:text-2xl">Pengaturan Footer Website</h1>
-        </div>
+        </div> --}}
 
         <!-- Success Alert -->
         @if (session('success'))
@@ -57,8 +57,8 @@
                     </svg>
                     Informasi Footer Landing Page
                 </h3>
-                <p class="mt-1 text-sm text-gray-500">Kelola informasi kontak dan media sosial yang ditampilkan di footer
-                    website</p>
+                {{-- <p class="mt-1 text-sm text-gray-500">Kelola informasi kontak dan media sosial yang ditampilkan di footer
+                    website</p> --}}
             </div>
 
             <!-- Form body -->
