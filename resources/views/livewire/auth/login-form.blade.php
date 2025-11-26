@@ -125,7 +125,7 @@
     </style>
 
     <div
-        class="bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
+        class="bg-white shadow-xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
         <!-- Left Section - Enhanced -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-[#A6BFCF] via-[#5F809C] to-[#2E4D69] p-10 relative overflow-hidden">

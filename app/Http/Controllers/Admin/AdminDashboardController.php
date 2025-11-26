@@ -39,7 +39,7 @@ class AdminDashboardController extends Controller
 
         $userLevelA = $user->filter(function ($u) {
             return $u->hasPermissionTo('access_level_A');
-        })->count();
+        })->count();    
 
         $userLevelB = $user->filter(function ($u) {
             return $u->hasPermissionTo('access_level_B');

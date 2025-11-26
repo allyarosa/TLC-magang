@@ -34,10 +34,10 @@ use App\Http\Controllers\Admin\NewsController;
 // Controllers - General
 use App\Http\Controllers\Asesi\ExamController;
 use App\Http\Controllers\IndoRegionController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Asesi\ExamControllerC;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\PermissionController;
 
 // Controllers - Asesi
 use App\Http\Controllers\Admin\LevelAController;
@@ -64,6 +64,7 @@ use App\Http\Controllers\Asesor\LevelCGradedController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
+use App\Http\Controllers\Admin\ExamMonitoringAController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 
 /*
@@ -377,6 +378,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/questions/{id}/edit', [AdminDashboardController::class, 'questionsEdit'])->name('admin.questions.edit');
     Route::put('/dashboard/questions/{id}', [AdminDashboardController::class, 'questionsUpdate'])->name('admin.questions.update');
 
+    //Exam Monitoring Level A
+    Route::get('/dashboard/exam-monitoring-a', [ExamMonitoringAController::class, 'index'])->name('admin.exam.monitoring.a.index');
+    
     // --- Level Specific Data ---
 
     // Level A
