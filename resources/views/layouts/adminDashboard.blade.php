@@ -51,7 +51,7 @@
                                 class="flex items-center space-x-2 py-1 px-2 text-sm rounded-full hover:bg-white/10 focus:ring-2 focus:ring-white/30 transition-all duration-300 group border border-transparent hover:border-white/20"
                                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                 @if (auth()->user()->hasRole('admin') && auth()->user()->adminsProfile && auth()->user()->adminsProfile->profile_image)
-                                    <img src="{{ asset('storage/' . auth()->user()->adminsProfile->profile_image) ?? asset('assets/img/blank_profile.png') }}"
+                                    <img src="{{ asset('storage/' . auth()->user()->adminsProfile->profile_image) }}"
                                         class="w-8 h-8 rounded-full object-cover shadow-md ring-2 ring-white/20 group-hover:ring-[#E76F51] transition-all duration-300">
                                 @else
                                     <div
@@ -228,7 +228,7 @@
                     <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Reports & Content</span>
                 </li>
 
-                {{-- <li>
+                <li>
                     <a href="{{ route('admin.categories.index') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.categories.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
                         
@@ -237,7 +237,7 @@
                         </div>
                         <span class="ms-3 text-sm font-semibold">Level A History</span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li>
                     <a href="{{ Route('admin.resulta.index') }}"
@@ -250,7 +250,7 @@
                     </a>
                 </li>
 
-                {{-- <li>
+                <li>
                     <a href="{{ route('admin.questions.index') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.questions.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
                         
@@ -259,12 +259,12 @@
                         </div>
                         <span class="ms-3 text-sm font-semibold">Questions</span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li>
                     <a href="{{ route('admin.sertifikat.index') }}"
-                        class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.sertifikat.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
-                        <div class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 {{ Request::routeIs('admin.sertifikat.index') ? 'bg-white/20 text-white' : 'bg-yellow-50 text-yellow-600 group-hover:bg-yellow-600 group-hover:text-white' }}">
+                        class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
+                        <div class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-yellow-50 text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white">
                             <i class="fas fa-certificate text-sm"></i>
                         </div>
                         <span class="ms-3 text-sm font-semibold">Sertifikat</span>
@@ -281,7 +281,7 @@
                     </a>
                 </li>
 
-                {{-- <li>
+                <li>
                     <a href="{{ route('admin.testimonials.index') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                         <div class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-cyan-50 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
@@ -289,11 +289,11 @@
                         </div>
                         <span class="ms-3 text-sm font-semibold">Testimonials</span>
                     </a>
-                </li> --}}
+                </li>
                 <li>
                     <a href="{{ route('admin.site-info.index') }}"
-                        class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md  {{ Request::routeIs('admin.site-info.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
-                        <div class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 {{ Request::routeIs('admin.site-info.index') ? 'bg-white/20 text-white' : 'bg-green-50 text-green-600 group-hover:bg-green-600 group-hover:text-white' }}">
+                        class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
+                        <div class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-slate-100 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
                             <i class="fas fa-globe text-sm"></i>
                         </div>
                         <span class="ms-3 text-sm font-semibold">Site Info</span>
