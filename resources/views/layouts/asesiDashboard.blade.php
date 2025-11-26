@@ -118,7 +118,7 @@
 
                     <!-- Notification -->
 
-                    {{-- @livewire('notification-modal') --}}
+                    @livewire('notification-modal')
 
                     <!-- Messages -->
 

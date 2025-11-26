@@ -472,4 +472,21 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/sertifikat/download/{id}', [CertificateController::class, 'downloadSertifikat'])->name('admin.sertifikat.download');
 });
 
+
+// Test Notification Route
+Route::get('/test-notification', function () {
+    $user = Auth::user();
+    if ($user) {
+        $user->notify(new \App\Notifications\GeneralNotification(
+            'Selamat! Anda telah berhasil mendapatkan Sertifikat Level A.',
+            route('asesi.profile'), // Redirect ke profil
+            '<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>',
+            'bg-green-100',
+            'text-green-600'
+        ));
+        return "Notification sent!";
+    }
+    return "User not logged in!";
+});
+
 require __DIR__ . '/auth.php';
