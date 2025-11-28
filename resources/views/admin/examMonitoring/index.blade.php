@@ -407,5 +407,4 @@
             document.getElementById('remedialModal').classList.add('hidden');
         }
     </script>
-
 @endsection
