@@ -41,6 +41,8 @@ class AsesiStoreRequest extends FormRequest
             'kelurahan' => 'nullable|string|max:255',
             'kecamatan' => 'nullable|string|max:255',
             'custom_instansi' => 'nullable|string|max:255',
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'string|exists:permissions,name',
         ];
     }
 

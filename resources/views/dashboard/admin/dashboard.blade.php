@@ -25,7 +25,9 @@
                 </div>
                 <div class="p-4 bg-gradient-to-b from-white to-blue-50">
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-gray-800">{{ $asesi }}</span>
+                        <span class="text-2xl font-bold text-gray-800">
+                            {{ $asesi }} <span>Users</span>
+                        </span>
                         {{-- <div class="text-right">
                         <div class="text-green-500 text-xs font-semibold flex items-center">
                             <i class="fas fa-arrow-up text-xs mr-1"></i>

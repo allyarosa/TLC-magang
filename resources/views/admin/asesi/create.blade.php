@@ -26,20 +26,21 @@
                     </svg>
                     Informasi Pengguna
                 </h3>
-                <p class="mt-1 text-sm text-gray-500">Isikan semua kolom yang wajib diisi untuk membuat akun pengguna baru</p>
+                <p class="mt-1 text-sm text-gray-500">Isikan semua kolom yang wajib diisi untuk membuat akun pengguna baru
+                </p>
             </div>
 
             <!-- Form body -->
             <div class="p-6">
-                <form action="{{ route('admin.asesi.store') }}" enctype="multipart/form-data" method="POST" class="space-y-6">
+                <form action="{{ route('admin.asesi.store') }}" enctype="multipart/form-data" method="POST"
+                    class="space-y-6">
                     @csrf
 
                     <!-- Profile photo upload section -->
                     <div
                         class="flex flex-col items-center mb-8 p-4 border border-dashed border-gray-300 rounded-lg bg-gray-50">
                         <div class="mb-4 relative group">
-                            <img id="profilePreview" src="{{ asset('assets/img/blank_profile.png') }}"
-                                alt="Profile Picture"
+                            <img id="profilePreview" src="{{ asset('assets/img/blank_profile.png') }}" alt="Profile Picture"
                                 class="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg group-hover:opacity-75 transition-all duration-200">
                             <div
                                 class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -172,7 +173,8 @@
                                         <select id="jenis_kelamin" name="jenis_kelamin"
                                             class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                             <option value="{{ old('jenis_kelamin') }}" selected>
-                                                {{ old('jenis_kelamin') ? old('jenis_kelamin') : 'Pilih Jenis Kelamin' }}</option>
+                                                {{ old('jenis_kelamin') ? old('jenis_kelamin') : 'Pilih Jenis Kelamin' }}
+                                            </option>
                                             <option value="L">Laki-Laki</option>
                                             <option value="P">Perempuan</option>
                                         </select>
@@ -219,7 +221,7 @@
                                             value="{{ old('tanggal_lahir') }}"
                                             class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     </div>
-                                    <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-1 text-xs"/>
+                                    <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-1 text-xs" />
                                 </div>
 
                                 <!-- Institution -->
@@ -243,16 +245,17 @@
                                             <option value="Perguruan Tinggi">Perguruan Tinggi</option>
                                             <option value="Pemerintah">Pemerintah</option>
                                             <option value="Sekolah Menengah Atas">Sekolah Menengah Atas(SMA)</option>
-                                            <option value="Sekolah Menengah Kejuruan">Sekolah Menengah Kejuruan (SMK)</option>
-                                            <option value="Sekolah Menengah Pertama">Sekolah Menengah Pertama (SMP)</option>
+                                            <option value="Sekolah Menengah Kejuruan">Sekolah Menengah Kejuruan (SMK)
+                                            </option>
+                                            <option value="Sekolah Menengah Pertama">Sekolah Menengah Pertama (SMP)
+                                            </option>
                                             <option value="Sekolah Dasar">Sekolah Dasar (SD)</option>
                                             <option value="Lembaga Kursus">Lembaga Kursus</option>
                                             <option value="Lainnya">Lainnya</option>
                                         </select>
                                     </div>
                                     <div id="custom-instansi" class="mt-2 hidden">
-                                        <input type="text" name="custom_instansi"
-                                            placeholder="Masukkan Institusi"
+                                        <input type="text" name="custom_instansi" placeholder="Masukkan Institusi"
                                             class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     </div>
                                     <x-input-error :messages="$errors->get('instansi')" class="mt-1 text-xs" />
@@ -427,8 +430,39 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b pb-2">
+                                Akses dan Izin (Permissions)</h4>
+
+                            <div class="space-y-4">
+                                @php
+                                    $permissions = ['access_level_A', 'access_level_B', 'access_level_C', 'bundling'];
+                                @endphp
+
+                                <label class="block mb-2 text-sm font-medium text-gray-700">
+                                    Pilih Izin Akses yang Diberikan:
+                                </label>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    @foreach ($permissions as $permission)
+                                        <div class="flex items-center">
+                                            <input id="permission-{{ $permission }}" name="permissions[]"
+                                                type="checkbox" value="{{ $permission }}"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                            <label for="permission-{{ $permission }}"
+                                                class="ml-2 text-sm font-medium text-gray-700">
+                                                {{ Str::title(str_replace('_', ' ', $permission)) }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <x-input-error :messages="$errors->get('permissions')" class="mt-1 text-xs" />
+                                <p class="mt-1 text-xs text-red-500">
+                                    Pilih minimal satu izin jika user ini akan memiliki akses khusus.</p>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Submit Button -->
                     <div class="flex items-center justify-center mt-8">
                         <button type="submit"

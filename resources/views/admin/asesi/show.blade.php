@@ -4,12 +4,15 @@
 
 @section('content')
     <div class="max-w-6xl mx-auto px-4 pt-6 mt-4">
-        <div class="flex items-center justify-between p-4 mb-6 bg-white border-b border-gray-200 shadow-md rounded-lg">
+        <div class="flex items-center justify-between p-4 mb-6 bg-biru border-b border-gray-200 shadow-md rounded-lg">
             <a href="{{ route('admin.asesi.index') }}"
                 class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-200">
-                <i class="mr-2 fa-solid fa-arrow-left-long"></i> Kembali ke Daftar
+                <i class="mr-2 fa-solid fa-arrow-left-long"></i>
+                Kembali ke Daftar
             </a>
-            <h1 class="text-lg font-semibold text-gray-700 sm:text-2xl">Detail Pengguna Asesi</h1>
+            <h1 class="text-lg font-semibold text-white sm:text-2xl">
+                Detail Pengguna Asesi
+            </h1>
         </div>
 
         <div class="bg-white rounded-xl shadow-md p-6 lg:p-8">
@@ -37,7 +40,7 @@
             <div class="space-y-8">
 
                 <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-blue-700 border-b pb-2 mb-4">Informasi Personal</h3>
+                    <h3 class="text-lg font-semibold text-blue-500 border-b pb-2 mb-4">Informasi Personal</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-6">
                         @php
                             $personalInfo = [
@@ -63,7 +66,7 @@
                 </div>
 
                 <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-blue-700 border-b pb-2 mb-4">Domisili</h3>
+                    <h3 class="text-lg font-semibold text-blue-500 border-b pb-2 mb-4">Domisili</h3>
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-y-4 gap-x-6">
                         @php
                             $domisiliInfo = [
@@ -85,7 +88,7 @@
                 </div>
 
                 <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-blue-700 border-b pb-2 mb-4">Informasi Akun</h3>
+                    <h3 class="text-lg font-semibold text-blue-500 border-b pb-2 mb-4">Informasi Akun</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-6">
                         <div>
                             <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Email</p>

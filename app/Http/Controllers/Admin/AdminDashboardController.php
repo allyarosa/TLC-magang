@@ -23,6 +23,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AsesiStoreRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Validation\Rules\Password;
 
 class AdminDashboardController extends Controller
@@ -39,7 +40,7 @@ class AdminDashboardController extends Controller
 
         $userLevelA = $user->filter(function ($u) {
             return $u->hasPermissionTo('access_level_A');
-        })->count();    
+        })->count();
 
         $userLevelB = $user->filter(function ($u) {
             return $u->hasPermissionTo('access_level_B');
@@ -143,17 +144,13 @@ class AdminDashboardController extends Controller
                 'email_verified_at' => now(),
             ]);
 
-
             // validasi role ketika create user
             $user->assignRole('asesi');
 
-            $user->assignRole('asesi');
-
-            // validasi akses level A ketika create user BELUM FIX
-            // if($user->hasPermissionTo('acces_level_A')) {
-            //     $user->givePermissionTo('acces_level_A');
-            // }
-
+            // jika admin mengisi form permissons
+            if ($request->filled('permissions')) {
+                $user->givePermissionTo(permissions: $request->permissions);
+            }
 
             // Create User Profile
             $userProfile = new UserProfile([
@@ -173,7 +170,6 @@ class AdminDashboardController extends Controller
                     ? $request->file('profile_image')->store('asesi_images', 'public')
                     : 'blankProfile.png'
             ]);
-
 
             $userProfile->save();
             DB::commit();
@@ -332,7 +328,8 @@ class AdminDashboardController extends Controller
         }
     }
 
-    public function asesiLevelManagementIndex(string $id) {
+    public function asesiLevelManagementIndex(string $id)
+    {
         return view('admin.asesi.level_management', [
             'title' => 'Level Management Title',
             'id' => $id,
@@ -708,7 +705,7 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    
+
 
     // public function levelCreate()
     // {
