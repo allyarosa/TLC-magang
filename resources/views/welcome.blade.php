@@ -3,6 +3,8 @@
 @section('title', 'Teaching and Learning Certification')
 
 @section('content')
+    <x-cta-popup />
+
     <div class="bg-abu">
 
         <!-- HOME -->
@@ -103,6 +105,24 @@
 
         </main>
         <!-- End Home -->
+
+        {{-- <!-- CTA -->
+        <section id="calltoaction" class="w-full px-5 py-16 bg-gray-50 text-gray-900 shadow-lg">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1D4E89] mb-4">Level Up Kompetensimu. Mulai Sertifikasi TLC!</h2>
+            </div>
+            <a href="{{ route('register') }}"
+                class="bg-[#1D4E89] text-white px-8 py-4 rounded-xl shadow-lg text-lg font-semibold hover:bg-[#14406B] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center">
+                <span>Daftar Sekarang</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </a>
+        </section>
+        <!-- End CTA --> --}}
 
         <!-- Apa itu TLC? -->
         <section id="about"

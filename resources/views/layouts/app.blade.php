@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="icon" href="{{ asset('assets/img/tlc.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
