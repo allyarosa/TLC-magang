@@ -206,6 +206,7 @@ class AdminDashboardController extends Controller
 
         $provinces = Province::all();
         $user = UserProfile::with('user')->find($id);
+        // $userPermissions = $user->permissions->pluck('')->toArray();
         return view('admin.asesi.edit', [
             'title' => 'Edit Asesi',
             'navTitle' => 'Edit Asesi',

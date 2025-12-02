@@ -11,7 +11,7 @@
                 class="inline-flex items-center px-4 py-2 rounded-lg bg-white text-blue-800 hover:bg-blue-50 transition-colors duration-200 shadow">
                 <i class="mr-2 fa-solid fa-arrow-left-long"></i> Kembali
             </a>
-            <h1 class="text-xl font-bold text-white sm:text-2xl">Buat Pengguna</h1>
+            <h1 class="text-xl font-bold text-white sm:text-2xl">Edit Pengguna</h1>
         </div>
 
         <!-- Main form card -->
@@ -32,9 +32,10 @@
 
             <!-- Form body -->
             <div class="p-6">
-                <form action="{{ route('admin.asesi.update', $user->id) }}" enctype="multipart/form-data" method="POST" class="space-y-6">
-                @csrf
-                @method('put')
+                <form action="{{ route('admin.asesi.update', $user->id) }}" enctype="multipart/form-data" method="POST"
+                    class="space-y-6">
+                    @csrf
+                    @method('put')
 
                     <!-- Profile photo upload section -->
                     <div
@@ -382,7 +383,7 @@
                                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                             </svg>
                                         </div>
-                                        <input type="email" name="email" id="email" 
+                                        <input type="email" name="email" id="email"
                                             placeholder="user@example.com" value="{{ $user->user->email }}"
                                             class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     </div>
@@ -402,26 +403,25 @@
                                                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                             </svg>
                                         </div>
-                                        <input type="password" name="password" id="password" 
+                                        <input type="password" name="password" id="password"
                                             placeholder="Buat password yang aman"
                                             class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                        <button type="button"
-                                            onclick="togglePasswordVisibility()"
+                                        <button type="button" onclick="togglePasswordVisibility()"
                                             class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <svg id="showPasswordIcon" xmlns="http://www.w3.org/2000/svg"
-                                            class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
-                                        <svg id="hidePasswordIcon" xmlns="http://www.w3.org/2000/svg"
-                                            class="hidden h-5 w-5 text-gray-400 hover:text-gray-600" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                                        </svg>
+                                            <svg id="showPasswordIcon" xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            <svg id="hidePasswordIcon" xmlns="http://www.w3.org/2000/svg"
+                                                class="hidden h-5 w-5 text-gray-400 hover:text-gray-600" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
                                         </button>
                                     </div>
                                     <div class="mt-1 text-xs text-gray-500">
@@ -429,7 +429,7 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('password')" class="mt-1 text-xs" />
                                 </div>
-                                
+
                                 {{-- STATUS --}}
                                 <div>
                                     <label for="status" class="block mb-2 text-sm font-medium text-gray-700">
@@ -443,14 +443,57 @@
                                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
                                         </div>
-                                        <select name="status" id="status" 
+                                        <select name="status" id="status"
                                             class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                            <option value="active" {{ $user->user->status == 'active' ? 'selected' : '' }}>Active</option>
-                                            <option value="suspended" {{ $user->user->status == 'suspended' ? 'selected' : '' }}>Suspended</option>
+                                            <option value="active"
+                                                {{ $user->user->status == 'active' ? 'selected' : '' }}>Active</option>
+                                            <option value="suspended"
+                                                {{ $user->user->status == 'suspended' ? 'selected' : '' }}>Suspended
+                                            </option>
                                         </select>
                                     </div>
                                     <x-input-error :messages="$errors->get('status')" class="mt-1 text-xs" />
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b pb-2">
+                                Akses dan Izin (Permissions)</h4>
+
+                            <div class="space-y-4">
+                                @php
+                                    $permissions = ['access_level_A', 'access_level_B', 'access_level_C', 'bundling'];
+                                    $userPermissions = $user->user->hasAnyPermission([
+                                        'access_level_A',
+                                        'access_level_B',
+                                        'access_level_C',
+                                        'bundling',
+                                    ]);
+                                @endphp
+
+                                <label class="block mb-2 text-sm font-medium text-gray-700">
+                                    Akses perizinan Level A Asesi saat ini:
+                                </label>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    @foreach ($permissions as $permission)
+                                        <div class="flex items-center">
+                                            <input id="permission-{{ $permission }}" name="permissions[]"
+                                                type="checkbox" value="{{ $permission }}"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                                @if ($user->user->hasPermissionTo($permission))
+                                                    checked
+                                                @endif
+                                                >
+                                            <label for="permission-{{ $permission }}"
+                                                class="ml-2 text-sm font-medium text-gray-700">
+                                                {{ Str::title(str_replace('_', ' ', $permission)) }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <x-input-error :messages="$errors->get('permissions')" class="mt-1 text-xs" />
                             </div>
                         </div>
                     </div>
@@ -464,7 +507,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
-                            Buat Pengguna
+                            Edit Pengguna
                         </button>
                     </div>
                 </form>
