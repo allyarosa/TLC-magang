@@ -185,5 +185,4 @@
             modal.classList.add('hidden');
         }
     </script>
-
 @endsection
