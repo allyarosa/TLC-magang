@@ -12,7 +12,7 @@
 
                     {{-- Asesi Link --}}
                     <a href="{{ route('admin.asesi.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.asesi.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.asesi.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Asesi
                     </a>
 
@@ -20,7 +20,7 @@
 
                     {{-- Asesor Link --}}
                     <a href="{{ route('admin.asesor.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.asesor.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.asesor.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Asesor
                     </a>
 
@@ -28,7 +28,7 @@
 
                     {{-- Admin Link --}}
                     <a href="{{ route('admin.admins.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.admins.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Admin
                     </a>
                 </nav>
@@ -83,7 +83,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700 shadow-md">
+                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-indigo-700 shadow-md">
                             + Tambah Asesi
                         </button>
                     </a>

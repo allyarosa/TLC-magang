@@ -20,7 +20,7 @@
 
                     {{-- Asesor Link --}}
                     <a href="{{ route('admin.asesor.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.asesor.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.asesor.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Asesor
                     </a>
 
@@ -59,7 +59,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.asesor.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700">
+                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-indigo-700">
                             + Tambah Asesor
                         </button>
                     </a>

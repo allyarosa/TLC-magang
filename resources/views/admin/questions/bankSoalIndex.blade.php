@@ -16,7 +16,7 @@
 
                     {{-- Kategori Soal --}}
                     <a href="{{ route('admin.categories.a.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.categories.a.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.categories.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Kategori Soal
                     </a>
 
@@ -24,7 +24,7 @@
 
                     {{-- Bank Soal --}}
                     <a href="{{ route('admin.question.a.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.question.a.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.question.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Bank Soal
                     </a>
 
@@ -32,7 +32,7 @@
 
                     {{-- Exam Monitoring --}}
                     <a href="{{ route('admin.exam.monitoring.a.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.exam.monitoring.a.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.exam.monitoring.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Exam Monitoring
                     </a>
                 </nav>
@@ -91,7 +91,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.question.a.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700">
+                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-indigo-700">
                             + Tambah Soal
                         </button>
                     </a>

@@ -28,7 +28,7 @@
 
                     {{-- Admin Link --}}
                     <a href="{{ route('admin.admins.index') }}"
-                        class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600 font-semibold' : '' }}">
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.admins.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Admin
                     </a>
                 </nav>
@@ -90,7 +90,7 @@
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gradient-to-r from-indigo-600 to-blue-500">
+                <thead class="bg-primary-500">
                     <tr>
                         <th class="w-12 px-4 py-3 text-xs font-medium text-center text-white uppercase tracking-wider">
                             No
