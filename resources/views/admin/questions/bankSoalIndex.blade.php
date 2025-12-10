@@ -91,11 +91,11 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.question.a.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-indigo-700">
+                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-sky-800">
                             + Tambah Soal
                         </button>
                     </a>
-                    <button class="px-3 py-1.5 border text-gray-600 text-sm rounded hover:bg-gray-50"
+                    <button class="px-3 py-1.5 border text-white text-sm rounded bg-blue-600 hover:bg-blue-700"
                         data-popover-target="popover-exportImport" data-popover-trigger="hover">
                         Export/Import
                     </button>

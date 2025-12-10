@@ -113,7 +113,7 @@
     </div>
 
     <!-- Level B Card -->
-    <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden opacity-0 slide-in border border-gray-100" style="animation-delay: 0.2s">
+    <div class="bg-white rounded-2xl shadow-md card-hover overflow-hidden opacity-0 slide-in border border-gray-100" style="animation-delay: 0.2s">
         <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
         <div class="p-8">
             <div class="flex items-center mb-6">

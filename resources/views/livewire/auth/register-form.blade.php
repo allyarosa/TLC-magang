@@ -1,5 +1,5 @@
     <div
-        class="bg-gradient-to-r from-blue-600 to-indigo-700 shadow-2xl rounded-3xl overflow-hidden w-full max-w-4xl flex transform hover:scale-[1.01] transition-all duration-300">
+        class="bg-gradient-to-r from-blue-600 to-indigo-700 shadow-xl rounded-3xl overflow-hidden w-full max-w-4xl flex transform hover:scale-[1.01] transition-all duration-300">
         <!-- Kiri Section -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-1/2 bg-gradient-to-br from-[#A6BFCF] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -11,9 +11,9 @@
             <h1 class="text-4xl font-bold text-white text-center relative z-10 mb-4 animate-slideInUp">
                 Selamat Datang
             </h1>
-            <p class="text-white text-center mt-4 mb-8">
+            {{-- <p class="text-white text-center mt-4 mb-8">
                 Welcome to our platform
-            </p>
+            </p> --}}
 
             <div
                 class="mt-6 w-40 h-40 bg-white/20 backdrop-blur-sm flex items-center justify-center rounded-full shadow-xl border-4 border-white/30 p-2 hover:rotate-3 transition-all duration-300">

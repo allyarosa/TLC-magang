@@ -279,7 +279,7 @@
                 @endif
 
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-[#0C548C] to-[#2E4D69] text-white py-4 rounded-xl hover:from-[#063B67] hover:to-[#1C3A58] transition-all duration-300 shadow-lg transform hover:scale-105 hover:shadow-2xl font-bold animate-slideIn animation-delay-500 relative overflow-hidden group"
+                    class="w-full bg-gradient-to-r from-[#0C548C] to-[#2E4D69] text-white py-4 rounded-xl hover:from-[#063B67] hover:to-[#1C3A58] transition-all duration-300 shadow-lg transform font-bold animate-slideIn animation-delay-500 relative overflow-hidden group"
                     wire:loading.attr="disabled" wire:loading.class="opacity-90 cursor-not-allowed scale-100">
 
                     <!-- Shimmer effect -->

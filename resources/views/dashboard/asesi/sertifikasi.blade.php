@@ -18,8 +18,7 @@
                     <h1 class="text-3xl font-bold">Status Sertifikasi Anda</h1>
                 </div>
                 <p class="text-white/90 text-lg">Pantau progres pembelajaran dan sertifikasi Anda dalam
-                    Teaching
-                    & Learning Certification</p>
+                    Teaching & Learning Certification</p>
             </div>
             <!-- Decorative elements -->
             <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
@@ -36,10 +35,10 @@
 
 {{-- Kategori Level --}}
 <section
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 shadow-xl rounded-3xl border border-orange-100 p-8 mb-36 bg-gradient-to-br from-blue-50 via-white to-orange-50">
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 shadow-md rounded-3xl border border-gray-100 p-8 mb-36">
     <div class="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
         <div class="flex items-center space-x-3">
-            <div class="bg-gradient-to-r from-[#1D4E89] to-[#5396ae] text-white p-3 rounded-xl shadow-lg">
+            <div class="bg-[#1D4E89] text-white p-3 rounded-xl shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -54,7 +53,6 @@
             <button
                 class="px-6 py-2 bg-gradient-to-r from-[#1D4E89] to-[#14406B] text-white rounded-xl font-medium shadow-lg hover:shadow-xl focus:ring-4 focus:ring-blue-200">
                 <a href="{{ route('asesi.nilai') }}">Lihat Nilai</a>
-
             </button>
         </div> --}}
     </div>
