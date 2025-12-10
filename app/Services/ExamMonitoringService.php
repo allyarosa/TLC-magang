@@ -20,6 +20,7 @@ class ExamMonitoringService {
     public function getMonitoringData() {
         $asesi = $this->asesiRepo->getAsesi();
         $passingScore = $this->categoryRepo->getCategoryAPassingScore();
+        $asesiDataWithPermission = $this->asesiRepo->getAsesiWithPermission();
 
         // Hitung jumlah pengguna akses level A
         $userLevelACount = $asesi->filter(
@@ -27,7 +28,7 @@ class ExamMonitoringService {
         )->count();
 
         // Remedial
-        $asesiRemidialCount = $this->asesiRepo->countRemidialA($passingScore);
+        $asesiRemidialCount = $this->asesiRepo->countRemidialA(passingScore: $passingScore);
 
         // Lulus semua kategori
         $asesiLulusSemuaCount = $asesi->filter(
@@ -37,7 +38,8 @@ class ExamMonitoringService {
         return new ExamMonitoringDTO(
             $userLevelACount,
             $asesiRemidialCount,
-            $asesiLulusSemuaCount ?? 0  
+            $asesiLulusSemuaCount ?? 0,
+            $asesiDataWithPermission ?? 0
         );
     }
 }

@@ -43,11 +43,11 @@
                 </p>
             </div>
             <div class="mt-4 md:mt-0 flex gap-3">
-                <button
+                {{-- <button
                     class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
                     <i class="fas fa-filter mr-2 text-gray-400"></i>
                     Filter
-                </button>
+                </button> --}}
                 <button
                     class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-md">
                     <i class="fas fa-file-export mr-2"></i>

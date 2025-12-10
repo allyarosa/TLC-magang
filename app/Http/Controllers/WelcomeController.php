@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Level;
+use App\Models\SiteInfo;
+use App\Services\SiteInfoService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +20,13 @@ class WelcomeController extends Controller
     //     return view('welcome', compact('latestNews', 'levels'));
     // }
 
+    protected $siteInfoService;
+
+    public function __construct(SiteInfoService $siteInfoService)
+    {
+        $this->siteInfoService = $siteInfoService;
+    }
+
     public function index()
     {
         $levelA = Level::where('level_name', 'A')->value('price');
@@ -25,7 +34,7 @@ class WelcomeController extends Controller
         $levelC = Level::where('level_name', 'C')->value('price');
 
         $latestNews = News::latest()->take(6)->get();
-        $siteInfo = \App\Models\SiteInfo::first();
+        $siteInfo = $this->siteInfoService->getSiteInfo();
 
         return view('welcome', compact('latestNews', 'levelA', 'levelB', 'levelC', 'siteInfo'));
     }

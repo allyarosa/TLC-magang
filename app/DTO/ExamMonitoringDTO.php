@@ -8,7 +8,8 @@ class ExamMonitoringDTO
     public function __construct(
         public int $userCount,
         public int $remidialCount,
-        public int $lulusSemuaCount
+        public int $lulusSemuaCount,
+        public $asesiDataWithPermission,
     ) {}
 }
 

@@ -32,7 +32,7 @@
                             </span>
                         </h1>
                         <h2 class="text-4xl font-bold text-[#1D4E89] mt-2 mb-4">Teaching & Learning Certification</h2>
-                        <p class="text-xl text-gray-700 mt-6 max-w-xl leading-relaxed">
+                        <p class="text-xl text-gray-700 text-justify mt-6 max-w-xl leading-relaxed">
                             Program sertifikasi ini bukan sekadar pelatihan, melainkan langkah nyata dalam membekali
                             pendidik dengan strategi pengajaran inovatif untuk menghadirkan perubahan bermakna di dunia
                             pendidikan digital.
@@ -166,7 +166,7 @@
                     <div>
                         {{-- <h3 class="text-3xl font-bold text-[#1D4E89] mb-6">Transformasi Mengajar Untuk Era Digital</h3> --}}
 
-                        <p class="leading-relaxed text-gray-800 text-lg mb-6">
+                        <p class="leading-relaxed text-gray-800 text-justify text-lg mb-6">
                             <span class="font-semibold text-[#1D4E89]">Teaching and Learning Certification (TLC)</span>
                             adalah langkah nyata menuju pengembangan diri sebagai pendidik unggul. Dengan pendekatan <span
                                 class="font-semibold text-[#1D4E89]">Teaching Mastery Framework (TMF)</span>, Anda akan
@@ -176,7 +176,7 @@
 
                         <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#1D4E89] mb-8">
                             <h4 class="font-bold text-xl text-[#1D4E89] mb-3">Mengapa TLC Berbeda?</h4>
-                            <p class="text-gray-700">
+                            <p class="text-gray-700 text-justify">
                                 Program ini memberikan standar pengajaran berkualitas yang terstruktur dan praktis, membantu
                                 para guru mencapai hasil belajar optimal dalam lingkungan pendidikan modern.
                             </p>
@@ -229,7 +229,7 @@
                         <h3 class="text-3xl font-black text-[#1D4E89]">Visi Kami</h3>
                     </div>
 
-                    <p class="text-gray-700 text-xl text-left leading-relaxed relative z-10 mb-8">
+                    <p class="text-gray-700 text-xl text-left text-justify leading-relaxed relative z-10 mb-8">
                         Menjadi <span class="font-bold text-[#1D4E89]">lembaga sertifikasi kompetensi unggul</span> yang
                         mendorong peningkatan kualitas pendidikan dan pengembangan sumber daya manusia melalui uji
                         kompetensi berkualitas tinggi.
@@ -301,7 +301,7 @@
                         <h3 class="text-3xl font-black text-[#2A9D8F]">Misi Kami</h3>
                     </div>
 
-                    <p class="text-gray-700 text-xl text-left leading-relaxed relative z-10 mb-8">
+                    <p class="text-gray-700 text-xl text-left text-justify leading-relaxed relative z-10 mb-8">
                         Memberikan <span class="font-bold text-[#2A9D8F]">sertifikasi berkualitas tinggi</span> sambil
                         mendorong pengembangan kurikulum relevan dan memfasilitasi pendidikan berkualitas dengan
                         mengutamakan kepuasan peserta serta menjunjung tinggi etika dan integritas.
@@ -396,7 +396,7 @@
                             Sertifikat NPSN Resmi
                         </h3>
                     </div>
-                    <p class="text-gray-700 text-lg relative z-10 leading-relaxed">
+                    <p class="text-gray-700 text-lg text-justify relative z-10 leading-relaxed">
                         Dapatkan <span class="font-bold text-[#1D4E89]">pengakuan resmi pemerintah</span> dengan sertifikat
                         berstandar nasional. Tercatat dalam database Kemendikbud untuk <span
                             class="text-[#2A9D8F] font-semibold">kredibilitas karir terdepan.</span>
@@ -429,7 +429,7 @@
                             Gelar Profesional
                         </h3>
                     </div>
-                    <p class="text-gray-700 text-lg relative z-10 leading-relaxed">
+                    <p class="text-gray-700 text-lg text-justify relative z-10 leading-relaxed">
                         Raih <span class="font-bold text-[#2A9D8F]">gelar non-formal bergengsi</span> yang meningkatkan
                         kredibilitas profesional Anda. Tambahkan prestise pada profil LinkedIn dan CV dengan <span
                             class="text-[#1D4E89] font-semibold">pengakuan kompetensi formal.</span>
@@ -462,7 +462,7 @@
                             Analisis Kompetensi
                         </h3>
                     </div>
-                    <p class="text-gray-700 text-lg relative z-10 leading-relaxed">
+                    <p class="text-gray-700 text-lg text-justify relative z-10 leading-relaxed">
                         Dapatkan <span class="font-bold text-[#E76F51]">laporan komprehensif</span> tentang kekuatan dan
                         area pengembangan Anda. Termasuk <span class="text-[#2A9D8F] font-semibold">rekomendasi
                             personal</span> untuk peningkatan karir berkelanjutan.
@@ -495,7 +495,7 @@
                             Toolkit Premium
                         </h3>
                     </div>
-                    <p class="text-gray-700 text-lg relative z-10 leading-relaxed">
+                    <p class="text-gray-700 text-lg text-justify relative z-10 leading-relaxed">
                         Akses <span class="font-bold text-[#1D4E89]">worksheet interaktif</span> dan template siap pakai
                         yang terbukti meningkatkan efektivitas mengajar. <span class="text-[#2A9D8F] font-semibold">Hemat
                             waktu persiapan</span> mengajar Anda secara signifikan.
@@ -528,7 +528,7 @@
                             Jaringan Guru Elite
                         </h3>
                     </div>
-                    <p class="text-gray-700 text-lg relative z-10 leading-relaxed">
+                    <p class="text-gray-700 text-lg text-justify relative z-10 leading-relaxed">
                         Bergabunglah dengan <span class="font-bold text-[#1D4E89]">komunitas eksklusif pendidik
                             profesional</span> terbaik Indonesia. Dapatkan akses peluang karir premium, kolaborasi project,
                         dan <span class="text-[#2A9D8F] font-semibold">mentoring dari senior expert.</span>
@@ -561,7 +561,7 @@
                             Webinar Eksklusif
                         </h3>
                     </div>
-                    <p class="text-gray-700 text-lg relative z-10 leading-relaxed">
+                    <p class="text-gray-700 text-lg text-justify relative z-10 leading-relaxed">
                         Bergabung dalam <span class="font-bold text-[#E76F51]">sesi pembelajaran eksklusif</span> dengan
                         pakar pendidikan terkemuka. Dapatkan insight terdepan dan <span
                             class="text-[#2A9D8F] font-semibold">networking premium</span> dalam forum diskusi berkualitas.
@@ -1349,7 +1349,7 @@
         <!-- End Success Stories -->
 
         <!-- Video TLC Section -->
-        <section id="vidio" class="w-full px-5 py-16 bg-gray-50 text-gray-900 shadow-lg">
+        {{-- <section id="vidio" class="w-full px-5 py-16 bg-gray-50 text-gray-900 shadow-lg">
             <div class="text-center mb-12 md:mb-16">
                 <span
                     class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">VIDEO
@@ -1383,11 +1383,11 @@
                     </iframe>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End Video -->
 
         <!-- Portal Berita Kegiatan TLC -->
-        <section id="galeri" class="w-full px-5 py-16 bg-white text-gray-900 shadow-lg">
+        {{-- <section id="galeri" class="w-full px-5 py-16 bg-white text-gray-900 shadow-lg">
             <div class="text-center mb-12 md:mb-16">
                 <span
                     class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">PORTAL
@@ -1430,7 +1430,7 @@
                     @endfor
                 @endforelse
             </div>
-        </section>
+        </section> --}}
         <!-- End Portal Berita Kegiatan TLC -->
 
         <!-- Buku HAFECS Section -->
@@ -1661,7 +1661,8 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            TLC adalah program sertifikasi dari HAFECS yang bertujuan meningkatkan kemampuan mengajar guru dan calon guru dengan pendekatan Teaching Mastery Framework (TMF).
+                            TLC adalah program sertifikasi dari HAFECS yang bertujuan meningkatkan kemampuan mengajar guru
+                            dan calon guru dengan pendekatan Teaching Mastery Framework (TMF).
                         </p>
                     </div>
 
@@ -1672,7 +1673,9 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            TLC memiliki 3 level: Level A - Teaching Knowledge Certification, Level B - Teaching Activation Certification, dan Level C - Teaching Mastery Certification. Setiap level ditempuh selama 3 bulan dan fokus pada peningkatan keterampilan secara bertahap.
+                            TLC memiliki 3 level: Level A - Teaching Knowledge Certification, Level B - Teaching Activation
+                            Certification, dan Level C - Teaching Mastery Certification. Setiap level ditempuh selama 3
+                            bulan dan fokus pada peningkatan keterampilan secara bertahap.
                         </p>
                     </div>
 
@@ -1683,7 +1686,9 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            Program ini terbuka untuk Mahasiswa FKIP (calon guru), Lulusan pendidikan atau guru pemula (kurang dari 2 tahun mengajar), Guru berpengalaman (lebih dari 2 tahun mengajar), dan Pendidik/Trainer dalam suatu Instansi.
+                            Program ini terbuka untuk Mahasiswa FKIP (calon guru), Lulusan pendidikan atau guru pemula
+                            (kurang dari 2 tahun mengajar), Guru berpengalaman (lebih dari 2 tahun mengajar), dan
+                            Pendidik/Trainer dalam suatu Instansi.
                         </p>
                     </div>
 
@@ -1694,7 +1699,8 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            Di Level A, peserta akan mengerjakan tugas di LMS (modul ajar, PPT, self-review), mengikuti 12 kali pelatihan online/offline, dan mengikuti tes teori PCK, HOTS, Literasi, dan Numerasi.
+                            Di Level A, peserta akan mengerjakan tugas di LMS (modul ajar, PPT, self-review), mengikuti 12
+                            kali pelatihan online/offline, dan mengikuti tes teori PCK, HOTS, Literasi, dan Numerasi.
                         </p>
                     </div>
 
@@ -1705,7 +1711,9 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            Peserta akan mendapatkan Sertifikat Kompetensi resmi ber-NPSN, Gelar non-formal, Laporan hasil ujian, Modul dan worksheet digital, Akses ke webinar dan forum guru profesional, serta Jaringan guru dari seluruh Indonesia.
+                            Peserta akan mendapatkan Sertifikat Kompetensi resmi ber-NPSN, Gelar non-formal, Laporan hasil
+                            ujian, Modul dan worksheet digital, Akses ke webinar dan forum guru profesional, serta Jaringan
+                            guru dari seluruh Indonesia.
                         </p>
                     </div>
 
@@ -1716,7 +1724,9 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            Pelaksanaan selama 3 bulan per level melalui platform LMS Elevate. Terdapat ujian teori, pengumpulan perangkat ajar, dan pengumpulan video pengajaran. Penjadwalan fleksibel, bisa dilakukan secara online maupun offline.
+                            Pelaksanaan selama 3 bulan per level melalui platform LMS Elevate. Terdapat ujian teori,
+                            pengumpulan perangkat ajar, dan pengumpulan video pengajaran. Penjadwalan fleksibel, bisa
+                            dilakukan secara online maupun offline.
                         </p>
                     </div>
 
@@ -1727,7 +1737,8 @@
                             <span class="faq-icon transition-transform duration-300">▼</span>
                         </h3>
                         <p class="faq-answer hidden mt-2 text-gray-600">
-                            Ya, semua kegiatan dapat diikuti secara online sehingga peserta dari seluruh daerah bisa ikut tanpa hambatan lokasi.
+                            Ya, semua kegiatan dapat diikuti secara online sehingga peserta dari seluruh daerah bisa ikut
+                            tanpa hambatan lokasi.
                         </p>
                     </div>
                 </div>
