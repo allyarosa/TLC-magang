@@ -24,13 +24,11 @@
                 <!-- Sebelah kiri -->
                 <div class="col-span-12 lg:col-span-7 p-5 transform transition-all duration-500">
                     <!-- Program Unggulan -->
-                    <div class="inline-flex items-center bg-orange-100 text-[#1D4E89] px-4 py-2 rounded-full mb-6 backdrop-blur-sm border border-orange-200 hover-lift animate-glow-border cursor-pointer magnetic-effect"
-                        onmouseover="this.classList.add('animate-wiggle')"
-                        onmouseleave="this.classList.remove('animate-wiggle')"
-                        onclick="this.classList.add('animate-shake'); setTimeout(() => this.classList.remove('animate-shake'), 500)">
-                        <span class="text-[#E76F51] mr-2 animate-bounce-subtle">✨</span>
-                        <span class="text-sm font-medium">PROGRAM UNGGULAN 2025</span>
-                        <span class="text-[#E76F51] ml-2 animate-bounce-subtle" style="animation-delay: 0.3s;">✨</span>
+                    <div
+                        class="inline-flex items-center bg-orange-100 text-[#1D4E89] px-4 py-2 rounded-full mb-6 backdrop-blur-sm border border-orange-200 cursor-pointer">
+                        <span class="text-[#E76F51] mr-2">✨</span>
+                        <span class="text-sm font-medium">PROGRAM UNGGULAN 2026</span>
+                        <span class="text-[#E76F51] ml-2">✨</span>
                     </div>
 
                     <div class="animate-fadeIn">
@@ -39,7 +37,7 @@
                             <span class="block hover:animate-text-glow transition-all duration-300">Sertifikasi Guru</span>
                             <span class="block hover:animate-text-glow transition-all duration-300"
                                 style="transition-delay: 0.1s;">Modern di</span>
-                            <span class="text-[#E76F51]  hover:scale-105 transition-transform duration-300 inline-block">TLC
+                            <span class="text-[#E76F51] inline-block">TLC
                                 Program</span>
                         </h1>
                         <p
@@ -59,13 +57,13 @@
                                     d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
                         </a>
-                        <a href="#testimoni"
+                        {{-- <a href="#testimoni"
                             class="bg-transparent border-2 border-[#E76F51] text-[#E76F51] hover:bg-[#E76F51] hover:text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 hover-lift relative overflow-hidden group">
                             <span class="relative z-10">Lihat Testimoni TLC Program</span>
                             <div
                                 class="absolute inset-0 bg-[#E76F51] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
                             </div>
-                        </a>
+                        </a> --}}
                     </div>
 
                     <!-- Kurikulum -->
@@ -596,9 +594,10 @@
                     <div class="inline-block mb-6">
                         <span
                             class="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4L2 12l3-3V5h4l3-3z" />
                             </svg>
+
                             PROGRAM SERTIFIKASI
                         </span>
                     </div>
@@ -618,161 +617,281 @@
                     $user = Auth::user();
                 @endphp
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <!-- Level A -->
-                    <div class="relative group card-hover">
-
+                    <div class="relative group h-full">
                         <div
-                            class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden  bg-white border border-gray-200">
-                            <div class="absolute inset-0 opacity-90"
-                                style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181,227));">
+                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-blue-200">
+                            <!-- Background Pattern/Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#1D4E89] to-[#0d2a4e] opacity-[0.97]">
                             </div>
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl">
+                            </div>
+
+                            <div class="relative h-full flex flex-col justify-between p-8 text-white z-10">
                                 <div>
-                                    <div class="mb-6">
+                                    <div class="mb-6 flex justify-between items-start">
                                         <span
-                                            class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                            class="inline-flex items-center px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-blue-50 text-xs font-bold tracking-wider rounded-full">
                                             LEVEL A
                                         </span>
                                     </div>
-                                    <h3 class="text-3xl font-black mb-4 leading-tight">
+                                    <h3 class="text-2xl font-black mb-2 leading-tight tracking-tight">
                                         Teaching Knowledge Certification
                                     </h3>
+                                    <p class="text-blue-100/80 text-sm mb-6">Pondasi esensial untuk pendidik profesional
+                                        masa depan.</p>
                                 </div>
+
                                 <div>
-                                    <div class="grid grid-cols-1 gap-3 mb-8 ">
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Uji Literasi Numerasi</span>
+                                    <div class="space-y-4 mb-8">
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-blue-300" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-blue-50 group-hover/item:text-white transition-colors">Uji
+                                                Literasi & Numerasi</span>
                                         </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Uji Pedagogical Content Kowledge (PCK)</span>
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-blue-300" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-blue-50 group-hover/item:text-white transition-colors">Pedagogical
+                                                Content Knowledge (PCK)</span>
                                         </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Uji Higher Order Thinking Skills
-                                                (HOTS)</span>
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-blue-300" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-blue-50 group-hover/item:text-white transition-colors">Higher
+                                                Order Thinking Skills (HOTS)</span>
                                         </div>
                                     </div>
 
-                                    <div class="flex items-center  justify-between">
-                                        @if ($user->hasPermissionTo('access_level_A'))
-                                            <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                                class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                                Detail Program
-                                            </button>
-                                        @else
-                                            <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                                class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
+                                    @if ($user->hasPermissionTo('access_level_A'))
+                                        <button onclick="document.getElementById('modalA').classList.remove('hidden')"
+                                            class="w-full group/btn relative overflow-hidden bg-white text-[#1D4E89] px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                                Akses Materi
+                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    @else
+                                        <button onclick="document.getElementById('modalA').classList.remove('hidden')"
+                                            class="w-full group/btn relative overflow-hidden bg-[#E76F51] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#d65f41] hover:shadow-lg hover:scale-[1.02] border border-orange-400/30">
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
                                                 Mulai Sekarang
-                                            </button>
-                                        @endif
-                                    </div>
+                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Level B -->
-                    <div class="relative group card-hover">
-
+                    <div class="relative group h-full">
                         <div
-                            class="relative h-[400px] rounded-3xl shadow-2xl overflow-hidden  bg-white border border-gray-200">
-                            <div class="absolute inset-0 opacity-90"
-                                style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));">
+                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-teal-200">
+                            <!-- Background Pattern/Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#2A9D8F] to-[#1a6e63] opacity-[0.97]">
                             </div>
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white">
+                            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-teal-400/10 rounded-full blur-2xl">
+                            </div>
+
+                            <div class="relative h-full flex flex-col justify-between p-8 text-white z-10">
                                 <div>
-                                    <div class="mb-6">
+                                    <div class="mb-6 flex justify-between items-start">
                                         <span
-                                            class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                            class="inline-flex items-center px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-teal-50 text-xs font-bold tracking-wider rounded-full">
                                             LEVEL B
                                         </span>
                                     </div>
-                                    <h3 class="text-3xl font-black mb-4 leading-tight">
+                                    <h3 class="text-2xl font-black mb-2 leading-tight tracking-tight">
                                         Teaching Activation Certification
                                     </h3>
+                                    <p class="text-teal-100/80 text-sm mb-6">Implementasi strategi pengajaran di situasi
+                                        nyata.</p>
                                 </div>
+
                                 <div>
-                                    <div class="grid grid-cols-1 gap-3 mb-8">
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Merancang modul ajar RPP</span>
+                                    <div class="space-y-4 mb-8">
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-teal-300" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-teal-50 group-hover/item:text-white transition-colors">Merancang
+                                                Modul Ajar (RPP)</span>
                                         </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Menyusun materi ajar (PPT)</span>
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-teal-300" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-teal-50 group-hover/item:text-white transition-colors">Pengembangan
+                                                Materi Visual (PPT)</span>
                                         </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Menyusun LKS</span>
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-teal-300" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-teal-50 group-hover/item:text-white transition-colors">Penyusunan
+                                                Lembar Kerja (LKS)</span>
                                         </div>
                                     </div>
 
-                                    <div class="flex items-center justify-between">
-                                        @if ($user->hasPermissionTo('access_level_B'))
-                                            <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                                class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                                Detail Program
-                                            </button>
-                                        @else
-                                            <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                                class="bg-white text-blue-600 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
+                                    @if ($user->hasPermissionTo('access_level_B'))
+                                        <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                            class="w-full group/btn relative overflow-hidden bg-white text-[#2A9D8F] px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                                Akses Materi
+                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    @else
+                                        <button onclick="document.getElementById('modalB').classList.remove('hidden')"
+                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] hover:shadow-lg hover:scale-[1.02] border border-white/10">
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
                                                 Mulai Sekarang
-                                            </button>
-                                        @endif
-                                    </div>
+                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Level C -->
-                    <div class="relative group card-hover">
+                    <div class="relative group h-full">
                         <div
-                            class="relative min-h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
-                            <div class="absolute inset-0 opacity-90"
-                                style="background-image: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgb(15, 181, 227));">
+                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-orange-200">
+                            <!-- Background Pattern/Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#E76F51] to-[#cf4a2a] opacity-[0.97]">
                             </div>
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white">
-                                {{-- Bagian Atas: Level, Judul, dan Poin --}}
+                            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-orange-300/10 rounded-full blur-2xl">
+                            </div>
+
+                            <div class="relative h-full flex flex-col justify-between p-8 text-white z-10">
                                 <div>
-                                    <div class="mb-6">
+                                    <div class="mb-6 flex justify-between items-start">
                                         <span
-                                            class="inline-flex items-center px-4 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
+                                            class="inline-flex items-center px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-orange-50 text-xs font-bold tracking-wider rounded-full">
                                             LEVEL C
                                         </span>
                                     </div>
-                                    <h3 class="text-3xl font-black mb-6 leading-tight">
+                                    <h3 class="text-2xl font-black mb-2 leading-tight tracking-tight">
                                         Teaching Mastery Certification
                                     </h3>
+                                    <p class="text-orange-100/80 text-sm mb-6">Masteri dalam metodologi pengajaran tingkat
+                                        lanjut.</p>
                                 </div>
 
-                                {{-- Bagian Bawah: Tombol --}}
                                 <div>
-                                    {{-- Poin-poin dipindahkan ke sini --}}
-                                    <div class="grid grid-cols-1 gap-3 mb-8">
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Melaksanakan Pengajaran berbasis TMF</span>
+                                    <div class="space-y-4 mb-8">
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-orange-200" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-orange-50 group-hover/item:text-white transition-colors">Teaching
+                                                Mastery Framework (TMF)</span>
                                         </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Self Review</span>
+                                        <div class="flex items-start space-x-3 group/item">
+                                            <div class="mt-1 min-w-[18px]">
+                                                <svg class="w-4.5 h-4.5 text-orange-200" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <span
+                                                class="text-sm font-medium text-orange-50 group-hover/item:text-white transition-colors">Self-Review
+                                                & Feedback Loop</span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center justify-between ">
-                                        @if ($user->hasPermissionTo('access_level_C'))
-                                            <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                                                class="bg-white text-black px-2 py-2  font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg mt-[3.2rem]  ">
-                                                Detail Program
-                                            </button>
-                                        @else
-                                            <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                                                class="bg-white text-blue-600 px-2  py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg mt-[3.2rem] ">
+
+                                    @if ($user->hasPermissionTo('access_level_C'))
+                                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
+                                            class="w-full group/btn relative overflow-hidden bg-white text-[#E76F51] px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                                Akses Materi
+                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    @else
+                                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
+                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] hover:shadow-lg hover:scale-[1.02] border border-white/10">
+                                            <span class="relative z-10 flex items-center justify-center gap-2">
                                                 Mulai Sekarang
-                                            </button>
-                                        @endif
-                                    </div>
+                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -781,7 +900,7 @@
                     <!-- Bundling -->
                     <div class="relative group card-hover flex lg:col-span-1 lg:col-start-2">
                         <div
-                            class="relative min-h-[400px] rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+                            class="relative min-h-[400px] rounded-3xl shadow-md overflow-hidden bg-white border border-gray-200">
                             <div class="absolute inset-0 opacity-90"
                                 style="background-image: linear-gradient(to bottom, rgba(251, 140, 0, 0.9), rgba(255, 204, 0, 0.888));">
                             </div>
@@ -994,8 +1113,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                        <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                    </div> -->
+                                <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                            </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1332,19 +1451,17 @@
                 <!-- Header Section -->
                 <div class="text-center mb-16 animate-fadeIn">
                     <span
-                        class="text-lg text-[#E76F51] font-semibold inline-block px-6 py-2 bg-orange-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 mb-6">
+                        class="text-lg text-[#E76F51] font-semibold inline-block px-6 py-2 bg-orange-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300  mb-6">
                         #MANFAAT PROGRAM TLC
                     </span>
                     <h2
-                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 hover:scale-105 transition-transform duration-300">
+                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 transition-transform duration-300">
                         <span class="relative inline-block">
                             <span class="relative z-10">Apa yang akan</span>
-                            <span class="absolute -bottom-2 left-0 w-full h-3 bg-yellow-300 opacity-50 z-0"></span>
                         </span>
                         <br>
                         <span class="relative inline-block">
                             <span class="relative z-10">Guru Dapatkan?</span>
-                            <span class="absolute -bottom-2 left-0 w-full h-3 bg-orange-300 opacity-50 z-0"></span>
                         </span>
                     </h2>
                     <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
@@ -1360,7 +1477,7 @@
                     <div
                         class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
                         <div
-                            class="bg-gradient-to-br from-teal-400 to-teal-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                            class="bg-gradient-to-br from-teal-400 to-teal-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
                             <i class="fas fa-award text-white text-2xl group-hover:animate-bounce relative z-10"></i>
                         </div>
@@ -1713,14 +1830,13 @@
                 <!-- Header Section -->
                 <div class="text-center mb-16 animate-fadeIn">
                     <span
-                        class="text-lg text-[#1D4E89] font-semibold inline-block px-6 py-2 bg-blue-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 mb-6">
+                        class="text-lg text-[#1D4E89] font-semibold inline-block px-6 py-2 bg-blue-100 rounded-full shadow-md mb-6">
                         #PANDUAN PENGGUNA
                     </span>
                     <h2
-                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6 hover:scale-105 transition-transform duration-300">
+                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6">
                         <span class="relative inline-block">
                             <span class="relative z-10">Tutorial Penggunaan</span>
-                            <span class="absolute -bottom-2 left-0 w-full h-3 bg-orange-300 opacity-50 z-0"></span>
                         </span>
                     </h2>
                     <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
@@ -1745,14 +1861,14 @@
                         <div class="grid grid-cols-1 gap-6 sm:gap-8">
                             <!-- Step 1: Daftar & Login -->
                             <div
-                                class="tutorial-step bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-start sm:items-center transform hover:-translate-y-1 border border-gray-100 hover:border-[#1D4E89]/20">
+                                class="tutorial-step bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 flex items-start sm:items-center transform border border-gray-100 hover:border-[#1D4E89]/20">
                                 <div
                                     class="bg-gradient-to-br from-blue-400 to-blue-600 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-6 shadow-lg flex-shrink-0">
                                     <i class="fas fa-user-plus text-white text-xl sm:text-2xl"></i>
                                 </div>
                                 <div>
                                     <div class="flex items-center mb-2">
-                                        <h3 class="text-xl font-bold text-[#1D4E89] mb-2">1. Daftar & Login</h3>
+                                        <h3 class="text-xl font-bold text-[#1D4E89] mb-2">1. Daftar & Login</h3>
                                     </div>
                                     <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
                                         Buat akun baru atau masuk jika sudah memiliki akun untuk memulai.
@@ -1762,7 +1878,7 @@
 
                             <!-- Step 2: Pilih Sertifikasi -->
                             <div
-                                class="tutorial-step bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-start sm:items-center transform hover:-translate-y-1 border border-gray-100 hover:border-[#1D4E89]/20">
+                                class="tutorial-step bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 flex items-start sm:items-center transform border border-gray-100 hover:border-[#1D4E89]/20">
                                 <div
                                     class="bg-gradient-to-br from-orange-400 to-orange-600 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-6 shadow-lg flex-shrink-0">
                                     <i class="fas fa-tasks text-white text-xl sm:text-2xl"></i>
@@ -1779,7 +1895,7 @@
 
                             <!-- Step 3: Ikuti Ujian -->
                             <div
-                                class="tutorial-step bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-start sm:items-center transform hover:-translate-y-1 border border-gray-100 hover:border-[#1D4E89]/20">
+                                class="tutorial-step bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 flex items-start sm:items-center transform border border-gray-100 hover:border-[#1D4E89]/20">
                                 <div
                                     class="bg-gradient-to-br from-teal-400 to-teal-600 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-6 shadow-lg flex-shrink-0">
                                     <i class="fas fa-file-alt text-white text-xl sm:text-2xl"></i>
@@ -1820,12 +1936,12 @@
                 }
 
                 /* #tutorial iframe {
-                    width: 100%;
-                    height: 100%;
-                    min-height: 320px;
-                    border-radius: 1rem;
-                    display: block;
-                } */
+                            width: 100%;
+                            height: 100%;
+                            min-height: 320px;
+                            border-radius: 1rem;
+                            display: block;
+                        } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {
@@ -1853,125 +1969,114 @@
         {{-- End Tutorial Penggunaan --}}
 
         {{-- Testimoni --}}
-        <section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50"
-            id="testimoni">
-            <div class="max-w-7xl mx-auto">
-                <!-- Header -->
-                <div class="text-center mb-12">
-                    <span
-                        class="inline-block px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">
-                        TESTIMONI PENGGUNA
-                    </span>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-[#1D4E89] mb-4">Apa Kata Mereka?</h2>
-                    <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-                        Pengalaman dan testimonial dari para pengguna program TLC
-                    </p>
-                </div>
+        {{-- 
+<section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50"
+    id="testimoni">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <span
+                class="inline-block px-6 py-2 bg-orange-100 text-[#E76F51] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">
+                TESTIMONI PENGGUNA
+            </span>
+            <h2 class="text-3xl lg:text-4xl font-bold text-[#1D4E89] mb-4">Apa Kata Mereka?</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                Pengalaman dan testimonial dari para pengguna program TLC
+            </p>
+        </div>
 
-                @if (isset($featuredTestimonials) && $featuredTestimonials->count() > 0)
-                    <!-- Grid Testimonials -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                        @foreach ($featuredTestimonials as $index => $testimonial)
+        @if (isset($featuredTestimonials) && $featuredTestimonials->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                @foreach ($featuredTestimonials as $index => $testimonial)
+                    <div
+                        class="testimonial-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+                        <div class="flex justify-center mb-4">
+                            <div class="flex text-lg text-yellow-400">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <span>★</span>
+                                @endfor
+                            </div>
+                        </div>
+
+                        <div class="mb-6 flex-grow">
+                            <p class="text-gray-700 italic text-center text-base leading-relaxed line-clamp-4">
+                                "{{ Str::limit($testimonial->content, 150) }}"
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            @php
+                                $nameParts = explode(' ', $testimonial->user->name);
+                                $initials = strtoupper(
+                                    substr($testimonial->user->name, 0, 1) .
+                                        (isset($nameParts[1]) ? substr($nameParts[1], 0, 1) : ''),
+                                );
+                                $colors = [
+                                    'bg-[#E76F51]',
+                                    'bg-[#1D4E89]',
+                                    'bg-yellow-500',
+                                    'bg-green-500',
+                                    'bg-purple-500',
+                                ];
+                                $colorIndex = $index % count($colors);
+                                $selectedColor = $colors[$colorIndex];
+                            @endphp
+
                             <div
-                                class="testimonial-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
-                                <!-- Rating Stars -->
-                                <div class="flex justify-center mb-4">
-                                    <div class="flex text-lg text-yellow-400">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <span>★</span>
-                                        @endfor
-                                    </div>
-                                </div>
+                                class="w-12 h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-3 shadow-md">
+                                <span class="text-lg font-bold text-white">{{ $initials }}</span>
+                            </div>
 
-                                <!-- Quote -->
-                                <div class="mb-6 flex-grow">
-                                    <p class="text-gray-700 italic text-center text-base leading-relaxed line-clamp-4">
-                                        "{{ Str::limit($testimonial->content, 150) }}"
-                                    </p>
-                                </div>
-
-                                <!-- User Profile -->
-                                <div class="flex flex-col items-center">
-                                    <!-- Avatar with Initials -->
-                                    @php
-                                        $nameParts = explode(' ', $testimonial->user->name);
-                                        $initials = strtoupper(
-                                            substr($testimonial->user->name, 0, 1) .
-                                                (isset($nameParts[1]) ? substr($nameParts[1], 0, 1) : ''),
-                                        );
-                                        $colors = [
-                                            'bg-[#E76F51]',
-                                            'bg-[#1D4E89]',
-                                            'bg-yellow-500',
-                                            'bg-green-500',
-                                            'bg-purple-500',
-                                        ];
-                                        $colorIndex = $index % count($colors);
-                                        $selectedColor = $colors[$colorIndex];
-                                    @endphp
-
-                                    <div
-                                        class="w-12 h-12 rounded-full {{ $selectedColor }} flex items-center justify-center mb-3 shadow-md">
-                                        <span class="text-lg font-bold text-white">{{ $initials }}</span>
-                                    </div>
-
-                                    <!-- User Info -->
-                                    <div class="text-center">
-                                        <h4 class="text-lg font-semibold text-[#1D4E89] mb-1">
-                                            {{ $testimonial->user->name }}
-                                        </h4>
-                                        <p class="text-sm text-gray-600 mb-2">
-                                            {{ $testimonial->user->position ?? 'Peserta Program TLC' }}
-                                        </p>
-                                        @if ($testimonial->category)
-                                            <span
-                                                class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                                                {{ $testimonial->category->name }}
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <!-- Date -->
-                                <div class="text-center mt-4 pt-4 border-t border-gray-100">
-                                    <span class="text-xs text-gray-500">
-                                        {{ $testimonial->created_at->format('d M Y') }}
+                            <div class="text-center">
+                                <h4 class="text-lg font-semibold text-[#1D4E89] mb-1">
+                                    {{ $testimonial->user->name }}
+                                </h4>
+                                <p class="text-sm text-gray-600 mb-2">
+                                    {{ $testimonial->user->position ?? 'Peserta Program TLC' }}
+                                </p>
+                                @if ($testimonial->category)
+                                    <span
+                                        class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                                        {{ $testimonial->category->name }}
                                     </span>
-                                </div>
+                                @endif
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
 
-                    <!-- Show More Button -->
-                    @if ($featuredTestimonials->count() > 3)
-                        <div class="text-center mt-10">
-                            <button
-                                class="px-6 py-3 bg-[#1D4E89] text-white rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg">
-                                Lihat Testimonial Lainnya
-                            </button>
-                        </div>
-                    @endif
-                @else
-                    <!-- Empty State -->
-                    <div class="text-center py-12">
-                        <div class="max-w-sm mx-auto">
-                            <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum Ada Testimonial</h3>
-                            {{-- <p class="text-gray-500">Testimonial dari pengguna akan muncul di sini setelah disetujui oleh
-                                admin.</p> --}}
+                        <div class="text-center mt-4 pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-500">
+                                {{ $testimonial->created_at->format('d M Y') }}
+                            </span>
                         </div>
                     </div>
-                @endif
+                @endforeach
             </div>
-        </section>
 
+            @if ($featuredTestimonials->count() > 3)
+                <div class="text-center mt-10">
+                    <button
+                        class="px-6 py-3 bg-[#1D4E89] text-white rounded-full hover:bg-[#E76F51] transition-colors duration-300 shadow-lg">
+                        Lihat Testimonial Lainnya
+                    </button>
+                </div>
+            @endif
+        @else
+            <div class="text-center py-12">
+                <div class="max-w-sm mx-auto">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.418 8-9 8a9.957 9.957 0 01-5.656-1.757l-4.656 1.257a1 1 0 01-1.257-1.257l1.257-4.656A9.957 9.957 0 013 12c0-4.418 4.418-8 9-8s9 3.582 9 8z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Belum Ada Testimonial</h3>
+                </div>
+            </div>
+        @endif
+    </div>
+</section>
+--}}
         <style>
             .testimonial-card {
                 animation: fadeInUp 0.6s ease-out forwards;

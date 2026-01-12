@@ -419,9 +419,9 @@
                                 <a href="#"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Tentang TLC
+                                        Program Sertifikasi
                                     </span>
                                 </a>
                             </li>
@@ -429,7 +429,7 @@
                                 <a href="#"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
                                         Manfaat
                                     </span>
@@ -439,13 +439,13 @@
                                 <a href="#"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Kurikulum
+                                        Panduan Pengguna
                                     </span>
                                 </a>
                             </li>
-                            <li class="group">
+                            {{-- <li class="group">
                                 <a href="#"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
@@ -454,8 +454,8 @@
                                         Paket Harga
                                     </span>
                                 </a>
-                            </li>
-                            <li class="group">
+                            </li> --}}
+                            {{-- <li class="group">
                                 <a href="#"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
@@ -464,7 +464,7 @@
                                         Pendaftaran
                                     </span>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
