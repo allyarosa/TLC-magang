@@ -198,12 +198,42 @@
                         </h2>
                         <ul class="space-y-2 text-sm">
                             <li class="group">
-                                <a href="#"
+                                <a href="#about"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Tentang TLC
+                                        Tentang Program TLC
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#visimisi"
+                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
+                                        <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
+                                        Visi dan Misi
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#manfaatProgram"
+                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
+                                        <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
+                                        Manfaat Program
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="group">
+                                <a href="#skema"
+                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
+                                    <span
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
+                                        <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
+                                        Skema
                                     </span>
                                 </a>
                             </li>
@@ -211,39 +241,9 @@
                                 <a href="#"
                                     class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
                                     <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
+                                        class="transform group-hover:translate-x-1 transition-transform duration-200">
                                         <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Manfaat
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
-                                        <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Kurikulum
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
-                                        <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Paket Harga
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="group">
-                                <a href="#"
-                                    class="flex items-center text-gray-300 hover:text-orange-400 transition-colors duration-300">
-                                    <span
-                                        class="transform group-hover:translate-x-2 transition-transform duration-200">
-                                        <i class="fas fa-chevron-right mr-2 text-orange-400 text-sm"></i>
-                                        Pendaftaran
+                                        Program Sertifikasi
                                     </span>
                                 </a>
                             </li>
@@ -290,7 +290,7 @@
 
             <div class="mt-8 pt-4 border-t border-gray-500 text-center text-gray-400 text-sm">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p>© 2025 Teaching and Learning Certification Program. All rights reserved.</p>
+                    <p>© 2026 Teaching and Learning Certification Program. All rights reserved.</p>
                     <div class="mt-2 md:mt-0">
                         <a href="#" class="text-gray-400 hover:text-orange-400 mx-2 transition-colors">Kebijakan
                             Privasi</a>

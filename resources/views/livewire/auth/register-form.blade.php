@@ -138,7 +138,7 @@
 
             <p class="text-center mt-8 text-sm text-gray-600">
                 Sudah memiliki akun?
-                <a href="{{ route('login') }}" class="text-blue-600 font-semibold hover:underline transition-colors">
+                <a href="{{ route('login') }}" class="text-[#0C548C] font-semibold hover:underline transition-colors">
                     Masuk sekarang
                 </a>
             </p>
