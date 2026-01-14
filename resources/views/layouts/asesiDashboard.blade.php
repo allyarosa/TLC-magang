@@ -504,7 +504,7 @@
 
             <div class="mt-8 pt-4 border-t border-gray-500 text-center text-gray-400 text-sm">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p>© 2025 Teaching and Learning Certification Program. All rights reserved.</p>
+                    <p>© 2026 Teaching and Learning Certification Program. All rights reserved.</p>
                     <div class="mt-2 md:mt-0">
                         <a href="#" class="text-gray-400 hover:text-orange-400 mx-2 transition-colors">Kebijakan
                             Privasi</a>

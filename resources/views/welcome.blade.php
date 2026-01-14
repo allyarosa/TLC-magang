@@ -9,17 +9,17 @@
 
         <!-- HOME -->
         <main id="home"
-            class="w-full scroll-mt-24 px-5 py-20 bg-gradient-to-br from-blue-50 via-white to-orange-50 text-gray-900">
+            class="w-full scroll-mt-24 px-5 md:py-10 bg-gradient-to-br from-blue-50 via-white to-orange-50 text-gray-900">
             <div class="container mx-auto max-w-7xl view grid grid-cols-12 transition-all duration-500 ease-in-out mb-16">
                 <div class="col-span-12 lg:col-span-7 p-5">
                     <div class="animate-fadeIn">
                         <span
-                            class="text-lg text-[#E76F51] font-semibold inline-block px-4 py-1 bg-orange-100 rounded-full">
+                            class="hidden md:inline-block text-lg text-[#E76F51] font-semibold inline-block px-4 py-1 bg-orange-100 rounded-full">
                             #TRANSFORMASI PENDIDIKAN ERA DIGITAL
                         </span>
                         <h1
                             class="text-5xl md:text-6xl font-extrabold text-[#1D4E89] leading-tight mt-4">
-                            <span class="relative inline-block">
+                            <span class="relative inlinae-block">
                                 <span class="relative z-10">Transform.</span>
                             </span>
                             <span class="relative inline-block">
@@ -90,7 +90,7 @@
                 </div>
 
                 <div
-                    class="hidden lg:flex col-span-12 lg:col-span-5 rounded-2xl mx-3 overflow-hidden shadow-2xl relative group">
+                    class="hidden lg:flex col-span-12 lg:col-span-5 rounded-2xl mx-3 overflow-hidden shadow-xl relative group">
                     <img src="{{ asset('images/konten_satu.jpg') }}"
                         class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
                         alt="Teacher engaging with students" loading="lazy">
@@ -213,7 +213,7 @@
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-16 px-4 md:px-6">
                 <!-- Visi - Enhanced dengan 5 item untuk simetri -->
                 <div
-                    class="bg-white p-6 md:p-10 rounded-2xl shadow-lg border-l-4 border-[#1D4E89] transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl relative overflow-hidden group h-full flex flex-col">
+                    class="bg-white p-6 md:p-10 rounded-2xl shadow-lg border-l-4 border-[#1D4E89] transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-xl relative overflow-hidden group h-full flex flex-col">
                     <div
                         class="absolute -top-12 -right-12 w-40 h-40 bg-[#1D4E89]/5 rounded-full blur-2xl group-hover:bg-[#1D4E89]/10 transition-all duration-500">
                     </div>
@@ -289,7 +289,7 @@
 
                 <!-- Misi - Enhanced -->
                 <div
-                    class="bg-white p-6 md:p-10 rounded-2xl shadow-lg border-l-4 border-[#2A9D8F] transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-2xl relative overflow-hidden group h-full flex flex-col">
+                    class="bg-white p-6 md:p-10 rounded-2xl shadow-lg border-l-4 border-[#2A9D8F] transition-transform duration-300 ease-in-out hover:scale-102 hover:shadow-xl relative overflow-hidden group h-full flex flex-col">
                     <div
                         class="absolute -top-12 -right-12 w-40 h-40 bg-[#2A9D8F]/5 rounded-full blur-2xl group-hover:bg-[#2A9D8F]/10 transition-all duration-500">
                     </div>
@@ -626,7 +626,7 @@
                                 <div
                                     class="bg-white p-5 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 border border-blue-100 h-48 flex flex-col">
                                     <h3 class="font-bold text-lg text-blue-800 mb-3">Sertifikasi Level A</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow">Membangun pengetahuan dasar
+                                    <p class="text-gray-600 text-md text-justify leading-relaxed flex-grow">Membangun pengetahuan dasar
                                         Pedagogical Content Knowledge (PCK) dan pengembangan Higher Order Thinking Skills
                                         (HOTS) sesuai Kurikulum Merdeka.</p>
                                 </div>
@@ -648,7 +648,7 @@
                                 <div
                                     class="bg-white p-5 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 border border-green-100 h-48 flex flex-col">
                                     <h3 class="font-bold text-lg text-green-800 mb-3">Sertifikasi Level B</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow">Penerapan praktis PCK dan
+                                    <p class="text-gray-600 text-md text-justify leading-relaxed flex-grow">Penerapan praktis PCK dan
                                         HOTS di kelas, pengembangan modul ajar inovatif, dan teknik refleksi untuk perbaikan
                                         berkelanjutan.</p>
                                 </div>
@@ -671,7 +671,7 @@
                                 <div
                                     class="bg-white p-5 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 border border-purple-100 h-48 flex flex-col">
                                     <h3 class="font-bold text-lg text-purple-800 mb-3">Sertifikasi Level C</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow">Penguasaan komprehensif
+                                    <p class="text-gray-600 text-md text-justify leading-relaxed flex-grow">Penguasaan komprehensif
                                         melalui lesson plan, Teaching Method Framework (TMF), dan evaluasi berbasis video
                                         recording dengan rubrik terstruktur.</p>
                                 </div>
