@@ -69,20 +69,23 @@
                             <div class="flex-1 mb-6 md:mb-0 md:pr-8">
                                 <div
                                     class="inline-flex items-center bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                                    <svg class="w-4 h-4 mr-2 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    <svg class="w-4 h-4 mr-2 text-yellow-300" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" stroke-width="2">
+                                        <circle cx="12" cy="8" r="7"></circle>
+                                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
                                     </svg>
                                     <span class="text-sm font-semibold">Sertifikasi Teaching Activation</span>
                                 </div>
                                 <h1 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
                                     Level B Teaching Activation Certification
                                 </h1>
-                                <p class="text-lg opacity-90 mb-6">Mengembangkan Teaching Mastery Framework untuk Efektivitas Pengajaran</p>
+                                <p class="text-lg opacity-90 mb-6">Mengembangkan Teaching Mastery Framework untuk
+                                    Efektivitas Pengajaran</p>
                             </div>
                             <div class="flex-shrink-0">
                                 <div
                                     class="w-32 h-32 md:w-40 md:h-40 bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                                    <img src="{{ asset('assets/img/tlc.png') }}" alt="Student"
+                                    <img src="{{ asset('images/logoTlcPng.png') }}" alt="Teaching And Learning Certification Logo" title="Teaching And Learning Certification Logo" loading="lazy"
                                         class="w-24 h-24 md:w-32 md:h-32 rounded-xl object-cover opacity-90">
                                 </div>
                             </div>
@@ -104,10 +107,13 @@
                     <!-- Course Overview -->
                     <div class="mb-8">
                         <h3 class="text-xl font-semibold text-gray-800 mb-4">Tentang Program</h3>
-                        <p class="text-gray-600 leading-relaxed text-lg">
-                            Sertifikasi Level B bertujuan untuk menguji keterampilan guru melalui aktivasi pengetahuan PCK dan HOTS dalam pengajaran 
-                            serta mengembangkan lesson plan (Modul Ajar), Teaching Tactics dan Teaching Scenario untuk menunjang efektivitas pengajaran 
-                            guru di kelas. Program ini dirancang khusus untuk guru yang telah menyelesaikan Sertifikasi Level A.
+                        <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                            Sertifikasi Level B bertujuan untuk menguji keterampilan guru melalui aktivasi pengetahuan PCK
+                            dan HOTS dalam pengajaran
+                            serta mengembangkan lesson plan (Modul Ajar), Teaching Tactics dan Teaching Scenario untuk
+                            menunjang efektivitas pengajaran
+                            guru di kelas. Program ini dirancang khusus untuk guru yang telah menyelesaikan Sertifikasi
+                            Level A.
                         </p>
                     </div>
 
@@ -153,7 +159,8 @@
                                             </div>
                                         </div>
                                         <p class="text-gray-600 leading-relaxed">
-                                            Mengikuti penugasan di Learning Management System Elevate untuk mendalami konsep Teaching Mastery Framework.
+                                            Mengikuti penugasan di Learning Management System Elevate untuk mendalami konsep
+                                            Teaching Mastery Framework.
                                         </p>
                                     </div>
 
@@ -170,7 +177,8 @@
                                             </div>
                                         </div>
                                         <p class="text-gray-600 leading-relaxed">
-                                            Sesi pelatihan intensif dengan 12 kali pertemuan untuk mengasah kemampuan praktis dalam mengajar.
+                                            Sesi pelatihan intensif dengan 12 kali pertemuan untuk mengasah kemampuan
+                                            praktis dalam mengajar.
                                         </p>
                                     </div>
 
@@ -187,7 +195,8 @@
                                             </div>
                                         </div>
                                         <p class="text-gray-600 leading-relaxed">
-                                            Merancang pembelajaran berbasis Teaching Mastery Framework dengan penilaian komprehensif.
+                                            Merancang pembelajaran berbasis Teaching Mastery Framework dengan penilaian
+                                            komprehensif.
                                         </p>
                                     </div>
                                 </div>
@@ -197,26 +206,36 @@
                                     <h4 class="text-lg font-semibold text-gray-800 mb-4">Penilaian Asesor</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <div class="flex items-center space-x-3">
-                                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <div
+                                                class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                                 <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                                                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 2a1 1 0 000 2h2a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 2a1 1 0 000 2h2a1 1 0 100-2H7z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                             </div>
                                             <span class="text-gray-700 font-medium">Modul Ajar/Lesson Plan</span>
                                         </div>
                                         <div class="flex items-center space-x-3">
-                                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <div
+                                                class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                                 <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                                                    <path fill-rule="evenodd"
+                                                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                             </div>
                                             <span class="text-gray-700 font-medium">Materi Ajar (PPT)</span>
                                         </div>
                                         <div class="flex items-center space-x-3">
-                                            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                                            <div
+                                                class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                <svg class="w-4 h-4 text-purple-600" fill="currentColor"
+                                                    viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                             </div>
                                             <span class="text-gray-700 font-medium">LKS (Opsional)</span>
@@ -228,8 +247,10 @@
                                 <div
                                     class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-2xl p-6 border-l-4 border-teal-500">
                                     <p class="text-teal-800 font-medium leading-relaxed">
-                                        Level B merupakan tahap lanjutan yang memfokuskan pada implementasi praktis dari konsep pedagogis, 
-                                        dengan penekanan pada pengembangan lesson plan yang efektif dan teaching scenario yang inovatif.
+                                        Level B merupakan tahap lanjutan yang memfokuskan pada implementasi praktis dari
+                                        konsep pedagogis,
+                                        dengan penekanan pada pengembangan lesson plan yang efektif dan teaching scenario
+                                        yang inovatif.
                                     </p>
                                 </div>
                             </div>
@@ -251,8 +272,10 @@
                             <div class="flex items-center space-x-3">
                                 <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        <path fill-rule="evenodd"
+                                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <span class="text-gray-700">Mendapatkan Gelar Non-Formal</span>
@@ -261,23 +284,31 @@
                                 <div
                                     class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                                        <path fill-rule="evenodd"
+                                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <span class="text-gray-700">Rapor Hasil Ujian</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                        <path fill-rule="evenodd"
+                                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <span class="text-gray-700">Worksheet</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                                        <path fill-rule="evenodd"
+                                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <span class="text-gray-700">Modul Pembelajaran Digital</span>
@@ -285,13 +316,16 @@
                             <div class="flex items-center space-x-3">
                                 <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                        <path fill-rule="evenodd"
+                                            d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <span class="text-gray-700">Akses ke Webinar dan Diskusi Eksklusif HAFECS</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path
                                             d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
@@ -363,10 +397,13 @@
                             <input type="hidden" name="amount" value="{{ (int) $level->price }}">
                             <input type="hidden" name="level_name" value="Level B">
                             <input type="hidden" name="level_id" value="2">
-                        
-                            <button class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition hover:scale-105 shadow-lg hover:shadow-xl">
-                                <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+
+                            <button
+                                class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl">
+                                <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
                                 Lanjutkan Pembayaran
                             </button>

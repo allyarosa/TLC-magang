@@ -1,5 +1,5 @@
     <div
-        class="bg-gradient-to-r from-blue-600 to-indigo-700 shadow-xl rounded-3xl overflow-hidden w-full max-w-4xl flex transform hover:scale-[1.01] transition-all duration-300">
+        class="bg-gradient-to-r from-blue-600 to-indigo-700 shadow-md rounded-3xl overflow-hidden w-full max-w-4xl flex transform hover:scale-[1.01] transition-all duration-300">
         <!-- Kiri Section -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-1/2 bg-gradient-to-br from-[#A6BFCF] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -7,7 +7,7 @@
                 <div class="absolute w-40 h-40 rounded-full bg-white top-10 left-10 animate-pulse"></div>
                 <div class="absolute w-20 h-20 rounded-full bg-white bottom-10 right-20 animate-ping"></div>
             </div>
-            
+
             <h1 class="text-4xl font-bold text-white text-center relative z-10 mb-4 animate-slideInUp">
                 Selamat Datang
             </h1>
@@ -15,10 +15,11 @@
                 Welcome to our platform
             </p> --}}
 
-            <div
-                class="mt-6 w-40 h-40 bg-white/20 backdrop-blur-sm flex items-center justify-center rounded-full shadow-xl border-4 border-white/30 p-2 hover:rotate-3 transition-all duration-300">
-                <img src="{{ asset('images/logoTlcPng.png') }}" alt="TLC Care Logo"
-                    class="max-w-full max-h-full object-contain" loading="lazy">
+            <div class="mt-6 w-44 h-44 flex items-center justify-center animate-slideInUp animation-delay-500 group">
+                <div class="absolute w-44 h-44 bg-white/5 rounded-full animate-pulse"></div>
+                <img src="images/logoTlcPng.png" alt="Logo TLC" loading="lazy"
+                    title="Teaching and Learning Certification Logo"
+                    class="max-w-full relative z-10 filter drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
             </div>
         </div>
 

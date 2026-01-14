@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="bg-white flex items-center justify-center min-h-screen p-4">
+<body class="bg-white flex items-center justify-center min-h-screen p-2">
     @yield('content')
 
     @livewireScripts

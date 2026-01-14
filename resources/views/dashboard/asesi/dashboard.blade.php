@@ -7,7 +7,7 @@
 
         {{-- Main Tampilan Awal --}}
         <main id="beranda"
-            class="w-full px-5 py-16 bg-gradient-to-br from-blue-50 via-white to-orange-50 relative overflow-hidden">
+            class="w-full px-5 py-4 md:py-16 bg-gradient-to-br from-blue-50 via-white to-orange-50 relative overflow-hidden">
             <!-- Warna Baground -->
             <div class="absolute inset-0 pointer-events-none">
                 <div class="absolute top-10 left-10 w-2 h-2 bg-orange-300 rounded-full animate-sparkle"></div>
@@ -24,16 +24,16 @@
                 <!-- Sebelah kiri -->
                 <div class="col-span-12 lg:col-span-7 p-5 transform transition-all duration-500">
                     <!-- Program Unggulan -->
-                    <div
+                    {{-- <div
                         class="inline-flex items-center bg-orange-100 text-[#1D4E89] px-4 py-2 rounded-full mb-6 backdrop-blur-sm border border-orange-200 cursor-pointer">
                         <span class="text-[#E76F51] mr-2">✨</span>
-                        <span class="text-sm font-medium">PROGRAM UNGGULAN 2026</span>
+                        <span class="text-sm font-semibold">PROGRAM UNGGULAN 2026</span>
                         <span class="text-[#E76F51] ml-2">✨</span>
-                    </div>
+                    </div> --}}
 
                     <div class="animate-fadeIn">
                         <h1
-                            class="text-5xl lg:text-6xl font-extrabold leading-tight mt-2 text-[#1D4E89] hover:cursor-default">
+                            class="text-5xl md:text-5xl lg:text-6xl font-extrabold leading-tight mt-2 text-[#1D4E89] hover:cursor-default">
                             <span class="block hover:animate-text-glow transition-all duration-300">Sertifikasi Guru</span>
                             <span class="block hover:animate-text-glow transition-all duration-300"
                                 style="transition-delay: 0.1s;">Modern di</span>
@@ -49,13 +49,19 @@
 
                     <div class="flex flex-wrap my-8 gap-4">
                         <a href="#sertifikasi"
-                            class="button-primary bg-[#1D4E89] hover:bg-[#14406B] text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center relative z-10">
-                            <span>Mulai Sertifikasi</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform duration-300"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
+                            class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-[#1D4E89] to-[#0077b6] rounded-full shadow-lg hover:shadow-blue-500/40 hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md overflow-hidden">
+                            <span
+                                class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#14406B] to-[#005f8d] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center">
+                                Mulai Sertifikasi
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
                         </a>
                         {{-- <a href="#testimoni"
                             class="bg-transparent border-2 border-[#E76F51] text-[#E76F51] hover:bg-[#E76F51] hover:text-white px-8 py-4 rounded-full shadow-lg text-lg font-bold hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 hover-lift relative overflow-hidden group">
@@ -69,7 +75,7 @@
                     <!-- Kurikulum -->
                     <div class="grid grid-cols-2 gap-4 mt-12">
                         <div
-                            class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                            class="flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
                             <div
                                 class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +88,7 @@
                             <span class="font-medium">Kurikulum Tervalidasi</span>
                         </div>
                         <div
-                            class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                            class="flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
                             <div
                                 class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +101,7 @@
                             <span class="font-medium">Sertifikat Terakreditasi</span>
                         </div>
                         <div
-                            class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                            class="flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
                             <div
                                 class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +114,7 @@
                             <span class="font-medium">Mentor Berpengalaman</span>
                         </div>
                         <div
-                            class="feature-card flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
+                            class="flex items-center text-[#1D4E89] p-4 bg-white/80 rounded-xl backdrop-blur-sm border border-blue-200 hover:bg-white/90 hover:shadow-md transition-all duration-300 cursor-pointer">
                             <div
                                 class="w-8 h-8 bg-[#E76F51] rounded-full flex items-center justify-center mr-3 hover:animate-pulse">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +205,7 @@
                 });
 
 
-                document.querySelectorAll('.button-primary, .stat-card, .feature-card').forEach(element => {
+                document.querySelectorAll('.button-primary, .stat-card').forEach(element => {
                     element.addEventListener('click', function(e) {
                         const ripple = document.createElement('div');
                         const rect = this.getBoundingClientRect();
@@ -469,33 +475,7 @@
                 .interactive-card:active {
                     transform: translateY(-8px) scale(0.98);
                 }
-
-                .feature-card {
-                    transition: all 0.3s ease;
-                    position: relative;
-                    overflow: hidden;
-                }
-
-                .feature-card::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: -100%;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-                    transition: left 0.5s;
-                }
-
-                .feature-card:hover::before {
-                    left: 100%;
-                }
-
-                .feature-card:hover {
-                    transform: translateY(-3px) scale(1.02);
-                    box-shadow: 0 10px 25px rgba(29, 78, 137, 0.15);
-                }
-
+                
                 .button-primary {
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     position: relative;
@@ -1113,8 +1093,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                                <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                            </div> -->
+                                    <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                                </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1451,7 +1431,7 @@
                 <!-- Header Section -->
                 <div class="text-center mb-16 animate-fadeIn">
                     <span
-                        class="text-lg text-[#E76F51] font-semibold inline-block px-6 py-2 bg-orange-100 rounded-full shadow-md hover:shadow-lg transition-all duration-300  mb-6">
+                        class="text-lg text-[#E76F51] font-semibold inline-block px-6 py-2 bg-orange-100 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect mb-4">
                         #MANFAAT PROGRAM TLC
                     </span>
                     <h2
@@ -1475,7 +1455,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Box 1: Sertifikasi Terakreditasi -->
                     <div
-                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover-lift border border-white/50 group cursor-pointer">
                         <div
                             class="bg-gradient-to-br from-teal-400 to-teal-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
@@ -1492,7 +1472,7 @@
 
                     <!-- Box 2: Kurikulum Terkini -->
                     <div
-                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover-lift border border-white/50 group cursor-pointer">
                         <div
                             class="bg-gradient-to-br from-blue-400 to-blue-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 animate-ping"></div>
@@ -1510,7 +1490,7 @@
 
                     <!-- Box 3: Pengembangan Keterampilan -->
                     <div
-                        class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl hover-lift border-2 border-[#E76F51]/30 group cursor-pointer relative overflow-hidden">
+                        class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover-lift border-2 border-[#E76F51]/30 group cursor-pointer relative overflow-hidden">
                         <div
                             class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full -translate-y-10 translate-x-10 opacity-30 animate-pulse">
                         </div>
@@ -1532,7 +1512,7 @@
 
                     <!-- Box 4: Jaringan Profesional -->
                     <div
-                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover-lift border border-white/50 group cursor-pointer">
                         <div
                             class="bg-gradient-to-br from-orange-400 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
@@ -1550,7 +1530,7 @@
 
                     <!-- Box 5: Peningkatan Karir -->
                     <div
-                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover-lift border border-white/50 group cursor-pointer">
                         <div
                             class="bg-gradient-to-br from-pink-400 to-pink-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 animate-ping"></div>
@@ -1568,9 +1548,9 @@
 
                     <!-- Box 6: Pengakuan Profesional -->
                     <div
-                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover-lift border border-white/50 group cursor-pointer">
+                        class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl hover-lift border border-white/50 group cursor-pointer">
                         <div
-                            class="bg-gradient-to-br from-green-400 to-green-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
+                            class="bg-gradient-to-br from-green-400 to-green-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 group-hover:rotate-6 transition-all duration-500 shadow-lg relative overflow-hidden">
                             <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
                             <i class="fas fa-star text-white text-2xl group-hover:animate-spin relative z-10"></i>
                         </div>
@@ -1830,11 +1810,10 @@
                 <!-- Header Section -->
                 <div class="text-center mb-16 animate-fadeIn">
                     <span
-                        class="text-lg text-[#1D4E89] font-semibold inline-block px-6 py-2 bg-blue-100 rounded-full shadow-md mb-6">
+                        class="text-lg text-[#1D4E89] font-semibold inline-block px-6 py-2 bg-blue-100 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect mb-4">
                         #PANDUAN PENGGUNA
                     </span>
-                    <h2
-                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D4E89] mb-6">
                         <span class="relative inline-block">
                             <span class="relative z-10">Tutorial Penggunaan</span>
                         </span>
@@ -1888,7 +1867,7 @@
                                         <h3 class="text-lg sm:text-xl font-bold text-[#1D4E89]">2. Pilih Sertifikasi</h3>
                                     </div>
                                     <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
-                                        Pilih level sertifikasi (A, B, atau C) yang sesuai dengan tujuan karir Anda.
+                                        Pilih level sertifikasi (A, B, atau C) yang sesuai dengan tujuan Anda.
                                     </p>
                                 </div>
                             </div>
@@ -1936,12 +1915,12 @@
                 }
 
                 /* #tutorial iframe {
-                            width: 100%;
-                            height: 100%;
-                            min-height: 320px;
-                            border-radius: 1rem;
-                            display: block;
-                        } */
+                                width: 100%;
+                                height: 100%;
+                                min-height: 320px;
+                                border-radius: 1rem;
+                                display: block;
+                            } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {

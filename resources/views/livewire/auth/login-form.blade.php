@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full flex items-center justify-center p-2 sm:p-4">
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full flex items-center justify-center p-2 sm:p-2">
     <style>
         @keyframes fadeIn {
             from {
@@ -125,7 +125,7 @@
     </style>
 
     <div
-        class="bg-white shadow-xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
+        class="bg-white shadow-md rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
         <!-- Left Section - Enhanced -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-[#A6BFCF] via-[#5F809C] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -142,7 +142,7 @@
             </h1>
             <div class="mt-6 w-44 h-44 flex items-center justify-center animate-slideInUp animation-delay-500 group">
                 <div class="absolute w-44 h-44 bg-white/5 rounded-full animate-pulse"></div>
-                <img src="images/logoTlcPng.png" alt="Logo"
+                <img src="images/logoTlcPng.png" alt="Logo TLC" loading="lazy" title="Teaching and Learning Certification Logo"
                     class="max-w-full relative z-10 filter drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
             </div>
         </div>
