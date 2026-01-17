@@ -554,7 +554,7 @@
         {{-- End Main Tampilan Awal --}}
 
         {{-- Pilih Jalur Sertifikasi --}}
-        <section class="relative min-h-screen py-20 px-6 overflow-hidden gradient-bg" id="sertifikasi">
+        <section class="relative min-h-screen py-20 px-6 overflow-hidden gradient-bg">
             <!-- Animasi untuk latar belakang -->
             <div class="absolute inset-0 overflow-hidden">
                 <div class="particle w-2 h-2" style="left: 10%; animation-delay: 0s;"></div>
@@ -571,7 +571,7 @@
             <div class="max-w-7xl mx-auto relative z-10">
                 <!-- Header Section -->
                 <div class="text-center mb-20 floating-animation">
-                    <div class="inline-block mb-6">
+                    <div class="inline-block mb-6" id="sertifikasi">
                         <span
                             class="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">

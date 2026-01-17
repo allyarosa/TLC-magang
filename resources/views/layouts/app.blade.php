@@ -24,11 +24,12 @@
             <div
                 class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-4 sm:px-6 lg:px-12">
                 <a href="#" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/logo.svg') }}" class="h-12" alt="TLC Logo" loading="lazy">
+                    <img src="{{ asset('images/logo.svg') }}" class="h-12" alt="TLC Logo" loading="lazy" target="TLC logo">
                     <div class="flex flex-col">
                         <span class="text-lg font-bold text-white tracking-wide">TLC Program</span>
-                        <span class="text-sm text-[#f1e686] font-medium hidden sm:block">Teaching & Learning
-                            Certification</span>
+                        <span class="text-sm text-[#f1e686] font-medium hidden sm:block">
+                            Teaching & Learning Certification
+                        </span>
                     </div>
                 </a>
 

@@ -1214,6 +1214,9 @@
                             <img
                                 src="{{ asset('images/about-us.webp') }}"
                                 alt="Apa itu HAFECS?"
+                                loading="lazy"
+                                target=""
+
                                 class="w-full h-full object-cover"
                             />
                             <div class="absolute inset-0 bg-gradient-to-t from-[#1D4E89]/30 to-transparent"></div>

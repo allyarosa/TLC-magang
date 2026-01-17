@@ -1,324 +1,373 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
     <!-- Level A Card -->
     @php use Vinkla\Hashids\Facades\Hashids; @endphp
-    {{-- Level A Card --}}
-    <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden opacity-0 slide-in border border-gray-100" style="animation-delay: 0.1s">
-        <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
-        <div class="p-8">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-[#1D4E89]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800">Level A: Teaching Knowledge Certification</h2>
-            </div>
 
-            <p class="text-gray-600 mb-6 leading-relaxed">Dasar yang wajib dimiliki untuk mengajar dengan
-                percaya diri.</p>
-
-            <div class="space-y-4 mb-8">
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="
-                        currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-700">Dasar-dasar mengajar</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-700">Keterlibatan siswa</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-700">Penilaian formatif</span>
-                </div>
-            </div>
-
-            {{-- <div class="flex items-center text-[#E76F51] mb-6">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                        clip-rule="evenodd" />
-                </svg>
-                <span class="text-sm font-medium">Deadline: 30 April 2025</span>
-                
-            </div> --}}
-            {{-- <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - Lakukan pembayaran terlebih dahulu disini</p> --}}
-            {{-- @if (!$hasAccessA)
-                <p class="text-sm text-gray-500 italic mb-6">
-                    Belum dibuka - Lakukan pembayaran terlebih dahulu
-                    <a href="{{ route('payments.create', 1) }}" class="text-blue-600 underline hover:text-blue-800">
-            disini
-            </a>
-            </p>
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">Selesaikan kategori level A terlebih dahulu</p>
-            @endif --}}
-
+    {{-- Level A Card: Blue Theme --}}
+    <div class="group flex flex-col bg-gradient-to-br from-[#1D4E89] to-[#0d2a4e] opacity-[0.97] rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 relative opacity-0 slide-in h-full"
+        style="animation-delay: 0.1s">
+        <!-- Status Badge -->
+        <div class="absolute top-5 right-5 z-10">
             @if ($hasAccessA)
-            {{-- @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                    <p class="text-sm text-gray-500 italic mb-6">Selesaikan kategori level A terlebih dahulu</p>
-                @else
-                    <p class="text-sm text-gray-500 italic mb-6">Selesaikan kategori level A terlebih dahulu</p>
-                @endif --}}
-            @if (Auth::user()->hasPermissionTo('level_A_completed'))
-            <p class="text-sm text-green-600 italic mb-6">
-                <i class="fas fa-check-circle mr-1"></i>
-                Anda telah menyelesaikan kategori Level A dan berhak mendapatkan sertifikat
-            </p>
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">
-                <i class="fas fa-info-circle mr-1"></i>
-                Selesaikan kategori Level A terlebih dahulu untuk mendapatkan sertifikat
-            </p>
-            @endif
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">
-                Belum dibuka - Lakukan pembayaran terlebih dahulu
-                <a href="{{ route('payments.create', Vinkla\Hashids\Facades\Hashids::encode(1)) }}" class="text-blue-600 underline hover:text-blue-800">
-                    disini
-                </a>
-            </p>
-            @endif
-
-            <div class="flex gap-3">
-                @if ($hasAccessA)
                 @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
-                    <i class="fas fa-award mr-2"></i>
-                    Lihat Sertifikat Anda
-                </a>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 tracking-wide uppercase shadow-sm">
+                        <i class="fas fa-check-circle mr-1.5"></i> Selesai
+                    </span>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block hover:scale-105 active:scale-95">
-                    <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
-                    Lihat Progres Anda
-                </a>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 tracking-wide uppercase shadow-sm">
+                        <i class="fas fa-unlock mr-1.5"></i> Terbuka
+                    </span>
                 @endif
-                @else
-                <livewire:component.button-certificate status="belum_tersedia">
+            @else
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-500 tracking-wide uppercase shadow-sm">
+                    <i class="fas fa-lock mr-1.5"></i> Terkunci
+                </span>
+            @endif
+        </div>
+
+        {{-- <div class="h-2 w-full bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 bg-[length:200%_100%] group-hover:animate-gradient"></div> --}}
+
+        <div class="p-8 flex flex-col h-full">
+            <div class="mb-6">
+                <!-- Icon Level A (Blue) -->
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-1 ring-blue-100/50">
+                    <i class="fas fa-book-open text-3xl text-blue-500"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-3 transition-colors">Teaching Knowledge</h2>
+                <p class="text-white text-sm leading-relaxed">
+                    Dasar yang wajib dimiliki untuk mengajar dengan percaya diri dan efektif.
+                </p>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-blue-100">
+                        <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Dasar-dasar mengajar</span>
+                </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-blue-100">
+                        <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Keterlibatan siswa</span>
+                </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-blue-100">
+                        <svg class="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Penilaian formatif</span>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-slate-100">
+                @if ($hasAccessA)
+                    @if (Auth::user()->hasPermissionTo('level_A_completed'))
+                        <a wire:navigate
+                            href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Hashids::encode(Auth::id())]) }}"
+                            class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-[1.02] transform transition-all duration-300">
+                            <i class="fas fa-award mr-2"></i>
+                            Lihat Sertifikat
+                        </a>
+                    @else
+                        <a wire:navigate
+                            href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Hashids::encode(Auth::id())]) }}"
+                            class="group w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-all duration-300">
+                            <span class="flex items-center">
+                                <i class="fas fa-play-circle mr-2 group-hover:scale-110 transition-transform"></i>
+                                Lanjutkan Belajar
+                            </span>
+                        </a>
                     @endif
+                @else
+                    <div class="text-center">
+                        <p class="text-xs text-slate-300 mb-3">Lakukan pembayaran untuk membuka</p>
+                        <a href="{{ route('payments.create', Hashids::encode(1)) }}"
+                            class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-slate-800 text-white hover:bg-slate-700 transition-colors shadow-md">
+                            <i class="fas fa-lock-open mr-2"></i>
+                            Buka Akses
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
 
     <!-- Level B Card -->
-    <div class="bg-white rounded-2xl shadow-md card-hover overflow-hidden opacity-0 slide-in border border-gray-100" style="animation-delay: 0.2s">
-        <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
-        <div class="p-8">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-[#1D4E89]" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800">Level B: Teaching Activation Certification</h2>
-            </div>
-
-            <p class="text-gray-600 mb-6 leading-relaxed">Pengajaran aktif melalui proyek dan tugas nyata
-                di kelas.</p>
-
-            <div class="space-y-4 mb-8">
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-700">Modul ajar</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-700">Skala literasi</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-700">Observasi praktik</span>
-                </div>
-            </div>
-
+    {{-- Level B Card: Emerald/Green Theme (Activation) --}}
+    <div class="group flex flex-col bg-gradient-to-br from-[#2A9D8F] to-[#1a6e63] opacity-[0.97] rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 relative opacity-0 slide-in h-full"
+        style="animation-delay: 0.2s">
+        <!-- Status Badge -->
+        <div class="absolute top-5 right-5 z-10">
             @if ($hasAccessB)
-            @if (Auth::user()->hasPermissionTo('level_B_completed'))
-            <p class="text-sm text-green-600 italic mb-6">
-                <i class="fas fa-check-circle mr-1"></i>
-                Anda telah menyelesaikan kategori Level B dan berhak mendapatkan sertifikat
-            </p>
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">
-                <i class="fas fa-info-circle mr-1"></i>
-                Selesaikan kategori Level B terlebih dahulu untuk mendapatkan sertifikat
-            </p>
-            @endif
-            @else
-            @if (Auth::user()->hasPermissionTo('level_A_completed'))
-            <p class="text-sm text-gray-500 italic mb-6">
-                Belum dibuka - Lakukan pembayaran terlebih dahulu
-                <a href="{{ route('payments.create', Hashids::encode(2)) }}" class="text-blue-600 underline hover:text-blue-800">
-                    disini
-                </a>
-            </p>
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level A selesai</p>
-            @endif
-
-            @endif
-
-            <div class="flex gap-3">
-                @if ($hasAccessB)
                 @if (Auth::user()->hasPermissionTo('level_B_completed'))
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Vinkla\Hashids\Facades\Hashids::encode(2)]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
-                    <i class="fas fa-award mr-2"></i>
-                    Lihat Sertifikat Anda
-                </a>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 tracking-wide uppercase shadow-sm">
+                        <i class="fas fa-check-circle mr-1.5"></i> Selesai
+                    </span>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-gray-500 cursor-pointer text-center block hover:scale-105 active:scale-95">
-                    <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
-                    Sedang Berjalan
-                </a>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 tracking-wide uppercase shadow-sm">
+                        <i class="fas fa-unlock mr-1.5"></i> Terbuka
+                    </span>
                 @endif
-                @else
-                <livewire:component.button-certificate status="belum_tersedia">
+            @else
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-500 tracking-wide uppercase shadow-sm">
+                    <i class="fas fa-lock mr-1.5"></i> Terkunci
+                </span>
+            @endif
+        </div>
+
+        {{-- <div class="h-2 w-full bg-gradient-to-r from-emerald-600 via-teal-400 to-emerald-600 bg-[length:200%_100%] group-hover:animate-gradient"></div> --}}
+
+        <div class="p-8 flex flex-col h-full">
+            <div class="mb-6">
+                <!-- Icon Level B (Emerald) -->
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-1 ring-emerald-100/50">
+                    <i class="fas fa-chalkboard-teacher text-3xl text-[#2A9D8F]"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-3 transition-colors">Teaching Activation</h2>
+                <p class="text-white text-sm leading-relaxed">
+                    Pengajaran aktif melalui proyek dan tugas nyata di kelas.
+                </p>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-emerald-100">
+                        <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Modul ajar</span>
+                </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-emerald-100">
+                        <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Skala literasi</span>
+                </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-emerald-100">
+                        <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Observasi praktik</span>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-slate-100">
+                @if ($hasAccessB)
+                    @if (Auth::user()->hasPermissionTo('level_B_completed'))
+                        <a wire:navigate
+                            href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Hashids::encode(2)]) }}"
+                            class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 hover:scale-[1.02] transform transition-all duration-300">
+                            <i class="fas fa-award mr-2"></i>
+                            Lihat Sertifikat
+                        </a>
+                    @else
+                        <a wire:navigate
+                            href="{{ route('asesi.sertifikat.riwayat', ['level' => 'B', 'id' => Hashids::encode(Auth::id())]) }}"
+                            class="group w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-white border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 transition-all duration-300">
+                            <span class="flex items-center">
+                                <i class="fas fa-play-circle mr-2 group-hover:scale-110 transition-transform"></i>
+                                Lanjutkan Belajar
+                            </span>
+                        </a>
                     @endif
+                @else
+                    @if (Auth::user()->hasPermissionTo('level_A_completed'))
+                        <div class="text-center">
+                            <p class="text-xs text-slate-300 mb-3">Lakukan pembayaran untuk membuka</p>
+                            <a href="{{ route('payments.create', Hashids::encode(2)) }}"
+                                class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-slate-800 text-white hover:bg-slate-700 transition-colors shadow-md">
+                                <i class="fas fa-lock-open mr-2"></i>
+                                Buka Akses
+                            </a>
+                        </div>
+                    @else
+                        <div
+                            class="w-full py-3 px-4 rounded-xl bg-gray-50 border border-gray-100 text-gray-400 font-medium text-center text-sm cursor-not-allowed">
+                            <i class="fas fa-lock mr-2"></i> Selesaikan Level A
+                        </div>
+                    @endif
+                @endif
             </div>
         </div>
     </div>
 
     <!-- Level C Card -->
-    <!-- Level C Card -->
-    <div class="bg-white rounded-2xl shadow-lg card-hover overflow-hidden opacity-0 slide-in border border-gray-100" style="animation-delay: 0.3s">
-        <div class="h-2 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF]"></div>
-        <div class="p-8">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mr-4">
-                    <svg class="w-6 h-6 text-[#1D4E89]" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800">Level C: Teaching Mastery Certification</h2>
-            </div>
-
-            <p class="text-gray-600 mb-6 leading-relaxed">Tunjukkan video praktik dan refleksi mendalam
-                untuk sertifikasi akhir.</p>
-
-            <div class="space-y-4 mb-8">
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-500">Video mengajar (YouTube)</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-500">Refleksi tertulis</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <span class="text-gray-500">Umpan balik asesor</span>
-                </div>
-            </div>
-
+    {{-- Level C Card: Purple/Violet Theme (Mastery) --}}
+    <div class="group flex flex-col bg-gradient-to-br from-[#E76F51] to-[#cf4a2a] opacity-[0.97] rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 relative opacity-0 slide-in h-full"
+        style="animation-delay: 0.3s">
+        <!-- Status Badge -->
+        <div class="absolute top-5 right-5 z-10">
             @if ($hasAccessC)
-            @if (Auth::user()->hasPermissionTo('level_C_completed'))
-            <p class="text-sm text-green-600 italic mb-6">
-                <i class="fas fa-check-circle mr-1"></i>
-                Anda telah menyelesaikan kategori Level C dan berhak mendapatkan sertifikat
-            </p>
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">
-                <i class="fas fa-info-circle mr-1"></i>
-                Selesaikan kategori Level C terlebih dahulu untuk mendapatkan sertifikat
-            </p>
-            @endif
-            @else
-            @if (Auth::user()->hasPermissionTo('level_B_completed'))
-            <p class="text-sm text-gray-500 italic mb-6">
-                Belum dibuka - Lakukan pembayaran terlebih dahulu
-                <a href="{{ route('payments.create', Hashids::encode(3)) }}" class="text-blue-600 underline hover:text-blue-800">
-                    disini
-                </a>
-            </p>
-            @else
-            <p class="text-sm text-gray-500 italic mb-6">Belum dibuka - menunggu Level B selesai</p>
-            @endif
-
-            @endif
-
-            <div class="flex gap-3">
-                @if ($hasAccessC)
                 @if (Auth::user()->hasPermissionTo('level_C_completed'))
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(3)]) }}" class="flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 bg-gradient-to-r from-[#1D4E89] to-[#2A5AAF] hover:from-[#14406B] hover:to-[#1F4A92] text-white cursor-pointer text-center block">
-                    Lihat Sertifikat Anda
-                </a>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 tracking-wide uppercase shadow-sm">
+                        <i class="fas fa-check-circle mr-1.5"></i> Selesai
+                    </span>
                 @else
-                <a wire:navigate href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Vinkla\Hashids\Facades\Hashids::encode(Auth::id())]) }}" class="group flex-1 font-medium py-3 px-1.5 rounded-xl transform transition duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-yellow-400 hover:bg-yellow-500 text-gray-500 cursor-pointer text-center block hover:scale-105 active:scale-95">
-                    <i class="fas fa-hourglass-half group-hover:animate-spin duration-500 ease-linear text-xl"></i>
-                    Sedang Berjalan
-                </a>
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 tracking-wide uppercase shadow-sm">
+                        <i class="fas fa-unlock mr-1.5"></i> Terbuka
+                    </span>
                 @endif
-                @else
-                <livewire:component.button-certificate status="belum_tersedia">
+            @else
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-500 tracking-wide uppercase shadow-sm">
+                    <i class="fas fa-lock mr-1.5"></i> Terkunci
+                </span>
+            @endif
+        </div>
+
+        {{-- <div class="h-2 w-full bg-gradient-to-r from-purple-700 via-fuchsia-500 to-purple-700 bg-[length:200%_100%] group-hover:animate-gradient"></div> --}}
+
+        <div class="p-8 flex flex-col h-full">
+            <div class="mb-6">
+                <!-- Icon Level C (Purple) -->
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-1 ring-purple-100/50">
+                    <i class="fas fa-trophy text-3xl text-[#E76F51]"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-3 transition-colors">Teaching Mastery</h2>
+                <p class="text-white text-sm leading-relaxed">
+                    Tunjukkan video praktik dan refleksi mendalam untuk sertifikasi akhir.
+                </p>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-purple-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-purple-100">
+                        <svg class="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Video mengajar</span>
+                </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-purple-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-purple-100">
+                        <svg class="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Refleksi tertulis</span>
+                </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-5 h-5 rounded-full bg-purple-50 flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 border border-purple-100">
+                        <svg class="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="text-white text-sm font-medium">Umpan balik asesor</span>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-slate-100">
+                @if ($hasAccessC)
+                    @if (Auth::user()->hasPermissionTo('level_C_completed'))
+                        <a wire:navigate
+                            href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Hashids::encode(3)]) }}"
+                            class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-purple-700 to-fuchsia-600 text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 hover:scale-[1.02] transform transition-all duration-300">
+                            <i class="fas fa-award mr-2"></i>
+                            Lihat Sertifikat
+                        </a>
+                    @else
+                        <a wire:navigate
+                            href="{{ route('asesi.sertifikat.riwayat', ['level' => 'C', 'id' => Hashids::encode(Auth::id())]) }}"
+                            class="group w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-white border-2 border-purple-700 text-purple-700 hover:bg-purple-50 transition-all duration-300">
+                            <span class="flex items-center">
+                                <i class="fas fa-play-circle mr-2 group-hover:scale-110 transition-transform"></i>
+                                Lanjutkan Belajar
+                            </span>
+                        </a>
                     @endif
+                @else
+                    @if (Auth::user()->hasPermissionTo('level_B_completed'))
+                        <div class="text-center">
+                            <p class="text-xs text-slate-300 mb-3">Lakukan pembayaran untuk membuka</p>
+                            <a href="{{ route('payments.create', Hashids::encode(3)) }}"
+                                class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-slate-800 text-white hover:bg-slate-700 transition-colors shadow-md">
+                                <i class="fas fa-lock-open mr-2"></i>
+                                Buka Akses
+                            </a>
+                        </div>
+                    @else
+                        <div
+                            class="w-full py-3 px-4 rounded-xl bg-gray-50 border border-gray-100 text-gray-400 font-medium text-center text-sm cursor-not-allowed">
+                            <i class="fas fa-lock mr-2"></i> Selesaikan Level B
+                        </div>
+                    @endif
+                @endif
             </div>
         </div>
     </div>
 
-    {{-- Tidak punya akses sama sekali --}}
-    
-
-
-
-
-    </p>
     <script src="{{ asset('assets/js/certificationLevelCard.js') }}"></script>
     <style>
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
+        .animate-gradient {
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
             }
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -331,24 +380,7 @@
         }
 
         .slide-in {
-            animation: slideIn 0.5s ease-out forwards;
-        }
-
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .progress-bar {
-            transition: width 1s ease-in-out;
-        }
-
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     </style>
 </div>
