@@ -679,11 +679,13 @@ class AdminDashboardController extends Controller
     public function importAsesi(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls,csv|max:2048'
+            'file' => 'required|mimes:xlsx,xls,csv|max:2048',
+            'permissions' => 'required|array',
+            'permissions.*' => 'string|in:access_level_A,access_level_B,access_level_C'
         ]);
         try {
-            Excel::import(new UsersImport, $request->file('file'));
-            return redirect()->back()->with('success', 'Data user berhasil diimport dan permission access_level_A telah diberikan!');
+            Excel::import(new UsersImport($request->permissions), $request->file('file'));
+            return redirect()->back()->with('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }

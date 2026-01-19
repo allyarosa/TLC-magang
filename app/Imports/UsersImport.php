@@ -20,7 +20,6 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
         return [
             'email' => trim($data['email'] ?? ''),
             'nama' => trim($data['nama'] ?? ''),
-            'access' => trim($data['access'] ?? ''),
         ];
     }
 
@@ -46,7 +45,8 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
             ]);
         }
         
-        $user->givePermissionTo($row['access']);
+        
+        $user->givePermissionTo($this->permissions);
         return $user;
     }
 
@@ -55,7 +55,6 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
         return [
             'email' => 'required|email|max:255',
             'nama' => 'required|string|max:255',
-            'access' => 'required|string|max:255',
         ];
     }
 
@@ -65,7 +64,13 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Format email tidak valid',
             'nama.required' => 'Nama wajib diisi',
-            'access.required' => 'Access wajib diisi',
         ];
+    }
+
+    protected $permissions;
+
+    public function __construct($permissions)
+    {
+        $this->permissions = $permissions;
     }
 }
