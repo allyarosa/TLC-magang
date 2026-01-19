@@ -475,7 +475,7 @@
                 .interactive-card:active {
                     transform: translateY(-8px) scale(0.98);
                 }
-                
+
                 .button-primary {
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     position: relative;
@@ -599,7 +599,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <div class="relative group h-full">
                         <div
-                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-blue-200">
+                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:border-blue-200">
                             <!-- Background Pattern/Gradient -->
                             <div class="absolute inset-0 bg-gradient-to-br from-[#1D4E89] to-[#0d2a4e] opacity-[0.97]">
                             </div>
@@ -678,9 +678,9 @@
                                         </button>
                                     @else
                                         <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-[#E76F51] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#d65f41] hover:shadow-lg hover:scale-[1.02] border border-orange-400/30">
+                                            class="w-full group/btn relative overflow-hidden bg-[#E76F51] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#d65f41] border border-orange-400/30">
                                             <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Mulai Sekarang
+                                                Daftar Sekarang
                                                 <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -693,6 +693,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Level B -->
                     <div class="relative group h-full">
                         <div
@@ -775,9 +776,9 @@
                                         </button>
                                     @else
                                         <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] hover:shadow-lg hover:scale-[1.02] border border-white/10">
+                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] border border-white/10">
                                             <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Mulai Sekarang
+                                                Detail selanjutnya
                                                 <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -861,9 +862,9 @@
                                         </button>
                                     @else
                                         <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] hover:shadow-lg hover:scale-[1.02] border border-white/10">
+                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] border border-white/10">
                                             <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Mulai Sekarang
+                                                Detail Selanjutnya
                                                 <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -878,7 +879,7 @@
                     </div>
 
                     <!-- Bundling -->
-                    <div class="relative group card-hover flex lg:col-span-1 lg:col-start-2">
+                    {{-- <div class="relative group card-hover flex lg:col-span-1 lg:col-start-2">
                         <div
                             class="relative min-h-[400px] rounded-3xl shadow-md overflow-hidden bg-white border border-gray-200">
                             <div class="absolute inset-0 opacity-90"
@@ -895,9 +896,9 @@
                                     <h3 class="text-4xl font-black mb-4 leading-tight">
                                         Paket Bundling Sertifikasi
                                     </h3>
-                                    {{-- <p class="text-white/90 text-lg mb-8 leading-relaxed">
-                            Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
-                        </p> --}}
+                                    <p class="text-white/90 text-lg mb-8 leading-relaxed">
+                                        Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
+                                    </p>
                                 </div>
 
                                 <div>
@@ -916,7 +917,6 @@
                                         </div>
                                     </div>
 
-                                    {{-- Bagian Bawah: Tombol --}}
                                     <div class="flex items-center justify-between">
                                         @if (
                                             $user->hasPermissionTo('access_level_A') or
@@ -931,14 +931,14 @@
                                             <button
                                                 onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
                                                 class="bg-white text-orange-400 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
-                                                Mulai Sekarang
+                                                Detail Selanjutnya
                                             </button>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <script>
                         document.addEventListener('mousemove', (e) => {
                             if (Math.random() > 0.9) {
@@ -1093,8 +1093,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                                    <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                                </div> -->
+                                        <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                                    </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1915,12 +1915,12 @@
                 }
 
                 /* #tutorial iframe {
-                                width: 100%;
-                                height: 100%;
-                                min-height: 320px;
-                                border-radius: 1rem;
-                                display: block;
-                            } */
+                                    width: 100%;
+                                    height: 100%;
+                                    min-height: 320px;
+                                    border-radius: 1rem;
+                                    display: block;
+                                } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {

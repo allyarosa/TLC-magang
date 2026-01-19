@@ -685,8 +685,10 @@ class AdminDashboardController extends Controller
         ]);
         try {
             Excel::import(new UsersImport($request->permissions), $request->file('file'));
+            Alert::success('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
             return redirect()->back()->with('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
         } catch (Exception $e) {
+            Alert::error('error', $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }

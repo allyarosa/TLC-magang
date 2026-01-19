@@ -6,12 +6,12 @@
         
         <!-- Header -->
         <div class="mb-8">
-            <h2 class="text-3xl font-bold text-gray-800">Import Bulk Asesi</h2>
+            <h2 class="text-3xl font-bold text-gray-700">Import Bulk Asesi</h2>
             <p class="text-gray-500 mt-2">Tambahkan banyak user sekaligus dengan file Excel dan atur permission akses mereka.</p>
         </div>
 
         <!-- Main Card -->
-        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
             <!-- Card Header -->
             <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
                 <h3 class="text-white text-lg font-semibold flex items-center gap-2">

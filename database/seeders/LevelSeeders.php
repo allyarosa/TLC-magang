@@ -16,7 +16,7 @@ class LevelSeeders extends Seeder
         $levels = [
             [
                 'level_name' => 'A',
-                'price' => 100000,
+                'price' => 150000,
                 'discount' => 10,
                 'final_price' => 90000,
                 'created_at' => now(),
@@ -24,7 +24,7 @@ class LevelSeeders extends Seeder
             ],
             [
                 'level_name' => 'B',
-                'price' => 150000,
+                'price' => 225000,
                 'discount' => 15,
                 'final_price' => 127500,
                 'created_at' => now(),
@@ -32,7 +32,7 @@ class LevelSeeders extends Seeder
             ],
             [
                 'level_name' => 'C',
-                'price' => 200000,
+                'price' => 275000,
                 'discount' => 0,
                 'final_price' => 200000,
                 'created_at' => now(),

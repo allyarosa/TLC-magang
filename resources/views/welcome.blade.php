@@ -900,7 +900,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span class="text-xs sm:text-sm font-medium">PCK Framework</span>
+                                        <span class="text-xs sm:text-sm font-medium">PCK</span>
                                     </div>
                                     <div class="flex items-center p-2 sm:p-3 bg-orange-50 rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -910,7 +910,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span class="text-xs sm:text-sm font-medium">HOTS Development</span>
+                                        <span class="text-xs sm:text-sm font-medium">HOTS</span>
                                     </div>
                                     <div class="flex items-center p-2 sm:p-3 bg-orange-50 rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -920,7 +920,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span class="text-xs sm:text-sm font-medium">Kurikulum Merdeka</span>
+                                        <span class="text-xs sm:text-sm font-medium">LITERASI</span>
                                     </div>
                                     <div class="flex items-center p-2 sm:p-3 bg-orange-50 rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -930,7 +930,7 @@
                                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        <span class="text-xs sm:text-sm font-medium">Diferensiasi Pembelajaran</span>
+                                        <span class="text-xs sm:text-sm font-medium">NUMERASI</span>
                                     </div>
                                 @break
 

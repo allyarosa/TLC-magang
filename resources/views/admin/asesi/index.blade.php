@@ -83,7 +83,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-indigo-700 shadow-md">
+                        <button class="px-3 py-1.5 bg-[#1D4E89] text-white text-sm rounded hover:bg-[#0d2a4e] shadow-md">
                             + Tambah Asesi
                         </button>
                     </a>
