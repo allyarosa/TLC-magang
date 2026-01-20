@@ -64,32 +64,35 @@
                 </div>
 
                 <!-- Navigation Menu for Desktop - Centered -->
-                <div class="hidden lg:flex items-center justify-center space-x-6 flex-1">
+                <div class="hidden lg:flex items-center justify-center gap-2 flex-1">
+
+                    {{-- Dashboard --}}
                     <a href="{{ route('asesi.dashboard') }}"
-                        class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.dashboard') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                        class="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ease-in-out
+              {{ request()->routeIs('asesi.dashboard')
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                  : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50' }}">
                         Dashboard
-                        <span
-                            class="{{ request()->routeIs('asesi.dashboard') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
 
+                    {{-- Sertifikasi --}}
                     <a href="{{ route('asesi.sertifikasi') }}"
-                        class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.sertifikasi') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                        class="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ease-in-out
+              {{ request()->routeIs('asesi.sertifikasi')
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                  : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50' }}">
                         Sertifikasi
-                        <span
-                            class="{{ request()->routeIs('asesi.sertifikasi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
 
+                    {{-- Transaksi --}}
                     <a href="{{ route('asesi.transaksi') }}"
-                        class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('asesi.transaksi') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
+                        class="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ease-in-out
+              {{ request()->routeIs('asesi.transaksi')
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                  : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50' }}">
                         Transaksi
-                        <span
-                            class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                     </a>
-                    {{-- HIde FORUM --}}
-                    {{-- <a href="{{ route('forum') }}" class="nav-link text-base font-semibold transition-all duration-300 relative {{ request()->routeIs('forum') ? 'text-[#1D4E89] font-bold' : 'text-gray-600 hover:text-[#1D4E89]' }}">
-                    Forum
-                    <span class="{{ request()->routeIs('forum') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
-                    </a> --}}
+
                 </div>
 
                 <!-- Right Section (Profile & Notifications) for Desktop -->
@@ -155,7 +158,7 @@
                                 </a>
 
                                 <div class="border-t border-gray-100 my-1"></div>
-                                
+
                                 <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                     <div

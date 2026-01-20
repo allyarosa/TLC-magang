@@ -91,7 +91,7 @@
                     @else
                         <a wire:navigate
                             href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Hashids::encode(Auth::id())]) }}"
-                            class="group w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-all duration-300">
+                            class="group w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-white border-2 border-[#1D4E89] text-[#1D4E89] hover:bg-blue-50 transition-all duration-300">
                             <span class="flex items-center">
                                 <i class="fas fa-play-circle mr-2 group-hover:scale-110 transition-transform"></i>
                                 Lanjutkan Belajar

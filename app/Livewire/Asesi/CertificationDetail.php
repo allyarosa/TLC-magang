@@ -31,7 +31,10 @@ class CertificationDetail extends Component
         $this->{'hasAccess' . $levelUpper} = $user->hasPermissionTo('access_level_' . $levelUpper);
 
         if ($this->level === 'A') {
-            $this->exams = ExamA::where('user_id', $user->id)->with('categoryA')->get();
+            $this->exams = ExamA::where('user_id', $user->id)
+                ->with('categoryA')
+                ->orderBy('start_time', 'desc')
+                ->get();
         } else if (in_array($this->level, ['B', 'C'])) {
             $submissionModel = "App\Models\Level{$levelUpper}Submission";
             $historyModel = "App\Models\Level{$levelUpper}History";

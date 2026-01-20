@@ -1,177 +1,171 @@
 @extends('layouts.asesiDashboard')
 
 @section('content')
+    {{-- Wrapper Utama dengan background yang sedikit off-white agar konten pop-up --}}
+    <div class="min-h-screen bg-slate-50/50 pb-20">
 
-{{-- Status Sertifikasi --}}
-<section class="max-w-7xl mx-auto px-4 py-8">
-    <!-- Header dengan gradient yang menarik -->
-    <div class="mb-8 relative overflow-hidden animate-fadeIn">
-        <div class="bg-gradient-to-r from-[#1D4E89] via-[#1D4E89] to-[#6ad9f2] rounded-2xl p-8 text-white relative">
-            <div class="absolute inset-0 bg-black opacity-10"></div>
-            <div class="relative z-10">
-                <div class="flex items-center mb-2">
-                    <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <h1 class="text-3xl font-bold">Status Sertifikasi Anda</h1>
+        {{-- SECTION 1: Status Sertifikasi (Hero Banner) --}}
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="relative overflow-hidden rounded-3xl bg-slate-900 shadow-xl shadow-slate-200/50 group">
+
+                {{-- Abstract Background Shapes --}}
+                <div
+                    class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-indigo-500/20 blur-3xl group-hover:bg-indigo-500/30 transition-all duration-700">
                 </div>
-                <p class="text-white/90 text-lg">Pantau progres pembelajaran dan sertifikasi Anda dalam
-                    Teaching & Learning Certification</p>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-amber-500/10 blur-3xl"></div>
+
+                {{-- Content --}}
+                <div class="relative z-10 p-8 sm:p-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="flex-shrink-0 p-3 shadow-inner">
+                                    <img src="{{ asset('images/certification-badge.png') }}" alt=""
+                                        class="w-10 h-10">
+                                </div>
+
+                                <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                                    Status Sertifikasi Anda
+                                </h1>
+                            </div>
+
+                            <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+                                Pantau progres pembelajaran, akses materi, dan selesaikan ujian dalam
+                                <br>
+                                <span class="font-medium text-amber-200">Teaching & Learning Certification</span>.
+                            </p>
+                        </div>
+
+                        {{-- Decorative Icon (Optional) --}}
+                        <div class="hidden md:block opacity-20 transform rotate-12">
+                            <i class="fas fa-award text-9xl text-white"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Decorative elements -->
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
-        </div>
-    </div>
 
-    <!-- Certification Cards -->
-    <livewire:asesi.certification-card />
-    <!-- Certification Cards -->
-
-</section>
-{{-- End Status Sertifikasi --}}
-
-{{-- Kategori Level --}}
-<section
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 shadow-md rounded-3xl border border-gray-100 p-8 mb-36">
-    <div class="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
-        <div class="flex items-center space-x-3">
-            <div class="bg-[#1D4E89] text-white p-3 rounded-xl shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            {{-- Certification Cards Component --}}
+            <div class="mt-8">
+                <livewire:asesi.certification-card />
             </div>
-            <h2
-                class="text-3xl font-extrabold text-transparent bg-clip-text bg-[#1D4E89]">
-                KATEGORI LEVEL</h2>
-        </div>
-        {{-- <div class="flex items-center space-x-4">
-            <button
-                class="px-6 py-2 bg-gradient-to-r from-[#1D4E89] to-[#14406B] text-white rounded-xl font-medium shadow-lg hover:shadow-xl focus:ring-4 focus:ring-blue-200">
-                <a href="{{ route('asesi.nilai') }}">Lihat Nilai</a>
-            </button>
-        </div> --}}
+        </section>
+
+        {{-- SECTION 2: Kategori Level --}}
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-10">
+
+                {{-- Header Section --}}
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                            <span class="w-1.5 h-8 bg-indigo-600 rounded-full"></span>
+                            Jalur Pembelajaran
+                        </h2>
+                        <p class="text-slate-500 mt-2">
+                            Pilih level untuk mengakses materi dan kuis. Selesaikan secara berurutan.
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Filter Tabs (Pills Design) --}}
+                <div class="bg-slate-100 p-1.5 rounded-2xl inline-flex flex-wrap gap-2 mb-10 w-full sm:w-auto">
+                    {{-- Button Level A --}}
+                    <button onclick="showLevel('A')" id="levelAButton"
+                        class="level-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 shadow-md bg-slate-900 text-white transform hover:scale-[1.02]">
+                        @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_A']))
+                            <div class="text-amber-400"><livewire:level-unlock-icon /></div>
+                        @else
+                            <div class="text-slate-400"><livewire:level-lock-icon /></div>
+                        @endif
+                        Level A
+                    </button>
+
+                    {{-- Button Level B --}}
+                    <button onclick="showLevel('B')" id="levelBButton"
+                        class="level-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slate-900 hover:bg-white hover:shadow-sm">
+                        @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_B']))
+                            <div class="text-amber-500"><livewire:level-unlock-icon /></div>
+                        @else
+                            <div class="text-slate-400"><livewire:level-lock-icon /></div>
+                        @endif
+                        Level B
+                    </button>
+
+                    {{-- Button Level C --}}
+                    <button onclick="showLevel('C')" id="levelCButton"
+                        class="level-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slate-900 hover:bg-white hover:shadow-sm">
+                        @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_C']))
+                            <div class="text-amber-500"><livewire:level-unlock-icon /></div>
+                        @else
+                            <div class="text-slate-400"><livewire:level-lock-icon /></div>
+                        @endif
+                        Level C
+                    </button>
+                </div>
+
+                {{-- Content Area --}}
+                <div class="relative min-h-[300px]">
+                    <div id="levelA" class="level-content animate-fadeIn">
+                        <livewire:categories-a />
+                    </div>
+                    <div id="levelB" class="level-content hidden animate-fadeIn">
+                        <livewire:categories-b />
+                    </div>
+                    <div id="levelC" class="level-content hidden animate-fadeIn">
+                        <livewire:categories-c />
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </div>
 
-    <p class="text-gray-600 text-base mb-10 text-center sm:text-left max-w-2xl">
-        Daftar kategori kuis yang akan anda kerjakan. Selesaikan setiap kategori untuk membuka level berikutnya!
-    </p>
-
-    <!-- Filter Buttons -->
-    <div class="flex flex-wrap justify-center sm:justify-start gap-3 mb-10">
-        <button onclick="showLevel('A')"
-            class="px-6 py-3 bg-gradient-to-r from-[#1D4E89] to-[#14406B] text-white rounded-xl text-sm font-medium shadow-md transform transition duration-300 hover:shadow-lg flex items-center level-button"
-            id="levelAButton">
-            @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_A']))
-            <livewire:level-unlock-icon />
-            @else
-            <livewire:level-lock-icon />
-            @endif
-            Level A
-        </button>
-        <button onclick="showLevel('B')"
-            class="px-6 py-3 bg-white text-gray-700 rounded-xl text-sm font-medium shadow-md transform transition duration-300 hover:shadow-lg flex items-center level-button"
-            id="levelBButton">
-            @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_B']))
-            <livewire:level-unlock-icon />
-            @else
-            <livewire:level-lock-icon />
-            @endif
-            Level B
-        </button>
-        <button onclick="showLevel('C')"
-            class="px-6 py-3 bg-white text-gray-700 rounded-xl text-sm font-medium shadow-md transform transition duration-300 hover:shadow-lg flex items-center level-button"
-            id="levelCButton">
-            @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_C']))
-            <livewire:level-unlock-icon />
-            @else
-            <livewire:level-lock-icon />
-            @endif
-            Level C
-        </button>
-    </div>
-
-    <!-- Categories A -->
-    <div id="levelA" class="level-content">
-        <livewire:categories-a />
-    </div>
-    <!-- Categories B -->
-    <div id="levelB" class="level-content hidden">
-        <livewire:categories-b />
-    </div>
-
-    <!-- Categories C -->
-    <div id="levelC" class="level-content hidden">
-        <livewire:categories-c />
-    </div>
-
+    {{-- Script --}}
     <script>
         function showLevel(level) {
-            // Hide all level contents
+            // 1. Hide all contents with fade effect reset (optional tweak)
             document.querySelectorAll('.level-content').forEach(content => {
                 content.classList.add('hidden');
             });
 
-            // Show selected level content
-            document.getElementById(`level${level}`).classList.remove('hidden');
+            // 2. Show selected content
+            const selectedContent = document.getElementById(`level${level}`);
+            selectedContent.classList.remove('hidden');
 
-            // Update button styles
+            // 3. Reset all buttons to "Inactive" state
             document.querySelectorAll('.level-button').forEach(button => {
-                if (button.id === `level${level}Button`) {
-                    button.classList.remove('bg-white', 'text-gray-700');
-                    button.classList.add('bg-gradient-to-r', 'from-[#1D4E89]', 'to-[#14406B]', 'text-white');
-                } else {
-                    button.classList.add('bg-white', 'text-gray-700');
-                    button.classList.remove('bg-gradient-to-r', 'from-[#1D4E89]', 'to-[#14406B]', 'text-white');
-                }
+                // Remove Active Classes
+                button.classList.remove('bg-slate-900', 'text-white', 'shadow-md', 'scale-[1.02]');
+                // Add Inactive Classes
+                button.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-white', 'hover:shadow-sm');
             });
+
+            // 4. Set clicked button to "Active" state
+            const activeButton = document.getElementById(`level${level}Button`);
+            activeButton.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-white', 'hover:shadow-sm');
+            activeButton.classList.add('bg-slate-900', 'text-white', 'shadow-md', 'scale-[1.02]');
         }
     </script>
-</section>
-{{-- End Kategori level --}}
 
-<script>
-    // Add hover animations to cards
-    document.querySelectorAll('.bg-white').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px)';
-            this.style.transition = 'transform 0.3s ease';
-            this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-        });
+    <style>
+        /* Simple Fade Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
-        });
-    });
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    // Add pulse animation to gradient icons
-    // document.querySelectorAll('.bg-gradient-to-r').forEach(icon => {
-    //     setInterval(() => {
-    //         icon.style.animation = 'pulse 2s ease-in-out';
-    //         setTimeout(() => {
-    //             icon.style.animation = '';
-    //         }, 2000);
-    //     }, 5000);
-    // });
-
-    // Add CSS animations
-    const style = document.createElement('style');
-    style.textContent = `
-                @keyframes pulse {
-                    0%, 100% { transform: scale(1); }
-                    50% { transform: scale(1.05); }
-                }
-
-                .bg-white {
-                    transition: all 0.3s ease;
-                }
-            `;
-    document.head.appendChild(style);
-</script>
-
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
 @endsection
