@@ -13,7 +13,7 @@
 @livewireStyles
 
 
-<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4">
+<body class="bg-slate-50 flex items-center justify-center min-h-screen p-0 md:p-4">
     @yield('content')
     <script src="//unpkg.com/alpinejs" defer></script>
     @livewireScripts

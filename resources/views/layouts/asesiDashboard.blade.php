@@ -46,7 +46,7 @@
 
                 <!-- Mobile Menu Toggle -->
                 <div class="lg:hidden flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
-                    <!-- Notification Icon for Mobile -->
+                    <!-- Notification Icon for Mob  ile -->
                     <livewire:notification-modal />
                     <button id="mobile-menu-toggle"
                         class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
@@ -65,34 +65,27 @@
 
                 <!-- Navigation Menu for Desktop - Centered -->
                 <div class="hidden lg:flex items-center justify-center gap-2 flex-1">
+                    @php
+                        $navs = [
+                            ['name' => 'Dashboard', 'route' => 'asesi.dashboard'],
+                            ['name' => 'Sertifikasi', 'route' => 'asesi.sertifikasi'],
+                            ['name' => 'Transaksi', 'route' => 'asesi.transaksi'],
+                        ];
+                    @endphp
 
-                    {{-- Dashboard --}}
-                    <a href="{{ route('asesi.dashboard') }}"
-                        class="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ease-in-out
-              {{ request()->routeIs('asesi.dashboard')
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
-                  : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50' }}">
-                        Dashboard
-                    </a>
+                    @foreach ($navs as $nav)
+                        @php
+                            $isActive = request()->routeIs($nav['route']);
+                        @endphp
 
-                    {{-- Sertifikasi --}}
-                    <a href="{{ route('asesi.sertifikasi') }}"
-                        class="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ease-in-out
-              {{ request()->routeIs('asesi.sertifikasi')
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
-                  : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50' }}">
-                        Sertifikasi
-                    </a>
-
-                    {{-- Transaksi --}}
-                    <a href="{{ route('asesi.transaksi') }}"
-                        class="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ease-in-out
-              {{ request()->routeIs('asesi.transaksi')
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
-                  : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50' }}">
-                        Transaksi
-                    </a>
-
+                        <a href="{{ route($nav['route']) }}"
+                            class="px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ease-in-out
+           {{ $isActive
+               ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 -translate-y-0.5'
+               : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50' }}">
+                            {{ $nav['name'] }}
+                        </a>
+                    @endforeach
                 </div>
 
                 <!-- Right Section (Profile & Notifications) for Desktop -->

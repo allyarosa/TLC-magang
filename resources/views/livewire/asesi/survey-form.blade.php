@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-slate-50 flex flex-col justify-center py-6 font-sans">
     {{-- PERUBAHAN 1: max-w-4xl diganti max-w-2xl agar lebih ramping --}}
-    <div class="max-w-2xl w-full mx-auto px-4 sm:px-6">
+    <div class="max-w-2xl w-full mx-auto px-2 sm:px-2">
 
         <div class="mb-6">
             <div class="flex justify-between text-xs font-medium text-slate-400 mb-2 uppercase tracking-wide">
@@ -15,7 +15,7 @@
         <div
             class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative h-[550px] flex flex-col">
 
-            <div class="flex-grow p-6 sm:p-8 md:p-10 flex flex-col justify-center overflow-y-auto">
+            <div class="flex-grow p-6 sm:p-4 md:p-6 flex flex-col justify-center overflow-y-auto">
 
                 @if ($currentStep === 1)
                     <div class="text-center animate-fade-in-up">
@@ -24,10 +24,10 @@
                             <img src="{{ asset('assets/img/surveyForm/rate.png') }}" alt="" loading="lazy"
                                 class="h-full object-contain">
                         </div>
-                        <h2 class="text-3xl tracking-tight text-gray-700 mb-2">
+                        <h2 class="text-2xl md:text-3xl tracking-tight text-gray-700 mb-2">
                             Survei Kepuasan
                         </h2>
-                        <p class="text-slate-500 mb-6 text-lg leading-relaxed">
+                        <p class="text-slate-500 mb-6 text-md md:text-lg leading-relaxed">
                             Halo, <strong>{{ $nama_lengkap }}</strong> 👋<br>
                             Mohon luangkan waktu sejenak untuk memberikan umpan balik. Data berikut diambil dari profil
                             Anda.
@@ -36,8 +36,8 @@
                 @endif
 
                 @if ($currentStep === 2)
-                    <div class="animate-fade-in-up mx-36">
-                        <label class="block text-lg font-semibold text-slate-800 mb-4">
+                    <div class="animate-fade-in-up mx-10 md:mx-36">
+                        <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Berapa usia Anda saat ini?
                         </label>
                         <div class="space-y-2">
@@ -63,8 +63,8 @@
                 @endif
 
                 @if ($currentStep === 3)
-                    <div class="animate-fade-in-up mx-36">
-                        <label class="block text-lg font-semibold text-slate-800 mb-4">
+                    <div class="animate-fade-in-up mx-2 sm:mx-10 md:mx-36">
+                        <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Apa status pekerjaan Anda saat ini?
                         </label>
                         <div class="space-y-2">
@@ -90,8 +90,8 @@
                 @endif
 
                 @if ($currentStep === 4)
-                    <div class="animate-fade-in-up mx-36">
-                        <label class="block text-lg font-semibold text-slate-800 mb-4">
+                    <div class="animate-fade-in-up mx-2 sm:mx-10 md:mx-36">
+                        <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Di mana instansi tempat Anda bekerja?
                         </label>
                         <input type="text" wire:model="tempat_bekerja"
@@ -108,7 +108,7 @@
 
                 @if ($currentStep === 5)
                     <div class="animate-fade-in-up">
-                        <label class="`block text-lg font-semibold text-slate-800 mb-4">
+                        <label class="`block text-lg font-semibold text-slate-700 mb-4">
                             Apa tujuan utama Anda mengikuti sertifikasi ini?
                         </label>
                         <div class="space-y-2">
@@ -173,7 +173,7 @@
                                 class="inline-block px-3 py-1 bg-[#1D4E89]/10 text-[#1D4E89] rounded-full text-[10px] font-bold tracking-wide uppercase mb-4">
                                 Evaluasi {{ $step - 5 }}/5
                             </span>
-                            <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-snug">
+                            <h3 class="text-lg md:text-xl font-bold text-slate-700 mb-6 leading-snug">
                                 "{{ $q['text'] }}"</h3>
 
                             {{-- PERUBAHAN 4: Ukuran tombol rating diperkecil (w-14, h-14) agar pas --}}
@@ -220,7 +220,7 @@
                 @foreach ($essayQuestions as $step => $q)
                     @if ($currentStep === $step)
                         <div class="animate-fade-in-up">
-                            <label class="block text-lg font-semibold text-slate-800 mb-4">{{ $q['label'] }}</label>
+                            <label class="block text-lg font-semibold text-slate-700 mb-4">{{ $q['label'] }}</label>
                             <textarea wire:model.live.debounce.300ms="{{ $q['model'] }}" rows="5"
                                 class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-[#1D4E89] focus:border-[#1D4E89] outline-none resize-none text-slate-700 leading-relaxed text-sm"
                                 placeholder="Tuliskan jawaban Anda di sini..." autofocus></textarea>
@@ -241,7 +241,7 @@
                             {{-- <i class="fas fa-check text-3xl"></i> --}}
                             <img src="{{ asset('assets/img/surveyForm/success.png') }}" alt="Success Logo" class="w-16 h-16">
                         </div>
-                        <h2 class="text-xl font-bold text-slate-800 mb-2">Terima Kasih!</h2>
+                        <h2 class="text-xl font-bold text-slate-700 mb-2">Terima Kasih!</h2>
                         <p class="text-slate-500 mb-6 max-w-sm mx-auto text-sm">
                             Feedback Anda sangat berharga bagi kami. Tekan tombol di bawah untuk menyimpan jawaban dan
                             mengunduh sertifikat Anda.
@@ -257,13 +257,13 @@
 
                 @if ($currentStep < 14 && $this->canProceed)
                     <button wire:click="nextStep"
-                        class="bg-[#1D4E89] text-white px-6 py-2.5 rounded-lg font-semibold shadow-md shadow-[#1D4E89]/30 hover:bg-[#0d2a4e] text-sm flex items-center">
+                        class="bg-[#1D4E89] text-white px-2 md:px-6 py-2 md:py-2.5 rounded-lg font-base md:font-semibold shadow-md shadow-[#1D4E89]/30 hover:bg-[#0d2a4e] text-sm flex items-center">
                         Selanjutnya <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 @endif
                 @if ($currentStep == 14)
                     <button wire:click="submit"
-                        class="bg-[#2A9D8F] text-white px-6 py-2.5 rounded-lg font-semibold shadow-md shadow-[#2A9D8F]/30 hover:bg-[#1a6e63] text-sm flex items-center">
+                        class="bg-[#2A9D8F] text-white px-2 md:px-6 py-2 md:py-2.5 rounded-lg font-base md:font-semibold shadow-md shadow-[#2A9D8F]/30 hover:bg-[#1a6e63] text-sm flex items-center">
                         Selesai & Unduh <i class="fas fa-download ml-2"></i>
                     </button>
                 @endif
