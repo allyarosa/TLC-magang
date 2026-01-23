@@ -127,6 +127,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Thread::class);
     }
+
+    public function surveyKepuasan() {
+        return $this->hasOne(SurveySubmission::class, 'user_id');
+    }
+
+    public function hasFilledSurvey() {
+        return $this->surveyKepuasan()->exists();
+    }
 }
 
     

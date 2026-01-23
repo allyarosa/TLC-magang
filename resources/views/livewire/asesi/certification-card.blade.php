@@ -84,7 +84,7 @@
                     @if (Auth::user()->hasPermissionTo('level_A_completed'))
                         <a wire:navigate
                             href="{{ route('asesi.sertifikat.riwayat', ['level' => 'A', 'id' => Hashids::encode(Auth::id())]) }}"
-                            class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-[1.02] transform transition-all duration-300">
+                            class="w-full inline-flex justify-center items-center py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30">
                             <i class="fas fa-award mr-2"></i>
                             Lihat Sertifikat
                         </a>

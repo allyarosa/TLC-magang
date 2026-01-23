@@ -60,7 +60,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                     <div>
                         <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                            <span class="w-1.5 h-8 bg-indigo-600 rounded-full"></span>
+                            <span class="w-1.5 h-8 bg-blue-600 rounded-full"></span>
                             Jalur Pembelajaran
                         </h2>
                         <p class="text-slate-500 mt-2">
@@ -120,8 +120,14 @@
 
             </div>
         </section>
-
     </div>
+    @if (session('download_trigger'))
+        <script>
+            window.onload = function() {
+                window.location.href = "{{ session('download_trigger') }}";
+            }
+        </script>
+    @endif
 
     {{-- Script --}}
     <script>

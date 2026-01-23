@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 return new class extends Migration
 {
@@ -15,25 +16,25 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
 
             // No. 3: Usia
-            $table->string('umur_range'); 
+            $table->string('umur_range')->nullable();
 
             // No. 6: Status Pekerjaan
-            $table->string('status_pekerjaan');
+            $table->string('status_pekerjaan')->nullable();
 
             // No. 7: Nama Instansi (Nullable karena jika 'Belum Bekerja', ini kosong)
-            $table->string('tempat_bekerja');
+            $table->string('tempat_bekerja')->nullable();
 
             // No. 10: Tujuan (Checkbox - Disimpan sebagai JSON Array)
-            $table->json('tujuan_sertifikasi'); 
+            $table->json('tujuan_sertifikasi')->nullable();
             
             // --- BAGIAN B: SKALA LIKERT (No 1-5, Kolom Statis) ---
             // Menggunakan TinyInteger karena nilainya hanya 1-4
             
-            $table->unsignedTinyInteger('rating_materi')->comment('Q1: Materi sesuai');
-            $table->unsignedTinyInteger('rating_trainer')->comment('Q2: Trainer jelas');
-            $table->unsignedTinyInteger('rating_uji')->comment('Q3: Uji adil');
-            $table->unsignedTinyInteger('rating_peningkatan_kompetensi')->comment('Q4: Kompetensi meningkat');
-            $table->unsignedTinyInteger('rating_penerapan')->comment('Q5: Penerapan kerja');
+            $table->unsignedTinyInteger('rating_materi')->comment('Q1: Materi sesuai')->nullable();
+            $table->unsignedTinyInteger('rating_trainer')->comment('Q2: Trainer jelas')->nullable();
+            $table->unsignedTinyInteger('rating_uji')->comment('Q3: Uji adil')->nullable();
+            $table->unsignedTinyInteger('rating_peningkatan_kompetensi')->comment('Q4: Kompetensi meningkat')->nullable();
+            $table->unsignedTinyInteger('rating_penerapan')->comment('Q5: Penerapan kerja')->nullable();
 
             // --- BAGIAN C: PERTANYAAN TERBUKA (No 6-8, Esai) ---
             

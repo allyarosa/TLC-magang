@@ -3,8 +3,8 @@
   array (
     'App\\Events\\ExamCompleted' => 
     array (
-      0 => 'App\\Listeners\\GrandExamPermission@handle',
-      1 => 'App\\Listeners\\SendExamCompletedNotification@handle',
+      0 => 'App\\Listeners\\SendExamCompletedNotification@handle',
+      1 => 'App\\Listeners\\GrandExamPermission@handle',
     ),
     'App\\Events\\PaymentSuccessful' => 
     array (

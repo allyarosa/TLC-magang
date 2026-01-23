@@ -21,11 +21,14 @@ class CertificationDetail extends Component
     public bool $hasAccessA = false;
     public bool $hasAccessB = false;
     public bool $hasAccessC = false;
+    public bool $hasSubmittedSurvey = false;
 
     public function mount($level)
     {
         $this->level = $level;
         $user = Auth::user();
+        $this->hasSubmittedSurvey = \App\Models\SurveySubmission::where('user_id', $user->id)->exists();
+        
         $levelUpper = strtoupper($this->level);
 
         $this->{'hasAccess' . $levelUpper} = $user->hasPermissionTo('access_level_' . $levelUpper);

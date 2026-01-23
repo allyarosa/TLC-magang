@@ -185,6 +185,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
     Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
+    Route::get('/sertifikasi/survey', \App\Livewire\Asesi\SurveyForm::class)->name('asesi.sertifikasi.survey');
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
 

@@ -1,3 +1,20 @@
+<style>
+    @keyframes floating {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    .animate-floating {
+        animation: floating 2s ease-in-out infinite;
+    }
+</style>
 <div id="detail_sertifikasi_page" class="min-h-screen bg-slate-50/50 py-10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -10,43 +27,44 @@
                 class="relative z-10 p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="flex-1">
                     <div class="flex items-center gap-4 mb-3">
-                            {{-- <i class="fas fa-certificate text-indigo-400 text-xl"></i> --}}
-                            <img src="{{ asset('images/certification-badge.png') }}" alt="" class="w-10 h-10">
+                        <img src="{{ asset(path: 'images/certification-badge.png') }}" alt="" class="w-10 h-10">
                         <span class="text-indigo-300 font-medium tracking-wide text-sm uppercase">
                             Status Sertifikasi
                         </span>
                     </div>
                     <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
                         Teaching Mastery <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500">Level
-                            A</span>
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500">
+                            Level A
+                        </span>
                     </h1>
-
-                    @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                        <p class="text-slate-300 text-base max-w-xl">
-                            Selamat! Anda telah menyelesaikan seluruh rangkaian ujian. Sertifikat kompetensi Anda kini
-                            siap untuk diunduh.
-                        </p>
-                    @else
-                        <p class="text-slate-400 text-base max-w-xl">
-                            Perjalanan Anda belum selesai. Lanjutkan progres untuk membuka akses sertifikat eksklusif
-                            Level A.
-                        </p>
-                    @endif
+                    @include('livewire.asesi.partials.certification-status-message')
                 </div>
 
                 <div class="w-full md:w-auto flex-shrink-0">
                     @if ($hasAccessA)
                         @if (Auth::user()->hasPermissionTo('level_A_completed'))
-                            <a href="{{ route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) }}"
-                                class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 ring-offset-slate-900">
-                                <span>Klaim Sertifikat</span>
-                                <i
-                                    class="fas fa-award text-lg group-hover:rotate-12 transition-transform duration-300"></i>
-                                <div
-                                    class="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                </div>
-                            </a>
+                            @if (Auth::user()->hasFilledSurvey())
+                                <a href="{{ $hasSubmittedSurvey ? route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) : route('asesi.sertifikasi.survey') }}"
+                                    class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 ring-offset-slate-900">
+                                    <span>Download Sertifikat</span>
+                                    <i
+                                        class="fas fa-award text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+                                    <div
+                                        class="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    </div>
+                                </a>
+                            @else
+                                <a href="{{ $hasSubmittedSurvey ? route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) : route('asesi.sertifikasi.survey') }}"
+                                    class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 animate-floating focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 ring-offset-slate-900">
+                                    <span>Klaim Sertifikat</span>
+                                    <i
+                                        class="fas fa-award text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+                                    <div
+                                        class="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    </div>
+                                </a>
+                            @endif
                         @else
                             <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-1 rounded-xl">
                                 <livewire:component.button-certificate status="sedang_berjalan" />
@@ -72,13 +90,17 @@
                             {{ count($exams) }} Selesai
                         </span>
                     </h2>
-                    <p class="text-slate-500 text-sm mt-1">Rekam jejak penilaian kompetensi Anda.</p>
+                    <p class="text-slate-500 text-sm mt-1">
+                        Rekam jejak penilaian kompetensi Anda.
+                    </p>
                 </div>
 
                 @if (count($exams) > 0)
                     <div class="flex items-center gap-6 text-sm">
                         <div class="text-right">
-                            <span class="block text-slate-400 text-xs uppercase font-semibold">Total Soal</span>
+                            <span class="block text-slate-400 text-xs uppercase font-semibold">
+                                Total Soal
+                            </span>
                             <span
                                 class="font-bold text-slate-700">{{ $exams->sum(function ($e) {return $e->correct_answers + $e->wrong_answers;}) }}</span>
                         </div>
@@ -108,9 +130,6 @@
                                 class="px-6 py-4 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider">
                                 Total Soal
                             </th>
-                            {{-- <th scope="col" class="px-6 py-4 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                                Skor
-                            </th> --}}
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-slate-100">
@@ -155,11 +174,6 @@
                                         {{ $exam->correct_answers + $exam->wrong_answers }} Soal
                                     </span>
                                 </td>
-                                {{-- <td class="px-6 py-5 whitespace-nowrap text-center">
-                                    <div class="text-sm font-bold {{ ($exam->score ?? 0) >= 70 ? 'text-green-600' : 'text-slate-600' }}">
-                                        {{ $exam->score ?? 0 }}
-                                    </div>
-                                </td> --}}
                             </tr>
                         @empty
                             <tr>
