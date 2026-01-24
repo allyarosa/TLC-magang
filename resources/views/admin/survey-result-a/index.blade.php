@@ -1,6 +1,6 @@
 @extends('layouts.adminDashboard')
 
-@section('title', 'Monitoring Ujian')
+@section('title', 'Hasil Survey')
 
 @section('content')
     <div class="p-4 bg-white rounded-lg mb-2">
@@ -30,7 +30,7 @@
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.exam.monitoring.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Exam Monitoring
                     </a>
-
+                    
                     <span class="text-gray-300">/</span>
 
                     {{-- Survey Result Level A --}}
@@ -43,12 +43,9 @@
         </nav>
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 mt-4">
             <div>
-                <h1 class="text-2xl font-bold text-biru tracking-tight">
-                    Monitoring & Remedial Level A
+                <h1 class="text-2xl font-bold text-brandGreen-dark tracking-tight">
+                    Monitoring & Hasil Survey Level A
                 </h1>
-                <p class="text-sm text-gray-500">
-                    Pantau progres peserta dan kelola akses remedial per kategori pada Level A
-                </p>
             </div>
             <div class="mt-4 md:mt-0 flex gap-3">
                 {{-- <button
@@ -57,7 +54,7 @@
                     Filter
                 </button> --}}
                 <button
-                    class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-md">
+                    class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-brandBlue-dark transition-colors shadow-md">
                     <i class="fas fa-file-export mr-2"></i>
                     Export Data
                 </button>
@@ -65,16 +62,16 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
+            <div class="bg-slate-100 rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
                 <div>
                     <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">
-                        Total Asesi Level A
+                        Total Responden
                     </span>
                     <h3 class="text-2xl font-bold text-gray-700 mt-1">
-                        {{ $userCount }} <span>Asesi</span>
+                        {{ $totalResponses }} <span>Asesi</span>
                     </h3>
                 </div>
-                <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
+                <div class="p-3 bg-white rounded-lg text-blue-600">
                     <i class="fas fa-users text-xl"></i>
                 </div>
             </div>
@@ -84,10 +81,10 @@
                 <div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500"></div>
                 <div>
                     <span class="text-orange-600 text-xs font-bold uppercase tracking-wider">
-                        Request Remedial
+                        Belum melakukan survey
                     </span>
                     <h3 class="text-2xl font-bold text-gray-800 mt-1">
-                        {{ $asesiRemidialCount }}
+                        122
                         <span class="text-sm font-normal text-gray-500">
                             User
                         </span>
@@ -104,7 +101,7 @@
                         Lulus Semua Kategori
                     </span>
                     <h3 class="text-2xl font-bold text-gray-700 mt-1">
-                        {{ $asesiLulusSemuaCount }}
+                        10
                         <span>Asesi</span>
                     </h3>
                 </div>

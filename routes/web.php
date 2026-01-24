@@ -51,9 +51,9 @@ use App\Http\Controllers\Admin\AsesiScoreController;
 // Controllers - Asesor
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Asesi\SertifikasiController;
-use App\Http\Controllers\Asesi\TransactionController;
 
 // Controllers - Admin
+use App\Http\Controllers\Asesi\TransactionController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Admin\ResultExamsAController;
 use App\Http\Controllers\Admin\AdminSettingsController;
@@ -66,6 +66,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Admin\ExamMonitoringAController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
+use App\Http\Controllers\Admin\SurveySubmissionAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -382,7 +383,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     //Exam Monitoring Level A
     Route::get('/dashboard/exam-monitoring-a', [ExamMonitoringAController::class, 'index'])->name('admin.exam.monitoring.a.index');
     
-    // --- Level Specific Data ---
 
     // Level A
     Route::get('/dashboard/level/a', [LevelAController::class, 'index'])->name('admin.level.a.index');
@@ -398,6 +398,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/a/question/{id}/edit', [LevelAController::class, 'bankSoalEdit'])->name('admin.question.a.edit');
     Route::put('/dashboard/level/a/question/{id}/update', [LevelAController::class, 'bankSoalUpdate'])->name('admin.question.a.update');
     Route::delete('/dashboard/level/a/question/{id}/delete', [LevelAController::class, 'bankSoalDestroy'])->name('admin.question.a.destroy');
+
+    // Hasil Survey Level A
+    Route::get('/dashboard/level/a/survey-result', [SurveySubmissionAController::class, 'index'])->name('admin.survey-result.a.index');
 
     // Level B
     Route::get('/dashboard/level/b', [App\Http\Controllers\Admin\LevelBController::class, 'index'])->name('admin.level.b.index');

@@ -212,6 +212,12 @@
                                         <span class="text-xs mr-2">•</span> Exam Monitoring
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('admin.survey-result.a.index') }}"
+                                        class="flex items-center p-2 text-gray-500 rounded-lg hover:text-[#1D4E89] hover:bg-blue-50 transition-all duration-200">
+                                        <span class="text-xs mr-2">•</span> Hasil Survey
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>

@@ -35,6 +35,14 @@
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.exam.monitoring.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Exam Monitoring
                     </a>
+
+                    <span class="text-gray-300">/</span>
+
+                    {{-- Survey Result Level A --}}
+                    <a href="{{ route('admin.survey-result.a.index') }}"
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.survey-result.a.*') ? 'text-blue-600 font-semibold' : '' }}">
+                        Survey Result
+                    </a>
                 </nav>
             </ol>
 

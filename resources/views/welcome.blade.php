@@ -18,7 +18,7 @@
                             #TRANSFORMASI PENDIDIKAN ERA DIGITAL
                         </span>
                         <h1
-                            class="text-5xl md:text-6xl font-extrabold text-[#1D4E89] leading-tight mt-4">
+                            class="text-5xl md:text-6xl font-extrabold text-brandBlue leading-tight mt-4">
                             <span class="relative inlinae-block">
                                 <span class="relative z-10">Transform.</span>
                             </span>

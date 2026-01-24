@@ -36,6 +36,18 @@ export default {
                     800: "#1e40af",
                     900: "#1e3a8a",
                 },
+                brandBlue : {
+                    DEFAULT: "#1D4E89",
+                    dark: "#0d2a4e",
+                },
+                brandGreen : {
+                    DEFAULT : "#2A9D8F",
+                    dark : "#1a6e63",
+                },
+                brandOrange : {
+                    DEFAULT : "#E76F51",
+                    dark : "#cf4a2a",
+                },
             },
             fontFamily: {
                 sans: ["Segoe UI", "ui-sans-serif", "system-ui", "sans-serif"],
