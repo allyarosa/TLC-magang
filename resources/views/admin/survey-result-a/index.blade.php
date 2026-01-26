@@ -30,7 +30,7 @@
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.exam.monitoring.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Exam Monitoring
                     </a>
-                    
+
                     <span class="text-gray-300">/</span>
 
                     {{-- Survey Result Level A --}}
@@ -43,7 +43,7 @@
         </nav>
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 mt-4">
             <div>
-                <h1 class="text-2xl font-bold text-brandGreen-dark tracking-tight">
+                <h1 class="text-2xl font-bold text-brandBlue tracking-tight">
                     Monitoring & Hasil Survey Level A
                 </h1>
             </div>
@@ -84,7 +84,7 @@
                         Belum melakukan survey
                     </span>
                     <h3 class="text-2xl font-bold text-gray-800 mt-1">
-                        122
+                        {{ $countAsesiWithoutSurvey }}
                         <span class="text-sm font-normal text-gray-500">
                             User
                         </span>
@@ -98,10 +98,10 @@
             <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
                 <div>
                     <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">
-                        Lulus Semua Kategori
+                        Lulus Level A
                     </span>
                     <h3 class="text-2xl font-bold text-gray-700 mt-1">
-                        10
+                        {{ $countAsesiLevelACompleted }}
                         <span>Asesi</span>
                     </h3>
                 </div>

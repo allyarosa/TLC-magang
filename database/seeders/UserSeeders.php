@@ -25,7 +25,7 @@ class UserSeeders extends Seeder
                 'email' => $faker->unique()->safeEmail,
                 'password' => bcrypt('password'),
                 'status' => 'active',
-                'email_verified_at' => now(), 
+                'email_verified_at' => now(),
             ])->assignRole('asesi');
             $user->givePermissionTo($array[array_rand($array)]);
 
@@ -35,11 +35,11 @@ class UserSeeders extends Seeder
                 'nama_depan' => $user->name,
                 'instansi' => $faker->company,
                 'tempat_lahir' => $faker->city,
-                'tanggal_lahir' => $faker->date('Y-m-d', '2005-12-31'), 
+                'tanggal_lahir' => $faker->date('Y-m-d', '2005-12-31'),
                 'jenis_kelamin' => $faker->randomElement(['L', 'P']),
-                'no_wa' =>  '62' . $faker->unique()->numerify('8##########'),
-                'profile_image' => 'blankProfile.png', 
-                'provinsi' =>  $faker->city,
+                'no_wa' => '62' . $faker->unique()->numerify('8##########'),
+                'profile_image' => 'blankProfile.png',
+                'provinsi' => $faker->city,
                 'kabupaten' => $faker->city,
                 'kelurahan' => $faker->city,
                 'kecamatan' => $faker->city,

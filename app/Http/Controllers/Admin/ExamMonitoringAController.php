@@ -24,8 +24,6 @@ class ExamMonitoringAController extends Controller
     }
     public function index()
     {
-        // dd($this->asesi->getAsesiWithPermission());
-        
         $data = $this->service->getMonitoringData();
         return view('admin.examMonitoring.index', [
             'userCount' => $data->userCount,

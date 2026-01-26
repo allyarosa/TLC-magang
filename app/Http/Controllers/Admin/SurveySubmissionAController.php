@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Repositories\AsesiRepository;
 use App\Repositories\SurveySubmissionRepository;
+use App\Services\SurveySubmissionServiceA;
 use Illuminate\Http\Request;
 use App\Models\SurveySubmission;
 use App\Http\Controllers\Controller;
@@ -21,13 +22,14 @@ class SurveySubmissionAController extends Controller
         $this->asesi = $asesi;
     }
 
-    public function index()
+    public function index(SurveySubmissionServiceA $surveyService)
     {
-        $totalResponses = $this->survey->countSurveySubmissions();
-        $asesi = $this->asesi->getAsesi();
-        
+        $data = $surveyService->getSurveySummaryData();
+
         return view('admin.survey-result-a.index', [
-            'totalResponses' => $totalResponses,
+            'totalResponses' => $data->totalResponse,
+            'countAsesiWithoutSurvey' => $data->countAsesiWithoutSurvey,
+            'countAsesiLevelACompleted' => $data->countAsesiLevelACompleted,
         ]);
     }
 }

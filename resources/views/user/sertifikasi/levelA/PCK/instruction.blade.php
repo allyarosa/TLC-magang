@@ -180,12 +180,10 @@
                 <div class="mt-8 rounded-lg border-l-4 border-yellow-400 bg-yellow-50 p-4">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M8.257 3.099c.636-1.1 2.153-1.1 2.79 0l7.5 13.016c.635 1.1-1.63 2.39-2.79 0l-7.5-13.016z"
-                                    clip-rule="evenodd" />
-                                <path d="M10 6a1 1 0 011 1v4a1 1 0 11-2 0V7a1 1 0 011-1zM9 14a1 1 0 102 0 1 1 0 00-2 0z" />
+                            <svg class="h-5 w-5 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
                         <div class="ml-3">

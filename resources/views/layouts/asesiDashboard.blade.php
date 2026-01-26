@@ -80,9 +80,9 @@
 
                         <a href="{{ route($nav['route']) }}"
                             class="px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ease-in-out
-           {{ $isActive
-               ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 -translate-y-0.5'
-               : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50' }}">
+                        {{ $isActive
+                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 -translate-y-0.5'
+                            : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50' }}">
                             {{ $nav['name'] }}
                         </a>
                     @endforeach
