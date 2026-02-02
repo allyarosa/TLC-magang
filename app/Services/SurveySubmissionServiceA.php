@@ -3,9 +3,12 @@
 namespace App\Services;
 
 use App\Models\SiteInfo;
+use Maatwebsite\Excel\Excel;
 use App\Models\SurveySubmission;
 use App\DTO\SurveySubmissionADTO;
+use App\Exports\SurveySubmissionA;
 use App\Repositories\AsesiRepository;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Repositories\SurveySubmissionRepository;
 
 class SurveySubmissionServiceA
@@ -75,5 +78,16 @@ class SurveySubmissionServiceA
         AVG(rating_penerapan) as avg_penerapan
     ')->first();
     return $averages;
+    }
+
+    public function exportDataLogic() {
+
+        $date = now()->format('d-m-Y_H-i-s');
+        if(SurveySubmission::count() == 0){
+            Alert::info('No data available for export.');
+            return redirect()->back()->with('error', 'Tidak ada data untuk diekspor.');
+        } else {
+            return Excel::download(new SurveySubmissionA(), "survey_submissions_a_{$date}.xlsx");
+        }
     }
 }

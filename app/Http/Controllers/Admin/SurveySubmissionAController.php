@@ -59,14 +59,8 @@ class SurveySubmissionAController extends Controller
         return view('admin.survey-result-a.show_questions');
     }
 
-    public function exportData()
-    {   
-        $date = now()->format('d-m-Y_H-i-s');
-        if(SurveySubmission::count() == 0){
-            Alert::info('No data available for export.');
-            return redirect()->back()->with('error', 'Tidak ada data untuk diekspor.');
-        } else {
-            return Excel::download(new SurveySubmissionA(), "survey_submissions_a_{$date}.xlsx");
-        }
+    public function exportData(SurveySubmissionServiceA $surveyService)
+    {
+        return $surveyService->exportDataLogic();
     }
 }
