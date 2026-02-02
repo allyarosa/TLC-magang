@@ -43,6 +43,21 @@ class AsesiExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return ['Nama', 'Email', 'NIK', 'Nama Depan', 'Instansi', 'Tempat Lahir', 'Tanggal Lahir', 'Jenis Kelamin', 'Provinsi', 'Kecamatan', 'Kabupaten', 'Kelurahan', 'Nomor Whatsapp', 'Custom Instansi'];
+        return [
+            'Nama',
+            'Email',
+            'NIK',
+            'Nama Depan',
+            'Instansi',
+            'Tempat Lahir',
+            'Tanggal Lahir',
+            'Jenis Kelamin',
+            'Provinsi',
+            'Kecamatan',
+            'Kabupaten',
+            'Kelurahan',
+            'Nomor Whatsapp',
+            'Custom Instansi'
+        ];
     }
 }

@@ -25,6 +25,15 @@ class AsesiRepository
             ->count();
     }
 
+    public function getAsesiWithoutSurveyA()
+    {
+        return User::role('asesi')
+            ->with('UserProfile')
+            ->permission('level_A_completed')
+            ->whereDoesntHave('surveyKepuasan')
+            ->paginate(10);
+    }
+
     public function countAsesiLevelACompleted() {
         return User::role('asesi')
             ->permission('level_A_completed')

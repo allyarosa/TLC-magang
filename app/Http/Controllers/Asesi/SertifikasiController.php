@@ -154,7 +154,7 @@ class SertifikasiController extends Controller
 
         $data = [
             // Page 1
-            'name' => $userProfile->nama_depan ?? $user->name,
+            'name' => ($userProfile->nama_depan ? $userProfile->nama_depan . ', CTK' : $user->name),
             'date' => now()->format('d F Y'),
             'backgroundImage' => $backgroundImage,
             'fontSize' => $formatted['fontSize'],

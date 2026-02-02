@@ -53,16 +53,21 @@
                     <i class="fas fa-filter mr-2 text-gray-400"></i>
                     Filter
                 </button> --}}
-                <button
+                <a href="{{ route('admin.survey-result.a.questions') }}"
+                    class="px-4 py-1.5 text-sm font-medium text-brandBlue bg-gray-100 hover:bg-gray-200 rounded-lg border border-transparent flex items-center">
+                    Lihat Soal
+                </a>
+                <a href="{{ route('admin.survey-result.a.export') }}"
                     class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-brandBlue-dark transition-colors shadow-md">
                     <i class="fas fa-file-export mr-2"></i>
                     Export Data
-                </button>
+                </a>
             </div>
         </div>
 
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-slate-100 rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
+            <div class="bg-slate-200 rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
                 <div>
                     <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">
                         Total Responden
@@ -79,23 +84,33 @@
             <div
                 class="bg-white rounded-xl p-5 border border-orange-200 shadow-sm flex items-center justify-between relative overflow-hidden">
                 <div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500"></div>
-                <div>
-                    <span class="text-orange-600 text-xs font-bold uppercase tracking-wider">
-                        Belum melakukan survey
-                    </span>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-1">
+
+                <div class="flex flex-col items-start z-10 flex-1 w-full pr-4">
+
+                    <div class="w-full flex items-center justify-between mb-1">
+                        <span class="text-orange-600 text-xs font-bold uppercase tracking-wider">
+                            Belum melakukan survey
+                        </span>
+
+                        @if ($hideDetailButton)
+                            <a href="{{ route('admin.survey-result.a.asesi-without-survey') }}"
+                                class="inline-flex items-center gap-1 px-2 py-1 text-[12px] font-semibold text-orange-700 bg-orange-50 border border-orange-200 rounded hover:bg-orange-100 hover:text-orange-800 transition-colors duration-200 cursor-pointer whitespace-nowrap">
+                                Lihat Detail
+                                <i class="fas fa-arrow-right text-[8px]"></i>
+                            </a>
+                        @endif
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-800">
                         {{ $countAsesiWithoutSurvey }}
-                        <span class="text-sm font-normal text-gray-500">
-                            User
+                        <span class="text-sm font-semibold text-gray-500">
+                            Asesi
                         </span>
                     </h3>
                 </div>
-                <div class="p-3 bg-orange-100 rounded-lg text-orange-600 animate-pulse">
-                    <i class="fas fa-exclamation-circle text-xl"></i>
-                </div>
             </div>
 
-            <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
+            <div class="bg-slate-200 rounded-xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
                 <div>
                     <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">
                         Lulus Level A
@@ -111,223 +126,342 @@
             </div>
         </div>
 
+        {{-- Rata-rata Penilaian Cards (Updated Design) --}}
+        <div class="mb-8">
+            <h2 class="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">
+                Indeks Kepuasan Peserta
+            </h2>
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+                {{-- 1. Materi Training --}}
+                <div
+                    class="group relative bg-gray-200 p-3 rounded-lg border border-gray-200 flex flex-col items-start hover:shadow-md transition-all cursor-help">
+                    <span class="text-xs font-medium text-gray-500 mb-1">Materi Training</span>
+                    <div class="flex items-baseline gap-1">
+                        <h3 class="text-xl font-bold text-gray-800">{{ number_format($avgRatings->avg_materi ?? 0, 1) }}
+                        </h3>
+                        <span class="text-[10px] text-gray-400">/ 4.0</span>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 p-2 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-center leading-relaxed">
+                        "Materi training selama 12 sesi sesuai dengan kebutuhan kompetensi saya."
+                        <div
+                            class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 2. Kualitas Trainer --}}
+                <div
+                    class="group relative bg-gray-200 p-3 rounded-lg border border-gray-200 flex flex-col items-start hover:shadow-md transition-all cursor-help">
+                    <span class="text-xs font-medium text-gray-500 mb-1">Kualitas Trainer</span>
+                    <div class="flex items-baseline gap-1">
+                        <h3 class="text-xl font-bold text-gray-800">{{ number_format($avgRatings->avg_trainer ?? 0, 1) }}
+                        </h3>
+                        <span class="text-[10px] text-gray-400">/ 4.0</span>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 p-2 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-center leading-relaxed">
+                        "Trainer menyampaikan materi dengan jelas dan membantu."
+                        <div
+                            class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 3. Proses Uji --}}
+                <div
+                    class="group relative bg-gray-200 p-3 rounded-lg border border-gray-200 flex flex-col items-start hover:shadow-md transition-all cursor-help">
+                    <span class="text-xs font-medium text-gray-500 mb-1">Proses Uji</span>
+                    <div class="flex items-baseline gap-1">
+                        <h3 class="text-xl font-bold text-gray-800">{{ number_format($avgRatings->avg_uji ?? 0, 1) }}</h3>
+                        <span class="text-[10px] text-gray-400">/ 4.0</span>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 p-2 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-center leading-relaxed">
+                        "Proses uji sertifikasi dilaksanakan secara adil dan transparan."
+                        <div
+                            class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 4. Peningkatan Skill --}}
+                <div
+                    class="group relative bg-gray-200 p-3 rounded-lg border border-gray-200 flex flex-col items-start hover:shadow-md transition-all cursor-help">
+                    <span class="text-xs font-medium text-gray-500 mb-1">Peningkatan Skill</span>
+                    <div class="flex items-baseline gap-1">
+                        <h3 class="text-xl font-bold text-gray-800">
+                            {{ number_format($avgRatings->avg_peningkatan_kompetensi ?? 0, 1) }}</h3>
+                        <span class="text-[10px] text-gray-400">/ 4.0</span>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 p-2 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-center leading-relaxed">
+                        "Setelah mengikuti program ini, pemahaman dan kompetensi saya meningkat."
+                        <div
+                            class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 5. Implementasi --}}
+                <div
+                    class="group relative bg-gray-200 p-3 rounded-lg border border-gray-200 flex flex-col items-start hover:shadow-md transition-all cursor-help">
+                    <span class="text-xs font-medium text-gray-500 mb-1">Implementasi</span>
+                    <div class="flex items-baseline gap-1">
+                        <h3 class="text-xl font-bold text-gray-800">{{ number_format($avgRatings->avg_penerapan ?? 0, 1) }}
+                        </h3>
+                        <span class="text-[10px] text-gray-400">/ 4.0</span>
+                    </div>
+
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-56 p-2 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-center leading-relaxed">
+                        "Kompetensi hasil training ini sudah/akan saya terapkan dalam pekerjaan saya."
+                        <div
+                            class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
 
             <div
                 class="p-5 border-b border-gray-100 flex flex-col sm:flex-row justify-between gap-4 items-center bg-gray-50/50">
+
+                {{-- FORM SEARCH --}}
                 <div class="relative w-full sm:w-96">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-search text-gray-400"></i>
                     </div>
-                    <input type="text"
-                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out"
-                        placeholder="Cari nama peserta atau email...">
+                    <form action="{{ route('admin.survey-result.a.index') }}" method="GET" class="relative">
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"
+                            placeholder="Cari nama asesi atau email...">
+                    </form>
                 </div>
+
                 <div class="flex gap-2">
-                    <button
+                    {{-- <button
                         class="px-4 py-1.5 font-medium text-indigo-700 bg-indigo-50 rounded-lg border border-indigo-100">
                         Open All Remedial
-                    </button>
-                    <button
+                    </button> --}}
+                    {{-- <button
                         class="px-4 py-1.5 text-sm font-medium text-indigo-700 bg-indigo-50 rounded-lg border border-indigo-100">
                         Semua
-                    </button>
-                    <button
-                        class="px-4 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg border border-transparent">
-                        Hanya Gagal
-                    </button>
+                    </button> --}}
+
                 </div>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-200">
+                    <thead class="bg-brandBlue">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Peserta
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                No
                             </th>
                             <th scope="col"
-                                class="px-4 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-24">
-                                HOTS</th>
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Name
+                            </th>
                             <th scope="col"
-                                class="px-4 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-24">
-                                PCK</th>
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Range Umur
+                            </th>
                             <th scope="col"
-                                class="px-4 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-24">
-                                LIT</th>
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Rating Materi
+                            </th>
                             <th scope="col"
-                                class="px-4 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-24">
-                                NUM</th>
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Rating Trainer
+                            </th>
                             <th scope="col"
-                                class="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">Aksi
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Rating Uji
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Rating
+                                <br>
+                                Peningkatan Kompetensi
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Rating Penerapan
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Actions
                             </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        @forelse ($surveySubmissions as $data)
+                            <tr class="hover:bg-gray-50 transition-colors">
 
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full object-cover border border-gray-200"
-                                            src="https://ui-avatars.com/api/?name=Ahmad+Fauzi&background=random"
-                                            alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Ahmad Fauzi</div>
-                                        <div class="text-xs text-gray-500">fauzi@example.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 cursor-help"
-                                    title="Nilai: 85">
-                                    85
-                                </span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-red-100 text-red-800 border border-red-200 cursor-help"
-                                    title="Nilai: 40 (Tidak Lulus)">
-                                    40
-                                </span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    78
-                                </span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    90
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <button onclick="openRemedialModal()"
-                                    class="text-orange-600 hover:text-orange-900 bg-orange-50 hover:bg-orange-100 px-3 py-1.5 rounded-md border border-orange-200 transition-colors shadow-sm flex items-center justify-end ml-auto gap-2">
-                                    <i class="fas fa-unlock-alt text-xs"></i>
-                                    <span>Buka Remedial</span>
-                                </button>
-                            </td>
-                        </tr>
+                                {{-- NO --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $surveySubmissions->firstItem() + $loop->index }}
+                                </td>
 
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <div
-                                            class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
-                                            SR
+                                {{-- NAME --}}
+                                <td class="px-4 py-3 whitespace-nowrap">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full object-cover border-2 border-indigo-100"
+                                                src="{{ '/storage/' . $data->user->userProfile->profile_image }}"
+                                                alt="Profile image {{ $data->user->name }}">
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">
+                                                {{ $data->user->name }}
+                                            </div>
+                                            <div class="text-xs text-gray-500">
+                                                {{ $data->user->email }}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Siti Rahma</div>
-                                        <div class="text-xs text-gray-500">siti.rahma@example.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    80
-                                </span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    75
-                                </span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 animate-pulse">
-                                    <i class="fas fa-clock mr-1 mt-0.5"></i> 24m
-                                </span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-500">
-                                    <i class="fas fa-lock text-[10px]"></i>
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <span class="text-gray-400 italic text-xs">Sedang Ujian</span>
-                            </td>
-                        </tr>
+                                </td>
+                                {{-- RANGE UMUR --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $data->umur_range }}
+                                </td>
 
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full object-cover border border-gray-200"
-                                            src="https://ui-avatars.com/api/?name=Budi+Santoso&background=random"
-                                            alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Budi Santoso</div>
-                                        <div class="text-xs text-gray-500">budi@example.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">90</span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">88</span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">95</span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-nowrap text-center">
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">92</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <button
-                                    class="text-indigo-600 hover:text-indigo-900 font-medium text-xs border border-indigo-100 px-3 py-1 rounded bg-indigo-50 hover:bg-indigo-100">
-                                    Detail
-                                </button>
-                            </td>
-                        </tr>
+                                {{-- RATING MATERI --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-center">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-xs font-bold
+                                        {{ $data->rating_materi == 4
+                                            ? 'bg-green-100 text-green-800'
+                                            : ($data->rating_materi == 3
+                                                ? 'bg-blue-100 text-blue-800'
+                                                : ($data->rating_materi == 2
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-red-100 text-red-800')) }}">
+                                        {{ $data->rating_materi }}
+                                    </span>
+                                </td>
+                                {{-- RATING TRAINER --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-center">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-xs font-bold
+                                        {{ $data->rating_trainer == 4
+                                            ? 'bg-green-100 text-green-800'
+                                            : ($data->rating_trainer == 3
+                                                ? 'bg-blue-100 text-blue-800'
+                                                : ($data->rating_trainer == 2
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-red-100 text-red-800')) }}">
+                                        {{ $data->rating_trainer }}
+                                    </span>
+                                </td>
 
+                                {{-- RATING UJI --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-center">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-xs font-bold
+                                        {{ $data->rating_uji == 4
+                                            ? 'bg-green-100 text-green-800'
+                                            : ($data->rating_uji == 3
+                                                ? 'bg-blue-100 text-blue-800'
+                                                : ($data->rating_uji == 2
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-red-100 text-red-800')) }}">
+                                        {{ $data->rating_uji }}
+                                    </span>
+                                </td>
+
+                                {{-- RATING PENINGKATAN KOMPETENSI --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-center">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-xs font-bold
+                                        {{ $data->rating_peningkatan_kompetensi == 4
+                                            ? 'bg-green-100 text-green-800'
+                                            : ($data->rating_peningkatan_kompetensi == 3
+                                                ? 'bg-blue-100 text-blue-800'
+                                                : ($data->rating_peningkatan_kompetensi == 2
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-red-100 text-red-800')) }}">
+                                        {{ $data->rating_peningkatan_kompetensi }}
+                                    </span>
+                                </td>
+
+                                {{-- RATING PENERAPAN --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-center">
+                                    <span
+                                        class="px-2.5 py-1 rounded-full text-xs font-bold
+                                        {{ $data->rating_penerapan == 4
+                                            ? 'bg-green-100 text-green-800'
+                                            : ($data->rating_penerapan == 3
+                                                ? 'bg-blue-100 text-blue-800'
+                                                : ($data->rating_penerapan == 2
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-red-100 text-red-800')) }}">
+                                        {{ $data->rating_penerapan }}
+                                    </span>
+                                </td>
+
+                                {{-- ACTIONS --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="flex space-x-2">
+
+                                        {{-- MELIHAT --}}
+                                        <a href="{{ route('admin.survey-result.a.show', $data->id) }}"
+                                            class="p-2 text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 transition-colors inline-flex items-center justify-center"
+                                            title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+
+                                        {{-- <a href="#"
+                                            class="p-2 text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors"
+                                            title="Edit">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                                </path>
+                                            </svg>
+                                        </a> --}}
+
+                                        {{-- <form action="#" method="POST" onsubmit="return confirm('Yakin?')">
+                                            @csrf @method('DELETE')
+                                            <button type="submit"
+                                                class="p-2 text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                        </form> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            @livewire('empty-state', [
+                                'title' => 'Tidak Ada Data',
+                                'colspan' => 9,
+                                'message' => 'Data Survey belum tersedia.',
+                            ])
+                        @endforelse
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-white px-4 py-3 border-t border-gray-200 flex items-center justify-between sm:px-6">
                 <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                    <div>
-                        <p class="text-sm text-gray-700">
-                            Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium">10</span> dari
-                            <span class="font-medium">97</span> hasil
-                        </p>
-                    </div>
-                    <div>
-                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                            <a href="#"
-                                class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                <span class="sr-only">Previous</span>
-                                <i class="fas fa-chevron-left h-5 w-5 p-1"></i>
-                            </a>
-                            <a href="#"
-                                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">1</a>
-                            <a href="#"
-                                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
-                            <a href="#"
-                                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
-                            <a href="#"
-                                class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                <span class="sr-only">Next</span>
-                                <i class="fas fa-chevron-right h-5 w-5 p-1"></i>
-                            </a>
-                        </nav>
-                    </div>
+                    {{ $surveySubmissions->links() }}
                 </div>
             </div>
         </div>

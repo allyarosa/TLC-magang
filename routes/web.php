@@ -401,6 +401,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     // Hasil Survey Level A
     Route::get('/dashboard/level/a/survey-result', [SurveySubmissionAController::class, 'index'])->name('admin.survey-result.a.index');
+    Route::get('/dashboard/level/a/survey-result/detail/{id}', [SurveySubmissionAController::class, 'show'])->name('admin.survey-result.a.show');
+    Route::get('/dashboard/level/a/survey-result/questions', [SurveySubmissionAController::class, 'showQuestions'])->name('admin.survey-result.a.questions');
+    Route::get('/dashboard/level/a/survey-result/asesi-without-survey', [SurveySubmissionAController::class, 'showAsesiWithoutSurvey'])->name('admin.survey-result.a.asesi-without-survey');
+    Route::get('/dashboard/level/a/survey-result/export', [SurveySubmissionAController::class, 'exportData'])->name('admin.survey-result.a.export');
 
     // Level B
     Route::get('/dashboard/level/b', [App\Http\Controllers\Admin\LevelBController::class, 'index'])->name('admin.level.b.index');

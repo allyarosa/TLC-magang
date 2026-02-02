@@ -16,10 +16,10 @@ class UserProfile extends Model
     protected $fillable = [
         'user_id',
         'nik', //
-        'nama_depan', //
-        'instansi', // 
+        'nama_depan', 
+        'instansi',  
 
-        'profesi', //
+        'profesi', 
         'lama_masa_kerja',
 
         'latar_belakang_pendidikan',
