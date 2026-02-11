@@ -18,7 +18,7 @@
             <div class="flex-grow p-6 sm:p-4 md:p-6 flex flex-col justify-center overflow-y-auto">
 
                 @if ($currentStep === 1)
-                    <div class="text-center animate-fade-in-up">
+                    <div class="text-center animate-fade-in-up" wire:key="step-1">
                         <div
                             class="w-1/2 h-1/3 rounded-2xl flex items-center justify-center mx-auto mb-4 text-[#1D4E89]">
                             <img src="{{ asset('assets/img/surveyForm/rate.png') }}" alt="" loading="lazy"
@@ -36,7 +36,7 @@
                 @endif
 
                 @if ($currentStep === 2)
-                    <div class="animate-fade-in-up mx-10 md:mx-36">
+                    <div class="animate-fade-in-up mx-10 md:mx-36" wire:key="step-2">
                         <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Berapa usia Anda saat ini?
                         </label>
@@ -63,7 +63,7 @@
                 @endif
 
                 @if ($currentStep === 3)
-                    <div class="animate-fade-in-up mx-2 sm:mx-10 md:mx-36">
+                    <div class="animate-fade-in-up mx-2 sm:mx-10 md:mx-36" wire:key="step-3">
                         <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Apa status pekerjaan Anda saat ini?
                         </label>
@@ -90,7 +90,7 @@
                 @endif
 
                 @if ($currentStep === 4)
-                    <div class="animate-fade-in-up mx-2 sm:mx-10 md:mx-36">
+                    <div class="animate-fade-in-up mx-2 sm:mx-10 md:mx-36" wire:key="step-4">
                         <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Di mana instansi tempat Anda bekerja?
                         </label>
@@ -107,7 +107,7 @@
                 @endif
 
                 @if ($currentStep === 5)
-                    <div class="animate-fade-in-up">
+                    <div class="animate-fade-in-up" wire:key="step-5">
                         <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Apa tujuan utama Anda mengikuti sertifikasi ini?
                         </label>
@@ -235,7 +235,7 @@
                 @endforeach
 
                 @if ($currentStep === 14)
-                    <div class="text-center animate-fade-in-up py-4">
+                    <div class="text-center animate-fade-in-up py-4" wire:key="step-14">
                         <div
                             class="w-16 h-16 bg-[#2A9D8F]/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#2A9D8F]">
                             {{-- <i class="fas fa-check text-3xl"></i> --}}
