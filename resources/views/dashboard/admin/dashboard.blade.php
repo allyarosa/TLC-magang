@@ -4,12 +4,12 @@
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        {{-- <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
                 <h1 class="text-2xl font-bold text-slate-800">Dashboard Overview</h1>
                 <p class="text-slate-500 text-sm mt-1">Pantau statistik asesi, asesor, dan sertifikasi.</p>
             </div>
-            </div>
+            </div> --}}
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             

@@ -39,7 +39,7 @@
                 <!-- Search -->
                 <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative">
                     <input type="text" name="search"
-                        class="pl-9 pr-3 py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        class="px-10 py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500"
                         placeholder="Cari Asesi..." value="{{ request('search') }}">
                     <div class="absolute left-2.5 top-2 text-gray-400">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

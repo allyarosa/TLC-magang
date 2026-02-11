@@ -142,16 +142,7 @@ class AuthController extends Controller
                 $userProfile->profile_image = 'img/blank_profile.png';
             }
 
-            // if (isset($userProfile)) {
-            //     if (!$user->hasRole('user')) {
-            //         $user->assignRole('user');
-            //     }
-            //     if (!$user->hasPermissionTo('access_level_A_unpaid')) {
-            //         $user->givePermissionTo('access_level_A_unpaid');
-            //     }
-            //     $user->givePermissionTo('access_level_A_unpaid');
             $userProfile->save();
-            // }
 
             return redirect()->route('asesi.dashboard')->with('success', 'Data berhasil disimpan');
         } catch (Exception $e) {

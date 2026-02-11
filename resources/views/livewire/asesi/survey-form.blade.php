@@ -108,7 +108,7 @@
 
                 @if ($currentStep === 5)
                     <div class="animate-fade-in-up">
-                        <label class="`block text-lg font-semibold text-slate-700 mb-4">
+                        <label class="block text-lg font-semibold text-slate-700 mb-4">
                             Apa tujuan utama Anda mengikuti sertifikasi ini?
                         </label>
                         <div class="space-y-2">
@@ -168,7 +168,7 @@
 
                 @foreach ($ratingQuestions as $step => $q)
                     @if ($currentStep === $step)
-                        <div class="animate-fade-in-up text-center">
+                        <div class="animate-fade-in-up text-center" wire:key="rating-step-{{ $step }}">
                             <span
                                 class="inline-block px-3 py-1 bg-[#1D4E89]/10 text-[#1D4E89] rounded-full text-[10px] font-bold tracking-wide uppercase mb-4">
                                 Evaluasi {{ $step - 5 }}/5
@@ -219,7 +219,7 @@
 
                 @foreach ($essayQuestions as $step => $q)
                     @if ($currentStep === $step)
-                        <div class="animate-fade-in-up">
+                        <div class="animate-fade-in-up" wire:key="essay-step-{{ $step }}">
                             <label class="block text-lg font-semibold text-slate-700 mb-4">{{ $q['label'] }}</label>
                             <textarea wire:model.live.debounce.300ms="{{ $q['model'] }}" rows="5"
                                 class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-[#1D4E89] focus:border-[#1D4E89] outline-none resize-none text-slate-700 leading-relaxed text-sm"
