@@ -1278,6 +1278,5 @@
             </div>
         </section>
         {{-- Apa itu HAFECS Section --}}
-
     </div>
 @endsection
