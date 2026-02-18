@@ -38,6 +38,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd testing.office.hafecs.id/TLC/
+          php artisan down --message="Deploying updates, please wait..."
           git reset --hard
           git pull origin dev
           composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
@@ -51,3 +52,4 @@ jobs:
           php artisan route:cache
           php artisan view:cache
           php artisan optimize
+          php artisan up
