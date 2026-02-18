@@ -13,7 +13,7 @@ class QuestionSeeders extends Seeder
     public function run(): void
     {
         for ($categoryId = 1; $categoryId <= 4; $categoryId++) {
-            for ($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 10; $i++) {
                 QuestionA::create([
                     'category_a_id'    => $categoryId,
                     'question_text'    => "Apa yang akan terjadi jika kita mengulangi proses ke-$i pada kategori $categoryId dalam konteks pengembangan sistem?",

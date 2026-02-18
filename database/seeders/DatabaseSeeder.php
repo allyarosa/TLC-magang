@@ -108,6 +108,7 @@ class DatabaseSeeder extends Seeder
                 // LevelBSeeders::class,
             LevelCQuestionSeeders::class,
             // CertificateSeeders::class, //PRODUCTION COMMENT INI
+            DummyDataSeeder::class,
         ]);
     }
 }
