@@ -331,6 +331,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/asesi/{id}/level-a', [AsesiScoreController::class, 'showLevelA'])->name('admin.asesi.level_a.show');
     // Route::get('/dashboard/asesi/{id}/level-a', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.level_b.show');
     // Route::get('/dashboard/asesi/{id}/level-a', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.level_c.show');
+    Route::post('/dashboard/asesi/{id}/impersonate', [AdminDashboardController::class, 'impersonate'])->name('admin.asesi.impersonate');
 
     // Asesor
     Route::get('/dashboard/asesor', [AdminDashboardController::class, 'asesorIndex'])->name('admin.asesor.index');

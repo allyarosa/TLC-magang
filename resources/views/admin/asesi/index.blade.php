@@ -275,6 +275,22 @@
                                         </svg>
                                     </a>
 
+                                    <!-- Impersonate -->
+                                    <form action="{{ route('admin.asesi.impersonate', $user->user->id) }}" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin login sebagai user ini?');">
+                                        @csrf
+                                        <button type="submit"
+                                            class="p-2 text-green-600 bg-green-50 rounded-md hover:bg-green-100 transition-colors"
+                                            title="Login as Asesi">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </form>
+
 
                                     <!-- Delete -->
                                     <form action="{{ route('admin.asesi.destroy', $user->user->id) }}" method="POST"

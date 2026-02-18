@@ -20,6 +20,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AsesiStoreRequest;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -682,6 +683,20 @@ class AdminDashboardController extends Controller
             'navTitle' => 'Create Categories',
             'kategori' => $kategori
         ]);
+    }
+
+    public function impersonate($id)
+    {
+        $user = User::findOrFail($id);
+
+        // Prevent impersonating other admins for security
+        if ($user->hasRole('admin')) {
+            return redirect()->back()->with('error', 'Cannot impersonate an admin!');
+        }
+
+        Auth::login($user);
+
+        return redirect()->route('asesi.dashboard');
     }
 
 }
