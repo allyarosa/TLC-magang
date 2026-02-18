@@ -5,37 +5,7 @@
 
 @section('content')
     <div class="p-4 bg-white rounded-lg mb-2">
-        <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
-            <ol class="flex items-center space-x-1 text-gray-600">
-                <nav
-                    class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
-                    <a href="{{ route('admin.categories.a.index') }}"
-                        class="transition-colors hover:text-blue-600">
-                        Kategori Soal
-                    </a>
-                    <span class="text-gray-300">/</span>
-                    <a href="{{ route('admin.question.a.index') }}"
-                        class="transition-colors hover:text-blue-600">
-                        Bank Soal
-                    </a>
-                    <span class="text-gray-300">/</span>
-                    <a href="{{ route('admin.exam.monitoring.a.index') }}"
-                        class="transition-colors hover:text-blue-600">
-                        Exam Monitoring
-                    </a>
-                    <span class="text-gray-300">/</span>
-                    <a href="{{ route('admin.survey-result.a.index') }}"
-                        class="transition-colors hover:text-blue-600">
-                        Survey Result
-                    </a>
-                    <span class="text-gray-300">/</span>
-                    {{-- <span class="text-blue-600 font-semibold">Score Result</span> --}}
-                    <a href="{{ route('admin.level.a.hasil-penilaian') }}"
-                        class="transition-colors hover:text-blue-600 text-blue-600 font-semibold">
-                        Score Result
-                </nav>
-            </ol>
-        </nav>
+        @include('components.admin.navbar')
 
         {{-- Success/Error Message --}}
         @if (session('success'))
@@ -62,7 +32,12 @@
                     Import Nilai
                 </a>
                 <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" @click.away="open = false"
+                    <a href="{{ route('admin.level.a.hasil-penilaian.export', ['format' => 'csv']) }}"
+                    class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-brandBlue-dark transition-colors shadow-md">
+                    <i class="fas fa-file-export mr-2"></i>
+                        Export Data
+                    </a>
+                    {{-- <button @click="open = !open" @click.away="open = false"
                         class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-brandBlue-dark transition-colors shadow-md">
                         <i class="fas fa-file-export mr-2"></i>
                         Export Data
@@ -80,7 +55,7 @@
                             <i class="fas fa-file-csv mr-2 text-blue-600"></i>
                             Export CSV (.csv)
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -144,11 +119,22 @@
                     <input type="text" name="search" value="{{ $search ?? '' }}"
                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out"
                         placeholder="Cari nama peserta atau email...">
+                    @if(isset($status) && $status)
+                        <input type="hidden" name="status" value="{{ $status }}">
+                    @endif
                 </form>
                 <div class="flex gap-2">
                     <a href="{{ route('admin.level.a.hasil-penilaian') }}"
-                        class="px-4 py-1.5 text-sm font-medium text-indigo-700 bg-indigo-50 rounded-lg border border-indigo-100">
+                        class="px-4 py-1.5 text-sm font-medium rounded-lg border {{ !isset($status) || !$status ? 'text-white bg-indigo-600 border-indigo-600' : 'text-indigo-700 bg-indigo-50 border-indigo-100 hover:bg-indigo-100' }}">
                         Semua
+                    </a>
+                    <a href="{{ route('admin.level.a.hasil-penilaian', ['status' => 'lulus', 'search' => $search ?? '']) }}"
+                        class="px-4 py-1.5 text-sm font-medium rounded-lg border {{ isset($status) && $status === 'lulus' ? 'text-white bg-green-600 border-green-600' : 'text-green-700 bg-green-50 border-green-100 hover:bg-green-100' }}">
+                        <i class="fas fa-check-circle mr-1"></i> Lulus
+                    </a>
+                    <a href="{{ route('admin.level.a.hasil-penilaian', ['status' => 'tidak_lulus', 'search' => $search ?? '']) }}"
+                        class="px-4 py-1.5 text-sm font-medium rounded-lg border {{ isset($status) && $status === 'tidak_lulus' ? 'text-white bg-red-600 border-red-600' : 'text-red-700 bg-red-50 border-red-100 hover:bg-red-100' }}">
+                        <i class="fas fa-times-circle mr-1"></i> Tidak Lulus
                     </a>
                 </div>
             </div>
@@ -163,6 +149,10 @@
                                 No
                             </th>
                             <th scope="col"
+                                class="px-4 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                ID
+                            </th>
+                            <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                                 Peserta
                             </th>
@@ -172,6 +162,10 @@
                                     {{ strtoupper($category->name) }}
                                 </th>
                             @endforeach
+                            <th scope="col"
+                                class="px-4 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                Status
+                            </th>
                             <th scope="col"
                                 class="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
                                 Aksi
@@ -183,6 +177,9 @@
                             <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     {{ $users->firstItem() + $index }}
+                                </td>
+                                <td class="px-4 py-4 whitespace-nowrap text-center text-sm text-gray-600">
+                                    {{ $user->id }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -225,6 +222,17 @@
                                         @endif
                                     </td>
                                 @endforeach
+                                <td class="px-4 py-4 whitespace-nowrap text-center">
+                                    @if ($examResults[$user->id]['is_user_passed'] ?? false)
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            <i class="fas fa-check-circle mr-1"></i> Lulus
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            <i class="fas fa-times-circle mr-1"></i> Tidak Lulus
+                                        </span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex justify-end gap-2">
                                         <a href="{{ route('admin.level.a.hasil-penilaian.edit-user', $user->id) }}"
@@ -237,7 +245,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="{{ count($categories) + 3 }}" class="px-6 py-8 text-center text-gray-500">
+                                <td colspan="{{ count($categories) + 5 }}" class="px-6 py-8 text-center text-gray-500">
                                     <i class="fas fa-inbox text-4xl mb-3 text-gray-300"></i>
                                     <p>Belum ada data penilaian</p>
                                 </td>
@@ -246,52 +254,6 @@
                     </tbody>
                 </table>
             </div>
-
-            {{-- Legend --}}
-            {{-- <div class="bg-gray-50 px-6 py-3 border-t border-gray-100">
-                <div class="flex items-center gap-4 text-sm text-gray-600">
-                    <span class="font-medium">Keterangan:</span>
-                    <span class="flex items-center gap-1">
-                        <span class="w-4 h-4 bg-green-100 rounded"></span>
-                        <span>Lulus (≥ {{ $passingScore }})</span>
-                    </span>
-                    <span class="flex items-center gap-1">
-                        <span class="w-4 h-4 bg-red-100 rounded"></span>
-                        <span>Tidak Lulus (&lt; {{ $passingScore }})</span>
-                    </span>
-                </div>
-            </div> --}}
-
-
-            {{-- Legend --}}
-            {{-- <div class="bg-gray-50 px-6 py-3 border-t border-gray-100">
-                <div class="flex flex-col gap-2 text-sm text-gray-600">
-                    <span class="font-medium">Keterangan Passing Score:</span>
-
-                    @foreach ($categories as $category)
-                        <div class="flex items-center gap-4">
-                            <span class="font-semibold uppercase w-24">
-                                {{ $category->name }}
-                            </span>
-
-                            <span class="flex items-center gap-1">
-                                <span class="w-4 h-4 bg-green-100 rounded"></span>
-                                <span>
-                                    Lulus (≥ {{ $category->passing_score ?? 70 }})
-                                </span>
-                            </span>
-
-                            <span class="flex items-center gap-1">
-                                <span class="w-4 h-4 bg-red-100 rounded"></span>
-                                <span>
-                                    Tidak Lulus (&lt; {{ $category->passing_score ?? 70 }})
-                                </span>
-                            </span>
-                        </div>
-                    @endforeach
-                </div>
-            </div> --}}
-
 
             {{-- Pagination --}}
             <div class="bg-white px-4 py-3 border-t border-gray-200 flex items-center justify-between sm:px-6">
@@ -304,7 +266,7 @@
                         </p>
                     </div>
                     <div>
-                        {{ $users->appends(['search' => $search])->links() }}
+                        {{ $users->appends(['search' => $search, 'status' => $status ?? ''])->links() }}
                     </div>
                 </div>
             </div>
