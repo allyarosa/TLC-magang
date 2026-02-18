@@ -22,7 +22,7 @@ jobs:
         coverage: none
 
     - name: Install Composer Dependencies
-      run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer update --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
     - name: Compile Assets (npm)
       run: |
