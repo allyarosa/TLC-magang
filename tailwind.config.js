@@ -36,22 +36,38 @@ export default {
                     800: "#1e40af",
                     900: "#1e3a8a",
                 },
-                brandBlue : {
+                brandBlue: {
                     DEFAULT: "#1D4E89",
                     dark: "#0d2a4e",
                 },
-                brandGreen : {
-                    DEFAULT : "#2A9D8F",
-                    dark : "#1a6e63",
+                brandGreen: {
+                    DEFAULT: "#2A9D8F",
+                    dark: "#1a6e63",
                 },
-                brandOrange : {
-                    DEFAULT : "#E76F51",
-                    dark : "#cf4a2a",
+                brandOrange: {
+                    DEFAULT: "#E76F51",
+                    dark: "#cf4a2a",
                 },
             },
             fontFamily: {
                 sans: ["Segoe UI", "ui-sans-serif", "system-ui", "sans-serif"],
             },
+            keyframes: {
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
+                },
+                blob: {
+                    '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                    '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                    '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                    '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                }
+            },
+            animation: {
+                float: 'float 6s ease-in-out infinite',
+                blob: 'blob 7s infinite',
+            }
         },
     },
     plugins: [

@@ -42,7 +42,7 @@
 
                     <div class="flex flex-col sm:flex-row my-8 gap-4">
                         <a href="{{ route('register') }}"
-                            class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-[#1D4E89] to-[#0077b6] rounded-full shadow-lg hover:shadow-blue-500/40 hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md overflow-hidden">
+                            class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-[#1D4E89] to-[#0077b6] rounded-full shadow-lg hover:shadow-blue-500/40 hover:shadow-xl active:shadow-md overflow-hidden">
                             <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#14406B] to-[#005f8d] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                             <span class="relative flex items-center">
                                 Daftar Sekarang
@@ -55,14 +55,16 @@
                             </span>
                         </a>
                         <a href="#vidio"
-                            class="bg-white border-2 border-[#1D4E89] text-[#1D4E89] px-8 py-4 rounded-xl shadow-md text-lg font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center">
+                            class="bg-white border-2 border-[#1D4E89] text-[#1D4E89] px-8 py-4 rounded-xl shadow-md text-lg font-semibold hover:bg-gray-100 transition-all duration-300 active:scale-95 flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span>Lihat Video</span>
+                            <span>
+                                Lihat Video
+                            </span>
                         </a>
                     </div>
 
@@ -89,19 +91,19 @@
                     </div>
                 </div>
 
-                <div
-                    class="hidden lg:flex col-span-12 lg:col-span-5 rounded-2xl mx-3 overflow-hidden shadow-xl relative group">
-                    <img src="{{ asset('images/konten_satu.jpg') }}"
-                        class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
-                        alt="Teacher engaging with students" loading="lazy">
-                    <!-- <div
-                        class="absolute inset-0 bg-gradient-to-t from-[#1D4E89]/70 to-transparent opacity-50 group-hover:opacity-70 transition-opacity duration-500">
-                    </div> -->
-                    <!-- <div
-                        class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm px-6 py-4 rounded-xl transform -translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <p class="text-[#1D4E89] font-bold text-xl">Kuasai Kelas Dengan Percaya Diri</p>
-                        <p class="text-gray-700">Tingkatkan keterampilan mengajar Anda</p>
-                    </div> -->
+                <div class="hidden lg:flex col-span-12 lg:col-span-5 items-center justify-center relative mt-5 lg:mt-0">
+                    <!-- Floating Circles Background -->
+                    <div class="absolute top-0 right-10 w-20 h-20 bg-[#E76F51]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300"></div>
+                    <div class="absolute bottom-10 left-10 w-16 h-16 bg-yellow-300/40 rounded-full animate-float hover:scale-125 transition-transform duration-300" style="animation-delay: 2s"></div>
+                    <div class="absolute top-1/2 -right-4 w-12 h-12 bg-[#1D4E89]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300" style="animation-delay: 4s"></div>
+                    <div class="absolute -top-4 left-20 w-10 h-10 bg-blue-300/30 rounded-full animate-float hover:scale-125 transition-transform duration-300" style="animation-delay: 1s"></div>
+                    
+                    <!-- Floating Icon - reduced size -->
+                    <div class="relative w-full max-w-md aspect-square flex items-center justify-center animate-float">
+                        <img src="{{ asset('images/logoTlcPng.png') }}"
+                            class="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                            alt="TLC Logo Floating" loading="lazy">
+                    </div>
                 </div>
             </div>
         </main>
