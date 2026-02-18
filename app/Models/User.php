@@ -119,6 +119,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(ExamSessionC::class);
     }
 
+    public function examsA()
+    {
+        return $this->hasMany(ExamA::class);
+    }
+
     public function threads()
     {
         return $this->hasMany(Thread::class);
