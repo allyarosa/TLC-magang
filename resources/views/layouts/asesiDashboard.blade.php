@@ -81,7 +81,7 @@
                         <a href="{{ route($nav['route']) }}"
                             class="px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ease-in-out
                         {{ $isActive
-                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 -translate-y-0.5'
+                            ? ' text-slate-800 shadow-lg shadow-blue-200 -translate-y-0.5'
                             : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50' }}">
                             {{ $nav['name'] }}
                         </a>
@@ -152,7 +152,7 @@
 
                                 <div class="border-t border-gray-100 my-1"></div>
 
-                                <a href="{{ route('asesi.profile') }}"
+                                {{-- <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                     <div
                                         class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
@@ -170,9 +170,9 @@
                                         </svg>
                                     </div>
                                     <span class="font-medium">Sertifikat Saya</span>
-                                </a>
+                                </a> --}}
 
-                                <div class="border-t border-gray-100 my-1"></div>
+                                {{-- <div class="border-t border-gray-100 my-1"></div> --}}
 
                                 <div>
                                     <form method="POST" action="{{ route('logout') }}" class="w-full">

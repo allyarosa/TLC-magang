@@ -73,7 +73,7 @@
                 <div class="bg-slate-100 p-1.5 rounded-2xl inline-flex flex-wrap gap-2 mb-10 w-full sm:w-auto">
                     {{-- Button Level A --}}
                     <button onclick="showLevel('A')" id="levelAButton"
-                        class="level-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 shadow-md bg-slate-900 text-white transform hover:scale-[1.02]">
+                        class="level-button flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 shadow-md bg-brandBlue text-white transform hover:scale-[1.02]">
                         @if (Auth::user()->hasAnyPermission(['bundling', 'access_level_A']))
                             <div class="text-amber-400"><livewire:level-unlock-icon /></div>
                         @else
@@ -144,7 +144,7 @@
             // 3. Reset all buttons to "Inactive" state
             document.querySelectorAll('.level-button').forEach(button => {
                 // Remove Active Classes
-                button.classList.remove('bg-slate-900', 'text-white', 'shadow-md', 'scale-[1.02]');
+                button.classList.remove('bg-brandBlue', 'text-white', 'shadow-md', 'scale-[1.02]');
                 // Add Inactive Classes
                 button.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-white', 'hover:shadow-sm');
             });
@@ -152,7 +152,7 @@
             // 4. Set clicked button to "Active" state
             const activeButton = document.getElementById(`level${level}Button`);
             activeButton.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-white', 'hover:shadow-sm');
-            activeButton.classList.add('bg-slate-900', 'text-white', 'shadow-md', 'scale-[1.02]');
+            activeButton.classList.add('bg-brandBlue', 'text-white', 'shadow-md', 'scale-[1.02]');
         }
     </script>
 
