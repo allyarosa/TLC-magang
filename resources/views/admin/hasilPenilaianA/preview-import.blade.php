@@ -11,7 +11,7 @@
                     class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
                     <a href="{{ route('admin.level.a.hasil-penilaian') }}"
                         class="transition-colors hover:text-blue-600">
-                        Hasil Penilaian
+                        Score Result
                     </a>
                     <span class="text-gray-300">/</span>
                     <a href="{{ route('admin.level.a.hasil-penilaian.import-form') }}"

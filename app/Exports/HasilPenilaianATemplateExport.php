@@ -7,7 +7,6 @@ use App\Models\ExamA;
 use App\Models\CategoryA;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Illuminate\Support\Collection;
 
 /**
  * Template Export for Import Nilai Level A
@@ -22,6 +21,7 @@ class HasilPenilaianATemplateExport implements FromCollection, WithHeadings
     {
         return [
             'user_id',
+            'nama',
             'pck',
             'hots',
             'literasi',
@@ -56,6 +56,7 @@ class HasilPenilaianATemplateExport implements FromCollection, WithHeadings
 
             $row = [
                 'user_id' => $user->id,
+                'nama' => $user->name,
                 'pck' => $this->getScore($exams, $categories['pck'] ?? null),
                 'hots' => $this->getScore($exams, $categories['hots'] ?? null),
                 'literasi' => $this->getScore($exams, $categories['literasi'] ?? null),
@@ -69,6 +70,7 @@ class HasilPenilaianATemplateExport implements FromCollection, WithHeadings
         if ($data->isEmpty()) {
             $data->push([
                 'user_id' => 1,
+                'nama' => 'Contoh User 1',
                 'pck' => 85,
                 'hots' => 90,
                 'literasi' => 88,
@@ -76,6 +78,7 @@ class HasilPenilaianATemplateExport implements FromCollection, WithHeadings
             ]);
             $data->push([
                 'user_id' => 2,
+                'nama' => 'Contoh User 2',
                 'pck' => 75,
                 'hots' => 80,
                 'literasi' => 78,
