@@ -37,7 +37,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          cd testing.office.hafecs.id/
+          cd testing.office.hafecs.id/TLC/
           git pull origin dev
           composer install --no-interaction --prefer-dist --optimize-autoloader
           npm ci
