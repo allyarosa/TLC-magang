@@ -38,6 +38,14 @@
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.survey-result.a.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Survey Result
                     </a>
+                    
+                    <span class="text-gray-300">/</span>
+
+                    {{-- Survey Result Level A --}}
+                    <a href="{{ route('admin.level.a.hasil-penilaian') }}"
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.level.a.hasil-penilaian') ? 'text-blue-600 font-semibold' : '' }}">                        
+                        Score Result
+                    </a>
                 </nav>
             </ol>
         </nav>

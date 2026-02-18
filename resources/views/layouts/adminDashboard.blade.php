@@ -218,6 +218,12 @@
                                         <span class="text-xs mr-2">•</span> Hasil Survey
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('admin.level.a.hasil-penilaian') }}"
+                                        class="flex items-center p-2 text-gray-500 rounded-lg hover:text-[#1D4E89] hover:bg-blue-50 transition-all duration-200">
+                                        <span class="text-xs mr-2">•</span> Hasil Penilaian
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>

@@ -67,6 +67,7 @@ use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Admin\ExamMonitoringAController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Admin\SurveySubmissionAController;
+use App\Http\Controllers\Admin\HasilPenilaianAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -401,6 +402,19 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     // Hasil Survey Level A
     Route::get('/dashboard/level/a/survey-result', [SurveySubmissionAController::class, 'index'])->name('admin.survey-result.a.index');
+
+    // Hasil Penilaian Level A
+    Route::get( '/dashboard/level/a/hasil-penilaian', [HasilPenilaianAController::class, 'index'] )->name('admin.level.a.hasil-penilaian');
+    Route::get('/dashboard/level/a/hasil-penilaian/export', [HasilPenilaianAController::class, 'export'])->name('admin.level.a.hasil-penilaian.export');
+    Route::get('/dashboard/level/a/hasil-penilaian/import', [HasilPenilaianAController::class, 'importForm'])->name('admin.level.a.hasil-penilaian.import-form');
+    Route::get('/dashboard/level/a/hasil-penilaian/download-template', [HasilPenilaianAController::class, 'downloadTemplate'])->name('admin.level.a.hasil-penilaian.download-template');
+    Route::match(['GET', 'POST'], '/dashboard/level/a/hasil-penilaian/preview-import', [HasilPenilaianAController::class, 'previewImport'])->name('admin.level.a.hasil-penilaian.preview-import');
+    Route::post('/dashboard/level/a/hasil-penilaian/process-import', [HasilPenilaianAController::class, 'processImport'])->name('admin.level.a.hasil-penilaian.process-import');
+    Route::get('/dashboard/level/a/hasil-penilaian/{id}/edit', [HasilPenilaianAController::class, 'edit'])->name('admin.level.a.hasil-penilaian.edit');
+    Route::get('/dashboard/level/a/hasil-penilaian/user/{userId}/edit', [HasilPenilaianAController::class, 'editUser'])->name('admin.level.a.hasil-penilaian.edit-user');
+    Route::put('/dashboard/level/a/hasil-penilaian/user/{userId}', [HasilPenilaianAController::class, 'updateUser'])->name('admin.level.a.hasil-penilaian.update-user');
+    Route::put('/dashboard/level/a/hasil-penilaian/{id}', [HasilPenilaianAController::class, 'update'])->name('admin.level.a.hasil-penilaian.update');
+    Route::delete('/dashboard/level/a/hasil-penilaian/{id}', [HasilPenilaianAController::class, 'destroy'])->name('admin.level.a.hasil-penilaian.destroy');
 
     // Level B
     Route::get('/dashboard/level/b', [App\Http\Controllers\Admin\LevelBController::class, 'index'])->name('admin.level.b.index');
