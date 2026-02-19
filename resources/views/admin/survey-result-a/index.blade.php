@@ -19,7 +19,7 @@
                     Filter
                 </button> --}}
                 <a href="{{ route('admin.survey-result.a.questions') }}"
-                    class="px-4 py-1.5 text-sm font-medium text-brandBlue bg-gray-100 hover:bg-gray-200 rounded-lg border border-transparent flex items-center">
+                    class="px-4 py-1.5 text-sm font-medium text-white bg-green-500 hover:bg-green-600 rounded-lg border border-transparent flex items-center">
                     Lihat Soal
                 </a>
                 <a href="{{ route('admin.survey-result.a.export') }}"
