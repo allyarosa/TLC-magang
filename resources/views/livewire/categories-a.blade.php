@@ -74,7 +74,7 @@
                         @elseif (Auth::user()->hasPermissionTo('access_level_A') && $hasAccessCategory)
                             {{-- Kalau belum selesai tapi sudah dapat akses --}}
                             <button wire:click="openModal({{ $categoryId }})"
-                                class="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl text-sm font-medium shadow-md transform transition duration-100 hover:shadow-xl hover:-translate-y-0.5 flex items-center">
+                                class="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl text-sm font-medium shadow-md transform transition duration-100 hover:shadow-xl flex items-center">
                                 Mulai
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">

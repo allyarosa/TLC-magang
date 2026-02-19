@@ -86,6 +86,9 @@ use App\Http\Controllers\Admin\HasilPenilaianAController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
+Route::get('/payment-view', function () {
+    return view('paymentView');
+})->name('payment.view');
 
 // Region API (Public)
 Route::get('/regencies/{provinceId}', [IndoRegionController::class, 'getRegencies']);

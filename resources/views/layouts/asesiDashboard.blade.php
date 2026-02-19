@@ -64,7 +64,7 @@
                 </div>
 
                 <!-- Navigation Menu for Desktop - Centered -->
-                <div class="hidden lg:flex items-center justify-center gap-2 flex-1">
+                <div class="hidden lg:flex items-center justify-center gap-1 flex-1">
                     @php
                         $navs = [
                             ['name' => 'Dashboard', 'route' => 'asesi.dashboard'],
@@ -79,10 +79,10 @@
                         @endphp
 
                         <a href="{{ route($nav['route']) }}"
-                            class="px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ease-in-out
+                            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200
                         {{ $isActive
-                            ? ' text-slate-800 shadow-lg shadow-blue-200 -translate-y-0.5'
-                            : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50' }}">
+                            ? 'bg-blue-50 text-blue-700'
+                            : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                             {{ $nav['name'] }}
                         </a>
                     @endforeach
@@ -206,47 +206,35 @@
                     <div
                         class="container mx-auto px-6 lg:px-0 flex flex-col lg:flex-row items-center space-y-1 lg:space-y-0 lg:space-x-6 py-6 lg:py-0">
                         <a href="{{ route('asesi.dashboard') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.dashboard') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                            class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.dashboard') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                             Dashboard
-                            <span
-                                class="{{ request()->routeIs('asesi.dashboard') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
                         <a href="{{ route('asesi.sertifikasi') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.sertifikasi') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                            class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.sertifikasi') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                             Sertifikasi
-                            <span
-                                class="{{ request()->routeIs('asesi.sertifikasi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
                         <a href="{{ route('asesi.transaksi') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.transaksi') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                            class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.transaksi') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                             Transaksi
-                            <span
-                                class="{{ request()->routeIs('asesi.transaksi') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
                         <a href="{{ route('asesi.profile') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                            class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.profile') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                             Profile
-                            <span
-                                class="{{ request()->routeIs('asesi.profile') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
                         <a href="{{ route('asesi.profile') }}"
-                            class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-blue-50/50 lg:bg-transparent' : 'text-gray-600 hover:text-[#1D4E89] hover:bg-gray-50/50 lg:hover:bg-transparent' }}">
+                            class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.profile') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                             Sertifikat Saya
-                            <span
-                                class="{{ request()->routeIs('asesi.profile') ? 'absolute bottom-[-6px] left-1/2 w-full h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2' : 'absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-[#1D4E89] to-[#667eea] rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full' }}"></span>
                         </a>
 
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
                             <button type="submit"
-                                class="nav-link w-full lg:w-auto text-center lg:text-left px-4 py-3 lg:p-0 text-base font-semibold rounded-xl lg:rounded-none transition-all duration-300 relative text-red-500 hover:text-red-600 hover:bg-red-50/50 lg:hover:bg-transparent group">
+                                class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-red-600 hover:text-red-700 hover:bg-red-50">
                                 Logout
-                                <span
-                                    class="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-gradient-to-r from-red-400 to-red-600 rounded-[2px] transition-all duration-300 transform -translate-x-1/2 group-hover:w-full"></span>
                             </button>
                         </form>
                     </div>
