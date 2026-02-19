@@ -20,7 +20,7 @@
                         <h1
                             class="text-5xl md:text-6xl font-extrabold text-brandBlue leading-tight mt-4">
                             <span class="relative inlinae-block">
-                                <span class="relative z-10">Transform.</span>
+                                <span class="relative z-10">Thrive.</span>
                             </span>
                             <span class="relative inline-block">
                                 <span class="relative z-10">Teach.</span>
@@ -1278,6 +1278,5 @@
             </div>
         </section>
         {{-- Apa itu HAFECS Section --}}
-
     </div>
 @endsection

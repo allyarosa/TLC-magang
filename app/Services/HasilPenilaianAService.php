@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\ExamA;
 use App\Models\CategoryA;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class HasilPenilaianAService
@@ -17,24 +16,73 @@ class HasilPenilaianAService
     public function getIndexData($request): array
     {
         $search     = $request->input('search');
+        $status     = $request->input('status'); // 'lulus' atau 'tidak_lulus'
         $categories = CategoryA::all();
 
-        $users = User::with(['examsA'])
+        // Get all users with exams first
+        $allUsersQuery = User::with(['examsA'])
             ->whereHas('examsA', function ($q) {
                 $q->where('status', 'finished');
             })
             ->when($search, function ($q) use ($search) {
-                $q->where('name', 'like', "%$search%")
-                  ->orWhere('email', 'like', "%$search%");
+                $q->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%$search%")
+                          ->orWhere('email', 'like', "%$search%");
+                });
             })
-            ->orderBy('name')
-            ->paginate(10);
+            ->orderBy('name');
+
+        // If status filter is applied, we need to filter after getting exam results
+        if ($status === 'lulus' || $status === 'tidak_lulus') {
+            $allUsers = $allUsersQuery->get();
+            $examResults = $this->buildExamResultsForCollection($allUsers, $categories);
+            
+            // Filter users based on status
+            $filteredUsers = $allUsers->filter(function ($user) use ($examResults, $status) {
+                $isUserPassed = $examResults[$user->id]['is_user_passed'] ?? false;
+                return $status === 'lulus' ? $isUserPassed : !$isUserPassed;
+            });
+
+            // Manual pagination for filtered results
+            $page = $request->input('page', 1);
+            $perPage = 10;
+            $total = $filteredUsers->count();
+            $items = $filteredUsers->slice(($page - 1) * $perPage, $perPage)->values();
+            
+            $users = new \Illuminate\Pagination\LengthAwarePaginator(
+                $items,
+                $total,
+                $perPage,
+                $page,
+                ['path' => route('admin.level.a.hasil-penilaian')]
+            );
+
+            // Rebuild exam results for paginated users only
+            $examResultsForPage = [];
+            foreach ($items as $user) {
+                $examResultsForPage[$user->id] = $examResults[$user->id];
+            }
+
+            return [
+                'users'           => $users,
+                'categories'      => $categories,
+                'examResults'     => $examResultsForPage,
+                'search'          => $search,
+                'status'          => $status,
+                'totalResponden'  => $this->getTotalResponden(),
+                'totalLulus'      => $this->getTotalLulus(),
+                'totalGagal'      => $this->getTotalGagal(),
+            ];
+        }
+
+        $users = $allUsersQuery->paginate(10);
 
         return [
             'users'           => $users,
             'categories'      => $categories,
             'examResults'     => $this->buildExamResults($users, $categories),
             'search'          => $search,
+            'status'          => $status,
             'totalResponden'  => $this->getTotalResponden(),
             'totalLulus'      => $this->getTotalLulus(),
             'totalGagal'      => $this->getTotalGagal(),
@@ -129,21 +177,41 @@ class HasilPenilaianAService
         $results = [];
 
         foreach ($users as $user) {
+            $userPassed = true; // Asumsi awal user lulus
+
             foreach ($categories as $category) {
                 $exam = $user->examsA
                     ->where('category_a_id', $category->id)
                     ->first();
 
+                $score = $exam ? $exam->score : null;
+                $passingScore = $category->passing_score ?? $this->defaultPassingScore;
+
+                // Jika ada satu kategori yang tidak lulus, maka user dianggap tidak lulus
+                if ($score === null || $score < $passingScore) {
+                    $userPassed = false;
+                }
+
                 $results[$user->id][$category->name] = [
-                    'score'     => $exam?->score,
-                    'is_passed' => $exam
-                        ? $exam->score >= ($category->passing_score ?? $this->defaultPassingScore)
-                        : null,
+                    'score'     => $score,
+                    'is_passed' => $score !== null ? $score >= $passingScore : null,
                 ];
             }
+
+            // Tambahkan status kelulusan user secara keseluruhan
+            $results[$user->id]['is_user_passed'] = $userPassed;
         }
 
         return $results;
+    }
+
+
+    /**
+     * Build exam results for a Collection (used for filtering)
+     */
+    private function buildExamResultsForCollection($users, $categories): array
+    {
+        return $this->buildExamResults($users, $categories);
     }
 
 
@@ -156,15 +224,75 @@ class HasilPenilaianAService
 
     private function getTotalLulus(): int
     {
-        return ExamA::where('status', 'finished')
-            ->where('is_passed', true)
-            ->count();
+        $users = User::with(['examsA'])
+            ->whereHas('examsA', function ($q) {
+                $q->where('status', 'finished');
+            })
+            ->get();
+
+        $categories = CategoryA::all();
+        $totalLulus = 0;
+
+        foreach ($users as $user) {
+            $userPassed = true;
+
+            foreach ($categories as $category) {
+                $exam = $user->examsA
+                    ->where('category_a_id', $category->id)
+                    ->first();
+
+                $score = $exam ? $exam->score : null;
+                $passingScore = $category->passing_score ?? $this->defaultPassingScore;
+
+                // Jika ada satu kategori yang tidak lulus, maka user dianggap tidak lulus
+                if ($score === null || $score < $passingScore) {
+                    $userPassed = false;
+                    break; // Tidak perlu cek kategori lain
+                }
+            }
+
+            if ($userPassed) {
+                $totalLulus++;
+            }
+        }
+
+        return $totalLulus;
     }
 
     private function getTotalGagal(): int
     {
-        return ExamA::where('status', 'finished')
-            ->where('is_passed', false)
-            ->count();
+        $users = User::with(['examsA'])
+            ->whereHas('examsA', function ($q) {
+                $q->where('status', 'finished');
+            })
+            ->get();
+
+        $categories = CategoryA::all();
+        $totalGagal = 0;
+
+        foreach ($users as $user) {
+            $userPassed = true;
+
+            foreach ($categories as $category) {
+                $exam = $user->examsA
+                    ->where('category_a_id', $category->id)
+                    ->first();
+
+                $score = $exam ? $exam->score : null;
+                $passingScore = $category->passing_score ?? $this->defaultPassingScore;
+
+                // Jika ada satu kategori yang tidak lulus, maka user dianggap tidak lulus
+                if ($score === null || $score < $passingScore) {
+                    $userPassed = false;
+                    break; // Tidak perlu cek kategori lain
+                }
+            }
+
+            if (!$userPassed) {
+                $totalGagal++;
+            }
+        }
+
+        return $totalGagal;
     }
 }

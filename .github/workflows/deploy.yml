@@ -1,0 +1,55 @@
+name: Deploy to Testing Server
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, bcmath, intl, gd, zip
+        coverage: none
+
+    - name: Install Composer Dependencies
+      run: composer update --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Compile Assets (npm)
+      run: |
+        npm ci
+        npm run build
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd testing.office.hafecs.id/TLC/
+          php artisan down --message="Deploying updates, please wait..."
+          git reset --hard
+          git pull origin dev
+          composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
+          npm ci
+          npm install
+          npm audit fix
+          npm run build
+          php artisan migrate --force
+          php artisan optimize:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          php artisan optimize
+          php artisan up
