@@ -11,9 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # -------------------------------------------------------
+    # 1. Checkout
+    # -------------------------------------------------------
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
+    # -------------------------------------------------------
+    # 2. Setup PHP
+    # -------------------------------------------------------
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -21,35 +27,97 @@ jobs:
         extensions: mbstring, bcmath, intl, gd, zip
         coverage: none
 
+    # -------------------------------------------------------
+    # 3. Cache Composer
+    # -------------------------------------------------------
+    - name: Cache Composer Dependencies
+      uses: actions/cache@v4
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    # -------------------------------------------------------
+    # 4. Install Composer dependencies
+    #    Gunakan "install" bukan "update" agar terpaku pada
+    #    composer.lock dan tidak mengubah versi dependency
+    # -------------------------------------------------------
     - name: Install Composer Dependencies
-      run: composer update --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    - name: Compile Assets (npm)
-      run: |
-        npm ci
-        npm run build
+    # -------------------------------------------------------
+    # 5. Setup Node & cache NPM
+    # -------------------------------------------------------
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
 
+    # -------------------------------------------------------
+    # 6. Install NPM & build aset di runner
+    #    Hasil build (public/build) akan di-push ke server
+    #    via git — JANGAN build ulang di server
+    # -------------------------------------------------------
+    - name: Install NPM Dependencies
+      run: npm ci
+
+    - name: Build Assets
+      run: npm run build
+
+    # -------------------------------------------------------
+    # 7. (Opsional) Jalankan test sebelum deploy
+    #    Uncomment jika kamu punya test suite
+    # -------------------------------------------------------
+    # - name: Run Tests
+    #   run: php artisan test --parallel
+
+    # -------------------------------------------------------
+    # 8. Deploy & jalankan perintah di server via SSH
+    # -------------------------------------------------------
     - name: Deploy via SSH
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
+          set -e  # Hentikan script jika ada error
+
           cd testing.office.hafecs.id/TLC/
-          php artisan down --message="Deploying updates, please wait..."
-          git reset --hard
-          git pull origin dev
-          composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
-          npm ci
-          npm install
-          npm audit fix
+
+          # --- Maintenance mode ON ---
+          php artisan down --message="Deploying updates, please wait..." --retry=30
+
+          # --- Ambil kode terbaru ---
+          git fetch origin dev
+          git reset --hard origin/dev
+
+          # --- Install dependency PHP di server ---
+          composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev --ignore-platform-reqs
+
+          # --- Build aset HANYA jika tidak build di runner ---
+          # Jika hasil build sudah di-commit ke repo, hapus dua baris ini:
+          npm ci --omit=dev
           npm run build
+
+          # --- Database ---
           php artisan migrate --force
+
+          # --- Clear semua cache lama, lalu cache ulang ---
           php artisan optimize:clear
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
+          php artisan event:cache
           php artisan optimize
+
+          # --- Restart queue worker jika pakai queue ---
+          # php artisan queue:restart
+
+          # --- Maintenance mode OFF ---
           php artisan up
+
+          echo "✅ Deploy to testing server successful!"
