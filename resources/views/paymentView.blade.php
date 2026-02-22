@@ -569,7 +569,8 @@
                                     <div class="flex items-center gap-2 text-xs text-gray-600"><span>📡</span> Webinar
                                         Eksklusif</div>
                                     <div class="flex items-center gap-2 text-xs text-gray-600 col-span-2">
-                                        <span>🌐</span> Koneksi Jaringan Guru Profesional</div>
+                                        <span>🌐</span> Koneksi Jaringan Guru Profesional
+                                    </div>
                                 </div>
                             </div>
                             <button onclick="toggleAccordion('modules')"

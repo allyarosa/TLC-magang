@@ -2,72 +2,73 @@
 
 use App\Events\MyEvent;
 use App\Events\testing;
-use App\Livewire\Forum;
-use App\Models\Testimonial;
 use App\Exports\AsesiExport;
-
-// Events
-use App\Exports\UsersExport;
-use Illuminate\Http\Request;
-
-// Livewire
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
 
-// Models
-use Illuminate\Support\Facades\Auth;
-
-// Exports
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Route;
+// Events
 use App\Exports\RiwayatPenilaianBExport;
 use App\Exports\RiwayatPenilaianCExport;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Controllers\PaymentController;
 
-// Controllers - Auth
-use App\Http\Controllers\WelcomeController;
-use App\Livewire\Asesi\CertificationDetail;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Admin\NewsController;
+// Livewire
+use App\Exports\UsersExport;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
-// Controllers - General
-use App\Http\Controllers\Asesi\ExamController;
-use App\Http\Controllers\IndoRegionController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Asesi\ExamControllerC;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\TestimonialController;
+// Models
+use App\Http\Controllers\Admin\AdminSettingsController;
 
-// Controllers - Asesi
+// Exports
+use App\Http\Controllers\Admin\AsesiScoreController;
+use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\ExamMonitoringAController;
+use App\Http\Controllers\Admin\HasilPenilaianAController;
 use App\Http\Controllers\Admin\LevelAController;
 use App\Http\Controllers\Admin\LevelCController;
-use App\Http\Controllers\Asesi\LevelBController;
-use App\Http\Controllers\Asesi\ProfileController;
-use App\Http\Controllers\Admin\SiteInfoController;
-use App\Http\Controllers\ExamScoreImportController;
-use App\Http\Controllers\Admin\AsesiScoreController;
 
-// Controllers - Asesor
-use App\Http\Controllers\Admin\CertificateController;
-use App\Http\Controllers\Asesi\SertifikasiController;
-
-// Controllers - Admin
-use App\Http\Controllers\Asesi\TransactionController;
-use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\Admin\ResultExamsAController;
-use App\Http\Controllers\Admin\AdminSettingsController;
+// Controllers - Auth
 use App\Http\Controllers\Admin\LevelSettingsController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PaymentDetailController;
+use App\Http\Controllers\Admin\ResultExamsAController;
+
+// Controllers - General
+use App\Http\Controllers\Admin\SiteInfoController;
+use App\Http\Controllers\Admin\SurveySubmissionAController;
+use App\Http\Controllers\Asesi\AsesiDashboardController;
+use App\Http\Controllers\Asesi\ExamController;
+use App\Http\Controllers\Asesi\ExamControllerC;
+use App\Http\Controllers\Asesi\LevelBController;
+
+// Controllers - Asesi
+use App\Http\Controllers\Asesi\ProfileController;
+use App\Http\Controllers\Asesi\SertifikasiController;
+use App\Http\Controllers\Asesi\TransactionController;
+use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Asesor\LevelBGradedController;
 use App\Http\Controllers\Asesor\LevelCGradedController;
+use App\Http\Controllers\Auth\AuthController;
+
+// Controllers - Asesor
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Asesi\AsesiDashboardController;
-use App\Http\Controllers\Admin\ExamMonitoringAController;
-use App\Http\Controllers\Asesor\AsesorDashboardController;
-use App\Http\Controllers\Admin\SurveySubmissionAController;
-use App\Http\Controllers\Admin\HasilPenilaianAController;
+use App\Http\Controllers\Auth\GoogleController;
+
+// Controllers - Admin
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ExamScoreImportController;
+use App\Http\Controllers\IndoRegionController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\WelcomeController;
+use App\Livewire\Asesi\CertificationDetail;
+use App\Livewire\Forum;
+use App\Livewire\Payments\Create;
+use App\Models\Testimonial;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,10 +86,12 @@ use App\Http\Controllers\Admin\HasilPenilaianAController;
 // =========================================================================
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
-Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
-Route::get('/payment-view', function () {
+
+Route::get('/payment-view', function() {
     return view('paymentView');
 })->name('payment.view');
+
+Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
 
 // Region API (Public)
 Route::get('/regencies/{provinceId}', [IndoRegionController::class, 'getRegencies']);
@@ -236,7 +239,8 @@ Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments/finish/{id}', [PaymentController::class, 'finish'])->name('payments.finish');
     Route::get('/payments/pending', [PaymentController::class, 'pending'])->name('payments.pending');
     Route::get('/payments/eror', [PaymentController::class, 'eror'])->name('payments.eror');
-    Route::get('/payments/{id}/create', [PaymentController::class, 'create'])->name('payments.create');
+    // Route::get('/payments/{id}/create', [PaymentController::class, 'create'])->name('payments.create');
+    Route::get('/payments/create/{id}', Create::class)->name('payments.create'); //LIVEWIRE
     Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/{id}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
     Route::get('/payments/{id}', action: [PaymentController::class, 'detail'])->name('payments.detail');

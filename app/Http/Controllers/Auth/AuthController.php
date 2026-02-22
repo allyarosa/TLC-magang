@@ -52,7 +52,7 @@ class AuthController extends Controller
                 return redirect()->route('asesor.dashboard')->with('success', 'Berhasil login');
             } else {
                 Auth::logout();
-                Alert::error('Login Gagal!', 'Akun tidak terdaftar')->autoClose(3000);
+                Alert::error('Login Gagal!  ', 'Akun tidak terdaftar')->autoClose(3000);
                 return back()->withInput($request->only('email'))->with('error', 'Akun tidak terdaftar');
             }
         }

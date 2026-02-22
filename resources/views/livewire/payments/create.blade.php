@@ -1,6 +1,4 @@
-@extends('layouts.asesiDashboard')
-
-@section('content')
+<section>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -94,29 +92,40 @@
                     </div>
                 </div>
 
-                <!-- Product Description -->
                 <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
-                    <div class="mb-8">
-                        {{-- <h2 class="text-3xl font-bold gradient-text mb-4">Paket Level {{ $level->level_name }}</h2>
-                        <div class="flex items-baseline space-x-4">
-                            <span class="text-3xl font-bold text-gray-900">
-                                Rp. {{ number_format($level->price, 0, ',', '.') }}
-                            </span>
-                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
-                                Terbatas
-                            </span>
-                        </div> --}}
-                        <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
-                            <button id="mode-bundle" onclick="switchMode('bundle')"
-                                class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 bg-teal-600 text-white shadow-sm">
-                                Paket Lengkap
-                            </button>
-                            <button id="mode-custom" onclick="switchMode('custom')"
-                                class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 text-gray-500 hover:text-gray-700">
-                                Pilih Satuan
-                            </button>
+                    {{-- MODE PEMBELIAN --}}
+                    <section>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div>
+                                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Mode Pembelian</h2>
+                                <p class="text-xs text-gray-400">Pilih paket lengkap atau kategori satuan</p>
+                            </div>
                         </div>
-                    </div>
+                        <div class="mb-8">
+
+                            {{-- TOOGLE MODE --}}
+                            <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
+                                <button id="mode-bundle" wire:click="switchMode('bundle')"
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    Paket Lengkap
+                                </button>
+                                <button id="mode-custom" wire:click="switchMode('custom')"
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    Pilih Satuan
+                                </button>
+                            </div>
+
+                            <div>
+                                @if ($mode === 'custom')
+                                    <p
+                                        class="text-xs text-blue-700 bg-blue-100 rounded-lg p-2 mt-4 border border-blue-200">
+                                        Pilih satu atau lebih kategori ujian sesuai kebutuhan Anda
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+                    </section>
+
 
                     <!-- Course Overview -->
                     <div class="mb-8">
@@ -124,7 +133,8 @@
                         <p class="text-gray-600 leading-relaxed text-lg text-justify">
                             Sertifikasi Level A bertujuan menguji pemahaman dasar guru melalui ujian teori terkait
                             pengajaran yang efektif,
-                            terstruktur, dan berdiferensiasi, serta penerapan penilaian berbasis Teaching Mastery Framework
+                            terstruktur, dan berdiferensiasi, serta penerapan penilaian berbasis Teaching Mastery
+                            Framework
                             serta Literasi Numerasi.
                             Level ini merupakan tahap awal dalam program Teaching & Learning Certification (TLC) HAFECS.
                         </p>
@@ -141,12 +151,15 @@
                     <!-- Expandable Content -->
                     <div class="border-t border-gray-100 pt-8">
                         <button id="readMoreBtn" class="flex items-center justify-between w-full text-left group">
-                            <span class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 smooth-transition">
+                            <span
+                                class="text-lg font-semibold text-gray-800 group-hover:text-teal-600 smooth-transition">
                                 Detail Program & Modul
                             </span>
-                            <svg id="arrow" class="w-5 h-5 text-teal-600 smooth-transition group-hover:text-teal-700"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            <svg id="arrow"
+                                class="w-5 h-5 text-teal-600 smooth-transition group-hover:text-teal-700" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
                                 </path>
                             </svg>
                         </button>
@@ -172,7 +185,8 @@
                                             </div>
                                         </div>
                                         <p class="text-gray-600 leading-relaxed">
-                                            Mengikuti penugasan di Learning Management System Elevate untuk mendalami konsep
+                                            Mengikuti penugasan di Learning Management System Elevate untuk mendalami
+                                            konsep
                                             Teaching Mastery Framework.
                                         </p>
                                     </div>
@@ -208,7 +222,8 @@
                                             </div>
                                         </div>
                                         <p class="text-gray-600 leading-relaxed">
-                                            Mengikuti uji sertifikasi level A dengan ujian teori berbasis Teaching Mastery
+                                            Mengikuti uji sertifikasi level A dengan ujian teori berbasis Teaching
+                                            Mastery
                                             Framework dan Literasi Numerasi.
                                         </p>
                                     </div>
@@ -221,7 +236,8 @@
                                         <div class="flex items-center space-x-3">
                                             <div
                                                 class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <svg class="w-4 h-4 text-blue-600" fill="currentColor"
+                                                    viewBox="0 0 20 20">
                                                     <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                                                     <path fill-rule="evenodd"
                                                         d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 2a1 1 0 000 2h2a1 1 0 100-2H7z"
@@ -233,7 +249,8 @@
                                         <div class="flex items-center space-x-3">
                                             <div
                                                 class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <svg class="w-4 h-4 text-green-600" fill="currentColor"
+                                                    viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd"
                                                         d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                                         clip-rule="evenodd" />
@@ -273,7 +290,8 @@
                                     class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-2xl p-6 border-l-4 border-teal-500">
                                     <p class="text-teal-800 font-medium leading-relaxed">
                                         Level A menjadi fondasi penting dalam program Teaching & Learning Certification,
-                                        menggambarkan kesiapan peserta dalam memahami dan menerapkan prinsip dasar pedagogi
+                                        menggambarkan kesiapan peserta dalam memahami dan menerapkan prinsip dasar
+                                        pedagogi
                                         yang kuat sebelum melanjutkan ke level berikutnya.
                                     </p>
                                 </div>
@@ -286,7 +304,8 @@
                         <h3 class="text-xl font-semibold text-gray-800 mb-6">Benefit Yang Akan Anda Dapatkan</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -294,7 +313,8 @@
                                 <span class="text-gray-700">Sertifikat Kompetensi ber-NPSN</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                                         <path fill-rule="evenodd"
@@ -338,7 +358,8 @@
                                 <span class="text-gray-700">Modul Pembelajaran Digital</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
                                             d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"
@@ -493,4 +514,4 @@
             });
         });
     </script>
-@endsection
+</section>
