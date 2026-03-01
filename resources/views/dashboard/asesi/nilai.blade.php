@@ -32,37 +32,6 @@
             </div>
         </div>
 
-        <!-- Enhanced Statistics Cards -->
-        {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <!-- Total Lulus -->
-            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 card-hover border border-teal-100">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-[#1D4E89] text-sm font-semibold uppercase tracking-wide mb-2">Total Lulus</p>
-                        <p class="text-4xl font-bold text-teal-600 mb-1">4</p>
-                        <p class="text-teal-500 text-sm font-medium">+2 dari bulan lalu</p>
-                    </div>
-                    <div class="bg-gradient-to-br from-teal-400 to-teal-600 p-4 rounded-2xl shadow-lg">
-                        <i class="fas fa-check text-white text-2xl"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Gagal -->
-            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 card-hover border border-pink-100">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-[#1D4E89] text-sm font-semibold uppercase tracking-wide mb-2">Total Gagal</p>
-                        <p class="text-4xl font-bold text-pink-600 mb-1">2</p>
-                        <p class="text-pink-500 text-sm font-medium">Perlu perhatian</p>
-                    </div>
-                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 p-4 rounded-2xl shadow-lg">
-                        <i class="fas fa-times text-white text-2xl"></i>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
         <!-- Enhanced Results Table -->
         <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-orange-200/30">
             <div class="bg-gradient-to-r from-orange-50 to-blue-50 px-8 py-6 border-b border-orange-200">
@@ -237,6 +206,4 @@
         }
     </style>
 </section>
-
-
 @endsection

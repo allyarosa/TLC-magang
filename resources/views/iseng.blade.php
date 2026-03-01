@@ -141,7 +141,7 @@
     </header>
     {{-- End Navbar --}}
 
-{{-- Masuk Sertifikasi --}}
+    {{-- Masuk Sertifikasi --}}
 
     {{-- Banner --}}
     <section class="relative max-w-7xl mx-auto px-4 py-8">
@@ -1433,551 +1433,9 @@
     </section>
     {{-- End Langkah Mudah --}}
 
-
-    {{-- Paket TLC --}}
-    {{-- <section class="relative bg-white min-h-screen flex items-center py-16 overflow-hidden">
-        <!-- Decorative Background Elements -->
-        <div class="absolute -top-20 -left-20 w-72 h-72 md:w-96 md:h-96 rounded-full opacity-10 blur-3xl animate-blob">
-        </div>
-        <div
-            class="absolute -bottom-20 -right-20 w-72 h-72 md:w-96 md:h-96 bg-blue-300 rounded-full opacity-10 blur-3xl animate-blob animation-delay-4000">
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-12 md:mb-16 px-2">
-                <h1
-                    class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 mb-4 transform transition duration-300 hover:scale-105">
-                    Certification Packages
-                </h1>
-                <p class="text-lg md:text-2xl text-gray-600 max-w-2xl mx-auto opacity-80 hover:opacity-100 transition">
-                    Unlock your teaching potential with our expertly crafted certification paths
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Package A -->
-                <div
-                    class="relative bg-white border border-purple-100 rounded-3xl shadow-xl p-8 transform transition duration-500 hover:scale-105 hover:rotate-3 hover:shadow-purple-500/30 group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-t-3xl transition-all duration-500 group-hover:h-full opacity-0 group-hover:opacity-100 z-0">
-                    </div>
-                    <div class="relative z-10">
-                        <div class="flex justify-between items-center mb-4 md:mb-6">
-                            <h2
-                                class="text-2xl md:text-3xl font-bold text-purple-600 transition transform group-hover:translate-x-2">
-                                Package A</h2>
-                            <span
-                                class="bg-purple-100 text-purple-600 px-3 py-1 md:px-4 md:py-2 rounded-full text-sm font-semibold">Basic</span>
-                        </div>
-                        <h3
-                            class="text-xl md:text-2xl font-semibold text-gray-800 mb-4 md:mb-6 opacity-80 group-hover:opacity-100 transition">
-                            Teaching Knowledge Certification
-                        </h3>
-                        <div class="space-y-3 md:space-y-4 mb-6 md:mb-8">
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-purple-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Foundations of Modern Teaching</span>
-                            </div>
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-purple-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Student Engagement Strategies</span>
-                            </div>
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-purple-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Assessment Techniques</span>
-                            </div>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 md:py-4 rounded-xl 
-                            hover:from-purple-700 hover:to-blue-700 
-                            transform transition duration-300 
-                            hover:scale-105 
-                            hover:shadow-lg 
-                            hover:shadow-purple-500/50 
-                            active:scale-95 
-                            group-hover:bg-opacity-90">
-                            Select Package
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Package B -->
-                <div
-                    class="relative bg-white border border-blue-100 rounded-3xl shadow-xl p-8 transform transition duration-500 hover:scale-105 hover:-rotate-3 hover:shadow-blue-500/30 group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-t-3xl transition-all duration-500 group-hover:h-full opacity-0 group-hover:opacity-100 z-0">
-                    </div>
-                    <div class="relative z-10">
-                        <div class="flex justify-between items-center mb-4 md:mb-6">
-                            <h2
-                                class="text-2xl md:text-3xl font-bold text-blue-600 transition transform group-hover:translate-x-2">
-                                Package B</h2>
-                            <span
-                                class="bg-blue-100 text-blue-600 px-3 py-1 md:px-4 md:py-2 rounded-full text-sm font-semibold">Intermediate</span>
-                        </div>
-                        <h3
-                            class="text-xl md:text-2xl font-semibold text-gray-800 mb-4 md:mb-6 opacity-80 group-hover:opacity-100 transition">
-                            Teaching Activation Certification
-                        </h3>
-                        <div class="space-y-3 md:space-y-4 mb-6 md:mb-8">
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-blue-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Advanced Pedagogical Approaches</span>
-                            </div>
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-blue-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Technology Integration</span>
-                            </div>
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-blue-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Inclusive Classroom Practices</span>
-                            </div>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-blue-600 to-green-500 text-white py-3 md:py-4 rounded-xl 
-                            hover:from-blue-700 hover:to-green-600 
-                            transform transition duration-300 
-                            hover:scale-105 
-                            hover:shadow-lg 
-                            hover:shadow-blue-500/50 
-                            active:scale-95 
-                            group-hover:bg-opacity-90">
-                            Select Package
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Package C -->
-                <div
-                    class="relative bg-white border border-pink-100 rounded-3xl shadow-xl p-8 transform transition duration-500 hover:scale-105 hover:rotate-3 hover:shadow-pink-500/30 group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-red-500 rounded-t-3xl transition-all duration-500 group-hover:h-full opacity-0 group-hover:opacity-100 z-0">
-                    </div>
-                    <div class="relative z-10">
-                        <div class="flex justify-between items-center mb-4 md:mb-6">
-                            <h2
-                                class="text-2xl md:text-3xl font-bold text-pink-600 transition transform group-hover:translate-x-2">
-                                Package C</h2>
-                            <span
-                                class="bg-pink-100 text-pink-600 px-3 py-1 md:px-4 md:py-2 rounded-full text-sm font-semibold">Advanced</span>
-                        </div>
-                        <h3
-                            class="text-xl md:text-2xl font-semibold text-gray-800 mb-4 md:mb-6 opacity-80 group-hover:opacity-100 transition">
-                            Teaching Mastery Certification
-                        </h3>
-                        <div class="space-y-3 md:space-y-4 mb-6 md:mb-8">
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-pink-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Educational Leadership</span>
-                            </div>
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-pink-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Research-Based Teaching</span>
-                            </div>
-                            <div class="flex items-center transform transition group-hover:-translate-x-2">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-pink-500 mr-3 md:mr-4 animate-pulse"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-base md:text-lg">Curriculum Development</span>
-                            </div>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-pink-600 to-red-500 text-white py-3 md:py-4 rounded-xl 
-                            hover:from-pink-700 hover:to-red-600 
-                            transform transition duration-300 
-                            hover:scale-105 
-                            hover:shadow-lg 
-                            hover:shadow-pink-500/50 
-                            active:scale-95 
-                            group-hover:bg-opacity-90">
-                            Select Package
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <style>
-            @keyframes blob {
-                0% {
-                    transform: scale(1) translate(0, 0);
-                }
-
-                33% {
-                    transform: scale(1.1) translate(-10px, 20px);
-                }
-
-                66% {
-                    transform: scale(0.9) translate(10px, -20px);
-                }
-
-                100% {
-                    transform: scale(1) translate(0, 0);
-                }
-            }
-
-            .animate-blob {
-                animation: blob 10s infinite;
-            }
-
-            .animation-delay-4000 {
-                animation-delay: 4s;
-            }
-        </style>
-    </section> --}}
-    {{-- End Paket TLC --}}
-
-    {{-- <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-[#E6F7FA] shadow-lg rounded-2xl border p-8 mb-10">
-        <h2 class="text-center text-2xl font-bold text-gray-800 mb-6">Langkah mudah belajar di Teaching & Learning
-            Certification</h2>
-
-        <!-- Tab Navigation -->
-        <div class="flex justify-center mb-6">
-            <button
-                class="px-6 py-2 bg-[#00B2FF] text-white font-semibold rounded-full shadow-md mr-2 transition-transform transform hover:scale-105 active:scale-95">Sesi
-                Terbuka</button>
-            <button
-                class="px-6 py-2 bg-white text-gray-700 font-semibold rounded-full shadow-md border transition-transform transform hover:scale-105 active:scale-95">Sesi
-                Terkunci</button>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <!-- Image -->
-            <div class="flex justify-center">
-                <img src="images/konten_satu.jpg" alt="Student Learning"
-                    class="rounded-2xl shadow-lg w-[90%] transition-transform transform hover:scale-105">
-            </div>
-
-            <!-- Steps -->
-            <div class="relative">
-                <div class="absolute left-4 top-0 bottom-0 w-1 bg-[#00B2FF] rounded-full"></div>
-
-                <div class="relative flex items-start mb-6">
-                    <div
-                        class="w-8 h-8 flex items-center justify-center bg-[#00B2FF] text-white font-bold rounded-full shadow-md transition-transform transform hover:scale-110">
-                        1</div>
-                    <div class="ml-6 bg-white p-4 rounded-lg shadow-md w-full transition-shadow hover:shadow-xl">
-                        <h3 class="text-lg font-semibold text-gray-800">Pilih paket sesuai kebutuhan
-                            kamu</h3>
-                        <p class="text-gray-600 text-sm">Lakukan pembayaran untuk paket mata pelajaran yang kamu pilih
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative flex items-start mb-6">
-                    <div
-                        class="w-8 h-8 flex items-center justify-center bg-[#00B2FF] text-white font-bold rounded-full shadow-md transition-transform transform hover:scale-110">
-                        2</div>
-                    <div class="ml-6 bg-white p-4 rounded-lg shadow-md w-full transition-shadow hover:shadow-xl">
-                        <h3 class="text-lg font-semibold text-gray-800">Pesan sesi di Teaching & Learning Certification
-                        </h3>
-                        <p class="text-gray-600 text-sm">Kamu bisa bebas pilih pengajar dan waktu belajar kamu.
-                            Pastikan kamu pesan sesi H-3 sebelum mulai belajar ya!</p>
-                    </div>
-                </div>
-
-                <div class="relative flex items-start mb-6">
-                    <div
-                        class="w-8 h-8 flex items-center justify-center bg-[#00B2FF] text-white font-bold rounded-full shadow-md transition-transform transform hover:scale-110">
-                        3</div>
-                    <div class="ml-6 bg-white p-4 rounded-lg shadow-md w-full transition-shadow hover:shadow-xl">
-                        <h3 class="text-lg font-semibold text-gray-800">Konfirmasi pengajar pilihanmu</h3>
-                        <p class="text-gray-600 text-sm">Konfirmasi akan kamu terima melalui email maksimal 2×24 jam
-                            setelah sesi dipesan</p>
-                    </div>
-                </div>
-
-                <div class="relative flex items-start">
-                    <div
-                        class="w-8 h-8 flex items-center justify-center bg-[#00B2FF] text-white font-bold rounded-full shadow-md transition-transform transform hover:scale-110">
-                        4</div>
-                    <div class="ml-6 bg-white p-4 rounded-lg shadow-md w-full transition-shadow hover:shadow-xl">
-                        <h3 class="text-lg font-semibold text-gray-800">Mulai sesi belajar dengan Pengajar</h3>
-                        <p class="text-gray-600 text-sm">Kamu bisa mulai sesi belajar sesuai waktu sesi yang kamu pesan
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="flex justify-center mt-8">
-            <button
-                class="px-6 py-3 bg-[#FF8000] text-white font-semibold rounded-full shadow-md text-lg transition-transform transform hover:scale-105 active:scale-95">Cari
-                Paket Sekarang</button>
-        </div>
-    </section> --}}
-
-    {{-- Vidio Pendafatraan --}}
-    {{-- <section id="home"
-        class="w-full px-4 md:px-5 py-12 md:py-16 bg-white text-white shadow-lg transition-all duration-500">
-        <div class="container mx-auto max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8">
-                <!-- Text Content -->
-                <div class="lg:col-span-7 p-4 md:p-5 text-center lg:text-left">
-                    <h1 class="text-3xl md:text-5xl font-extrabold leading-snug text-[#00C6A9]">
-                        We Learn it, <br />
-                        <span class="text-[#FFD700]">Cara Pendaftaran</span>
-                    </h1>
-                    <p class="text-base md:text-lg mt-4 text-gray-900">
-                        Teaching & Learning Certification siap bantu taklukkan semua ujian dan nemenin perjuanganmu
-                        menuju impian!
-                    </p>
-                    <div class="flex justify-center lg:justify-start mt-6">
-                        <a href="#"
-                            class="bg-[#FF6600] text-white px-6 py-3 rounded-xl shadow-md text-base md:text-lg font-semibold hover:bg-[#E65C00] transition-transform duration-300 hover:scale-105 active:scale-95">
-                            Lihat Fasilitas TLC Program
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Video Content -->
-                <div
-                    class="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-transform duration-500">
-                    <iframe class="w-full h-56 md:h-[350px] rounded-xl"
-                        src="https://www.youtube.com/embed/Jn7vuXLozJI?autoplay=1&mute=1" frameborder="0"
-                        allowfullscreen></iframe>
-                    <div
-                        class="absolute top-3 right-3 bg-white text-[#00C6A9] font-bold px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg text-sm md:text-base">
-                        Sound ON!
-                    </div>
-                    <div
-                        class="absolute bottom-3 right-3 bg-white text-[#00C6A9] font-bold px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg text-sm md:text-base">
-                        TLC Program
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    {{-- End Vidio Pendafatraan --}}
-
-    {{-- Langkah di TLC --}}
-    {{-- <section class="w-full py-12 md:py-16 px-4 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div
-                class="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-teal-100 transform transition-all hover:scale-[1.01] hover:shadow-3xl">
-                <div class="relative">
-                    <!-- Animated Gradient Header -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-teal-400 to-blue-500 opacity-10 animate-pulse">
-                    </div>
-
-                    <h1
-                        class="relative text-2xl md:text-4xl font-extrabold text-center py-8 mb-8 text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600 tracking-tight">
-                        Langkah Mudah Daftar di TLC Program
-                    </h1>
-                </div>
-
-                <!-- Content -->
-                <div class="flex flex-col md:flex-row items-center px-6 md:px-12 pb-10 md:pb-12 gap-8">
-                    <!-- Left Image -->
-                    <div
-                        class="w-full md:w-1/2 transform transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-2xl">
-                        <div class="relative group">
-                            <div
-                                class="absolute -inset-2 bg-gradient-to-r from-teal-400 to-blue-500 rounded-3xl blur-lg opacity-50 group-hover:opacity-75 transition duration-500">
-                            </div>
-                            <img src="images/guru.png" alt="Student learning"
-                                class="relative rounded-3xl shadow-2xl w-full" />
-                        </div>
-                    </div>
-
-                    <!-- Right Steps -->
-                    <div class="w-full md:w-1/2 space-y-6">
-                        <!-- Step 1 -->
-                        <div class="group">
-                            <div
-                                class="flex items-center space-x-4 md:space-x-6 p-4 bg-white rounded-2xl shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50">
-                                <div
-                                    class="w-14 h-14 md:w-16 md:h-16 bg-teal-100 rounded-full flex items-center justify-center transform transition-all group-hover:rotate-12 group-hover:scale-110">
-                                    <svg class="w-7 h-7 md:w-8 md:h-8 text-teal-600 group-hover:text-teal-800"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3
-                                        class="font-bold text-lg md:text-xl text-gray-800 mb-2 group-hover:text-teal-700 transition">
-                                        Pilih paket program
-                                    </h3>
-                                    <p class="text-gray-600 group-hover:text-gray-800 transition text-sm md:text-base">
-                                        Lakukan pembayaran untuk paket yang kamu pilih
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="group">
-                            <div
-                                class="flex items-center space-x-4 md:space-x-6 p-4 bg-white rounded-2xl shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50">
-                                <div
-                                    class="w-14 h-14 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center transform transition-all group-hover:rotate-12 group-hover:scale-110">
-                                    <svg class="w-7 h-7 md:w-8 md:h-8 text-blue-600 group-hover:text-blue-800"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3
-                                        class="font-bold text-lg md:text-xl text-gray-800 mb-2 group-hover:text-blue-700 transition">
-                                        Pesan sesi paket
-                                    </h3>
-                                    <p class="text-gray-600 group-hover:text-gray-800 transition text-sm md:text-base">
-                                        Bebas pilih pengajar dan waktu sesi
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="group">
-                            <div
-                                class="flex items-center space-x-4 md:space-x-6 p-4 bg-white rounded-2xl shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50">
-                                <div
-                                    class="w-14 h-14 md:w-16 md:h-16 bg-purple-100 rounded-full flex items-center justify-center transform transition-all group-hover:rotate-12 group-hover:scale-110">
-                                    <svg class="w-7 h-7 md:w-8 md:h-8 text-purple-600 group-hover:text-purple-800"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3
-                                        class="font-bold text-lg md:text-xl text-gray-800 mb-2 group-hover:text-purple-700 transition">
-                                        Konfirmasi Paket
-                                    </h3>
-                                    <p class="text-gray-600 group-hover:text-gray-800 transition text-sm md:text-base">
-                                        Konfirmasi via email dalam 2×24 jam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Call to Action Button -->
-                        <button
-                            class="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-3 md:py-4 rounded-full font-bold transform transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 animate-pulse-slow focus:outline-none focus:ring-4 focus:ring-orange-300 text-sm md:text-base">
-                            Cari Sesi Paket Sekarang
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <style>
-            @keyframes pulse-slow {
-
-                0%,
-                100% {
-                    transform: scale(1);
-                }
-
-                50% {
-                    transform: scale(1.05);
-                }
-            }
-
-            .animate-pulse-slow {
-                animation: pulse-slow 3s infinite;
-            }
-        </style>
-    </section> --}}
-    {{-- End Langkah di TLC --}}
-
-    {{-- Banner --}}
-    {{-- <section class="relative max-w-7xl mx-auto px-4 py-8">
-        <!-- Left navigation button -->
-        <button
-            class="absolute left-2 md:-left-5 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-        </button>
-
-        <!-- Right navigation button -->
-        <button
-            class="absolute right-2 md:-right-5 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </button>
-
-        <!-- Banner -->
-        <div class="bg-blue-900 bg-gradient-to-r from-blue-900 to-blue-800 rounded-lg overflow-hidden">
-            <!-- Content -->
-            <div class="flex flex-col md:flex-row items-center">
-                <!-- Character illustrations -->
-                <div class="w-full md:w-2/5 p-4">
-                    <img src="images/karakter.jpg" alt="Kedinasan Characters" class="w-full h-auto object-cover">
-                </div>
-
-                <!-- Text content -->
-                <div class="w-full md:w-3/5 p-6 text-white text-center md:text-left">
-                    <h2 class="text-xl md:text-3xl font-bold mb-2">Jadi #KebanggaanKeluarga dengan</h2>
-                    <h1 class="text-2xl md:text-5xl font-extrabold text-yellow-400 leading-tight mb-6 drop-shadow-md">
-                        Lolos Tes Sekolah Kedinasan bersama Bimbel TLC!
-                    </h1>
-                    <a href="#"
-                        class="inline-block bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-3 px-6 md:px-8 rounded-full transition duration-300 transform hover:-translate-y-1">
-                        Cek Program di Sini
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Dots navigation -->
-        <div class="flex justify-center mt-4 space-x-2">
-            <span class="w-2 h-2 bg-white rounded-full"></span>
-            <span class="w-2 h-2 bg-white bg-opacity-50 rounded-full"></span>
-            <span class="w-2 h-2 bg-white bg-opacity-50 rounded-full"></span>
-            <span class="w-2 h-2 bg-white bg-opacity-50 rounded-full"></span>
-            <span class="w-2 h-2 bg-white bg-opacity-50 rounded-full"></span>
-        </div>
-    </section> --}}
-    {{-- End Banner --}}
-
-{{-- End Sertifikasi --}}
-
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-br from-white to-blue-50 shadow-xl rounded-3xl border border-blue-100 p-8 mb-10">
+    {{-- End Sertifikasi --}}
+    <section
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-br from-white to-blue-50 shadow-xl rounded-3xl border border-blue-100 p-8 mb-10">
         <!-- Header -->
         <div class="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
             <div class="flex items-center space-x-3">
@@ -2181,105 +1639,72 @@
     </footer>
     {{-- end footer --}}
 
-    <section
-			class="py-16 bg-gradient-to-r from-blue-50 via-blue-50 to-blue-100 relative overflow-hidden"
-		>
-			<!-- Decorative elements -->
-			<div class="absolute top-0 left-0 w-full h-full opacity-20">
-				<div
-					class="absolute top-10 left-10 w-32 h-32 rounded-full bg-blue-200"
-				></div>
-				<div
-					class="absolute bottom-10 right-10 w-48 h-48 rounded-full bg-blue-300"
-				></div>
-				<div
-					class="absolute top-1/2 left-1/4 w-24 h-24 rounded-full bg-yellow-200"
-				></div>
-			</div>
+    <section class="py-16 bg-gradient-to-r from-blue-50 via-blue-50 to-blue-100 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-20">
+            <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-blue-200"></div>
+            <div class="absolute bottom-10 right-10 w-48 h-48 rounded-full bg-blue-300"></div>
+            <div class="absolute top-1/2 left-1/4 w-24 h-24 rounded-full bg-yellow-200"></div>
+        </div>
 
-			<div class="max-w-6xl mx-auto px-5 text-center py-8 relative z-10">
-				<!-- Animated Tag -->
-				<div class="mb-4 transform hover:scale-105 transition duration-300">
-					<span
-						class="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-blue-700"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							class="w-5 h-5"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M9 12l2 2 4-4M7 7h10M7 11h10M5 5v14a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2z"
-							/>
-						</svg>
-						CERTIFICATE
-					</span>
-				</div>
+        <div class="max-w-6xl mx-auto px-5 text-center py-8 relative z-10">
+            <!-- Animated Tag -->
+            <div class="mb-4 transform hover:scale-105 transition duration-300">
+                <span
+                    class="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4M7 7h10M7 11h10M5 5v14a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2z" />
+                    </svg>
+                    CERTIFICATE
+                </span>
+            </div>
 
-				<!-- Enhanced Heading -->
-				<h2
-					class="text-4xl sm:text-5xl font-extrabold text-blue-800 leading-tight mb-6"
-				>
-					<span class="text-blue-600">Sertifikat</span> Keahlian
-				</h2>
+            <!-- Enhanced Heading -->
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-blue-800 leading-tight mb-6">
+                <span class="text-blue-600">Sertifikat</span> Keahlian
+            </h2>
 
-				<p class="text-blue-700 max-w-2xl mx-auto mb-10 text-lg">
-					Bukti resmi penyelesaian dan kompetensi yang telah diakui secara
-					profesional
-				</p>
-			</div>
+            <p class="text-blue-700 max-w-2xl mx-auto mb-10 text-lg">
+                Bukti resmi penyelesaian dan kompetensi yang telah diakui secara
+                profesional
+            </p>
+        </div>
 
-			<div class="container mx-auto px-4">
-				<div class="flex flex-wrap justify-center gap-6 md:gap-8">
-					<!-- Sertifikat 1 - Enhanced -->
-					<div
-						class="p-6 rounded-xl bg-white shadow-xl transform hover:scale-105 transition duration-500 group border border-blue-100"
-					>
-						<div class="overflow-hidden rounded-lg">
-							<img
-								src="./assets/img/sertifikat_depan.jpg"
-								alt="Sertifikat Penyelesaian"
-								class="w-80 md:w-96 h-auto rounded-lg shadow-md transform group-hover:scale-105 transition duration-500"
-							/>
-						</div>
-						<div class="mt-6 text-center">
-							<button
-								class="px-8 py-3 rounded-lg text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-yellow-400 hover:to-yellow-500 transition duration-300 font-bold text-lg shadow-lg transform hover:-translate-y-1 border-b-4 border-blue-800 hover:border-yellow-600"
-							>
-								Sertifikat Penyelesaian
-							</button>
-						</div>
-					</div>
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <!-- Sertifikat 1 - Enhanced -->
+                <div
+                    class="p-6 rounded-xl bg-white shadow-xl transform hover:scale-105 transition duration-500 group border border-blue-100">
+                    <div class="overflow-hidden rounded-lg">
+                        <img src="./assets/img/sertifikat_depan.jpg" alt="Sertifikat Penyelesaian"
+                            class="w-80 md:w-96 h-auto rounded-lg shadow-md transform group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button
+                            class="px-8 py-3 rounded-lg text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-yellow-400 hover:to-yellow-500 transition duration-300 font-bold text-lg shadow-lg transform hover:-translate-y-1 border-b-4 border-blue-800 hover:border-yellow-600">
+                            Sertifikat Penyelesaian
+                        </button>
+                    </div>
+                </div>
 
-					<!-- Sertifikat 2 - Enhanced -->
-					<div
-						class="p-6 rounded-xl bg-white shadow-xl transform hover:scale-105 transition duration-500 group border border-blue-100"
-					>
-						<div class="overflow-hidden rounded-lg">
-							<img
-								src="./assets/img/sertifikat_belakang.jpg"
-								alt="Sertifikat Kompetensi"
-								class="w-80 md:w-96 h-auto rounded-lg shadow-md transform group-hover:scale-105 transition duration-500"
-							/>
-						</div>
-						<div class="mt-6 text-center">
-							<button
-								class="px-8 py-3 rounded-lg text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-yellow-400 hover:to-yellow-500 transition duration-300 font-bold text-lg shadow-lg transform hover:-translate-y-1 border-b-4 border-blue-800 hover:border-yellow-600"
-							>
-								Sertifikat Kompetensi
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
+                <!-- Sertifikat 2 - Enhanced -->
+                <div
+                    class="p-6 rounded-xl bg-white shadow-xl transform hover:scale-105 transition duration-500 group border border-blue-100">
+                    <div class="overflow-hidden rounded-lg">
+                        <img src="./assets/img/sertifikat_belakang.jpg" alt="Sertifikat Kompetensi"
+                            class="w-80 md:w-96 h-auto rounded-lg shadow-md transform group-hover:scale-105 transition duration-500" />
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button
+                            class="px-8 py-3 rounded-lg text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-yellow-400 hover:to-yellow-500 transition duration-300 font-bold text-lg shadow-lg transform hover:-translate-y-1 border-b-4 border-blue-800 hover:border-yellow-600">
+                            Sertifikat Kompetensi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
-
 </html>

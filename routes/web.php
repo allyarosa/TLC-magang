@@ -226,7 +226,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
         Route::post('/complete', [ExamControllerC::class, 'complete'])->name('complete');
         Route::get('/completed', [ExamControllerC::class, 'completed'])->name('completed');
     });
-    
+
     // Transactions
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
 });
@@ -522,5 +522,4 @@ Route::get('/test-notification', function () {
     }
     return "User not logged in!";
 });
-
 require __DIR__ . '/auth.php';
