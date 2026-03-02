@@ -37,7 +37,6 @@
                             pendidik dengan strategi pengajaran inovatif untuk menghadirkan perubahan bermakna di dunia
                             pendidikan digital.
                         </p>
-
                     </div>
 
                     <div class="flex flex-col sm:flex-row my-8 gap-4">
