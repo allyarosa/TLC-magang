@@ -65,7 +65,7 @@
                 </div>
 
                 <!-- Navigation Menu for Desktop - Centered -->
-                <div class="hidden lg:flex items-center justify-center gap-1 flex-1">
+                <div class="hidden lg:flex items-center justify-center gap-6 flex-1">
                     @php
                         $navs = [
                             ['name' => 'Dashboard', 'route' => 'asesi.dashboard'],
@@ -80,10 +80,8 @@
                         @endphp
 
                         <a href="{{ route($nav['route']) }}"
-                            class="px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200
-                        {{ $isActive
-                            ? 'bg-blue-50 text-blue-700'
-                            : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
+                            class="text-sm font-medium pb-1 transition-colors
+                            {{ $isActive ? 'text-blue-700 border-b-2 border-blue-700' : 'text-slate-600 hover:text-blue-700' }}">
                             {{ $nav['name'] }}
                         </a>
                     @endforeach
@@ -354,7 +352,7 @@
     <main class="bg-gray-50">
         @yield('content')
     </main>
-        
+
     @include('layouts.footer')
 
     @livewireScripts
