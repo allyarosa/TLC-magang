@@ -41,6 +41,7 @@ jobs:
           php artisan down --message="Deploying updates, please wait..."
           git reset --hard
           git restore .
+          git clean -fd bootstrap/cache/
           git pull origin dev
           composer install --no-interaction --prefer-dist --optimize-autoloader --ignore-platform-reqs
           npm ci
