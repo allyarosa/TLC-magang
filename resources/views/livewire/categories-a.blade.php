@@ -33,18 +33,6 @@
 
                     {{-- Rating & soal --}}
                     <div class="flex items-center text-yellow-500 mb-4">
-                        {{-- @for ($i = 0; $i < 4; $i++)
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                            </svg>
-                        @endfor
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </svg> --}}
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path
@@ -60,7 +48,7 @@
                             <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
                             {{ $index['time_limit'] }} Menit
                         </div>
-                        @if (Auth::user()->hasAnyPermission([$index['name'], $index['name'] . '_LOCK']))
+                        @if (Auth::user()->hasPermissionTo($index['name'] . '_LOCK'))
                             {{-- Prioritas: kalau sudah HOTS, anggap udah selesai --}}
                             <button disabled
                                 class="px-5 py-2 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-xl text-sm font-medium shadow-md flex items-center cursor-default">
@@ -71,7 +59,7 @@
                                         d="M5 13l4 4L19 7" />
                                 </svg>
                             </button>
-                        @elseif (Auth::user()->hasPermissionTo('access_level_A') && $hasAccessCategory)
+                        @elseif (Auth::user()->hasAnyPermission(['access_level_A', $index['name']]) && $hasAccessCategory)
                             {{-- Kalau belum selesai tapi sudah dapat akses --}}
                             <button wire:click="openModal({{ $categoryId }})"
                                 class="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl text-sm font-medium shadow-md transform transition duration-100 hover:shadow-xl flex items-center">
