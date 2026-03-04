@@ -260,6 +260,12 @@ class AdminDashboardController extends Controller
 
             if ($request->filled('status')) {
                 $userUpdateData['status'] = $request->input('status');
+                
+                if ($request->input('status') === 'suspended') {
+                    DB::table('sessions')
+                        ->where('user_id', $userProfile->user->id)
+                        ->delete();
+                }
             }
 
             if ($request->filled('name')) {
