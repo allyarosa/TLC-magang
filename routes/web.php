@@ -337,6 +337,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/dashboard/asesi/update/{id}', [AdminDashboardController::class, 'asesiUpdate'])->name('admin.asesi.update');
     Route::delete('/dashboard/asesi/delete/{id}', [AdminDashboardController::class, 'asesiDestroy'])->name('admin.asesi.destroy');
     Route::get('/dashboard/asesi/{id}/level-a', [AsesiScoreController::class, 'showLevelA'])->name('admin.asesi.level_a.show');
+    Route::get('/dashboard/asesi/{id}/payment-history', [AsesiScoreController::class, 'paymentHistory'])->name('admin.asesi.payment-history');
     // Route::get('/dashboard/asesi/{id}/level-a', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.level_b.show');
     // Route::get('/dashboard/asesi/{id}/level-a', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.level_c.show');
     Route::post('/dashboard/asesi/{id}/impersonate', [AdminDashboardController::class, 'impersonate'])->name('admin.asesi.impersonate');

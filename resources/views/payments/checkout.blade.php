@@ -134,7 +134,7 @@
                             </div>
 
                             <button id="pay-button"
-                                class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-lg rounded-xl hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                                class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-lg rounded-xl hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 hover:shadow-xl">
                                 <span class="flex items-center justify-center">
                                     <svg class="w-6 h-6 mr-3 group-hover:animate-pulse" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">

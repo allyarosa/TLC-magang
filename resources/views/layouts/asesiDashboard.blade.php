@@ -346,16 +346,11 @@
                 });
             });
         </script>
-
     </header>
-
     <main class="bg-gray-50">
         @yield('content')
     </main>
-
     @include('layouts.footer')
-
     @livewireScripts
 </body>
-
 </html>
