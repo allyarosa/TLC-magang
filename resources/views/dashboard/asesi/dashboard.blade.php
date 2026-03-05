@@ -976,10 +976,6 @@
                     </script>
 
                     <style>
-                        * {
-                            font-family: 'Inter', sans-serif;
-                        }
-
                         .gradient-bg {
                             background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #fff7ed 100%);
                         }

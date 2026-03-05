@@ -437,7 +437,7 @@
 
                             <div class="space-y-4">
                                 @php
-                                    $permissions = ['access_level_A', 'access_level_B', 'access_level_C', 'bundling'];
+                                    $permissions = ['access_level_A', 'access_level_B', 'access_level_C', 'bundling', 'HOTS', 'PCK', 'LITERASI', 'NUMERASI'];
                                 @endphp
 
                                 <label class="block mb-2 text-sm font-medium text-gray-700">

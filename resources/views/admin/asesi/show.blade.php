@@ -100,7 +100,7 @@
                 <div class="mt-6 pt-4 border-t border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-800 mb-3">Aksi Cepat</h3>
                     <div class="flex flex-wrap items-center gap-3">
-                        <button type="button" onclick="window.location.href='#'"
+                        <button type="button" onclick="window.location.href='{{ route('admin.asesi.payment-history', $asesi->id) }}'"
                             class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -127,7 +127,7 @@
                             @endif
 
                             {{-- LevelB --}}
-                            @if ($userPermission['level_A_completed'])
+                            @if ($userPermission['level_B_completed'])
                                 <button onclick="window.location.href='#'"
                                     class="px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium rounded-lg transition-colors">
                                     Level B
@@ -172,7 +172,7 @@
                             @endif
 
                             {{-- LevelB --}}
-                            @if ($userPermission['level_A_completed'])
+                            @if ($userPermission['level_B_completed'])
                                 <button onclick="window.location.href='#'"
                                     class="px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-xs font-medium rounded-lg transition-colors">
                                     Level B
@@ -185,7 +185,7 @@
                             @endif
 
                             {{-- LevelC --}}
-                            @if ($userPermission['level_A_completed'])
+                            @if ($userPermission['level_C_completed'])
                                 <button onclick="window.location.href='#'"
                                     class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-medium rounded-lg transition-colors">
                                     Level C
