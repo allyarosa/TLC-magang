@@ -91,6 +91,40 @@ Route::get('/payment-view', function() {
     return view('paymentView');
 })->name('payment.view');
 
+// Demo: Pricing Concept (Bundle vs Terpisah)
+Route::get('/demo/pricing', function() {
+    return view('demo.pricing-concept');
+})->name('demo.pricing');
+
+// Demo: Pricing Concept V2 (Kategori dalam Level)
+Route::get('/demo/pricing-v2', function() {
+    return view('demo.pricing-concept-v2');
+})->name('demo.pricing.v2');
+
+// Demo: Pricing Concept V3 (Step-by-step: Level → Mode → Detail)
+Route::get('/demo/pricing-v3', function() {
+    return view('demo.pricing-concept-v3');
+})->name('demo.pricing.v3');
+
+Route::get('/demo/pricing-v4', function() {
+    return view('demo.pricing-concept-v4');
+})->name('demo.pricing.v4');
+
+// Demo: Pricing Flow V4 (single-file flow: login -> pilih -> bayar)
+Route::get('/demo/pricing-flow-v4', function() {
+    return view('demo.pricing-flow-v4');
+})->name('demo.pricing.flow.v4');
+
+// Demo: Full Flow (Register → Buy → Payment → Dashboard → Exam)
+Route::get('/demo/full-flow', function() {
+    return view('demo.pricing-full-flow');
+})->name('demo.full-flow');
+
+// Demo: Flow V2 (Tab Navigation Style - Level Tabs + Mode Toggle)
+Route::get('/demo/flow-v2', function() {
+    return view('demo.flow-v2');
+})->name('demo.flow-v2');
+
 Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
 
 // Region API (Public)
