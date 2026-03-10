@@ -456,46 +456,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b pb-2">
-                                Akses dan Izin (Permissions)</h4>
-
-                            <div class="space-y-4">
-                                @php
-                                    $permissions = ['access_level_A', 'access_level_B', 'access_level_C', 'bundling'];
-                                    $userPermissions = $user->user->hasAnyPermission([
-                                        'access_level_A',
-                                        'access_level_B',
-                                        'access_level_C',
-                                        'bundling',
-                                    ]);
-                                @endphp
-
-                                <label class="block mb-2 text-sm font-medium text-gray-700">
-                                    Akses perizinan Level A Asesi saat ini:
-                                </label>
-
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                    @foreach ($permissions as $permission)
-                                        <div class="flex items-center">
-                                            <input id="permission-{{ $permission }}" name="permissions[]"
-                                                type="checkbox" value="{{ $permission }}"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                                @if ($user->user->hasPermissionTo($permission))
-                                                    checked
-                                                @endif
-                                                >
-                                            <label for="permission-{{ $permission }}"
-                                                class="ml-2 text-sm font-medium text-gray-700">
-                                                {{ Str::title(str_replace('_', ' ', $permission)) }}
-                                            </label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                                <x-input-error :messages="$errors->get('permissions')" class="mt-1 text-xs" />
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Submit Button -->
