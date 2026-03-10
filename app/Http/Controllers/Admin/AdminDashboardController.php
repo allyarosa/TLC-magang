@@ -329,10 +329,56 @@ class AdminDashboardController extends Controller
 
     public function asesiLevelManagementIndex(string $id)
     {
+        $userProfile = UserProfile::with('user')->findOrFail($id);
+        $targetUser  = $userProfile->user;
+
+        $groupedPermissions = [
+            'User Status'      => ['fresh_user'],
+            'Unpaid Access'    => ['access_level_B_unpaid', 'access_level_C_unpaid'],
+            'Pending Payment'  => ['level_a_pending_payment', 'level_b_pending_payment', 'level_c_pending_payment'],
+            'Active Levels'    => ['access_level_A', 'access_level_B', 'access_level_C'],
+            'Completed Levels' => ['level_A_completed', 'level_B_completed', 'level_C_completed'],
+            'Special Access'   => ['bundling', 'EXPIRED_LEVEL'],
+            'Content Types'    => [
+                'HOTS', 'PCK', 'NUMERASI', 'LITERASI',
+                'HOTS_LOCK', 'PCK_LOCK', 'NUMERASI_LOCK', 'LITERASI_LOCK',
+                'PPT_UPLOAD', 'PPT_COMPLETED',
+                'MODUL_AJAR', 'MODUL_AJAR_COMPLETED',
+                'ESSAY', 'ESSAY_COMPLETED',
+                'VIDEO_UPLOAD', 'VIDEO_UPLOAD_COMPLETED',
+                'YES_NO_QUESTIONS', 'EXPIRED_KATEGORY',
+            ],
+        ];
+
         return view('admin.asesi.level_management', [
-            'title' => 'Level Management Title',
-            'id' => $id,
+            'title'              => 'Manajemen Level Asesi',
+            'userProfile'        => $userProfile,
+            'targetUser'         => $targetUser,
+            'groupedPermissions' => $groupedPermissions,
         ]);
+    }
+
+    public function asesiLevelManagementUpdate(Request $request, string $id)
+    {
+        $userProfile = UserProfile::with('user')->findOrFail($id);
+        $targetUser  = $userProfile->user;
+
+        $permission = $request->input('permission');
+        $action     = $request->input('action', 'assign');
+
+        if ($action === 'revoke') {
+            if ($targetUser->hasPermissionTo($permission)) {
+                $targetUser->revokePermissionTo($permission);
+                return back()->with('success', "Permission '{$permission}' berhasil dicabut dari {$targetUser->name}.");
+            }
+            return back()->with('info', "{$targetUser->name} tidak memiliki permission '{$permission}'.");
+        } else {
+            if (!$targetUser->hasPermissionTo($permission)) {
+                $targetUser->givePermissionTo($permission);
+                return back()->with('success', "Permission '{$permission}' berhasil diberikan ke {$targetUser->name}.");
+            }
+            return back()->with('info', "{$targetUser->name} sudah memiliki permission '{$permission}'.");
+        }
     }
 
     public function asesorIndex()

@@ -1,23 +1,16 @@
 <?php
 
-use App\Events\MyEvent;
-use App\Events\testing;
 use App\Exports\AsesiExport;
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
 
-// Events
 use App\Exports\RiwayatPenilaianBExport;
 use App\Exports\RiwayatPenilaianCExport;
 
-// Livewire
-use App\Exports\UsersExport;
 use App\Http\Controllers\Admin\AdminDashboardController;
 
-// Models
 use App\Http\Controllers\Admin\AdminSettingsController;
 
-// Exports
 use App\Http\Controllers\Admin\AsesiScoreController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\ExamMonitoringAController;
@@ -25,13 +18,11 @@ use App\Http\Controllers\Admin\HasilPenilaianAController;
 use App\Http\Controllers\Admin\LevelAController;
 use App\Http\Controllers\Admin\LevelCController;
 
-// Controllers - Auth
 use App\Http\Controllers\Admin\LevelSettingsController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PaymentDetailController;
 use App\Http\Controllers\Admin\ResultExamsAController;
 
-// Controllers - General
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SurveySubmissionAController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
@@ -39,7 +30,6 @@ use App\Http\Controllers\Asesi\ExamController;
 use App\Http\Controllers\Asesi\ExamControllerC;
 use App\Http\Controllers\Asesi\LevelBController;
 
-// Controllers - Asesi
 use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\Asesi\SertifikasiController;
 use App\Http\Controllers\Asesi\TransactionController;
@@ -48,11 +38,9 @@ use App\Http\Controllers\Asesor\LevelBGradedController;
 use App\Http\Controllers\Asesor\LevelCGradedController;
 use App\Http\Controllers\Auth\AuthController;
 
-// Controllers - Asesor
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\GoogleController;
 
-// Controllers - Admin
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ExamScoreImportController;
 use App\Http\Controllers\IndoRegionController;
@@ -61,14 +49,12 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WelcomeController;
 use App\Livewire\Asesi\CertificationDetail;
-use App\Livewire\Forum;
+use App\Livewire\Asesi\SurveyForm;
 use App\Livewire\Payments\Create;
 use App\Models\Testimonial;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
-use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,43 +73,45 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
-Route::get('/payment-view', function() {
+Route::get('/payment-view', function () {
     return view('paymentView');
 })->name('payment.view');
 
-// Demo: Pricing Concept (Bundle vs Terpisah)
-Route::get('/demo/pricing', function() {
-    return view('demo.pricing-concept');
-})->name('demo.pricing');
+Route::prefix('demo')->name('demo.')->group(function () {
+    // Pricing Concept (Bundle vs Terpisah)
+    Route::get('/pricing', function () {
+        return view('demo.pricing-concept');
+    })->name('pricing');
 
-// Demo: Pricing Concept V2 (Kategori dalam Level)
-Route::get('/demo/pricing-v2', function() {
-    return view('demo.pricing-concept-v2');
-})->name('demo.pricing.v2');
+    // Pricing Concept V2 (Kategori dalam Level)
+    Route::get('/pricing-v2', function () {
+        return view('demo.pricing-concept-v2');
+    })->name('pricing.v2');
 
-// Demo: Pricing Concept V3 (Step-by-step: Level → Mode → Detail)
-Route::get('/demo/pricing-v3', function() {
-    return view('demo.pricing-concept-v3');
-})->name('demo.pricing.v3');
+    // Pricing Concept V3 (Step-by-step: Level → Mode → Detail)
+    Route::get('/pricing-v3', function () {
+        return view('demo.pricing-concept-v3');
+    })->name('pricing.v3');
 
-Route::get('/demo/pricing-v4', function() {
-    return view('demo.pricing-concept-v4');
-})->name('demo.pricing.v4');
+    Route::get('/pricing-v4', function () {
+        return view('demo.pricing-concept-v4');
+    })->name('pricing.v4');
 
-// Demo: Pricing Flow V4 (single-file flow: login -> pilih -> bayar)
-Route::get('/demo/pricing-flow-v4', function() {
-    return view('demo.pricing-flow-v4');
-})->name('demo.pricing.flow.v4');
+    // Pricing Flow V4 (single-file flow: login -> pilih -> bayar)
+    Route::get('/pricing-flow-v4', function () {
+        return view('demo.pricing-flow-v4');
+    })->name('pricing.flow.v4');
 
-// Demo: Full Flow (Register → Buy → Payment → Dashboard → Exam)
-Route::get('/demo/full-flow', function() {
-    return view('demo.pricing-full-flow');
-})->name('demo.full-flow');
+    // Full Flow (Register → Buy → Payment → Dashboard → Exam)
+    Route::get('/full-flow', function () {
+        return view('demo.pricing-full-flow');
+    })->name('full-flow');
 
-// Demo: Flow V2 (Tab Navigation Style - Level Tabs + Mode Toggle)
-Route::get('/demo/flow-v2', function() {
-    return view('demo.flow-v2');
-})->name('demo.flow-v2');
+    // Flow V2 (Tab Navigation Style - Level Tabs + Mode Toggle)
+    Route::get('/flow-v2', function () {
+        return view('demo.flow-v2');
+    })->name('flow-v2');
+});
 
 Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
 
@@ -166,9 +154,9 @@ Route::middleware('guest')->group(function () {
     // Password Reset
     Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])->name('forgot.password.request');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('forgot.password.store');
-    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'view'])->name('forgot.password.reset'); // Note: duplicated name in original, kept 'view' logic
-    Route::post('/reset-password', [ForgotPasswordController::class, 'view'])->name('forgot.password.reset.post'); // Renamed to avoid duplicate name
-    Route::get('/reset-password-form/{token}', [ForgotPasswordController::class, 'view'])->name('password.reset'); // Renamed URL to avoid conflict if needed, or kept same
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'view'])->name('forgot.password.reset');
+    Route::post('/reset-password', [ForgotPasswordController::class, 'view'])->name('forgot.password.reset.post');
+    Route::get('/reset-password-form/{token}', [ForgotPasswordController::class, 'view'])->name('password.reset');
     Route::post('/reset-password-update', [ForgotPasswordController::class, 'update'])->name('forgot.password.reset.update');
 
     // Google SSO
@@ -227,7 +215,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('ases
     Route::get('/sertifikat-b/{id}', [SertifikasiController::class, 'sertifikatB'])->name('asesi.sertifikat.b');
     Route::get('/sertifikat-c/{id}', [SertifikasiController::class, 'sertifikatC'])->name('asesi.sertifikat.c');
     Route::get('/sertifikasi/riwayat/{level}', CertificationDetail::class)->name('asesi.sertifikat.riwayat');
-    Route::get('/sertifikasi/survey', \App\Livewire\Asesi\SurveyForm::class)->name('asesi.sertifikasi.survey');
+    Route::get('/sertifikasi/survey', SurveyForm::class)->name('asesi.sertifikasi.survey');
     Route::get('/sertifikat/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('asesi.downloadCertificate');
     Route::get('/nilai', [SertifikasiController::class, 'nilai'])->name('asesi.nilai');
 
@@ -277,7 +265,7 @@ Route::middleware(['auth'])->prefix('asesi')->group(function () {
     Route::get('/payments/create/{id}', Create::class)->name('payments.create'); //LIVEWIRE
     Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/{id}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
-    Route::get('/payments/{id}', action: [PaymentController::class, 'detail'])->name('payments.detail');
+    Route::get('/payments/{id}', [PaymentController::class, 'detail'])->name('payments.detail');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('asesi.profile');
@@ -365,6 +353,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/dashboard/asesi/import', [AdminDashboardController::class, 'importAsesi'])->name('dashboard.asesi.import.asesi');
     Route::get('/dashboard/asesi/create', [AdminDashboardController::class, 'asesiCreate'])->name('admin.asesi.create');
     Route::get('/dashboard/asesi/level-management/{id}', [AdminDashboardController::class, 'asesiLevelManagementIndex'])->name('admin.asesi.level-management');
+    Route::post('/dashboard/asesi/level-management/{id}', [AdminDashboardController::class, 'asesiLevelManagementUpdate'])->name('admin.asesi.level-management.update');
     Route::get('/dashboard/asesi/edit/{id}', [AdminDashboardController::class, 'asesiEdit'])->name('admin.asesi.edit');
     Route::post('/dashboard/asesi/store', [AdminDashboardController::class, 'asesiStore'])->name('admin.asesi.store');
     Route::get('/dashboard/asesi/{id}', [AdminDashboardController::class, 'asesiShow'])->name('admin.asesi.show');
@@ -389,7 +378,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/dashboard/asesor/{id}', [AdminDashboardController::class, 'asesorUpdate'])->name('admin.asesor.update');
 
     // Admins
-    Route::get('//admins', [AdminDashboardController::class, 'adminsIndex'])->name('admin.admins.index'); // Note: double slash in original
+    Route::get('/admins', [AdminDashboardController::class, 'adminsIndex'])->name('admin.admins.index');
     Route::get('/dashboard/adminsdashboard/create', [AdminDashboardController::class, 'adminsCreate'])->name('admin.admins.create');
     Route::post('/dashboard/admins/store', [AdminDashboardController::class, 'adminsStore'])->name('admin.admins.store');
     Route::delete('/dashboard/admins/delete/{id}', [AdminDashboardController::class, 'adminsDestroy'])->name('admin.admins.destroy');
@@ -426,7 +415,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     //Exam Monitoring Level A
     Route::get('/dashboard/exam-monitoring-a', [ExamMonitoringAController::class, 'index'])->name('admin.exam.monitoring.a.index');
-    
 
     // Level A
     Route::get('/dashboard/level/a', [LevelAController::class, 'index'])->name('admin.level.a.index');
@@ -451,7 +439,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard/level/a/survey-result/export', [SurveySubmissionAController::class, 'exportData'])->name('admin.survey-result.a.export');
 
     // Hasil Penilaian Level A
-    Route::get( '/dashboard/level/a/hasil-penilaian', [HasilPenilaianAController::class, 'index'] )->name('admin.level.a.hasil-penilaian');
+    Route::get('/dashboard/level/a/hasil-penilaian', [HasilPenilaianAController::class, 'index'])->name('admin.level.a.hasil-penilaian');
     Route::get('/dashboard/level/a/hasil-penilaian/export', [HasilPenilaianAController::class, 'export'])->name('admin.level.a.hasil-penilaian.export');
     Route::get('/dashboard/level/a/hasil-penilaian/import', [HasilPenilaianAController::class, 'importForm'])->name('admin.level.a.hasil-penilaian.import-form');
     Route::get('/dashboard/level/a/hasil-penilaian/download-template', [HasilPenilaianAController::class, 'downloadTemplate'])->name('admin.level.a.hasil-penilaian.download-template');
@@ -557,4 +545,5 @@ Route::get('/test-notification', function () {
     }
     return "User not logged in!";
 });
+
 require __DIR__ . '/auth.php';
