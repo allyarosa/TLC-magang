@@ -26,6 +26,7 @@ use App\Http\Requests\AsesiStoreRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Validation\Rules\Password;
+use App\Models\Payment;
 
 class AdminDashboardController extends Controller
 {
@@ -39,31 +40,66 @@ class AdminDashboardController extends Controller
                 !$u->hasPermissionTo('access_level_C');
         })->count();
 
-        $userLevelA = $user->filter(function ($u) {
-            return $u->hasPermissionTo('access_level_A');
-        })->count();
-
-        $userLevelB = $user->filter(function ($u) {
-            return $u->hasPermissionTo('access_level_B');
-        })->count();
-
-        $userLevelC = $user->filter(function ($u) {
-            return $u->hasPermissionTo('access_level_C');
-        })->count();
+        $userLevelA = $user->filter(fn($u) => $u->hasPermissionTo('access_level_A'))->count();
+        $userLevelB = $user->filter(fn($u) => $u->hasPermissionTo('access_level_B'))->count();
+        $userLevelC = $user->filter(fn($u) => $u->hasPermissionTo('access_level_C'))->count();
 
         $levelCount = [
             'userLevelNone' => $userLevelNone,
-            'A' => $userLevelA,
-            'B' => $userLevelB,
-            'C' => $userLevelC,
+            'A'             => $userLevelA,
+            'B'             => $userLevelB,
+            'C'             => $userLevelC,
         ];
 
+        // Level completed counts
+        $completedA = $user->filter(fn($u) => $u->hasPermissionTo('level_A_completed'))->count();
+        $completedB = $user->filter(fn($u) => $u->hasPermissionTo('level_B_completed'))->count();
+        $completedC = $user->filter(fn($u) => $u->hasPermissionTo('level_C_completed'))->count();
+
+        // Payment stats
+        $totalRevenue    = Payment::where('status', 'settlement')->sum('amount');
+        $pendingPayments = Payment::where('status', 'pending')->count();
+        $settledPayments = Payment::where('status', 'settlement')->count();
+
+        // Monthly registrations — last 6 months
+        $monthlyRegistrations = User::role('asesi')
+            ->where('created_at', '>=', now()->subMonths(5)->startOfMonth())
+            ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total')
+            ->groupBy('year', 'month')
+            ->orderBy('year')
+            ->orderBy('month')
+            ->get();
+
+        $regLabels = [];
+        $regData   = [];
+        for ($i = 5; $i >= 0; $i--) {
+            $date = now()->subMonths($i);
+            $regLabels[] = $date->format('M Y');
+            $found = $monthlyRegistrations->first(
+                fn($r) => $r->year == $date->year && $r->month == $date->month
+            );
+            $regData[] = $found ? $found->total : 0;
+        }
+
+        // Recent payments (latest 5)
+        $recentPayments = Payment::with(['user', 'level'])
+            ->latest()
+            ->take(5)
+            ->get();
+
         return view('dashboard.admin.dashboard', [
-            'title' => 'Dashboard Admin',
-            'asesi' => User::role('asesi')->count(),
-            'asesor' => User::role('asesor')->count(),
-            'admins' => User::role('admin')->count(),
-            'levelCount' => $levelCount,
+            'title'           => 'Dashboard Admin',
+            'asesi'           => User::role('asesi')->count(),
+            'asesor'          => User::role('asesor')->count(),
+            'admins'          => User::role('admin')->count(),
+            'levelCount'      => $levelCount,
+            'completedCount'  => ['A' => $completedA, 'B' => $completedB, 'C' => $completedC],
+            'totalRevenue'    => $totalRevenue,
+            'pendingPayments' => $pendingPayments,
+            'settledPayments' => $settledPayments,
+            'regLabels'       => $regLabels,
+            'regData'         => $regData,
+            'recentPayments'  => $recentPayments,
         ]);
     }
 
