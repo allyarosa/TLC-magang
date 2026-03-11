@@ -355,7 +355,7 @@
                             class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-slate-100 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
                             <i class="fas fa-globe text-sm"></i>
                         </div>
-                        <span class="ms-3 text-sm font-semibold">Site Info</span>
+                        <span class="ms-3 text-sm font-semibold">Logs</span>
                     </a>
                 </li>
 
