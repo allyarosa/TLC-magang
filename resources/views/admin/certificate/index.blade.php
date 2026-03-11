@@ -126,7 +126,7 @@
 
                             {{-- LEVEL SERTIFIKAT A/B/C --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Level {{ $data->level['level_name'] }}
+                                Level {{ $data->level['level_name'] ?? 'A'}}
                             </td>
 
                             {{-- SERTIFIKAT NUMBER --}}
