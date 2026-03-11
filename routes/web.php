@@ -3,33 +3,26 @@
 use App\Exports\AsesiExport;
 use App\Exports\AsesorExport;
 use App\Exports\ResultExamsAExport;
-
 use App\Exports\RiwayatPenilaianBExport;
 use App\Exports\RiwayatPenilaianCExport;
-
 use App\Http\Controllers\Admin\AdminDashboardController;
-
 use App\Http\Controllers\Admin\AdminSettingsController;
-
 use App\Http\Controllers\Admin\AsesiScoreController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\ExamMonitoringAController;
 use App\Http\Controllers\Admin\HasilPenilaianAController;
 use App\Http\Controllers\Admin\LevelAController;
 use App\Http\Controllers\Admin\LevelCController;
-
 use App\Http\Controllers\Admin\LevelSettingsController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PaymentDetailController;
 use App\Http\Controllers\Admin\ResultExamsAController;
-
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SurveySubmissionAController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Asesi\ExamController;
 use App\Http\Controllers\Asesi\ExamControllerC;
 use App\Http\Controllers\Asesi\LevelBController;
-
 use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\Asesi\SertifikasiController;
 use App\Http\Controllers\Asesi\TransactionController;
@@ -37,10 +30,8 @@ use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Asesor\LevelBGradedController;
 use App\Http\Controllers\Asesor\LevelCGradedController;
 use App\Http\Controllers\Auth\AuthController;
-
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\GoogleController;
-
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ExamScoreImportController;
 use App\Http\Controllers\IndoRegionController;
@@ -55,6 +46,7 @@ use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -339,6 +331,9 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
 // =========================================================================
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    //Log Viewers
+    Route::get('logs', [LogViewerController::class, 'index'])->name('admin.logs');
+
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 

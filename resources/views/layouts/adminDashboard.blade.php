@@ -348,6 +348,17 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('admin.logs') }}"
+                        class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
+                        <div
+                            class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-slate-100 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
+                            <i class="fas fa-globe text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-sm font-semibold">Site Info</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </aside>
@@ -358,11 +369,12 @@
         </div>
     </main>
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     @stack('scripts')
     <script src="//unpkg.com/alpinejs" defer></script>
     @livewireScripts()
 </body>
+
 </html>
