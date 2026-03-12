@@ -23,10 +23,10 @@ class NewsController extends Controller
 
         // Apply search filter if search parameter exists
         if ($search) {
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('summary', 'like', "%{$search}%")
-                  ->orWhere('content', 'like', "%{$search}%");
+                    ->orWhere('summary', 'like', "%{$search}%")
+                    ->orWhere('content', 'like', "%{$search}%");
             });
         }
 
@@ -85,57 +85,57 @@ class NewsController extends Controller
     }
 
 
-// Debug version of update function
-public function update(Request $request, $id)
-{
-    // Find the news by ID (explicit way to ensure we're getting the right record)
-    $news = News::findOrFail($id);
+    // Debug version of update function
+    public function update(Request $request, $id)
+    {
+        // Find the news by ID (explicit way to ensure we're getting the right record)
+        $news = News::findOrFail($id);
 
-    // Log before update state
-    // Log::info('Before update - News ID: ' . $id, [
-    //     'title' => $news->title,
-    //     'summary' => $news->summary,
-    //     'current_data' => $news->toArray()
-    // ]);
+        // Log before update state
+        // Log::info('Before update - News ID: ' . $id, [
+        //     'title' => $news->title,
+        //     'summary' => $news->summary,
+        //     'current_data' => $news->toArray()
+        // ]);
 
-    // Validate the request
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'summary' => 'required|string|max:500',
-        'content' => 'required|string',
-        'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+        // Validate the request
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'summary' => 'required|string|max:500',
+            'content' => 'required|string',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    // Always create a slug from the title
-    $validated['slug'] = Str::slug($validated['title']);
+        // Always create a slug from the title
+        $validated['slug'] = Str::slug($validated['title']);
 
-    // Log the validated data
-    // \Log::info('Validated data for update', $validated);
+        // Log the validated data
+        // \Log::info('Validated data for update', $validated);
 
-    // Handle image upload if a new image is provided
-    if ($request->hasFile('image')) {
-        // Delete old image if exists
-        if ($news->image && Storage::disk('public')->exists($news->image)) {
-            Storage::disk('public')->delete($news->image);
+        // Handle image upload if a new image is provided
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($news->image && Storage::disk('public')->exists($news->image)) {
+                Storage::disk('public')->delete($news->image);
+            }
+
+            // Store new image
+            $imagePath = $request->file('image')->store('news', 'public');
+            $validated['image'] = $imagePath;
         }
 
-        // Store new image
-        $imagePath = $request->file('image')->store('news', 'public');
-        $validated['image'] = $imagePath;
+        // Update the news article using fill and save (alternative to update())
+        $news->fill($validated);
+        $saved = $news->save();
+
+        // Log the result of the save operation and the updated data
+        // \Log::info('After update - Save result: ' . ($saved ? 'Success' : 'Failed'), [
+        //     'updated_data' => $news->fresh()->toArray()
+        // ]);
+
+        return redirect()->route('admin.news.index')
+            ->with('success', 'Berita berhasil diperbarui.');
     }
-
-    // Update the news article using fill and save (alternative to update())
-    $news->fill($validated);
-    $saved = $news->save();
-
-    // Log the result of the save operation and the updated data
-    // \Log::info('After update - Save result: ' . ($saved ? 'Success' : 'Failed'), [
-    //     'updated_data' => $news->fresh()->toArray()
-    // ]);
-
-    return redirect()->route('admin.news.index')
-        ->with('success', 'Berita berhasil diperbarui.');
-}
     public function destroy(News $news)
     {
         // Delete image if exists

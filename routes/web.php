@@ -520,7 +520,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 
     // Certificates
-    Route::get('/dashboard/sertifikat/index', [CertificateController::class, 'index'])->name('admin.sertifikat.index');
+    Route::get('/dashboard/sertifikat/index', [CertificateController::class, 'index'])->name('admin.certificate.index');
     Route::get('/dashboard/sertifikat/download/{id}', [CertificateController::class, 'downloadSertifikat'])->name('admin.sertifikat.download');
 });
 

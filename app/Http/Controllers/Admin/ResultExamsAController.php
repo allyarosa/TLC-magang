@@ -13,8 +13,18 @@ class ResultExamsAController extends Controller
      */
     public function index()
     {
-        //
-        $exams = ResultA::with('user', 'categoryA')->paginate(10);
+        $search = request()->input('search');
+
+        $exams = ResultA::with('user', 'categoryA')
+            ->when($search, function ($query) use ($search) {
+                $query->whereHas('user', function ($q) use ($search) {
+                    $q->where('name', 'LIKE', "%{$search}%");
+                });
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+            
         return view('admin.result-exams-a.index', compact('exams'));
     }
 

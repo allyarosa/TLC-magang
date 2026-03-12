@@ -269,7 +269,7 @@
                         Content</span>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('admin.categories.index') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.categories.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
 
@@ -279,7 +279,7 @@
                         </div>
                         <span class="ms-3 text-sm font-semibold">Level A History</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li>
                     <a href="{{ Route('admin.resulta.index') }}"
@@ -293,7 +293,7 @@
                     </a>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('admin.questions.index') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.questions.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
 
@@ -303,10 +303,10 @@
                         </div>
                         <span class="ms-3 text-sm font-semibold">Questions</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li>
-                    <a href="{{ route('admin.sertifikat.index') }}"
+                    <a href="{{ route('admin.certificate.index') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                         <div
                             class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-yellow-50 text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white">

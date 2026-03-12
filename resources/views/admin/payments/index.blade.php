@@ -6,17 +6,7 @@
     <div class="p-4 bg-white rounded-lg mb-2">
         <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
             <!-- Breadcrumb -->
-            <ol class="flex items-center space-x-1 text-gray-600">
-                <li><a href="{{ route('admin.dashboard') }}" class="hover:text-indigo-600">Dashboard</a></li>
-                <li class="flex items-center">
-                    <svg class="w-3 h-3 mx-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Payment Management</span>
-                </li>
-            </ol>
+            <livewire:admin.breadcrumb-nav label="Payment Management" route="admin.payments.index"/>
 
             <!-- Search & Info -->
             <div class="flex flex-wrap items-center gap-3">

@@ -6,28 +6,30 @@
     <div class="p-4 bg-white rounded-lg mb-2">
         <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
             <!-- Breadcrumb -->
-            <div class="flex items-center space-x-6 text-gray-600">
-                <div class="text-sm">
-                    <span class="font-medium">Count Summary : {{ $sertifikatCountAll }} </span>
-                </div>
-                <div class="text-sm">
-                    <span class="font-medium text-green-600">Level A:</span>
-                    <span class="font-semibold">{{ $sertifikatCountA ?? 0 }}</span>
-                </div>
-                <div class="text-sm">
-                    <span class="font-medium text-blue-500">Level B:</span>
-                    <span class="font-semibold">{{ $sertifikatCountB ?? 0 }}</span>
-                </div>
-                <div class="text-sm">
-                    <span class="font-medium text-pink-500">Level C:</span>
-                    <span class="font-semibold">{{ $sertifikatCountC ?? 0 }}</span>
-                </div>
-            </div>
+            <livewire:admin.breadcrumb-nav label="Sertifikat" route="admin.certificate.index"/>
 
             <!-- Search & Info -->
             <div class="flex flex-wrap items-center gap-3">
+                {{-- Count Summary --}}
+                <div class="flex items-center space-x-6 text-gray-600">
+                    <div class="text-sm">
+                        <span class="font-medium">Count Summary : {{ $sertifikatCountAll }} </span>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium text-green-600">Level A:</span>
+                        <span class="font-semibold">{{ $sertifikatCountA ?? 0 }}</span>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium text-blue-500">Level B:</span>
+                        <span class="font-semibold">{{ $sertifikatCountB ?? 0 }}</span>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium text-pink-500">Level C:</span>
+                        <span class="font-semibold">{{ $sertifikatCountC ?? 0 }}</span>
+                    </div>
+                </div>
                 <!-- Search -->
-                <form action="{{ route('admin.sertifikat.index') }}" method="GET" class="relative">
+                <form action="{{ route('admin.certificate.index') }}" method="GET" class="relative">
                     <input type="text" name="search"
                         class="pl-9 pr-3 py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500"
                         placeholder="Cari Sertifikat..." value="{{ request('search') }}">
@@ -39,7 +41,7 @@
                     </div>
                 </form>
 
-                <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative flex items-center space-x-2">
+                {{-- <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative flex items-center space-x-2">
                     <div>
                         <select id="category_name" name="category_name"
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
@@ -53,7 +55,7 @@
                     <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded">
                         Filter
                     </button>
-                </form>
+                </form> --}}
 
                 <!-- Total Users -->
                 <div class="text-gray-600 text-sm">
@@ -104,16 +106,16 @@
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
                             Tanggal Terbit
                         </th>
-                        <th scope="col"
+                        {{-- <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-center text-white uppercase tracking-wider">
                             Actions
-                        </th>
+                        </th> --}}
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse ($sertifikat as $data)
                         <tr class="hover:bg-gray-200 transition-colors">
-                            
+
                             {{-- NO --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                                 {{ $sertifikat->firstItem() + $loop->index }}
@@ -126,7 +128,7 @@
 
                             {{-- LEVEL SERTIFIKAT A/B/C --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-                                Level {{ $data->level['level_name'] ?? 'A'}}
+                                Level {{ $data->level['level_name'] ?? 'A' }}
                             </td>
 
                             {{-- SERTIFIKAT NUMBER --}}
@@ -140,10 +142,9 @@
                             </td>
 
                             {{-- ACTION --}}
-                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                            {{-- <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                                 <div class="flex space-x-2">
 
-                                    <!-- View -->
                                     <a href="#"
                                         class="p-2 text-amber-600 bg-amber-50 rounded-md hover:bg-amber-100 transition-colors"
                                         title="View Details">
@@ -156,7 +157,6 @@
                                         </svg>
                                     </a>
 
-                                    {{-- Download --}}
                                     <a href="{{ route('admin.sertifikat.download', $data->id) }}"
                                         class="p-2 text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors"
                                         title="Download">
@@ -169,25 +169,8 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </a>
-
-                                    <!-- Delete -->
-                                    {{-- <form action="#" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus data ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="p-2 text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors"
-                                            title="Delete User">
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </form> --}}
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @empty
                         @livewire('empty-state', [
@@ -228,8 +211,8 @@
                         <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center">
                             <svg class="w-8 h-8 text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
                     </div>

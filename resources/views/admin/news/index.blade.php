@@ -6,17 +6,7 @@
     <div class="p-4 bg-white rounded-lg mb-2">
         <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
             <!-- Breadcrumb -->
-            <ol class="flex items-center space-x-1 text-gray-600">
-                <li><a href="{{ route('admin.dashboard') }}" class="hover:text-indigo-600">Dashboard</a></li>
-                <li class="flex items-center">
-                    <svg class="w-3 h-3 mx-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>News Management</span>
-                </li>
-            </ol>
+            <livewire:admin.breadcrumb-nav label="Portal Berita" route="admin.news.index" />
 
             <!-- Search & Info -->
             <div class="flex flex-wrap items-center gap-3">
@@ -77,7 +67,7 @@
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gradient-to-r from-indigo-600 to-blue-500">
+                <thead class="bg-gradient-to-r bg-blue-600">
                     <tr>
                         <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
@@ -304,4 +294,3 @@
         <div data-popper-arrow></div>
     </div>
 @endsection
-
