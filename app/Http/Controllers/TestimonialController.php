@@ -10,6 +10,68 @@ use Illuminate\Support\Facades\Auth;
 
 class TestimonialController extends Controller
 {
+    // ── Admin Methods ──────────────────────────────────────
+
+    public function index(Request $request)
+    {
+        $status = $request->get('status', 'pending');
+        $search = $request->get('search');
+
+        $query = Testimonial::with(['user', 'category', 'approver'])
+            ->latest();
+
+        // Filter by status tab
+        match ($status) {
+            'approved' => $query->where('is_approved', true),
+            'featured'  => $query->where('is_featured', true),
+            default     => $query->where('is_approved', false), // pending
+        };
+
+        // Search filter
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('content', 'like', "%{$search}%")
+                  ->orWhereHas('user', fn($u) => $u->where('name', 'like', "%{$search}%")
+                                                    ->orWhere('email', 'like', "%{$search}%"));
+            });
+        }
+
+        $testimonials = $query->paginate(15)->withQueryString();
+
+        return view('admin.testimonials.index', compact('testimonials', 'status', 'search'));
+    }
+
+    public function approve(Testimonial $testimonial)
+    {
+        $testimonial->update([
+            'is_approved' => !$testimonial->is_approved,
+            'approved_by' => Auth::id(),
+            'approved_at' => $testimonial->is_approved ? null : now(),
+        ]);
+
+        $msg = $testimonial->is_approved ? 'Testimonial berhasil disetujui.' : 'Persetujuan testimonial dicabut.';
+
+        return redirect()->back()->with('success', $msg);
+    }
+
+    public function feature(Testimonial $testimonial)
+    {
+        $testimonial->update(['is_featured' => !$testimonial->is_featured]);
+
+        $msg = $testimonial->is_featured ? 'Testimonial ditampilkan di halaman utama.' : 'Testimonial disembunyikan dari halaman utama.';
+
+        return redirect()->back()->with('success', $msg);
+    }
+
+    public function destroy(Testimonial $testimonial)
+    {
+        $testimonial->delete();
+
+        return redirect()->back()->with('success', 'Testimonial berhasil dihapus.');
+    }
+
+    // ── Asesi Methods ──────────────────────────────────────
+
 
     public function showForm(Request $request)
     {
