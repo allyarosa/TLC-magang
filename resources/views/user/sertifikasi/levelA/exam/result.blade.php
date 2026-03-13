@@ -16,7 +16,7 @@
                 </nav>
             </div>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-xl border border-gray-100">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-xl border border-gray-100">
                 <div class="p-8 bg-white">
                     <!-- Header Section -->
                     <div class="mb-10 text-center">
@@ -26,21 +26,6 @@
                         </div>
                         <h3 class="text-3xl font-bold mb-3 text-gray-700">Ringkasan Hasil Ujian</h3>
                         <p class="text-gray-600 text-lg font-bold">{{ $category->name }}</p>
-
-                        <!-- Status Badge -->
-                        {{-- @if ($exam->is_passed)
-                            <div
-                                class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800 mt-3">
-                                <i class="fas fa-check-circle mr-2"></i>
-                                LULUS
-                            </div>
-                        @else
-                            <div
-                                class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-100 text-red-800 mt-3">
-                                <i class="fas fa-times-circle mr-2"></i>
-                                TIDAK LULUS
-                            </div>
-                        @endif --}}
                     </div>
 
                     <!-- Statistics Cards -->
@@ -116,7 +101,7 @@
                     <div
                         class="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-xl shadow-md mb-8 border border-gray-200">
                         <div class="flex items-center justify-between mb-6">
-                            <h4 class="text-xl font-bold text-gray-800 flex items-center">
+                            <h4 class="text-xl font-medium text-gray-600 flex items-center">
                                 <i class="fas fa-info-circle mr-2 text-blue-600"></i>
                                 Informasi Detail Ujian
                             </h4>
@@ -157,13 +142,13 @@
                                     {{ ceil($exam->start_time->floatDiffInMinutes($exam->end_time)) }} menit
                                 </div>
                             </div>
-                            {{-- <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
                                 <div class="text-gray-600 mb-2 text-sm font-medium">Nilai Akhir</div>
                                 <div class="font-bold text-xl text-gray-800 flex items-center">
                                     <i class="fas fa-star mr-2 text-yellow-500"></i>
                                     {{ number_format($exam->score) }}
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
 
@@ -193,7 +178,7 @@
                         <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:ml-auto">
                             <!-- Back to Dashboard Button -->
                             <a href="{{ route('asesi.sertifikasi') }}"
-                                class="inline-flex items-center justify-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
+                                class="inline-flex items-center justify-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform">
                                 <i class="fas fa-arrow-left mr-2"></i>
                                 Kembali ke Dashboard
                             </a>
