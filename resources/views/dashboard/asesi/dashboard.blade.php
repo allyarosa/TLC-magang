@@ -570,14 +570,13 @@
 
             <div class="max-w-7xl mx-auto relative z-10">
                 <!-- Header Section -->
-                <div class="text-center mb-20 floating-animation">
+                <div class="text-center mb-8 floating-animation">
                     <div class="inline-block mb-6" id="sertifikasi">
                         <span
                             class="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4L2 12l3-3V5h4l3-3z" />
                             </svg>
-
                             PROGRAM SERTIFIKASI
                         </span>
                     </div>
@@ -617,15 +616,11 @@
                         </button>
                     </div>
                 </div>
-
                 <!-- Card Section -->
                 @php
                     $user = Auth::user();
                 @endphp
 
-                <!-- ===================== -->
-                <!-- MODE: PER LEVEL      -->
-                <!-- ===================== -->
                 <div id="section-perlevel" class="transition-all duration-500">
                     <div class="text-center mb-8">
                         <p class="text-gray-500 text-sm">
@@ -642,211 +637,67 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                         <!-- Level A Card -->
-                        <div class="pricing-card bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-blue-200">
+                        <div
+                            class="pricing-card bg-white rounded-3xl shadow-lg p-8 relative overflow-hidden transition-all duration-300 border-2 border-blue-200">
+                            <!-- Popular Ribbon -->
+                            <x-populer-ribbon label="Recommended" />
                             <!-- Header -->
-                            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#1D4E89] to-[#2563eb] text-white text-xs font-bold rounded-full mb-6">
-                                LEVEL A
-                            </div>
-
-                            <h3 class="text-2xl font-black text-gray-900 mb-2">Teaching Knowledge Certification</h3>
-                            <p class="text-gray-500 text-sm mb-4">Fondasi pengetahuan mengajar profesional</p>
-
+                            <livewire:asesi.dashboard.payment-card-header 
+                                label="LEVEL A"
+                                title="Teaching Knowledge Certification" 
+                                subtitle="Sertifikasi Pengetahuan Mengajar"
+                                labelColor="[#2563eb]" />
                             <!-- Price -->
-                            <div class="mb-6">
-                                <span class="text-3xl font-black text-[#1D4E89]">Rp {{ number_format($levels[0]->price, 0, ',', '.') }}</span>
-                            </div>
-
+                            <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="[#1D4E89]" />
                             <!-- Features -->
                             <ul class="space-y-3 mb-8">
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Uji Literasi & Numerasi
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Pedagogical Content Knowledge
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Higher Order Thinking Skills
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Sertifikat Digital
-                                </li>
+                                <livewire:asesi.dashboard.feature-item label="Uji Literasi & Numerasi" />
+                                <livewire:asesi.dashboard.feature-item label="Pedagogical Content Knowledge" />
+                                <livewire:asesi.dashboard.feature-item label="Higher Order Thinking Skills" />
+                                <livewire:asesi.dashboard.feature-item label="Sertifikat Digital" />
                             </ul>
-
                             <!-- Button -->
-                            @if ($user->hasPermissionTo('access_level_A'))
-                                <a href="{{ route('asesi.sertifikasi') }}"
-                                    class="w-full flex items-center justify-center gap-2 py-3 bg-[#1D4E89] text-white font-semibold rounded-xl hover:bg-[#163a6a] transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    Akses Materi
-                                </a>
-                            @else
-                                <a href="{{ route('payments.create', Hashids::encode($levels[0]->id)) }}"
-                                    class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white rounded-xl hover:opacity-90 transition-opacity font-semibold shadow-lg">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    Daftar Sekarang
-                                </a>
-                            @endif
+                            <livewire:asesi.access-button :levels="$levels" selectedLevel="A" />
                         </div>
 
                         <!-- Level B Card -->
-                        <div class="pricing-card bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-teal-200">
-                            <!-- Popular Ribbon -->
-                            {{-- <div class="absolute top-5 -right-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold py-1 px-10 transform rotate-45">
-                                POPULER
-                            </div> --}}
-
+                        <div
+                            class="pricing-card bg-white rounded-3xl shadow-md p-8 relative overflow-hidden transition-all duration-300 border-2 border-teal-200">
                             <!-- Header -->
-                            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#2A9D8F] to-[#40C9B9] text-white text-xs font-bold rounded-full mb-6">
-                                LEVEL B
-                            </div>
-
-                            <h3 class="text-2xl font-black text-gray-900 mb-2">Teaching Activation Certification</h3>
-                            <p class="text-gray-500 text-sm mb-4">Implementasi strategi pengajaran nyata</p>
-
+                            <livewire:asesi.dashboard.payment-card-header label="LEVEL B"
+                                title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
+                                labelColor="[#2A9D8F]" />
                             <!-- Price -->
-                            <div class="mb-6">
-                                <span class="text-3xl font-black text-[#2A9D8F]">Rp {{ number_format($levels[1]->price, 0, ',', '.') }}</span>
-                            </div>
-
+                            <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="[#2A9D8F]" />
                             <!-- Features -->
                             <ul class="space-y-3 mb-8">
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Merancang Modul Ajar (RPP)
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Pengembangan Materi Visual
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Penyusunan Lembar Kerja
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Mentoring Grup (2 Sesi)
-                                </li>
+                                <livewire:asesi.dashboard.feature-item label="Merancang Modul Ajar (RPP)" />
+                                <livewire:asesi.dashboard.feature-item label="Pengembangan Materi Visual" />
+                                <livewire:asesi.dashboard.feature-item label="Penyusunan Lembar Kerja" />
+                                <livewire:asesi.dashboard.feature-item label="Mentoring Grup (2 Sesi)" />
                             </ul>
-
                             <!-- Button -->
-                            @if ($user->hasPermissionTo('access_level_B'))
-                                <a href="{{ route('asesi.sertifikasi') }}"
-                                    class="w-full flex items-center justify-center gap-2 py-3 bg-[#2A9D8F] text-white font-semibold rounded-xl hover:bg-[#238578] transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    Akses Materi
-                                </a>
-                            @elseif ($user->hasPermissionTo('level_A_completed'))
-                                <a href="{{ route('payments.create', Hashids::encode($levels[1]->id)) }}"
-                                    class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white rounded-xl hover:opacity-90 transition-opacity font-semibold shadow-lg">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    Daftar Sekarang
-                                </a>
-                            @else
-                                <button disabled class="w-full flex items-center justify-center gap-2 py-3 bg-gray-100 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                    </svg>
-                                    Belum Dibuka
-                                </button>
-                            @endif
+                            <livewire:asesi.access-button :levels="$levels" selectedLevel="B" />
                         </div>
-
                         <!-- Level C Card -->
-                        <div class="pricing-card bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-orange-200">
+                        <div
+                            class="pricing-card bg-white rounded-3xl shadow-md p-8 relative overflow-hidden transition-all duration-300 border-2 border-orange-200">
                             <!-- Header -->
-                            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white text-xs font-bold rounded-full mb-6">
-                                LEVEL C
-                            </div>
-
-                            <h3 class="text-2xl font-black text-gray-900 mb-2">Teaching Mastery Certification</h3>
-                            <p class="text-gray-500 text-sm mb-4">Penguasaan metodologi tingkat lanjut</p>
-
+                            <livewire:asesi.dashboard.payment-card-header label="LEVEL C"
+                                title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
+                                labelColor="[#E76F51]" />
                             <!-- Price -->
-                            <div class="mb-6">
-                                <span class="text-3xl font-black text-[#E76F51]">Rp {{ number_format($levels[2]->price, 0, ',', '.') }}</span>
-                            </div>
-
+                            <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="[#E76F51]" />
                             <!-- Features -->
                             <ul class="space-y-3 mb-8">
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Teaching Mastery Framework
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Self-Review & Feedback Loop
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Sesi Mentoring Pribadi (6x)
-                                </li>
-                                <li class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                    Sertifikat Premium
-                                </li>
+                                <livewire:asesi.dashboard.feature-item label="Teaching Mastery Framework" />
+                                <livewire:asesi.dashboard.feature-item label="Self-Review & Feedback Loop" />
+                                <livewire:asesi.dashboard.feature-item label="Sesi Mentoring Pribadi (6x)" />
+                                <livewire:asesi.dashboard.feature-item label="Sertifikat Premium" />
                             </ul>
 
                             <!-- Button -->
-                            @if ($user->hasPermissionTo('access_level_C'))
-                                <a href="{{ route('asesi.sertifikasi') }}"
-                                    class="w-full flex items-center justify-center gap-2 py-3 bg-[#E76F51] text-white font-semibold rounded-xl hover:bg-[#d65f41] transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    Akses Materi
-                                </a>
-                            @elseif ($user->hasPermissionTo('level_B_completed'))
-                                <a href="{{ route('payments.create', Hashids::encode($levels[2]->id)) }}"
-                                    class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white rounded-xl hover:opacity-90 transition-opacity font-semibold shadow-lg">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    Daftar Sekarang
-                                </a>
-                            @else
-                                <button disabled class="w-full flex items-center justify-center gap-2 py-3 bg-gray-100 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                    </svg>
-                                    Belum Dibuka
-                                </button>
-                            @endif
+                            <livewire:asesi.access-button :levels="$levels" selectedLevel="C" />
                         </div>
                     </div>
                 </div>
@@ -857,13 +708,18 @@
                 <div id="section-bundle" class="hidden transition-all duration-500">
                     <div class="max-w-4xl mx-auto mb-16">
                         <!-- Bundle Card -->
-                        <div class="bundle-card rounded-3xl shadow-2xl p-10 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #E76F51 0%, #F4A261 100%);">
+                        <div class="bundle-card rounded-3xl shadow-2xl p-10 text-white relative overflow-hidden"
+                            style="background: linear-gradient(135deg, #E76F51 0%, #F4A261 100%);">
                             <!-- Background Decorations -->
-                            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl -ml-24 -mb-24"></div>
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl -ml-24 -mb-24">
+                            </div>
 
                             <!-- Save Badge -->
-                            <div class="absolute top-6 right-6 bg-white text-[#E76F51] px-4 py-2 rounded-full font-black text-sm shadow-lg animate-pulse z-50">
+                            <div
+                                class="absolute top-6 right-6 bg-white text-[#E76F51] px-4 py-2 rounded-full font-black text-sm shadow-lg animate-pulse z-50">
                                 HEMAT 20%
                             </div>
 
@@ -871,7 +727,8 @@
                                 <div class="flex flex-col lg:flex-row gap-10">
                                     <!-- Left: Info -->
                                     <div class="flex-1">
-                                        <span class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur text-white text-xs font-bold rounded-full mb-6">
+                                        <span
+                                            class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur text-white text-xs font-bold rounded-full mb-6">
                                             PAKET BUNDLE LENGKAP
                                         </span>
 
@@ -887,21 +744,30 @@
 
                                         <!-- Included Levels -->
                                         <div class="flex flex-wrap gap-3 mb-8">
-                                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
+                                            <span
+                                                class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
                                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                                 Level A
                                             </span>
-                                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
+                                            <span
+                                                class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
                                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                                 Level B
                                             </span>
-                                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
+                                            <span
+                                                class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
                                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                        clip-rule="evenodd" />
                                                 </svg>
                                                 Level C
                                             </span>
@@ -912,20 +778,26 @@
                                             <p class="text-white/60 text-xs font-semibold mb-2">🎉 BONUS EKSKLUSIF</p>
                                             <ul class="space-y-2">
                                                 <li class="flex items-center gap-2 text-sm">
-                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                                     </svg>
                                                     Konsultasi pribadi (3 sesi)
                                                 </li>
                                                 <li class="flex items-center gap-2 text-sm">
-                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                                     </svg>
                                                     Akses komunitas seumur hidup
                                                 </li>
                                                 <li class="flex items-center gap-2 text-sm">
-                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                                     </svg>
                                                     E-book & template eksklusif
                                                 </li>
@@ -937,59 +809,89 @@
                                     <div class="lg:w-80">
                                         <div class="bg-white rounded-3xl p-8 text-gray-900 shadow-2xl">
                                             <div class="text-center mb-6">
-                                                <p class="text-gray-400 text-sm line-through mb-1">Rp {{ number_format($levels[0]->price + $levels[1]->price + $levels[2]->price, 0, ',', '.') }}</p>
-                                                <p class="text-4xl font-black text-[#1D4E89]">Rp {{ number_format($levels[3]->price, 0, ',', '.') }}</p>
+                                                <p class="text-gray-400 text-sm line-through mb-1">Rp
+                                                    {{ number_format($levels[0]->price + $levels[1]->price + $levels[2]->price, 0, ',', '.') }}
+                                                </p>
+                                                <p class="text-4xl font-black text-[#1D4E89]">Rp
+                                                    {{ number_format($levels[3]->price, 0, ',', '.') }}</p>
                                                 <p class="text-gray-500 text-sm mt-2">Pembayaran satu kali</p>
                                             </div>
 
                                             <div class="space-y-3 mb-8">
                                                 <div class="flex items-center gap-3 text-sm text-gray-600">
-                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Akses semua level
                                                 </div>
                                                 <div class="flex items-center gap-3 text-sm text-gray-600">
-                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Sertifikat Premium
                                                 </div>
                                                 <div class="flex items-center gap-3 text-sm text-gray-600">
-                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Bonus eksklusif
                                                 </div>
                                                 <div class="flex items-center gap-3 text-sm text-gray-600">
-                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Akses seumur hidup
                                                 </div>
                                             </div>
 
                                             <!-- Button Bundle -->
-                                            @if ($user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B') && $user->hasPermissionTo('access_level_C'))
+                                            @if (
+                                                $user->hasPermissionTo('access_level_A') &&
+                                                    $user->hasPermissionTo('access_level_B') &&
+                                                    $user->hasPermissionTo('access_level_C'))
                                                 <a href="{{ route('asesi.sertifikasi') }}"
                                                     class="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-[#1D4E89] to-[#2563eb] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg">
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
                                                     Akses Semua Materi
                                                 </a>
-                                            @elseif (!$user->hasPermissionTo('access_level_A') && !$user->hasPermissionTo('access_level_B') && !$user->hasPermissionTo('access_level_C'))
+                                            @elseif (
+                                                !$user->hasPermissionTo('access_level_A') &&
+                                                    !$user->hasPermissionTo('access_level_B') &&
+                                                    !$user->hasPermissionTo('access_level_C'))
                                                 <a href="{{ route('payments.create', Hashids::encode($levels[3]->id)) }}"
                                                     class="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg">
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                                     </svg>
                                                     Daftar Bundle Sekarang
                                                 </a>
                                             @else
-                                                <button disabled class="w-full flex items-center justify-center gap-2 py-4 bg-gray-200 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                                <button disabled
+                                                    class="w-full flex items-center justify-center gap-2 py-4 bg-gray-200 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                                     </svg>
                                                     Anda Sudah Punya Level
                                                 </button>
@@ -1043,136 +945,136 @@
                         background: rgba(255, 255, 255, 0.8);
                     }
                 </style>
-                    <script>
-                        document.addEventListener('mousemove', (e) => {
-                            if (Math.random() > 0.9) {
-                                createSparkle(e.clientX, e.clientY);
-                            }
-                        });
-
-                        function createSparkle(x, y) {
-                            const sparkle = document.createElement('div');
-                            sparkle.className = 'absolute w-1 h-1 bg-orange-400 rounded-full pointer-events-none z-50';
-                            sparkle.style.left = x + 'px';
-                            sparkle.style.top = y + 'px';
-                            sparkle.style.animation = 'sparkle 1s ease-out forwards';
-                            document.body.appendChild(sparkle);
-
-                            setTimeout(() => {
-                                sparkle.remove();
-                            }, 1000);
+                <script>
+                    document.addEventListener('mousemove', (e) => {
+                        if (Math.random() > 0.9) {
+                            createSparkle(e.clientX, e.clientY);
                         }
+                    });
 
-                        function showModal(modalId) {
-                            alert(`Showing details for ${modalId}`);
-                        }
+                    function createSparkle(x, y) {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'absolute w-1 h-1 bg-orange-400 rounded-full pointer-events-none z-50';
+                        sparkle.style.left = x + 'px';
+                        sparkle.style.top = y + 'px';
+                        sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                        document.body.appendChild(sparkle);
+
+                        setTimeout(() => {
+                            sparkle.remove();
+                        }, 1000);
+                    }
+
+                    function showModal(modalId) {
+                        alert(`Showing details for ${modalId}`);
+                    }
 
 
-                        const style = document.createElement('style');
-                        style.textContent = `
+                    const style = document.createElement('style');
+                    style.textContent = `
                         @keyframes sparkle {
                             0% { transform: scale(0) rotate(0deg); opacity: 1; }
                             50% { transform: scale(1) rotate(180deg); opacity: 1; }
                             100% { transform: scale(0) rotate(360deg); opacity: 0; }
                         }
                         `;
-                        document.head.appendChild(style);
-                    </script>
+                    document.head.appendChild(style);
+                </script>
 
-                    <style>
-                        .gradient-bg {
-                            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #fff7ed 100%);
+                <style>
+                    .gradient-bg {
+                        background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #fff7ed 100%);
+                    }
+
+                    .card-hover {
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    .card-hover:hover {
+                        transform: translateY(-8px) scale(1.02);
+                    }
+
+                    .glass-effect {
+                        backdrop-filter: blur(20px);
+                        -webkit-backdrop-filter: blur(20px);
+                    }
+
+                    .glow-effect {
+                        box-shadow: 0 0 30px rgba(234, 88, 12, 0.2);
+                    }
+
+                    .floating-animation {
+                        animation: float 6s ease-in-out infinite;
+                    }
+
+                    @keyframes float {
+
+                        0%,
+                        100% {
+                            transform: translateY(0px);
                         }
 
-                        .card-hover {
-                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        50% {
+                            transform: translateY(-10px);
+                        }
+                    }
+
+                    .pulse-glow {
+                        animation: pulse-glow 2s infinite;
+                    }
+
+                    @keyframes pulse-glow {
+
+                        0%,
+                        100% {
+                            box-shadow: 0 0 20px rgba(234, 88, 12, 0.4);
                         }
 
-                        .card-hover:hover {
-                            transform: translateY(-8px) scale(1.02);
+                        50% {
+                            box-shadow: 0 0 40px rgba(234, 88, 12, 0.8);
+                        }
+                    }
+
+                    .card-bg-level-a {
+                        background: linear-gradient(135deg, #ea5a0c 0%, #f97316 100%);
+                    }
+
+                    .card-bg-level-b {
+                        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+                    }
+
+                    .card-bg-level-c {
+                        background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+                    }
+
+                    .particle {
+                        position: absolute;
+                        background: rgba(234, 88, 12, 0.1);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        animation: particle-float 8s infinite linear;
+                    }
+
+                    @keyframes particle-float {
+                        0% {
+                            transform: translateY(100vh) rotate(0deg);
+                            opacity: 0;
                         }
 
-                        .glass-effect {
-                            backdrop-filter: blur(20px);
-                            -webkit-backdrop-filter: blur(20px);
+                        10% {
+                            opacity: 1;
                         }
 
-                        .glow-effect {
-                            box-shadow: 0 0 30px rgba(234, 88, 12, 0.2);
+                        90% {
+                            opacity: 1;
                         }
 
-                        .floating-animation {
-                            animation: float 6s ease-in-out infinite;
+                        100% {
+                            transform: translateY(-100px) rotate(360deg);
+                            opacity: 0;
                         }
-
-                        @keyframes float {
-
-                            0%,
-                            100% {
-                                transform: translateY(0px);
-                            }
-
-                            50% {
-                                transform: translateY(-10px);
-                            }
-                        }
-
-                        .pulse-glow {
-                            animation: pulse-glow 2s infinite;
-                        }
-
-                        @keyframes pulse-glow {
-
-                            0%,
-                            100% {
-                                box-shadow: 0 0 20px rgba(234, 88, 12, 0.4);
-                            }
-
-                            50% {
-                                box-shadow: 0 0 40px rgba(234, 88, 12, 0.8);
-                            }
-                        }
-
-                        .card-bg-level-a {
-                            background: linear-gradient(135deg, #ea5a0c 0%, #f97316 100%);
-                        }
-
-                        .card-bg-level-b {
-                            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
-                        }
-
-                        .card-bg-level-c {
-                            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
-                        }
-
-                        .particle {
-                            position: absolute;
-                            background: rgba(234, 88, 12, 0.1);
-                            border-radius: 50%;
-                            pointer-events: none;
-                            animation: particle-float 8s infinite linear;
-                        }
-
-                        @keyframes particle-float {
-                            0% {
-                                transform: translateY(100vh) rotate(0deg);
-                                opacity: 0;
-                            }
-
-                            10% {
-                                opacity: 1;
-                            }
-
-                            90% {
-                                opacity: 1;
-                            }
-
-                            100% {
-                                transform: translateY(-100px) rotate(360deg);
-                                opacity: 0;
-                            }
-                        }
-                    </style>
+                    }
+                </style>
         </section>
         {{-- End Pilih Jalur Sertifikasi --}}
 
@@ -1193,8 +1095,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                                        <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                                    </div> -->
+                                                                            <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                                                                        </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1871,12 +1773,12 @@
                 }
 
                 /* #tutorial iframe {
-                                    width: 100%;
-                                    height: 100%;
-                                    min-height: 320px;
-                                    border-radius: 1rem;
-                                    display: block;
-                                } */
+                                                                        width: 100%;
+                                                                        height: 100%;
+                                                                        min-height: 320px;
+                                                                        border-radius: 1rem;
+                                                                        display: block;
+                                                                    } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {
@@ -1904,7 +1806,7 @@
         {{-- End Tutorial Penggunaan --}}
 
         {{-- Testimoni --}}
-        {{-- 
+        {{--
 <section class="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-orange-50"
     id="testimoni">
     <div class="max-w-7xl mx-auto">

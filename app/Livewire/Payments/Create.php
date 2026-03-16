@@ -69,7 +69,7 @@ class Create extends Component
             $this->selectedCategories = [];
         }
     }
-    
+
     public function toggleCategory($categoryId)
     {
         if (in_array($categoryId, $this->selectedCategories)) {
@@ -78,17 +78,17 @@ class Create extends Component
             $this->selectedCategories[] = $categoryId;
         }
     }
-    
+
     public function selectAllCategories()
     {
         $this->selectedCategories = array_column($this->categories, 'id');
     }
-    
+
     public function resetSelection()
     {
         $this->selectedCategories = [];
     }
-    
+
     public function getTotalPriceProperty()
     {
         if ($this->mode === 'bundle') {
@@ -105,13 +105,13 @@ class Create extends Component
         }
         return $map;
     }
-    
+
     public function getSavingsProperty()
     {
         $customTotal = count($this->categories) * $this->categoryPrice;
         return $customTotal - $this->bundlePrice;
     }
-    
+
     public function getSelectedCountProperty()
     {
         return count($this->selectedCategories);
