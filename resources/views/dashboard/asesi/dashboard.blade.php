@@ -592,353 +592,457 @@
                     </p>
                 </div>
 
+                <!-- Toggle Switch -->
+                <div class="flex justify-center mb-12">
+                    <div class="toggle-container p-1.5 rounded-2xl inline-flex bg-gray-100 shadow-inner">
+                        <button onclick="showPerLevel()" id="btn-perlevel"
+                            class="toggle-btn active px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-300">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                Pilih Per Level
+                            </span>
+                        </button>
+                        <button onclick="showBundle()" id="btn-bundle"
+                            class="toggle-btn px-8 py-3.5 rounded-xl text-sm font-bold tracking-wide text-gray-600 transition-all duration-300">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                </svg>
+                                Paket Bundle
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Card Section -->
                 @php
                     $user = Auth::user();
                 @endphp
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <div class="relative group h-full">
-                        <div
-                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:border-blue-200">
-                            <!-- Background Pattern/Gradient -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-[#1D4E89] to-[#0d2a4e] opacity-[0.97]">
-                            </div>
-                            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-blue-400/10 rounded-full blur-2xl">
+
+                <!-- ===================== -->
+                <!-- MODE: PER LEVEL      -->
+                <!-- ===================== -->
+                <div id="section-perlevel" class="transition-all duration-500">
+                    <div class="text-center mb-8">
+                        <p class="text-gray-500 text-sm">
+                            <span class="inline-flex items-center gap-1">
+                                <svg class="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Pilih level sesuai kebutuhan Anda. Level harus diselesaikan secara berurutan.
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        <!-- Level A Card -->
+                        <div class="pricing-card bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-blue-200">
+                            <!-- Header -->
+                            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#1D4E89] to-[#2563eb] text-white text-xs font-bold rounded-full mb-6">
+                                LEVEL A
                             </div>
 
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white z-10">
-                                <div>
-                                    <div class="mb-6 flex justify-between items-start">
-                                        <span
-                                            class="inline-flex items-center px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-blue-50 text-xs font-bold tracking-wider rounded-full">
-                                            LEVEL A
+                            <h3 class="text-2xl font-black text-gray-900 mb-2">Teaching Knowledge Certification</h3>
+                            <p class="text-gray-500 text-sm mb-4">Fondasi pengetahuan mengajar profesional</p>
+
+                            <!-- Price -->
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-[#1D4E89]">Rp {{ number_format($levels[0]->price, 0, ',', '.') }}</span>
+                            </div>
+
+                            <!-- Features -->
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Uji Literasi & Numerasi
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Pedagogical Content Knowledge
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Higher Order Thinking Skills
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Sertifikat Digital
+                                </li>
+                            </ul>
+
+                            <!-- Button -->
+                            @if ($user->hasPermissionTo('access_level_A'))
+                                <a href="{{ route('asesi.sertifikasi') }}"
+                                    class="w-full flex items-center justify-center gap-2 py-3 bg-[#1D4E89] text-white font-semibold rounded-xl hover:bg-[#163a6a] transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Akses Materi
+                                </a>
+                            @else
+                                <a href="{{ route('payments.create', Hashids::encode($levels[0]->id)) }}"
+                                    class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white rounded-xl hover:opacity-90 transition-opacity font-semibold shadow-lg">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                    Daftar Sekarang
+                                </a>
+                            @endif
+                        </div>
+
+                        <!-- Level B Card -->
+                        <div class="pricing-card bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-teal-200">
+                            <!-- Popular Ribbon -->
+                            {{-- <div class="absolute top-5 -right-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold py-1 px-10 transform rotate-45">
+                                POPULER
+                            </div> --}}
+
+                            <!-- Header -->
+                            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#2A9D8F] to-[#40C9B9] text-white text-xs font-bold rounded-full mb-6">
+                                LEVEL B
+                            </div>
+
+                            <h3 class="text-2xl font-black text-gray-900 mb-2">Teaching Activation Certification</h3>
+                            <p class="text-gray-500 text-sm mb-4">Implementasi strategi pengajaran nyata</p>
+
+                            <!-- Price -->
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-[#2A9D8F]">Rp {{ number_format($levels[1]->price, 0, ',', '.') }}</span>
+                            </div>
+
+                            <!-- Features -->
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Merancang Modul Ajar (RPP)
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Pengembangan Materi Visual
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Penyusunan Lembar Kerja
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Mentoring Grup (2 Sesi)
+                                </li>
+                            </ul>
+
+                            <!-- Button -->
+                            @if ($user->hasPermissionTo('access_level_B'))
+                                <a href="{{ route('asesi.sertifikasi') }}"
+                                    class="w-full flex items-center justify-center gap-2 py-3 bg-[#2A9D8F] text-white font-semibold rounded-xl hover:bg-[#238578] transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Akses Materi
+                                </a>
+                            @elseif ($user->hasPermissionTo('level_A_completed'))
+                                <a href="{{ route('payments.create', Hashids::encode($levels[1]->id)) }}"
+                                    class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white rounded-xl hover:opacity-90 transition-opacity font-semibold shadow-lg">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                    Daftar Sekarang
+                                </a>
+                            @else
+                                <button disabled class="w-full flex items-center justify-center gap-2 py-3 bg-gray-100 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    Belum Dibuka
+                                </button>
+                            @endif
+                        </div>
+
+                        <!-- Level C Card -->
+                        <div class="pricing-card bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-orange-200">
+                            <!-- Header -->
+                            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white text-xs font-bold rounded-full mb-6">
+                                LEVEL C
+                            </div>
+
+                            <h3 class="text-2xl font-black text-gray-900 mb-2">Teaching Mastery Certification</h3>
+                            <p class="text-gray-500 text-sm mb-4">Penguasaan metodologi tingkat lanjut</p>
+
+                            <!-- Price -->
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-[#E76F51]">Rp {{ number_format($levels[2]->price, 0, ',', '.') }}</span>
+                            </div>
+
+                            <!-- Features -->
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Teaching Mastery Framework
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Self-Review & Feedback Loop
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Sesi Mentoring Pribadi (6x)
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    Sertifikat Premium
+                                </li>
+                            </ul>
+
+                            <!-- Button -->
+                            @if ($user->hasPermissionTo('access_level_C'))
+                                <a href="{{ route('asesi.sertifikasi') }}"
+                                    class="w-full flex items-center justify-center gap-2 py-3 bg-[#E76F51] text-white font-semibold rounded-xl hover:bg-[#d65f41] transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Akses Materi
+                                </a>
+                            @elseif ($user->hasPermissionTo('level_B_completed'))
+                                <a href="{{ route('payments.create', Hashids::encode($levels[2]->id)) }}"
+                                    class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white rounded-xl hover:opacity-90 transition-opacity font-semibold shadow-lg">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                    Daftar Sekarang
+                                </a>
+                            @else
+                                <button disabled class="w-full flex items-center justify-center gap-2 py-3 bg-gray-100 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    Belum Dibuka
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================ -->
+                <!-- MODE: BUNDLE    -->
+                <!-- ================ -->
+                <div id="section-bundle" class="hidden transition-all duration-500">
+                    <div class="max-w-4xl mx-auto mb-16">
+                        <!-- Bundle Card -->
+                        <div class="bundle-card rounded-3xl shadow-2xl p-10 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #E76F51 0%, #F4A261 100%);">
+                            <!-- Background Decorations -->
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl -ml-24 -mb-24"></div>
+
+                            <!-- Save Badge -->
+                            <div class="absolute top-6 right-6 bg-white text-[#E76F51] px-4 py-2 rounded-full font-black text-sm shadow-lg animate-pulse z-50">
+                                HEMAT 20%
+                            </div>
+
+                            <div class="relative z-10">
+                                <div class="flex flex-col lg:flex-row gap-10">
+                                    <!-- Left: Info -->
+                                    <div class="flex-1">
+                                        <span class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur text-white text-xs font-bold rounded-full mb-6">
+                                            PAKET BUNDLE LENGKAP
                                         </span>
-                                    </div>
-                                    <h3 class="text-2xl font-black mb-2 leading-tight tracking-tight">
-                                        Teaching Knowledge Certification
-                                    </h3>
-                                    <p class="text-blue-100/80 text-sm mb-6">Pondasi esensial untuk pendidik profesional
-                                        masa depan.</p>
-                                </div>
 
-                                <div>
-                                    <div class="space-y-4 mb-8">
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-blue-300" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <h2 class="text-4xl sm:text-5xl font-black mb-4 leading-tight">
+                                            Complete Teaching
+                                            <br>Certification
+                                        </h2>
+
+                                        <p class="text-white/80 text-lg mb-8 max-w-md">
+                                            Dapatkan akses ke semua level sertifikasi dengan harga spesial. Solusi terbaik
+                                            untuk pengembangan karir mengajar Anda.
+                                        </p>
+
+                                        <!-- Included Levels -->
+                                        <div class="flex flex-wrap gap-3 mb-8">
+                                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                                 </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-blue-50 group-hover/item:text-white transition-colors">Uji
-                                                Literasi & Numerasi</span>
+                                                Level A
+                                            </span>
+                                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                Level B
+                                            </span>
+                                            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full text-sm font-semibold">
+                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                Level C
+                                            </span>
                                         </div>
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-blue-300" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-blue-50 group-hover/item:text-white transition-colors">Pedagogical
-                                                Content Knowledge (PCK)</span>
-                                        </div>
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-blue-300" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-blue-50 group-hover/item:text-white transition-colors">Higher
-                                                Order Thinking Skills (HOTS)</span>
+
+                                        <!-- Bonus -->
+                                        <div class="bg-white/10 backdrop-blur rounded-2xl p-4 mb-6">
+                                            <p class="text-white/60 text-xs font-semibold mb-2">🎉 BONUS EKSKLUSIF</p>
+                                            <ul class="space-y-2">
+                                                <li class="flex items-center gap-2 text-sm">
+                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    Konsultasi pribadi (3 sesi)
+                                                </li>
+                                                <li class="flex items-center gap-2 text-sm">
+                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    Akses komunitas seumur hidup
+                                                </li>
+                                                <li class="flex items-center gap-2 text-sm">
+                                                    <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                    E-book & template eksklusif
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
-                                    @if ($user->hasPermissionTo('access_level_A'))
-                                        <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-white text-[#1D4E89] px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
-                                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Akses Materi
-                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    @else
-                                        <button onclick="document.getElementById('modalA').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-[#E76F51] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#d65f41] border border-orange-400/30">
-                                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Daftar Sekarang
-                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    @endif
+                                    <!-- Right: Pricing -->
+                                    <div class="lg:w-80">
+                                        <div class="bg-white rounded-3xl p-8 text-gray-900 shadow-2xl">
+                                            <div class="text-center mb-6">
+                                                <p class="text-gray-400 text-sm line-through mb-1">Rp {{ number_format($levels[0]->price + $levels[1]->price + $levels[2]->price, 0, ',', '.') }}</p>
+                                                <p class="text-4xl font-black text-[#1D4E89]">Rp {{ number_format($levels[3]->price, 0, ',', '.') }}</p>
+                                                <p class="text-gray-500 text-sm mt-2">Pembayaran satu kali</p>
+                                            </div>
+
+                                            <div class="space-y-3 mb-8">
+                                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    Akses semua level
+                                                </div>
+                                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    Sertifikat Premium
+                                                </div>
+                                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    Bonus eksklusif
+                                                </div>
+                                                <div class="flex items-center gap-3 text-sm text-gray-600">
+                                                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    Akses seumur hidup
+                                                </div>
+                                            </div>
+
+                                            <!-- Button Bundle -->
+                                            @if ($user->hasPermissionTo('access_level_A') && $user->hasPermissionTo('access_level_B') && $user->hasPermissionTo('access_level_C'))
+                                                <a href="{{ route('asesi.sertifikasi') }}"
+                                                    class="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-[#1D4E89] to-[#2563eb] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    Akses Semua Materi
+                                                </a>
+                                            @elseif (!$user->hasPermissionTo('access_level_A') && !$user->hasPermissionTo('access_level_B') && !$user->hasPermissionTo('access_level_C'))
+                                                <a href="{{ route('payments.create', Hashids::encode($levels[3]->id)) }}"
+                                                    class="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-[#E76F51] to-[#F4A261] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                    </svg>
+                                                    Daftar Bundle Sekarang
+                                                </a>
+                                            @else
+                                                <button disabled class="w-full flex items-center justify-center gap-2 py-4 bg-gray-200 text-gray-400 font-semibold rounded-xl cursor-not-allowed">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                                    </svg>
+                                                    Anda Sudah Punya Level
+                                                </button>
+                                            @endif
+
+                                            <p class="text-center text-xs text-gray-400 mt-4">
+                                                💳 Pembayaran aman & terpercaya
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Level B -->
-                    <div class="relative group h-full">
-                        <div
-                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-teal-200">
-                            <!-- Background Pattern/Gradient -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-[#2A9D8F] to-[#1a6e63] opacity-[0.97]">
-                            </div>
-                            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-teal-400/10 rounded-full blur-2xl">
-                            </div>
+                <!-- Toggle Script -->
+                <script>
+                    function showPerLevel() {
+                        document.getElementById('section-perlevel').classList.remove('hidden');
+                        document.getElementById('section-bundle').classList.add('hidden');
+                        document.getElementById('btn-perlevel').classList.add('active');
+                        document.getElementById('btn-bundle').classList.remove('active');
+                    }
 
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white z-10">
-                                <div>
-                                    <div class="mb-6 flex justify-between items-start">
-                                        <span
-                                            class="inline-flex items-center px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-teal-50 text-xs font-bold tracking-wider rounded-full">
-                                            LEVEL B
-                                        </span>
-                                    </div>
-                                    <h3 class="text-2xl font-black mb-2 leading-tight tracking-tight">
-                                        Teaching Activation Certification
-                                    </h3>
-                                    <p class="text-teal-100/80 text-sm mb-6">Implementasi strategi pengajaran di situasi
-                                        nyata.</p>
-                                </div>
+                    function showBundle() {
+                        document.getElementById('section-perlevel').classList.add('hidden');
+                        document.getElementById('section-bundle').classList.remove('hidden');
+                        document.getElementById('btn-perlevel').classList.remove('active');
+                        document.getElementById('btn-bundle').classList.add('active');
+                    }
+                </script>
 
-                                <div>
-                                    <div class="space-y-4 mb-8">
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-teal-300" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-teal-50 group-hover/item:text-white transition-colors">Merancang
-                                                Modul Ajar (RPP)</span>
-                                        </div>
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-teal-300" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-teal-50 group-hover/item:text-white transition-colors">Pengembangan
-                                                Materi Visual (PPT)</span>
-                                        </div>
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-teal-300" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-teal-50 group-hover/item:text-white transition-colors">Penyusunan
-                                                Lembar Kerja (LKS)</span>
-                                        </div>
-                                    </div>
+                <style>
+                    .toggle-container {
+                        background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
+                        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+                    }
 
-                                    @if ($user->hasPermissionTo('access_level_B'))
-                                        <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-white text-[#2A9D8F] px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
-                                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Akses Materi
-                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    @else
-                                        <button onclick="document.getElementById('modalB').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] border border-white/10">
-                                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Detail selanjutnya
-                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    .toggle-btn {
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
 
-                    <!-- Level C -->
-                    <div class="relative group h-full">
-                        <div
-                            class="relative h-full min-h-[420px] rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-orange-200">
-                            <!-- Background Pattern/Gradient -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-[#E76F51] to-[#cf4a2a] opacity-[0.97]">
-                            </div>
-                            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/5 rounded-full blur-3xl">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-orange-300/10 rounded-full blur-2xl">
-                            </div>
+                    .toggle-btn.active {
+                        background: linear-gradient(135deg, #1D4E89 0%, #2563eb 100%);
+                        color: white;
+                        box-shadow: 0 4px 15px rgba(29, 78, 137, 0.4);
+                    }
 
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white z-10">
-                                <div>
-                                    <div class="mb-6 flex justify-between items-start">
-                                        <span
-                                            class="inline-flex items-center px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-orange-50 text-xs font-bold tracking-wider rounded-full">
-                                            LEVEL C
-                                        </span>
-                                    </div>
-                                    <h3 class="text-2xl font-black mb-2 leading-tight tracking-tight">
-                                        Teaching Mastery Certification
-                                    </h3>
-                                    <p class="text-orange-100/80 text-sm mb-6">Masteri dalam metodologi pengajaran tingkat
-                                        lanjut.</p>
-                                </div>
-
-                                <div>
-                                    <div class="space-y-4 mb-8">
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-orange-200" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-orange-50 group-hover/item:text-white transition-colors">Teaching
-                                                Mastery Framework (TMF)</span>
-                                        </div>
-                                        <div class="flex items-start space-x-3 group/item">
-                                            <div class="mt-1 min-w-[18px]">
-                                                <svg class="w-4.5 h-4.5 text-orange-200" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <span
-                                                class="text-sm font-medium text-orange-50 group-hover/item:text-white transition-colors">Self-Review
-                                                & Feedback Loop</span>
-                                        </div>
-                                    </div>
-
-                                    @if ($user->hasPermissionTo('access_level_C'))
-                                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-white text-[#E76F51] px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02]">
-                                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Akses Materi
-                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    @else
-                                        <button onclick="document.getElementById('modalC').classList.remove('hidden')"
-                                            class="w-full group/btn relative overflow-hidden bg-[#264653] text-white px-6 py-3.5 font-bold rounded-xl transition-all duration-300 hover:bg-[#1e3a47] border border-white/10">
-                                            <span class="relative z-10 flex items-center justify-center gap-2">
-                                                Detail Selanjutnya
-                                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bundling -->
-                    {{-- <div class="relative group card-hover flex lg:col-span-1 lg:col-start-2">
-                        <div
-                            class="relative min-h-[400px] rounded-3xl shadow-md overflow-hidden bg-white border border-gray-200">
-                            <div class="absolute inset-0 opacity-90"
-                                style="background-image: linear-gradient(to bottom, rgba(251, 140, 0, 0.9), rgba(255, 204, 0, 0.888));">
-                            </div>
-                            <div class="relative h-full flex flex-col justify-between p-8 text-white">
-                                <div>
-                                    <div class="mb-6">
-                                        <span
-                                            class="inline-flex items-center px-6 py-2 bg-white/100 text-gray-700 text-sm font-bold rounded-full glass-effect">
-                                            BUNDLING
-                                        </span>
-                                    </div>
-                                    <h3 class="text-4xl font-black mb-4 leading-tight">
-                                        Paket Bundling Sertifikasi
-                                    </h3>
-                                    <p class="text-white/90 text-lg mb-8 leading-relaxed">
-                                        Strategi pembelajaran lanjutan untuk guru berpengalaman yang ingin berkembang
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <div class="grid grid-cols-1 gap-3 mb-8">
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Bundel Level A+B+C</span>
-                                        </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Bonus: Konsultasi Gratis</span>
-                                        </div>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="w-3 h-3 bg-white rounded-full"></div>
-                                            <span class="text-sm font-medium">Pembayaran Cepat</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center justify-between">
-                                        @if (
-                                            $user->hasPermissionTo('access_level_A') or
-                                                $user->hasPermissionTo('access_level_B') or
-                                                $user->hasPermissionTo('access_level_C'))
-                                            <button
-                                                onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
-                                                class="bg-white text-black px-2 py-2 font-bold rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                                                Detail Program
-                                            </button>
-                                        @else
-                                            <button
-                                                onclick="document.getElementById('modalBUNDLING').classList.remove('hidden')"
-                                                class="bg-white text-orange-400 px-2 py-2 font-bold rounded-xl hover:bg-orange-50 transition-all shadow-lg">
-                                                Detail Selanjutnya
-                                            </button>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                    .toggle-btn:not(.active):hover {
+                        background: rgba(255, 255, 255, 0.8);
+                    }
+                </style>
                     <script>
                         document.addEventListener('mousemove', (e) => {
                             if (Math.random() > 0.9) {

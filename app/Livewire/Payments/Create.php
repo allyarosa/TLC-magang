@@ -6,6 +6,7 @@ use App\Models\Level;
 use Livewire\Component;
 use Vinkla\Hashids\Facades\Hashids;
 
+
 class Create extends Component
 {
     public $level;
@@ -13,9 +14,107 @@ class Create extends Component
 
     public $mode = 'bundle';
 
+    // Category selection for custom mode
+    public $selectedCategories = [];
+
+    // Pricing
+    public $bundlePrice = 150000;
+    public $categoryPrice = 65000;
+
+    // Available categories
+    public $categories = [
+        [
+            'id' => 'literasi',
+            'name' => 'Literasi',
+            'desc' => 'Kemampuan membaca dan memahami teks secara kritis',
+            'tags' => ['Membaca kritis', 'Pemahaman teks'],
+            'color' => 'teal'
+        ],
+        [
+            'id' => 'numerasi',
+            'name' => 'Numerasi',
+            'desc' => 'Kemampuan berhitung dan numerasi dasar kontekstual',
+            'tags' => ['Numerasi dasar', 'Logika matematika'],
+            'color' => 'yellow'
+        ],
+        [
+            'id' => 'pck',
+            'name' => 'PCK',
+            'desc' => 'Pedagogical Content Knowledge — cara terbaik mengajarkan konten',
+            'tags' => ['Strategi pedagogi', 'Konten materi', 'Metode mengajar'],
+            'color' => 'emerald'
+        ],
+        [
+            'id' => 'hots',
+            'name' => 'HOTS',
+            'desc' => 'Higher Order Thinking Skills — mendorong berpikir tingkat tinggi',
+            'tags' => ['Berpikir kritis', 'Analisis', 'Evaluasi'],
+            'color' => 'purple'
+        ]
+    ];
+
+    // Expand/collapse for detail section
+    public $expandDetail = false;
+
+    public function toggleExpand()
+    {
+        $this->expandDetail = !$this->expandDetail;
+    }
+
     public function switchMode($mode)
     {
         $this->mode = $mode;
+        // Reset selection when switching to bundle
+        if ($mode === 'bundle') {
+            $this->selectedCategories = [];
+        }
+    }
+    
+    public function toggleCategory($categoryId)
+    {
+        if (in_array($categoryId, $this->selectedCategories)) {
+            $this->selectedCategories = array_values(array_filter($this->selectedCategories, fn($id) => $id !== $categoryId));
+        } else {
+            $this->selectedCategories[] = $categoryId;
+        }
+    }
+    
+    public function selectAllCategories()
+    {
+        $this->selectedCategories = array_column($this->categories, 'id');
+    }
+    
+    public function resetSelection()
+    {
+        $this->selectedCategories = [];
+    }
+    
+    public function getTotalPriceProperty()
+    {
+        if ($this->mode === 'bundle') {
+            return $this->bundlePrice;
+        }
+        return count($this->selectedCategories) * $this->categoryPrice;
+    }
+
+    public function getCategoriesByIdProperty()
+    {
+        $map = [];
+        foreach ($this->categories as $category) {
+            $map[$category['id']] = $category;
+        }
+        return $map;
+    }
+    
+    public function getSavingsProperty()
+    {
+        $customTotal = count($this->categories) * $this->categoryPrice;
+        return $customTotal - $this->bundlePrice;
+    }
+    
+    public function getSelectedCountProperty()
+    {
+        return count($this->selectedCategories);
     }
 
     public function mount($id)
