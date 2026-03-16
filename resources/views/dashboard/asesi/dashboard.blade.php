@@ -639,14 +639,9 @@
                         <!-- Level A Card -->
                         <div
                             class="pricing-card bg-white rounded-3xl shadow-lg relative overflow-hidden transition-all duration-300 border-2 border-blue-200">
-
-                            <div class="absolute top-0 left-0 w-full h-48 overflow-hidden">
-                                <img src="{{ asset('images/about-us.webp') }}" alt="Level A Image"
-                                    class="w-full h-48 object-cover opacity-40 group-hover:opacity-90 transition">
-                                <div
-                                    class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-blue-200 to-transparent">
-                                </div>
-                            </div>
+                            {{-- Image Card --}}
+                            <livewire:asesi.dashboard.payment-image-card image="images/about-us.webp"
+                                alt="Level A Image" />
 
                             <div class="p-8 relative z-10">
                                 <!-- Popular Ribbon -->
@@ -672,43 +667,56 @@
 
                         <!-- Level B Card -->
                         <div
-                            class="pricing-card bg-white rounded-3xl shadow-md p-8 relative overflow-hidden transition-all duration-300 border-2 border-teal-200">
+                            class="pricing-card bg-white rounded-3xl shadow-md relative overflow-hidden transition-all duration-300 border-2 border-teal-200">
+                            {{-- Image Card --}}
+                            <livewire:asesi.dashboard.payment-image-card image="images/about-us.webp"
+                                alt="Level B Image" />
+
+                            <div class="p-8 relative z-10">
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL B"
+                                    title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
+                                    labelColor="[#2A9D8F]" />
+                                <!-- Price -->
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}"
+                                    textColor="[#2A9D8F]" />
+                                <!-- Features -->
+                                <ul class="space-y-3 mb-8">
+                                    <livewire:asesi.dashboard.feature-item label="Merancang Modul Ajar (RPP)" />
+                                    <livewire:asesi.dashboard.feature-item label="Pengembangan Materi Visual" />
+                                    <livewire:asesi.dashboard.feature-item label="Penyusunan Lembar Kerja" />
+                                    <livewire:asesi.dashboard.feature-item label="Mentoring Grup (2 Sesi)" />
+                                </ul>
+                                <!-- Button -->
+                                <livewire:asesi.access-button :levels="$levels" selectedLevel="B" />
+                            </div>
                             <!-- Header -->
-                            <livewire:asesi.dashboard.payment-card-header label="LEVEL B"
-                                title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
-                                labelColor="[#2A9D8F]" />
-                            <!-- Price -->
-                            <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="[#2A9D8F]" />
-                            <!-- Features -->
-                            <ul class="space-y-3 mb-8">
-                                <livewire:asesi.dashboard.feature-item label="Merancang Modul Ajar (RPP)" />
-                                <livewire:asesi.dashboard.feature-item label="Pengembangan Materi Visual" />
-                                <livewire:asesi.dashboard.feature-item label="Penyusunan Lembar Kerja" />
-                                <livewire:asesi.dashboard.feature-item label="Mentoring Grup (2 Sesi)" />
-                            </ul>
-                            <!-- Button -->
-                            <livewire:asesi.access-button :levels="$levels" selectedLevel="B" />
                         </div>
 
                         <!-- Level C Card -->
                         <div
-                            class="pricing-card bg-white rounded-3xl shadow-md p-8 relative overflow-hidden transition-all duration-300 border-2 border-orange-200">
-                            <!-- Header -->
-                            <livewire:asesi.dashboard.payment-card-header label="LEVEL C"
-                                title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
-                                labelColor="[#E76F51]" />
-                            <!-- Price -->
-                            <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="[#E76F51]" />
-                            <!-- Features -->
-                            <ul class="space-y-3 mb-8">
-                                <livewire:asesi.dashboard.feature-item label="Teaching Mastery Framework" />
-                                <livewire:asesi.dashboard.feature-item label="Self-Review & Feedback Loop" />
-                                <livewire:asesi.dashboard.feature-item label="Sesi Mentoring Pribadi (6x)" />
-                                <livewire:asesi.dashboard.feature-item label="Sertifikat Premium" />
-                            </ul>
+                            class="pricing-card bg-white rounded-3xl shadow-md relative overflow-hidden transition-all duration-300 border-2 border-orange-200">
+                            {{-- Image Card --}}
+                            <livewire:asesi.dashboard.payment-image-card image="images/about-us.webp"
+                                alt="Level C Image" />
+                            <div class="p-8 relative z-10">
+                                <!-- Header -->
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL C"
+                                    title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
+                                    labelColor="[#E76F51]" />
+                                <!-- Price -->
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}"
+                                    textColor="[#E76F51]" />
+                                <!-- Features -->
+                                <ul class="space-y-3 mb-8">
+                                    <livewire:asesi.dashboard.feature-item label="Teaching Mastery Framework" />
+                                    <livewire:asesi.dashboard.feature-item label="Self-Review & Feedback Loop" />
+                                    <livewire:asesi.dashboard.feature-item label="Sesi Mentoring Pribadi (6x)" />
+                                    <livewire:asesi.dashboard.feature-item label="Sertifikat Premium" />
+                                </ul>
+                                <!-- Button -->
+                                <livewire:asesi.access-button :levels="$levels" selectedLevel="C" />
+                            </div>
 
-                            <!-- Button -->
-                            <livewire:asesi.access-button :levels="$levels" selectedLevel="C" />
                         </div>
                     </div>
                 </div>
@@ -905,8 +913,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                                                                                    <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                                                                                </div> -->
+                                                                                            <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                                                                                        </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1583,12 +1591,12 @@
                 }
 
                 /* #tutorial iframe {
-                                                                                width: 100%;
-                                                                                height: 100%;
-                                                                                min-height: 320px;
-                                                                                border-radius: 1rem;
-                                                                                display: block;
-                                                                            } */
+                                                                                        width: 100%;
+                                                                                        height: 100%;
+                                                                                        min-height: 320px;
+                                                                                        border-radius: 1rem;
+                                                                                        display: block;
+                                                                                    } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {
