@@ -25,4 +25,4 @@ yarn-error.log
 .DS_Store
 frankenphp
 Caddyfile
-/bootstrap/cache/*.php
+/bootstrap/cache/*.php*:Zone.Identifier
