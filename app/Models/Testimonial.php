@@ -46,4 +46,10 @@ class Testimonial extends Model
     {
         return $this->belongsTo(User::class, 'approved_by');
     }
+
+    public function scopeFeaturedandApproved($query)
+    {
+        return $query->where('is_approved', true)
+                    ->where('is_featured', true);
+    }
 }

@@ -2,40 +2,30 @@
 
 namespace App\Http\Controllers\Asesi;
 
-use App\Models\Level;
-use App\Models\Testimonial;
-use Illuminate\Http\Request;
+use App\Services\AsesiDashboardService;
 use App\Http\Controllers\Controller;
 
 class AsesiDashboardController extends Controller
 {
+    protected $dashboardService;
+
+    public function __construct(AsesiDashboardService $dashboardService)
+    {
+        $this->dashboardService = $dashboardService;
+    }
+
     public function index() {
-        $levels = Level::all();
-        
-        // Ambil testimonial yang sudah di-feature dan disetujui
-        $featuredTestimonials = Testimonial::with(['user', 'category'])
-            ->where('is_approved', true)
-            ->where('is_featured', true)
-            ->orderBy('created_at', 'desc')
-            ->limit(6) // Batasi hanya 6 testimonial untuk dashboard
-            ->get();
+        $data = $this->dashboardService->getData();
 
         return view('dashboard.asesi.dashboard', [
-            'levels' => $levels,
-            'featuredTestimonials' => $featuredTestimonials
+            'levels' => $data['levels'] ?? [],
+            'featuredTestimonials' => $data['featuredTestimonials'] ?? []
         ]);
     }
 
-    // Method terpisah jika diperlukan untuk API atau AJAX
     public function getFeaturedTestimonials()
     {
-        $featuredTestimonials = Testimonial::with(['user', 'category'])
-            ->where('is_approved', true)
-            ->where('is_featured', true)
-            ->orderBy('created_at', 'desc')
-            ->limit(6)
-            ->get();
-
-        return response()->json($featuredTestimonials);
+        $data = $this->dashboardService->getData();
+        return response()->json($data['featuredTestimonials']);
     }
 }
