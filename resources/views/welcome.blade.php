@@ -3,8 +3,6 @@
 @section('title', 'Teaching and Learning Certification')
 
 @section('content')
-    {{-- <x-cta-popup /> --}}
-
     <div class="bg-abu">
 
         <!-- HOME -->
@@ -257,7 +255,7 @@
                                 class="text-[#1D4E89] text-3xl mt-1 group-hover/item:scale-125 transition-transform">🎓</span>
                             <div>
                                 <span class="font-bold text-[#1D4E89]">Uji Kompetensi Berkualitas</span>
-                                <p class="text-gray-600 mt-1">Menyelenggarakan uji kompetensi yang komprehensif dan
+                         ,       <p class="text-gray-600 mt-1">Menyelenggarakan uji kompetensi yang komprehensif dan
                                     berkualitas tinggi</p>
                             </div>
                         </li>
