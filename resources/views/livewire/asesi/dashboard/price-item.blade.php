@@ -20,10 +20,8 @@
                 Rp {{ number_format($price, 0, ',', '.') }}
             </span>
         </div>
+        <div class=" text-green-500 text-sm font-semibold">
+            Hemat Rp {{ number_format(($price * $discount) / 100, 0, ',', '.') }}
+        </div>
     @endif
-
-    <!-- Optional: hemat -->
-    {{-- <div class="mt-1 text-green-500 text-sm font-semibold">
-        Hemat Rp {{ number_format($price * $discount / 100, 0, ',', '.') }}
-    </div> --}}
 </div>

@@ -19,6 +19,10 @@ class Level extends Model
         'image'
     ];
 
+    protected $casts = [
+        'discount' => 'integer',
+    ];
+
     public function payment()
     {
         return $this->hasMany(Payment::class);

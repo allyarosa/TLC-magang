@@ -573,7 +573,7 @@
                 <div class="text-center mb-2 floating-animation">
                     <div class="inline-block mb-6" id="sertifikasi">
                         <span
-                            class="inline-flex items-center px-6 py-3 bg-orange-100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
+                            class="inline-flex items-center px-6 py-3 bg-orange -100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4L2 12l3-3V5h4l3-3z" />
                             </svg>
@@ -658,7 +658,8 @@
                                 <!-- PRICE -->
                                 <livewire:asesi.dashboard.price-item 
                                     price="{{ $levels[0]->price }}"
-                                    textColor="slate-700" />
+                                    textColor="slate-700"
+                                    discount="{{ $levels[0]->discount ?? 0 }}" />
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
                                     <livewire:asesi.dashboard.feature-item label="Uji Literasi & Numerasi" />
@@ -691,7 +692,8 @@
                                 <!-- PRICE -->
                                 <livewire:asesi.dashboard.price-item 
                                     price="{{ $levels[1]->price }}"
-                                    textColor="slate-700" />
+                                    textColor="slate-700"
+                                    discount="{{ $levels[1]->discount ?? 0 }}" />
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
                                     <livewire:asesi.dashboard.feature-item label="Merancang Modul Ajar (RPP)" />
@@ -722,7 +724,8 @@
                                     titleColor="amber-700" />
                                 <!-- PRICE -->
                                 <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}"
-                                    textColor="slate-700" />
+                                    textColor="slate-700"
+                                    discount="{{ $levels[2]->discount ?? 0 }}" />
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
                                     <livewire:asesi.dashboard.feature-item label="Teaching Mastery Framework" />
