@@ -2,47 +2,60 @@
 
 @section('title', 'Teaching and Learning Certification')
 
+{{-- @section('top-banner')  --}}
+    <!-- REFERRAL BANNER (fixed below navbar) -->
+    <div id="referral-banner"
+        class="fixed w-full text-white py-2 px-4 overflow-hidden hidden"
+        style="top: 80px; z-index: 19; background: linear-gradient(90deg, #1a1f6e 0%, #2c2473 40%, #1d1a6b 70%, #16144f 100%);">
+        <!-- Subtle shimmer/glow effect -->
+        <div class="absolute inset-0 pointer-events-none"
+            style="background: radial-gradient(ellipse at 20% 50%, rgba(255,200,50,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(120,80,255,0.1) 0%, transparent 60%);">
+        </div>
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-3 relative z-10">
+            <!-- Gift icon -->
+            <span class="text-yellow-400 text-xl flex-shrink-0" aria-hidden="true">🎁</span>
+            <p class="text-sm sm:text-base font-normal text-center leading-snug">
+                Rekomendasikan perusahaan dapatkan reward hingga
+                <span class="font-extrabold text-yellow-400">20 juta rupiah</span>
+            </p>
+            <a href="{{ route('register') }}"
+                class="referral-btn flex-shrink-0 inline-flex items-center gap-1.5 text-white border-white border-2 font-medium text-xs sm:text-sm px-4 py-1 rounded-md shadow-md transition-all duration-300 ml-2">
+                Ikuti Program Referral
+            </a>
+        </div>
+        <!-- Close button -->
+        <button onclick="document.getElementById('referral-banner').style.display='none'"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors duration-200 p-1 rounded-full hover:bg-white/10"
+            aria-label="Tutup banner">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <!-- END REFERRAL BANNER -->
+{{-- @endsection  --}}
+
 @section('content')
     <div class="bg-abu">
-
-        <!-- REFERRAL BANNER -->
-        <div id="referral-banner" class="w-full text-white py-2 px-4 relative overflow-hidden" style="background: linear-gradient(90deg, #1a1f6e 0%, #2c2473 40%, #1d1a6b 70%, #16144f 100%);">
-            <!-- Subtle shimmer/glow effect -->
-            <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 20% 50%, rgba(255,200,50,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(120,80,255,0.1) 0%, transparent 60%);"></div>
-            <div class="max-w-7xl mx-auto flex items-center justify-center gap-3 relative z-10">
-                <!-- Gift icon -->
-                <span class="text-yellow-400 text-xl flex-shrink-0" aria-hidden="true">🎁</span>
-                <p class="text-sm sm:text-base font-normal text-center leading-snug">
-                    Rekomendasikan perusahaan dapatkan reward hingga
-                    <span class="font-extrabold text-yellow-400">20 juta rupiah</span>
-                </p>
-                <a href="{{ route('register') }}"
-                    class="referral-btn flex-shrink-0 inline-flex items-center gap-1.5 text-white border-white border-2 font-medium text-xs sm:text-sm px-4 py-1 rounded-md shadow-md transition-all duration-300 ml-2">
-                    Ikuti Program Referral
-                </a>
-            </div>
-            <!-- Close button -->
-            <button onclick="document.getElementById('referral-banner').style.display='none'"
-                class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors duration-200 p-1 rounded-full hover:bg-white/10"
-                aria-label="Tutup banner">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
-        </div>
-        <!-- END REFERRAL BANNER -->
-
         <!-- HOME -->
-        <main id="home"
-            class="w-full scroll-mt-24 px-5 md:py-10 bg-gradient-to-br from-blue-50 via-white to-orange-50 text-gray-900">
-            <div class="container mx-auto max-w-7xl view grid grid-cols-12 transition-all duration-500 ease-in-out mb-16">
+        <main id="home" class="w-full scroll-mt-24 relative overflow-hidden min-h-screen">
+            <!-- Background Image (desktop only) -->
+            <div class="absolute inset-0 hidden md:block">
+                <img src="{{ asset('images/about-us.webp') }}" 
+                    alt="Background TLC"
+                    class="w-full h-full object-cover" 
+                    loading="eager">
+                <!-- Dark overlay so text is readable -->
+                <div class="absolute inset-0" style="background: linear-gradient(120deg, rgba(10,20,70,0.80) 30%, rgba(15,40,100,0.65) 50%, rgba(10,20,70,0.55) 50%);"></div>
+            </div>
+            <!-- Mobile background fallback -->
+            <div class="absolute inset-0 block md:hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"></div>
+            <!-- Content wrapper -->
+            <div class="relative z-10 px-5 md:py-10">
+            <div class="container mx-auto max-w-7xl view grid grid-cols-12 transition-all duration-500 ease-in-out mb-16 py-16 md:py-0">
                 <div class="col-span-12 lg:col-span-7 p-5">
                     <div class="animate-fadeIn">
-                        <span
-                            class="hidden md:inline-block text-lg text-[#E76F51] font-semibold inline-block px-4 py-1 bg-orange-100 rounded-full">
-                            #TRANSFORMASI PENDIDIKAN ERA DIGITAL
-                        </span>
-                        <h1 class="text-5xl md:text-6xl font-extrabold text-brandBlue leading-tight mt-4">
+                        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 md:text-white leading-tight mt-12">
                             <span class="relative inlinae-block">
                                 <span class="relative z-10">Thrive.</span>
                             </span>
@@ -53,10 +66,10 @@
                                 <span class="relative z-10">Thrive.</span>
                             </span>
                         </h1>
-                        <h2 class="text-4xl font-bold text-[#1D4E89] mt-2 mb-4">
+                        <h2 class="text-4xl font-bold text-[#1D4E89] md:text-blue-200 mt-2 mb-4">
                             Teaching & Learning Certification
                         </h2>
-                        <p class="text-xl text-gray-800 text-justify mt-6 max-w-xl leading-relaxed">
+                        <p class="text-xl text-gray-800 md:text-white/90 text-justify mt-6 max-w-xl leading-relaxed">
                             Program sertifikasi ini bukan sekadar pelatihan, melainkan langkah nyata dalam membekali
                             pendidik dengan strategi pengajaran inovatif untuk menghadirkan perubahan bermakna di dunia
                             pendidikan digital.
@@ -87,12 +100,12 @@
                     </div>
 
                     <div class="mt-10">
-                        <p class="text-gray-600 font-medium mb-4">Dipercaya oleh institusi pendidikan terkemuka:</p>
+                        <p class="text-gray-600 md:text-white/70 font-medium mb-4">Dipercaya oleh institusi pendidikan terkemuka:</p>
                         <div class="flex flex-wrap gap-6 items-center justify-start">
-                            <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                            {{-- <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src="{{ asset('images/smpit-an-nur.png') }}" alt="SMPIT An-Nur"
                                     class="h-16 transition-transform duration-300" loading="lazy">
-                            </div>
+                            </div> --}}
                             <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src="{{ asset('images/smp-sma-gibs.png') }}" alt="Global Islamic Boarding School"
                                     class="h-16 transition-transform duration-300" loading="lazy">
@@ -129,8 +142,11 @@
                     </div>
                 </div>
             </div>
+            </div><!-- end content wrapper -->
         </main>
         <!-- End Home -->
+
+
 
         {{-- <!-- CTA -->
         <section id="calltoaction" class="w-full px-5 py-16 bg-gray-50 text-gray-900 shadow-lg">
@@ -217,7 +233,8 @@
         <section id="visimisi" class="w-full py-20 bg-gradient-to-br from-[#1D4E89]/10 to-white text-gray-900">
 
             <div class="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-                <span class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] font-semibold rounded-full text-sm mb-3">
+                <span
+                    class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] font-semibold rounded-full text-sm mb-3">
                     VISI DAN MISI
                 </span>
 

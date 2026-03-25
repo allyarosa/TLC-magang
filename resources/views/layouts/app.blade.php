@@ -16,18 +16,23 @@
 </head>
 
 <body class="bg-abu font-sans">
-
     <!-- Navbar -->
-    <header class="mb-16">
-        <nav
-            class="fixed w-full z-20 top-0 start-0 bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] shadow-sm border-b border-gray-300">
+    <header>
+        <nav id="main-nav" class="fixed w-full z-20 top-0 start-0 transition-all duration-500 ease-in-out"
+            style="background: transparent;">
             <div
-                class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-2 px-4 sm:px-6 lg:px-12">
-                <a href="#" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/logo.svg') }}" class="h-12" alt="TLC Logo" loading="lazy" target="TLC logo">
+                class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-4 sm:px-6 lg:px-12">
+                <a href="{{ route('register') }}" class="flex items-center space-x-3">
+                    <img src="{{ asset('images/logo.svg') }}" 
+                        class="h-10 w-10 scale-125 bg-white rounded-md"
+                        alt="TLC Logo" 
+                        loading="lazy"
+                        target="TLC logo">
                     <div class="flex flex-col">
-                        <span class="text-lg font-bold text-white tracking-wide">TLC Program</span>
-                        <span class="text-sm text-[#f1e686] font-medium hidden sm:block">
+                        <span class="text-lg font-extrabold transition-colors duration-500 text-white" id="nav-brand-name">
+                            TLC Program
+                        </span>
+                        <span class="text-sm font-medium sm:block transition-colors duration-500 text-white" id="nav-brand-sub">
                             Teaching & Learning Certification
                         </span>
                     </div>
@@ -44,24 +49,24 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-10 text-sm font-semibold" id="menu">
-                    <a href="#home" class="text-white hover:text-[#f1e686] transition duration-300">Beranda</a>
-                    <a href="#about" class="text-white hover:text-[#f1e686] transition duration-300">Tentang TLC</a>
-                    <a href="#skema" class="text-white hover:text-[#f1e686] transition duration-300">Skema</a>
-                    <a href="#harga" class="text-white hover:text-[#f1e686] transition duration-300">Harga</a>
-                    {{-- <a href="#proses" class="text-white hover:text-[#f1e686] transition duration-300">Sertifikasi</a> --}}
-                    <a href="#faq" class="text-white hover:text-[#f1e686] transition duration-300">FAQ</a>
+                    <a href="#home" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Beranda</a>
+                    <a href="#about" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Tentang TLC</a>
+                    <a href="#skema" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Skema</a>
+                    <a href="#harga" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Harga</a>
+                    <a href="#faq" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">FAQ</a>
+                    {{-- <a href="#proses" class="nav-link transition-colors duration-300 hover:text-[#f1e686]">Sertifikasi</a> --}}
                 </div>
 
                 <!-- Authentication Buttons -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-4">
                     <a href="{{ route('login') }}">
-                        <button
-                            class="border-2 border-white font-bold text-white text-sm px-3 py-1.5 rounded-lg hover:border-[#3A6EA5] hover:text-white hover:font-bold transition duration-300">
+                        <button id="nav-btn-login"
+                            class="border-2 font-bold text-sm px-3 py-1.5 rounded-lg transition-all duration-500 border-white text-white hover:border-[#f1e686] hover:text-[#f1e686]">
                             Masuk</button>
                     </a>
                     <a href="{{ route('register') }}">
-                        <button
-                            class="border-2 border-[#3A6EA5] font-bold text-white text-sm px-3 py-1.5 rounded-lg bg-[#3A6EA5] hover:bg-[#184575] hover:text-white hover:font-bold transition duration-300">
+                        <button id="nav-btn-register"
+                            class="border-2 font-bold text-white text-sm px-3 py-1.5 rounded-lg transition-all duration-500 border-white/60 bg-white/20 backdrop-blur-sm hover:bg-white hover:text-brandBlue">
                             Daftar Sekarang
                         </button>
                     </a>
@@ -97,7 +102,87 @@
                 document.addEventListener("DOMContentLoaded", function() {
                     const menuToggle = document.getElementById('menu-toggle');
                     const mobileMenu = document.getElementById('mobile-menu');
+                    const nav = document.getElementById('main-nav');
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    const brandName = document.getElementById('nav-brand-name');
+                    const brandSub = document.getElementById('nav-brand-sub');
+                    const btnLogin = document.getElementById('nav-btn-login');
+                    const btnRegister = document.getElementById('nav-btn-register');
+                    const hamburgerIcon = menuToggle ? menuToggle.querySelector('svg') : null;
 
+                    function setNavTransparent() {
+                        nav.style.background = 'transparent';
+                        nav.style.boxShadow = 'none';
+                        navLinks.forEach(l => l.style.color = '#ffffff');
+                        if (brandName) {
+                            brandName.style.color = '#ffffff';
+                        }
+                        if (brandSub) {
+                            brandSub.style.color = 'rgba(255,255,255,0.8)';
+                        }
+                        if (btnLogin) {
+                            btnLogin.style.borderColor = 'white';
+                            btnLogin.style.color = 'white';
+                        }
+                        if (btnRegister) {
+                            btnRegister.style.borderColor = 'rgba(255,255,255,0.6)';
+                            btnRegister.style.background = 'rgba(255,255,255,0.15)';
+                            btnRegister.style.color = 'white';
+                        }
+                        if (hamburgerIcon) hamburgerIcon.style.stroke = 'white';
+                    }
+
+                    function setNavSolid() {
+                        nav.style.background = 'rgba(255,255,255,0.97)';
+                        nav.style.boxShadow = '0 2px 16px rgba(0,0,0,0.10)';
+                        navLinks.forEach(l => l.style.color = '#1D4E89');
+                        if (brandName) {
+                            brandName.style.color = '#1D4E89';
+                        }
+                        if (brandSub) {
+                            brandSub.style.color = '#E76F51';
+                        }
+                        if (btnLogin) {
+                            btnLogin.style.borderColor = '#1D4E89';
+                            btnLogin.style.color = '#1D4E89';
+                        }
+                        if (btnRegister) {
+                            btnRegister.style.borderColor = '#3A6EA5';
+                            btnRegister.style.background = '#1D4E89';
+                            btnRegister.style.color = 'white';
+                        }
+                        if (hamburgerIcon) hamburgerIcon.style.stroke = '#1D4E89';
+                    }
+
+                    // Init: transparent at top
+                    setNavTransparent();
+
+                    // Sync referral banner position below navbar
+                    const referralBanner = document.getElementById('referral-banner');
+
+                    function updateBannerTop() {
+                        if (referralBanner && referralBanner.style.display !== 'none') {
+                            referralBanner.style.top = nav.offsetHeight + 'px';
+                        }
+                    }
+                    updateBannerTop();
+
+                    window.addEventListener('scroll', function() {
+                        if (window.scrollY > 20) {
+                            referralBanner.classList.remove('hidden');
+                            setNavSolid();
+                        } else {
+                            referralBanner.classList.add('hidden');
+                            setNavTransparent();
+                        }
+                        updateBannerTop();
+                    });
+
+                    window.addEventListener('resize', function() {
+                        updateBannerTop();
+                    });
+
+                    // Mobile menu toggle
                     menuToggle.addEventListener('click', function() {
                         mobileMenu.classList.toggle('hidden');
                     });
@@ -111,6 +196,7 @@
                 });
             </script>
         </nav>
+        @yield('top-banner')
 
     </header>
     {{-- End Navbar --}}
@@ -144,6 +230,7 @@
 
     {{-- </main> --}}
     @include('layouts.footer')
-    
+
 </body>
+
 </html>
