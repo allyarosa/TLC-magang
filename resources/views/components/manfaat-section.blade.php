@@ -8,7 +8,7 @@
         <div class="grid md:grid-cols-2 gap-8 items-start">
 
             <!-- Kiri: Gambar -->
-            <div class="sticky top-24">
+            <div class="hidden lg:block sticky top-24">
                 <img src="{{ asset('images/career.png') }}" alt="Manfaat Program"
                     class="w-full h-full object-cover scale-110">
             </div>

@@ -1,5 +1,16 @@
+<div class="relative bg-gray-900 min-h-screen w-full flex items-center justify-center p-2 sm:p-2 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/about-us.webp') }}" alt="Background TLC" class="w-full h-full object-cover opacity-70"
+            loading="eager">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0"
+            style="background: linear-gradient(120deg, rgba(10,20,70,0.80) 30%, rgba(15,40,100,0.65) 50%, rgba(10,20,70,0.55) 50%);">
+        </div>
+    </div>
+
     <div
-        class="bg-gradient-to-r from-blue-600 to-indigo-700 shadow-md rounded-3xl overflow-hidden w-full max-w-4xl flex transform hover:scale-[1.01] transition-all duration-300">
+        class="relative z-10 bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm transform">
         <!-- Kiri Section -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-1/2 bg-gradient-to-br from-[#A6BFCF] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -145,3 +156,4 @@
             </p>
         </div>
     </div>
+</div>

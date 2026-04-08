@@ -5,7 +5,7 @@
                     loading="eager">
                 <!-- Dark overlay so text is readable -->
                 <div class="absolute inset-0"
-                    style="background: linear-gradient(120deg, rgba(10,20,70,0.80) 30%, rgba(15,40,100,0.65) 50%, rgba(10,20,70,0.55) 50%);">
+                    style="background: linear-gradient(120deg, rgba(10,20,70,0.80) 30%, rgba(15,40,100,0.65) 50%, rgba(10,20,70,0.55) 60%);">
                 </div>
             </div>
             <!-- Mobile background fallback -->
@@ -14,9 +14,10 @@
             <div class="relative z-10 px-5 md:py-10">
                 <div
                     class="container mx-auto max-w-7xl view grid grid-cols-12 transition-all duration-500 ease-in-out mb-16 py-16 md:py-0">
-                    <div class="col-span-12 lg:col-span-7 p-5">
+                    <div class="col-span-12 lg:col-span-7 pt-0 sm:p-5">
                         <div class="animate-fadeIn">
-                            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 md:text-white leading-tight mt-12">
+                            <h1
+                                class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-brandBlue md:text-white leading-tight mt-12">
                                 <span class="relative inlinae-block">
                                     <span class="relative z-10">Thrive.</span>
                                 </span>
@@ -27,27 +28,28 @@
                                     <span class="relative z-10">Thrive.</span>
                                 </span>
                             </h1>
-                            <h2 class="text-4xl font-bold text-[#1D4E89] md:text-blue-200 mt-2 mb-4">
+                            <h2
+                                class="text-lg sm:text-2xl md:text-4xl font-bold text-brandOrange md:text-blue-200 mt-2 mb-4">
                                 Teaching & Learning Certification
                             </h2>
-                            <p class="text-xl text-gray-800 md:text-white/90 text-justify mt-6 max-w-xl leading-relaxed">
+                            <p
+                                class="text-base sm:text-lg md:text-xl text-gray-800 md:text-white/90 text-justify mt-6 max-w-xl leading-relaxed">
                                 Program sertifikasi ini bukan sekadar pelatihan, melainkan langkah nyata dalam membekali
-                                pendidik dengan strategi pengajaran inovatif untuk menghadirkan perubahan bermakna di dunia
+                                pendidik dengan strategi pengajaran inovatif untuk menghadirkan perubahan bermakna di
+                                dunia
                                 pendidikan digital.
                             </p>
                         </div>
 
-                        <div class="flex flex-col sm:flex-row my-8 gap-4">
+                        <div class="flex flex-row sm:flex-row my-8 gap-4">
                             <a href="{{ route('register') }}"
-                                class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-r from-[#1D4E89] to-[#0077b6] rounded-full shadow-lg hover:shadow-blue-500/40 hover:shadow-xl active:shadow-md overflow-hidden">
-                                <span
-                                    class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#14406B] to-[#005f8d] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                                class="relative inline-flex items-center justify-center px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-lg font-semibold sm:font-bold text-white bg-gradient-to-r from-[#1D4E89] to-[#0077b6] rounded-lg sm:rounded-full shadow-lg overflow-hidden">
                                 <span class="relative flex items-center">
                                     Daftar Sekarang
                                 </span>
                             </a>
                             <a href="#vidio"
-                                class="bg-white border-2 border-[#1D4E89] text-[#1D4E89] px-8 py-4 rounded-xl shadow-md text-lg font-semibold hover:bg-gray-100 transition-all duration-300 active:scale-95 flex items-center justify-center">
+                                class="bg-white border-2 border-[#1D4E89] text-[#1D4E89] px-4 sm:px-8 py-2 sm:py-4 rounded-lg sm:rounded-full shadow-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 active:scale-95 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -61,30 +63,42 @@
                         </div>
 
                         <div class="mt-10">
-                            <p class="text-gray-600 md:text-white/70 font-medium mb-4">Dipercaya oleh institusi pendidikan
-                                terkemuka:</p>
+                            <p class="text-gray-600 md:text-white/70 font-sm sm:font-base font-medium mb-4">
+                                Dipercaya oleh institusi pendidikan terkemuka:
+                            </p>
                             <div class="flex flex-wrap gap-6 items-center justify-start">
                                 {{-- <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                 <img src="{{ asset('images/smpit-an-nur.png') }}" alt="SMPIT An-Nur"
                                     class="h-16 transition-transform duration-300" loading="lazy">
                             </div> --}}
-                                <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
-                                    <img src="{{ asset('images/smp-sma-gibs.png') }}" alt="Global Islamic Boarding School"
-                                        class="h-16 transition-transform duration-300" loading="lazy">
+                                <div
+                                    class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                                    <img src="{{ asset('images/smp-sma-gibs.png') }}"
+                                        alt="Global Islamic Boarding School Logo"
+                                        class="h-16 transition-transform duration-300" 
+                                        loading="lazy"
+                                        >
                                 </div>
-                                <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                                <div
+                                    class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                     <img src="{{ asset('images/hafecs.png') }}" alt="HAFECS"
-                                        class="h-12 transition-transform duration-300" loading="lazy">
+                                        class="h-12 transition-transform duration-300" 
+                                        loading="lazy"
+                                        alt="HAFECS Logo">
                                 </div>
-                                <div class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                                <div
+                                    class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                     <img src="{{ asset('images/hrp.png') }}" alt="HAFECS Research & Publication"
-                                        class="h-16 transition-transform duration-300" loading="lazy">
+                                        class="h-16 transition-transform duration-300" 
+                                        loading="lazy"
+                                        alt="HRP Logo">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="hidden lg:flex col-span-12 lg:col-span-5 items-center justify-center relative mt-5 lg:mt-0">
+                    <div
+                        class="hidden lg:flex col-span-12 lg:col-span-5 items-center justify-center relative mt-5 lg:mt-0">
                         <!-- Floating Circles Background -->
                         <div
                             class="absolute top-0 right-10 w-20 h-20 bg-[#E76F51]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300">
@@ -97,7 +111,8 @@
                             style="animation-delay: 1s"></div>
 
                         <!-- Floating Icon - reduced size -->
-                        <div class="relative w-full max-w-md aspect-square flex items-center justify-center animate-float">
+                        <div
+                            class="relative w-full max-w-md aspect-square flex items-center justify-center animate-float">
                             <img src="{{ asset('images/logoTlcPng.png') }}"
                                 class="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                                 alt="TLC Logo Floating" loading="lazy">

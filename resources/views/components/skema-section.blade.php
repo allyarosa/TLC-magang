@@ -8,8 +8,8 @@
             'image' => 'images/letter-a.png',
             'bgGradient' => 'from-blue-500 to-blue-700',
             'borderColor' => 'border-blue-100',
-            'titleColor' => 'text-blue-800',
-            'certColor' => 'text-blue-600',
+            'titleColor' => 'text-[#1D4E89]',
+            'certColor' => 'text-[#1D4E89]',
         ],
         [
             'level' => 'B',
@@ -19,8 +19,8 @@
             'image' => 'images/letter-b.png',
             'bgGradient' => 'from-green-500 to-green-700',
             'borderColor' => 'border-green-100',
-            'titleColor' => 'text-green-800',
-            'certColor' => 'text-green-600',
+            'titleColor' => 'text-[#2A9D8F]',
+            'certColor' => 'text-[#2A9D8F]',
         ],
         [
             'level' => 'C',
@@ -30,8 +30,8 @@
             'image' => 'images/letter-c.png',
             'bgGradient' => 'from-purple-500 to-purple-700',
             'borderColor' => 'border-purple-100',
-            'titleColor' => 'text-purple-800',
-            'certColor' => 'text-purple-600',
+            'titleColor' => 'text-[#E76F51]',
+            'certColor' => 'text-[#E76F51]',
         ],
     ];
 @endphp
@@ -40,7 +40,7 @@
     class="w-full px-5 py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 text-gray-900 relative overflow-hidden">
     <div class="relative z-10">
         <!-- Header Section -->
-        <div class="text-center mb-12 md:mb-16">
+        <div class="text-center">
             <livewire:title-section title="Skema Sertifikasi Pengajaran Guru"
                 subTitle="Tiga level sertifikasi yang
                 dirancang untuk membangun kompetensi guru secara bertahap, dari

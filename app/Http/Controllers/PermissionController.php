@@ -34,4 +34,8 @@ class PermissionController extends Controller
             }
         }
     }
+
+    public function dicoding(string $id) {
+        
+    }
 }

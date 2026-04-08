@@ -20,11 +20,13 @@
         <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
             {{-- Card Header --}}
             <div class="flex items-center gap-3 px-6 py-4 border-b border-gray-100 bg-[#1D4E89]/5">
-                <h3 class="text-lg font-bold text-[#1D4E89]">Visi Kami</h3>
+                <h3 class="text-md sm:text-lg font-bold text-[#1D4E89]">
+                    Visi Kami
+                </h3>
             </div>
             {{-- Card Body --}}
             <div class="px-6 py-5 flex-1">
-                <p class="text-lg text-gray-600 leading-relaxed mb-5 text-justify">
+                <p class="text-base sm:text-lg text-gray-600 leading-relaxed mb-5 text-justify">
                     Menjadi lembaga sertifikasi kompetensi unggul yang mendorong peningkatan kualitas pendidikan dan
                     pengembangan sumber daya manusia melalui uji kompetensi berkualitas tinggi.
                 </p>
@@ -32,40 +34,40 @@
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🏆</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#1D4E89]">Standar Keunggulan</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Menetapkan standar tertinggi
+                            <span class="text-md sm:text-lg font-semibold text-[#1D4E89]">Standar Keunggulan</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Menetapkan standar tertinggi
                                 dalam sertifikasi kompetensi pendidikan dan pelatihan</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🚀</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#1D4E89]">Pengembangan SDM</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Fokus pada peningkatan kualitas
+                            <span class="text-md sm:text-lg font-semibold text-[#1D4E89]">Pengembangan SDM</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Fokus pada peningkatan kualitas
                                 sumber daya manusia dalam bidang pendidikan</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🎓</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#1D4E89]">Uji Kompetensi Berkualitas</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Menyelenggarakan uji kompetensi
+                            <span class="text-md sm:text-lg font-semibold text-[#1D4E89]">Uji Kompetensi Berkualitas</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Menyelenggarakan uji kompetensi
                                 yang komprehensif dan berkualitas tinggi</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🌟</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#1D4E89]">Kredibilitas Nasional</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Membangun reputasi sebagai
+                            <span class="text-md sm:text-lg font-semibold text-[#1D4E89]">Kredibilitas Nasional</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Membangun reputasi sebagai
                                 lembaga sertifikasi terpercaya di tingkat nasional</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">💎</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#1D4E89]">Dampak Berkelanjutan</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Menciptakan dampak positif
+                            <span class="text-md sm:text-lg font-semibold text-[#1D4E89]">Dampak Berkelanjutan</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Menciptakan dampak positif
                                 jangka panjang bagi ekosistem pendidikan Indonesia</p>
                         </div>
                     </li>
@@ -77,11 +79,11 @@
         <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col mt-6 md:mt-0">
             {{-- Card Header --}}
             <div class="flex items-center gap-3 px-6 py-4 border-b border-gray-100 bg-[#2A9D8F]/5">
-                <h3 class="text-lg font-bold text-[#2A9D8F]">Misi Kami</h3>
+                <h3 class="text-md sm:text-lg font-bold text-[#2A9D8F]">Misi Kami</h3>
             </div>
             {{-- Card Body --}}
             <div class="px-6 py-5 flex-1">
-                <p class="text-lg text-gray-600 leading-relaxed mb-5">
+                <p class="text-base sm:text-lg text-gray-600 leading-relaxed mb-5 text-justify">
                     Memberikan sertifikasi berkualitas tinggi
                     sambil mendorong pengembangan kurikulum relevan dan memfasilitasi pendidikan berkualitas dengan
                     mengutamakan kepuasan peserta serta menjunjung tinggi etika dan integritas.
@@ -90,40 +92,40 @@
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🎯</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#2A9D8F]">Sertifikasi Berkualitas</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Memberikan sertifikasi yang
+                            <span class="text-md sm:text-lg font-semibold text-[#2A9D8F]">Sertifikasi Berkualitas</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Memberikan sertifikasi yang
                                 berkualitas dengan standar internasional dan kredibilitas tinggi</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">📚</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#2A9D8F]">Kurikulum Relevan</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Mendorong pengembangan
+                            <span class="text-md sm:text-lg font-semibold text-[#2A9D8F]">Kurikulum Relevan</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Mendorong pengembangan
                                 kurikulum yang sesuai dengan kebutuhan industri dan perkembangan zaman</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🎓</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#2A9D8F]">Pendidikan Berkualitas</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Memfasilitasi pendidikan dan
+                            <span class="text-md sm:text-lg font-semibold text-[#2A9D8F]">Pendidikan Berkualitas</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Memfasilitasi pendidikan dan
                                 pelatihan berkualitas dengan metode pembelajaran terdepan</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">🤝</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#2A9D8F]">Mitra Strategis</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Berperan sebagai mitra
+                            <span class="text-md sm:text-lg font-semibold text-[#2A9D8F]">Mitra Strategis</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Berperan sebagai mitra
                                 strategis dengan mengutamakan kepuasan peserta dan integritas profesional</p>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-lg flex-shrink-0 mt-0.5">💡</span>
                         <div>
-                            <span class="text-lg font-semibold text-[#2A9D8F]">Inovasi & Kolaborasi</span>
-                            <p class="text-lg text-gray-500 mt-0.5 leading-relaxed">Berinovasi berkelanjutan dan
+                            <span class="text-md sm:text-lg font-semibold text-[#2A9D8F]">Inovasi & Kolaborasi</span>
+                            <p class="text-base sm:text-lg text-gray-500 mt-0.5 leading-relaxed">Berinovasi berkelanjutan dan
                                 berkolaborasi dengan menjunjung tinggi etika dan integritas</p>
                         </div>
                     </li>

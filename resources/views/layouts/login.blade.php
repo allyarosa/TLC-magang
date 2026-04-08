@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'TLC')</title>
+    <title>@yield('title', 'Daftar | TLC')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="icon" href="{{ asset('assets/img/tlc.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="bg-white flex items-center justify-center min-h-screen p-2">
+<body class="bg-white flex items-center justify-center min-h-screen">
     @yield('content')
 
     @livewireScripts

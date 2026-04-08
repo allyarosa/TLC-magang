@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'TLC')
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    </title>
+    <title>@yield('title', 'Teaching and Learning Certification')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="icon" href="{{ asset('assets/img/tlc.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -23,16 +22,15 @@
             <div
                 class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-4 sm:px-6 lg:px-12">
                 <a href="{{ route('register') }}" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/logo.svg') }}" 
-                        class="h-10 w-10 scale-125 bg-white rounded-md"
-                        alt="TLC Logo" 
-                        loading="lazy"
-                        target="TLC logo">
+                    <img src="{{ asset('images/logo.svg') }}" class="h-10 w-10 scale-125 bg-white rounded-md"
+                        alt="TLC Logo" loading="lazy" target="TLC logo">
                     <div class="flex flex-col">
-                        <span class="text-lg font-extrabold transition-colors duration-500 text-white" id="nav-brand-name">
+                        <span class="text-lg font-extrabold transition-colors duration-500 text-white"
+                            id="nav-brand-name">
                             TLC Program
                         </span>
-                        <span class="text-sm font-medium sm:block transition-colors duration-500 text-white" id="nav-brand-sub">
+                        <span class="text-sm font-medium sm:block transition-colors duration-500 text-white"
+                            id="nav-brand-sub">
                             Teaching & Learning Certification
                         </span>
                     </div>
@@ -49,11 +47,18 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-10 text-sm font-semibold" id="menu">
-                    <a href="#home" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Beranda</a>
-                    <a href="#about" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Tentang TLC</a>
-                    <a href="#skema" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Skema</a>
-                    <a href="#harga" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Harga</a>
-                    <a href="#faq" class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">FAQ</a>
+                    <a href="{{ route('home') }}#home"
+                        class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Beranda</a>
+                    <a href="{{ route('home') }}#about"
+                        class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Tentang TLC</a>
+                    <a href="{{ route('home') }}#skema"
+                        class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Skema</a>
+                    <a href="{{ route('home') }}#harga"
+                        class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Harga</a>
+                    <a href="{{ route('home') }}#faq"
+                        class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">FAQ</a>
+                    <a href="{{ route('contact-us') }}"
+                        class="nav-link transition-colors duration-300 hover:text-[#f1e686] text-white">Hubungi Kami</a>
                     {{-- <a href="#proses" class="nav-link transition-colors duration-300 hover:text-[#f1e686]">Sertifikasi</a> --}}
                 </div>
 
@@ -75,13 +80,20 @@
 
             <!-- Mobile Menu -->
             <div id="mobile-menu"
-                class="hidden lg:hidden flex flex-col items-center space-y-4 py-6 bg-gradient-to-r from-[#3A6EA5] to-[#90BE6D] border-t border-gray-300 text-sm font-medium">
-                <a href="#home" class="text-white hover:text-[#f1e686] transition duration-300">Beranda</a>
-                <a href="#about" class="text-white hover:text-[#f1e686] transition duration-300">Tentang TLC</a>
-                <a href="#skema" class="text-white hover:text-[#f1e686] transition duration-300">Skema</a>
-                <a href="#harga" class="text-white hover:text-[#f1e686] transition duration-300">Harga</a>
+                class="hidden lg:hidden flex flex-col items-center space-y-4 py-6 bg-brandBlue border-t border-gray-300 text-sm font-medium">
+                <a href="{{ route('home') }}#home"
+                    class="text-white hover:text-[#f1e686] transition duration-300">Beranda</a>
+                <a href="{{ route('home') }}#about"
+                    class="text-white hover:text-[#f1e686] transition duration-300">Tentang TLC</a>
+                <a href="{{ route('home') }}#skema"
+                    class="text-white hover:text-[#f1e686] transition duration-300">Skema</a>
+                <a href="{{ route('home') }}#harga"
+                    class="text-white hover:text-[#f1e686] transition duration-300">Harga</a>
                 {{-- <a href="#proses" class="text-white hover:text-[#f1e686] transition duration-300">Sertifikasi</a> --}}
-                <a href="#faq" class="text-white hover:text-[#f1e686] transition duration-300">FAQ</a>
+                <a href="{{ route('home') }}#faq"
+                    class="text-white hover:text-[#f1e686] transition duration-300">FAQ</a>
+                <a href="{{ route('contact-us') }}"
+                    class="text-white hover:text-[#f1e686] transition duration-300">Hubungi Kami</a>
 
                 <div class="flex flex-col space-y-3 pt-4 w-full max-w-xs">
                     <a href="{{ route('login') }}" class="w-full">
@@ -111,14 +123,17 @@
                     const hamburgerIcon = menuToggle ? menuToggle.querySelector('svg') : null;
 
                     function setNavTransparent() {
+                        const isMobile = window.innerWidth < 768;
+
                         nav.style.background = 'transparent';
                         nav.style.boxShadow = 'none';
                         navLinks.forEach(l => l.style.color = '#ffffff');
                         if (brandName) {
-                            brandName.style.color = '#ffffff';
+                            brandName.style.color = isMobile ? '#1D4E89' : '#ffffff';
                         }
+
                         if (brandSub) {
-                            brandSub.style.color = 'rgba(255,255,255,0.8)';
+                            brandSub.style.color = isMobile ? '#E76F51' : 'rgba(255,255,255,0.8)';
                         }
                         if (btnLogin) {
                             btnLogin.style.borderColor = 'white';
@@ -129,7 +144,7 @@
                             btnRegister.style.background = 'rgba(255,255,255,0.15)';
                             btnRegister.style.color = 'white';
                         }
-                        if (hamburgerIcon) hamburgerIcon.style.stroke = 'white';
+                        if (hamburgerIcon) hamburgerIcon.style.stroke = isMobile ? '#1D4E89' : 'white';
                     }
 
                     function setNavSolid() {

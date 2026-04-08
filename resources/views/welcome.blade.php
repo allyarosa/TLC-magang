@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="bg-abu">
+
         <livewire:referral-banner />
         <x-main-home />
         <x-about-section />
@@ -11,56 +12,20 @@
         <x-manfaat-section />
         <x-skema-section />
 
-        {{-- testing --}}
-        <div class="flex items-center justify-center bg-gray-100 p-6">
-            <div
-                class="max-w-6xl w-full bg-[#1a4b90] rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 overflow-hidden">
-
-                <div class="w-full md:w-1/2 text-white space-y-8">
-                    <h2 class="text-2xl md:text-4xl font-bold leading-tight">
-                        Pelajari bagaimana Ruangkerja dapat mentransformasi pembelajaran dan meningkatkan kinerja karyawan
-                        untuk mencapai hasil bisnis yang Anda inginkan
-                    </h2>
-
-                    <div>
-                        <button
-                            class="bg-white text-[#1a4b90] font-bold py-4 px-10 rounded-2xl shadow-lg hover:bg-gray-100 transition duration-300">
-                            Dapatkan Demo GRATIS!
-                        </button>
-                    </div>
-                </div>
-
-                <div class="w-full md:w-1/2 flex justify-center">
-                    <div
-                        class="relative bg-white p-2 rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
-                        <img src="{{ asset('images/about-us.webp') }}" alt="App Mockup" class="rounded-xl">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
         <!-- Paket Harga -->
-        <section id="harga" class="w-full bg-gradient-to-b from-white to-blue-50">
+        <section id="harga" class="w-full bg-gradient-to-b from-white to-blue-50 mt-10">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-10 md:mb-14">
-                    <span
-                        class="inline-block px-4 py-1 bg-[#1D4E89]/10 text-[#1D4E89] rounded-full text-sm font-semibold tracking-wide shadow-sm mb-4">PROGRAM
-                        SERTIFIKASI
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1D4E89] mb-4">
-                        Pilih Jalur Sertifikasi Anda
-                    </h2>
-                    <div class="w-24 h-1 bg-[#E76F51] mt-4 mb-6 mx-auto"></div>
-                    <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Program bertingkat yang
-                        disesuaikan dengan kebutuhan dan tujuan karir pendidik</p>
+                    <livewire:title-section title="Pilih Jalur Sertifikasi Anda"
+                        subTitle="Program bertingkat yang
+                        disesuaikan dengan kebutuhan dan tujuan karir pendidik" />
                 </div>
 
                 {{-- Toggle Switcher --}}
                 <div class="flex justify-center mb-10">
                     <div class="p-1.5 rounded-2xl inline-flex"
                         style="background: linear-gradient(145deg, #f3f4f6, #e5e7eb); box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);">
-                        <button onclick="showPerLevel()" id="btn-perlevel"
+                        <button onclick="showPerLevel()" id="btn-perlevel"`
                             class="tlc-toggle-btn active px-7 py-3 rounded-xl text-sm font-bold tracking-wide transition-all duration-300"
                             style="">
                             <span class="flex items-center gap-2">
@@ -486,5 +451,34 @@
 
         <x-faq-section />
         <x-hafecs-section />
+
+        {{-- testing --}}
+        <div class="flex items-center justify-center bg-gray-100 p-6">
+            <div
+                class="max-w-6xl w-full bg-[#1a4b90] rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 overflow-hidden">
+
+                <div class="w-full md:w-1/2 text-white space-y-8">
+                    <h2 class="text-2xl md:text-4xl font-bold leading-tight">
+                        Pelajari bagaimana Ruangkerja dapat mentransformasi pembelajaran dan meningkatkan kinerja karyawan
+                        untuk mencapai hasil bisnis yang Anda inginkan
+                    </h2>
+
+                    <div>
+                        <button
+                            class="bg-white text-[#1a4b90] font-bold py-4 px-10 rounded-2xl shadow-lg hover:bg-gray-100 transition duration-300">
+                            Dapatkan Demo GRATIS!
+                        </button>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div
+                        class="relative bg-white p-2 rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
+                        <img src="{{ asset('images/about-us.webp') }}" alt="App Mockup" class="rounded-xl">
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 @endsection

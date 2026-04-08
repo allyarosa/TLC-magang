@@ -1,4 +1,14 @@
-<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen w-full flex items-center justify-center p-2 sm:p-2">
+<div class="relative bg-gray-900 min-h-screen w-full flex items-center justify-center p-2 sm:p-2 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/about-us.webp') }}" alt="Background TLC" class="w-full h-full object-cover opacity-70"
+            loading="eager">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0"
+            style="background: linear-gradient(120deg, rgba(10,20,70,0.80) 30%, rgba(15,40,100,0.65) 50%, rgba(10,20,70,0.55) 50%);">
+        </div>
+    </div>
+
     <style>
         @keyframes fadeIn {
             from {
@@ -125,7 +135,7 @@
     </style>
 
     <div
-        class="bg-white shadow-md rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm border border-white/20 animate-fadeIn">
+        class="relative z-10 bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm animate-fadeIn">
         <!-- Left Section - Enhanced -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-[#A6BFCF] via-[#5F809C] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -142,7 +152,8 @@
             </h1>
             <div class="mt-6 w-44 h-44 flex items-center justify-center animate-slideInUp animation-delay-500 group">
                 <div class="absolute w-44 h-44 bg-white/5 rounded-full animate-pulse"></div>
-                <img src="images/logoTlcPng.png" alt="Logo TLC" loading="lazy" title="Teaching and Learning Certification Logo"
+                <img src="images/logoTlcPng.png" alt="Logo TLC" loading="lazy"
+                    title="Teaching and Learning Certification Logo"
                     class="max-w-full relative z-10 filter drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
             </div>
         </div>
@@ -151,7 +162,8 @@
         <div class="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center bg-white">
             <!-- Mobile Header -->
             <div class="md:hidden text-center mb-6 animate-fadeIn">
-                <h1 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#0C548C] to-[#2E4D69] bg-clip-text text-transparent">
+                <h1
+                    class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#0C548C] to-[#2E4D69] bg-clip-text text-transparent">
                     Selamat Datang
                 </h1>
             </div>
@@ -192,7 +204,7 @@
                             <input type="email" wire:model="email" placeholder="email@example.com"
                                 class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400">
                         </div>
-                        
+
                         @error('email')
                             <div class="text-red-500 text-sm mt-1 flex items-center animate-slideIn">
                                 <svg class="w-4 h-4 mr-1 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
@@ -289,7 +301,7 @@
 
                     <div class="relative z-10 flex items-center justify-center">
                         <span wire:loading.remove class="flex items-center">
-                            
+
                             MASUK
                         </span>
                         <span wire:loading class="items-center">
@@ -336,11 +348,8 @@
             <!-- Register Link -->
             <p class="text-center text-sm text-[#2E4D69] animate-slideIn animation-delay-800">
                 Belum punya akun?
-                <a href="{{ route('register') }}"
-                    class="text-[#0C548C] font-semibold hover:text-[#2E4D69] transition-all duration-200 relative group ml-1">
+                <a href="{{ route('register') }}" class="text-[#0C548C] font-semibold hover:underline transition-colors ml-1">
                     Daftar Sekarang
-                    <span
-                        class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C548C] to-[#2E4D69] transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </p>
         </div>

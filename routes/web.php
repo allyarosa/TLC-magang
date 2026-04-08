@@ -33,6 +33,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ExamScoreImportController;
 use App\Http\Controllers\IndoRegionController;
 use App\Http\Controllers\PaymentController;
@@ -64,6 +65,7 @@ use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 // =========================================================================
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 
 Route::get('/payment-view', function () {
     return view('paymentView');

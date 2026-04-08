@@ -1,5 +1,4 @@
-<div id="referral-banner"
-    class="fixed w-full text-white py-2 px-4 overflow-hidden hidden"
+<div id="referral-banner" class="fixed w-full text-white py-2 px-4 overflow-hidden hidden"
     style="top: 80px; z-index: 19; background: linear-gradient(90deg, #1a1f6e 0%, #2c2473 40%, #1d1a6b 70%, #16144f 100%);"
     wire:ignore>
     <!-- Subtle shimmer/glow effect -->
@@ -9,7 +8,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-center gap-3 relative z-10">
         <!-- Gift icon -->
         <span class="text-yellow-400 text-xl flex-shrink-0" aria-hidden="true">🎁</span>
-        <p class="text-sm sm:text-base font-normal text-center leading-snug">
+        <p class="text-xs sm:text-sm font-normal text-center leading-snug">
             {{ $title }}
             <span class="font-extrabold text-yellow-400">{{ $reward }}</span>
         </p>

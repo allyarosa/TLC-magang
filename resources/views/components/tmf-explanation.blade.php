@@ -1,5 +1,5 @@
 <div>
-    <p class="leading-relaxed text-gray-800 text-justify text-xl mb-6">
+    <p class="leading-relaxed text-gray-800 text-justify text-base sm:text-xl mb-6">
         Teaching and Learning Certification (TLC)
         adalah langkah nyata menuju pengembangan diri sebagai pendidik unggul. Dengan pendekatanTeaching Mastery
         Framework (TMF), Anda akan
@@ -8,11 +8,11 @@
     </p>
 
     <div class="mb-8 rounded-2xl bg-gradient-to-t from-sky-50 to-white p-6 shadow-md ring-1 ring-slate-200">
-        <h4 class="mb-3 text-xl font-bold text-brandOrange-dark">
+        <h4 class="mb-3 text-base sm:text-md md:text-lg font-bold text-brandOrange-dark">
             Mengapa TLC Berbeda?
         </h4>
 
-        <p class="text-lg leading-relaxed text-slate-700 text-justify">
+        <p class="text-base sm:text-lg leading-relaxed text-slate-700 text-justify">
             Program ini memberikan standar pengajaran berkualitas yang terstruktur dan praktis, membantu
             para guru mencapai hasil belajar optimal dalam lingkungan pendidikan modern.
         </p>
