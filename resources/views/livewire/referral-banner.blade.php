@@ -10,7 +10,6 @@
         <span class="text-yellow-400 text-xl flex-shrink-0" aria-hidden="true">🎁</span>
         <p class="text-xs sm:text-sm font-normal text-center leading-snug">
             {{ $title }}
-            <span class="font-extrabold text-yellow-400">{{ $reward }}</span>
         </p>
         <a href="{{ $link }}"
             class="referral-btn flex-shrink-0 inline-flex items-center gap-1.5 text-white border-white border-2 font-medium text-xs sm:text-sm px-4 py-1 rounded-md shadow-md transition-all duration-300 ml-2">

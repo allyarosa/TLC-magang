@@ -38,6 +38,7 @@ use App\Http\Controllers\ExamScoreImportController;
 use App\Http\Controllers\IndoRegionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ReferralBannerController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WelcomeController;
 use App\Livewire\Asesi\CertificationDetail;
@@ -524,6 +525,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     // Certificates
     Route::get('/dashboard/sertifikat/index', [CertificateController::class, 'index'])->name('admin.certificate.index');
     Route::get('/dashboard/sertifikat/download/{id}', [CertificateController::class, 'downloadSertifikat'])->name('admin.sertifikat.download');
+
+    //ReferralBanner
+    Route::get('/referral-banners', [ReferralBannerController::class, 'index'])->name('admin.referral-banners.index');
+    Route::put('/referral-banners/{id}', [ReferralBannerController::class, 'update'])->name('admin.referral-banners.update');
 });
 
 

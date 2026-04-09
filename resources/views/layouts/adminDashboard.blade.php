@@ -335,7 +335,16 @@
                         <span class="ms-3 text-sm font-semibold">Site Info</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('admin.referral-banners.index') }}"
+                        class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
+                        <div
+                            class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white">
+                            <i class="fas fa-users-cog text-sm"></i>
+                        </div>
+                        <span class="ms-3 text-sm font-semibold">Referral Banners</span>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('admin.logs') }}"
                         class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
