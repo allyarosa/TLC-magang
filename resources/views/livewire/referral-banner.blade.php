@@ -1,5 +1,5 @@
-<div id="referral-banner" class="fixed w-full text-white py-2 px-4 overflow-hidden hidden"
-    style="top: 80px; z-index: 19; background: linear-gradient(90deg, #1a1f6e 0%, #2c2473 40%, #1d1a6b 70%, #16144f 100%);"
+<div id="referral-banner" class="fixed w-full text-white py-2 px-4 overflow-hidden {{ $hasActiveBanner ? '' : 'hidden' }}"
+    style="top: 0; z-index: 30; background: linear-gradient(90deg, #1a1f6e 0%, #2c2473 40%, #1d1a6b 70%, #16144f 100%);"
     wire:ignore>
     <!-- Subtle shimmer/glow effect -->
     <div class="absolute inset-0 pointer-events-none"
@@ -17,7 +17,7 @@
         </a>
     </div>
     <!-- Close button -->
-    <button onclick="document.getElementById('referral-banner').style.display='none'"
+    <button onclick="document.getElementById('referral-banner').style.display='none'; if(window.__updateNavTop) window.__updateNavTop();"
         class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors duration-200 p-1 rounded-full hover:bg-white/10"
         aria-label="Tutup banner">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

@@ -528,7 +528,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     //ReferralBanner
     Route::get('/referral-banners', [ReferralBannerController::class, 'index'])->name('admin.referral-banners.index');
+    Route::post('/referral-banners', [ReferralBannerController::class, 'store'])->name('admin.referral-banners.store');
     Route::put('/referral-banners/{id}', [ReferralBannerController::class, 'update'])->name('admin.referral-banners.update');
+    Route::delete('/referral-banners/{id}', [ReferralBannerController::class, 'destroy'])->name('admin.referral-banners.destroy');
+    Route::patch('/referral-banners/{id}/toggle', [ReferralBannerController::class, 'toggleActive'])->name('admin.referral-banners.toggle');
 });
 
 

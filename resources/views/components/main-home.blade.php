@@ -4,9 +4,9 @@
                 <img src="{{ asset('images/about-us.webp') }}" alt="Background TLC" class="w-full h-full object-cover"
                     loading="eager">
                 <!-- Dark overlay so text is readable -->
-                <div class="absolute inset-0"
-                    style="background: linear-gradient(120deg, rgba(10,20,70,0.80) 30%, rgba(15,40,100,0.65) 50%, rgba(10,20,70,0.55) 60%);">
-                </div>
+                <div class="absolute inset-0 bg-[#0A1446CC] backdrop-blur-md opacity-65"></div>
+
+
             </div>
             <!-- Mobile background fallback -->
             <div class="absolute inset-0 block md:hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"></div>
@@ -17,7 +17,7 @@
                     <div class="col-span-12 lg:col-span-7 pt-0 sm:p-5">
                         <div class="animate-fadeIn">
                             <h1
-                                class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-brandBlue md:text-white leading-tight mt-12">
+                                class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-brandBlue md:text-white leading-tight mt-20">
                                 <span class="relative inlinae-block">
                                     <span class="relative z-10">Thrive.</span>
                                 </span>
@@ -75,23 +75,17 @@
                                     class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                     <img src="{{ asset('images/smp-sma-gibs.png') }}"
                                         alt="Global Islamic Boarding School Logo"
-                                        class="h-16 transition-transform duration-300" 
-                                        loading="lazy"
-                                        >
+                                        class="h-16 transition-transform duration-300" loading="lazy">
                                 </div>
                                 <div
                                     class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                     <img src="{{ asset('images/hafecs.png') }}" alt="HAFECS"
-                                        class="h-12 transition-transform duration-300" 
-                                        loading="lazy"
-                                        alt="HAFECS Logo">
+                                        class="h-12 transition-transform duration-300" loading="lazy" alt="HAFECS Logo">
                                 </div>
                                 <div
                                     class="bg-white p-3 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
                                     <img src="{{ asset('images/hrp.png') }}" alt="HAFECS Research & Publication"
-                                        class="h-16 transition-transform duration-300" 
-                                        loading="lazy"
-                                        alt="HRP Logo">
+                                        class="h-16 transition-transform duration-300" loading="lazy" alt="HRP Logo">
                                 </div>
                             </div>
                         </div>

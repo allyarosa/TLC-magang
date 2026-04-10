@@ -20,7 +20,7 @@
         <nav id="main-nav" class="fixed w-full z-20 top-0 start-0 transition-all duration-500 ease-in-out"
             style="background: transparent;">
             <div
-                class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-4 px-4 sm:px-6 lg:px-12">
+                class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-3 px-4 sm:px-6 lg:px-12">
                 <a href="{{ route('register') }}" class="flex items-center space-x-3">
                     <img src="{{ asset('images/logo.svg') }}" class="h-10 w-10 scale-125 bg-white rounded-md"
                         alt="TLC Logo" loading="lazy" target="TLC logo">
@@ -169,32 +169,26 @@
                         if (hamburgerIcon) hamburgerIcon.style.stroke = '#1D4E89';
                     }
 
-                    // Init: transparent at top
-                    setNavTransparent();
+                    // Init: always solid navbar
+                    setNavSolid();
 
-                    // Sync referral banner position below navbar
+                    // Sync navbar position below referral banner
                     const referralBanner = document.getElementById('referral-banner');
 
-                    function updateBannerTop() {
-                        if (referralBanner && referralBanner.style.display !== 'none') {
-                            referralBanner.style.top = nav.offsetHeight + 'px';
+                    function updateNavTop() {
+                        if (referralBanner && !referralBanner.classList.contains('hidden') && referralBanner.style.display !== 'none') {
+                            nav.style.top = referralBanner.offsetHeight + 'px';
+                        } else {
+                            nav.style.top = '0px';
                         }
                     }
-                    updateBannerTop();
+                    // Expose globally so banner close button can also update nav position
+                    window.__updateNavTop = updateNavTop;
 
-                    window.addEventListener('scroll', function() {
-                        if (window.scrollY > 20) {
-                            referralBanner.classList.remove('hidden');
-                            setNavSolid();
-                        } else {
-                            referralBanner.classList.add('hidden');
-                            setNavTransparent();
-                        }
-                        updateBannerTop();
-                    });
+                    updateNavTop();
 
                     window.addEventListener('resize', function() {
-                        updateBannerTop();
+                        updateNavTop();
                     });
 
                     // Mobile menu toggle

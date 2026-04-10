@@ -2,10 +2,12 @@
 
 @section('title', 'Teaching and Learning Certification')
 
+@section('top-banner')
+    <livewire:referral-banner />
+@endsection
+
 @section('content')
     <div class="bg-abu">
-
-        <livewire:referral-banner />
         <x-main-home />
         <x-about-section />
         <x-visimisi-section />
@@ -453,7 +455,7 @@
         <x-hafecs-section />
 
         {{-- testing --}}
-        <div class="flex items-center justify-center bg-gray-100 p-6">
+        {{-- <div class="flex items-center justify-center bg-gray-100 p-6">
             <div
                 class="max-w-6xl w-full bg-[#1a4b90] rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 overflow-hidden">
 
@@ -479,6 +481,6 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

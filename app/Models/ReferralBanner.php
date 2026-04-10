@@ -19,4 +19,10 @@ class ReferralBanner extends Model
     protected $casts = [
         'is_active' => 'boolean',
     ];
+
+    public function scopeSearch($query, $term)
+    {
+        return $query->where('title', 'like', "%{$term}%")
+                     ->orWhere('button_text', 'like', "%{$term}%");
+    }
 }
