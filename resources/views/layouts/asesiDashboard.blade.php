@@ -352,5 +352,6 @@
     </main>
     @include('layouts.footer')
     @livewireScripts
+    @include('sweetalert::alert')
 </body>
 </html>

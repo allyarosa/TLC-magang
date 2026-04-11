@@ -4,6 +4,7 @@
 @section('content')
     @php use Vinkla\Hashids\Facades\Hashids; @endphp
     <section class="bg-abu">
+        <x-verify-email-alerts />
 
         {{-- Main Tampilan Awal --}}
         <main id="beranda"
@@ -640,25 +641,18 @@
                         <div
                             class="pricing-card bg-white rounded-3xl shadow-lg relative overflow-hidden transition-all duration-300 border-2 border-blue-200">
                             {{-- IMAGE CARD --}}
-                            <livewire:asesi.dashboard.payment-image-card 
-                                image="images/webp/blue_bg.webp"
-                                alt="Level A Image" 
-                                gradientColor="from-blue-200" />
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/blue_bg.webp"
+                                alt="Level A Image" gradientColor="from-blue-200" />
 
                             <div class="p-8 relative z-10">
                                 <!-- RECOMENDED RIBBON -->
                                 <x-populer-ribbon label="Recommended" />
                                 <!-- HEADER -->
-                                <livewire:asesi.dashboard.payment-card-header 
-                                    label="LEVEL A"
-                                    title="Teaching Knowledge Certification" 
-                                    subtitle="Sertifikasi Pengetahuan Mengajar"
-                                    labelColor="sky-700" 
-                                    titleColor="[#20416a]"/>
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL A"
+                                    title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
+                                    labelColor="sky-700" titleColor="[#20416a]" />
                                 <!-- PRICE -->
-                                <livewire:asesi.dashboard.price-item 
-                                    price="{{ $levels[0]->price }}"
-                                    textColor="slate-700"
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="slate-700"
                                     discount="{{ $levels[0]->discount ?? 0 }}" />
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
@@ -676,23 +670,16 @@
                         <div
                             class="pricing-card bg-white rounded-3xl shadow-md relative overflow-hidden transition-all duration-300 border-2 border-teal-200">
                             {{-- IMAGE CARD --}}
-                            <livewire:asesi.dashboard.payment-image-card 
-                                image="images/webp/green_bg.webp"
-                                alt="Level B Image" 
-                                gradientColor="from-green-200" />
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/green_bg.webp"
+                                alt="Level B Image" gradientColor="from-green-200" />
 
                             <div class="p-8 relative z-10">
                                 {{-- HEADER --}}
-                                <livewire:asesi.dashboard.payment-card-header 
-                                    label="LEVEL B"
-                                    title="Teaching Activation Certification"  
-                                    subtitle="Sertifikasi Aktivasi Mengajar"
-                                    labelColor="[#2A9D8F]" 
-                                    titleColor="emerald-800" />
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL B"
+                                    title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
+                                    labelColor="[#2A9D8F]" titleColor="emerald-800" />
                                 <!-- PRICE -->
-                                <livewire:asesi.dashboard.price-item 
-                                    price="{{ $levels[1]->price }}"
-                                    textColor="slate-700"
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="slate-700"
                                     discount="{{ $levels[1]->discount ?? 0 }}" />
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
@@ -710,21 +697,15 @@
                         <div
                             class="pricing-card bg-white rounded-3xl shadow-md relative overflow-hidden transition-all duration-300 border-2 border-orange-200">
                             {{-- IMAGE CARD --}}
-                            <livewire:asesi.dashboard.payment-image-card 
-                                image="images/webp/orange_bg.webp"
-                                alt="Level C Image" 
-                                gradientColor="from-orange-200" />
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/orange_bg.webp"
+                                alt="Level C Image" gradientColor="from-orange-200" />
                             <div class="p-8 relative z-10">
                                 <!-- HEADER -->
-                                <livewire:asesi.dashboard.payment-card-header 
-                                    label="LEVEL C"
-                                    title="Teaching Mastery Certification" 
-                                    subtitle="Sertifikasi Penguasaan Mengajar"
-                                    labelColor="[#E76F51]" 
-                                    titleColor="amber-700" />
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL C"
+                                    title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
+                                    labelColor="[#E76F51]" titleColor="amber-700" />
                                 <!-- PRICE -->
-                                <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}"
-                                    textColor="slate-700"
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="slate-700"
                                     discount="{{ $levels[2]->discount ?? 0 }}" />
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
@@ -933,8 +914,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                                                                                            <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                                                                                        </div> -->
+                                                                                                <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                                                                                            </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1611,12 +1592,12 @@
                 }
 
                 /* #tutorial iframe {
-                                                                                        width: 100%;
-                                                                                        height: 100%;
-                                                                                        min-height: 320px;
-                                                                                        border-radius: 1rem;
-                                                                                        display: block;
-                                                                                    } */
+                                                                                            width: 100%;
+                                                                                            height: 100%;
+                                                                                            min-height: 320px;
+                                                                                            border-radius: 1rem;
+                                                                                            display: block;
+                                                                                        } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {
