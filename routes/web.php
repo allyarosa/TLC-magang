@@ -133,6 +133,11 @@ Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewC
 Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('certificate.download');
 
 
+// Email Verification (No auth required — works from any browser/session)
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['signed'])
+    ->name('verification.verify');
+
 // =========================================================================
 // AUTHENTICATION ROUTES (GUEST)
 // =========================================================================
@@ -168,17 +173,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Email Verification
-    Route::get('/email/verify', function () {
-        return view('auth.verify-email');
-    })->name('verification.notice');
+    Route::get('/email/verify', [VerificationController::class, 'show'])
+        ->name('verification.notice');
 
     Route::post('/email/verification-notification', [VerificationController::class, 'send'])
         ->middleware(['throttle:6,1'])
         ->name('verification.send');
-
-    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
-        ->middleware(['signed'])
-        ->name('verification.verify');
 
     // Permission Management (Secret & Assign)
     Route::get('/permission/xqjmtlrbavse', [PermissionController::class, 'index'])->name('permission');

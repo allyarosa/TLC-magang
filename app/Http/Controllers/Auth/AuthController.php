@@ -6,7 +6,6 @@ use Exception;
 use App\Models\User;
 use App\Models\Province;
 use App\Models\UserProfile;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Log;
@@ -80,12 +79,10 @@ class AuthController extends Controller
                 'profile_image' => 'blankProfile.png',
             ]);
 
-            Alert::success('Berhasil!', 'Akun berhasil dibuat')->autoClose(3000);
             DB::commit();
-            // Auth::login($user);
+            Auth::login($user);
             event(new Registered($user));
             return redirect()->route('verification.notice');
-            // return redirect()->route('asesi.dashboard'); 
             
         } catch (Exception $e) {
             DB::rollBack();

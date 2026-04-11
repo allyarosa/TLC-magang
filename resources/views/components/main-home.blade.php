@@ -4,7 +4,7 @@
                 <img src="{{ asset('images/about-us.webp') }}" alt="Background TLC" class="w-full h-full object-cover"
                     loading="eager">
                 <!-- Dark overlay so text is readable -->
-                <div class="absolute inset-0 bg-[#0A1446CC] backdrop-blur-md opacity-65"></div>
+                <div class="absolute inset-0 bg-[#0A1446CC] backdrop-blur-md opacity-60"></div>
 
 
             </div>

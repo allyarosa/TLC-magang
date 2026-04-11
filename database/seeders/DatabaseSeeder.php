@@ -103,12 +103,12 @@ class DatabaseSeeder extends Seeder
             AsesorSeeders::class,
             CategoryASeeders::class,
             LevelSeeders::class,
-            QuestionSeeders::class,
+            // QuestionSeeders::class,
                 // PaymentSeeders::class,
                 // LevelBSeeders::class,
-            LevelCQuestionSeeders::class,
+            // LevelCQuestionSeeders::class, // PRODUCTION COMMENT INI
             // CertificateSeeders::class, //PRODUCTION COMMENT INI
-            DummyDataSeeder::class,
+            // DummyDataSeeder::class, // PRODUCTION COMMENT INI
         ]);
     }
 }

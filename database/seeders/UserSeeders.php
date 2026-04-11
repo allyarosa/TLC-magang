@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\UserProfile;
-use App\Models\SurveySubmission;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -20,7 +19,7 @@ class UserSeeders extends Seeder
         $faker = Faker::create();
         $array = ['access_level_A', 'access_level_B', 'access_level_C'];
 
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $user = User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
