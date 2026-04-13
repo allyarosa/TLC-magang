@@ -7,10 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Storage;
 
 class AuthService
 {
@@ -186,7 +184,6 @@ class AuthService
         } elseif ($user->hasRole('asesor')) {
             return route('asesor.dashboard');
         }
-
         return '/';
     }
 }

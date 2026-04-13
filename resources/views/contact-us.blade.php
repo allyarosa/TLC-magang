@@ -3,7 +3,7 @@
 @section('title', 'Contact Us | TLC')
 @section('top-banner')
     <livewire:referral-banner />
-    <section class="relative overflow-hidden pt-28 pb-28">
+    <section class="relative overflow-hidden pt-48 pb-28 ">
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style="background-image: url('{{ asset('images/webp/contact-us.jpeg') }}');">
         </div>

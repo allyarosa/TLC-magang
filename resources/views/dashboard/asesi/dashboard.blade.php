@@ -914,8 +914,8 @@
 
                     <div class="flex items-center mb-6">
                         <!-- <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
-                                                                                                <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
-                                                                                            </div> -->
+                                                                                                    <span class="text-xl font-bold text-orange-600">{{ $level }} <br></span>
+                                                                                                </div> -->
                         <h2 class="text-2xl font-bold text-gray-800">Sertifikasi Level {{ $level }}</h2>
                     </div>
 
@@ -1592,12 +1592,12 @@
                 }
 
                 /* #tutorial iframe {
-                                                                                            width: 100%;
-                                                                                            height: 100%;
-                                                                                            min-height: 320px;
-                                                                                            border-radius: 1rem;
-                                                                                            display: block;
-                                                                                        } */
+                                                                                                width: 100%;
+                                                                                                height: 100%;
+                                                                                                min-height: 320px;
+                                                                                                border-radius: 1rem;
+                                                                                                display: block;
+                                                                                            } */
 
                 /* Enhanced tutorial steps styling */
                 .tutorial-step {
@@ -1798,3 +1798,4 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="{{ asset('assets/js/asesiDashboard.js') }}" defer></script>
 @endsection
+
