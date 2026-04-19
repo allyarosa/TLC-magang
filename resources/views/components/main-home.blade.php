@@ -5,8 +5,6 @@
                     loading="eager">
                 <!-- Dark overlay so text is readable -->
                 <div class="absolute inset-0 bg-[#0A1446CC] backdrop-blur-md opacity-60"></div>
-
-
             </div>
             <!-- Mobile background fallback -->
             <div class="absolute inset-0 block md:hidden bg-gradient-to-br from-blue-50 via-white to-orange-50"></div>

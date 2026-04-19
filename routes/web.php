@@ -534,7 +534,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::patch('/referral-banners/{id}/toggle', [ReferralBannerController::class, 'toggleActive'])->name('admin.referral-banners.toggle');
 });
 
-
 // Test Notification Route
 Route::get('/test-notification', function () {
     $user = Auth::user();
@@ -551,3 +550,4 @@ Route::get('/test-notification', function () {
     return "User not logged in!";
 });
 require __DIR__ . '/auth.php';
+
