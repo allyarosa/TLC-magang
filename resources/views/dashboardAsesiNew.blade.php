@@ -9,7 +9,7 @@
 @endphp
 
 {{-- Modal Berhasil Verifikasi Email --}}
-<x-verify-email-popup />
+<x-verify-email-alerts />
 
 <div class="bg-gray-50 min-h-screen">
 
