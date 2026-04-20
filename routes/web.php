@@ -550,4 +550,3 @@ Route::get('/test-notification', function () {
     return "User not logged in!";
 });
 require __DIR__ . '/auth.php';
-
