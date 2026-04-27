@@ -118,6 +118,28 @@
                 </div>
             </div>
         </div>
+
+        {{-- Card khusus: Menunggu Konfirmasi Manual --}}
+        <a href="{{ route('admin.payments.index', ['status' => 'waiting_confirmation']) }}" class="block">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg p-6 text-white relative overflow-hidden hover:shadow-lg transition-shadow">
+                @if(($stats['total_waiting'] ?? 0) > 0)
+                    <span class="absolute top-2 right-2 bg-white text-amber-600 text-xs font-bold px-2 py-0.5 rounded-full animate-pulse">
+                        PERLU AKSI
+                    </span>
+                @endif
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-amber-100 text-sm">Menunggu Konfirmasi</p>
+                        <p class="text-2xl font-bold">{{ number_format($stats['total_waiting'] ?? 0) }}</p>
+                    </div>
+                    <div class="bg-amber-400 bg-opacity-30 rounded-full p-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
 
     <!-- Filter Form -->
@@ -132,6 +154,7 @@
                         <option value="success" {{ request('status') == 'success' ? 'selected' : '' }}>Success</option>
                         <option value="failed" {{ request('status') == 'failed' ? 'selected' : '' }}>Failed</option>
                         <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
+                        <option value="waiting_confirmation" {{ request('status') == 'waiting_confirmation' ? 'selected' : '' }}>⏳ Menunggu Konfirmasi</option>
                     </select>
                 </div>
                 <div>
@@ -281,15 +304,15 @@
                             <td class="px-4 py-3 whitespace-nowrap">
                                 @php
                                     $statusColor = match ($payment->status) {
-                                        'success' => 'bg-green-100 text-green-800',
-                                        'pending' => 'bg-yellow-100 text-yellow-800',
-                                        'failed', 'expired' => 'bg-red-100 text-red-800',
-                                        default => 'bg-gray-100 text-gray-800',
+                                        'success'              => 'bg-green-100 text-green-800',
+                                        'pending'              => 'bg-yellow-100 text-yellow-800',
+                                        'failed', 'expired'    => 'bg-red-100 text-red-800',
+                                        'waiting_confirmation' => 'bg-amber-100 text-amber-800',
+                                        default                => 'bg-gray-100 text-gray-800',
                                     };
                                 @endphp
-                                <span
-                                    class="px-2 py-1 inline-flex text-xs font-semibold rounded-full {{ $statusColor }}">
-                                    {{ ucfirst($payment->status) }}
+                                <span class="px-2 py-1 inline-flex text-xs font-semibold rounded-full {{ $statusColor }}">
+                                    {{ $payment->status === 'waiting_confirmation' ? '⏳ Menunggu Konfirmasi' : ucfirst($payment->status) }}
                                 </span>
                             </td>
 
@@ -309,14 +332,26 @@
                                     class="text-indigo-600 hover:text-indigo-900">View</a>
                             </td> --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('admin.payments.show', $payment->id) }}"
-                                    class="inline-flex items-center px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                    </svg>
-                                    Detail
-                                </a>
+                                <div class="flex items-center gap-2">
+                                    <a href="{{ route('admin.payments.show', $payment->id) }}"
+                                        class="inline-flex items-center px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded-md hover:bg-indigo-700 transition-colors">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        Detail
+                                    </a>
+                                    @if($payment->status === 'waiting_confirmation')
+                                        <form method="POST" action="{{ route('admin.payments.confirmManual', $payment->id) }}"
+                                              onsubmit="return confirm('Konfirmasi pembayaran ini dan berikan akses ke user?')">
+                                            @csrf
+                                            <button type="submit"
+                                                class="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-xs font-medium rounded-md hover:bg-green-700 transition-colors">
+                                                ✅ Konfirmasi
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @empty

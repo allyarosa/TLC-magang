@@ -119,27 +119,29 @@ class AuthService
     {
         try {
             $profileData = [
-                'nama_depan' => $data['nama'],
-                'nik' => $data['nik'],
-                'instansi' => $data['instansi'],
-                'custom_instansi' => $data['custom_instansi'] ?? null,
-                'tempat_lahir' => $data['tempat_lahir'],
-                'tanggal_lahir' => $data['tanggal_lahir'],
-                'jenis_kelamin' => $data['jenis_kelamin'],
-                'no_wa' => $data['no_wa'],
-                'provinsi' => $data['provinsi'],
-                'kabupaten' => $data['kabupaten'],
-                'kecamatan' => $data['kecamatan'],
-                'kelurahan' => $data['kelurahan'],
+                'nama_depan'                => $data['nama'],
+                'nik'                       => $data['nik'] ?? null,
+                'instansi'                  => $data['instansi'],
+                'custom_instansi'           => $data['custom_instansi'] ?? null,
+                'profesi'                   => $data['profesi'],
+                'lama_masa_kerja'           => $data['lama_masa_kerja'] ?? null,
+                'latar_belakang_pendidikan' => $data['latar_belakang_pendidikan'] ?? null,
+                'nama_universitas'          => $data['nama_universitas'] ?? null,
+                'program_studi'             => $data['program_studi'] ?? null,
+                'tahun_studi'              => $data['tahun_studi'] ?? null,
+                'tempat_lahir'              => $data['tempat_lahir'],
+                'tanggal_lahir'             => $data['tanggal_lahir'],
+                'jenis_kelamin'             => $data['jenis_kelamin'],
+                'no_wa'                     => $data['no_wa'],
+                'provinsi'                  => $data['provinsi'],
+                'kabupaten'                 => $data['kabupaten'],
+                'kecamatan'                 => $data['kecamatan'],
+                'kelurahan'                 => $data['kelurahan'],
             ];
 
             if (isset($data['profile_image']) && $data['profile_image'] instanceof \Illuminate\Http\UploadedFile) {
                 $path = $data['profile_image']->store('img', 'public');
                 $profileData['profile_image'] = $path;
-            } else if (!isset($profileData['profile_image'])) {
-                // Keep default if not provided and doesn't exist? 
-                // Original logic set it to 'img/blank_profile.png' if not present
-                $profileData['profile_image'] = 'img/blank_profile.png';
             }
 
             $result = $this->userRepository->updateProfile($userId, $profileData);

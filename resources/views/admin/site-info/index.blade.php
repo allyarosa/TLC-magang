@@ -339,9 +339,100 @@
                             </div>
                         </div>
 
+                        {{-- ===== PAYMENT SETTINGS SECTION ===== --}}
+                        <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-100">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-amber-500 rounded-full p-3 mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Pengaturan Metode Pembayaran</h4>
+                                    <p class="text-sm text-gray-600">Pilih metode pembayaran aktif untuk semua transaksi</p>
+                                </div>
+                            </div>
+
+                            {{-- Toggle Midtrans / Manual --}}
+                            <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+                                <label class="block text-sm font-semibold text-gray-700 mb-3">Mode Pembayaran Aktif</label>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all flex-1
+                                        {{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'midtrans' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300' }}">
+                                        <input type="radio" name="payment_method" value="midtrans" id="pm_midtrans"
+                                            {{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'midtrans' ? 'checked' : '' }}
+                                            class="text-blue-600" onchange="toggleBankFields()">
+                                        <div>
+                                            <p class="font-semibold text-gray-800 text-sm">💳 Midtrans (Payment Gateway)</p>
+                                            <p class="text-xs text-gray-500 mt-0.5">Transfer, VA, QRIS, Kartu Kredit otomatis</p>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all flex-1
+                                        {{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'manual' ? 'border-amber-500 bg-amber-50' : 'border-gray-200 hover:border-amber-300' }}">
+                                        <input type="radio" name="payment_method" value="manual" id="pm_manual"
+                                            {{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'manual' ? 'checked' : '' }}
+                                            class="text-amber-600" onchange="toggleBankFields()">
+                                        <div>
+                                            <p class="font-semibold text-gray-800 text-sm">🏦 Transfer Bank Manual</p>
+                                            <p class="text-xs text-gray-500 mt-0.5">User transfer ke rekening, admin konfirmasi</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <x-input-error :messages="$errors->get('payment_method')" class="mt-1 text-xs" />
+                            </div>
+
+                            {{-- Bank Details (hanya tampil jika manual) --}}
+                            <div id="bank-fields" class="{{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'manual' ? '' : 'hidden' }} space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <label for="bank_name" class="block text-sm font-semibold text-gray-700 mb-2">Nama Bank</label>
+                                        <input type="text" name="bank_name" id="bank_name"
+                                            value="{{ old('bank_name', $footer->bank_name ?? '') }}"
+                                            placeholder="Contoh: BCA, BRI, Mandiri"
+                                            class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5">
+                                        <x-input-error :messages="$errors->get('bank_name')" class="mt-1 text-xs" />
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <label for="bank_account_number" class="block text-sm font-semibold text-gray-700 mb-2">Nomor Rekening</label>
+                                        <input type="text" name="bank_account_number" id="bank_account_number"
+                                            value="{{ old('bank_account_number', $footer->bank_account_number ?? '') }}"
+                                            placeholder="Contoh: 1234567890"
+                                            class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 font-mono">
+                                        <x-input-error :messages="$errors->get('bank_account_number')" class="mt-1 text-xs" />
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <label for="bank_account_name" class="block text-sm font-semibold text-gray-700 mb-2">Atas Nama Rekening</label>
+                                        <input type="text" name="bank_account_name" id="bank_account_name"
+                                            value="{{ old('bank_account_name', $footer->bank_account_name ?? '') }}"
+                                            placeholder="Nama pemegang rekening"
+                                            class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5">
+                                        <x-input-error :messages="$errors->get('bank_account_name')" class="mt-1 text-xs" />
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <label for="payment_instructions" class="block text-sm font-semibold text-gray-700 mb-2">Instruksi Tambahan</label>
+                                        <textarea name="payment_instructions" id="payment_instructions" rows="3"
+                                            placeholder="Contoh: Transfer sesuai nominal dan sertakan nama lengkap..."
+                                            class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5">{{ old('payment_instructions', $footer->payment_instructions ?? '') }}</textarea>
+                                        <x-input-error :messages="$errors->get('payment_instructions')" class="mt-1 text-xs" />
+                                    </div>
+                                </div>
+
+                                <div class="bg-amber-100 border border-amber-300 rounded-lg p-3 text-xs text-amber-800 flex items-start gap-2">
+                                    <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span>Saat mode manual aktif, semua pembayaran baru akan menggunakan transfer bank. Konfirmasi pembayaran dilakukan secara manual oleh admin di halaman <strong>Admin → Pembayaran → Menunggu Konfirmasi</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Submit Button -->
+
                     <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
                         {{-- <a href="#"
                             class="px-6 py-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 flex items-center">
@@ -506,6 +597,17 @@
         if (performance.navigation.type === 2) {
             // If page is accessed via Back button, reload to clear session flash
             location.reload();
+        }
+
+        // Toggle bank fields berdasarkan radio button
+        function toggleBankFields() {
+            const bankFields = document.getElementById('bank-fields');
+            const isManual = document.getElementById('pm_manual').checked;
+            if (isManual) {
+                bankFields.classList.remove('hidden');
+            } else {
+                bankFields.classList.add('hidden');
+            }
         }
     </script>
 @endsection

@@ -571,8 +571,8 @@
 
             <div class="max-w-7xl mx-auto relative z-10">
                 <!-- Header Section -->
-                <div class="text-center mb-2 floating-animation">
-                    <div class="inline-block mb-6" id="sertifikasi">
+                <div class="text-center mb-2 floating-animation" id="sertifikasi">
+                    {{-- <div class="inline-block mb-6" id="sertifikasi">
                         <span
                             class="inline-flex items-center px-6 py-3 bg-orange -100 text-orange-600 rounded-full text-sm font-bold tracking-widest shadow-xl glass-effect glow-effect">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -580,7 +580,7 @@
                             </svg>
                             PROGRAM SERTIFIKASI
                         </span>
-                    </div>
+                    </div> --}}
                     <h2 class="text-5xl sm:text-7xl font-black text-blue-900 mb-6 leading-tight">
                         Pilih Jalur
                         <span class="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">

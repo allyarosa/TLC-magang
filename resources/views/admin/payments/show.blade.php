@@ -76,14 +76,15 @@
                     <h2 class="text-xl font-semibold text-gray-900">Payment Details</h2>
                     @php
                         $statusColor = match ($payment->status) {
-                            'success' => 'bg-green-100 text-green-800 border-green-200',
-                            'pending' => 'bg-yellow-100 text-yellow-800 border-yellow-200',
-                            'failed', 'expired' => 'bg-red-100 text-red-800 border-red-200',
-                            default => 'bg-gray-100 text-gray-800 border-gray-200',
+                            'success'              => 'bg-green-100 text-green-800 border-green-200',
+                            'pending'              => 'bg-yellow-100 text-yellow-800 border-yellow-200',
+                            'failed', 'expired'    => 'bg-red-100 text-red-800 border-red-200',
+                            'waiting_confirmation' => 'bg-amber-100 text-amber-800 border-amber-200',
+                            default                => 'bg-gray-100 text-gray-800 border-gray-200',
                         };
                     @endphp
                     <span class="px-3 py-1 text-sm font-semibold rounded-full border {{ $statusColor }}">
-                        {{ ucfirst($payment->status) }}
+                        {{ $payment->status === 'waiting_confirmation' ? '⏳ Menunggu Konfirmasi' : ucfirst($payment->status) }}
                     </span>
                 </div>
 
@@ -223,6 +224,7 @@
                         <select name="status" id="status"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="pending" {{ $payment->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="waiting_confirmation" {{ $payment->status === 'waiting_confirmation' ? 'selected' : '' }}>Menunggu Konfirmasi</option>
                             <option value="success" {{ $payment->status === 'success' ? 'selected' : '' }}>Success</option>
                             <option value="failed" {{ $payment->status === 'failed' ? 'selected' : '' }}>Failed</option>
                             <option value="expired" {{ $payment->status === 'expired' ? 'selected' : '' }}>Expired</option>
@@ -234,6 +236,33 @@
                     </button>
                 </form>
             </div>
+
+            {{-- ===== TOMBOL KONFIRMASI PEMBAYARAN MANUAL ===== --}}
+            @if($payment->status === 'waiting_confirmation')
+            <div class="bg-amber-50 border-2 border-amber-300 rounded-lg shadow-md p-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="text-base font-bold text-amber-800">Menunggu Konfirmasi Admin</h3>
+                </div>
+                <p class="text-sm text-amber-700 mb-4">
+                    User telah mengirim bukti transfer. Periksa bukti transfer di sebelah kiri, lalu klik konfirmasi untuk memberikan akses.
+                </p>
+                <form method="POST" action="{{ route('admin.payments.confirmManual', $payment->id) }}"
+                      onsubmit="return confirm('Pastikan Anda sudah memeriksa bukti transfer. Konfirmasi pembayaran ini?')">
+                    @csrf
+                    <button type="submit"
+                        class="w-full px-4 py-3 bg-green-600 text-white font-semibold text-sm rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Konfirmasi & Berikan Akses
+                    </button>
+                </form>
+                <p class="text-xs text-amber-600 mt-2 text-center">Akses level akan otomatis diberikan ke user setelah konfirmasi.</p>
+            </div>
+            @endif
 
             <!-- Payment Gateway Info -->
             @if($payment->transaction_id)
@@ -289,6 +318,79 @@
                 </div>
             </div>
         </div>
+
+        {{-- ===== BUKTI TRANSFER MANUAL ===== --}}
+        @if($payment->payment_method === 'manual')
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Bukti Transfer
+                </h3>
+                @if($payment->transfer_proof)
+                    <a href="{{ Storage::url($payment->transfer_proof) }}" target="_blank"
+                        class="text-xs text-indigo-600 hover:text-indigo-800 underline">
+                        Buka di tab baru
+                    </a>
+                @endif
+            </div>
+
+            @if($payment->transfer_proof)
+                {{-- Preview gambar bukti transfer --}}
+                <div class="relative group">
+                    <img src="{{ Storage::url($payment->transfer_proof) }}"
+                         alt="Bukti Transfer"
+                         class="w-full max-h-96 object-contain rounded-xl border border-gray-200 bg-gray-50 cursor-zoom-in"
+                         onclick="document.getElementById('proof-modal').classList.remove('hidden')">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition rounded-xl flex items-center justify-center">
+                        <span class="opacity-0 group-hover:opacity-100 text-white bg-black bg-opacity-50 text-xs px-3 py-1 rounded-full">
+                            Klik untuk perbesar
+                        </span>
+                    </div>
+                </div>
+
+                {{-- Modal full-size --}}
+                <div id="proof-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
+                     onclick="this.classList.add('hidden')">
+                    <img src="{{ Storage::url($payment->transfer_proof) }}" alt="Bukti Transfer Fullsize"
+                         class="max-h-screen max-w-full rounded-xl shadow-2xl object-contain">
+                    <button onclick="document.getElementById('proof-modal').classList.add('hidden')"
+                        class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-80">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                {{-- Info upload --}}
+                <div class="mt-3 text-xs text-gray-400 flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                    </svg>
+                    Diupload pada {{ $payment->created_at->format('d M Y, H:i') }}
+                </div>
+            @else
+                <div class="text-center py-8 text-gray-400">
+                    <svg class="w-12 h-12 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <p class="text-sm">Belum ada bukti transfer yang diupload.</p>
+                </div>
+            @endif
+
+            {{-- Info konfirmasi jika sudah dikonfirmasi --}}
+            @if($payment->confirmed_at)
+                <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-3 text-sm text-green-800">
+                    ✅ Dikonfirmasi pada {{ $payment->confirmed_at->format('d M Y, H:i') }}
+                    @if($payment->confirmedBy)
+                        oleh <strong>{{ $payment->confirmedBy->name }}</strong>
+                    @endif
+                </div>
+            @endif
+        </div>
+        @endif
     </div>
 
     <script>

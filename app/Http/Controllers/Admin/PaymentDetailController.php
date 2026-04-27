@@ -53,10 +53,11 @@ class PaymentDetailController extends Controller
             // Calculate statistics
             $stats = [
                 'total_payments' => Payment::count(),
-                'total_success' => Payment::where('status', 'success')->count(),
-                'total_pending' => Payment::where('status', 'pending')->count(),
-                'total_failed' => Payment::where('status', 'failed')->count(),
-                'total_amount' => Payment::where('status', 'success')->sum('amount') ?? 0,
+                'total_success'  => Payment::where('status', 'success')->count(),
+                'total_pending'  => Payment::where('status', 'pending')->count(),
+                'total_failed'   => Payment::where('status', 'failed')->count(),
+                'total_waiting'  => Payment::where('status', 'waiting_confirmation')->count(),
+                'total_amount'   => Payment::where('status', 'success')->sum('amount') ?? 0,
             ];
 
             return view('admin.payments.index', compact('payments', 'stats'));
@@ -69,7 +70,7 @@ class PaymentDetailController extends Controller
     public function show($id)
     {
         try {
-            $payment = Payment::with('user')->findOrFail($id);
+            $payment = Payment::with(['user', 'confirmedBy'])->findOrFail($id);
             return view('admin.payments.show', compact('payment'));
         } catch (\Exception $e) {
             return redirect()->route('admin.payments.index')

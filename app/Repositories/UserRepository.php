@@ -25,7 +25,7 @@ class UserRepository
 
     public function updateProfile(int $userId, array $data): bool
     {
-        return UserProfile::updateOrCreate(['user_id' => $userId], $data);
+        return (bool) UserProfile::where('user_id', $userId)->update($data);
     }
 
     public function findByEmail(string $email): ?User

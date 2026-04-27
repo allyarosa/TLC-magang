@@ -3,6 +3,7 @@
 namespace App\Livewire\Payments;
 
 use App\Models\Level;
+use App\Models\SiteInfo;
 use Livewire\Component;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -11,6 +12,8 @@ class Create extends Component
 {
     public $level;
     public $viewName;
+    public $paymentMode = 'midtrans'; // 'midtrans' | 'manual'
+    public $siteInfo;
 
     public $mode = 'bundle';
 
@@ -132,6 +135,10 @@ class Create extends Component
             return redirect()->back()->with('error', 'Level tidak ditemukan');
         }
 
+        // Baca mode pembayaran aktif dari SiteInfo
+        $this->siteInfo    = SiteInfo::getPaymentSettings();
+        $this->paymentMode = $this->siteInfo->payment_method ?? 'midtrans';
+
         switch ($id) {
             case 1:
                 $this->viewName = 'livewire.payments.create';
@@ -153,7 +160,9 @@ class Create extends Component
     public function render()
     {
         return view($this->viewName, [
-            'level' => $this->level,
+            'level'       => $this->level,
+            'paymentMode' => $this->paymentMode,
+            'siteInfo'    => $this->siteInfo,
         ])->extends('layouts.asesiDashboard');
     }
 }

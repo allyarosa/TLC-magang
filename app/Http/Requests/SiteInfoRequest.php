@@ -22,14 +22,21 @@ class SiteInfoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'instagram' => 'nullable|string',
-            'linkedin' => 'nullable|string',
-            'facebook' => 'nullable|string',
-            'youtube' => 'nullable|string',
-            'whatsapp' => 'nullable|string',
-            'email' => 'nullable|email',
-            'address' => 'nullable|string',
-            'description' => 'nullable|string|max:500',
+            'instagram'           => 'nullable|string',
+            'linkedin'            => 'nullable|string',
+            'facebook'            => 'nullable|string',
+            'youtube'             => 'nullable|string',
+            'whatsapp'            => 'nullable|string',
+            'email'               => 'nullable|email',
+            'address'             => 'nullable|string',
+            'description'         => 'nullable|string|max:500',
+
+            // Payment settings
+            'payment_method'      => 'required|in:midtrans,manual',
+            'bank_name'           => 'nullable|string|max:100',
+            'bank_account_number' => 'nullable|string|max:50',
+            'bank_account_name'   => 'nullable|string|max:255',
+            'payment_instructions'=> 'nullable|string|max:1000',
         ];
     }
 }

@@ -630,8 +630,10 @@
                             </div>
                         </div>
 
-                        <!-- Continue Payment Button -->
-                        <form action="{{ route('payments.store') }}" method="POST" id="payment-form">
+                        {{-- ============================================ --}}
+                        {{-- FORM PEMBAYARAN — KONDISIONAL --}}
+                        {{-- ============================================ --}}
+                        <form action="{{ route('payments.store') }}" method="POST" enctype="multipart/form-data" id="payment-form">
                             @csrf
                             <input type="hidden" name="amount" value="{{ $this->totalPrice }}">
                             <input type="hidden" name="level_name" value="Level A">
@@ -639,18 +641,85 @@
                             <input type="hidden" name="mode" value="{{ $mode }}">
                             <input type="hidden" name="selected_categories" value="{{ implode(',', $selectedCategories) }}">
 
-                            <button type="submit"
-                                @if($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
-                                class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
-                                Lanjutkan Pembayaran
-                            </button>
+                            @if($paymentMode === 'manual')
+                                {{-- ===== MANUAL BANK TRANSFER UI ===== --}}
+                                <div class="mb-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                        </svg>
+                                        <span class="text-sm font-bold text-blue-800">Transfer Bank Manual</span>
+                                    </div>
+                                    <div class="space-y-1.5 text-sm">
+                                        <div class="flex justify-between">
+                                            <span class="text-blue-600">Bank</span>
+                                            <span class="font-bold text-blue-900">{{ $siteInfo->bank_name ?? '-' }}</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-blue-600">No. Rekening</span>
+                                            <span class="font-bold text-blue-900 font-mono tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-blue-600">Atas Nama</span>
+                                            <span class="font-bold text-blue-900">{{ $siteInfo->bank_account_name ?? '-' }}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center border-t border-blue-200 pt-2 mt-2">
+                                            <span class="text-blue-600 font-semibold">Jumlah Transfer</span>
+                                            <span class="font-extrabold text-blue-900 text-base">Rp {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
+                                        </div>
+                                    </div>
+                                    @if($siteInfo->payment_instructions)
+                                        <p class="text-xs text-blue-600 mt-3 border-t border-blue-200 pt-2">
+                                            {{ $siteInfo->payment_instructions }}
+                                        </p>
+                                    @endif
+                                </div>
+
+                                {{-- Upload Bukti Transfer --}}
+                                <div class="mb-4">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Upload Bukti Transfer <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-teal-400 transition-colors cursor-pointer"
+                                         onclick="document.getElementById('transfer_proof_input').click()">
+                                        <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <p id="proof-label" class="text-sm text-gray-500">Klik untuk upload foto bukti transfer</p>
+                                        <p class="text-xs text-gray-400 mt-1">JPG, JPEG, PNG. Maks 3MB</p>
+                                    </div>
+                                    <input id="transfer_proof_input" name="transfer_proof" type="file"
+                                           accept=".jpg,.jpeg,.png" class="hidden" required
+                                           onchange="document.getElementById('proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload'">
+                                    @error('transfer_proof')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <button type="submit"
+                                    @if($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                    class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                    </svg>
+                                    Kirim Bukti Transfer
+                                </button>
+
+                            @else
+                                {{-- ===== MIDTRANS FLOW ===== --}}
+                                <button type="submit"
+                                    @if($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                    class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    Lanjutkan Pembayaran
+                                </button>
+                            @endif
                         </form>
 
-                        <!-- Security Info -->
+                        {{-- Security Info --}}
                         <div class="mt-6 flex items-center justify-center space-x-4 text-xs text-gray-500">
                             <div class="flex items-center">
                                 <svg class="w-3 h-3 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">

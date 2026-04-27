@@ -6,13 +6,15 @@ use Midtrans\Snap;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\Payment;
+use App\Models\SiteInfo;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Events\PaymentSuccessful;
 use App\Notifications\TransactionNotification;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PaymentController extends Controller
 {
@@ -70,97 +72,162 @@ class PaymentController extends Controller
         $user = User::with('userProfile')->where('id', Auth::id())->first();
 
         if (!$user->isProfileComplete()) {
-            // Buat payment record terlebih dahulu DENGAN snap_token dummy
-            $orderId = 'ORDER-' . time() . '-' . Str::random(5);
-            $payment = Payment::create([
-                'user_id' => Auth::id(),
-                'order_id' => $orderId,
-                'level_id' => $request->level_id,
-                'amount' => $request->amount,
-                'snap_token' => '...', // Token dummy yang akan di-regenerate nanti
-                'status' => 'pending',
-            ]);
-
-            // Kirim notifikasi ke user
-            $user->notify(new TransactionNotification($payment));
-
-            // Store payment redirect information with proper structure
-            session()->put('payment_redirect', [
-                'route_name' => 'payments.checkout',
-                'parameters' => ['id' => $payment->id],
-                'route' => route('payments.checkout', ['id' => $payment->id]), // Fallback route
-                'message' => 'Silakan lengkapi profil terlebih dahulu sebelum lanjut ke pembayaran.',
-                'payment_id' => $payment->id, // Additional info for reference
-                'level_id' => $request->level_id,
-                'amount' => $request->amount
-            ]);
-
-            return redirect()->route('asesi.profile')
-                ->with('warning', 'Lengkapi profil Anda terlebih dahulu untuk melanjutkan pembayaran')
-                ->with('info', 'Data pembayaran telah disimpan dan akan diproses setelah profil lengkap.');
+            return redirect()->route('asesi.registerStepTwo')
+                ->with('warning', 'Lengkapi profil Anda terlebih dahulu untuk melanjutkan pembayaran.');
         }
 
-        // Set up Midtrans configuration explicitly
-        $this->setupMidtransConfig();
-
-        // Validate request
         $request->validate([
-            'amount' => 'required|numeric|min:10000',
-            'level_id' => 'required|exists:levels,id'
+            'amount'   => 'required|numeric|min:10000',
+            'level_id' => 'required|exists:levels,id',
         ]);
 
-        // Generate unique order ID
-        $orderId = 'ORDER-' . time() . '-' . Str::random(5);
+        $orderId     = 'ORDER-' . time() . '-' . Str::random(5);
+        $siteInfo    = SiteInfo::getPaymentSettings();
+        $paymentMode = $siteInfo->payment_method ?? 'midtrans';
 
-        // Set up Midtrans transaction parameters
+        // ================================================================
+        // MANUAL BANK TRANSFER FLOW
+        // ================================================================
+        if ($paymentMode === 'manual') {
+            $request->validate([
+                'transfer_proof' => 'required|image|mimes:jpeg,png,jpg|max:3072',
+            ]);
+
+            $proofPath = $request->file('transfer_proof')->store('transfer_proofs', 'public');
+
+            $payment = Payment::create([
+                'user_id'        => Auth::id(),
+                'order_id'       => $orderId,
+                'level_id'       => $request->level_id,
+                'amount'         => $request->amount,
+                'status'         => 'waiting_confirmation',
+                'payment_method' => 'manual',
+                'transfer_proof' => $proofPath,
+            ]);
+
+            $user->notify(new TransactionNotification($payment));
+
+            Log::info('Manual payment submitted', [
+                'payment_id' => $payment->id,
+                'user_id'    => Auth::id(),
+                'amount'     => $request->amount,
+            ]);
+
+            return redirect()->route('payments.detail', $payment->id)
+                ->with('success', 'Bukti transfer berhasil dikirim. Menunggu konfirmasi admin.');
+        }
+
+        // ================================================================
+        // MIDTRANS FLOW
+        // ================================================================
+        $this->setupMidtransConfig();
+
         $params = [
             'transaction_details' => [
-                'order_id' => $orderId,
+                'order_id'     => $orderId,
                 'gross_amount' => (int) $request->amount,
             ],
             'customer_details' => [
-                'user_id' => Auth::id(),
+                'user_id'    => Auth::id(),
                 'first_name' => $user->name,
-                'email' => $user->email,
+                'email'      => $user->email,
                 'billing_address' => [
-                    'first_name' => $user->name,
-                    'last_name' => '',
-                    'email' => $user->email,
-                    'phone' => $user->userProfile->no_wa ?? '',
-                    'city' => $user->userProfile->kabupaten ?? '',
+                    'first_name'   => $user->name,
+                    'last_name'    => '',
+                    'email'        => $user->email,
+                    'phone'        => $user->userProfile->no_wa ?? '',
+                    'city'         => $user->userProfile->kabupaten ?? '',
                     'country_code' => 'IDN',
                 ]
             ],
         ];
 
         try {
-            // Get Snap Token
             $snapToken = Snap::getSnapToken($params);
 
-            // Create payment record SETELAH mendapat snap token
             $payment = Payment::create([
-                'user_id' => Auth::id(),
-                'order_id' => $orderId,
-                'level_id' => $request->level_id,
-                'amount' => $request->amount,
-                'snap_token' => $snapToken, // Token yang valid
-                'status' => 'pending',
+                'user_id'        => Auth::id(),
+                'order_id'       => $orderId,
+                'level_id'       => $request->level_id,
+                'amount'         => $request->amount,
+                'snap_token'     => $snapToken,
+                'status'         => 'pending',
+                'payment_method' => 'midtrans',
             ]);
 
             $user->notify(new TransactionNotification($payment));
 
-            // Redirect to checkout page
             return redirect()->route('payments.checkout', ['id' => $payment->id]);
         } catch (\Exception $e) {
-            \Log::error('Midtrans Error:', [
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
+            Log::error('Midtrans Error:', [
+                'message'  => $e->getMessage(),
+                'file'     => $e->getFile(),
+                'line'     => $e->getLine(),
                 'order_id' => $orderId,
-                'amount' => $request->amount,
+                'amount'   => $request->amount,
             ]);
 
             return redirect()->back()->with('error', 'Error creating payment: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Admin mengkonfirmasi pembayaran manual dan memberikan akses level ke user.
+     */
+    public function confirmManual(Request $request, int $id)
+    {
+        $payment = Payment::with('user')->findOrFail($id);
+
+        if ($payment->payment_method !== 'manual') {
+            return redirect()->back()->with('error', 'Pembayaran ini bukan via transfer manual.');
+        }
+
+        if ($payment->status !== 'waiting_confirmation') {
+            return redirect()->back()->with('error', 'Pembayaran sudah diproses sebelumnya.');
+        }
+
+        $payment->update([
+            'status'       => 'success',
+            'confirmed_at' => now(),
+            'confirmed_by' => Auth::id(),
+            'payment_time' => now(),
+            'payment_type' => 'bank_transfer',
+        ]);
+
+        $this->grantLevelAccess($payment);
+
+        $payment->user->notify(new TransactionNotification($payment));
+        event(new PaymentSuccessful($payment));
+
+        Log::info('Manual payment confirmed by admin', [
+            'payment_id'   => $payment->id,
+            'confirmed_by' => Auth::id(),
+        ]);
+
+        return redirect()->back()->with('success', 'Pembayaran berhasil dikonfirmasi dan akses telah diberikan.');
+    }
+
+    /**
+     * Berikan izin akses level berdasarkan level_id payment.
+     */
+    private function grantLevelAccess(Payment $payment): void
+    {
+        $user = User::find($payment->user_id);
+        if (!$user) return;
+
+        switch ($payment->level_id) {
+            case 1:
+                $user->givePermissionTo('access_level_A');
+                break;
+            case 2:
+                $user->givePermissionTo('access_level_B');
+                break;
+            case 3:
+                $user->givePermissionTo('access_level_C');
+                break;
+            case 4:
+                $user->givePermissionTo('access_level_A', 'access_level_B', 'access_level_C');
+                break;
         }
     }
 

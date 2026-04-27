@@ -50,7 +50,15 @@ class GoogleController extends Controller
 
             Auth::login($user);
             DB::commit();
-        return redirect()->route('asesi.dashboard')->with('success', 'Berhasil login dengan Google');
+
+            // Redirect ke step 2 jika profil belum lengkap (user baru atau belum isi step 2)
+            $user->load('userProfile');
+            if (!$user->isProfileComplete()) {
+                return redirect()->route('asesi.registerStepTwo')
+                    ->with('success', 'Berhasil login dengan Google. Silakan lengkapi data profil Anda.');
+            }
+
+            return redirect()->route('asesi.dashboard')->with('success', 'Berhasil login dengan Google');
 
         } catch (\Exception $e) {
             DB::rollBack();

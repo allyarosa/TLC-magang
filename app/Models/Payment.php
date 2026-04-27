@@ -19,13 +19,31 @@ class Payment extends Model
         'payment_type',
         'payment_time',
         'payment_details',
+        'payment_method',
+        'transfer_proof',
+        'confirmed_at',
+        'confirmed_by',
     ];
 
     protected $casts = [
-        'amount' => 'decimal:2',
+        'amount'       => 'decimal:2',
         'payment_time' => 'datetime',
+        'confirmed_at' => 'datetime',
         'payment_details' => 'array',
     ];
+
+    /** True jika pembayaran ini adalah transfer bank manual */
+    public function isManual(): bool
+    {
+        return $this->payment_method === 'manual';
+    }
+
+    /** True jika sudah dikonfirmasi admin */
+    public function isConfirmed(): bool
+    {
+        return !is_null($this->confirmed_at);
+    }
+
 
     public function user()
     {
@@ -35,5 +53,11 @@ class Payment extends Model
     public function level()
     {
         return $this->belongsTo(Level::class);
+    }
+
+    /** Admin yang mengkonfirmasi pembayaran manual */
+    public function confirmedBy()
+    {
+        return $this->belongsTo(User::class, 'confirmed_by');
     }
 }

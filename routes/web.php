@@ -194,15 +194,14 @@ Route::middleware(['auth'])->group(function () {
 // ASESI ROUTES
 // =========================================================================
 
-Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified'])->prefix('asesi')->group(function () {
+Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified', 'profile.complete'])->prefix('asesi')->group(function () {
     // Dashboard
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');
 
-    // Registration Steps
-    Route::get('/register/2', [AuthController::class, 'registerStepTwo'])->name('asesi.registerStepTwo');
-    Route::get('/registeraddtional', [AuthController::class, 'registeraddtional'])->name('registeraddtional');
-    Route::post('/registeraddtional', [AuthController::class, 'registeraddtionalpost'])->name('registeraddtionalpost');
+    // Registration Steps (excluded from profile.complete via withoutMiddleware)
+    Route::get('/register/2', [AuthController::class, 'registerStepTwo'])->name('asesi.registerStepTwo')->withoutMiddleware('profile.complete');
+    Route::post('/registeraddtional', [AuthController::class, 'registeraddtionalpost'])->name('registeraddtionalpost')->withoutMiddleware('profile.complete');
 
     // Sertifikasi & Sertifikat
     Route::get('/sertifikasi', [SertifikasiController::class, 'index'])->name('asesi.sertifikasi');
@@ -496,6 +495,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/payments-export', [PaymentDetailController::class, 'export'])->name('admin.payments.export');
     Route::delete('/payments/{id}', [PaymentDetailController::class, 'destroy'])->name('admin.payments.destroy');
     Route::patch('/payments/{id}/status', [PaymentDetailController::class, 'updateStatus'])->name('admin.payments.updateStatus');
+    Route::post('/payments/{id}/confirm-manual', [PaymentController::class, 'confirmManual'])->name('admin.payments.confirmManual');
 
     // Profile / Settings
     Route::get('/profile', [AdminSettingsController::class, 'edit'])->name('admin.settings.edit');

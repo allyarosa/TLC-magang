@@ -94,6 +94,12 @@ class User extends Authenticatable implements MustVerifyEmail
             'tempat_lahir',
             'tanggal_lahir',
             'jenis_kelamin',
+            'instansi',
+            'profesi',
+            'provinsi',
+            'kabupaten',
+            'kecamatan',
+            'kelurahan',
         ];
 
         foreach ($requiredFields as $field) {
