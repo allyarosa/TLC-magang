@@ -197,6 +197,11 @@ class PaymentController extends Controller
         $this->grantLevelAccess($payment);
 
         $payment->user->notify(new TransactionNotification($payment));
+        try {
+            \Illuminate\Support\Facades\Mail::to($payment->user->email)->send(new \App\Mail\PaymentVerifiedMail($payment));
+        } catch (\Exception $e) {
+            Log::error('Failed to send Payment Verified email', ['error' => $e->getMessage()]);
+        }
         event(new PaymentSuccessful($payment));
 
         Log::info('Manual payment confirmed by admin', [
@@ -228,6 +233,10 @@ class PaymentController extends Controller
             case 4:
                 $user->givePermissionTo('access_level_A', 'access_level_B', 'access_level_C');
                 break;
+        }
+
+        if ($user->hasPermissionTo('fresh_user')) {
+            $user->revokePermissionTo('fresh_user');
         }
     }
 
