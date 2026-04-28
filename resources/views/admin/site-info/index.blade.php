@@ -381,6 +381,34 @@
                                 <x-input-error :messages="$errors->get('payment_method')" class="mt-1 text-xs" />
                             </div>
 
+                            {{-- Wajib Upload Bukti Follow IG --}}
+                            <div class="bg-white p-4 rounded-lg shadow-sm mb-4 flex items-center justify-between border-2 border-gray-100 hover:border-teal-100 transition-colors cursor-pointer" onclick="document.getElementById('require_ig_follow_proof').click()">
+                                <div>
+                                    <label class="font-semibold text-gray-800 text-sm cursor-pointer">Wajib Upload Bukti Follow Instagram</label>
+                                    <p class="text-xs text-gray-500 mt-0.5">Jika aktif, user harus mengupload bukti follow IG tlc.certificationbyhafecs saat memilih manual transfer</p>
+                                </div>
+                                <div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
+                                    <input type="hidden" name="require_ig_follow_proof" value="0">
+                                    <input type="checkbox" name="require_ig_follow_proof" id="require_ig_follow_proof" value="1"
+                                        {{ old('require_ig_follow_proof', $footer->require_ig_follow_proof ?? false) ? 'checked' : '' }}
+                                        class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-transform duration-200 ease-in-out">
+                                    <label for="require_ig_follow_proof" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out"></label>
+                                </div>
+                                <style>
+                                    .toggle-checkbox:checked {
+                                        right: 0;
+                                        border-color: #0d9488;
+                                    }
+                                    .toggle-checkbox:checked + .toggle-label {
+                                        background-color: #0d9488;
+                                    }
+                                    .toggle-checkbox {
+                                        right: 1.5rem;
+                                        border-color: #d1d5db;
+                                    }
+                                </style>
+                            </div>
+
                             {{-- Bank Details (hanya tampil jika manual) --}}
                             <div id="bank-fields" class="{{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'manual' ? '' : 'hidden' }} space-y-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

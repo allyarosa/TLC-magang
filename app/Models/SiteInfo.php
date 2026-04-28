@@ -25,6 +25,7 @@ class SiteInfo extends Model
         'bank_account_number',
         'bank_account_name',
         'payment_instructions',
+        'require_ig_follow_proof',
     ];
 
     /**
@@ -40,6 +41,6 @@ class SiteInfo extends Model
      */
     public static function getPaymentSettings(): self
     {
-        return static::first() ?? new static(['payment_method' => 'midtrans']);
+        return static::first() ?? new static(['payment_method' => 'midtrans', 'require_ig_follow_proof' => false]);
     }
 }

@@ -37,6 +37,7 @@ class SiteInfoRequest extends FormRequest
             'bank_account_number' => 'nullable|string|max:50',
             'bank_account_name'   => 'nullable|string|max:255',
             'payment_instructions'=> 'nullable|string|max:1000',
+            'require_ig_follow_proof' => 'nullable|boolean',
         ];
     }
 }

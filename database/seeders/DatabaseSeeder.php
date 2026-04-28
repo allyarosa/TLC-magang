@@ -48,10 +48,10 @@ class DatabaseSeeder extends Seeder
                 'profile_image' => 'blankProfile.png',
 
                 // Pekerjaan
-                // 'instansi' => 'Pemerintah Kota', 
-                // 'custom_instansi' => null,              
-                // 'profesi' => 'Staff Admin',     
-                // 'lama_masa_kerja' => '3 Tahun',         
+                'instansi' => 'Pemerintah Kota', 
+                'custom_instansi' => null,              
+                'profesi' => 'Staff Admin',     
+                'lama_masa_kerja' => '3 Tahun',         
 
                 // Pendidikan
                 'latar_belakang_pendidikan' => 'S1',                    

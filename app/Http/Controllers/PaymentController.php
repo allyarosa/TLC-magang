@@ -89,11 +89,22 @@ class PaymentController extends Controller
         // MANUAL BANK TRANSFER FLOW
         // ================================================================
         if ($paymentMode === 'manual') {
-            $request->validate([
+            $rules = [
                 'transfer_proof' => 'required|image|mimes:jpeg,png,jpg|max:3072',
-            ]);
+            ];
+            
+            if ($siteInfo->require_ig_follow_proof) {
+                $rules['ig_follow_proof'] = 'required|image|mimes:jpeg,png,jpg|max:3072';
+            }
+
+            $request->validate($rules);
 
             $proofPath = $request->file('transfer_proof')->store('transfer_proofs', 'public');
+            
+            $igProofPath = null;
+            if ($request->hasFile('ig_follow_proof')) {
+                $igProofPath = $request->file('ig_follow_proof')->store('ig_follow_proofs', 'public');
+            }
 
             $payment = Payment::create([
                 'user_id'        => Auth::id(),
@@ -103,6 +114,7 @@ class PaymentController extends Controller
                 'status'         => 'waiting_confirmation',
                 'payment_method' => 'manual',
                 'transfer_proof' => $proofPath,
+                'ig_follow_proof'=> $igProofPath,
             ]);
 
             $user->notify(new TransactionNotification($payment));

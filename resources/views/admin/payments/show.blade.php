@@ -423,6 +423,71 @@
                     </div>
                 @endif
             </div>
+
+            {{-- ===== BUKTI FOLLOW IG ===== --}}
+            @if ($payment->ig_follow_proof)
+            <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Bukti Follow Instagram
+                    </h3>
+                </div>
+
+                <div class="relative group">
+                    <img src="{{ asset('storage/' . $payment->ig_follow_proof) }}" alt="Bukti Follow IG"
+                        class="w-full max-h-96 object-contain rounded-xl border border-gray-200 bg-gray-50 cursor-zoom-in"
+                        onclick="document.getElementById('ig-proof-modal').classList.remove('hidden')">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition rounded-xl flex items-center justify-center">
+                        <span
+                            class="opacity-0 group-hover:opacity-100 text-white bg-black bg-opacity-50 text-xs px-3 py-1 rounded-full">
+                            Klik untuk perbesar
+                        </span>
+                    </div>
+                </div>
+
+                {{-- Modal full-size --}}
+                <div id="ig-proof-modal"
+                    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
+                    onclick="this.classList.add('hidden')">
+                    <img src="{{ Storage::url($payment->ig_follow_proof) }}" alt="Bukti Follow IG Fullsize"
+                        class="max-h-screen max-w-full rounded-xl shadow-2xl object-contain">
+                    <button onclick="document.getElementById('ig-proof-modal').classList.add('hidden')"
+                        class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-80">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                {{-- Info upload & Download button --}}
+                <div class="mt-3 flex items-center justify-between">
+                    <div class="text-xs text-gray-400 flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Diupload pada {{ $payment->created_at->format('d M Y, H:i') }}
+                    </div>
+
+                    <a href="{{ asset('storage/' . $payment->ig_follow_proof) }}"
+                        download="{{ Str::slug($payment->user->name ?? 'asesi') }}-bukti-follow-ig-{{ $payment->created_at->format('d-m-Y') }}.{{ pathinfo($payment->ig_follow_proof, PATHINFO_EXTENSION) }}"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-teal-700 rounded-md hover:bg-teal-100 transition-colors">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        Download Bukti
+                    </a>
+                </div>
+            </div>
+            @endif
         @endif
     </div>
 

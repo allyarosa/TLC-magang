@@ -21,6 +21,7 @@ class Payment extends Model
         'payment_details',
         'payment_method',
         'transfer_proof',
+        'ig_follow_proof',
         'confirmed_at',
         'confirmed_by',
     ];
