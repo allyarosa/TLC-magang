@@ -85,7 +85,7 @@
         {{-- ===== SECTION 1: FOTO PROFIL ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
             <h2 class="text-base font-bold text-navy mb-4 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center font-bold">📷</span>
+                <span class="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold">📷</span>
                 Foto Profil <span class="text-gray-400 font-normal text-sm">(opsional)</span>
             </h2>
             <div class="flex flex-col items-center">
@@ -322,7 +322,7 @@
 
         {{-- Submit Button --}}
         <button type="submit"
-            class="w-full bg-gradient-to-r from-primary to-navy text-white font-bold py-3.5 px-6 rounded-xl hover:from-[#063B67] hover:to-[#1C3A58] transition-all duration-200 shadow-md text-base">
+            class="w-full bg-gradient-to-r from-brandBlue to-navy text-white font-bold py-3.5 px-6 rounded-xl hover:from-[#063B67] hover:to-[#1C3A58] transition-all duration-200 shadow-md text-base">
             Simpan & Lanjutkan ke Dashboard →
         </button>
 
