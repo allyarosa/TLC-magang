@@ -31,12 +31,12 @@ class PaymentDetailController extends Controller
             // Search by user name, email, or order ID
             if ($request->filled('search')) {
                 $searchTerm = $request->search;
-                $query->where(function($q) use ($searchTerm) {
+                $query->where(function ($q) use ($searchTerm) {
                     $q->where('order_id', 'like', '%' . $searchTerm . '%')
-                      ->orWhereHas('user', function($userQuery) use ($searchTerm) {
-                          $userQuery->where('name', 'like', '%' . $searchTerm . '%')
-                                   ->orWhere('email', 'like', '%' . $searchTerm . '%');
-                      });
+                        ->orWhereHas('user', function ($userQuery) use ($searchTerm) {
+                            $userQuery->where('name', 'like', '%' . $searchTerm . '%')
+                                ->orWhere('email', 'like', '%' . $searchTerm . '%');
+                        });
                 });
             }
 
@@ -47,17 +47,17 @@ class PaymentDetailController extends Controller
 
             // Get paginated results
             $payments = $query->orderBy('created_at', 'desc')
-                             ->paginate(15)
-                             ->withQueryString();
+                ->paginate(15)
+                ->withQueryString();
 
             // Calculate statistics
             $stats = [
                 'total_payments' => Payment::count(),
-                'total_success'  => Payment::where('status', 'success')->count(),
-                'total_pending'  => Payment::where('status', 'pending')->count(),
-                'total_failed'   => Payment::where('status', 'failed')->count(),
-                'total_waiting'  => Payment::where('status', 'waiting_confirmation')->count(),
-                'total_amount'   => Payment::where('status', 'success')->sum('amount') ?? 0,
+                'total_success' => Payment::where('status', 'success')->count(),
+                'total_pending' => Payment::where('status', 'pending')->count(),
+                'total_failed' => Payment::where('status', 'failed')->count(),
+                'total_waiting' => Payment::where('status', 'waiting_confirmation')->count(),
+                'total_amount' => Payment::where('status', 'success')->sum('amount') ?? 0,
             ];
 
             return view('admin.payments.index', compact('payments', 'stats'));
@@ -74,7 +74,7 @@ class PaymentDetailController extends Controller
             return view('admin.payments.show', compact('payment'));
         } catch (\Exception $e) {
             return redirect()->route('admin.payments.index')
-                           ->with('error', 'Data pembayaran tidak ditemukan.');
+                ->with('error', 'Data pembayaran tidak ditemukan.');
         }
     }
 
@@ -97,8 +97,8 @@ class PaymentDetailController extends Controller
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()
-                           ->withErrors($e->validator)
-                           ->withInput();
+                ->withErrors($e->validator)
+                ->withInput();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal memperbarui status pembayaran.');
         }
@@ -111,11 +111,11 @@ class PaymentDetailController extends Controller
             $payment->delete();
 
             return redirect()->route('admin.payments.index')
-                           ->with('success', 'Data pembayaran berhasil dihapus');
+                ->with('success', 'Data pembayaran berhasil dihapus');
 
         } catch (\Exception $e) {
             return redirect()->route('admin.payments.index')
-                           ->with('error', 'Gagal menghapus data pembayaran.');
+                ->with('error', 'Gagal menghapus data pembayaran.');
         }
     }
 
@@ -143,12 +143,12 @@ class PaymentDetailController extends Controller
 
             if ($request->filled('search')) {
                 $searchTerm = $request->search;
-                $query->where(function($q) use ($searchTerm) {
+                $query->where(function ($q) use ($searchTerm) {
                     $q->where('order_id', 'like', '%' . $searchTerm . '%')
-                      ->orWhereHas('user', function($userQuery) use ($searchTerm) {
-                          $userQuery->where('name', 'like', '%' . $searchTerm . '%')
-                                   ->orWhere('email', 'like', '%' . $searchTerm . '%');
-                      });
+                        ->orWhereHas('user', function ($userQuery) use ($searchTerm) {
+                            $userQuery->where('name', 'like', '%' . $searchTerm . '%')
+                                ->orWhere('email', 'like', '%' . $searchTerm . '%');
+                        });
                 });
             }
 
@@ -164,11 +164,11 @@ class PaymentDetailController extends Controller
                 'Expires' => '0'
             ];
 
-            $callback = function() use ($payments) {
+            $callback = function () use ($payments) {
                 $file = fopen('php://output', 'w');
 
                 // Add BOM for UTF-8
-                fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+                fprintf($file, chr(0xEF) . chr(0xBB) . chr(0xBF));
 
                 // CSV Headers
                 fputcsv($file, [
@@ -205,7 +205,7 @@ class PaymentDetailController extends Controller
 
         } catch (\Exception $e) {
             return redirect()->route('admin.payments.index')
-                           ->with('error', 'Gagal mengekspor data pembayaran.');
+                ->with('error', 'Gagal mengekspor data pembayaran.');
         }
     }
 
@@ -223,8 +223,8 @@ class PaymentDetailController extends Controller
                 'total_amount' => Payment::where('status', 'success')->sum('amount') ?? 0,
                 'today_payments' => Payment::whereDate('created_at', today())->count(),
                 'today_amount' => Payment::where('status', 'success')
-                                        ->whereDate('created_at', today())
-                                        ->sum('amount') ?? 0,
+                    ->whereDate('created_at', today())
+                    ->sum('amount') ?? 0,
             ];
         } catch (\Exception $e) {
             return [

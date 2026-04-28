@@ -17,7 +17,7 @@ class LevelSeeders extends Seeder
             [
                 'level_name' => 'A',
                 'price' => 150000,
-                'discount' => 10,
+                'discount' => null,
                 'final_price' => 90000,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -25,7 +25,7 @@ class LevelSeeders extends Seeder
             [
                 'level_name' => 'B',
                 'price' => 225000,
-                'discount' => 15,
+                'discount' => null,
                 'final_price' => 127500,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -41,7 +41,7 @@ class LevelSeeders extends Seeder
             [
                 'level_name' => 'BUNDLING',
                 'price' => 400000,
-                'discount' => 20,
+                'discount' => null,
                 'final_price' => 320000,
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -245,6 +245,7 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified', 'profile.compl
 
     // Transactions
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
+    Route::get('/transaksi/invoice/{id}', [TransactionController::class, 'invoice'])->name('asesi.transaksi.invoice');
 });
 
 // Asesi Routes that only require 'auth' (Not specifically 'role:asesi' in original, but grouped under 'asesi' prefix)

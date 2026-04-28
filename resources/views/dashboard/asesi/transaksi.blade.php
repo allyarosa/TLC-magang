@@ -171,25 +171,25 @@
                                 <div class="col-span-2">
                                     @if ($item->status === 'success')
                                         <!-- Button Invoice -->
-                                        <button
-                                            class="btn-invoice text-white px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:shadow-lg transform hover:-translate-y-1 flex items-center gap-2">
+                                        <a href="{{ route('asesi.transaksi.invoice', \Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}" target="_blank"
+                                            class="btn-invoice text-white px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:shadow-lg transform hover:-translate-y-1 flex items-center gap-2 w-max">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                                 </path>
                                             </svg>
                                             Invoice
-                                        </button>
+                                        </a>
                                     @elseif ($item->status === 'pending')
                                         <!-- Button Pay -->
-                                        <button
-                                            class="btn-pay text-white px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:shadow-lg transform hover:-translate-y-1 flex items-center gap-2">
+                                        <a href="{{ route('payments.detail', \Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}"
+                                            class="btn-pay text-white px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:shadow-lg transform hover:-translate-y-1 flex items-center gap-2 w-max">
                                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                                 <path
                                                     d="M2 17h20v2H2zm1.15-4.05L4 11l.85 1.95.45-.2C5.8 12.16 6.28 12 7 12s1.2.16 1.7.75l.45.2L10 11l.85 1.95.45-.2c.5-.59.98-.75 1.7-.75s1.2.16 1.7.75l.45.2L16 11l.85 1.95.45-.2c.5-.59.98-.75 1.7-.75.72 0 1.2.16 1.7.75l.45.2L22 11v4.5c0 .83-.67 1.5-1.5 1.5h-17C2.67 17 2 16.33 2 15.5V11l.85 1.95.3-.15c.5-.59.98-.8 1.7-.8.72 0 1.2.21 1.7.8l.3.15-.7-.1z" />
                                             </svg>
                                             Pay
-                                        </button>
+                                        </a>
                                     @elseif ($item->status === 'failed')
                                         <!-- Kosong -->
                                     @endif

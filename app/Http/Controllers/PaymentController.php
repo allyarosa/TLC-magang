@@ -113,7 +113,7 @@ class PaymentController extends Controller
                 'amount'     => $request->amount,
             ]);
 
-            return redirect()->route('payments.detail', $payment->id)
+            return redirect()->route('payments.detail', Hashids::encode($payment->id))
                 ->with('success', 'Bukti transfer berhasil dikirim. Menunggu konfirmasi admin.');
         }
 
@@ -260,7 +260,7 @@ class PaymentController extends Controller
 
         // Pastikan status masih pending
         if ($payment->status != 'pending') {
-            return redirect()->route('payments.detail', $id)
+            return redirect()->route('payments.detail', Hashids::encode($payment->id))
                 ->with('error', 'Pembayaran ini sudah diproses sebelumnya');
         }
 
@@ -430,7 +430,14 @@ class PaymentController extends Controller
 
     public function detail($id)
     {
-        $payment = Payment::findOrFail($id);
+        $decoded = Hashids::decode($id);
+
+        if (empty($decoded)) {
+            abort(404, 'ID Tidak Valid');
+        }
+
+        $paymentId = $decoded[0];
+        $payment = Payment::findOrFail($paymentId);
 
         if ($payment->user_id != Auth::id()) {
             abort(403);

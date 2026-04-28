@@ -89,9 +89,8 @@
                         </div>
                     </div>
 
-                    <div
+                    <!-- <div
                         class="hidden lg:flex col-span-12 lg:col-span-5 items-center justify-center relative mt-5 lg:mt-0">
-                        <!-- Floating Circles Background -->
                         <div
                             class="absolute top-0 right-10 w-20 h-20 bg-[#E76F51]/30 rounded-full animate-float hover:scale-125 transition-transform duration-300">
                         </div>
@@ -102,14 +101,13 @@
                         <div class="absolute -top-4 left-20 w-10 h-10 bg-blue-300/30 rounded-full animate-float hover:scale-125 transition-transform duration-300"
                             style="animation-delay: 1s"></div>
 
-                        <!-- Floating Icon - reduced size -->
                         <div
                             class="relative w-full max-w-md aspect-square flex items-center justify-center animate-float">
                             <img src="{{ asset('images/logoTlcPng.png') }}"
                                 class="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                                 alt="TLC Logo Floating" loading="lazy">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div><!-- end content wrapper -->
         </main>

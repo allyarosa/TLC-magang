@@ -1,7 +1,7 @@
 <x-mail::message>
 # Halo {{ $payment->user->name }},
 
-Selamat! Pembayaran Anda untuk **{{ $payment->level->level_name ?? 'Sertifikasi Level' }}** telah berhasil kami verifikasi.
+Selamat! Pembayaran Anda untuk Level **{{ $payment->level->level_name ?? 'Sertifikasi Level' }}** telah berhasil kami verifikasi.
 
 Berikut adalah rincian transaksi Anda:
 
@@ -13,7 +13,7 @@ Berikut adalah rincian transaksi Anda:
 **Akses Level Anda telah dibuka!**
 Anda sekarang dapat mengakses modul pembelajaran dan ujian sertifikasi sesuai dengan program yang Anda beli.
 
-<x-mail::button :url="route('asesi.dashboard')">
+<x-mail::button :url="route('login')">
 Mulai Belajar Sekarang
 </x-mail::button>
 

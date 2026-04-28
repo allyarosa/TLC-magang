@@ -5,7 +5,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
         {{-- ════════════════════════════════════════
-         ROW 1 — Stat Cards (6 cards)
+        ROW 1 — Stat Cards (6 cards)
     ════════════════════════════════════════ --}}
         <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4">
 

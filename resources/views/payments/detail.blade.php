@@ -31,16 +31,11 @@
             
             <div class="p-8">
                 <!-- Informasi Waktu Tunggu -->
-                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 flex items-start gap-4">
-                    <div class="bg-blue-100 text-blue-600 p-2 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
+                <div class="bg-blue-50 rounded-xl p-4 mb-8 flex items-start gap-4">
                     <div>
                         <h3 class="font-semibold text-blue-900 mb-1">Proses Verifikasi Membutuhkan Waktu</h3>
                         <p class="text-blue-800 text-sm">
-                            Proses pengecekan bukti transfer biasanya memakan waktu <strong class="font-bold">1x24 jam di hari kerja</strong>. Harap tenang, akses program akan otomatis terbuka setelah verifikasi selesai.
+                            Proses pengecekan bukti transfer biasanya memakan waktu <strong class="font-bold">1x24 jam </strong>di hari kerja. Akses program akan otomatis terbuka setelah verifikasi selesai.
                         </p>
                     </div>
                 </div>
@@ -50,7 +45,7 @@
                 <div class="space-y-4 mb-8 text-sm">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500">Program Sertifikasi</span>
-                        <span class="font-semibold text-gray-800">{{ $payment->level->level_name ?? 'Sertifikasi Level' }}</span>
+                        <span class="font-semibold text-gray-800">Level {{ $payment->level->level_name ?? 'Sertifikasi Level' }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500">Nominal Transfer</span>
@@ -67,12 +62,7 @@
                 </div>
 
                 <!-- Email Instruction -->
-                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-8 flex items-start gap-4">
-                    <div class="bg-yellow-100 text-yellow-600 p-2 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
+                <div class="bg-yellow-50 rounded-xl p-4 mb-8 flex items-start gap-4">
                     <div>
                         <h3 class="font-semibold text-yellow-900 mb-1">Cek Kotak Masuk Email Anda</h3>
                         <p class="text-yellow-800 text-sm">
@@ -129,7 +119,7 @@
 
                 <!-- Navigation Actions -->
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="{{ route('asesi.dashboard') }}" class="w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-xl transition duration-200 shadow-lg shadow-indigo-200">
+                    <a href="{{ route('asesi.dashboard') }}" class="w-full text-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-xl transition duration-200 shadow-lg">
                         Kembali ke Dashboard
                     </a>
                     <a href="{{ route('asesi.transaksi') }}" class="w-full text-center bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-xl transition duration-200">
