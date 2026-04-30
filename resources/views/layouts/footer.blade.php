@@ -150,10 +150,10 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p>© 2026 Teaching and Learning Certification Program. All rights reserved.</p>
                     <div class="mt-2 md:mt-0">
-                        <a href="#" class="text-gray-400 hover:text-orange-400 mx-2 transition-colors">Kebijakan
+                        <a href="{{ route('privacy-policy') }}" class="text-gray-400 hover:text-orange-400 mx-2 transition-colors">Kebijakan
                             Privasi</a>
                         <span class="mx-2">|</span>
-                        <a href="#" class="text-gray-400 hover:text-orange-400 mx-2 transition-colors">Syarat
+                        <a href="{{ route('terms ') }}" class="text-gray-400 hover:text-orange-400 mx-2 transition-colors">Syarat
                             & Ketentuan</a>
                     </div>
                 </div>

@@ -94,39 +94,6 @@
 
                 <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
                     {{-- MODE PEMBELIAN --}}
-                    <section>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div>
-                                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Mode Pembelian</h2>
-                                <p class="text-xs text-gray-400">Pilih paket lengkap atau kategori satuan</p>
-                            </div>
-                        </div>
-                        <div class="mb-8">
-
-                            {{-- TOOGLE MODE --}}
-                            <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
-                                <button id="mode-bundle" wire:click="switchMode('bundle')"
-                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
-                                    Paket Lengkap
-                                </button>
-                                {{-- Sementara disembunyikan: Hanya paket lengkap saja
-                                <button id="mode-custom" wire:click="switchMode('custom')"
-                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
-                                    Pilih Satuan
-                                </button>
-                                --}}
-                            </div>
-
-                            <div>
-                                @if ($mode === 'custom')
-                                    <p
-                                        class="text-xs text-blue-700 bg-blue-100 rounded-lg p-2 mt-4 border border-blue-200">
-                                        Pilih satu atau lebih kategori ujian sesuai kebutuhan Anda
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                    </section>
 
                     {{-- PRODUCT CARDS SECTION - LIVEWIRE POWERED --}}
                     <div>
@@ -274,29 +241,29 @@
                                             <div class="w-12 h-12 mb-4 rounded-xl flex items-center justify-center shadow-lg"
                                                 style="background: linear-gradient(135deg, var(--tw-gradient-stops, #fff, #f0f0f0)); {{ $cat['color'] === 'teal' ? 'background: linear-gradient(135deg, #38b2ac 0%, #0f766e 100%);' : ($cat['color'] === 'emerald' ? 'background: linear-gradient(135deg, #34d399 0%, #059669 100%);' : ($cat['color'] === 'purple' ? 'background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);' : ($cat['color'] === 'yellow' ? 'background: linear-gradient(135deg, #fde68a 0%, #f59e42 100%);' : ''))) }}">
                                                 @if ($cat['id'] === 'literasi')
-                                                    <svg class="w-6 h-6 text-white" fill="none"
-                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                                     </svg>
                                                 @elseif($cat['id'] === 'numerasi')
-                                                    <svg class="w-6 h-6 text-white" fill="none"
-                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M17 9V7a5 5 0 00-10 0v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2z" />
                                                     </svg>
                                                 @elseif($cat['id'] === 'pck')
-                                                    <svg class="w-6 h-6 text-white" fill="none"
-                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                                                     </svg>
                                                 @elseif($cat['id'] === 'hots')
-                                                    <svg class="w-6 h-6 text-white" fill="none"
-                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -369,6 +336,36 @@
                             </div>
                         @endif
                     </div>
+                    {{-- <section>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div>
+                                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Mode Pembelian</h2>
+                                <p class="text-xs text-gray-400">Pilih paket lengkap atau kategori satuan</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
+                                <button id="mode-bundle" wire:click="switchMode('bundle')"
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    Paket Lengkap
+                                </button>
+                                <button id="mode-custom" wire:click="switchMode('custom')"
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    Pilih Satuan
+                                </button>
+                            </div>
+
+                            <div>
+                                @if ($mode === 'custom')
+                                    <p
+                                        class="text-xs text-blue-700 bg-blue-100 rounded-lg p-2 mt-4 border border-blue-200">
+                                        Pilih satu atau lebih kategori ujian sesuai kebutuhan Anda
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+                    </section> --}}
+
 
                     <!-- Course Overview -->
                     <div class="mb-8">
@@ -790,28 +787,31 @@
                                     </div>
 
                                     @if ($siteInfo->require_ig_follow_proof)
-                                    {{-- Upload Bukti Follow IG --}}
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                            Upload Bukti Follow Instagram <span class="font-medium text-teal-600">@tlc.certificationbyhafecs</span> <span class="text-red-500">*</span>
-                                        </label>
-                                        <div class="border border-gray-300 rounded-xl p-3 text-center cursor-pointer bg-gray-50"
-                                            onclick="document.getElementById('ig_follow_proof_input').click()">
-                                            <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                            <p id="ig-proof-label" class="text-sm text-gray-600">Klik untuk upload bukti follow</p>
-                                            <p class="text-xs text-gray-400">JPG, JPEG, PNG. Maks 3MB</p>
+                                        {{-- Upload Bukti Follow IG --}}
+                                        <div class="mb-4">
+                                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                                Upload Bukti Follow Instagram <span
+                                                    class="font-medium text-teal-600">@tlc.certificationbyhafecs</span>
+                                                <span class="text-red-500">*</span>
+                                            </label>
+                                            <div class="border border-gray-300 rounded-xl p-3 text-center cursor-pointer bg-gray-50"
+                                                onclick="document.getElementById('ig_follow_proof_input').click()">
+                                                <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <p id="ig-proof-label" class="text-sm text-gray-600">Klik untuk upload
+                                                    bukti follow</p>
+                                                <p class="text-xs text-gray-400">JPG, JPEG, PNG. Maks 3MB</p>
+                                            </div>
+                                            <input id="ig_follow_proof_input" name="ig_follow_proof" type="file"
+                                                accept=".jpg,.jpeg,.png" class="hidden" required
+                                                onchange="document.getElementById('ig-proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload bukti follow'">
+                                            @error('ig_follow_proof')
+                                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                            @enderror
                                         </div>
-                                        <input id="ig_follow_proof_input" name="ig_follow_proof" type="file"
-                                            accept=".jpg,.jpeg,.png" class="hidden" required
-                                            onchange="document.getElementById('ig-proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload bukti follow'">
-                                        @error('ig_follow_proof')
-                                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                        @enderror
-                                    </div>
                                     @endif
 
                                     <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
@@ -823,20 +823,22 @@
                                         Kirim Bukti Transfer
                                     </button>
                                 @else
-                                    <div class="mb-4 bg-orange-50 border border-orange-200 rounded-xl p-4">
+                                    {{-- <div class="mb-4 bg-orange-50 border border-orange-200 rounded-xl p-4">
                                         <p class="text-sm text-orange-700 flex items-center gap-2">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                             </svg>
                                             Anda akan diminta mengupload foto bukti transfer setelah membuat akun.
                                         </p>
-                                    </div>
-                                    
-                                    <button type="button" wire:click="continueToRegister" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                    </div> --}}
+
+                                    <button type="button" wire:click="continueToRegister"
+                                        @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
                                         class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                                         Lanjut Daftar & Bayar
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                         </svg>
                                     </button>
                                 @endauth
@@ -852,11 +854,13 @@
                                         Lanjutkan Pembayaran
                                     </button>
                                 @else
-                                    <button type="button" wire:click="continueToRegister" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                    <button type="button" wire:click="continueToRegister"
+                                        @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
                                         class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                                         Lanjut Daftar & Bayar
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                         </svg>
                                     </button>
                                 @endauth

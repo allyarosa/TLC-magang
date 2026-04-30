@@ -149,6 +149,8 @@ Route::middleware('guest')->group(function () {
     // Login
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.post');
+    Route::view('/terms', 'terms')->name('terms ');
+    Route::view('/privacy-policy', 'privacy-policy')->name('privacy-policy');
 
     // Register
     Route::get('/register', [AuthController::class, 'register'])->name('register');
