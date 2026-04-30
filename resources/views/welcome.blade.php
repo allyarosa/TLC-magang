@@ -185,7 +185,7 @@
                                                 @endforeach
                                             </div>
 
-                                            <a href="{{ route('register') }}"
+                                            <a href="{{ route('payments.create.public', ['id' => \Vinkla\Hashids\Facades\Hashids::encode(4)]) }}"
                                                 class="block w-full text-center py-4 rounded-xl font-bold text-white text-sm shadow-lg transition-all duration-300 hover:shadow-orange-500/30 hover:scale-[1.02]"
                                                 style="background: linear-gradient(135deg, #E76F51 0%, #F4A261 100%);">
                                                 <span class="flex items-center justify-center gap-2">
@@ -410,7 +410,7 @@
                                         </div>
                                         <p class="text-xs text-gray-400 mt-0.5">Pembayaran sekali</p>
                                     </div>
-                                    <a href="{{ route('register') }}"
+                                    <a href="{{ route('payments.create.public', ['id' => \Vinkla\Hashids\Facades\Hashids::encode($level === 'A' ? 1 : ($level === 'B' ? 2 : 3))]) }}"
                                         class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-white text-sm shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] whitespace-nowrap
                                 @switch($level)
                                     @case('A') bg-gradient-to-r from-[#1D4E89] to-[#2563eb] hover:shadow-blue-500/30 @break

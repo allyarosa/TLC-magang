@@ -133,6 +133,9 @@ Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewC
 Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('certificate.download');
 
 
+// Public Checkout / Payment Page
+Route::get('/checkout/{id}', Create::class)->name('payments.create.public');
+
 // Email Verification (No auth required — works from any browser/session)
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->middleware(['signed'])
@@ -194,7 +197,7 @@ Route::middleware(['auth'])->group(function () {
 // ASESI ROUTES
 // =========================================================================
 
-Route::middleware(['auth', 'role:asesi', 'last_seen', 'verified', 'profile.complete'])->prefix('asesi')->group(function () {
+Route::middleware(['auth', 'role:asesi', 'last_seen', 'profile.complete'])->prefix('asesi')->group(function () {
     // Dashboard
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');

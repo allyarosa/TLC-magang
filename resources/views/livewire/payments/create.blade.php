@@ -54,11 +54,11 @@
         }
     </style>
 
-    <div class="container mx-auto px-4 py-8 max-w-7xl">
+    <div class="container mx-auto px-4 py-8 max-w-7xl mt-20">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 space-y-8">
                 <!-- Hero Banner -->
-                <div
+                {{-- <div
                     class="relative overflow-hidden bg-gradient-to-br from-teal-600 via-teal-700 to-cyan-800 rounded-3xl p-8 text-white">
                     <div class="absolute inset-0 bg-black opacity-5"></div>
                     <div class="relative z-10">
@@ -70,7 +70,7 @@
                                         viewBox="0 0 24 24" stroke-width="2">
                                         <circle cx="12" cy="8" r="7"></circle>
                                         <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                                    </svg>
+                                    </svg>  
                                     <span class="text-sm font-semibold">Teaching Knowledge Certification</span>
                                 </div>
                                 <h1 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
                     {{-- MODE PEMBELIAN --}}
@@ -169,8 +169,9 @@
 
                                         {{-- Included Items --}}
                                         <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
-                                            <p class="text-xs text-white/70 uppercase tracking-wide mb-3 font-semibold">
-                                                Termasuk dalam paket:</p>
+                                            <p class="text-xs text-white uppercase tracking-wide mb-3 font-semibold">
+                                                Termasuk dalam paket:
+                                            </p>
                                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                                 @foreach ($categories as $cat)
                                                     <div class="flex items-center gap-2">
@@ -381,12 +382,12 @@
                     </div>
 
                     <!-- Requirements Section -->
-                    <div class="mb-8 bg-amber-50 rounded-2xl p-6 border-l-4 border-amber-400">
+                    {{-- <div class="mb-8 bg-amber-50 rounded-2xl p-6 border-l-4 border-amber-400">
                         <h3 class="text-lg font-semibold text-amber-800 mb-3">Syarat Pendaftaran</h3>
                         <p class="text-amber-700">
                             Melengkapi data yang ada di profile secara lengkap
                         </p>
-                    </div>
+                    </div> --}}
 
                     <!-- Expandable Content -->
                     <div class="border-t border-gray-100 pt-8">
@@ -722,112 +723,141 @@
 
                             @if ($paymentMode === 'manual')
                                 {{-- ===== MANUAL BANK TRANSFER UI ===== --}}
-                                <div class="mb-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
-                                    <div class="flex items-center gap-2 mb-3">
-                                        <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                        </svg>
-                                        <span class="text-sm font-bold text-blue-800">Transfer Bank Manual</span>
+                                @auth
+                                    <div class="mb-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
+                                        <div class="flex items-center gap-2 mb-3">
+                                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                            </svg>
+                                            <span class="text-sm font-bold text-blue-800">Transfer Bank Manual</span>
+                                        </div>
+                                        <div class="space-y-1.5 text-sm">
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-600">Bank</span>
+                                                <span
+                                                    class="font-bold text-blue-900">{{ $siteInfo->bank_name ?? '-' }}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-600">No. Rekening</span>
+                                                <span
+                                                    class="font-bold text-blue-900 tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-600">Atas Nama</span>
+                                                <span
+                                                    class="font-bold text-blue-900">{{ $siteInfo->bank_account_name ?? '-' }}</span>
+                                            </div>
+                                            <div
+                                                class="flex justify-between items-center border-t border-blue-200 pt-2 mt-2">
+                                                <span class="text-blue-600 font-semibold">Jumlah Transfer</span>
+                                                <span class="font-extrabold text-blue-900 text-base">Rp
+                                                    {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
+                                            </div>
+                                        </div>
+                                        @if ($siteInfo->payment_instructions)
+                                            <p class="text-xs text-blue-600 mt-3 border-t border-blue-200 pt-2">
+                                                {{ $siteInfo->payment_instructions }}
+                                            </p>
+                                        @endif
                                     </div>
-                                    <div class="space-y-1.5 text-sm">
-                                        <div class="flex justify-between">
-                                            <span class="text-blue-600">Bank</span>
-                                            <span
-                                                class="font-bold text-blue-900">{{ $siteInfo->bank_name ?? '-' }}</span>
+
+                                    {{-- Upload Bukti Transfer --}}
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                            Upload Bukti Transfer <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-teal-400 transition-colors cursor-pointer"
+                                            onclick="document.getElementById('transfer_proof_input').click()">
+                                            <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <p id="proof-label" class="text-sm text-gray-500">Klik untuk upload foto bukti
+                                                transfer</p>
+                                            <p class="text-xs text-gray-400 mt-1">JPG, JPEG, PNG. Maks 3MB</p>
                                         </div>
-                                        <div class="flex justify-between">
-                                            <span class="text-blue-600">No. Rekening</span>
-                                            <span
-                                                class="font-bold text-blue-900 tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span class="text-blue-600">Atas Nama</span>
-                                            <span
-                                                class="font-bold text-blue-900">{{ $siteInfo->bank_account_name ?? '-' }}</span>
-                                        </div>
-                                        <div
-                                            class="flex justify-between items-center border-t border-blue-200 pt-2 mt-2">
-                                            <span class="text-blue-600 font-semibold">Jumlah Transfer</span>
-                                            <span class="font-extrabold text-blue-900 text-base">Rp
-                                                {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
-                                        </div>
+                                        <input id="transfer_proof_input" name="transfer_proof" type="file"
+                                            accept=".jpg,.jpeg,.png" class="hidden" required
+                                            onchange="document.getElementById('proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload'">
+                                        @error('transfer_proof')
+                                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
-                                    @if ($siteInfo->payment_instructions)
-                                        <p class="text-xs text-blue-600 mt-3 border-t border-blue-200 pt-2">
-                                            {{ $siteInfo->payment_instructions }}
-                                        </p>
+
+                                    @if ($siteInfo->require_ig_follow_proof)
+                                    {{-- Upload Bukti Follow IG --}}
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                            Upload Bukti Follow Instagram <span class="font-medium text-teal-600">@tlc.certificationbyhafecs</span> <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="border border-gray-300 rounded-xl p-3 text-center cursor-pointer bg-gray-50"
+                                            onclick="document.getElementById('ig_follow_proof_input').click()">
+                                            <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <p id="ig-proof-label" class="text-sm text-gray-600">Klik untuk upload bukti follow</p>
+                                            <p class="text-xs text-gray-400">JPG, JPEG, PNG. Maks 3MB</p>
+                                        </div>
+                                        <input id="ig_follow_proof_input" name="ig_follow_proof" type="file"
+                                            accept=".jpg,.jpeg,.png" class="hidden" required
+                                            onchange="document.getElementById('ig-proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload bukti follow'">
+                                        @error('ig_follow_proof')
+                                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                     @endif
-                                </div>
 
-                                {{-- Upload Bukti Transfer --}}
-                                <div class="mb-4">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                        Upload Bukti Transfer <span class="text-red-500">*</span>
-                                    </label>
-                                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-teal-400 transition-colors cursor-pointer"
-                                        onclick="document.getElementById('transfer_proof_input').click()">
-                                        <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
+                                    <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                        class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                         </svg>
-                                        <p id="proof-label" class="text-sm text-gray-500">Klik untuk upload foto bukti
-                                            transfer</p>
-                                        <p class="text-xs text-gray-400 mt-1">JPG, JPEG, PNG. Maks 3MB</p>
+                                        Kirim Bukti Transfer
+                                    </button>
+                                @else
+                                    <div class="mb-4 bg-orange-50 border border-orange-200 rounded-xl p-4">
+                                        <p class="text-sm text-orange-700 flex items-center gap-2">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            Anda akan diminta mengupload foto bukti transfer setelah membuat akun.
+                                        </p>
                                     </div>
-                                    <input id="transfer_proof_input" name="transfer_proof" type="file"
-                                        accept=".jpg,.jpeg,.png" class="hidden" required
-                                        onchange="document.getElementById('proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload'">
-                                    @error('transfer_proof')
-                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                @if ($siteInfo->require_ig_follow_proof)
-                                {{-- Upload Bukti Follow IG --}}
-                                <div class="mb-4">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                        Upload Bukti Follow Instagram <span class="font-medium text-teal-600">@tlc.certificationbyhafecs</span> <span class="text-red-500">*</span>
-                                    </label>
-                                    <div class="border border-gray-300 rounded-xl p-3 text-center cursor-pointer bg-gray-50"
-                                        onclick="document.getElementById('ig_follow_proof_input').click()">
-                                        <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    
+                                    <button type="button" wire:click="continueToRegister" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                        class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        Lanjut Daftar & Bayar
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                         </svg>
-                                        <p id="ig-proof-label" class="text-sm text-gray-600">Klik untuk upload bukti follow</p>
-                                        <p class="text-xs text-gray-400">JPG, JPEG, PNG. Maks 3MB</p>
-                                    </div>
-                                    <input id="ig_follow_proof_input" name="ig_follow_proof" type="file"
-                                        accept=".jpg,.jpeg,.png" class="hidden" required
-                                        onchange="document.getElementById('ig-proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload bukti follow'">
-                                    @error('ig_follow_proof')
-                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                @endif
-
-                                <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
-                                    class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    Kirim Bukti Transfer
-                                </button>
+                                    </button>
+                                @endauth
                             @else
                                 {{-- ===== MIDTRANS FLOW ===== --}}
-                                <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
-                                    class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                    </svg>
-                                    Lanjutkan Pembayaran
-                                </button>
+                                @auth
+                                    <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                        class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                        </svg>
+                                        Lanjutkan Pembayaran
+                                    </button>
+                                @else
+                                    <button type="button" wire:click="continueToRegister" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                        class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        Lanjut Daftar & Bayar
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </button>
+                                @endauth
                             @endif
                         </form>
 

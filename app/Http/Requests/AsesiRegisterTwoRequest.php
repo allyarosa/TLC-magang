@@ -28,7 +28,7 @@ class AsesiRegisterTwoRequest extends FormRequest
             'tempat_lahir'              => ['required', 'string'],
             'tanggal_lahir'             => ['required', 'date'],
             'jenis_kelamin'             => ['required', 'in:L,P'],
-            'no_wa'                     => ['required', 'numeric', 'min_digits:9', 'max_digits:15'],
+            // no_wa sudah dikumpulkan di halaman register (Step 1)
 
             // Pekerjaan & Instansi
             'instansi'                  => ['required', 'string'],

@@ -81,6 +81,10 @@
 
     <form action="{{ route('registeraddtionalpost') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
+        {{-- Carry checkout intent through Step 2 so we redirect to checkout after completion --}}
+        @if(!empty($checkout))
+            <input type="hidden" name="checkout" value="{{ $checkout }}">
+        @endif
 
         {{-- ===== SECTION 1: FOTO PROFIL ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
@@ -156,8 +160,8 @@
                     @error('tanggal_lahir')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
 
-                {{-- No WhatsApp --}}
-                <div class="md:col-span-2">
+                {{-- No WhatsApp dipindah ke halaman register utama --}}
+                {{-- <div class="md:col-span-2">
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
                     <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
                         <span class="bg-gray-100 px-3 py-2.5 text-sm text-gray-500 border-r border-gray-300">+62</span>
@@ -166,7 +170,7 @@
                             oninput="this.value=this.value.replace(/\D/g,'')">
                     </div>
                     @error('no_wa')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
-                </div>
+                </div> --}}
             </div>
         </div>
 

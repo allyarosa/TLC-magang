@@ -4,6 +4,7 @@ namespace App\Livewire\Payments;
 
 use App\Models\Level;
 use App\Models\SiteInfo;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -139,6 +140,18 @@ class Create extends Component
         $this->siteInfo    = SiteInfo::getPaymentSettings();
         $this->paymentMode = $this->siteInfo->payment_method ?? 'midtrans';
 
+        // Restore pending payment state from session
+        if (session()->has('pending_payment')) {
+            $pending = session('pending_payment');
+            if (isset($pending['mode'])) {
+                $this->mode = $pending['mode'];
+            }
+            if (isset($pending['selected_categories']) && !empty($pending['selected_categories'])) {
+                $this->selectedCategories = explode(',', $pending['selected_categories']);
+            }
+            // Clear session after restoring so it doesn't get stuck forever
+            session()->forget('pending_payment');
+        }
         switch ($id) {
             case 1:
                 $this->viewName = 'livewire.payments.create';
@@ -157,12 +170,23 @@ class Create extends Component
         }
     }
 
+    public function continueToRegister()
+    {
+        Log::debug('[DEBUG-LIVEWIRE] continueToRegister called, level_id: ' . $this->level->id);
+
+        $hashId = Hashids::encode($this->level->id);
+
+        return redirect()->route('register', ['checkout' => $hashId]);
+    }
+
     public function render()
     {
+        $layout = auth()->check() ? 'layouts.asesiDashboard' : 'layouts.app';
+
         return view($this->viewName, [
             'level'       => $this->level,
             'paymentMode' => $this->paymentMode,
             'siteInfo'    => $this->siteInfo,
-        ])->extends('layouts.asesiDashboard');
+        ])->extends($layout);
     }
 }

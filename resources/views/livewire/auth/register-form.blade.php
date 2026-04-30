@@ -103,6 +103,21 @@
                     @enderror
                 </div>
 
+                {{-- No WhatsApp --}}
+                <div class="relative">
+                    <label class="text-sm font-medium text-gray-700 block mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
+                    <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all duration-200">
+                        <span class="bg-gray-100 px-3 py-3 text-sm text-gray-500 border-r border-gray-300 flex-shrink-0">+62</span>
+                        <input type="text" wire:model.blur="no_wa" placeholder="81234567890"
+                            class="flex-1 pl-3 p-3 text-sm border-0 focus:ring-0 focus:outline-none"
+                            oninput="this.value=this.value.replace(/\D/g,'')">
+                    </div>
+                    <p class="text-gray-500 text-xs mt-1">Akan digunakan untuk komunikasi dan informasi sertifikasi</p>
+                    @error('no_wa')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 {{-- <div class="flex items-center">
                     <input type="checkbox" id="terms" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
                     <label for="terms" class="ml-2 text-sm text-gray-600">

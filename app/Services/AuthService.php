@@ -46,7 +46,12 @@ class AuthService
                 return ['success' => false, 'message' => 'Akun sedang diblokir'];
             }
 
+            // Preserve pending_payment intent before session regeneration wipes it
+            $pendingPayment = request()->session()->get('pending_payment');
             request()->session()->regenerate();
+            if ($pendingPayment) {
+                request()->session()->put('pending_payment', $pendingPayment);
+            }
 
             Log::info('User logged in successfully', ['user_id' => $user->id]);
 
@@ -91,10 +96,27 @@ class AuthService
 
             DB::commit();
 
+            // Preserve pending_payment across Auth::login() which may regenerate session
+            $pendingPayment = request()->session()->get('pending_payment');
+            Log::debug('[DEBUG-SERVICE] BEFORE Auth::login — pendingPayment: ' . json_encode($pendingPayment));
+            Log::debug('[DEBUG-SERVICE] Session ID BEFORE: ' . request()->session()->getId());
+
             Auth::login($user);
+
+            Log::debug('[DEBUG-SERVICE] Session ID AFTER Auth::login: ' . request()->session()->getId());
+
             event(new Registered($user));
 
-            Log::info('User registered successfully', ['user_id' => $user->id]);
+            Log::debug('[DEBUG-SERVICE] Session ID AFTER event: ' . request()->session()->getId());
+
+            if ($pendingPayment) {
+                request()->session()->put('pending_payment', $pendingPayment);
+                Log::debug('[DEBUG-SERVICE] Restored pending_payment: ' . json_encode($pendingPayment));
+            } else {
+                Log::debug('[DEBUG-SERVICE] No pending_payment to restore');
+            }
+
+            Log::debug('[DEBUG-SERVICE] Final session pending_payment: ' . json_encode(request()->session()->get('pending_payment')));
 
             return $user;
         } catch (Exception $e) {
@@ -132,7 +154,7 @@ class AuthService
                 'tempat_lahir'              => $data['tempat_lahir'],
                 'tanggal_lahir'             => $data['tanggal_lahir'],
                 'jenis_kelamin'             => $data['jenis_kelamin'],
-                'no_wa'                     => $data['no_wa'],
+                // no_wa tidak diupdate di sini — sudah disimpan saat registrasi (Step 1)
                 'provinsi'                  => $data['provinsi'],
                 'kabupaten'                 => $data['kabupaten'],
                 'kecamatan'                 => $data['kecamatan'],
