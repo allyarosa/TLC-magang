@@ -109,10 +109,12 @@
                                     class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
                                     Paket Lengkap
                                 </button>
+                                {{-- Sementara disembunyikan: Hanya paket lengkap saja
                                 <button id="mode-custom" wire:click="switchMode('custom')"
                                     class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
                                     Pilih Satuan
                                 </button>
+                                --}}
                             </div>
 
                             <div>
