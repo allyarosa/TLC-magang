@@ -37,7 +37,7 @@
         <!-- Kanan Section -->
         <div class="w-full md:w-1/2 p-10 flex flex-col justify-center bg-white">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-extrabold text-[#2E4D69]">Daftar Akun</h2>
+                <h2 class="text-2xl font-extrabold text-[#2E4D69]">Daftar Akun</h2>
             </div>
 
             <form wire:submit.prevent="register" class="space-y-4">

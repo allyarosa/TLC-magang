@@ -172,9 +172,6 @@
             <div class="flex justify-between items-center mb-8 animate-slideIn">
                 <h2 class="text-2xl font-bold text-[#2E4D69] relative">
                     Masuk
-                    <div
-                        class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-[#0C548C] to-[#2E4D69] rounded-full">
-                    </div>
                 </h2>
             </div>
 

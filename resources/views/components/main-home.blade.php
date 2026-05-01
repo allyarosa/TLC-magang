@@ -46,7 +46,7 @@
                                     Lihat Selengkapnya
                                 </span>
                             </a>
-                            <a href="#vidio"
+                            {{-- <a href="#vidio"
                                 class="bg-white text-[#1D4E89] px-4 sm:px-8 py-2 sm:py-4 rounded-lg sm:rounded-full shadow-md text-sm sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 active:scale-95 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -57,7 +57,7 @@
                                 <span>
                                     Lihat Video
                                 </span>
-                            </a>
+                            </a> --}}
                         </div>
 
                         <div class="mt-10">

@@ -15,7 +15,7 @@
         <x-skema-section />
 
         <!-- Paket Harga -->
-        <section id="harga" class="w-full bg-gradient-to-b from-white to-blue-50 mt-10">
+        <section id="harga" class="w-full mt-10 pb-20">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-10 md:mb-14">
                     <livewire:title-section title="Pilih Jalur Sertifikasi Anda"
