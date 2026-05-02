@@ -118,7 +118,7 @@
                 <div class="md:col-span-2">
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap / Gelar <span class="text-red-500">*</span></label>
                     <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Contoh: Budi Santoso, S.Pd."
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150" required>
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint" required>
                     <p class="text-xs text-gray-400 mt-1">Nama ini akan digunakan pada sertifikat Anda.</p>
                     @error('nama')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
@@ -127,7 +127,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">NIK <span class="text-gray-400 font-normal">(opsional)</span></label>
                     <input type="text" name="nik" value="{{ old('nik') }}" placeholder="16 digit angka" maxlength="16"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint"
                         oninput="this.value=this.value.replace(/\D/g,'')">
                     @error('nik')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
@@ -148,7 +148,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Tempat Lahir <span class="text-red-500">*</span></label>
                     <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" placeholder="Kota kelahiran"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150" required>
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint" required>
                     @error('tempat_lahir')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
 
@@ -222,7 +222,7 @@
                 <div id="custom-instansi" class="md:col-span-2 {{ old('instansi') == 'Lainnya' ? '' : 'hidden' }}">
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Instansi (Lainnya)</label>
                     <input type="text" name="custom_instansi" value="{{ old('custom_instansi') }}" placeholder="Tuliskan nama instansi Anda"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint">
                     @error('custom_instansi')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
             </div>

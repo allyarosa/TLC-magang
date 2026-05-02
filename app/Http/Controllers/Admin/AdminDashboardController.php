@@ -744,12 +744,17 @@ class AdminDashboardController extends Controller
         $request->validate([
             'file' => 'required|mimes:xlsx,xls,csv|max:2048',
             'permissions' => 'required|array',
-            'permissions.*' => 'string|in:access_level_A,access_level_B,access_level_C'
+            'permissions.*' => 'string|in:access_level_A,access_level_B,access_level_C,HOTS,PCK,NUMERASI,LITERASI'
         ]);
         try {
-            Excel::import(new UsersImport($request->permissions), $request->file('file'));
+            $import = new UsersImport($request->permissions);
+            Excel::import($import, $request->file('file'));
+            
             Alert::success('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
-            return redirect()->back()->with('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
+            return redirect()->back()->with([
+                'success' => 'Data user berhasil diimport dan permissions terpilih telah diberikan!',
+                'newUsers' => $import->newUsers
+            ]);
         } catch (Exception $e) {
             Alert::error('error', $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());

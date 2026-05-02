@@ -52,7 +52,7 @@
                             </svg>
                         </span>
                         <input type="text" wire:model="name" placeholder="Masukkan nama lengkap"
-                            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400"
+                            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint"
                             oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
 
                     </div>
@@ -74,7 +74,7 @@
                             </svg>
                         </span>
                         <input type="email" wire:model="email" placeholder="email@example.com"
-                            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400">
+                            class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint">
                     </div>
                     <p class="text-gray-500 text-xs mt-1">Gunakan alamat email aktif Anda</p>
                     @error('email')
@@ -94,7 +94,7 @@
                             </svg>
                         </span>
                         <input type="password" wire:model="password" placeholder="Minimal 8 karakter"
-                            class="w-full pl-10 pr-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400">
+                            class="w-full pl-10 pr-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint">
                     </div>
                     <p class="text-gray-500 text-xs mt-1">Gunakan minimal 8 karakter dengan kombinasi huruf dan angka
                     </p>
@@ -109,7 +109,7 @@
                     <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all duration-200">
                         <span class="bg-gray-100 px-3 py-3 text-sm text-gray-500 border-r border-gray-300 flex-shrink-0">+62</span>
                         <input type="text" wire:model.blur="no_wa" placeholder="81234567890"
-                            class="flex-1 pl-3 p-3 text-sm border-0 focus:ring-0 focus:outline-none"
+                            class="flex-1 pl-3 p-3 text-sm border-0 focus:ring-0 focus:outline-none placeholder:text-inputHint"
                             oninput="this.value=this.value.replace(/\D/g,'')">
                     </div>
                     <p class="text-gray-500 text-xs mt-1">Akan digunakan untuk komunikasi dan informasi sertifikasi</p>

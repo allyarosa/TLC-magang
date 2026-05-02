@@ -120,7 +120,7 @@
 
                                     <div class="relative z-10">
                                         <div class="flex items-start gap-4 mb-4">
-                                            <div
+                                            {{-- <div
                                                 class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
                                                 <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -128,7 +128,7 @@
                                                         stroke-width="2"
                                                         d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                                 </svg>
-                                            </div>
+                                            </div> --}}
                                             <div class="flex-1">
                                                 <h3 class="text-xl font-bold mb-1">Paket Level A Lengkap</h3>
                                                 <p class="text-white/80 text-sm">Akses penuh ke semua kategori ujian

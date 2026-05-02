@@ -18,10 +18,12 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
     public function prepareForValidation($data, $index)
     {
         return [
-            'email' => trim($data['email'] ?? ''),
             'nama' => trim($data['nama'] ?? ''),
+            'email' => trim($data['email'] ?? ''),
         ];
     }
+
+    public $newUsers = [];
 
     public function model(array $row)
     {
@@ -43,6 +45,8 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
                 'profile_image' => 'blankProfile.png',
                 'nama_depan' => $row['nama'],
             ]);
+
+            $this->newUsers[] = $row['nama'];
         }
         
         
@@ -53,8 +57,8 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, SkipsEmpty
     public function rules(): array
     {
         return [
-            'email' => 'required|email|max:255',
-            'nama' => 'required|string|max:255',
+            'email' => 'required|max:255',
+            'nama' => 'required|max:255',
         ];
     }
 

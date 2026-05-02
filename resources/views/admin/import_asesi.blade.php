@@ -29,9 +29,24 @@
                         <svg class="h-6 w-6 text-green-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
-                        <div>
+                        <div class="w-full">
                             <h4 class="font-semibold text-green-800">Berhasil!</h4>
                             <p class="text-green-700 text-sm mt-1">{{ session('success') }}</p>
+                            
+                            @if(session('newUsers') && count(session('newUsers')) > 0)
+                                <div class="mt-3 bg-white p-3 rounded border border-green-100">
+                                    <p class="text-xs font-semibold text-green-800 mb-2">User Baru yang Berhasil Didaftarkan:</p>
+                                    <div class="max-h-32 overflow-y-auto">
+                                        <ul class="list-disc list-inside text-xs text-green-700 space-y-1 ml-1">
+                                            @foreach(session('newUsers') as $newUser)
+                                                <li>{{ $newUser }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @elseif(session()->has('newUsers'))
+                                <p class="text-xs text-green-600 mt-2 italic">Tidak ada user baru yang didaftarkan (semua user di file sudah terdaftar).</p>
+                            @endif
                         </div>
                     </div>
                 @endif
@@ -135,6 +150,69 @@
                                     <span class="flex flex-col">
                                         <span class="block text-sm font-medium text-gray-900 group-hover:text-blue-600">Level C</span>
                                         <span class="mt-1 flex items-center text-sm text-gray-500">Akses materi & ujian Level C</span>
+                                    </span>
+                                </span>
+                                <svg class="h-5 w-5 text-blue-600 hidden check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </label>
+                        </div>
+
+                        <div class="mt-6">
+                            <label class="block text-sm font-semibold text-gray-700">Kategori (Pecahan Level A)</label>
+                            <p class="text-sm text-gray-500">Pilih kategori spesifik jika tidak ingin memberikan akses penuh Level A.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <!-- HOTS -->
+                            <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none hover:border-blue-500 hover:ring-1 hover:ring-blue-500 transition-all group">
+                                <input type="checkbox" name="permissions[]" value="HOTS" class="sr-only">
+                                <span class="flex flex-1">
+                                    <span class="flex flex-col">
+                                        <span class="block text-sm font-medium text-gray-900 group-hover:text-blue-600">HOTS</span>
+                                        <span class="mt-1 flex items-center text-xs text-gray-500">Akses kategori HOTS</span>
+                                    </span>
+                                </span>
+                                <svg class="h-5 w-5 text-blue-600 hidden check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </label>
+
+                            <!-- PCK -->
+                            <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none hover:border-blue-500 hover:ring-1 hover:ring-blue-500 transition-all group">
+                                <input type="checkbox" name="permissions[]" value="PCK" class="sr-only">
+                                <span class="flex flex-1">
+                                    <span class="flex flex-col">
+                                        <span class="block text-sm font-medium text-gray-900 group-hover:text-blue-600">PCK</span>
+                                        <span class="mt-1 flex items-center text-xs text-gray-500">Akses kategori PCK</span>
+                                    </span>
+                                </span>
+                                <svg class="h-5 w-5 text-blue-600 hidden check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </label>
+
+                            <!-- NUMERASI -->
+                            <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none hover:border-blue-500 hover:ring-1 hover:ring-blue-500 transition-all group">
+                                <input type="checkbox" name="permissions[]" value="NUMERASI" class="sr-only">
+                                <span class="flex flex-1">
+                                    <span class="flex flex-col">
+                                        <span class="block text-sm font-medium text-gray-900 group-hover:text-blue-600">Numerasi</span>
+                                        <span class="mt-1 flex items-center text-xs text-gray-500">Akses kategori Numerasi</span>
+                                    </span>
+                                </span>
+                                <svg class="h-5 w-5 text-blue-600 hidden check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </label>
+
+                            <!-- LITERASI -->
+                            <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none hover:border-blue-500 hover:ring-1 hover:ring-blue-500 transition-all group">
+                                <input type="checkbox" name="permissions[]" value="LITERASI" class="sr-only">
+                                <span class="flex flex-1">
+                                    <span class="flex flex-col">
+                                        <span class="block text-sm font-medium text-gray-900 group-hover:text-blue-600">Literasi</span>
+                                        <span class="mt-1 flex items-center text-xs text-gray-500">Akses kategori Literasi</span>
                                     </span>
                                 </span>
                                 <svg class="h-5 w-5 text-blue-600 hidden check-icon" fill="currentColor" viewBox="0 0 20 20">

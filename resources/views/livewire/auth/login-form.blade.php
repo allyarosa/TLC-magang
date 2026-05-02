@@ -199,7 +199,7 @@
                                 </svg>
                             </span>
                             <input type="email" wire:model="email" placeholder="email@example.com"
-                                class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400">
+                                class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint">
                         </div>
 
                         @error('email')
@@ -240,7 +240,7 @@
                                 </svg>
                             </span>
                             <input type="password" wire:model="password" placeholder="Minimal 8 karakter"
-                                class="w-full pl-10 pr-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400">
+                                class="w-full pl-10 pr-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint">
                         </div>
 
                         @error('password')
