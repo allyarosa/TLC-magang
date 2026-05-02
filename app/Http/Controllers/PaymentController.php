@@ -205,8 +205,8 @@ class PaymentController extends Controller
             'payment_time' => now(),
             'payment_type' => 'bank_transfer',
         ]);
-
-        $this->grantLevelAccess($payment);
+        // MATIKAN SEMENTARA FITUR GRANT LEVEL UNTUK PEMBAYARAN MANUAL, KARENA ADA KEBIJAKAN BARU DARI ADMIN UNTUK MENGKONFIRMASI PEMBAYARAN MANUAL SECARA MANUAL JUGA, JADI TIDAK LANGSUNG GRANT AKSES SAAT KONFIRMASI, MELAINKAN ADMIN AKAN MENGKONFIRMASI PEMBAYARAN MANUAL TERLEBIH DAHULU, BARU SETELAH ITU BARU MEMBERIKAN AKSES LEVEL SECARA MANUAL PULA.
+        // $this->grantLevelAccess($payment);
 
         $payment->user->notify(new TransactionNotification($payment));
         try {

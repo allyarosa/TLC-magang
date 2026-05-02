@@ -265,19 +265,18 @@
                         <h3 class="text-base font-bold text-amber-800">Menunggu Konfirmasi Admin</h3>
                     </div>
                     <p class="text-sm text-amber-700 mb-4">
-                        User telah mengirim bukti transfer. Periksa bukti transfer di sebelah kiri, lalu klik konfirmasi
-                        untuk memberikan akses.
+                        User telah mengirim bukti transfer. Periksa bukti transfer di sebelah kiri, lalu klik konfirmasi.
                     </p>
                     <form method="POST" action="{{ route('admin.payments.confirmManual', $payment->id) }}"
                         onsubmit="return confirm('Pastikan Anda sudah memeriksa bukti transfer. Konfirmasi pembayaran ini?')">
                         @csrf
                         <button type="submit"
                             class="w-full px-4 py-3 bg-green-600 text-white font-semibold text-sm rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
-                            Konfirmasi & Berikan Akses
+                            Konfirmasi
                         </button>
                     </form>
-                    <p class="text-xs text-amber-600 mt-2 text-center">Akses level akan otomatis diberikan ke user setelah
-                        konfirmasi.</p>
+                    {{-- <p class="text-xs text-amber-600 mt-2 text-center">Akses level akan otomatis diberikan ke user setelah
+                        konfirmasi.</p> --}}
                 </div>
             @endif
 

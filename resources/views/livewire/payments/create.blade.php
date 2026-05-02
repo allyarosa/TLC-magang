@@ -723,7 +723,19 @@
                             @if ($paymentMode === 'manual')
                                 {{-- ===== MANUAL BANK TRANSFER UI ===== --}}
                                 @auth
-                                    <div class="mb-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
+                                    @if ($hasPendingManualPayment)
+                                        <div class="mb-4 bg-yellow-50 border border-yellow-200 rounded-xl p-6 text-center">
+                                            <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            <h4 class="font-bold text-yellow-800 mb-2">Menunggu Konfirmasi</h4>
+                                            <p class="text-sm text-yellow-700 mb-4">Anda sudah mengirimkan bukti pembayaran untuk level ini. Mohon tunggu admin memverifikasi pembayaran Anda.</p>
+                                            <a href="{{ route('payments.detail', \Vinkla\Hashids\Facades\Hashids::encode($pendingPaymentId)) }}" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors">
+                                                Lihat Detail Pembayaran
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="mb-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
                                         <div class="flex items-center gap-2 mb-3">
                                             <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none"
                                                 stroke="currentColor" viewBox="0 0 24 24">
@@ -822,6 +834,7 @@
                                         </svg>
                                         Kirim Bukti Transfer
                                     </button>
+                                    @endif
                                 @else
                                     {{-- <div class="mb-4 bg-orange-50 border border-orange-200 rounded-xl p-4">
                                         <p class="text-sm text-orange-700 flex items-center gap-2">

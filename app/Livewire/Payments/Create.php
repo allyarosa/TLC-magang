@@ -59,6 +59,8 @@ class Create extends Component
 
     // Expand/collapse for detail section
     public $expandDetail = false;
+    public $hasPendingManualPayment = false;
+    public $pendingPaymentId = null;
 
     public function toggleExpand()
     {
@@ -139,6 +141,19 @@ class Create extends Component
         // Baca mode pembayaran aktif dari SiteInfo
         $this->siteInfo    = SiteInfo::getPaymentSettings();
         $this->paymentMode = $this->siteInfo->payment_method ?? 'midtrans';
+
+        if (auth()->check()) {
+            $pendingManual = \App\Models\Payment::where('user_id', auth()->id())
+                ->where('level_id', $this->level->id)
+                ->where('payment_method', 'manual')
+                ->where('status', 'waiting_confirmation')
+                ->first();
+            
+            if ($pendingManual) {
+                $this->hasPendingManualPayment = true;
+                $this->pendingPaymentId = $pendingManual->id;
+            }
+        }
 
         // Restore pending payment state from session
         if (session()->has('pending_payment')) {

@@ -122,7 +122,7 @@ class AdminDashboardController extends Controller
             })
             ->when($category && $category !== 'ALL', function ($query) use ($category) {
                 $query->whereHas('user.permissions', function ($q) use ($category) {
-                    $q->where('name', 'access_level_' . $category);
+                    $q->where('name', $category);
                 });
             })
             ->latest()
@@ -747,14 +747,9 @@ class AdminDashboardController extends Controller
             'permissions.*' => 'string|in:access_level_A,access_level_B,access_level_C,HOTS,PCK,NUMERASI,LITERASI'
         ]);
         try {
-            $import = new UsersImport($request->permissions);
-            Excel::import($import, $request->file('file'));
-            
+            Excel::import(new UsersImport($request->permissions), $request->file('file'));
             Alert::success('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
-            return redirect()->back()->with([
-                'success' => 'Data user berhasil diimport dan permissions terpilih telah diberikan!',
-                'newUsers' => $import->newUsers
-            ]);
+            return redirect()->back()->with('success', 'Data user berhasil diimport dan permissions terpilih telah diberikan!');
         } catch (Exception $e) {
             Alert::error('error', $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());

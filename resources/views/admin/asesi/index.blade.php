@@ -55,9 +55,13 @@
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua
                                 Kategori --</option>
-                            <option value="A" {{ request('category_name') == 'A' ? 'selected' : '' }}>Level A</option>
-                            <option value="B" {{ request('category_name') == 'B' ? 'selected' : '' }}>Level B</option>
-                            <option value="C" {{ request('category_name') == 'C' ? 'selected' : '' }}>Level C</option>
+                            <option value="access_level_A" {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
+                            <option value="access_level_B" {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
+                            <option value="access_level_C" {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
+                            <option value="HOTS" {{ request('category_name') == 'HOTS' ? 'selected' : '' }}>HOTS</option>
+                            <option value="PCK" {{ request('category_name') == 'PCK' ? 'selected' : '' }}>PCK</option>
+                            <option value="LITERASI" {{ request('category_name') == 'LITERASI' ? 'selected' : '' }}>LITERASI</option>
+                            <option value="NUMERASI" {{ request('category_name') == 'NUMERASI' ? 'selected' : '' }}>NUMERASI</option>
                         </select>
                         </select>
                     </div>
