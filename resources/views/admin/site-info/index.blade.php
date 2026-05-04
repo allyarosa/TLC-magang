@@ -8,15 +8,6 @@
 
 @section('content')
     <div class="max-w-6xl mx-auto px-4 pt-6 mt-4">
-        <!-- Header with breadcrumb -->
-        <div class="flex items-center justify-between p-4 mb-6 bg-blue-600 rounded-xl shadow-lg">
-            <a href="#"
-                class="inline-flex items-center px-4 py-2 rounded-lg bg-white text-indigo-800 hover:bg-blue-50 transition-colors duration-200 shadow">
-                <i class="mr-2 fa-solid fa-arrow-left-long"></i> Kembali
-            </a>
-            <h1 class="text-xl font-bold text-white sm:text-2xl">Pengaturan Footer Website</h1>
-        </div>
-
         <!-- Success Alert -->
         @if (session('success'))
             <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-lg shadow-sm animate-fade-in">
@@ -48,16 +39,11 @@
         <!-- Main form card -->
         <div class="bg-white border border-gray-100 rounded-xl shadow-md overflow-hidden">
             <!-- Form header -->
-            <div class="bg-gradient-to-r from-gray-50 to-white p-3 border-b border-gray-100">
-                <h3 class="text-xl font-bold text-gray-800 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+            <div class="bg-brandBlue p-3 border-b border-gray-100">
+                <h3 class="text-xl font-bold text-white flex items-center">
                     Informasi Footer Landing Page
                 </h3>
-                <p class="mt-1 text-sm text-gray-500">Kelola informasi kontak dan media sosial yang ditampilkan di footer
+                <p class="mt-1 text-sm text-white">Kelola informasi kontak dan media sosial yang ditampilkan di footer
                     website</p>
             </div>
 
@@ -71,14 +57,8 @@
                     <div class="space-y-8">
 
                         <!-- Social Media Section -->
-                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
+                        <div class="bg-brandBlue/10 p-6 rounded-xl border border-blue-100">
                             <div class="flex items-center mb-6">
-                                <div class="bg-blue-600 rounded-full p-3 mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                                    </svg>
-                                </div>
                                 <div>
                                     <h4 class="text-lg font-semibold text-gray-800">Media Sosial</h4>
                                     <p class="text-sm text-gray-600">Masukkan link akun media sosial perusahaan</p>
@@ -141,23 +121,6 @@
                                     <x-input-error :messages="$errors->get('facebook')" class="mt-1 text-xs" />
                                 </div>
 
-                                <!-- Twitter/X -->
-                                {{-- <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                    <label for="twitter" class="block mb-2 text-sm font-medium text-gray-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-2 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                            </svg>
-                                            Twitter / X
-                                        </span>
-                                    </label>
-                                    <input type="url" name="twitter" id="twitter"
-                                        value="{{ old('twitter', $footer->twitter ?? '') }}"
-                                        placeholder="https://x.com/username"
-                                        class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-800 focus:border-gray-800 block w-full p-2.5">
-                                    <x-input-error :messages="$errors->get('twitter')" class="mt-1 text-xs" />
-                                </div> --}}
-
                                 <!-- YouTube -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                                     <label for="youtube" class="block mb-2 text-sm font-medium text-gray-700">
@@ -175,35 +138,12 @@
                                         class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5">
                                     <x-input-error :messages="$errors->get('youtube')" class="mt-1 text-xs" />
                                 </div>
-
-                                <!-- TikTok -->
-                                {{-- <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                    <label for="tiktok" class="block mb-2 text-sm font-medium text-gray-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-2 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                                            </svg>
-                                            TikTok
-                                        </span>
-                                    </label>
-                                    <input type="url" name="tiktok" id="tiktok"
-                                        value="{{ old('tiktok', $footer->tiktok ?? '') }}"
-                                        placeholder="https://tiktok.com/@username"
-                                        class="shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-800 focus:border-gray-800 block w-full p-2.5">
-                                    <x-input-error :messages="$errors->get('tiktok')" class="mt-1 text-xs" />
-                                </div> --}}
                             </div>
                         </div>
 
                         <!-- Contact Information Section -->
-                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100">
+                        <div class="bg-brandBlue/10 p-6 rounded-xl border border-green-100">
                             <div class="flex items-center mb-6">
-                                <div class="bg-green-600 rounded-full p-3 mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                    </svg>
-                                </div>
                                 <div>
                                     <h4 class="text-lg font-semibold text-gray-800">Informasi Kontak</h4>
                                     <p class="text-sm text-gray-600">Informasi untuk dihubungi oleh pengunjung</p>
@@ -244,7 +184,7 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                                     <label for="email" class="block mb-2 text-sm font-medium text-gray-700">
                                         <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-2 text-indigo-600" fill="currentColor"
+                                            <svg class="w-5 h-5 mr-2 text-blue-600" fill="currentColor"
                                                 viewBox="0 0 20 20">
                                                 <path
                                                     d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -263,15 +203,8 @@
                         </div>
 
                         <!-- Company Information Section -->
-                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
+                        <div class="bg-brandBlue/10 p-6 rounded-xl border border-purple-100">
                             <div class="flex items-center mb-6">
-                                <div class="bg-purple-600 rounded-full p-3 mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                                 <div>
                                     <h4 class="text-lg font-semibold text-gray-800">Informasi Perusahaan</h4>
                                     <p class="text-sm text-gray-600">Informasi tambahan tentang perusahaan</p>
@@ -283,12 +216,6 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
                                     <label for="address" class="block mb-2 text-sm font-medium text-gray-700">
                                         <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor"
-                                                viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
                                             Alamat Lengkap
                                         </span>
                                     </label>
@@ -301,12 +228,6 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
                                     <label for="description" class="block mb-2 text-sm font-medium text-gray-700">
                                         <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor"
-                                                viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
                                             Deskripsi Singkat
                                         </span>
                                     </label>
@@ -321,12 +242,6 @@
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
                                     <label for="copyright" class="block mb-2 text-sm font-medium text-gray-700">
                                         <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-2 text-purple-600" fill="currentColor"
-                                                viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
                                             Copyright Text
                                         </span>
                                     </label>
@@ -340,13 +255,8 @@
                         </div>
 
                         {{-- ===== PAYMENT SETTINGS SECTION ===== --}}
-                        <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-100">
+                        <div class="bg-brandBlue/10 p-6 rounded-xl border border-amber-100">
                             <div class="flex items-center mb-6">
-                                <div class="bg-amber-500 rounded-full p-3 mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                                    </svg>
-                                </div>
                                 <div>
                                     <h4 class="text-lg font-semibold text-gray-800">Pengaturan Metode Pembayaran</h4>
                                     <p class="text-sm text-gray-600">Pilih metode pembayaran aktif untuk semua transaksi</p>
@@ -363,7 +273,7 @@
                                             {{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'midtrans' ? 'checked' : '' }}
                                             class="text-blue-600" onchange="toggleBankFields()">
                                         <div>
-                                            <p class="font-semibold text-gray-800 text-sm">💳 Midtrans (Payment Gateway)</p>
+                                            <p class="font-semibold text-gray-800 text-sm">Midtrans (Payment Gateway)</p>
                                             <p class="text-xs text-gray-500 mt-0.5">Transfer, VA, QRIS, Kartu Kredit otomatis</p>
                                         </div>
                                     </label>
@@ -373,7 +283,7 @@
                                             {{ old('payment_method', $footer->payment_method ?? 'midtrans') === 'manual' ? 'checked' : '' }}
                                             class="text-amber-600" onchange="toggleBankFields()">
                                         <div>
-                                            <p class="font-semibold text-gray-800 text-sm">🏦 Transfer Bank Manual</p>
+                                            <p class="font-semibold text-gray-800 text-sm">Transfer Bank</p>
                                             <p class="text-xs text-gray-500 mt-0.5">User transfer ke rekening, admin konfirmasi</p>
                                         </div>
                                     </label>
@@ -382,7 +292,7 @@
                             </div>
 
                             {{-- Wajib Upload Bukti Follow IG --}}
-                            <div class="bg-white p-4 rounded-lg shadow-sm mb-4 flex items-center justify-between border-2 border-gray-100 hover:border-teal-100 transition-colors cursor-pointer" onclick="document.getElementById('require_ig_follow_proof').click()">
+                            <div class="bg-white p-4 rounded-lg shadow-sm mb-4 flex items-center justify-between border-2 border-gray-100 cursor-pointer" onclick="document.getElementById('require_ig_follow_proof').click()">
                                 <div>
                                     <label class="font-semibold text-gray-800 text-sm cursor-pointer">Wajib Upload Bukti Follow Instagram</label>
                                     <p class="text-xs text-gray-500 mt-0.5">Jika aktif, user harus mengupload bukti follow IG tlc.certificationbyhafecs saat memilih manual transfer</p>
@@ -456,29 +366,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                     <!-- Submit Button -->
-
-                    <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
-                        {{-- <a href="#"
-                            class="px-6 py-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            Batal
-                        </a> --}}
-
+                    <div class="flex items-center justify-between">
                         <button type="submit"
-                            class="px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:from-indigo-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 flex items-center shadow-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
+                            class="px-6 py-3 text-base font-medium text-white bg-brandBlue rounded-lg hover:from-indigo-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 flex items-center shadow-lg">
                             Simpan Perubahan
                         </button>
                     </div>

@@ -4,113 +4,27 @@
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-        {{-- ════════════════════════════════════════
-        ROW 1 — Stat Cards (6 cards)
-    ════════════════════════════════════════ --}}
+        {{-- ROW 1 — Stat Cards (6 cards) --}}
         <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4">
-
             {{-- Total Asesi --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 group hover:shadow-md transition-all duration-300 relative overflow-hidden">
-                <div
-                    class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                    <i class="fas fa-user-graduate"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">Total Asesi</p>
-                    <p class="text-2xl font-bold text-slate-800">{{ $asesi }}</p>
-                </div>
-                <div
-                    class="absolute -bottom-4 -right-4 w-16 h-16 bg-blue-50 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500">
-                </div>
-            </div>
-
+            <x-admin.dashboard-stat-card title="Total Asesi" :data="$asesi" color="blue-600" icon="fas fa-user-graduate" />
             {{-- Total Asesor --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 group hover:shadow-md transition-all duration-300 relative overflow-hidden">
-                <div
-                    class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">Total Asesor</p>
-                    <p class="text-2xl font-bold text-slate-800">{{ $asesor }}</p>
-                </div>
-                <div
-                    class="absolute -bottom-4 -right-4 w-16 h-16 bg-orange-50 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500">
-                </div>
-            </div>
-
+            <x-admin.dashboard-stat-card title="Total Asesor" :data="$asesor" color="orange-600"
+                icon="fas fa-chalkboard-teacher" />
             {{-- Total Admin --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 group hover:shadow-md transition-all duration-300 relative overflow-hidden">
-                <div
-                    class="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">Total Admin</p>
-                    <p class="text-2xl font-bold text-slate-800">{{ $admins }}</p>
-                </div>
-                <div
-                    class="absolute -bottom-4 -right-4 w-16 h-16 bg-indigo-50 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500">
-                </div>
-            </div>
-
+            <x-admin.dashboard-stat-card title="Total Admin" :data="$admins" color="indigo-600" icon="fas fa-user-shield" />
             {{-- Total Revenue --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 group hover:shadow-md transition-all duration-300 relative overflow-hidden">
-                <div
-                    class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">Total Revenue</p>
-                    <p class="text-lg font-bold text-slate-800">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
-                </div>
-                <div
-                    class="absolute -bottom-4 -right-4 w-16 h-16 bg-emerald-50 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500">
-                </div>
-            </div>
-
+            <x-admin.dashboard-stat-card title="Total Revenue" :data="$totalRevenue" color="emerald-600"
+                icon="fas fa-money-bill-wave" />
             {{-- Pembayaran Berhasil --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 group hover:shadow-md transition-all duration-300 relative overflow-hidden">
-                <div
-                    class="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">Transaksi Sukses</p>
-                    <p class="text-2xl font-bold text-slate-800">{{ $settledPayments }}</p>
-                </div>
-                <div
-                    class="absolute -bottom-4 -right-4 w-16 h-16 bg-teal-50 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500">
-                </div>
-            </div>
-
+            <x-admin.dashboard-stat-card title="Transaksi Sukses" :data="$settledPayments" color="teal-600"
+                icon="fas fa-check-circle" />
             {{-- Pembayaran Pending --}}
-            <div
-                class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 group hover:shadow-md transition-all duration-300 relative overflow-hidden">
-                <div
-                    class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-500 font-medium">Pending Payment</p>
-                    <p class="text-2xl font-bold text-slate-800">{{ $pendingPayments }}</p>
-                </div>
-                <div
-                    class="absolute -bottom-4 -right-4 w-16 h-16 bg-amber-50 rounded-full opacity-40 group-hover:scale-125 transition-transform duration-500">
-                </div>
-            </div>
+            <x-admin.dashboard-stat-card title="Pending Payment" :data="$pendingPayments" color="amber-600" icon="fas fa-clock" />
         </div>
-
-        {{-- ════════════════════════════════════════
-         ROW 2 — Registration Line Chart + Level Pie Chart
-    ════════════════════════════════════════ --}}
+        
+        {{-- ROW 2 — Registration Line Chart + Level Pie Chart --}}
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-
             {{-- Line chart: Registrasi per bulan --}}
             <div class="xl:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
                 <div class="flex items-center justify-between mb-6">

@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',191);
-            $table->string('email',191)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password',255);
-            $table->string('status',10)->nullable(); //status akun, active, pending, suspended
-            $table->rememberToken();
-            $table->timestamp('last_seen_at')->nullable(); // waktu terakhir login
-            $table->timestamps();
+                Schema::create('users', function (Blueprint $table) {
+                    $table->id();
+                    $table->string('name',191);
+                    $table->string('email',191)->unique();
+                    $table->timestamp('email_verified_at')->nullable();
+                    $table->string('password',255);
+                    $table->string('status',10)->nullable(); //status akun, active, pending, suspended
+                    $table->rememberToken();
+                    $table->timestamp('last_seen_at')->nullable(); // waktu terakhir login
+                    $table->timestamps();
 
-        });
+                });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
