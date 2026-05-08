@@ -90,9 +90,15 @@ class AuthController extends Controller
     public function registerStepTwo()
     {
         $provinces = Province::all();
+        $user      = Auth::user();
+
+        // Cek apakah user sudah punya no_wa (user baru sudah punya, user lama belum)
+        $hasNoWa = $user && $user->userProfile && !empty($user->userProfile->no_wa);
+
         return view('register2', [
             'provinces' => $provinces,
             'checkout'  => request('checkout'),
+            'hasNoWa'   => $hasNoWa,
         ]);
     }
 

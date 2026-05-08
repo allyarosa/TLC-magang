@@ -154,7 +154,9 @@ class AuthService
                 'tempat_lahir'              => $data['tempat_lahir'],
                 'tanggal_lahir'             => $data['tanggal_lahir'],
                 'jenis_kelamin'             => $data['jenis_kelamin'],
-                // no_wa tidak diupdate di sini — sudah disimpan saat registrasi (Step 1)
+                // no_wa — update jika dikirim (user lama yang mengisi di Step 2)
+                // Jangan timpa no_wa yang sudah ada dengan null
+
                 'provinsi'                  => $data['provinsi'],
                 'kabupaten'                 => $data['kabupaten'],
                 'kecamatan'                 => $data['kecamatan'],
@@ -165,6 +167,13 @@ class AuthService
                 $path = $data['profile_image']->store('img', 'public');
                 $profileData['profile_image'] = $path;
             }
+
+            // Update no_wa hanya jika dikirim dari form (kasus user lama di Step 2)
+            // Tidak menimpa no_wa yang sudah ada jika field tidak dikirim
+            if (!empty($data['no_wa'])) {
+                $profileData['no_wa'] = $data['no_wa'];
+            }
+
 
             $result = $this->userRepository->updateProfile($userId, $profileData);
 

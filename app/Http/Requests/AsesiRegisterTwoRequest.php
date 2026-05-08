@@ -21,7 +21,15 @@ class AsesiRegisterTwoRequest extends FormRequest
      */
     public function rules(): array
     {
+        $user    = auth()->user();
+        $hasNoWa = $user && $user->userProfile && !empty($user->userProfile->no_wa);
+
         return [
+            // Nomor WhatsApp — wajib hanya untuk user lama yang belum punya
+            'no_wa' => $hasNoWa
+                ? ['nullable', 'string', 'max:20']
+                : ['required', 'string', 'max:20'],
+
             // Identitas Diri
             'nik'                       => ['nullable', 'numeric', 'digits_between:16,16'],
             'nama'                      => ['required', 'string', 'max:255'],

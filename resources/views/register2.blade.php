@@ -160,8 +160,10 @@
                     @error('tanggal_lahir')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
 
-                {{-- No WhatsApp dipindah ke halaman register utama --}}
-                {{-- <div class="md:col-span-2">
+
+                {{-- No WhatsApp — hanya tampil untuk user lama yang belum mengisi --}}
+                @if(!$hasNoWa)
+                <div class="md:col-span-2">
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
                     <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
                         <span class="bg-gray-100 px-3 py-2.5 text-sm text-gray-500 border-r border-gray-300">+62</span>
@@ -170,7 +172,9 @@
                             oninput="this.value=this.value.replace(/\D/g,'')">
                     </div>
                     @error('no_wa')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
-                </div> --}}
+                </div>
+                @endif
+
             </div>
         </div>
 
