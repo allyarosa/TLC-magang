@@ -22,60 +22,55 @@ class ExamController extends Controller
     public function instruction(Request $request)
     {
         $request->validate([
-            'category_id' => 'required|numeric|exists:category_a,id',
+            'category_id' => 'required|numeric',
         ]);
-        
-        $category = CategoryA::findOrFail($request->category_id);
-
-        $viewMap = [
-            1 => 'HOTS',
-            2 => 'PCK',
-            3 => 'LITERASI',
-            4 => 'NUMERASI',
-        ];
-
-        if (!isset($viewMap[$category->id])) {
-            Log::warning('Kategori tidak valid diakses', [
-                'category_id' => $request->category_id,
-                'user_id' => Auth::id(),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->userAgent(),
-            ]);
-
-            return redirect()->back();
-        }
-
+        $category = CategoryA::find($request->category_id);
         $questionCount = QuestionA::where('category_a_id', $category->id)->count();
 
-        return view("user.sertifikasi.levelA.{$viewMap[$category->id]}.instruction", [
-            'category' => $category,
-            'questionCount' => $questionCount,
-        ]);
+        switch ($request->category_id) {
+            case 1:
+                return view('user.sertifikasi.levelA.HOTS.instruction', [
+                    'category' => $category,
+                    'questionCount' => $questionCount
+                ]);
+            case 2:
+                return view('user.sertifikasi.levelA.PCK.instruction', [
+                    'category' => $category,
+                    'questionCount' => $questionCount,
+                ]);
+            case 3:
+                return view('user.sertifikasi.levelA.LITERASI.instruction', [
+                    'category' => $category,
+                    'questionCount' => $questionCount,
+                ]);
+            case 4:
+                return view('user.sertifikasi.levelA.NUMERASI.instruction', [
+                    'category' => $category,
+                    'questionCount' => $questionCount,
+                ]);
+            default:
+                Log::warning('Kategori tidak valid diakses', [
+                    'category_id' => $request->category_id,
+                    'user_id' => Auth::id(),
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent()
+                ]);
+                return redirect()->back();
+        }
     }
 
     public function start(Request $request)
     {
         $validated = $request->validate([
-            'category_id' => 'required|exists:category_a,id'
+            'category_id' => 'required'
         ]);
-
-        // 1. Validate category exists
         $categoryA = CategoryA::find($validated['category_id']);
-        if (!$categoryA) {
-            Log::channel('exam')->warning('Category not found', [
-                'category_id' => $validated['category_id'],
-                'user_id' => Auth::id()
-            ]);
-            return redirect()->back()->with('error', 'Kategori ujian tidak ditemukan.');
-        }
-
         $timeLimit = (int) $categoryA->time_limit;
 
-        // 2. Check for unfinished exam with pessimistic lock to prevent race condition
+        // Check for unfinished exam
         $unfinishedExam = ExamA::where('user_id', Auth::id())
             ->where('category_a_id', $validated['category_id'])
             ->where('status', 'started')
-            ->lockForUpdate()
             ->first();
 
         if ($unfinishedExam) {
@@ -91,7 +86,6 @@ class ExamController extends Controller
 
         DB::beginTransaction();
         try {
-            // 3. Create new exam with transaction
             $exam = ExamA::create([
                 'user_id' => Auth::id(),
                 'category_a_id' => $validated['category_id'],
@@ -104,44 +98,27 @@ class ExamController extends Controller
             Log::channel('exam')->info('New exam started', [
                 'id' => $exam->id,
                 'user_id' => Auth::id(),
-                'category_id' => $validated['category_id'],
-                'time_limit' => $timeLimit
+                'category_id' => $validated['category_id']
             ]);
 
-            // 4. Get random questions for this category
+            // Get random questions for this category
             $questions = QuestionA::where('category_a_id', $validated['category_id'])
-                ->inRandomOrder()
-                ->limit($categoryA->question_count ?? 30)
+                // ->inRandomOrder()
+                ->limit(30)
                 ->get();
 
-            // 5. Validate questions exist
-            if ($questions->isEmpty()) {
-                Log::channel('exam')->warning('No questions found for category', [
-                    'category_id' => $validated['category_id'],
-                    'exam_id' => $exam->id
-                ]);
-                throw new \Exception('Tidak ada soal tersedia untuk kategori ini.');
-            }
-
-            // 6. Attach questions to exam
+            // Attach questions to exam
             foreach ($questions as $question) {
                 $exam->questionsA()->attach($question->id);
             }
 
             DB::commit();
-
-            Log::channel('exam')->info('Exam questions attached', [
-                'exam_id' => $exam->id,
-                'question_count' => $questions->count()
-            ]);
-
         } catch (\Exception $e) {
             DB::rollBack();
             Log::channel('exam')->error('Error starting exam', [
                 'error' => $e->getMessage(),
                 'user_id' => Auth::id(),
-                'category_id' => $validated['category_id'],
-                'trace' => $e->getTraceAsString()
+                'category_id' => $validated['category_id']
             ]);
 
             return redirect()->back()->with('error', 'Gagal memulai ujian. Silakan coba lagi.');
@@ -206,6 +183,13 @@ class ExamController extends Controller
         $questions = $exam->questionsA()->paginate(1);
         $totalQuestions = $exam->questionsA()->count();
         $answeredQuestions = $exam->questionsA()->wherePivotNotNull('user_answer')->count();
+        // dd($answeredQuestions);
+        // $answeredQuestions = $exam->questionsA()
+        //     ->where('category_a_id', 2)
+        //     ->wherePivotNotNull('user_answer')
+        //     ->count();
+
+
 
         return view('user.sertifikasi.levelA.exam.show', [
             'exam' => $exam,
@@ -292,7 +276,7 @@ class ExamController extends Controller
         ]);
 
         $exam->user->givePermissionTo($category->name . '_LOCK');
-
+        
         if ($exam->is_passed && $category) {
             $user = $exam->user;
             event(new ExamCompleted($user, $category));
@@ -342,6 +326,16 @@ class ExamController extends Controller
             $category = (object) ['name' => 'Kategori Tidak Ditemukan'];
         }
 
+        // Set flash message berdasarkan hasil ujian
+        // if ($exam->is_passed) {
+        //     // Hanya tampilkan alert jika bukan dari redirect testimonial
+        //     if (!session('testimonial_success') && !session('show_testimonial_form')) {
+        //         Alert::success('Ujian Selesai', 'Selamat, Anda telah lulus ujian pada kategori ' . $category->name);
+        //     }
+        // } else {
+        //     Alert::error('Ujian Selesai', 'Maaf, Anda belum lulus ujian pada kategori ' . $category->name);
+        // }
+
         // Cek apakah user sudah memberikan testimonial untuk kategori ini
         $userHasTestimonial = Testimonial::where('user_id', Auth::id())
             ->where('category_a_id', $categoryId)
@@ -356,5 +350,9 @@ class ExamController extends Controller
             'category',
             'userHasTestimonial'
         ));
+    }
+    public function continue()
+    {
+        return 'ok';
     }
 }
