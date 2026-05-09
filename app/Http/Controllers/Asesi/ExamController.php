@@ -73,16 +73,14 @@ class ExamController extends Controller
             ->where('status', 'started')
             ->first();
 
-        if ($unfinishedExam) {
-            // Check if exam time has expired
-            if ($unfinishedExam->end_time && now()->gt($unfinishedExam->end_time)) {
-                // Auto finish expired exam
-                $this->autoFinishExpiredExam($unfinishedExam);
-                return redirect()->route('asesi.sertifikasi.level.a.result', $unfinishedExam);
-            }
+        // if ($unfinishedExam) {
+        //     if ($unfinishedExam->end_time && now()->gt($unfinishedExam->end_time)) {
+        //         $this->autoFinishExpiredExam($unfinishedExam);
+        //         return redirect()->route('asesi.sertifikasi.level.a.result', $unfinishedExam);
+        //     }
 
-            return redirect()->route('asesi.sertifikasi.level.a.show', $unfinishedExam);
-        }
+        //     return redirect()->route('asesi.sertifikasi.level.a.show', $unfinishedExam);
+        // }
 
         DB::beginTransaction();
         try {
