@@ -26,3 +26,5 @@ yarn-error.log
 frankenphp
 Caddyfile
 *:Zone.Identifier
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
