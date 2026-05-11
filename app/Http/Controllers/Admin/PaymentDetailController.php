@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PaymentDetailController extends Controller
 {
@@ -13,6 +12,7 @@ class PaymentDetailController extends Controller
     {
         try {
             $query = Payment::with('user');
+            (int) $levelId = $request->input('category_name');
 
             // Filter by status
             if ($request->filled('status')) {
@@ -23,10 +23,16 @@ class PaymentDetailController extends Controller
             if ($request->filled('date_from')) {
                 $query->whereDate('created_at', '>=', $request->date_from);
             }
-
+            // Filter by end date
             if ($request->filled('date_to')) {
                 $query->whereDate('created_at', '<=', $request->date_to);
             }
+
+            // Filter by category level
+            if ($request->filled('category_name')) {
+                $query->where('level_id', $levelId);
+            }
+
 
             // Search by user name, email, or order ID
             if ($request->filled('search')) {
