@@ -25,12 +25,12 @@
 
                 <!-- Total Payments Count -->
                 <div class="text-gray-600 text-sm">
-                    💳 {{ $stats['total_payments'] }} payments
+                    {{ $stats['total_payments'] }} payments
                 </div>
 
                 <!-- Revenue Display -->
                 <div class="text-green-600 text-sm font-medium">
-                    💰 Rp {{ number_format($stats['total_amount'], 0, ',', '.') }}
+                    Rp {{ number_format($stats['total_amount'], 0, ',', '.') }}
                 </div>
 
                 <!-- Actions -->
@@ -200,7 +200,7 @@
                         Apply Filter
                     </button>
                     <a href="{{ route('admin.payments.index') }}"
-                        class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                        class="px-4 py-2 bg-red-500 text-white text-sm rounded-md hover:bg-gray-50 transition-colors">
                         Reset
                     </a>
                 </div>

@@ -30,7 +30,7 @@
             <div class="flex items-center gap-2">
                 <a href="{{ route('admin.payments.index') }}"
                     class="px-3 py-1.5 border text-gray-600 text-sm rounded hover:bg-gray-50">
-                    ← Back to List
+                    Back to List
                 </a>
                 <button onclick="window.print()"
                     class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
@@ -305,8 +305,8 @@
                 <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                 <div class="space-y-2">
                     <button onclick="refreshPaymentStatus({{ $payment->id }})"
-                        class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors">
-                        🔄 Check Payment Status
+                        class="w-full px-4 py-2 bg-brandBlue text-white text-sm rounded-md hover:bg-blue-700 transition-colors">
+                        Check Payment Status
                     </button>
 
                     @if ($payment->status === 'pending')
@@ -318,7 +318,7 @@
                             <button type="submit"
                                 class="w-full px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
                                 onclick="return confirm('Are you sure you want to mark this payment as successful?')">
-                                ✅ Mark as Success
+                                Mark as Success
                             </button>
                         </form>
                     @endif
@@ -328,9 +328,9 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit"
-                            class="w-full px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors"
+                            class="w-full px-4 py-2 bg-brandOrange-dark text-white text-sm rounded-md hover:bg-red-700 transition-colors"
                             onclick="return confirm('Are you sure you want to delete this payment record?')">
-                            🗑️ Delete Payment
+                            Delete Payment
                         </button>
                     </form>
                 </div>
@@ -467,11 +467,6 @@
                 {{-- Info upload & Download button --}}
                 <div class="mt-3 flex items-center justify-between">
                     <div class="text-xs text-gray-400 flex items-center gap-1">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                clip-rule="evenodd" />
-                        </svg>
                         Diupload pada {{ $payment->created_at->format('d M Y, H:i') }}
                     </div>
 
