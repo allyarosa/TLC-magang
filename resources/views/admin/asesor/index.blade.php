@@ -26,10 +26,10 @@
 
                     <span class="text-gray-300">/</span>
 
-                    {{-- Admin Link --}}
+                    {{-- Administrator Link --}}
                     <a href="{{ route('admin.admins.index') }}"
                         class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600 font-semibold' : '' }}">
-                        Admin
+                        Administrator
                     </a>
                 </nav>
             </ol>
@@ -59,7 +59,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.asesor.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-sky-700 text-white text-sm rounded hover:bg-indigo-700">
+                        <button class="px-3 py-1.5 bg-brandBlue text-white text-sm rounded hover:bg-indigo-700">
                             + Tambah Asesor
                         </button>
                     </a>

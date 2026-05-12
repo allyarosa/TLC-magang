@@ -53,6 +53,34 @@
                         </div>
                     </div>
 
+                    <!-- Hak Akses Section -->
+                    <div class="bg-gray-50 p-4 rounded-lg mt-6">
+                        <h4 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b pb-2">
+                            Hak Akses (Permissions)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="permissions[]" value="admin.payment.view" 
+                                    class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    {{ $admin->hasPermissionTo('admin.payment.view') ? 'checked' : '' }}>
+                                <span class="text-sm text-gray-700">Lihat Pembayaran</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="permissions[]" value="admin.payment.confirm" 
+                                    class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    {{ $admin->hasPermissionTo('admin.payment.confirm') ? 'checked' : '' }}>
+                                <span class="text-sm text-gray-700">Konfirmasi Pembayaran</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="permissions[]" value="admin.payment.export" 
+                                    class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    {{ $admin->hasPermissionTo('admin.payment.export') ? 'checked' : '' }}>
+                                <span class="text-sm text-gray-700">Export Laporan Pembayaran</span>
+                            </label>
+                        </div>
+                        <p class="mt-2 text-xs text-gray-500 italic">* Sesuaikan fitur yang diizinkan untuk admin ini.</p>
+                    </div>
+
                     <div class="flex justify-center mt-6">
                         <button type="submit" class="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded">
                             Simpan Perubahan

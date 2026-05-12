@@ -98,25 +98,16 @@ class AuthService
 
             // Preserve pending_payment across Auth::login() which may regenerate session
             $pendingPayment = request()->session()->get('pending_payment');
-            Log::debug('[DEBUG-SERVICE] BEFORE Auth::login — pendingPayment: ' . json_encode($pendingPayment));
-            Log::debug('[DEBUG-SERVICE] Session ID BEFORE: ' . request()->session()->getId());
 
             Auth::login($user);
 
-            Log::debug('[DEBUG-SERVICE] Session ID AFTER Auth::login: ' . request()->session()->getId());
-
             event(new Registered($user));
-
-            Log::debug('[DEBUG-SERVICE] Session ID AFTER event: ' . request()->session()->getId());
 
             if ($pendingPayment) {
                 request()->session()->put('pending_payment', $pendingPayment);
-                Log::debug('[DEBUG-SERVICE] Restored pending_payment: ' . json_encode($pendingPayment));
             } else {
                 Log::debug('[DEBUG-SERVICE] No pending_payment to restore');
             }
-
-            Log::debug('[DEBUG-SERVICE] Final session pending_payment: ' . json_encode(request()->session()->get('pending_payment')));
 
             return $user;
         } catch (Exception $e) {
@@ -212,7 +203,7 @@ class AuthService
     {
         if ($user->hasRole('asesi')) {
             return route('asesi.dashboard');
-        } elseif ($user->hasRole('admin')) {
+        } elseif ($user->hasAnyRole(['admin', 'administrator'])) {
             return route('admin.dashboard');
         } elseif ($user->hasRole('asesor')) {
             return route('asesor.dashboard');

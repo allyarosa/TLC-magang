@@ -338,7 +338,7 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
 // ADMIN ROUTES
 // =========================================================================
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(function () {
     //Log Viewers
     Route::get('logs', [LogViewerController::class, 'index'])->name('admin.logs');
 

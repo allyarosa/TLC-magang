@@ -26,10 +26,10 @@
 
                     <span class="text-gray-300">/</span>
 
-                    {{-- Admin Link --}}
+                    {{-- Administrator Link --}}
                     <a href="{{ route('admin.admins.index') }}"
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.admins.*') ? 'text-blue-600 font-semibold' : '' }}">
-                        Admin
+                        Administrator
                     </a>
                 </nav>
             </ol>

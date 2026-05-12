@@ -2,34 +2,38 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Exception;
-use App\Models\User;
-use App\Models\Level;
-use App\Models\Province;
-use App\Models\CategoryA;
-use App\Models\Questions;
-use App\Models\UserProfile;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStoreRequest;
+use App\Http\Requests\AsesiStoreRequest;
 use App\Imports\UsersImport;
-use Illuminate\Http\Request;
 use App\Models\AdminsProfile;
 use App\Models\AsesorProfile;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Auth\Events\Registered;
+use App\Models\CategoryA;
+use App\Models\Payment;
+use App\Models\Province;
+use App\Models\User;
+use App\Models\UserProfile;
+use App\Services\AdministratorService;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\AsesiStoreRequest;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Validation\Rules\Password;
-use App\Models\Payment;
 
 class AdminDashboardController extends Controller
 {
+    protected $service;
+
+    public function __construct(AdministratorService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $user = User::role('asesi')->get();
@@ -587,7 +591,7 @@ class AdminDashboardController extends Controller
     {
         $search = request('search');
 
-        $query = User::role('admin')->with('adminsProfile')->latest();
+        $query = User::role('administrator')->with('adminsProfile')->latest();
 
         if ($search) {
             $query->where('email', 'like', '%' . $search . '%');
@@ -611,127 +615,29 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    public function adminsStore(Request $request)
+    public function adminsStore(AdminStoreRequest $request)
     {
-        try {
-            DB::beginTransaction();
-
-            $request->validate([
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:8',
-                'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-
-            $user = User::create([
-                'name' => 'Admin ' . $request->email, // karena table kamu butuh name
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-
-            $user->assignRole('admin');
-
-            // $profileImagePath = null;
-            // if ($request->hasFile('profile_image')) {
-            //     $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
-            // }
-            $profileImagePath = $request->file('profile_image')?->store('profile_images', 'public');
-
-
-            // Cek kalau AdminsProfile berhasil buat
-            AdminsProfile::create([
-                'user_id' => $user->id,
-                'profile_image' => $profileImagePath ?? 'blankProfile.png',
-            ]);
-
-            DB::commit();
-
-            return redirect()->route('admin.admins.index')->with('success', 'Admin berhasil ditambahkan.');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return back()->with('error', 'Gagal menambahkan admin: ' . $e->getMessage())->withInput();
-        }
+        return $this->service->storeData($request);
     }
 
     public function adminsDestroy($id)
     {
-        try {
-            DB::beginTransaction();
-
-            $admin = User::with('adminsProfile')->findOrFail($id);
-
-            // Hapus foto kalau ada
-            if ($admin->adminsProfile->profile_image && $admin->adminsProfile->profile_imagen !== 'blankProfile.png') {
-                Storage::disk('public')->delete($admin->adminsProfile->profile_image);
-            }
-
-            $admin->adminsProfile()->delete(); // hapus admin profile nya
-            $admin->delete(); // hapus user nya
-
-            DB::commit();
-
-            return redirect()->route('admin.admins.index')->with('success', 'Admin berhasil dihapus.');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return back()->with('error', 'Gagal menghapus admin: ' . $e->getMessage());
-        }
+        return $this->service->deleteAdminAccount($id);
     }
 
     public function adminsShow($id)
     {
-        try {
-            $admin = User::with('adminsProfile')->findOrFail($id);
-
-            return view('admin.admins.show', compact('admin'));
-        } catch (Exception $e) {
-            return back()->with('error', 'Data admin tidak ditemukan.');
-        }
+        return $this->service->showPageAdmin($id);
     }
 
     public function adminsEdit($id)
     {
-        try {
-            $admin = User::with('adminsProfile')->findOrFail($id);
-
-            return view('admin.admins.edit', compact('admin'));
-        } catch (Exception $e) {
-            return back()->with('error', 'Data admin tidak ditemukan.');
-        }
+        return $this->service->showEditPage($id);
     }
 
-    public function adminsUpdate(Request $request, $id)
+    public function adminsUpdate(AdminStoreRequest $request, $id)
     {
-        try {
-            DB::beginTransaction();
-
-            $admin = AdminsProfile::with('user')->findOrFail($id);
-
-            $request->validate([
-                'email' => 'required|email|unique:users,email,' . $admin->user->id,
-                'password' => 'nullable|min:8',
-                'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-
-            $admin->user->update([
-                'email' => $request->email,
-                'password' => $request->password ? Hash::make($request->password) : $admin->user->password,
-            ]);
-
-            if ($request->hasFile('profile_image')) {
-                // Cek dan hapus file lama kalau ada
-                if ($admin->profile_image && $admin->profile_image !== 'blankProfile.png') {
-                    Storage::disk('public')->delete($admin->profile_image);
-                }
-
-                $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
-                $admin->update(['profile_image' => $profileImagePath]);
-            }
-            DB::commit();
-
-            return redirect()->route('admin.admins.index')->with('success', 'Admin berhasil diperbarui.');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return back()->with('error', 'Gagal memperbarui admin: ' . $e->getMessage())->withInput();
-        }
+        return $this->service->updateAdminAccount($request, $id);
     }
 
     public function showImportForm()
@@ -772,7 +678,7 @@ class AdminDashboardController extends Controller
             'kategori' => $kategori
         ]);
     }
-
+    
     public function impersonate($id)
     {
         $user = User::findOrFail($id);
@@ -786,5 +692,4 @@ class AdminDashboardController extends Controller
 
         return redirect()->route('asesi.dashboard');
     }
-
 }

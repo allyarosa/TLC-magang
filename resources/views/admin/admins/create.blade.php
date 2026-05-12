@@ -9,14 +9,14 @@
                 class="inline-flex items-center px-4 py-2 rounded-lg bg-white text-blue-800 hover:bg-blue-50 transition-colors duration-200 shadow">
                 <i class="mr-2 fa-solid fa-arrow-left-long"></i> Kembali
             </a>
-            <h1 class="text-xl font-bold text-white sm:text-2xl">Buat Pengguna</h1>
+            <h1 class="text-xl font-bold text-white sm:text-2xl">Buat Akun Administrator</h1>
         </div>
 
         <!-- Main form card -->
         <div class="bg-white border border-gray-100 rounded-xl shadow-md overflow-hidden">
             <!-- Form header -->
             <div class="bg-gradient-to-r from-gray-50 to-white p-6 border-b border-gray-100">
-                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                <h3 class="text-xl font-bold text-gray-700 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -142,12 +142,37 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Hak Akses Section -->
+                    <div class="bg-gray-50 p-4 rounded-lg mt-6">
+                        <h4 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b pb-2 dark:text-gray-300">
+                            Hak Akses (Permissions)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="permissions[]" value="admin.payment.view" 
+                                    class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                <span class="text-sm text-gray-700">Lihat Pembayaran</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="permissions[]" value="admin.payment.confirm" 
+                                    class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                <span class="text-sm text-gray-700">Konfirmasi Pembayaran</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="permissions[]" value="admin.payment.export" 
+                                    class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                <span class="text-sm text-gray-700">Export Laporan Pembayaran</span>
+                            </label>
+                        </div>
+                        <p class="mt-2 text-xs text-gray-500 italic">* Centang fitur yang diizinkan untuk administrator ini.</p>
+                    </div>
             </div>
 
             <!-- Submit Button -->
-            <div class="flex items-center justify-center mt-8">
+            <div class="flex items-center justify-center mt-8 mb-8">
                 <button type="submit"
-                    class="px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-[#0C548C] to-[#2E4D69] rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 flex items-center">
+                    class="px-6 py-3 text-base font-medium text-white bg-brandBlue rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 flex items-center rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

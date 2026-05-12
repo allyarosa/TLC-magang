@@ -49,7 +49,7 @@ class LoginForm extends Component
             // Redirect berdasarkan role
             if (auth()->user()->hasRole('asesi')) {
                 return redirect()->route('asesi.dashboard');
-            } else if (auth()->user()->hasRole('admin')) {
+            } else if (auth()->user()->hasAnyRole(['admin', 'administrator'])) {
                 return redirect()->route('admin.dashboard');
             } else if (auth()->user()->hasRole('asesor')) {
                 return redirect()->route('asesor.dashboard');

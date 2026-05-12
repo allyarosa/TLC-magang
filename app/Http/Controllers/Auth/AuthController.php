@@ -48,7 +48,6 @@ class AuthController extends Controller
 
             // Redirect back to checkout if login was triggered from checkout page
             if ($request->filled('checkout')) {
-                Log::debug('[DEBUG-LOGIN] checkout param found: ' . $request->input('checkout'));
                 return redirect()->route('payments.create.public', ['id' => $request->input('checkout')]);
             }
 
