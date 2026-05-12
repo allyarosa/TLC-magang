@@ -57,7 +57,7 @@ class AdministratorService
             DB::beginTransaction();
             $admin = User::with('adminsProfile')->findOrFail($id);
 
-            if ($admin->adminsProfile->profile_image && $admin->adminsProfile->profile_imagen !== 'blankProfile.png') {
+            if ($admin->adminsProfile->profile_image && $admin->adminsProfile->profile_image !== 'blankProfile.png') {
                 Storage::disk('public')->delete($admin->adminsProfile->profile_image);
             }
 

@@ -192,7 +192,7 @@ class ProfileController extends Controller
         try {
             // Handle profile image upload
             if ($request->hasFile('profile_image')) {
-                if ($user->userProfile && $user->userProfile->profile_image) {
+                if ($user->userProfile && $user->userProfile->profile_image && $user->userProfile->profile_image !== 'blankProfile.png') {
                     Storage::disk('public')->delete($user->userProfile->profile_image);
                 }
 
@@ -314,7 +314,7 @@ class ProfileController extends Controller
             $user = Auth::user();
 
             // Hapus foto lama jika ada
-            if ($user->userProfile && $user->userProfile->profile_image) {
+            if ($user->userProfile && $user->userProfile->profile_image && $user->userProfile->profile_image !== 'blankProfile.png') {
                 Storage::disk('public')->delete($user->userProfile->profile_image);
             }
 

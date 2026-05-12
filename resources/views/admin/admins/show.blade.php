@@ -8,7 +8,7 @@
                 class="inline-flex items-center px-4 py-2 rounded-lg bg-white text-blue-800 hover:bg-blue-50 transition-colors duration-200 shadow">
                 <i class="mr-2 fa-solid fa-arrow-left-long"></i> Kembali
             </a>
-            <h1 class="text-xl font-bold text-white sm:text-2xl">Detail Admin</h1>
+            <h1 class="text-xl font-bold text-white sm:text-2xl">Detail Administrator</h1>
         </div>
 
         <div class="bg-white border border-gray-100 rounded-xl shadow-md overflow-hidden p-6">
@@ -18,7 +18,7 @@
                     : asset('assets/img/blank_profile.png') }}"
                     class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-white shadow">
                 <h2 class="text-xl font-bold">{{ $admin->email }}</h2>
-                <p class="text-gray-600">Role: Admin</p>
+                <p class="text-gray-600">Role: Administrator</p>
                 <p class="text-sm mt-1 text-gray-500">Status:
                     <span class="font-semibold">
                         Aktif

@@ -73,7 +73,7 @@
                 <!-- Total Users -->
                 <div class="flex items-center text-sm p-1.5 bg-gray-50 rounded-lg border border-gray-200 w-fit">
                     <span class="text-indigo-500 mr-1.5">
-                        👥
+                        <img src="{{ asset('assets/icons/user.png') }}" alt="user icon" class="w-4 h-4">
                     </span>
                     <span class="text-gray-700 font-semibold">
                         {{ $userCount['user'] }}

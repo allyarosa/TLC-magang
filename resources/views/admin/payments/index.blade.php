@@ -24,13 +24,29 @@
                 </form>
 
                 <!-- Total Payments Count -->
-                <div class="text-gray-600 text-sm">
-                    {{ $stats['total_payments'] }} payments
+                <div class="flex items-center text-sm p-1.5 bg-gray-50 rounded-lg border border-gray-200 w-fit">
+                    <span class="text-indigo-500 mr-1.5">
+                        <img src="{{ asset('assets/icons/credit-card.png') }}" alt="credit card icon" class="w-4 h-4">
+                    </span>
+                    <span class="text-gray-700 font-semibold">
+                        {{ $stats['total_payments'] }}
+                    </span>
+                    <span class="text-gray-600 ml-1 font-semibold">
+                        Payments
+                    </span>
                 </div>
 
                 <!-- Revenue Display -->
-                <div class="text-green-600 text-sm font-medium">
+                {{-- <div class="text-green-600 text-sm font-medium">
                     Rp {{ number_format($stats['total_amount'], 0, ',', '.') }}
+                </div> --}}
+                <div class="flex items-center text-sm p-1.5 bg-gray-50 rounded-lg border border-gray-200 w-fit">
+                    <span class="text-indigo-500 mr-1.5">
+                        <img src="{{ asset('assets/icons/credit-card.png') }}" alt="credit card icon" class="w-4 h-4">
+                    </span>
+                    <span class="text-green-600 ml-1 font-semibold">
+                        Rp {{ number_format($stats['total_amount'], 0, ',', '.') }}
+                    </span>
                 </div>
 
                 <!-- Actions -->

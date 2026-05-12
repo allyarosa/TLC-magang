@@ -599,7 +599,7 @@ class AdminDashboardController extends Controller
 
         $admins = $query->get();
 
-        $userCountAll = User::role('admin')->count();
+        $userCountAll = User::role('administrator')->count();
         $userCount = ['user' => $userCountAll];
 
         return view('admin.admins.index', compact('userCount', 'admins'));

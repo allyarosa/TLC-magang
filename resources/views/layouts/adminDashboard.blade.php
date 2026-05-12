@@ -381,7 +381,7 @@
     </aside>
 
     <main class="p-4 sm:ml-64 mt-16">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-xl bg-white min-h-[calc(100vh-7rem)]">
+        <div class="p-4 rounded-xl min-h-[calc(100vh-7rem)]">
             @yield('content')
         </div>
     </main>
