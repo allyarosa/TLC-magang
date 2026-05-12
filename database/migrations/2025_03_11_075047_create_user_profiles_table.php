@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('latar_belakang_pendidikan', 50)->nullable();
             $table->string('nama_universitas', 50)->nullable();
-            $table->string('program_studi', 50)->nullable();
+            $table->string('program_studi', 100)->nullable();
             $table->string('tahun_studi', 50)->nullable();
 
             $table->string('tempat_lahir', 25)->nullable();
