@@ -4,19 +4,19 @@
         <div class="space-y-1">
             <span
                 class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-brandGreen text-white">
-                PROFILE ANDA SUDAH SELESAI 
+                Pendaftaran Level A
             </span>
             <h3 class="text-4xl font-display font-extrabold text-gray-700">Halo, {{ Auth::user()->name }}! 👋</h3>
         </div>
-        <p class="text-on-surface-variant max-w-md" style="">Kamu sudah hampir selesai,
-            profilmu belum lengkap. Segera lengkapi data profil untuk melanjutkan proses sertifikasi
-            pertama.</p>
-        <a href="{{ route('asesi.profile') }}"
+        <p class="text-on-surface-variant max-w-md" style="">Kamu tinggal selangkah lagi menuju sertifikasi Level A
+            Segera melakukan pendaftaran Level A untuk melanjutkan Perjalanan Kompetensimu!</p>
+        <a href="{{  route('payments.create', Hashids::encode($levels[0]->id)) }}"
             class="bg-gradient-to-br from-brandBlue to-[#006684] text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity inline-flex w-fit">
-            Lanjutkan Pengisian
+            Daftar Sekarang
             <x-icons :iconName="'arrow_forward'" />
         </a>
     </div>
 
-    <x-asesi.dashboard-progress-donut :profileCompletion="$profileCompletion" />
+    {{-- <x-asesi.dashboard-progress-donut :profileCompletion="$profileCompletion" /> --}}
+    <x-asesi.dashboard-level-card/>
 </div>

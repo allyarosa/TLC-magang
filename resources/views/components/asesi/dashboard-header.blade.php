@@ -24,7 +24,7 @@
             <div class="lg:hidden flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
                 <!-- Notification Icon for Mob  ile -->
                 <livewire:notification-modal />
-                <button id="mobile-menu-toggle" onclick="window.toggleMobileMenu()"
+                <button id="mobile-menu-toggle" onclick="event.stopPropagation(); window.toggleMobileMenu();"
                     class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
                     <svg id="hamburger-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@
 
                 <!-- Profile Dropdown -->
                 <div class="relative">
-                    <button id="profile-button-asesi" onclick="window.toggleProfileMenu()"
+                    <button id="profile-button-asesi" onclick="event.stopPropagation(); window.toggleProfileMenu();"
                         class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/30">
                         <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}"
                             alt="Profile Image" class="w-9 h-9 rounded-full object-cover border-2 border-blue-500">

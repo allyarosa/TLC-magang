@@ -56,10 +56,11 @@
                     <!-- Welcome Hero & Stats -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                         @if ($profileCompletion >= 100 && !Auth::user()->hasPermissionTo('access_level_A'))
-                        <x-asesi.dashboard-level-a-cta :profile-completion="$profileCompletion" />
+                        <x-asesi.dashboard-level-a-cta :profile-completion="$profileCompletion" :levels="$levels" />
                         @else
                         <x-asesi.dashboard-profile-completion-card :profile-completion="$profileCompletion" />
                         @endif
+                        
                         <x-asesi.dashboard-stats-grid :days-since-joined="$daysSinceJoined" />
                     </section>
                     <!-- Journey Roadmap -->
