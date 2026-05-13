@@ -116,7 +116,7 @@ class AuthController extends Controller
             return redirect()->route('asesi.dashboard')->with('success', 'Data berhasil disimpan');
         } catch (Exception $e) {
             return redirect()->back()
-                ->withErrors(['error' => 'Terjadi kesalahan saat ingin membuat akun baru: ' . $e->getMessage()])
+                ->withErrors(['error' => 'Terjadi kesalahan saat ingin membuat akun baru: '])
                 ->withInput();
         }
     }

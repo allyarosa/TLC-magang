@@ -31,7 +31,7 @@
 </style>
 <body>
     <x-asesi.dashboard-header />
-    {{-- <x-asesi.dashboard-sidebar /> --}}
+    <x-asesi.dashboard-sidebar />
     <main class="bg-gray-100">
         @yield('content')
     </main>

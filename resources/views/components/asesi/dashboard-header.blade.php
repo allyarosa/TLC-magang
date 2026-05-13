@@ -24,7 +24,7 @@
             <div class="lg:hidden flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
                 <!-- Notification Icon for Mob  ile -->
                 <livewire:notification-modal />
-                <button id="mobile-menu-toggle"
+                <button id="mobile-menu-toggle" onclick="window.toggleMobileMenu()"
                     class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
                     <svg id="hamburger-icon" class="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@
 
                 <!-- Profile Dropdown -->
                 <div class="relative">
-                    <button id="profile-button-asesi"
+                    <button id="profile-button-asesi" onclick="window.toggleProfileMenu()"
                         class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/30">
                         <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}"
                             alt="Profile Image" class="w-9 h-9 rounded-full object-cover border-2 border-blue-500">
@@ -214,108 +214,77 @@
     </nav>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle functionality
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        window.toggleMobileMenu = function() {
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerIcon = document.getElementById('hamburger-icon');
             const closeIcon = document.getElementById('close-icon');
 
-            // if (mobileMenuToggle && mobileMenu) {
-            if (mobileMenuToggle && mobileMenu && hamburgerIcon && closeIcon) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    // Check if menu is currently hidden
-                    const isHidden = mobileMenu.classList.contains('opacity-0');
+            if (!mobileMenu) return;
 
-                    if (isHidden) {
-                        // Show menu
-                        mobileMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
-                        mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            const isHidden = mobileMenu.classList.contains('opacity-0');
 
-                        // Switch icons
-                        hamburgerIcon.classList.add('hidden');
-                        closeIcon.classList.remove('hidden');
-                    } else {
-                        // Hide menu
-                        mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                        mobileMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
-
-                        // Switch icons
-                        hamburgerIcon.classList.remove('hidden');
-                        closeIcon.classList.add('hidden');
-                    }
-                });
-
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                        // Hide menu
-                        mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                        mobileMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
-
-                        // Reset icons
-                        hamburgerIcon.classList.remove('hidden');
-                        closeIcon.classList.add('hidden');
-                    }
-                });
+            if (isHidden) {
+                mobileMenu.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                if (hamburgerIcon) hamburgerIcon.classList.add('hidden');
+                if (closeIcon) closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+                if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+                if (closeIcon) closeIcon.classList.add('hidden');
             }
+        };
 
-            // Profile dropdown functionality
-            const profileButton = document.getElementById('profile-button-asesi');
+        window.toggleProfileMenu = function() {
             const profileMenu = document.getElementById('profile-menu-asesi');
             const profileArrow = document.getElementById('profile-arrow');
+            
+            if (profileMenu) profileMenu.classList.toggle('hidden');
+            if (profileArrow) profileArrow.classList.toggle('rotate-180');
+        };
 
+        if (!window.dashboardHeaderEventDelegation) {
+            window.dashboardHeaderEventDelegation = true;
 
-            if (profileButton && profileMenu && profileArrow) {
-                profileButton.addEventListener('click', function() {
-                    profileMenu.classList.toggle('hidden');
-                    profileArrow.classList.toggle('rotate-180');
-                });
-
-                document.addEventListener('click', function(event) {
-                    if (!profileButton.contains(event.target)) {
-                        profileMenu.classList.add('hidden');
-                        profileArrow.classList.remove('rotate-180');
+            document.addEventListener('click', function(event) {
+                // Click outside Mobile Menu
+                const mobileMenu = document.getElementById('mobile-menu');
+                const mobileToggle = document.getElementById('mobile-menu-toggle');
+                if (mobileMenu && !mobileMenu.classList.contains('opacity-0')) {
+                    if (!mobileMenu.contains(event.target) && (!mobileToggle || !mobileToggle.contains(event.target))) {
+                        window.toggleMobileMenu();
                     }
-                });
-            }
+                }
 
-            // Notification modal functionality
-            const notificationButton = document.getElementById('notification-button');
-            const notificationModal = document.getElementById('notification-modal');
+                // Click outside Profile Menu
+                const profileMenu = document.getElementById('profile-menu-asesi');
+                const profileToggle = document.getElementById('profile-button-asesi');
+                if (profileMenu && !profileMenu.classList.contains('hidden')) {
+                    if (!profileMenu.contains(event.target) && (!profileToggle || !profileToggle.contains(event.target))) {
+                        window.toggleProfileMenu();
+                    }
+                }
 
-            if (notificationButton && notificationModal) {
-                notificationButton.addEventListener('click', function(event) {
-                    event.stopPropagation();
+                // Handle Notification Toggle via delegation
+                const notificationToggle = event.target.closest('#notification-button');
+                const notificationModal = document.getElementById('notification-modal');
+                
+                if (notificationToggle && notificationModal) {
                     notificationModal.classList.toggle('hidden');
-                });
-
-                document.addEventListener('click', function(event) {
-                    if (!notificationModal.contains(event.target) && !notificationButton.contains(event
-                            .target)) {
+                } else if (notificationModal && !notificationModal.classList.contains('hidden')) {
+                    const notifBtn = document.getElementById('notification-button');
+                    if (!notificationModal.contains(event.target) && (!notifBtn || !notifBtn.contains(event.target))) {
                         notificationModal.classList.add('hidden');
                     }
-                });
-            }
-
-            // Close mobile menu when a nav link is clicked (for better UX)
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    // Check if we're in mobile view and menu is open
-                    if (window.innerWidth < 1024 && !mobileMenu.classList.contains('opacity-0')) {
-                        // Hide menu
-                        mobileMenu.classList.remove('opacity-100', 'translate-y-0',
-                            'pointer-events-auto');
-                        mobileMenu.classList.add('opacity-0', '-translate-y-4',
-                            'pointer-events-none');
-
-                        // Reset icons
-                        hamburgerIcon.classList.remove('hidden');
-                        closeIcon.classList.add('hidden');
-                    }
-                });
+                }
+                
+                // Handle Mobile Nav Links (Close menu when clicked)
+                const navLink = event.target.closest('.nav-link');
+                if (navLink && window.innerWidth < 1024 && mobileMenu && !mobileMenu.classList.contains('opacity-0')) {
+                    window.toggleMobileMenu();
+                }
             });
-        });
+        }
     </script>
 </header>

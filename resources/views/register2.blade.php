@@ -40,18 +40,18 @@
     {{-- Step Indicator --}}
     <div class="flex items-center justify-center gap-0 mb-8">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-sm font-bold">✓</div>
+            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-sm font-bold hidden sm:flex">✓</div>
             <span class="text-sm font-medium text-green-600">Buat Akun</span>
-        </div>
-        <div class="w-16 h-0.5 bg-primary mx-2"></div>
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold">2</div>
-            <span class="text-sm font-bold text-primary">Data Profil</span>
         </div>
         <div class="w-16 h-0.5 bg-gray-300 mx-2"></div>
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 text-sm font-bold">3</div>
-            <span class="text-sm text-gray-400">Dashboard</span>
+            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white text-sm font-bold hidden sm:flex">2</div>
+            <span class="text-sm font-bold text-gray-400">Data Profil</span>
+        </div>
+        <div class="w-16 h-0.5 bg-gray-300 mx-2"></div>
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 text-sm font-bold hidden sm:flex">3</div>
+            <span class="text-sm text-gray-400 font-bold">Dashboard</span>
         </div>
     </div>
 
@@ -89,7 +89,7 @@
         {{-- ===== SECTION 1: FOTO PROFIL ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
             <h2 class="text-base font-bold text-navy mb-4 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold">📷</span>
+                {{-- <span class="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold">📷</span> --}}
                 Foto Profil <span class="text-gray-400 font-normal text-sm">(opsional)</span>
             </h2>
             <div class="flex flex-col items-center">
@@ -102,7 +102,7 @@
                 </div>
                 <input id="profile_image" name="profile_image" type="file" accept=".jpg,.jpeg,.png"
                     onchange="previewImage(event)" class="hidden">
-                <label for="profile_image" class="text-sm text-primary font-medium cursor-pointer hover:underline">
+                <label for="profile_image" class="text-sm text-gray-700 font-medium cursor-pointer hover:underline">
                     Upload Foto Profil
                 </label>
                 <p class="text-xs text-gray-400 mt-1">JPG, JPEG, PNG. Maks 2MB.</p>
@@ -111,7 +111,7 @@
 
         {{-- ===== SECTION 2: IDENTITAS DIRI ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
-            <h2 class="text-base font-bold text-navy mb-4">👤 Identitas Diri</h2>
+            <h2 class="text-base font-bold text-navy mb-4">Identitas Diri</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 {{-- Nama Depan (dengan gelar) --}}
@@ -136,7 +136,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Jenis Kelamin <span class="text-red-500">*</span></label>
                     <select name="jenis_kelamin" required
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
                         <option value="" disabled {{ old('jenis_kelamin') ? '' : 'selected' }}>-- Pilih --</option>
                         <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-Laki</option>
                         <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
@@ -148,7 +148,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Tempat Lahir <span class="text-red-500">*</span></label>
                     <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir') }}" placeholder="Kota kelahiran"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint" required>
+                        class="w-full border text-gray-700 border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint" required>
                     @error('tempat_lahir')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
 
@@ -180,14 +180,14 @@
 
         {{-- ===== SECTION 3: PEKERJAAN & INSTANSI ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
-            <h2 class="text-base font-bold text-navy mb-4">🏢 Pekerjaan & Instansi</h2>
+            <h2 class="text-base font-bold text-navy mb-4">Pekerjaan & Instansi</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 {{-- Profesi --}}
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Profesi <span class="text-red-500">*</span></label>
                     <select name="profesi" required
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
                         <option value="" disabled {{ old('profesi') ? '' : 'selected' }}>-- Pilih Profesi --</option>
                         @foreach(['Guru', 'Dosen', 'Trainer / Instruktur', 'Kepala Sekolah', 'Pengawas / Supervisor', 'Tenaga Kependidikan', 'Mahasiswa', 'Lainnya'] as $p)
                             <option value="{{ $p }}" {{ old('profesi') == $p ? 'selected' : '' }}>{{ $p }}</option>
@@ -200,7 +200,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Lama Masa Kerja <span class="text-gray-400 font-normal">(opsional)</span></label>
                     <select name="lama_masa_kerja"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
                         <option value="">-- Pilih --</option>
                         @foreach(['< 1 tahun', '1–3 tahun', '4–6 tahun', '7–10 tahun', '> 10 tahun'] as $lm)
                             <option value="{{ $lm }}" {{ old('lama_masa_kerja') == $lm ? 'selected' : '' }}>{{ $lm }}</option>
@@ -213,7 +213,7 @@
                 <div class="md:col-span-2">
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Jenis Instansi <span class="text-red-500">*</span></label>
                     <select id="instansi" name="instansi" onchange="showCustomInput()" required
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
                         <option value="" disabled {{ old('instansi') ? '' : 'selected' }}>-- Pilih Instansi --</option>
                         @foreach(['Perguruan Tinggi', 'Pemerintah', 'Sekolah Menengah Atas', 'Sekolah Menengah Kejuruan', 'Sekolah Menengah Pertama', 'Sekolah Dasar', 'Lembaga Kursus', 'Lainnya'] as $inst)
                             <option value="{{ $inst }}" {{ old('instansi') == $inst ? 'selected' : '' }}>{{ $inst }}</option>
@@ -234,7 +234,7 @@
 
         {{-- ===== SECTION 4: LATAR BELAKANG PENDIDIKAN ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
-            <h2 class="text-base font-bold text-navy mb-1">🎓 Latar Belakang Pendidikan</h2>
+            <h2 class="text-base font-bold text-navy mb-1">Latar Belakang Pendidikan</h2>
             <p class="text-xs text-gray-400 mb-4">Semua field di bagian ini opsional</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -242,7 +242,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Jenjang Pendidikan</label>
                     <select name="latar_belakang_pendidikan"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
                         <option value="">-- Pilih --</option>
                         @foreach(['SMA/SMK', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3', 'Lainnya'] as $jenjang)
                             <option value="{{ $jenjang }}" {{ old('latar_belakang_pendidikan') == $jenjang ? 'selected' : '' }}>{{ $jenjang }}</option>
@@ -254,7 +254,7 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Tahun Lulus</label>
                     <input type="text" name="tahun_studi" value="{{ old('tahun_studi') }}" placeholder="Contoh: 2018"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint"
                         maxlength="4" oninput="this.value=this.value.replace(/\D/g,'')">
                 </div>
 
@@ -262,21 +262,21 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Universitas / Sekolah</label>
                     <input type="text" name="nama_universitas" value="{{ old('nama_universitas') }}" placeholder="Nama institusi pendidikan"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint">
                 </div>
 
                 {{-- Program Studi --}}
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Program Studi / Jurusan</label>
                     <input type="text" name="program_studi" value="{{ old('program_studi') }}" placeholder="Contoh: Pendidikan Matematika"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint">
                 </div>
             </div>
         </div>
 
         {{-- ===== SECTION 5: WILAYAH ===== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 section-card">
-            <h2 class="text-base font-bold text-navy mb-4">📍 Wilayah Domisili</h2>
+            <h2 class="text-base font-bold text-navy mb-4">Wilayah Domisili</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 {{-- Provinsi --}}
@@ -331,7 +331,7 @@
         {{-- Submit Button --}}
         <button type="submit"
             class="w-full bg-gradient-to-r from-brandBlue to-navy text-white font-bold py-3.5 px-6 rounded-xl hover:from-[#063B67] hover:to-[#1C3A58] transition-all duration-200 shadow-md text-base">
-            Simpan & Lanjutkan ke Dashboard →
+            Simpan & Lanjutkan ke Dashboard
         </button>
 
         <p class="text-center text-xs text-gray-400 pb-6">
