@@ -202,6 +202,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:asesi', 'last_seen', 'profile.complete'])->prefix('asesi')->group(function () {
     // Dashboard
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
+    Route::get('/coming-soon', [AsesiDashboardController::class, 'comingSoon'])->name('asesi.coming-soon');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');
 
     // Registration Steps (excluded from profile.complete via withoutMiddleware)

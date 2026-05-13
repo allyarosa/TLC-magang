@@ -19,7 +19,7 @@ class AsesiDashboardController extends Controller
         $data = $this->dashboardService->getData();
         // dd($data['profileCompletion']);
 
-        return view('dashboard.asesi.dashboardOLD', [
+        return view('dashboard.asesi.dashboard', [
             'levels' => $data['levels'] ?? [],
             'featuredTestimonials' => $data['featuredTestimonials'] ?? [],
             'daysSinceJoined' => $data['daysSinceJoined'] ?? [],
@@ -32,5 +32,10 @@ class AsesiDashboardController extends Controller
         $data = $this->dashboardService->getData();
 
         return response()->json($data['featuredTestimonials']);
+    }
+
+    public function comingSoon()
+    {
+        return view('dashboard.asesi.coming-soon');
     }
 }

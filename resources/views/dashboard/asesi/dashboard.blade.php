@@ -26,9 +26,9 @@
         </script>
         <style>
             /* body {
-                        background-color: #f7f9fc;
-                        color: #181c1e;
-                    } */
+                            background-color: #f7f9fc;
+                            color: #181c1e;
+                        } */
 
             .font-display {
                 font-family: 'Manrope', sans-serif;
@@ -56,63 +56,23 @@
                     <!-- Welcome Hero & Stats -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                         @if ($profileCompletion >= 100 && !Auth::user()->hasPermissionTo('access_level_A'))
-                        <x-asesi.dashboard-level-a-cta :profile-completion="$profileCompletion" :levels="$levels" />
+                            <x-asesi.dashboard-level-a-cta :profile-completion="$profileCompletion" :levels="$levels" />
                         @else
-                        <x-asesi.dashboard-profile-completion-card :profile-completion="$profileCompletion" />
+                            <x-asesi.dashboard-profile-completion-card :profile-completion="$profileCompletion" />
                         @endif
-                        
+
                         <x-asesi.dashboard-stats-grid :days-since-joined="$daysSinceJoined" />
                     </section>
+
                     <!-- Journey Roadmap -->
-                    <section class="bg-white p-8 rounded-xl shadow-sm">
-                        <h4 class="text-sm font-bold text-outline uppercase tracking-widest mb-10" style="">Peta
-                            Perjalanan Kompetensi</h4>
-                        <div class="relative flex justify-between items-center max-w-4xl mx-auto">
-                            <!-- Progress Line -->
-                            <div class="absolute top-1/2 left-0 w-full h-0.5 bg-outline-variant/20 -translate-y-1/2 -z-10">
-                            </div>
-                            <div class="absolute top-1/2 left-0 w-1/3 h-0.5 bg-secondary -translate-y-1/2 -z-10"></div>
-                            <!-- Nodes -->
-                            <div class="flex flex-col items-center gap-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg shadow-secondary/20">
-                                    <span class="material-symbols-outlined" style="">star</span>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-sm font-bold text-primary" style="">Level A</p>
-                                    <p class="text-[10px] font-semibold text-secondary" style="">Aktif · 78%</p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-center gap-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-surface-dim text-outline flex items-center justify-center">
-                                    <span class="material-symbols-outlined"
-                                        style='font-variation-settings: "FILL" 1;'>lock</span>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-sm font-bold text-outline" style="">Level B</p>
-                                    <p class="text-[10px] font-semibold text-outline-variant" style="">Terkunci</p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-center gap-3">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-surface-dim text-outline flex items-center justify-center">
-                                    <span class="material-symbols-outlined"
-                                        style='font-variation-settings: "FILL" 1;'>lock</span>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-sm font-bold text-outline" style="">Level C</p>
-                                    <p class="text-[10px] font-semibold text-outline-variant" style="">Terkunci</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    {{-- <livewire:asesi.dashboard.journey-roadmap /> --}}
+
                     <!-- Grid Layout for Details & Tasks -->
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <!-- Left Column -->
                         <div class="lg:col-span-8 space-y-8">
                             <!-- Current Level Detail -->
-                            <div>
+                            {{-- <section>
                                 <div class="flex items-center justify-between mb-6">
                                     <h3 class="text-xl font-display font-bold text-on-surface" style="">
                                         Sub-Kompetensi Level A</h3>
@@ -122,7 +82,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <!-- HOTS Card -->
                                     <div
-                                        class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
+                                        class="bg-white p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
                                         <div class="flex justify-between items-start mb-4">
                                             <div
                                                 class="w-10 h-10 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-700">
@@ -140,7 +100,7 @@
                                     </div>
                                     <!-- PCK Card -->
                                     <div
-                                        class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
+                                        class="bg-white p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
                                         <div class="flex justify-between items-start mb-4">
                                             <div
                                                 class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-700">
@@ -158,7 +118,7 @@
                                     </div>
                                     <!-- Literasi -->
                                     <div
-                                        class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
+                                        class="bg-white p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
                                         <div class="flex justify-between items-start mb-4">
                                             <div
                                                 class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-700">
@@ -175,7 +135,7 @@
                                     </div>
                                     <!-- Numerasi -->
                                     <div
-                                        class="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
+                                        class="bg-white p-5 rounded-lg border border-outline-variant/10 hover:shadow-md transition-shadow">
                                         <div class="flex justify-between items-start mb-4">
                                             <div
                                                 class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700">
@@ -191,9 +151,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </section> --}}
                             <!-- Training Online -->
-                            <div class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
+                            {{-- <section class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
                                 <div
                                     class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full -mr-20 -mt-20">
                                 </div>
@@ -228,12 +188,12 @@
                                         Masuk Ruang Virtual
                                     </button>
                                 </div>
-                            </div>
+                            </section> --}}
                         </div>
                         <!-- Right Column (Focused Rail) -->
                         <div class="lg:col-span-4 space-y-8">
                             <!-- Active Tasks -->
-                            <section class="bg-surface-container-low p-6 rounded-xl">
+                            {{-- <section class="bg-surface-container-low p-6 rounded-xl">
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Tugas Hari Ini</h3>
                                 <div class="space-y-4">
@@ -283,9 +243,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                             <!-- Belajar Mandiri -->
-                            <section>
+                            {{-- <section>
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Belajar Mandiri</h3>
                                 <div class="space-y-3">
@@ -317,17 +277,17 @@
                                             style="">Isi Refleksi</button>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                         </div>
                     </div>
                     <!-- Bottom Sections: Certificates & Transactions -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <!-- Sertifikat Diraih -->
-                        <div class="lg:col-span-8">
+                        {{-- <section class="lg:col-span-8">
                             <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Sertifikat
                                 Diraih</h3>
                             <div
-                                class="bg-surface-container-low rounded-xl p-12 flex flex-col items-center justify-center text-center border-2 border-dashed border-outline-variant/30">
+                                class="bg-white rounded-xl p-12 flex flex-col items-center justify-center text-center border-2 border-dashed border-outline-variant/30">
                                 <div
                                     class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-4">
                                     <span class="material-symbols-outlined text-5xl" style="">card_membership</span>
@@ -341,9 +301,9 @@
                                     <span class="material-symbols-outlined text-sm" style="">open_in_new</span>
                                 </button>
                             </div>
-                        </div>
+                        </section> --}}
                         <!-- Riwayat Transaksi -->
-                        <div class="lg:col-span-4">
+                        {{-- <div class="lg:col-span-4">
                             <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Riwayat
                                 Transaksi</h3>
                             <div class="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -380,6 +340,91 @@
                                     class="w-full py-3 text-xs font-bold text-outline hover:bg-slate-50 transition-colors uppercase tracking-widest"
                                     style="">Lihat Semua Transaksi</button>
                             </div>
+                        </div> --}}
+                    </section>
+
+                    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        <!-- Level A Card -->
+                        <div
+                            class="pricing-card bg-white rounded-3xl shadow-lg relative overflow-hidden transition-all duration-300 border-2 border-blue-200">
+                            {{-- IMAGE CARD --}}
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/blue_bg.webp" alt="Level A Image"
+                                gradientColor="from-blue-200" />
+
+                            <div class="p-8 relative z-10">
+                                <!-- RECOMENDED RIBBON -->
+                                <x-populer-ribbon label="Recommended" />
+                                <!-- HEADER -->
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL A"
+                                    title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
+                                    labelColor="sky-700" titleColor="[#20416a]" />
+                                <!-- PRICE -->
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="slate-700"
+                                    discount="{{ $levels[0]->discount ?? 0 }}" />
+                                <!-- FEATURES -->
+                                <ul class="space-y-3 mb-8">
+                                    <livewire:asesi.dashboard.feature-item label="Uji Literasi & Numerasi" />
+                                    <livewire:asesi.dashboard.feature-item label="Pedagogical Content Knowledge" />
+                                    <livewire:asesi.dashboard.feature-item label="Higher Order Thinking Skills" />
+                                    <livewire:asesi.dashboard.feature-item label="Sertifikat Digital" />
+                                </ul>
+                                <!-- BUTTON -->
+                                <livewire:asesi.access-button :levels="$levels" selectedLevel="A" />
+                            </div>
+                        </div>
+
+                        <!-- Level B Card -->
+                        <div
+                            class="pricing-card bg-white rounded-3xl shadow-md relative overflow-hidden transition-all duration-300 border-2 border-teal-200">
+                            {{-- IMAGE CARD --}}
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/green_bg.webp"
+                                alt="Level B Image" gradientColor="from-green-200" />
+
+                            <div class="p-8 relative z-10">
+                                {{-- HEADER --}}
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL B"
+                                    title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
+                                    labelColor="[#2A9D8F]" titleColor="emerald-800" />
+                                <!-- PRICE -->
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="slate-700"
+                                    discount="{{ $levels[1]->discount ?? 0 }}" />
+                                <!-- FEATURES -->
+                                <ul class="space-y-3 mb-8">
+                                    <livewire:asesi.dashboard.feature-item label="Merancang Modul Ajar (RPP)" />
+                                    <livewire:asesi.dashboard.feature-item label="Pengembangan Materi Visual" />
+                                    <livewire:asesi.dashboard.feature-item label="Penyusunan Lembar Kerja" />
+                                    <livewire:asesi.dashboard.feature-item label="Mentoring Grup (2 Sesi)" />
+                                </ul>
+                                <!-- BUTTON -->
+                                <livewire:asesi.access-button :levels="$levels" selectedLevel="B" />
+                            </div>
+                        </div>
+
+                        <!-- Level C Card -->
+                        <div
+                            class="pricing-card bg-white rounded-3xl shadow-md relative overflow-hidden transition-all duration-300 border-2 border-orange-200">
+                            {{-- IMAGE CARD --}}
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/orange_bg.webp"
+                                alt="Level C Image" gradientColor="from-orange-200" />
+                            <div class="p-8 relative z-10">
+                                <!-- HEADER -->
+                                <livewire:asesi.dashboard.payment-card-header label="LEVEL C"
+                                    title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
+                                    labelColor="[#E76F51]" titleColor="amber-700" />
+                                <!-- PRICE -->
+                                <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="slate-700"
+                                    discount="{{ $levels[2]->discount ?? 0 }}" />
+                                <!-- FEATURES -->
+                                <ul class="space-y-3 mb-8">
+                                    <livewire:asesi.dashboard.feature-item label="Teaching Mastery Framework" />
+                                    <livewire:asesi.dashboard.feature-item label="Self-Review & Feedback Loop" />
+                                    <livewire:asesi.dashboard.feature-item label="Sesi Mentoring Pribadi (6x)" />
+                                    <livewire:asesi.dashboard.feature-item label="Sertifikat Premium" />
+                                </ul>
+                                <!-- BUTTON -->
+                                <livewire:asesi.access-button :levels="$levels" selectedLevel="C" />
+                            </div>
+
                         </div>
                     </section>
                 </div>

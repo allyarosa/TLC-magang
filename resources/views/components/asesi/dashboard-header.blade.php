@@ -1,6 +1,6 @@
 <header class="mb-16">
     <nav
-        class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] shadow-sm border-b border-white/20 overflow-visible">
+        class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] overflow-visible">
         <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-3 px-4 lg:px-8">
             <!-- Brand Section -->
             <div class="flex items-center space-x-2 sm:space-x-3 group flex-1 min-w-0 lg:flex-none">
@@ -40,7 +40,7 @@
             </div>
 
             <!-- Navigation Menu for Desktop - Centered -->
-            <div class="hidden lg:flex items-center justify-center gap-6 flex-1">
+            {{-- <div class="hidden lg:flex items-center justify-center gap-6 flex-1">
                 @php
                     $navs = [
                         ['name' => 'Dashboard', 'route' => 'asesi.dashboard'],
@@ -60,7 +60,7 @@
                         {{ $nav['name'] }}
                     </a>
                 @endforeach
-            </div>
+            </div> --}}
 
             <!-- Right Section (Profile & Notifications) for Desktop -->
             <div class="hidden lg:flex items-center space-x-4 flex-shrink-0">

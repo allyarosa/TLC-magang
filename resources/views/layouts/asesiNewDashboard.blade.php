@@ -29,10 +29,10 @@
         transform: rotate(180deg);
     }
 </style>
+
 <body>
     <x-asesi.dashboard-header />
-    <x-asesi.dashboard-sidebar />
-    <main class="bg-blue-100/60">
+    <main class="bg-gray-100">
         @yield('content')
     </main>
     @include('layouts.footer')

@@ -1,9 +1,8 @@
 <nav class="flex flex-col gap-1">
-    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.dashboard') }}" icon="Dashboard" text="Dashboard"
-        routeName="asesi.dashboard" />
-    <x-asesi.dashboard-sidebar-item href="{{ 'asesi.courses' }}" icon="auto_stories" text="My Courses" />
-    <x-asesi.dashboard-sidebar-item href="{{ 'asesi.courses' }}" icon="local_library" text="My Resources" />
-    <x-asesi.dashboard-sidebar-item href="{{ 'asesi.certificates' }}" icon="workspace_premium" text="Certificates" />
-    <x-asesi.dashboard-sidebar-item href="{{ 'asesi.transactions' }}" icon="receipt_long" text="Transactions" />
-    <x-asesi.dashboard-sidebar-item href="{{ 'asesi.settings' }}" icon="settings" text="Settings" />
+    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.dashboard') }}" icon="Dashboard" text="Dashboard" routeName="asesi.dashboard" />
+    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.sertifikasi') }}" icon="workspace_premium" text="Sertifikasi" routeName="asesi.sertifikasi" />
+    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.transaksi') }}" icon="receipt_long" text="Transaksi" routeName="asesi.transaksi" />
+    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.coming-soon') }}" icon="auto_stories" text="My Courses" routeName="asesi.coming-soon" />
+    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.coming-soon') }}" icon="local_library" text="My Resources" routeName="asesi.coming-soon"/>
+    <x-asesi.dashboard-sidebar-item href="{{ route('asesi.coming-soon') }}" icon="settings" text="Settings" routeName="asesi.coming-soon"/>
 </nav>
