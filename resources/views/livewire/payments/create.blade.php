@@ -190,7 +190,7 @@
                                             <div>
                                                 <div class="flex items-center gap-2 mb-1">
                                                     <span class="text-white/60 line-through text-sm">Rp
-                                                        {{ number_format(count($categories) * $categoryPrice, 0, ',', '.') }}</span>
+                                                        {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}</span>
                                                     <span
                                                         class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">-Rp
                                                         {{ number_format($this->savings, 0, ',', '.') }}</span>
@@ -248,7 +248,7 @@
                                 {{-- Category Cards Grid --}}
                                 <div
                                     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
-                                    @foreach ($categories as $cat)
+                                    @foreach ($categories as $index => $cat)
                                         <div wire:click="toggleCategory('{{ $cat['id'] }}')"
                                             class="relative bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-300 group shadow-md
                                                 {{ in_array($cat['id'], $selectedCategories) ? 'ring-2 border-' . $cat['color'] . '-500 bg-' . $cat['color'] . '-50/50' : 'border-gray-200 hover:border-' . $cat['color'] . '-300 hover:bg-gray-50' }}">
@@ -314,7 +314,7 @@
                                             <!-- Price -->
                                             <div class="flex items-baseline gap-1">
                                                 <span class="text-2xl font-extrabold text-{{ $cat['color'] }}-600">Rp
-                                                    {{ number_format($categoryPrice, 0, ',', '.') }}</span>
+                                                    {{ number_format($cat['price'] ?? $categoryPrice, 0, ',', '.') }}</span>
                                                 <span class="text-sm text-gray-400">/kategori</span>
                                             </div>
                                         </div>
@@ -665,7 +665,7 @@
                                                     {{ $this->categoriesById[$catId]['name'] ?? $catId }}
                                                 </span>
                                                 <span class="font-medium text-gray-800">Rp
-                                                    {{ number_format($categoryPrice, 0, ',', '.') }}</span>
+                                                    {{ number_format($this->categoriesById[$catId]['price'] ?? $categoryPrice, 0, ',', '.') }}</span>
                                             </div>
                                         @endforeach
                                     @endif
@@ -680,7 +680,7 @@
                                     <span class="text-gray-500">Harga Normal ({{ count($categories) }}
                                         kategori)</span>
                                     <span class="text-gray-400 line-through">Rp
-                                        {{ number_format(count($categories) * $categoryPrice, 0, ',', '.') }}</span>
+                                        {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}</span>
                                 </div>
                                 <div class="flex justify-between text-sm">
                                     <span class="text-gray-500">Diskon Paket</span>
@@ -922,7 +922,7 @@
                                             {{ number_format($bundlePrice, 0, ',', '.') }}</span></p>
                                     <p class="text-xs text-white/80">vs beli satuan {{ count($categories) }} kategori
                                         = <span class="line-through">Rp
-                                            {{ number_format(count($categories) * $categoryPrice, 0, ',', '.') }}</span>
+                                            {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}</span>
                                     </p>
                                 </div>
                             </div>

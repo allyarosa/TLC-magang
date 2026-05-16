@@ -24,6 +24,8 @@ class Payment extends Model
         'ig_follow_proof',
         'confirmed_at',
         'confirmed_by',
+        'mode',
+        'selected_categories',
     ];
 
     protected $casts = [
@@ -31,6 +33,7 @@ class Payment extends Model
         'payment_time' => 'datetime',
         'confirmed_at' => 'datetime',
         'payment_details' => 'array',
+        'selected_categories' => 'array',
     ];
 
     /** True jika pembayaran ini adalah transfer bank manual */

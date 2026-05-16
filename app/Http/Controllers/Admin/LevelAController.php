@@ -33,6 +33,7 @@ class LevelAController extends Controller
                 'name' => $category->name,
                 'description' => $category->description,
                 'banner_img' => $category->banner_img ?? 'blankCategories.jpg',
+                'price' => $category->price ?? 0,
                 'time_limit' => $category->time_limit ?? 0,
                 'is_locked' => $category->is_locked ?? false,
                 'passing_score' => $category->passing_score ?? 0,
@@ -97,6 +98,7 @@ class LevelAController extends Controller
                 'name' => 'required|string|max:255',
                 'description' => 'required|string|max:255',
                 'banner_img' => 'nullable|mimes:jpg,jpeg,png,gif,svg|max:2048',
+                'price' => 'required|integer',
                 'time_limit' => 'required|integer',
                 'is_locked' => 'required|boolean',
                 'passing_score' => 'required|integer'

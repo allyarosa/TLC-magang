@@ -148,6 +148,27 @@
                                     <x-input-error :messages="$errors->get('passing_score')" class="mt-1 text-xs" />
                                 </div>
 
+                                {{-- Price --}}
+                                <div>
+                                    <label for="time_limit" class="block mb-2 text-sm font-medium text-gray-700">
+                                        Price <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M4 6h16M4 12h16M4 18h7" />
+                                            </svg>
+                                        </div>
+                                        <input type="number" name="price" id="price" required
+                                            placeholder="Input Harga Kategori"
+                                            value="{{ $category->price }}"
+                                            class="pl-10 shadow-sm bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder:text-inputHint">
+                                    </div>
+                                    <x-input-error :messages="$errors->get('price')" class="mt-1 text-xs" />
+                                </div>
+
                                 <!-- Image Upload -->
                             </div>
                             <div>

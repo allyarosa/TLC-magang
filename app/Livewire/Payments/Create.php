@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Payments;
 
+use App\Models\CategoryA;
 use App\Models\Level;
 use App\Models\SiteInfo;
 use Illuminate\Support\Facades\Log;
@@ -24,9 +25,25 @@ class Create extends Component
     // Pricing
     public $bundlePrice = 150000;
     public $categoryPrice = 65000;
+    public $realPrice = [];
 
     // Available categories
     public $categories = [
+        [
+            'id' => 'hots',
+            'name' => 'HOTS',
+            'desc' => 'Higher Order Thinking Skills — mendorong berpikir tingkat tinggi',
+            'tags' => ['Berpikir kritis', 'Analisis', 'Evaluasi'],
+            'color' => 'purple'
+        ],
+        [
+
+            'id' => 'pck',
+            'name' => 'PCK',
+            'desc' => 'Pedagogical Content Knowledge — cara terbaik mengajarkan konten',
+            'tags' => ['Strategi pedagogi', 'Konten materi', 'Metode mengajar'],
+            'color' => 'emerald'
+        ],
         [
             'id' => 'literasi',
             'name' => 'Literasi',
@@ -40,20 +57,6 @@ class Create extends Component
             'desc' => 'Kemampuan berhitung dan numerasi dasar kontekstual',
             'tags' => ['Numerasi dasar', 'Logika matematika'],
             'color' => 'yellow'
-        ],
-        [
-            'id' => 'pck',
-            'name' => 'PCK',
-            'desc' => 'Pedagogical Content Knowledge — cara terbaik mengajarkan konten',
-            'tags' => ['Strategi pedagogi', 'Konten materi', 'Metode mengajar'],
-            'color' => 'emerald'
-        ],
-        [
-            'id' => 'hots',
-            'name' => 'HOTS',
-            'desc' => 'Higher Order Thinking Skills — mendorong berpikir tingkat tinggi',
-            'tags' => ['Berpikir kritis', 'Analisis', 'Evaluasi'],
-            'color' => 'purple'
         ]
     ];
 
@@ -100,7 +103,13 @@ class Create extends Component
         if ($this->mode === 'bundle') {
             return $this->bundlePrice;
         }
-        return count($this->selectedCategories) * $this->categoryPrice;
+        $total = 0;
+        foreach ($this->categories as $category) {
+            if (in_array($category['id'], $this->selectedCategories)) {
+                $total += $category['price'] ?? $this->categoryPrice;
+            }
+        }
+        return $total;
     }
 
     public function getCategoriesByIdProperty()
@@ -114,7 +123,10 @@ class Create extends Component
 
     public function getSavingsProperty()
     {
-        $customTotal = count($this->categories) * $this->categoryPrice;
+        $customTotal = 0;
+        foreach ($this->categories as $category) {
+            $customTotal += $category['price'] ?? $this->categoryPrice;
+        }
         return $customTotal - $this->bundlePrice;
     }
 
@@ -138,8 +150,24 @@ class Create extends Component
             return redirect()->back()->with('error', 'Level tidak ditemukan');
         }
 
+        // Set bundle price from the level model
+        $this->bundlePrice = $this->level->price ?? 150000;
+
+        // Fetch dynamic category prices
+        $dbCategories = CategoryA::all();
+        foreach ($this->categories as &$cat) {
+            $dbCat = $dbCategories->firstWhere('name', strtoupper($cat['id']));
+            if ($dbCat) {
+                $cat['price'] = $dbCat->price;
+                $cat['db_id'] = $dbCat->id;
+            } else {
+                $cat['price'] = $this->categoryPrice; // Fallback
+            }
+        }
+        unset($cat);
+
         // Baca mode pembayaran aktif dari SiteInfo
-        $this->siteInfo    = SiteInfo::getPaymentSettings();
+        $this->siteInfo = SiteInfo::getPaymentSettings();
         $this->paymentMode = $this->siteInfo->payment_method ?? 'midtrans';
 
         if (auth()->check()) {
@@ -148,7 +176,7 @@ class Create extends Component
                 ->where('payment_method', 'manual')
                 ->where('status', 'waiting_confirmation')
                 ->first();
-            
+
             if ($pendingManual) {
                 $this->hasPendingManualPayment = true;
                 $this->pendingPaymentId = $pendingManual->id;
@@ -188,6 +216,7 @@ class Create extends Component
     public function continueToRegister()
     {
         $hashId = Hashids::encode($this->level->id);
+
         return redirect()->route('register', ['checkout' => $hashId]);
     }
 
@@ -196,9 +225,9 @@ class Create extends Component
         $layout = auth()->check() ? 'layouts.asesiDashboard' : 'layouts.app';
 
         return view($this->viewName, [
-            'level'       => $this->level,
+            'level' => $this->level,
             'paymentMode' => $this->paymentMode,
-            'siteInfo'    => $this->siteInfo,
+            'siteInfo' => $this->siteInfo,
         ])->extends($layout);
     }
 }

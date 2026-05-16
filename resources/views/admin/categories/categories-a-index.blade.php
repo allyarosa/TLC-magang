@@ -35,6 +35,9 @@
                             Score
                         </th>
                         <th scope="col"
+                            class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">Price
+                        </th>
+                        <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">Kunci
                             Kategori
                         </th>
@@ -74,6 +77,9 @@
 
                             {{-- passing_score --}}
                             <td class="px-4 py-3 text-sm text-gray-500">{{ $index['passing_score'] }}</td>
+
+                            {{-- price --}}
+                            <td class="px-4 py-3 text-sm text-gray-500">{{ $index['price'] }}</td>
 
                             {{-- IS LOCKED --}}
                             <td class="px-4 py-3 text-sm text-gray-500">

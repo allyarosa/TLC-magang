@@ -10,6 +10,7 @@ class CategoryA extends Model
     protected $fillable = [
         'name',
         'description',
+        'price',
         'banner_img',
         'time_limit',
         'is_locked',
