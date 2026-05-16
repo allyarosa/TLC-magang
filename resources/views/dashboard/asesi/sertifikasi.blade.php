@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Wrapper Utama dengan background yang sedikit off-white agar konten pop-up --}}
-    <div class="min-h-screen pb-20 md:ml-48">
+    <div class="min-h-screen pb-20 md:ml-64">
 
         {{-- SECTION 1: Status Sertifikasi (Hero Banner) --}}
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

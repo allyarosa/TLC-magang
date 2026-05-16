@@ -187,10 +187,7 @@ class Create extends Component
 
     public function continueToRegister()
     {
-        Log::debug('[DEBUG-LIVEWIRE] continueToRegister called, level_id: ' . $this->level->id);
-
         $hashId = Hashids::encode($this->level->id);
-
         return redirect()->route('register', ['checkout' => $hashId]);
     }
 

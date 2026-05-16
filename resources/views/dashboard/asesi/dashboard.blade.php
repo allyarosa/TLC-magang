@@ -55,11 +55,12 @@
                 <div class="max-w-7xl mx-auto space-y-8">
                     <!-- Welcome Hero & Stats -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                        @if ($profileCompletion >= 100 && !Auth::user()->hasPermissionTo('access_level_A'))
+                        {{-- @if ($profileCompletion >= 100 && !Auth::user()->hasPermissionTo('access_level_A'))
                             <x-asesi.dashboard-level-a-cta :profile-completion="$profileCompletion" :levels="$levels" />
                         @else
                             <x-asesi.dashboard-profile-completion-card :profile-completion="$profileCompletion" />
-                        @endif
+                        @endif --}}
+                        <livewire:asesi.dashboard.dashboard-info-card />
 
                         <x-asesi.dashboard-stats-grid :days-since-joined="$daysSinceJoined" />
                     </section>
@@ -355,9 +356,12 @@
                                 <!-- RECOMENDED RIBBON -->
                                 <x-populer-ribbon label="Recommended" />
                                 <!-- HEADER -->
+                                {{-- <livewire:asesi.dashboard.payment-card-header label="LEVEL A"
+                                    title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
+                                    labelColor="sky-700" titleColor="[#20416a]" /> --}}
                                 <livewire:asesi.dashboard.payment-card-header label="LEVEL A"
                                     title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
-                                    labelColor="sky-700" titleColor="[#20416a]" />
+                                    labelColor="sky-600" titleColor="sky-800" />
                                 <!-- PRICE -->
                                 <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="slate-700"
                                     discount="{{ $levels[0]->discount ?? 0 }}" />

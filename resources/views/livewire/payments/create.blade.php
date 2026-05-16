@@ -54,7 +54,7 @@
         }
     </style>
 
-    <div class="container mx-auto px-4 py-8 max-w-7xl mt-20 md:ml-72">
+    <div class="container mx-auto px-4 py-8 max-w-6xl mt-20 md:ml-72">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 space-y-8">
                 <!-- Hero Banner -->
@@ -94,6 +94,35 @@
 
                 <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
                     {{-- MODE PEMBELIAN --}}
+                    <section>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div>
+                                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Mode Pembelian</h2>
+                                <p class="text-xs text-gray-400">Pilih paket lengkap atau kategori satuan</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
+                                <button id="mode-bundle" wire:click="switchMode('bundle')"
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    Paket Lengkap
+                                </button>
+                                <button id="mode-custom" wire:click="switchMode('custom')"
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    Pilih Satuan
+                                </button>
+                            </div>
+
+                            {{-- <div>
+                                @if ($mode === 'custom')
+                                    <p
+                                        class="text-xs text-gray-700 p-2">
+                                        Pilih satu atau lebih kategori ujian sesuai kebutuhan Anda
+                                    </p>
+                                @endif
+                            </div> --}}
+                        </div>
+                    </section>
 
                     {{-- PRODUCT CARDS SECTION - LIVEWIRE POWERED --}}
                     <div>
@@ -130,7 +159,7 @@
                                                 </svg>
                                             </div> --}}
                                             <div class="flex-1">
-                                                <h3 class="text-xl font-bold mb-1">Paket Level A Lengkap</h3>
+                                                <h3 class="text-xl font-bold mb-1">Paket Level A Bundling</h3>
                                                 <p class="text-white/80 text-sm">Akses penuh ke semua kategori ujian
                                                     Level A</p>
                                             </div>
@@ -173,8 +202,9 @@
                                                 </div>
                                             </div>
                                             <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2">
-                                                <p class="text-xs text-white/80">{{ count($categories) }} Kategori</p>
-                                                <p class="text-sm font-bold">Semua Akses</p>
+                                                <p class="text-xs font-bold text-white/80">{{ count($categories) }}
+                                                    Kategori</p>
+                                                <p class="text-sm ">Semua Akses</p>
                                             </div>
                                         </div>
                                     </div>
@@ -220,7 +250,7 @@
                                     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
                                     @foreach ($categories as $cat)
                                         <div wire:click="toggleCategory('{{ $cat['id'] }}')"
-                                            class="relative bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-300 group shadow-lg hover:scale-105 hover:shadow-2xl
+                                            class="relative bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-300 group shadow-md
                                                 {{ in_array($cat['id'], $selectedCategories) ? 'ring-2 border-' . $cat['color'] . '-500 bg-' . $cat['color'] . '-50/50' : 'border-gray-200 hover:border-' . $cat['color'] . '-300 hover:bg-gray-50' }}">
                                             <!-- Checkbox -->
                                             <div class="absolute top-4 right-4">
@@ -336,41 +366,13 @@
                             </div>
                         @endif
                     </div>
-                    {{-- <section>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div>
-                                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Mode Pembelian</h2>
-                                <p class="text-xs text-gray-400">Pilih paket lengkap atau kategori satuan</p>
-                            </div>
-                        </div>
-                        <div class="mb-8">
-                            <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
-                                <button id="mode-bundle" wire:click="switchMode('bundle')"
-                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
-                                    Paket Lengkap
-                                </button>
-                                <button id="mode-custom" wire:click="switchMode('custom')"
-                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
-                                    Pilih Satuan
-                                </button>
-                            </div>
 
-                            <div>
-                                @if ($mode === 'custom')
-                                    <p
-                                        class="text-xs text-blue-700 bg-blue-100 rounded-lg p-2 mt-4 border border-blue-200">
-                                        Pilih satu atau lebih kategori ujian sesuai kebutuhan Anda
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                    </section> --}}
 
 
                     <!-- Course Overview -->
                     <div class="mb-8">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Tentang Program</h3>
-                        <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Tentang Program</h3>
+                        <p class="text-gray-600 leading-relaxed text-md text-justify">
                             Sertifikasi Level A bertujuan menguji pemahaman dasar guru melalui ujian teori terkait
                             pengajaran yang efektif,
                             terstruktur, dan berdiferensiasi, serta penerapan penilaian berbasis Teaching Mastery
@@ -389,7 +391,7 @@
                     </div> --}}
 
                     <!-- Expandable Content -->
-                    <div class="border-t border-gray-100 pt-8">
+                    {{-- <div class="border-t border-gray-100 pt-8">
                         <button wire:click="toggleExpand"
                             class="flex items-center justify-between w-full text-left group">
                             <span
@@ -408,13 +410,11 @@
                             style="max-height: {{ $expandDetail ? '1000px' : '0' }};">
                             @if ($expandDetail)
                                 <div class="pt-8 space-y-8">
-                                    <p class="text-gray-600 text-center text-lg">
+                                    <p class="text-gray-600 text-center text-md">
                                         Program Level A terdiri dari 3 modul komprehensif yang mencakup:
                                     </p>
 
-                                    <!-- Modules Grid -->
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        <!-- Module 1 -->
                                         <div class="category-card rounded-2xl p-6 smooth-transition hover-lift">
                                             <div class="flex items-center mb-4">
                                                 <div
@@ -426,7 +426,7 @@
                                                     <p class="text-sm text-gray-500">Penugasan Online</p>
                                                 </div>
                                             </div>
-                                            <p class="text-gray-600 leading-relaxed">
+                                            <p class="text-gray-600 leading-relaxed ">
                                                 Mengikuti penugasan di Learning Management System Elevate untuk
                                                 mendalami
                                                 konsep
@@ -434,7 +434,6 @@
                                             </p>
                                         </div>
 
-                                        <!-- Module 2 -->
                                         <div class="category-card rounded-2xl p-6 smooth-transition hover-lift">
                                             <div class="flex items-center mb-4">
                                                 <div
@@ -453,7 +452,6 @@
                                             </p>
                                         </div>
 
-                                        <!-- Module 3 -->
                                         <div class="category-card rounded-2xl p-6 smooth-transition hover-lift">
                                             <div class="flex items-center mb-4">
                                                 <div
@@ -473,9 +471,6 @@
                                             </p>
                                         </div>
                                     </div>
-
-                                    <!-- Assessment Details -->
-                                    <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-6">
                                         <h4 class="text-lg font-semibold text-gray-800 mb-4">Fokus Ujian Teori</h4>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div class="flex items-center space-x-3">
@@ -530,7 +525,6 @@
                                                 <span class="text-gray-700 font-medium">Penilaian Efektif</span>
                                             </div>
                                         </div>
-                                    </div>
 
                                     <!-- Conclusion -->
                                     <div
@@ -546,32 +540,33 @@
                                 </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Features Section -->
                     <div class="mt-8 pt-8 border-t border-gray-100">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Benefit Yang Akan Anda Dapatkan</h3>
+                        <h3 class="text-lg font-medium text-gray-700 mb-6">Benefit Yang Akan Anda Dapatkan</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex items-center space-x-3">
                                 <div
                                     class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <span class="text-gray-700">Sertifikat Kompetensi ber-NPSN</span>
+                                <span class="text-gray-700 text-md">Sertifikat Kompetensi ber-NPSN</span>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <div
                                     class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                    <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
-                                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <span class="text-gray-700">Mendapatkan Gelar Non-Formal</span>
+                                <span class="text-gray-700 text-md">Mendapatkan Gelar Non-Formal</span>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <div
@@ -582,14 +577,14 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <span class="text-gray-700">Rapor Hasil Ujian</span>
+                                <span class="text-gray-700 text-md">Rapor Hasil Ujian</span>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <div
                                     class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
-                                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -609,9 +604,9 @@
                             <div class="flex items-center space-x-3">
                                 <div
                                     class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg class="w-4 h-4 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
-                                            d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"
+                                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -620,9 +615,10 @@
                             <div class="flex items-center space-x-3">
                                 <div
                                     class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
+                                    <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <span class="text-gray-700">Koneksi dengan Jaringan Guru Profesional</span>
@@ -646,7 +642,7 @@
                                 {{-- Bundle Mode Summary --}}
                                 <div class="space-y-3">
                                     <div class="flex justify-between items-center text-sm">
-                                        <span class="text-gray-600">Paket Level A Lengkap</span>
+                                        <span class="text-gray-600">Paket Level A Bundling</span>
                                         <span class="font-medium text-gray-800">1x</span>
                                     </div>
                                     <div class="flex flex-wrap gap-1.5">
@@ -725,115 +721,122 @@
                                 @auth
                                     @if ($hasPendingManualPayment)
                                         <div class="mb-4 bg-gray-100 border border-gray-100 rounded-xl p-6 text-center">
-                                            <svg class="w-12 h-12 text-gray-700 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            <svg class="w-12 h-12 text-gray-700 mx-auto mb-3" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                             </svg>
                                             <h4 class="font-bold text-gray-600 mb-2">Menunggu Konfirmasi</h4>
-                                            <p class="text-sm text-gray-700 mb-4">Anda sudah mengirimkan bukti pembayaran untuk level ini. Mohon tunggu admin memverifikasi pembayaran Anda.</p>
-                                            <a href="{{ route('payments.detail', \Vinkla\Hashids\Facades\Hashids::encode($pendingPaymentId)) }}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors">
+                                            <p class="text-sm text-gray-700 mb-4">Anda sudah mengirimkan bukti pembayaran
+                                                untuk level ini. Mohon tunggu admin memverifikasi pembayaran Anda.</p>
+                                            <a href="{{ route('payments.detail', \Vinkla\Hashids\Facades\Hashids::encode($pendingPaymentId)) }}"
+                                                class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition-colors">
                                                 Lihat Detail Pembayaran
                                             </a>
                                         </div>
                                     @else
                                         <div class="mb-4 bg-blue-50 border border-blue-200 rounded-xl p-4">
-                                        <div class="flex items-center gap-2 mb-3">
-                                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                            </svg>
-                                            <span class="text-sm font-bold text-blue-800">Transfer Bank Manual</span>
+                                            <div class="flex items-center gap-2 mb-3">
+                                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                                </svg>
+                                                <span class="text-sm font-bold text-blue-800">Transfer Bank Manual</span>
+                                            </div>
+                                            <div class="space-y-1.5 text-sm">
+                                                <div class="flex justify-between">
+                                                    <span class="text-blue-600">Bank</span>
+                                                    <span
+                                                        class="font-bold text-blue-900">{{ $siteInfo->bank_name ?? '-' }}</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-blue-600">No. Rekening</span>
+                                                    <span
+                                                        class="font-bold text-blue-900 tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-blue-600">Atas Nama</span>
+                                                    <span
+                                                        class="font-bold text-blue-900">{{ $siteInfo->bank_account_name ?? '-' }}</span>
+                                                </div>
+                                                <div
+                                                    class="flex justify-between items-center border-t border-blue-200 pt-2 mt-2">
+                                                    <span class="text-blue-600 font-semibold">Jumlah Transfer</span>
+                                                    <span class="font-extrabold text-blue-900 text-base">Rp
+                                                        {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
+                                                </div>
+                                            </div>
+                                            @if ($siteInfo->payment_instructions)
+                                                <p class="text-xs text-blue-600 mt-3 border-t border-blue-200 pt-2">
+                                                    {{ $siteInfo->payment_instructions }}
+                                                </p>
+                                            @endif
                                         </div>
-                                        <div class="space-y-1.5 text-sm">
-                                            <div class="flex justify-between">
-                                                <span class="text-blue-600">Bank</span>
-                                                <span
-                                                    class="font-bold text-blue-900">{{ $siteInfo->bank_name ?? '-' }}</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-blue-600">No. Rekening</span>
-                                                <span
-                                                    class="font-bold text-blue-900 tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-blue-600">Atas Nama</span>
-                                                <span
-                                                    class="font-bold text-blue-900">{{ $siteInfo->bank_account_name ?? '-' }}</span>
-                                            </div>
-                                            <div
-                                                class="flex justify-between items-center border-t border-blue-200 pt-2 mt-2">
-                                                <span class="text-blue-600 font-semibold">Jumlah Transfer</span>
-                                                <span class="font-extrabold text-blue-900 text-base">Rp
-                                                    {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
-                                            </div>
-                                        </div>
-                                        @if ($siteInfo->payment_instructions)
-                                            <p class="text-xs text-blue-600 mt-3 border-t border-blue-200 pt-2">
-                                                {{ $siteInfo->payment_instructions }}
-                                            </p>
-                                        @endif
-                                    </div>
 
-                                    {{-- Upload Bukti Transfer --}}
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                            Upload Bukti Transfer <span class="text-red-500">*</span>
-                                        </label>
-                                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-teal-400 transition-colors cursor-pointer"
-                                            onclick="document.getElementById('transfer_proof_input').click()">
-                                            <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                            <p id="proof-label" class="text-sm text-gray-500">Klik untuk upload foto bukti
-                                                transfer</p>
-                                            <p class="text-xs text-gray-400 mt-1">JPG, JPEG, PNG. Maks 3MB</p>
-                                        </div>
-                                        <input id="transfer_proof_input" name="transfer_proof" type="file"
-                                            accept=".jpg,.jpeg,.png" class="hidden" required
-                                            onchange="document.getElementById('proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload'">
-                                        @error('transfer_proof')
-                                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    @if ($siteInfo->require_ig_follow_proof)
-                                        {{-- Upload Bukti Follow IG --}}
+                                        {{-- Upload Bukti Transfer --}}
                                         <div class="mb-4">
                                             <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                                Upload Bukti Follow Instagram <span
-                                                    class="font-medium text-teal-600">@tlc.certificationbyhafecs</span>
-                                                <span class="text-red-500">*</span>
+                                                Upload Bukti Transfer <span class="text-red-500">*</span>
                                             </label>
-                                            <div class="border border-gray-300 rounded-xl p-3 text-center cursor-pointer bg-gray-50"
-                                                onclick="document.getElementById('ig_follow_proof_input').click()">
-                                                <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none"
+                                            <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-teal-400 transition-colors cursor-pointer"
+                                                onclick="document.getElementById('transfer_proof_input').click()">
+                                                <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none"
                                                     stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                 </svg>
-                                                <p id="ig-proof-label" class="text-sm text-gray-600">Klik untuk upload
-                                                    bukti follow</p>
-                                                <p class="text-xs text-gray-400">JPG, JPEG, PNG. Maks 3MB</p>
+                                                <p id="proof-label" class="text-sm text-gray-500">Klik untuk upload foto
+                                                    bukti
+                                                    transfer</p>
+                                                <p class="text-xs text-gray-400 mt-1">JPG, JPEG, PNG. Maks 3MB</p>
                                             </div>
-                                            <input id="ig_follow_proof_input" name="ig_follow_proof" type="file"
+                                            <input id="transfer_proof_input" name="transfer_proof" type="file"
                                                 accept=".jpg,.jpeg,.png" class="hidden" required
-                                                onchange="document.getElementById('ig-proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload bukti follow'">
-                                            @error('ig_follow_proof')
+                                                onchange="document.getElementById('proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload'">
+                                            @error('transfer_proof')
                                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    @endif
 
-                                    <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
-                                        class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                        </svg>
-                                        Kirim Bukti Transfer
-                                    </button>
+                                        @if ($siteInfo->require_ig_follow_proof)
+                                            {{-- Upload Bukti Follow IG --}}
+                                            <div class="mb-4">
+                                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                                    Upload Bukti Follow Instagram <span
+                                                        class="font-medium text-teal-600">@tlc.certificationbyhafecs</span>
+                                                    <span class="text-red-500">*</span>
+                                                </label>
+                                                <div class="border border-gray-300 rounded-xl p-3 text-center cursor-pointer bg-gray-50"
+                                                    onclick="document.getElementById('ig_follow_proof_input').click()">
+                                                    <svg class="w-6 h-6 text-gray-400 mx-auto mb-1" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                    </svg>
+                                                    <p id="ig-proof-label" class="text-sm text-gray-600">Klik untuk upload
+                                                        bukti follow</p>
+                                                    <p class="text-xs text-gray-400">JPG, JPEG, PNG. Maks 3MB</p>
+                                                </div>
+                                                <input id="ig_follow_proof_input" name="ig_follow_proof" type="file"
+                                                    accept=".jpg,.jpeg,.png" class="hidden" required
+                                                    onchange="document.getElementById('ig-proof-label').textContent = this.files[0]?.name ?? 'Klik untuk upload bukti follow'">
+                                                @error('ig_follow_proof')
+                                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        @endif
+
+                                        <button type="submit" @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
+                                            class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                            </svg>
+                                            Kirim Bukti Transfer
+                                        </button>
                                     @endif
                                 @else
                                     {{-- <div class="mb-4 bg-orange-50 border border-orange-200 rounded-xl p-4">
