@@ -14,14 +14,13 @@ class SiteInfoSeeder extends Seeder
     public function run(): void
     {
         SiteInfo::create([
-            'instagram' => 'https://instagram.com/example',
-            'linkedin' => 'https://linkedin.com/in/example',
-            'facebook' => 'https://facebook.com/example',
-            'youtube' => 'https://youtube.com/example',
-            'whatsapp' => '81234567890',
-            'email' => 'info@example.com',
-            'address' => 'Jl. Contoh No. 123, Jakarta',
-            'description' => 'Ini adalah deskripsi singkat perusahaan.',
+            'payment_method' => 'manual',
+            'bank_name' => 'Bank Contoh',
+            'bank_account_number' => '1234567890',
+            'bank_account_name' => 'PT Contoh Perusahaan',
+            'payment_instructions' => 'Silakan transfer ke rekening ini',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

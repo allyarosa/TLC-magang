@@ -1,7 +1,7 @@
 <x-mail::message>
 # Halo {{ $payment->user->name }},
 
-Selamat! Pembayaran Anda untuk Level **{{ $payment->level->level_name ?? 'Sertifikasi Level' }}** telah berhasil kami verifikasi.
+Selamat! Pembayaran Anda untuk @if($payment->mode === 'custom' && is_array($payment->selected_categories))**Kategori {{ implode(', ', array_map('strtoupper', $payment->selected_categories)) }}** pada Level **{{ $payment->level->level_name ?? 'Sertifikasi Level' }}**@else Level **{{ $payment->level->level_name ?? 'Sertifikasi Level' }}**@endif telah berhasil kami verifikasi.
 
 Berikut adalah rincian transaksi Anda:
 
@@ -10,7 +10,7 @@ Berikut adalah rincian transaksi Anda:
 - **Metode Pembayaran:** Transfer Bank Manual
 - **Waktu Verifikasi:** {{ \Carbon\Carbon::parse($payment->updated_at)->format('d M Y, H:i') }} WIB
 
-**Akses Level Anda telah dibuka!**
+**Akses program Anda telah dibuka!**
 Anda sekarang dapat mengakses modul pembelajaran dan ujian sertifikasi sesuai dengan program yang Anda beli.
 
 <x-mail::button :url="route('login')">

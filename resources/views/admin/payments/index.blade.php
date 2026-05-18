@@ -271,6 +271,10 @@
                         </th>
                         <th scope="col"
                             class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                            Product
+                        </th>
+                        <th scope="col"
+                            class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
                             Amount
                         </th>
                         <th scope="col"
@@ -320,6 +324,22 @@
                                 <div>
                                     <div class="text-sm font-medium text-gray-900">{{ $payment->user->name }}</div>
                                     <div class="text-sm text-gray-500">{{ $payment->user->email }}</div>
+                                </div>
+                            </td>
+
+                            <!-- Product -->
+                            <td class="px-4 py-3 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">
+                                    @if ($payment->mode === 'custom')
+                                        Custom: 
+                                        @if (is_array($payment->selected_categories))
+                                            {{ implode(', ', array_map('ucfirst', $payment->selected_categories)) }}
+                                        @else
+                                            {{ $payment->selected_categories }}
+                                        @endif
+                                    @else
+                                        Bundling: {{ $payment->level?->name ?? 'Level ' . ($payment->level_id ?? '-') }}
+                                    @endif
                                 </div>
                             </td>
 

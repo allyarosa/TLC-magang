@@ -30,7 +30,7 @@ class PaymentVerifiedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verifikasi Pembayaran Berhasil - Teacher Learning Center',
+            subject: 'Verifikasi Pembayaran Berhasil - Teaching and Learning Certification',
         );
     }
 

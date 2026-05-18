@@ -22,10 +22,11 @@ class grandLevelAAccess
      */
     public function handle(PaymentSuccessful $event): void
     {
+        Log::info('handling grandaccess');
         $user = $event->payment->user;
         $user->givePermissionTo('access_level_A');
         $user->revokePermissionTo('fresh_user');
 
-         Log::info("Level A access granted to user: {$user->id} ({$user->email})");
+        Log::info("Level A access granted to user: {$user->id} ({$user->email})");
     }
 }

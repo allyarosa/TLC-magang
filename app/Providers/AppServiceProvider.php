@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\PaymentSuccessfulManual;
+use App\Listeners\GrantAsesiCategoryAccess;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Thread;
@@ -12,6 +14,7 @@ use App\Policies\CommentPolicy;
 use App\Http\Livewire\EmptyState;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,11 +44,17 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Thread::class, ThreadPolicy::class);
         Gate::policy(Comment::class, CommentPolicy::class);
 
+        Event::listen(
+            PaymentSuccessfulManual::class,
+            GrantAsesiCategoryAccess::class,
+        );
+
+
         // Laravel Pulse Dashboard hanya bisa diakses oleh admin
         Gate::define('viewPulse', function (User $user) {
             return $user->hasRole('admin');
         });
-        
+
         // Laravel Telescope juga hanya bisa diakses oleh admin
         Gate::define('viewTelescope', function ($user) {
             return $user->hasRole('admin');

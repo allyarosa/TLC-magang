@@ -94,6 +94,21 @@
                         <p class="text-lg font-mono bg-gray-50 p-2 rounded border">{{ $payment->order_id }}</p>
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Product Details</label>
+                        <p class="text-lg capitalize bg-gray-50 p-2 rounded border">
+                            @if ($payment->mode === 'custom')
+                                Custom: 
+                                @if (is_array($payment->selected_categories))
+                                    {{ implode(', ', array_map('ucfirst', $payment->selected_categories)) }}
+                                @else
+                                    {{ $payment->selected_categories }}
+                                @endif
+                            @else
+                                Bundling: {{ $payment->level?->name ?? 'Level ' . ($payment->level_id ?? '-') }}
+                            @endif
+                        </p>
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Transaction ID</label>
                         <p class="text-lg font-mono bg-gray-50 p-2 rounded border">
                             {{ $payment->transaction_id ?? 'Not Available' }}

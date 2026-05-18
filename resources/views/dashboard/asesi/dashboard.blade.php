@@ -73,7 +73,7 @@
                         <!-- Left Column -->
                         <div class="lg:col-span-8 space-y-8">
                             <!-- Current Level Detail -->
-                            {{-- <section>
+                            <section>
                                 <div class="flex items-center justify-between mb-6">
                                     <h3 class="text-xl font-display font-bold text-on-surface" style="">
                                         Sub-Kompetensi Level A</h3>
@@ -152,9 +152,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section> --}}
+                            </section>
                             <!-- Training Online -->
-                            {{-- <section class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
+                            <section class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
                                 <div
                                     class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full -mr-20 -mt-20">
                                 </div>
@@ -189,12 +189,12 @@
                                         Masuk Ruang Virtual
                                     </button>
                                 </div>
-                            </section> --}}
+                            </section>
                         </div>
                         <!-- Right Column (Focused Rail) -->
                         <div class="lg:col-span-4 space-y-8">
                             <!-- Active Tasks -->
-                            {{-- <section class="bg-surface-container-low p-6 rounded-xl">
+                            <section class="bg-surface-container-low p-6 rounded-xl">
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Tugas Hari Ini</h3>
                                 <div class="space-y-4">
@@ -244,9 +244,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section> --}}
+                            </section>
                             <!-- Belajar Mandiri -->
-                            {{-- <section>
+                            <section>
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Belajar Mandiri</h3>
                                 <div class="space-y-3">
@@ -278,13 +278,13 @@
                                             style="">Isi Refleksi</button>
                                     </div>
                                 </div>
-                            </section> --}}
+                            </section>
                         </div>
                     </div>
                     <!-- Bottom Sections: Certificates & Transactions -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <!-- Sertifikat Diraih -->
-                        {{-- <section class="lg:col-span-8">
+                        <section class="lg:col-span-8">
                             <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Sertifikat
                                 Diraih</h3>
                             <div
@@ -302,9 +302,9 @@
                                     <span class="material-symbols-outlined text-sm" style="">open_in_new</span>
                                 </button>
                             </div>
-                        </section> --}}
+                        </section>
                         <!-- Riwayat Transaksi -->
-                        {{-- <div class="lg:col-span-4">
+                        <div class="lg:col-span-4">
                             <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Riwayat
                                 Transaksi</h3>
                             <div class="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -341,7 +341,7 @@
                                     class="w-full py-3 text-xs font-bold text-outline hover:bg-slate-50 transition-colors uppercase tracking-widest"
                                     style="">Lihat Semua Transaksi</button>
                             </div>
-                        </div> --}}
+                        </div>
                     </section>
 
                     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -363,8 +363,8 @@
                                     title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
                                     labelColor="sky-600" titleColor="sky-800" />
                                 <!-- PRICE -->
-                                <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="slate-700"
-                                    discount="{{ $levels[0]->discount ?? 0 }}" />
+                                {{-- <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="slate-700"
+                                    discount="{{ $levels[0]->discount ?? 0 }}" /> --}}
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
                                     <livewire:asesi.dashboard.feature-item label="Uji Literasi & Numerasi" />
@@ -390,8 +390,8 @@
                                     title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
                                     labelColor="[#2A9D8F]" titleColor="emerald-800" />
                                 <!-- PRICE -->
-                                <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="slate-700"
-                                    discount="{{ $levels[1]->discount ?? 0 }}" />
+                                {{-- <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="slate-700"
+                                    discount="{{ $levels[1]->discount ?? 0 }}" /> --}}
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
                                     <livewire:asesi.dashboard.feature-item label="Merancang Modul Ajar (RPP)" />
@@ -416,8 +416,8 @@
                                     title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
                                     labelColor="[#E76F51]" titleColor="amber-700" />
                                 <!-- PRICE -->
-                                <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="slate-700"
-                                    discount="{{ $levels[2]->discount ?? 0 }}" />
+                                {{-- <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="slate-700"
+                                    discount="{{ $levels[2]->discount ?? 0 }}" /> --}}
                                 <!-- FEATURES -->
                                 <ul class="space-y-3 mb-8">
                                     <livewire:asesi.dashboard.feature-item label="Teaching Mastery Framework" />

@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Midtrans\Snap;
-use App\Models\User;
+use App\Events\PaymentSuccessful;
+use App\Events\PaymentSuccessfulManual;
+use App\Models\CategoryA;
 use App\Models\Level;
 use App\Models\Payment;
 use App\Models\SiteInfo;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
-use App\Events\PaymentSuccessful;
+use App\Models\User;
 use App\Notifications\TransactionNotification;
-use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Midtrans\Snap;
+use Vinkla\Hashids\Facades\Hashids;
 
 class PaymentController extends Controller
 {
@@ -77,13 +79,43 @@ class PaymentController extends Controller
         }
 
         $request->validate([
-            'amount'   => 'required|numeric|min:10000',
-            'level_id' => 'required|exists:levels,id',
+            'level_id'            => 'required|exists:levels,id',
+            'mode'                => 'required|in:bundle,custom',
+            'selected_categories' => 'nullable|string',
         ]);
 
         $orderId     = 'ORDER-' . time() . '-' . Str::random(5);
         $siteInfo    = SiteInfo::getPaymentSettings();
         $paymentMode = $siteInfo->payment_method ?? 'midtrans';
+
+        // ---------------------------------------------------------
+        // SECURE CALCULATION FROM DATABASE
+        // ---------------------------------------------------------
+        $calculatedAmount = 0;
+        $selectedCategoriesArray = [];
+
+        if ($request->mode === 'bundle') {
+            $level = Level::findOrFail($request->level_id);
+            $calculatedAmount = $level->price ?? 150000;
+        } else {
+            if ($request->filled('selected_categories')) {
+                // explode "hots,literasi" into array ['hots', 'literasi']
+                $selectedCategoriesArray = explode(',', $request->selected_categories);
+                
+                // map to uppercase for matching db
+                $dbNames = array_map('strtoupper', $selectedCategoriesArray);
+                
+                $categories = CategoryA::whereIn('name', $dbNames)->get();
+                $calculatedAmount = $categories->sum('price');
+                
+                // Ensure at least one category was valid
+                if ($calculatedAmount <= 0) {
+                    return redirect()->back()->with('error', 'Kategori tidak valid.');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Silakan pilih minimal satu kategori.');
+            }
+        }
 
         // ================================================================
         // MANUAL BANK TRANSFER FLOW
@@ -107,14 +139,16 @@ class PaymentController extends Controller
             }
 
             $payment = Payment::create([
-                'user_id'        => Auth::id(),
-                'order_id'       => $orderId,
-                'level_id'       => $request->level_id,
-                'amount'         => $request->amount,
-                'status'         => 'waiting_confirmation',
-                'payment_method' => 'manual',
-                'transfer_proof' => $proofPath,
-                'ig_follow_proof'=> $igProofPath,
+                'user_id'             => Auth::id(),
+                'order_id'            => $orderId,
+                'level_id'            => $request->level_id,
+                'amount'              => $calculatedAmount,
+                'mode'                => $request->mode,
+                'selected_categories' => $selectedCategoriesArray,
+                'status'              => 'waiting_confirmation',
+                'payment_method'      => 'manual',
+                'transfer_proof'      => $proofPath,
+                'ig_follow_proof'     => $igProofPath,
             ]);
 
             $user->notify(new TransactionNotification($payment));
@@ -122,7 +156,7 @@ class PaymentController extends Controller
             Log::info('Manual payment submitted', [
                 'payment_id' => $payment->id,
                 'user_id'    => Auth::id(),
-                'amount'     => $request->amount,
+                'amount'     => $calculatedAmount,
             ]);
 
             return redirect()->route('payments.detail', Hashids::encode($payment->id))
@@ -137,7 +171,7 @@ class PaymentController extends Controller
         $params = [
             'transaction_details' => [
                 'order_id'     => $orderId,
-                'gross_amount' => (int) $request->amount,
+                'gross_amount' => (int) $calculatedAmount,
             ],
             'customer_details' => [
                 'user_id'    => Auth::id(),
@@ -158,13 +192,15 @@ class PaymentController extends Controller
             $snapToken = Snap::getSnapToken($params);
 
             $payment = Payment::create([
-                'user_id'        => Auth::id(),
-                'order_id'       => $orderId,
-                'level_id'       => $request->level_id,
-                'amount'         => $request->amount,
-                'snap_token'     => $snapToken,
-                'status'         => 'pending',
-                'payment_method' => 'midtrans',
+                'user_id'             => Auth::id(),
+                'order_id'            => $orderId,
+                'level_id'            => $request->level_id,
+                'amount'              => $calculatedAmount,
+                'mode'                => $request->mode,
+                'selected_categories' => $selectedCategoriesArray,
+                'snap_token'          => $snapToken,
+                'status'              => 'pending',
+                'payment_method'      => 'midtrans',
             ]);
 
             $user->notify(new TransactionNotification($payment));
@@ -176,7 +212,7 @@ class PaymentController extends Controller
                 'file'     => $e->getFile(),
                 'line'     => $e->getLine(),
                 'order_id' => $orderId,
-                'amount'   => $request->amount,
+                'amount'   => $calculatedAmount,
             ]);
 
             return redirect()->back()->with('error', 'Error creating payment: ' . $e->getMessage());
@@ -214,7 +250,8 @@ class PaymentController extends Controller
         } catch (\Exception $e) {
             Log::error('Failed to send Payment Verified email', ['error' => $e->getMessage()]);
         }
-        event(new PaymentSuccessful($payment));
+        // setup pembayaran
+        $this->grantAsesiAccess($payment);
 
         Log::info('Manual payment confirmed by admin', [
             'payment_id'   => $payment->id,
@@ -222,6 +259,15 @@ class PaymentController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Pembayaran berhasil dikonfirmasi dan akses telah diberikan.');
+    }
+
+    private function grantAsesiAccess( $payment): void
+    {
+        if ($payment->mode === 'bundle') {
+            event(new PaymentSuccessful($payment));
+        } else {
+            event(new PaymentSuccessfulManual($payment));
+        }
     }
 
     /**

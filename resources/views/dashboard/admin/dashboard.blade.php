@@ -183,7 +183,17 @@
                                     <div class="text-xs text-slate-400">{{ $payment->user?->email ?? '' }}</div>
                                 </td>
                                 <td class="px-6 py-3 text-slate-600">
-                                    {{ $payment->level?->name ?? 'Level ' . ($payment->level_id ?? '-') }}</td>
+                                    @if ($payment->mode === 'custom')
+                                        Custom: 
+                                        @if (is_array($payment->selected_categories))
+                                            {{ implode(', ', array_map('ucfirst', $payment->selected_categories)) }}
+                                        @else
+                                            {{ $payment->selected_categories }}
+                                        @endif
+                                    @else
+                                        Bundling: {{ $payment->level?->name ?? 'Level ' . ($payment->level_id ?? '-') }}
+                                    @endif
+                                </td>
                                 <td class="px-6 py-3 font-semibold text-slate-800">Rp
                                     {{ number_format($payment->amount, 0, ',', '.') }}</td>
                                 <td class="px-6 py-3">
