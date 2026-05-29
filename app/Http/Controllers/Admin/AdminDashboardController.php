@@ -110,9 +110,10 @@ class AdminDashboardController extends Controller
     public function asesiIndex() //MENAMPILKAN DATA ASESI KE DASHBOARD ADMIN
     {
         // Mengambil input pencarian
-        $search = request()->input('search');
+        $search   = request()->input('search');
         $category = request()->input('category_name');
-
+        $dateFrom = request()->input('date_from');
+        $dateTo   = request()->input('date_to');
 
         $userProfiles = UserProfile::with('user')
             ->when($search, function ($query) use ($search) {
@@ -127,6 +128,16 @@ class AdminDashboardController extends Controller
             ->when($category && $category !== 'ALL', function ($query) use ($category) {
                 $query->whereHas('user.permissions', function ($q) use ($category) {
                     $q->where('name', $category);
+                });
+            })
+            ->when($dateFrom, function ($query) use ($dateFrom) {
+                $query->whereHas('user', function ($q) use ($dateFrom) {
+                    $q->where('created_at', '>=', \Carbon\Carbon::parse($dateFrom)->startOfDay());
+                });
+            })
+            ->when($dateTo, function ($query) use ($dateTo) {
+                $query->whereHas('user', function ($q) use ($dateTo) {
+                    $q->where('created_at', '<=', \Carbon\Carbon::parse($dateTo)->endOfDay());
                 });
             })
             ->latest()

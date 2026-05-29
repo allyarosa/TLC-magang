@@ -22,7 +22,7 @@
             {{-- Pembayaran Pending --}}
             <x-admin.dashboard-stat-card title="Pending Payment" :data="$pendingPayments" color="amber-600" icon="fas fa-clock" />
         </div>
-        
+
         {{-- ROW 2 — Registration Line Chart + Level Pie Chart --}}
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
             {{-- Line chart: Registrasi per bulan --}}
@@ -184,7 +184,7 @@
                                 </td>
                                 <td class="px-6 py-3 text-slate-600">
                                     @if ($payment->mode === 'custom')
-                                        Custom: 
+                                        Custom:
                                         @if (is_array($payment->selected_categories))
                                             {{ implode(', ', array_map('ucfirst', $payment->selected_categories)) }}
                                         @else

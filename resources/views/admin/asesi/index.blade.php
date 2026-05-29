@@ -8,8 +8,7 @@
             <!-- Breadcrumb -->
             <ol class="flex items-center space-x-1 text-gray-600">
                 <nav
-                    class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
-
+                    class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">Users
                     {{-- Asesi Link --}}
                     <a href="{{ route('admin.asesi.index') }}"
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.asesi.*') ? 'text-blue-600 font-semibold' : '' }}">
@@ -70,6 +69,37 @@
                     </button>
                 </form>
 
+                {{-- Filter Rentang Tanggal Pendaftaran --}}
+                <form action="{{ route('admin.asesi.index') }}" method="GET" class="flex items-center gap-2">
+                    {{-- Preserve existing filters --}}
+                    @if(request('search'))
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+                    @endif
+                    @if(request('category_name'))
+                        <input type="hidden" name="category_name" value="{{ request('category_name') }}">
+                    @endif
+
+                    <div class="flex items-center gap-1.5">
+                        <label for="date_from" class="text-sm text-gray-600 whitespace-nowrap">Dari</label>
+                        <input type="date" id="date_from" name="date_from" value="{{ request('date_from') }}"
+                            class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <label for="date_to" class="text-sm text-gray-600 whitespace-nowrap">Sampai</label>
+                        <input type="date" id="date_to" name="date_to" value="{{ request('date_to') }}"
+                            class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <button type="submit" class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
+                        Filter Tanggal
+                    </button>
+                    @if(request('date_from') || request('date_to'))
+                        <a href="{{ route('admin.asesi.index', request()->only(['search', 'category_name'])) }}"
+                            class="px-3 py-1.5 bg-gray-200 text-gray-700 text-sm rounded shadow-sm hover:bg-gray-300 transition-colors">
+                            Reset
+                        </a>
+                    @endif
+                </form>
+
                 <!-- Total Users -->
                 <div class="flex items-center text-sm p-1.5 bg-gray-50 rounded-lg border border-gray-200 w-fit">
                     <span class="text-indigo-500 mr-1.5">
@@ -79,7 +109,7 @@
                         {{ $userCount['user'] }}
                     </span>
                     <span class="text-gray-600 ml-1 font-semibold">
-                        Asesi
+                        Users
                     </span>
                 </div>
 
