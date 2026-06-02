@@ -24,7 +24,7 @@
         $percentage = ($filledFields / $totalFields) * 100;
         $percentage = number_format($percentage, 0);
     @endphp
-    <section class="w-full min-h-screen bg-[#F5F7FA] py-12 px-4 sm:px-6">
+    <section class="w-full min-h-screen bg-[#F5F7FA] py-12 px-4 sm:px-6 md:ml-16">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 items-end">
                 <div class="lg:col-span-1">

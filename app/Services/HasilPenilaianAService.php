@@ -143,13 +143,20 @@ class HasilPenilaianAService
             }
         }
 
+        if ($updated > 0) {
+            $this->syncUserPermissions($userId);
+        }
+
         Log::info('User scores updated successfully', ['user_id' => $userId, 'categories_updated' => $updated]);
     }
 
 
     public function updateSingleExam(array $data, int $id): void
     {
-        ExamA::findOrFail($id)->update($data);
+        $exam = ExamA::findOrFail($id);
+        $exam->update($data);
+
+        $this->syncUserPermissions($exam->user_id);
     }
 
 
@@ -294,5 +301,49 @@ class HasilPenilaianAService
         }
 
         return $totalGagal;
+    }
+
+    private function syncUserPermissions(int $userId): void
+    {
+        $user = User::findOrFail($userId);
+        $categories = CategoryA::all();
+        
+        $allPassed = true;
+
+        foreach ($categories as $category) {
+            $exam = ExamA::where('user_id', $userId)
+                ->where('category_a_id', $category->id)
+                ->where('status', 'finished')
+                ->first();
+
+            // Cek kelulusan untuk kategori ini
+            if ($exam && $exam->is_passed) {
+                if (!$user->hasPermissionTo($category->name)) {
+                    $user->givePermissionTo($category->name);
+                }
+                if (!$user->hasPermissionTo($category->name . '_LOCK')) {
+                    $user->givePermissionTo($category->name . '_LOCK');
+                }
+            } else {
+                $allPassed = false;
+                if ($user->hasPermissionTo($category->name)) {
+                    $user->revokePermissionTo($category->name);
+                }
+                if ($user->hasPermissionTo($category->name . '_LOCK')) {
+                    $user->revokePermissionTo($category->name . '_LOCK');
+                }
+            }
+        }
+
+        // Cek apakah 4 kategori sudah lulus semua
+        if ($allPassed) {
+            if (!$user->hasPermissionTo('level_A_completed')) {
+                $user->givePermissionTo('level_A_completed');
+            }
+        } else {
+            if ($user->hasPermissionTo('level_A_completed')) {
+                $user->revokePermissionTo('level_A_completed');
+            }
+        }
     }
 }

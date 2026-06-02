@@ -73,7 +73,7 @@
                         <!-- Left Column -->
                         <div class="lg:col-span-8 space-y-8">
                             <!-- Current Level Detail -->
-                            <section>
+                            {{-- <section>
                                 <div class="flex items-center justify-between mb-6">
                                     <h3 class="text-xl font-display font-bold text-on-surface" style="">
                                         Sub-Kompetensi Level A</h3>
@@ -152,9 +152,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                             <!-- Training Online -->
-                            <section class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
+                            {{-- <section class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
                                 <div
                                     class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full -mr-20 -mt-20">
                                 </div>
@@ -189,12 +189,12 @@
                                         Masuk Ruang Virtual
                                     </button>
                                 </div>
-                            </section>
+                            </section> --}}
                         </div>
                         <!-- Right Column (Focused Rail) -->
                         <div class="lg:col-span-4 space-y-8">
                             <!-- Active Tasks -->
-                            <section class="bg-surface-container-low p-6 rounded-xl">
+                            {{-- <section class="bg-surface-container-low p-6 rounded-xl">
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Tugas Hari Ini</h3>
                                 <div class="space-y-4">
@@ -244,9 +244,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                             <!-- Belajar Mandiri -->
-                            <section>
+                            {{-- <section>
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Belajar Mandiri</h3>
                                 <div class="space-y-3">
@@ -278,11 +278,11 @@
                                             style="">Isi Refleksi</button>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                         </div>
                     </div>
                     <!-- Bottom Sections: Certificates & Transactions -->
-                    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    {{-- <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <!-- Sertifikat Diraih -->
                         <section class="lg:col-span-8">
                             <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Sertifikat
@@ -342,7 +342,7 @@
                                     style="">Lihat Semua Transaksi</button>
                             </div>
                         </div>
-                    </section>
+                    </section> --}}
 
                     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                         <!-- Level A Card -->

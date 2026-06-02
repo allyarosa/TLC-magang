@@ -8,7 +8,7 @@
         {{-- Riwayat Transaksi --}}
         <section class="max-w-6xl mx-auto px-6 py-8 mb-36 md:ml-64">
             <!-- Header with gradient background -->
-            <div class="gradient-bg rounded-2xl p-8 mb-8 text-white">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl p-8 mb-8 text-white">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
                         <div class="bg-white bg-opacity-20 rounded-xl p-3">
@@ -142,8 +142,8 @@
                 <!-- Table Body -->
                 <div class="divide-y divide-gray-100">
                     <!-- Row 1 -->
-                    @foreach ($pembayaran as $item)
-                        <div class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
+                    @forelse ($pembayaran as $item)
+                         <div class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
                             <div class="grid grid-cols-12 gap-4 items-center">
                                 <div class="col-span-1">
                                     <span class="text-blue-600 font-semibold text-lg">{{ $loop->iteration }}</span>
@@ -195,7 +195,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="px-6 py-16 text-center text-gray-500">
+                                <p class="text-lg font-medium">Belum ada transaksi yang dilakukan.</p>
+                        </div>                        
+                    @endforelse
 
                     <!-- Row 2 -->
                     {{-- <div class="px-6 py-6 hover:bg-gray-50 transition-colors duration-200">
