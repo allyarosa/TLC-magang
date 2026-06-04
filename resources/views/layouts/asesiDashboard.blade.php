@@ -21,6 +21,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     @stack('scripts')
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -32,10 +34,10 @@
 <body>
     <x-asesi.dashboard-header />
     <x-asesi.dashboard-sidebar />
-    <main class="bg-blue-100/60">
+    <main class="bg-blue-50/60">
         @yield('content')
     </main>
-    @include('layouts.footer')
+    {{-- @include('layouts.footer') --}}
     @livewireScripts
     @include('sweetalert::alert')
 </body>

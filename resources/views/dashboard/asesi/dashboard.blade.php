@@ -26,9 +26,9 @@
         </script>
         <style>
             /* body {
-                            background-color: #f7f9fc;
-                            color: #181c1e;
-                        } */
+                                background-color: #f7f9fc;
+                                color: #181c1e;
+                            } */
 
             .font-display {
                 font-family: 'Manrope', sans-serif;
@@ -51,7 +51,7 @@
 
         <section class="bg-surface text-on-surface selection:bg-secondary-container">
             <!-- Main Content -->
-            <main class="py-12 px-6 md:ml-64 min-h-screen">
+            <main class="py-6 md:py-12 px-6 md:ml-64 min-h-screen">
                 <div class="max-w-7xl mx-auto space-y-8">
                     <!-- Welcome Hero & Stats -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -349,8 +349,8 @@
                         <div
                             class="pricing-card bg-white rounded-3xl shadow-lg relative overflow-hidden transition-all duration-300 border-2 border-blue-200">
                             {{-- IMAGE CARD --}}
-                            <livewire:asesi.dashboard.payment-image-card image="images/webp/blue_bg.webp" alt="Level A Image"
-                                gradientColor="from-blue-200" />
+                            <livewire:asesi.dashboard.payment-image-card image="images/webp/blue_bg.webp"
+                                alt="Level A Image" gradientColor="from-blue-200" />
 
                             <div class="p-8 relative z-10">
                                 <!-- RECOMENDED RIBBON -->
@@ -441,12 +441,12 @@
                     <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Dashboard</span>
                 </a>
                 <a class="flex flex-col items-center gap-1 text-slate-400" href="#" style="">
-                    <span class="material-symbols-outlined" style="">auto_stories</span>
-                    <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Belajar</span>
-                </a>
-                <a class="flex flex-col items-center gap-1 text-slate-400" href="#" style="">
                     <span class="material-symbols-outlined" style="">workspace_premium</span>
                     <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Sertifikat</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 text-slate-400" href="#" style="">
+                    <span class="material-symbols-outlined" style="">auto_stories</span>
+                    <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Belajar</span>
                 </a>
                 <a class="flex flex-col items-center gap-1 text-slate-400" href="#" style="">
                     <span class="material-symbols-outlined" style="">person</span>

@@ -339,6 +339,33 @@ class ProfileController extends Controller
         }
     }
 
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ], [
+            'current_password.required' => 'Password saat ini wajib diisi.',
+            'new_password.required' => 'Password baru wajib diisi.',
+            'new_password.min' => 'Password baru minimal 8 karakter.',
+            'new_password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors([
+                'current_password' => 'Password saat ini tidak sesuai.'
+            ]);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with('success', 'Password berhasil diubah.');
+    }
+
     protected function getLocationNames($request)
     {
         return [

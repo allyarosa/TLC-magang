@@ -8,7 +8,7 @@
             <!-- Breadcrumb -->
             <ol class="flex items-center space-x-1 text-gray-600">
                 <nav
-                    class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">Users
+                    class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
                     {{-- Asesi Link --}}
                     <a href="{{ route('admin.asesi.index') }}"
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.asesi.*') ? 'text-blue-600 font-semibold' : '' }}">
@@ -52,8 +52,7 @@
                     <div>
                         <select id="category_name" name="category_name"
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua
-                                Kategori --</option>
+                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua Kategori --</option>
                             <option value="access_level_A" {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
                             <option value="access_level_B" {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
                             <option value="access_level_C" {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
@@ -80,17 +79,17 @@
                     @endif
 
                     <div class="flex items-center gap-1.5">
-                        <label for="date_from" class="text-sm text-gray-600 whitespace-nowrap">Dari</label>
+                        {{-- <label for="date_from" class="text-sm text-gray-600 whitespace-nowrap">Dari</label> --}}
                         <input type="date" id="date_from" name="date_from" value="{{ request('date_from') }}"
                             class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <div class="flex items-center gap-1.5">
-                        <label for="date_to" class="text-sm text-gray-600 whitespace-nowrap">Sampai</label>
+                        {{-- <label for="date_to" class="text-sm text-gray-600 whitespace-nowrap">Sampai</label> --}}
                         <input type="date" id="date_to" name="date_to" value="{{ request('date_to') }}"
                             class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
                     <button type="submit" class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
-                        Filter Tanggal
+                        Filter
                     </button>
                     @if(request('date_from') || request('date_to'))
                         <a href="{{ route('admin.asesi.index', request()->only(['search', 'category_name'])) }}"

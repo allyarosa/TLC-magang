@@ -1,7 +1,7 @@
 <header class="mb-16">
     <nav
-        class="fixed w-full z-20 top-0 start-0 bg-white/95 backdrop-blur-[20px] overflow-visible">
-        <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-3 px-4 lg:px-8">
+        class="fixed w-full z-20 top-0 start-0 bg-gradient-to-r from-[#1D4E89] to-brandGreen/95 backdrop-blur-[20px] overflow-visible border-b border-gray-100 shadow-md">
+        <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-2 px-4 lg:px-8">
             <!-- Brand Section -->
             <div class="flex items-center space-x-2 sm:space-x-3 group flex-1 min-w-0 lg:flex-none">
                 <div class="relative flex-shrink-0">
@@ -11,10 +11,10 @@
                 </div>
                 <div class="select-none min-w-0 flex-1 lg:flex-none">
                     <h1
-                        class="text-sm sm:text-lg md:text-2xl font-black bg-gradient-to-br from-[#1D4E89] to-[#667eea] bg-clip-text text-transparent tracking-tight capitalize truncate">
+                        class="text-sm sm:text-lg md:text-2xl font-black bg-white bg-clip-text text-transparent tracking-tight capitalize truncate">
                         TLC Program
                     </h1>
-                    <p class="text-[10px] sm:text-xs text-slate-600 font-medium tracking-wide capitalize truncate">
+                    <p class="text-[10px] sm:text-xs text-white font-medium tracking-wide capitalize truncate">
                         Teaching & Learning Certification
                     </p>
                 </div>
@@ -22,7 +22,7 @@
 
             <!-- Mobile Menu Toggle -->
             <div class="lg:hidden flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
-                <!-- Notification Icon for Mob  ile -->
+                <!-- Notification Icon for Mobile -->
                 <livewire:notification-modal />
                 <button id="mobile-menu-toggle" onclick="event.stopPropagation(); window.toggleMobileMenu();"
                     class="p-2 sm:p-2.5 rounded-lg bg-white/90 backdrop-blur-[10px] border border-[#1D4E89]/10 hover:bg-white hover:scale-105 transition-all duration-300 text-slate-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
@@ -94,23 +94,23 @@
                 <!-- Profile Dropdown -->
                 <div class="relative">
                     <button id="profile-button-asesi" onclick="event.stopPropagation(); window.toggleProfileMenu();"
-                        class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-gray-100 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/30">
+                        class="flex items-center gap-2 p-1.5 rounded-lg transition-all">
                         <img src="{{ asset('storage/' . (Auth::user()->userProfile->profile_image ?? 'blankProfile.png')) }}"
-                            alt="Profile Image" class="w-9 h-9 rounded-full object-cover border-2 border-blue-500">
-                        <svg id="profile-arrow" class="w-4 h-4 text-gray-600 transition-transform duration-300"
+                            alt="Profile Image" class="w-9 h-9 rounded-full object-cover">
+                        <svg id="profile-arrow" class="w-4 h-4 text-white transition-transform duration-300"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
 
                     <!-- Dropdown Menu -->
                     <div id="profile-menu-asesi"
-                        class="absolute right-0 top-12 mt-2 w-48 bg-white/95 backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 hidden overflow-hidden z-[999]">
+                        class="absolute right-0 top-12 mt-2 w-48 bg-blue-50/95 rounded-b-xl shadow-lg hidden overflow-hidden z-[999]">
                         <div class="py-2">
                             <a href="{{ route('asesi.profile') }}"
                                 class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                 <div
-                                    class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                                    class="p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
@@ -118,7 +118,7 @@
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
                                 </div>
-                                <span class="font-medium">Lihat Profil</span>
+                                <span class="font-medium text-sm">Lihat Profile Anda</span>
                             </a>
 
                             <div class="border-t border-gray-100 my-1"></div>
@@ -149,9 +149,9 @@
                                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                                     @csrf
                                     <button type="submit"
-                                        class="w-full flex items-center space-x-3 px-4 py-3 text-red-500 hover:bg-red-50 transition-all duration-300 group">
+                                        class="w-full flex items-center space-x-3 px-4 py-3 text-red-500 transition-all duration-300 group">
                                         <div
-                                            class="p-1.5 bg-red-100 rounded-lg group-hover:bg-red-200 transition-colors duration-300">
+                                            class="p-1.5 rounded-lg group-hover:bg-red-200 transition-colors duration-300">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -162,7 +162,7 @@
                                                 </line>
                                             </svg>
                                         </div>
-                                        <span class="font-medium">Logout</span>
+                                        <span class="font-medium text-sm">Logout</span>
                                     </button>
                                 </form>
                             </div>
@@ -173,9 +173,9 @@
 
             <!-- Navigation Menu for Mobile -->
             <div id="mobile-menu"
-                class="lg:hidden fixed inset-x-0 top-16 bg-white/95 backdrop-blur-[20px] border border-gray-200/50 mx-4 rounded-2xl shadow-xl transition-all duration-300 overflow-hidden opacity-0 -translate-y-4 pointer-events-none z-50 lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto lg:static lg:flex lg:bg-transparent lg:border-0 lg:mx-0 lg:rounded-none lg:shadow-none">
+                class="lg:hidden fixed inset-x-0 top-16 bg-white border border-gray-200/50 mx-4 rounded-b-2xl shadow-xl transition-all duration-300 overflow-hidden opacity-0 -translate-y-4 pointer-events-none -z-50 lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto lg:static lg:flex lg:bg-transparent lg:border-0 lg:mx-0 lg:rounded-none lg:shadow-none">
                 <div
-                    class="container mx-auto px-6 lg:px-0 flex flex-col lg:flex-row items-center space-y-1 lg:space-y-0 lg:space-x-6 py-6 lg:py-0">
+                    class="container mx-auto px- lg:px-0 flex flex-col lg:flex-row items-center space-y-1 lg:space-y-0 lg:space-x-6 py-6 lg:py-0">
                     <a href="{{ route('asesi.dashboard') }}"
                         class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.dashboard') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                         Dashboard
@@ -239,7 +239,7 @@
         window.toggleProfileMenu = function() {
             const profileMenu = document.getElementById('profile-menu-asesi');
             const profileArrow = document.getElementById('profile-arrow');
-            
+
             if (profileMenu) profileMenu.classList.toggle('hidden');
             if (profileArrow) profileArrow.classList.toggle('rotate-180');
         };
@@ -252,7 +252,8 @@
                 const mobileMenu = document.getElementById('mobile-menu');
                 const mobileToggle = document.getElementById('mobile-menu-toggle');
                 if (mobileMenu && !mobileMenu.classList.contains('opacity-0')) {
-                    if (!mobileMenu.contains(event.target) && (!mobileToggle || !mobileToggle.contains(event.target))) {
+                    if (!mobileMenu.contains(event.target) && (!mobileToggle || !mobileToggle.contains(event
+                            .target))) {
                         window.toggleMobileMenu();
                     }
                 }
@@ -261,7 +262,8 @@
                 const profileMenu = document.getElementById('profile-menu-asesi');
                 const profileToggle = document.getElementById('profile-button-asesi');
                 if (profileMenu && !profileMenu.classList.contains('hidden')) {
-                    if (!profileMenu.contains(event.target) && (!profileToggle || !profileToggle.contains(event.target))) {
+                    if (!profileMenu.contains(event.target) && (!profileToggle || !profileToggle.contains(event
+                            .target))) {
                         window.toggleProfileMenu();
                     }
                 }
@@ -269,19 +271,21 @@
                 // Handle Notification Toggle via delegation
                 const notificationToggle = event.target.closest('#notification-button');
                 const notificationModal = document.getElementById('notification-modal');
-                
+
                 if (notificationToggle && notificationModal) {
                     notificationModal.classList.toggle('hidden');
                 } else if (notificationModal && !notificationModal.classList.contains('hidden')) {
                     const notifBtn = document.getElementById('notification-button');
-                    if (!notificationModal.contains(event.target) && (!notifBtn || !notifBtn.contains(event.target))) {
+                    if (!notificationModal.contains(event.target) && (!notifBtn || !notifBtn.contains(event
+                        .target))) {
                         notificationModal.classList.add('hidden');
                     }
                 }
-                
+
                 // Handle Mobile Nav Links (Close menu when clicked)
                 const navLink = event.target.closest('.nav-link');
-                if (navLink && window.innerWidth < 1024 && mobileMenu && !mobileMenu.classList.contains('opacity-0')) {
+                if (navLink && window.innerWidth < 1024 && mobileMenu && !mobileMenu.classList.contains(
+                    'opacity-0')) {
                     window.toggleMobileMenu();
                 }
             });

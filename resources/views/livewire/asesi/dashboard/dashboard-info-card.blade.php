@@ -6,9 +6,9 @@
                 class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-brandGreen text-white">
                 {{ $title ?? 'No Data' }}
             </span>
-            <h3 class="text-4xl font-display font-extrabold text-gray-700">Halo, {{ Auth::user()->name }}! 👋</h3>
+            <h3 class="text-2xl md:text-4xl font-display font-extrabold text-gray-700">Halo, {{ Auth::user()->name }}! 👋</h3>
         </div>
-        <p class="max-w-md text-justify">
+        <p class="max-w-md text-justify text-gray-700">
             {{ $description ?? 'No Data' }}
         </p>
 
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="relative w-48 h-48 flex flex-col items-center justify-center shrink-0 ">
+    <div class="relative w-48 h-48 flex-col items-center justify-center shrink-0 hidden md:flex">
         <img src="{{ asset('images/letter-a.png') }}" alt="{{ $levelName }}" class="w-3/4 h-3/4">
 
         <p class=" mt-2 text-gray-700 font-bold">{{ $levelName ?? 'No Data' }}</p>

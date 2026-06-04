@@ -1,19 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('mobile-menu-toggle').addEventListener('click', function () {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Header asesi baru sudah punya toggle sendiri via window.toggleMobileMenu().
+    // Hindari bentrok dengan mekanisme lama yang hanya menambah/menghapus class `hidden`.
+    if (mobileMenuToggle && mobileMenu && typeof window.toggleMobileMenu !== "function") {
+        mobileMenuToggle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 
     const profileButton = document.getElementById("profile-button");
     const profileMenu = document.getElementById("profile-menu");
-    profileButton.addEventListener("click", function (event) {
-        event.stopPropagation();
-        profileMenu.classList.toggle("hidden");
-    });
-    document.addEventListener("click", function (event) {
-        if (!profileMenu.contains(event.target) && !profileButton.contains(event.target)) {
-            profileMenu.classList.add("hidden");
-        }
-    });
+
+    if (profileButton && profileMenu) {
+        profileButton.addEventListener("click", function (event) {
+            event.stopPropagation();
+            profileMenu.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!profileMenu.contains(event.target) && !profileButton.contains(event.target)) {
+                profileMenu.classList.add("hidden");
+            }
+        });
+    }
 });
 
 document.querySelectorAll('.group').forEach(group => {

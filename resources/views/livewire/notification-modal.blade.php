@@ -1,7 +1,7 @@
 <div class="relative">
     <!-- Tombol Notifikasi -->
-    <button wire:click="toggle" class="p-2.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20">
-        <svg class="h-5 w-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button wire:click="toggle" class="p-2 text-white hover:text-gray-800 rounded-full hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none">
+        <svg class="h-6 w-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
             </path>
         </svg>
@@ -35,13 +35,13 @@
                     </div>
                 </div>
             @empty
-                <div class="px-4 py-8 text-center">
+                <div class="px-4 py-12 text-center">
                     <p class="text-sm text-gray-500">Tidak ada notifikasi baru.</p>
                 </div>
             @endforelse
         </div>
         <div class="px-4 py-2 border-t border-gray-200">
-            <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700 w-full text-center block">Lihat semua notifikasi</a>
+            <a href="#" class="text-sm font-medium text-brandBlue hover:text-blue-700 w-full text-center block">Lihat semua notifikasi</a>
         </div>
     </div>
 </div>

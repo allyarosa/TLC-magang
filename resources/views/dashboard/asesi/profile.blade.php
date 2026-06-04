@@ -1,79 +1,14 @@
 @extends('layouts.asesiDashboard')
 
 @section('content')
-    @php
-        $user = auth()->user();
-        $userProfile = $user->userProfile;
-        $filledFields = 0;
-        $totalFields = 14; 
-        
-        if($userProfile) {
-            $fields = [
-                'nama_depan', 'nik', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin',
-                'no_wa', 'latar_belakang_pendidikan', 'nama_universitas', 'program_studi',
-                'tahun_studi', 'instansi', 'profesi', 'lama_masa_kerja'
-            ];
-            foreach($fields as $field) {
-                if(!empty($userProfile->$field)) $filledFields++;
-            }
-            if(!empty($userProfile->provinsi) && !empty($userProfile->kabupaten) && !empty($userProfile->kecamatan) && !empty($userProfile->kelurahan)) {
-                $filledFields++;
-            }
-        }
-        
-        $percentage = ($filledFields / $totalFields) * 100;
-        $percentage = number_format($percentage, 0);
-    @endphp
-    <section class="w-full min-h-screen bg-[#F5F7FA] py-12 px-4 sm:px-6 md:ml-16">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 items-end">
-                <div class="lg:col-span-1">
-                    <h2 class="text-4xl font-extrabold text-slate-800 tracking-tight mb-3">
-                        Profil Saya
-                    </h2>
-                    <p class="text-slate-500 text-lg leading-relaxed">
-                        Kelola informasi identitas dan lengkapi data diri Anda untuk sertifikasi.
-                    </p>
-                </div>
-
-                <div class="lg:col-span-2 flex flex-col sm:flex-row gap-4 justify-end">
-                    
-                    <!-- Status Card -->
-                    <div class="flex-1 bg-white rounded-2xl p-5 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 group">
-                        <div class="flex items-center gap-4">
-                            <div class="relative flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-50 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-20"></span>
-                                <svg class="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-0.5">Status Akun</p>
-                                <p class="text-lg font-bold text-slate-700">Aktif</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Completion Card -->
-                    <div class="flex-1 bg-white rounded-2xl p-5 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 group">
-                        <div class="flex items-center gap-4">
-                            <div class="relative flex-shrink-0 w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                <span class="text-blue-600 font-bold text-sm">{{ $percentage }}%</span>
-                                <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 36 36">
-                                    <path class="text-blue-100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="2" />
-                                    <path class="text-blue-500" stroke-dasharray="{{ $percentage }}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="2" />
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-0.5">Kelengkapan Data</p>
-                                <p class="text-lg font-bold text-slate-700">
-                                    {{ $percentage < 100 ? 'Belum Lengkap' : 'Lengkap' }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="min-h-screen pb-20 md:ml-64">
+        <div class="flex-1 p-4 md:p-12 min-h-screen bg-blue-50/60">
+            <!-- Header Section -->
+            <header class="mb-12 max-w-4xl hidden md:block">
+                <h1 class="text-3xl font-bold text-gray-800 tracking-tight mb-2">Pengaturan Profil</h1>
+                <p class="text-lg text-gray-800 font-body">Kelola identitas, informasi kontak, dan data profesional Anda
+                    dengan mudah.</p>
+            </header>
 
             @if (session()->has('warning'))
                 <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-lg flex items-start">
@@ -112,149 +47,79 @@
                     <p class="text-sm text-red-700">{{ session('error') }}</p>
                 </div>
             @endif
-
-            <!-- Profile Header -->
-
-            <!-- Form Section with Tabs -->
             <form method="POST" action="{{ route('asesi.profile.update') }}" id="profileForm"
-                enctype="multipart/form-data">
-                @csrf @method('PUT')
+                enctype="multipart/form-data" class="max-w-4xl space-y-12 pb-12">
+                @csrf
+                @method('PUT')
 
-                <div class="bg-white rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-slate-100 p-6 sm:p-8 mb-8">
-                    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-                        <div class="relative flex-shrink-0">
-                            <div
-                                class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-white overflow-hidden border-[6px] border-white shadow-xl">
-                                <img id="profileImage"
-                                    src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/images/blankProfile.png')) }}"
-                                    alt="Foto Profil" class="w-full h-full object-cover">
-                            </div>
-                            <label for="profileInput"
-                                class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.1)] cursor-pointer hover:bg-blue-50 text-blue-600 hover:text-blue-700 hover:scale-105 transition-all duration-300 border border-slate-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-current"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <input type="file" id="profileInput" name="profile_image" accept=".jpg,.jpeg,.png"
-                                    class="hidden" onchange="previewImage(event)">
-                            </label>
+                <!-- Section 1: Data Pribadi (Bento-ish Grid) -->
+                <section class="bg-white p-8 rounded-xl shadow-md" id="personal-data">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="flex items- center gap-3 text-brandBlue">
+                            <span class="material-symbols-outlined">person</span>
+                            <h3 class="text-xl font-bold font-headline">Data Pribadi</h3>
                         </div>
-                        <div class="text-center sm:text-left flex-grow min-w-0">
-                            <h3 class="text-2xl sm:text-3xl font-black text-slate-800 mb-1 truncate tracking-tight">{{ auth()->user()->name }}
-                            </h3>
-                            <p class="text-sm sm:text-base text-slate-500 font-medium mb-3 sm:mb-4 truncate">{{ auth()->user()->email }}
-                            </p>
-                            <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
-                                <span
-                                    class="bg-blue-50 text-blue-700 text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap border border-blue-100">Bergabung
-                                    {{ auth()->user()->created_at->format('M Y') }}</span>
-                                {{-- <span
-                                    class="{{ auth()->user()->userProfile ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }} text-xs font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap">
-                            {{ auth()->user()->userProfile ? 'Profil Lengkap' : 'Profil Belum Lengkap' }}
-                            </span> --}}
+                        {{-- <button
+                            class="bg-brandBlue text-white px-6 py-2 rounded-lg text-sm font-semibold hover:brightness-110 transition-all">
+                            Simpan Perubahan
+                        </button> --}}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <div
+                            class="md:col-span-4 flex flex-col items-center justify-center border-r border-outline-variant/10 pr-8">
+                            <div class="relative group cursor-pointer">
+                                <div class="w-32 h-32 rounded-full overflow-hidden bg-surface-container shadow-inner">
+                                    <img class="w-full h-full object-cover" id="profileImage" alt="Foto Profile"
+                                        src="{{ asset('storage/' . (auth()->user()->userProfile->profile_image ?? '/images/blankProfile.png')) }}"
+                                        data-alt="close up of a professional educator looking friendly at the camera in a modern minimalist school setting"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmRkuHsWuW4qi3E5iESDpUUupDbL_7CRBffOlCJjjxxd1Jp-I1O4HdyDbcTqqVhktCvItmTDg3BC2KDAkZ2fknyTnPjNIk6d7DPgBfc92hDqV1YhKXF4R7DIIfTAnBqjC_tQydwMnRapPfQoF_gEaR60jxQrJtDvRR2Z4Rcms0Pb_Jyxr7BaF5dCQYRh7ff7QxpASyixADH2J4r-6T2KRUfwwh6HswHfBiG8QHMFdgboke9A_cXPTSjXD2hOUB-1HSLJlewrG8ayC8">
+                                </div>
+                                <label for="profileInput"
+                                    class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.1)] cursor-pointer hover:bg-blue-50 text-blue-600 hover:text-blue-700 hover:scale-105 transition-all duration-300 border border-slate-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-current"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <input type="file" id="profileInput" name="profile_image" accept=".jpg,.jpeg,.png"
+                                        class="hidden" onchange="previewImage(event)">
+                                </label>
+                                {{-- <div
+                                    class="absolute inset-0 bg-primary/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <span class="material-symbols-outlined text-white">photo_camera</span>
+                                </div> --}}
                             </div>
+                            <span
+                                class="mt-4 text-xs text-gray-800 font-semibold uppercase tracking-widest text-outline">Foto
+                                Profile</span>
                         </div>
-                    </div>
-                </div>
+                        <div class="md:col-span-8 space-y-6">
+                            <div class="grid grid-cols-2 gap-4">
 
-                <div class="bg-white rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-slate-100 overflow-hidden mb-8">
-                    <!-- Tabs -->
-                    <div class="border-b border-slate-100 px-6 pt-4">
-                        <nav class="flex space-x-8 overflow-x-auto pb-px" aria-label="Tabs">
-                            <button type="button" onclick="switchTab('personal')" id="personalTab"
-                                class="tab-button active group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 text-blue-600 border-b-2 border-blue-600">
-                                <span>Data Pribadi</span>
-                                <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-0.5 bg-blue-600"></span>
-                            </button>
-                            <button type="button" onclick="switchTab('education')" id="educationTab"
-                                class="tab-button group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium text-slate-500 hover:text-slate-700 hover:bg-gray-50 focus:z-10 border-b-2 border-transparent">
-                                <span>Pendidikan</span>
-                                <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-0.5 bg-transparent group-hover:bg-slate-300"></span>
-                            </button>
-                            <button type="button" onclick="switchTab('work')" id="workTab"
-                                class="tab-button group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium text-slate-500 hover:text-slate-700 hover:bg-gray-50 focus:z-10 border-b-2 border-transparent">
-                                <span>Pekerjaan</span>
-                                <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-0.5 bg-transparent group-hover:bg-slate-300"></span>
-                            </button>
-                            <button type="button" onclick="switchTab('address')" id="addressTab"
-                                class="tab-button group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium text-slate-500 hover:text-slate-700 hover:bg-gray-50 focus:z-10 border-b-2 border-transparent">
-                                <span>Alamat</span>
-                                <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-0.5 bg-transparent group-hover:bg-slate-300"></span>
-                            </button>
-                        </nav>
-                    </div>
-
-                    <!-- Tab Contents -->
-                    <div class="p-4 sm:p-6">
-                        <!-- Personal Data Tab -->
-                        <div id="personalContent" class="tab-content active">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                {{-- NAMA LENGKAP --}}
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">
-                                        Nama Lengkap + Gelar
-                                    </label>
-                                    <input type="text" name="nama_depan" required
-                                        value="{{ old('nama_depan', auth()->user()->userProfile->nama_depan ?? auth()->user()->name) }}"
-                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-
+                                    <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Nama
+                                        Lengkap + Gelar</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        type="text" placeholder="Nama lengkap anda + gelar" name="nama_depan" required
+                                        value={{ old('nama_depan', auth()->user()->userProfile->nama_depan ?? auth()->user()->name) }}
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')">
                                     @error('nama_depan')
                                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                                     @enderror
                                 </div>
 
+                                {{-- NO WA --}}
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">NIK</label>
-                                    <input type="text" name="nik" maxlength="16"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);"
-                                        value="{{ old('nik', auth()->user()->userProfile->nik ?? '') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400"
-                                        placeholder="16 digit NIK">
-                                    @error('nik')
-                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">
-                                        Tempat Lahir
-                                    </label>
-                                    <input type="text" name="tempat_lahir" maxlength="25"
-                                        value="{{ old('tempat_lahir', auth()->user()->userProfile->tempat_lahir ?? '') }}"
-                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">
-                                        Tanggal Lahir
-                                    </label>
-                                    <input type="date" name="tanggal_lahir"
-                                        value="{{ old('tanggal_lahir', auth()->user()->userProfile->tanggal_lahir ?? '') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Jenis Kelamin</label>
-                                    <select name="jenis_kelamin"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                        <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="L"
-                                            {{ old('jenis_kelamin', auth()->user()->userProfile->jenis_kelamin ?? '') == 'L' ? 'selected' : '' }}>
-                                            Laki-laki</option>
-                                        <option value="P"
-                                            {{ old('jenis_kelamin', auth()->user()->userProfile->jenis_kelamin ?? '') == 'P' ? 'selected' : '' }}>
-                                            Perempuan</option>
-                                    </select>
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Nomor WhatsApp</label>
-                                    <input type="tel" name="no_wa" maxlength="20"
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">No.Whatsapp</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        type="tel" placeholder="Nomor Whatsapp anda" maxlength="20" name="no_wa"
+                                        value="{{ old('no_wa', auth()->user()->userProfile->no_wa ?? '' ? '+62 ' . implode(' ', str_split(Str::substr(preg_replace('/\D/', '', auth()->user()->userProfile->no_wa), 2), 3)) : '+62 ') }}"
                                         oninput="
                             let raw = this.value.replace(/[^0-9]/g, '');
                             if (!raw.startsWith('62')) {
@@ -266,70 +131,170 @@
                             formatted += ' ' + number.match(/.{1,3}/g).join(' ');
                             }
                             this.value = formatted.slice(0, 20);
-                        "
-                                        value="{{ old('no_wa', auth()->user()->userProfile->no_wa ?? '' ? '+62 ' . implode(' ', str_split(Str::substr(preg_replace('/\D/', '', auth()->user()->userProfile->no_wa), 2), 3)) : '+62 ') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400"
-                                        placeholder="+62 812 345 678 901" />
+                        ">
+                                    @error('no_wa')
+                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
-                        </div>
+                            <div class="grid grid-cols-2 gap-4">
 
-                        <!-- Education Data Tab -->
-                        <div id="educationContent" class="tab-content hidden">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                {{-- EMAIL --}}
+                                {{-- <div class="space-y-2">
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Email</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        type="email" placeholder="Email aktif anda">
+                                </div> --}}
+                                {{-- JENIS KELAMIN --}}
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">
-                                        Latar Belakang Pendidikan
-                                    </label>
-                                    <select name="latar_belakang_pendidikan"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                        <option value="">Pilih Jenjang Pendidikan</option>
-                                        <option value="SMA/SMK"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'SMA/SMK' ? 'selected' : '' }}>
-                                            SMA/SMK</option>
-                                        <option value="D1"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D1' ? 'selected' : '' }}>
-                                            D1</option>
-                                        <option value="D2"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D2' ? 'selected' : '' }}>
-                                            D2</option>
-                                        <option value="D3"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D3' ? 'selected' : '' }}>
-                                            D3</option>
-                                        <option value="D4/S1"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D4/S1' ? 'selected' : '' }}>
-                                            D4/S1</option>
-                                        <option value="S2"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'S2' ? 'selected' : '' }}>
-                                            S2</option>
-                                        <option value="S3"
-                                            {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'S3' ? 'selected' : '' }}>
-                                            S3</option>
+                                    <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Jenis
+                                        Kelamin</label>
+                                    <select
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20"
+                                        name="jenis_kelamin">
+                                        {{-- <option class="bg-white" selected disabled>Pilih jenis kelamin</option> --}}
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="L"
+                                            {{ old('jenis_kelamin', auth()->user()->userProfile->jenis_kelamin ?? '') == 'L' ? 'selected' : '' }}>
+                                            Laki-laki</option>
+                                        <option value="P"
+                                            {{ old('jenis_kelamin', auth()->user()->userProfile->jenis_kelamin ?? '') == 'P' ? 'selected' : '' }}>
+                                            Perempuan</option>
                                     </select>
+                                    @error('jenis_kelamin')
+                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
+                                {{-- NIK --}}
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">
-                                        Nama Universitas/Institusi
-                                    </label>
-                                    <input type="text" name="nama_universitas"
-                                        value="{{ old('nama_universitas', auth()->user()->userProfile->nama_universitas ?? '') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400"
-                                        placeholder="Contoh: Universitas Indonesia">
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">NIK</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        type="text" placeholder="Nomor Induk Kependudukan anda" maxlength="16" name="nik"
+                                        value="{{ old('nik', auth()->user()->userProfile->nik ?? '') }}"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);">
+                                    @error('nik')
+                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                {{-- TEMPAT LAHIR --}}
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Tempat
+                                        Lahir</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        type="text" name="tempat_lahir" placeholder="Tempat lahir anda" maxlength="25"
+                                        value="{{ old('tempat_lahir', auth()->user()->userProfile->tempat_lahir ?? '') }}"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')">
+                                    @error('tempat_lahir')
+                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
+                                {{-- TANGGAL LAHIR --}}
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Program Studi</label>
-                                    <input type="text" name="program_studi"
-                                        value="{{ old('program_studi', auth()->user()->userProfile->program_studi ?? '') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400"
-                                        placeholder="Contoh: Teknik Informatika">
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Tanggal
+                                        Lahir</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        type="date" placeholder="Tanggal lahir anda" name="tanggal_lahir"
+                                        value="{{ old('tanggal_lahir', auth()->user()->userProfile->tanggal_lahir ?? '') }}">
+                                    @error('tanggal_lahir')
+                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                    @enderror
                                 </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                {{-- JENIS KELAMIN --}}
+                                {{-- <div class="space-y-2">
+                                    <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Jenis
+                                        Kelamin</label>
+                                    <select
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20">
+                                        <option class="bg-white" selected disabled>Pilih jenis kelamin</option>
+                                        <option class="bg-white">Laki-laki</option>
+                                        <option class="bg-white">Perempuan</option>
+                                    </select>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section 2: Pendidikan & Pekerjaan (Asymmetric Split) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Pendidikan -->
+                    <section class="bg-white p-8 rounded-xl shadow-md">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex items-center gap-3 text-brandBlue">
+                                <span class="material-symbols-outlined">school</span>
+                                <h3 class="text-xl font-bold font-headline">Pendidikan</h3>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
 
+                            {{-- JENJANG PENDIDIKAN --}}
+                            <div class="space-y-2">
+                                <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Jenjang
+                                    Pendidikan</label>
+                                <select
+                                    class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20"
+                                    name="latar_belakang_pendidikan">
+                                    <option value="">Pilih Jenjang Pendidikan</option>
+                                    <option value="SMA/SMK"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'SMA/SMK' ? 'selected' : '' }}>
+                                        SMA/SMK</option>
+                                    <option value="D1"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D1' ? 'selected' : '' }}>
+                                        D1</option>
+                                    <option value="D2"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D2' ? 'selected' : '' }}>
+                                        D2</option>
+                                    <option value="D3"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D3' ? 'selected' : '' }}>
+                                        D3</option>
+                                    <option value="D4/S1"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'D4/S1' ? 'selected' : '' }}>
+                                        D4/S1</option>
+                                    <option value="S2"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'S2' ? 'selected' : '' }}>
+                                        S2</option>
+                                    <option value="S3"
+                                        {{ old('latar_belakang_pendidikan', auth()->user()->userProfile->latar_belakang_pendidikan ?? '') == 'S3' ? 'selected' : '' }}>
+                                        S3</option>
+                                </select>
+                                @error('latar_belakang_pendidikan')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            {{-- INSTITUSI --}}
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Institusi</label>
+                                <input class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder-gray-400"
+                                    type="text" placeholder="Institusi pendidikan anda" name="nama_universitas"
+                                    value="{{ old('nama_universitas', auth()->user()->userProfile->nama_universitas ?? '') }}">
+                                @error('nama_universitas')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                {{-- TAHUN STUDI --}}
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Tahun Lulus</label>
-                                    <select name="tahun_studi"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Tahun
+                                        Lulus</label>
+                                    <select name="tahun_studi" id="tahun_studi"
+                                        class=" w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400">
                                         <option value="">Pilih Tahun Lulus</option>
                                         @for ($year = date('Y'); $year >= 1970; $year--)
                                             <option value="{{ $year }}"
@@ -338,187 +303,343 @@
                                             </option>
                                         @endfor
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Work Data Tab -->
-                        <div id="workContent" class="tab-content hidden">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Instansi</label>
-                                    <select name="instansi" id="instansiSelect"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                        <option value="">Pilih Instansi</option>
-                                        <option value="Pemerintah"
-                                            {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Pemerintah' ? 'selected' : '' }}>
-                                            Pemerintah</option>
-                                        <option value="Swasta"
-                                            {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Swasta' ? 'selected' : '' }}>
-                                            Swasta</option>
-                                        <option value="BUMN"
-                                            {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'BUMN' ? 'selected' : '' }}>
-                                            BUMN</option>
-                                        <option value="Lainnya"
-                                            {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Lainnya' ? 'selected' : '' }}>
-                                            Lainnya</option>
-                                    </select>
-                                </div>
-
-                                <div id="customInstansiDiv" class="space-y-2"
-                                    style="display: {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Lainnya' ? 'block' : 'none' }};">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Nama Instansi</label>
-                                    <input type="text" name="custom_instansi"
-                                        value="{{ old('custom_instansi', auth()->user()->userProfile->custom_instansi ?? '') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400"
-                                        placeholder="Masukkan nama instansi">
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Profesi</label>
-                                    <input type="text" name="profesi" maxlength="50"
-                                        value="{{ old('profesi', auth()->user()->userProfile->profesi ?? '') }}"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400"
-                                        placeholder="Contoh: Manager, Staff IT, Dokter">
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label class="block text-sm font-bold text-slate-700 mb-2">Lama Masa Kerja</label>
-                                    <select name="lama_masa_kerja"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                        <option value="">Pilih Lama Masa Kerja</option>
-                                        <option value="< 1 tahun"
-                                            {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '< 1 tahun' ? 'selected' : '' }}>
-                                            &lt; 1 tahun</option>
-                                        <option value="1-2 tahun"
-                                            {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '1-2 tahun' ? 'selected' : '' }}>
-                                            1-2 tahun</option>
-                                        <option value="3-5 tahun"
-                                            {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '3-5 tahun' ? 'selected' : '' }}>
-                                            3-5 tahun</option>
-                                        <option value="6-10 tahun"
-                                            {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '6-10 tahun' ? 'selected' : '' }}>
-                                            6-10 tahun</option>
-                                        <option value="11-15 tahun"
-                                            {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '11-15 tahun' ? 'selected' : '' }}>
-                                            11-15 tahun</option>
-                                        <option value="> 15 tahun"
-                                            {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '> 15 tahun' ? 'selected' : '' }}>
-                                            &gt; 15 tahun</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Address Data Tab -->
-                        <div id="addressContent" class="tab-content hidden">
-                            <!-- Hidden fields untuk ID -->
-                            <input type="hidden" name="province_id" id="province_id"
-                                value="{{ old('province_id', auth()->user()->userProfile->province_id ?? '') }}">
-                            <input type="hidden" name="regency_id" id="regency_id"
-                                value="{{ old('regency_id', auth()->user()->userProfile->regency_id ?? '') }}">
-                            <input type="hidden" name="district_id" id="district_id"
-                                value="{{ old('district_id', auth()->user()->userProfile->district_id ?? '') }}">
-                            <input type="hidden" name="village_id" id="village_id"
-                                value="{{ old('village_id', auth()->user()->userProfile->village_id ?? '') }}">
-
-                            <div class="grid grid-cols-1 gap-4 sm:gap-6">
-                                <!-- Provinsi -->
-                                <div class="space-y-2">
-                                    <label for="province" class="block text-sm font-bold text-slate-700 mb-2">Provinsi
-                                        Domisili</label>
-                                    <select id="province" name="provinsi"
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400">
-                                        <option value="">Pilih Provinsi</option>
-                                        @foreach ($provinces as $province)
-                                            <option value="{{ $province->name }}" data-id="{{ $province->id }}"
-                                                {{ old('provinsi', auth()->user()->userProfile->provinsi ?? '') == $province->name ? 'selected' : '' }}>
-                                                {{ $province->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('provinsi')
+                                    @error('tahun_studi')
                                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <!-- Kabupaten/Kota -->
                                 <div class="space-y-2">
-                                    <label for="regency" class="block text-sm font-bold text-slate-700 mb-2">Kabupaten/Kota
-                                        Domisili</label>
-                                    <select id="regency" name="kabupaten" disabled
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400 disabled:bg-gray-100 disabled:cursor-not-allowed">
-                                        <option value="">Pilih Kabupaten/Kota</option>
-                                        @if (old('kabupaten', auth()->user()->userProfile->kabupaten ?? ''))
-                                            <option
-                                                value="{{ old('kabupaten', auth()->user()->userProfile->kabupaten ?? '') }}"
-                                                selected>
-                                                {{ old('kabupaten', auth()->user()->userProfile->kabupaten ?? '') }}
-                                            </option>
-                                        @endif
-                                    </select>
-                                    @error('kabupaten')
-                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
-                                    @enderror
-                                </div>
 
-                                <!-- Kecamatan -->
-                                <div class="space-y-2">
-                                    <label for="district" class="block text-sm font-bold text-slate-700 mb-2">Kecamatan
-                                        Domisili</label>
-                                    <select id="district" name="kecamatan" disabled
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400 disabled:bg-gray-100 disabled:cursor-not-allowed">
-                                        <option value="">Pilih Kecamatan</option>
-                                        @if (old('kecamatan', auth()->user()->userProfile->kecamatan ?? ''))
-                                            <option
-                                                value="{{ old('kecamatan', auth()->user()->userProfile->kecamatan ?? '') }}"
-                                                selected>
-                                                {{ old('kecamatan', auth()->user()->userProfile->kecamatan ?? '') }}
-                                            </option>
-                                        @endif
-                                    </select>
-                                    @error('kecamatan')
-                                        <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <!-- Kelurahan -->
-                                <div class="space-y-2">
-                                    <label for="village" class="block text-sm font-bold text-slate-700 mb-2">Kelurahan
-                                        Domisili</label>
-                                    <select id="village" name="kelurahan" disabled
-                                        class="w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl px-4 py-3 sm:py-3.5 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 text-sm sm:text-base font-medium placeholder:text-slate-400 disabled:bg-gray-100 disabled:cursor-not-allowed">
-                                        <option value="">Pilih Kelurahan</option>
-                                        @if (old('kelurahan', auth()->user()->userProfile->kelurahan ?? ''))
-                                            <option
-                                                value="{{ old('kelurahan', auth()->user()->userProfile->kelurahan ?? '') }}"
-                                                selected>
-                                                {{ old('kelurahan', auth()->user()->userProfile->kelurahan ?? '') }}
-                                            </option>
-                                        @endif
-                                    </select>
-                                    @error('kelurahan')
+                                    {{-- PROGRAM STUDI --}}
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Program
+                                        Studi</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400"
+                                        type="text" name="program_studi"
+                                        value="{{ old('program_studi', auth()->user()->userProfile->program_studi ?? '') }}"
+                                        placeholder="Program studi anda">
+                                    @error('program_studi')
                                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
+                            {{-- <button
+                                class="w-full mt-4 bg-brandBlue text-white font-bold py-2 rounded-lg text-sm hover:brightness-110 transition-all">
+                                Simpan Data Pendidikan
+                            </button> --}}
                         </div>
-                    </div>
+                    </section>
+                    <!-- Pekerjaan -->
+                    <section class="bg-white p-8 rounded-xl shadow-md">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex items-center gap-3 text-brandBlue">
+                                <span class="material-symbols-outlined">work</span>
+                                <h3 class="text-xl font-bold font-headline">Pekerjaan</h3>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+
+                            {{-- PROFESI/PEKERJAAN --}}
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Profesi/Pekerjaan</label>
+                                <select name="instansi" id="instansiSelect"
+                                    class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400">
+                                    <option value="">Pilih Instansi</option>
+                                    <option value="Pemerintah"
+                                        {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Pemerintah' ? 'selected' : '' }}>
+                                        Pemerintah</option>
+                                    <option value="Swasta"
+                                        {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Swasta' ? 'selected' : '' }}>
+                                        Swasta</option>
+                                    <option value="BUMN"
+                                        {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'BUMN' ? 'selected' : '' }}>
+                                        BUMN</option>
+                                    <option value="Lainnya"
+                                        {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Lainnya' ? 'selected' : '' }}>
+                                        Lainnya</option>
+                                </select>
+                                @error('instansi')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div id="customInstansiDiv"
+                                class="space-y-2 {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Lainnya' ? '' : 'hidden' }}">
+                                <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Instansi
+                                    Aktif</label>
+                                <input type="text" name="custom_instansi" id="customInstansiInput"
+                                    class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400"
+                                    placeholder="Masukkan nama instansi aktif anda"
+                                    {{ old('instansi', auth()->user()->userProfile->instansi ?? '') == 'Lainnya' ? '' : 'disabled' }}
+                                    value="{{ old('custom_instansi', auth()->user()->userProfile->custom_instansi ?? '') }}">
+                                @error('custom_instansi')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            {{-- LAMA MASA KERJA --}}
+                            <div class="space-y-2">
+                                <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Lama
+                                    masa kerja</label>
+                                <select name="lama_masa_kerja"
+                                    class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm">
+                                    <option value="">Pilih Lama Masa Kerja</option>
+                                    <option value="< 1 tahun"
+                                        {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '< 1 tahun' ? 'selected' : '' }}>
+                                        &lt; 1 tahun</option>
+                                    <option value="1-2 tahun"
+                                        {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '1-2 tahun' ? 'selected' : '' }}>
+                                        1-2 tahun</option>
+                                    <option value="3-5 tahun"
+                                        {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '3-5 tahun' ? 'selected' : '' }}>
+                                        3-5 tahun</option>
+                                    <option value="6-10 tahun"
+                                        {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '6-10 tahun' ? 'selected' : '' }}>
+                                        6-10 tahun</option>
+                                    <option value="11-15 tahun"
+                                        {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '11-15 tahun' ? 'selected' : '' }}>
+                                        11-15 tahun</option>
+                                    <option value="> 15 tahun"
+                                        {{ old('lama_masa_kerja', auth()->user()->userProfile->lama_masa_kerja ?? '') == '> 15 tahun' ? 'selected' : '' }}>
+                                        &gt; 15 tahun</option>
+                                </select>
+                                @error('lama_masa_kerja')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            {{-- INSTANSI --}}
+                            <div class="space-y-2">
+                                <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Jenis
+                                    Instansi</label>
+                                <input
+                                    class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400"
+                                    type="text" placeholder="jenis instansi anda" name="profesi"
+                                    value="{{ old('profesi', auth()->user()->userProfile->profesi ?? '') }}">
+                            </div>
+                            {{-- <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Jabatan</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400"
+                                        type="text" placeholder="Jabatan anda saat ini">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Lama
+                                        Mengajar (Tahun)</label>
+                                    <input
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm placeholder:text-gray-400"
+                                        type="text" placeholder="Tahun lama mengajar(opsional)">
+                                </div>
+                            </div> --}}
+                            {{-- <button
+                                class="w-full mt-4 bg-brandBlue text-white font-bold py-2 rounded-lg text-sm hover:brightness-110 transition-all">
+                                Simpan Data Pekerjaan</button> --}}
+                        </div>
+                    </section>
                 </div>
-
-                <!-- Form Actions -->
-                <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <div class="text-sm text-gray-500 text-center sm:text-left order-2 sm:order-1">
-                        {{-- Terakhir diperbarui: {{ auth()->user()->updated_at->diffForHumans() }} --}}
+                <!-- Section 4: Alamat -->
+                <section class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center gap-3 text-brandBlue mb-8">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <h3 class="text-xl font-bold font-headline">Domisili</h3>
                     </div>
+                    <input type="hidden" name="province_id" id="province_id"
+                        value="{{ old('province_id', auth()->user()->userProfile->province_id ?? '') }}">
+                    <input type="hidden" name="regency_id" id="regency_id"
+                        value="{{ old('regency_id', auth()->user()->userProfile->regency_id ?? '') }}">
+                    <input type="hidden" name="district_id" id="district_id"
+                        value="{{ old('district_id', auth()->user()->userProfile->district_id ?? '') }}">
+                    <input type="hidden" name="village_id" id="village_id"
+                        value="{{ old('village_id', auth()->user()->userProfile->village_id ?? '') }}">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {{-- PROVINSI --}}
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Provinsi</label>
+                            <select id="province" name="provinsi"
+                                class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20">
+                                <option value="">Pilih Provinsi</option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->name }}" data-id="{{ $province->id }}"
+                                        {{ old('provinsi', auth()->user()->userProfile->provinsi ?? '') == $province->name ? 'selected' : '' }}>
+                                        {{ $province->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('provinsi')
+                                <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- KABUPATEN/KOTA --}}
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Kabupaten</label>
+                            <select id="regency" name="kabupaten" disabled
+                                class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 disabled:bg-gray-100 disabled:cursor-not-allowed">
+                                <option value="">Pilih Kabupaten/Kota</option>
+                                @if (old('kabupaten', auth()->user()->userProfile->kabupaten ?? ''))
+                                    <option value="{{ old('kabupaten', auth()->user()->userProfile->kabupaten ?? '') }}"
+                                        selected>
+                                        {{ old('kabupaten', auth()->user()->userProfile->kabupaten ?? '') }}
+                                    </option>
+                                @endif
+                            </select>
+                            @error('kabupaten')
+                                <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Kecamatan</label>
+                            <select id="district" name="kecamatan" disabled
+                                class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 disabled:bg-gray-100 disabled:cursor-not-allowed">
+                                <option value="">Pilih Kecamatan</option>
+                                @if (old('kecamatan', auth()->user()->userProfile->kecamatan ?? ''))
+                                    <option value="{{ old('kecamatan', auth()->user()->userProfile->kecamatan ?? '') }}"
+                                        selected>
+                                        {{ old('kecamatan', auth()->user()->userProfile->kecamatan ?? '') }}
+                                    </option>
+                                @endif
+                            </select>
+                            @error('kecamatan')
+                                <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Kelurahan</label>
+                            <select id="village" name="kelurahan" disabled
+                                class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 disabled:bg-gray-100 disabled:cursor-not-allowed">
+                                <option value="">Pilih Kelurahan</option>
+                                @if (old('kelurahan', auth()->user()->userProfile->kelurahan ?? ''))
+                                    <option value="{{ old('kelurahan', auth()->user()->userProfile->kelurahan ?? '') }}"
+                                        selected>
+                                        {{ old('kelurahan', auth()->user()->userProfile->kelurahan ?? '') }}
+                                    </option>
+                                @endif
+                            </select>
+                            @error('kelurahan')
+                                <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </section>
+
+                <div class="flex justify-end">
                     <button type="submit"
-                        class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0">
+                        class="inline-flex items-center justify-center bg-brandBlue text-white px-8 py-3 rounded-xl text-sm font-semibold hover:brightness-110 transition-all">
                         Simpan Perubahan
                     </button>
                 </div>
             </form>
+
+            <!-- Section 5: Keamanan (Glassmorphism Accents) -->
+            <section class="bg-white p-8 rounded-xl shadow-md overflow-hidden relative max-w-4xl">
+                {{-- <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full -mr-32 -mt-32"></div> --}}
+                <div class="flex items-center gap-3 text-brandBlue mb-8">
+                    <span class="material-symbols-outlined">shield</span>
+                    <h3 class="text-xl font-bold font-headline">Keamanan Akun</h3>
+                </div>
+                <div class="space-y-6 relative z-10">
+                    <form method="POST" action="{{ route('asesi.password.change') }}"
+                        class="py-4 px-6 bg-blue-200/30 rounded-xl space-y-6">
+                        @csrf
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-white rounded-lg text-brandBlue">
+                                <span class="material-symbols-outlined">lock</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-700">Ubah Kata Sandi</h4>
+                                <p class="text-xs text-on-surface-variant">Masukkan password saat ini dan password baru
+                                    Anda</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="space-y-2">
+                                <label for="current_password"
+                                    class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Password
+                                    Saat Ini</label>
+                                <input type="password" id="current_password" name="current_password"
+                                    class="w-full bg-white border border-blue-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20"
+                                    required>
+                                @error('current_password')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="new_password"
+                                    class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Password
+                                    Baru</label>
+                                <input type="password" id="new_password" name="new_password"
+                                    class="w-full bg-white border border-blue-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20"
+                                    required>
+                                @error('new_password')
+                                    <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="new_password_confirmation"
+                                    class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Konfirmasi
+                                    Password Baru</label>
+                                <input type="password" id="new_password_confirmation" name="new_password_confirmation"
+                                    class="w-full bg-white border border-blue-100 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit"
+                                class="inline-flex items-center justify-center bg-brandBlue text-white px-6 py-3 rounded-xl text-sm font-semibold hover:brightness-110 transition-all">
+                                Perbarui Sandi
+                            </button>
+                        </div>
+                    </form>
+
+                    {{-- <div class="flex items-center justify-between p-6 bg-blue-200/30 rounded-xl">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-secondary-container rounded-lg text-brandBlue">
+                                <span class="material-symbols-outlined">verified_user</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-700">Verifikasi Dua Faktor (2FA)</h4>
+                                <p class="text-xs text-on-surface-variant">Tambah lapisan keamanan ekstra untuk
+                                    akun Anda</p>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input checked="" class="sr-only peer" type="checkbox" value="">
+                            <div
+                                class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary">
+                            </div>
+                        </label>
+                    </div> --}}
+                </div>
+            </section>
         </div>
     </section>
+
+    <style>
+        .no-spinner::-webkit-outer-spin-button,
+        .no-spinner::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .no-spinner {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    </style>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -575,6 +696,20 @@
             }
         }
         $(document).ready(function() {
+            function toggleCustomInstansi() {
+                var isLainnya = $('#instansiSelect').val() === 'Lainnya';
+
+                $('#customInstansiDiv').toggleClass('hidden', !isLainnya);
+                $('#customInstansiInput').prop('disabled', !isLainnya);
+
+                if (!isLainnya) {
+                    $('#customInstansiInput').val('');
+                }
+            }
+
+            toggleCustomInstansi();
+            $('#instansiSelect').on('change', toggleCustomInstansi);
+
             // Initialize dropdowns based on existing data
             var initialProvince = $('#province').val();
             var initialRegency = "{{ old('kabupaten', auth()->user()->userProfile->kabupaten ?? '') }}";
