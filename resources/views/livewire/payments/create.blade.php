@@ -54,7 +54,7 @@
         }
     </style>
 
-    <div class="container mx-auto px-4 py-8 max-w-6xl mt-20 md:ml-72">
+    <div class="container mx-auto px-4 py-8 max-w-6xl mt-16 md:ml-72">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 space-y-8">
                 <!-- Hero Banner -->
@@ -201,11 +201,11 @@
                                                     <span class="text-white/70 text-sm">/paket</span>
                                                 </div>
                                             </div>
-                                            <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2">
+                                            {{-- <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2">
                                                 <p class="text-xs font-bold text-white/80">{{ count($categories) }}
                                                     Kategori</p>
                                                 <p class="text-sm ">Semua Akses</p>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

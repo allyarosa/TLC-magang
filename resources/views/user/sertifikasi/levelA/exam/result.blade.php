@@ -142,13 +142,13 @@
                                     {{ ceil($exam->start_time->floatDiffInMinutes($exam->end_time)) }} menit
                                 </div>
                             </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                            {{-- <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
                                 <div class="text-gray-600 mb-2 text-sm font-medium">Nilai Akhir</div>
                                 <div class="font-bold text-xl text-gray-800 flex items-center">
                                     <i class="fas fa-star mr-2 text-yellow-500"></i>
                                     {{ number_format($exam->score) }}
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 

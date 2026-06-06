@@ -1,6 +1,6 @@
 <header class="mb-16">
     <nav
-        class="fixed w-full z-20 top-0 start-0 bg-gradient-to-r from-[#1D4E89] to-brandGreen/95 backdrop-blur-[20px] overflow-visible border-b border-gray-100 shadow-md">
+        class="fixed w-full z-20 top-0 start-0 bg-gradient-to-r from-[#1D4E89] to-brandGreen/95 backdrop-blur-[20px] overflow-visible shadow-md">
         <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto py-2 px-4 lg:px-8">
             <!-- Brand Section -->
             <div class="flex items-center space-x-2 sm:space-x-3 group flex-1 min-w-0 lg:flex-none">
@@ -107,21 +107,40 @@
                     <div id="profile-menu-asesi"
                         class="absolute right-0 top-12 mt-2 w-48 bg-blue-50/95 rounded-b-xl shadow-lg hidden overflow-hidden z-[999]">
                         <div class="py-2">
-                            <a href="{{ route('asesi.profile') }}"
-                                class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
-                                <div
-                                    class="p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                </div>
-                                <span class="font-medium text-sm">Lihat Profile Anda</span>
-                            </a>
+                            <div>
+                                <a href="{{ route('asesi.profile') }}"
+                                    class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
+                                    <div
+                                        class="p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-sm">Profile Anda</span>
+                                </a>
+                            </div>
 
                             <div class="border-t border-gray-100 my-1"></div>
+
+                            <div>
+                                <a href="{{ route('asesi.profile') }}"
+                                    class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
+                                    <div
+                                        class="p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                                        <!-- SVG Sertifikat (Award Ribbon) -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                            <circle cx="12" cy="8" r="7"></circle>
+                                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-sm">Sertifikat Anda</span>
+                                </a>
+                            </div>
 
                             {{-- <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
@@ -277,7 +296,7 @@
                 } else if (notificationModal && !notificationModal.classList.contains('hidden')) {
                     const notifBtn = document.getElementById('notification-button');
                     if (!notificationModal.contains(event.target) && (!notifBtn || !notifBtn.contains(event
-                        .target))) {
+                            .target))) {
                         notificationModal.classList.add('hidden');
                     }
                 }
@@ -285,7 +304,7 @@
                 // Handle Mobile Nav Links (Close menu when clicked)
                 const navLink = event.target.closest('.nav-link');
                 if (navLink && window.innerWidth < 1024 && mobileMenu && !mobileMenu.classList.contains(
-                    'opacity-0')) {
+                        'opacity-0')) {
                     window.toggleMobileMenu();
                 }
             });

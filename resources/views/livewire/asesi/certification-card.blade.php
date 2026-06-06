@@ -33,10 +33,10 @@
         <div class="p-8 flex flex-col h-full">
             <div class="mb-6">
                 <!-- Icon Level A (Blue) -->
-                <div
+                {{-- <div
                     class="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-1 ring-blue-100/50">
                     <i class="fas fa-book-open text-3xl text-blue-500"></i>
-                </div>
+                </div> --}}
                 <h2 class="text-xl font-bold text-white mb-3 transition-colors">Teaching Knowledge</h2>
                 <p class="text-white text-sm leading-relaxed">
                     Dasar yang wajib dimiliki untuk mengajar dengan percaya diri dan efektif.
@@ -143,10 +143,10 @@
         <div class="p-8 flex flex-col h-full">
             <div class="mb-6">
                 <!-- Icon Level B (Emerald) -->
-                <div
+                {{-- <div
                     class="w-16 h-16 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-1 ring-emerald-100/50">
                     <i class="fas fa-chalkboard-teacher text-3xl text-[#2A9D8F]"></i>
-                </div>
+                </div> --}}
                 <h2 class="text-xl font-bold text-white mb-3 transition-colors">Teaching Activation</h2>
                 <p class="text-white text-sm leading-relaxed">
                     Pengajaran aktif melalui proyek dan tugas nyata di kelas.
@@ -260,10 +260,10 @@
         <div class="p-8 flex flex-col h-full">
             <div class="mb-6">
                 <!-- Icon Level C (Purple) -->
-                <div
+                {{-- <div
                     class="w-16 h-16 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-1 ring-purple-100/50">
                     <i class="fas fa-trophy text-3xl text-[#E76F51]"></i>
-                </div>
+                </div> --}}
                 <h2 class="text-xl font-bold text-white mb-3 transition-colors">Teaching Mastery</h2>
                 <p class="text-white text-sm leading-relaxed">
                     Tunjukkan video praktik dan refleksi mendalam untuk sertifikasi akhir.

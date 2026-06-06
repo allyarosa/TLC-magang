@@ -532,7 +532,7 @@
                     </div>
                 </section>
 
-                <div class="flex justify-end">
+                <div class="flex justify-end mt-6">
                     <button type="submit"
                         class="inline-flex items-center justify-center bg-brandBlue text-white px-8 py-3 rounded-xl text-sm font-semibold hover:brightness-110 transition-all">
                         Simpan Perubahan

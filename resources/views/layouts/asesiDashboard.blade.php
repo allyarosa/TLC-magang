@@ -20,7 +20,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    @stack('scripts')
+        @stack('scripts')
+    <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -34,9 +35,11 @@
 <body>
     <x-asesi.dashboard-header />
     <x-asesi.dashboard-sidebar />
-    <main class="bg-blue-50/60">
+    <main class="bg-blue-100/60">
         @yield('content')
     </main>
+    <x-asesi.dashboard-mobile-navbar />
+
     {{-- @include('layouts.footer') --}}
     @livewireScripts
     @include('sweetalert::alert')

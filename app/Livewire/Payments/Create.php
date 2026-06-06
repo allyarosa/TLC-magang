@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Vinkla\Hashids\Facades\Hashids;
 
-
 class Create extends Component
 {
     public $level;

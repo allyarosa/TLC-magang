@@ -49,7 +49,7 @@
             }
         </style>
 
-        <section class="bg-surface text-on-surface selection:bg-secondary-container">
+        <section class=" text-on-surface selection:bg-secondary-container">
             <!-- Main Content -->
             <main class="py-6 md:py-12 px-6 md:ml-64 min-h-screen">
                 <div class="max-w-7xl mx-auto space-y-8">
@@ -360,7 +360,7 @@
                                     title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
                                     labelColor="sky-700" titleColor="[#20416a]" /> --}}
                                 <livewire:asesi.dashboard.payment-card-header label="LEVEL A"
-                                    title="Teaching Knowledge Certification" subtitle="Sertifikasi Pengetahuan Mengajar"
+                                    title="Certification Teaching Knowledge" subtitle="Sertifikasi Pengetahuan Mengajar"
                                     labelColor="sky-600" titleColor="sky-800" />
                                 <!-- PRICE -->
                                 {{-- <livewire:asesi.dashboard.price-item price="{{ $levels[0]->price }}" textColor="slate-700"
@@ -387,7 +387,7 @@
                             <div class="p-8 relative z-10">
                                 {{-- HEADER --}}
                                 <livewire:asesi.dashboard.payment-card-header label="LEVEL B"
-                                    title="Teaching Activation Certification" subtitle="Sertifikasi Aktivasi Mengajar"
+                                    title="Certification Teaching Activation" subtitle="Sertifikasi Aktivasi Mengajar"
                                     labelColor="[#2A9D8F]" titleColor="emerald-800" />
                                 <!-- PRICE -->
                                 {{-- <livewire:asesi.dashboard.price-item price="{{ $levels[1]->price }}" textColor="slate-700"
@@ -413,7 +413,7 @@
                             <div class="p-8 relative z-10">
                                 <!-- HEADER -->
                                 <livewire:asesi.dashboard.payment-card-header label="LEVEL C"
-                                    title="Teaching Mastery Certification" subtitle="Sertifikasi Penguasaan Mengajar"
+                                    title="Certification Teaching Mastery" subtitle="Sertifikasi Penguasaan Mengajar"
                                     labelColor="[#E76F51]" titleColor="amber-700" />
                                 <!-- PRICE -->
                                 {{-- <livewire:asesi.dashboard.price-item price="{{ $levels[2]->price }}" textColor="slate-700"
@@ -434,17 +434,17 @@
                 </div>
             </main>
             <!-- BottomNavBar (Mobile Only) -->
-            <nav
+            {{-- <nav
                 class="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md px-6 py-3 flex justify-between items-center z-40 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
-                <a class="flex flex-col items-center gap-1 text-cyan-700" href="#" style="">
+                <a class="flex flex-col items-center gap-1 text-cyan-700" href="{{ route('asesi.dashboard') }}" style="">
                     <span class="material-symbols-outlined" style="">dashboard</span>
                     <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Dashboard</span>
                 </a>
-                <a class="flex flex-col items-center gap-1 text-slate-400" href="#" style="">
+                <a class="flex flex-col items-center gap-1 text-slate-400" href="{{ route('asesi.sertifikasi') }}" style="">
                     <span class="material-symbols-outlined" style="">workspace_premium</span>
                     <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Sertifikat</span>
                 </a>
-                <a class="flex flex-col items-center gap-1 text-slate-400" href="#" style="">
+                <a class="flex flex-col items-center gap-1 text-slate-400" href="{{ route('asesi.transaksi') }}" style="">
                     <span class="material-symbols-outlined" style="">auto_stories</span>
                     <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Belajar</span>
                 </a>
@@ -452,7 +452,7 @@
                     <span class="material-symbols-outlined" style="">person</span>
                     <span class="text-[10px] font-bold uppercase tracking-tighter" style="">Profil</span>
                 </a>
-            </nav>
+            </nav> --}}
         </section>
 
     </section>

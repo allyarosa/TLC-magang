@@ -33,9 +33,9 @@ class DashboardInfoCard extends Component
             $this->isRoute = true;
 
         } else if($user && $user->hasPermissionTo('access_level_A')) {
-            $this->title = 'Join Whatsapp Group Level A #Batch-5';
-            $this->description = 'Selamat! Kamu sudah terdaftar di Level A. Bergabunglah dengan grup WhatsApp Level A untuk mendapatkan informasi terbaru, tips, dan dukungan dari komunitas. Klik tombol di bawah untuk bergabung sekarang!';
-            $this->buttonTitle = 'Join Whatsapp Group';
+            $this->title = 'Sertifikasi Level A Aktif ';
+            $this->description = 'Selamat! Kamu sudah terdaftar di Level A. silahkan mengakses materi dan bergabung dengan grup WhatsApp yang nantinya akan dihubungi oleh admin Kami!';
+            $this->buttonTitle = 'Akses Materi';
             $this->levelName = 'Level A';
             $this->isRoute = false;
             $this->link = 'https://chat.whatsapp.com/KF29IU1NbrHK6DaDMAXIeV'; 
