@@ -125,7 +125,7 @@
 
                             <div class="border-t border-gray-100 my-1"></div>
 
-                            <div>
+                            {{-- <div>
                                 <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                     <div
@@ -140,7 +140,7 @@
                                     </div>
                                     <span class="font-medium text-sm">Sertifikat Anda</span>
                                 </a>
-                            </div>
+                            </div> --}}
 
                             {{-- <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
