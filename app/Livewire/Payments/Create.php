@@ -31,7 +31,7 @@ class Create extends Component
         [
             'id' => 'hots',
             'name' => 'HOTS',
-            'desc' => 'Higher Order Thinking Skills — mendorong berpikir tingkat tinggi',
+            'desc' => 'Higher Order Thinking Skills',
             'tags' => ['Berpikir kritis', 'Analisis', 'Evaluasi'],
             'color' => 'purple'
         ],
@@ -39,7 +39,7 @@ class Create extends Component
 
             'id' => 'pck',
             'name' => 'PCK',
-            'desc' => 'Pedagogical Content Knowledge — cara terbaik mengajarkan konten',
+            'desc' => 'Pedagogical Content Knowledge',
             'tags' => ['Strategi pedagogi', 'Konten materi', 'Metode mengajar'],
             'color' => 'emerald'
         ],

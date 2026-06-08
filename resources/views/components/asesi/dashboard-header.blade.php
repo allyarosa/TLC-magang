@@ -215,10 +215,10 @@
                         Profile
                     </a>
 
-                    <a href="{{ route('asesi.profile') }}"
+                    {{-- <a href="{{ route('asesi.profile') }}"
                         class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.profile') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                         Sertifikat Saya
-                    </a>
+                    </a> --}}
 
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
