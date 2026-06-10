@@ -309,6 +309,55 @@
         <img src="data:image/{{ $backgroundType ?? 'png' }};base64,{{ $backgroundImage2 ?? $backgroundImage }}"
             class="background-image" alt="Certificate Background Page 2">
 
+        @php
+            $rows = [];
+            $totalHours = '36';
+            $certType = $certificateType ?? null;
+
+            if ($certType === 'HOTS') {
+                $rows[] = [
+                    'name' => 'High Order Thinking Skills (HOTS)',
+                    'score' => $theory1 ?? '0'
+                ];
+                $totalHours = '12';
+            } elseif ($certType === 'PCK') {
+                $rows[] = [
+                    'name' => 'Pedagogical Content Knowledge (PCK)',
+                    'score' => $theory2 ?? '0'
+                ];
+                $totalHours = '12';
+            } elseif ($certType === 'LN') {
+                $rows[] = [
+                    'name' => 'Literasi',
+                    'score' => $theory3 ?? '0'
+                ];
+                $rows[] = [
+                    'name' => 'Numerasi',
+                    'score' => $theory4 ?? '0'
+                ];
+                $totalHours = '12';
+            } else {
+                // Main Level A
+                $rows[] = [
+                    'name' => 'High Order Thinking Skills (HOTS)',
+                    'score' => $theory1 ?? '0'
+                ];
+                $rows[] = [
+                    'name' => 'Pedagogical Content Knowledge (PCK)',
+                    'score' => $theory2 ?? '0'
+                ];
+                $rows[] = [
+                    'name' => 'Literasi',
+                    'score' => $theory3 ?? '0'
+                ];
+                $rows[] = [
+                    'name' => 'Numerasi',
+                    'score' => $theory4 ?? '0'
+                ];
+                $totalHours = '36';
+            }
+        @endphp
+
         <div class="certificate-content">
             <div class="table-container">
                 <table class="assessment-table">
@@ -320,32 +369,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($rows as $index => $row)
+                            <tr>
+                                <td class="number-col {{ $index % 2 != 0 ? 'row-even' : '' }}">{{ $index + 1 }}</td>
+                                <td class="competency-col {{ $index % 2 != 0 ? 'row-even' : '' }}">{{ $row['name'] }}</td>
+                                <td class="{{ $index % 2 != 0 ? 'row-even' : '' }}">{{ $row['score'] }}</td>
+                            </tr>
+                        @endforeach
                         <tr>
-                            <td class="number-col">1</td>
-                            <td class="competency-col">{{ $competency1 ?? 'High Order Thinking Skills (HOTS)' }}</td>
-                            <td>{{ $theory1 ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="number-col row-even">2</td>
-                            <td class="competency-col row-even">
-                                {{ $competency2 ?? 'Pedagogical Content Knowledge (PCK)' }}</td>
-                            <td>{{ $theory2 ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="number-col">3</td>
-                            <td class="competency-col">{{ $competency3 ?? 'Literasi' }}</td>
-                            <td>{{ $theory3 ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="number-col row-even">4</td>
-                            <td class="competency-col row-even">{{ $competency4 ?? 'Numerasi' }}</td>
-                            <td>{{ $theory4 ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <td class="number-col center-row">5</td>
-                            <td class="competency-col center-row">{{ $competency5 ?? 'Total Assessment Hours (AH)' }}
-                            </td>
-                            <td>{{ $theory5 ?? '0' }}</td>
+                            <td class="number-col center-row {{ count($rows) % 2 != 0 ? 'row-even' : '' }}">{{ count($rows) + 1 }}</td>
+                            <td class="competency-col center-row {{ count($rows) % 2 != 0 ? 'row-even' : '' }}">{{ $competency5 ?? 'Jam Pelatihan (JP)' }}</td>
+                            <td class="{{ count($rows) % 2 != 0 ? 'row-even' : '' }}">{{ $totalHours }}</td>
                         </tr>
                     </tbody>
                 </table>

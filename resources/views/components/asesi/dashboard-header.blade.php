@@ -66,21 +66,12 @@
             <div class="hidden lg:flex items-center space-x-4 flex-shrink-0">
                 <!-- Welcome Message -->
                 {{-- <div
-                    class="bg-gradient-to-br from-[#1D4E89]/10 to-[#667eea]/10 border border-[#1D4E89]/20 hover:bg-gradient-to-br hover:from-[#1D4E89]/15 hover:to-[#667eea]/15 hover:translate-y-[-1px] hover:shadow-[0_4px_15px_rgba(29,78,137,0.08)] rounded-lg px-3 py-2 transition-all duration-300">
+                    class="hover:translate-y-[-1px] hover:shadow-[0_4px_15px_rgba(29,78,137,0.08)] rounded-lg px-3 py-2 transition-all duration-300">
                     <div class="flex items-center space-x-2">
-                        <div class="relative">
-                            <svg class="h-5 w-5 text-[#1D4E89]" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
-                                </path>
-                            </svg>
-                            <div class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping">
-                            </div>
-                        </div>
+                        
                         <div>
                             <span class="text-sm font-medium text-gray-700">Selamat datang,</span>
-                            <span class="ml-1 font-bold text-[#1D4E89]">{{ Auth::user()->name }}</span>
+                            <span class="ml-1 font-bold text-white">{{ Auth::user()->name }}</span>
                         </div>
                     </div>
                 </div> --}}
@@ -89,7 +80,16 @@
 
                 @livewire('notification-modal')
 
-                <!-- Messages -->
+                <a href="{{ route('asesi.sertifikat-anda') }}"
+                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#1D4E89] shadow-sm transition-all duration-300 hover:scale-105 hover:bg-white"
+                    aria-label="Sertifikat Saya" title="Sertifikat Saya">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="6"></circle>
+                        <path d="m8.21 13.89-1.21 8.11 5-3 5 3-1.21-8.12"></path>
+                    </svg>
+                </a>
 
                 <!-- Profile Dropdown -->
                 <div class="relative">

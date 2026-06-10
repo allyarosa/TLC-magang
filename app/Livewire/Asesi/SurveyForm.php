@@ -219,10 +219,9 @@ class SurveyForm extends Component
     {
         $this->saveProgress();
         $encodedId = Hashids::encode(Auth::id());
-        Alert::info('success', 'Sertifikat akan didownload secara otomatis.')
+        Alert::success('Berhasil', 'Survey berhasil disimpan. Silakan unduh sertifikat Anda.')
             ->autoClose(3000);
-        return redirect()->route('asesi.sertifikasi')
-            ->with('download_trigger', route('asesi.downloadCertificate', ['id' => $encodedId]));
+        return redirect()->route('asesi.sertifikat-anda');
     }
 
     public function render()

@@ -45,7 +45,18 @@
                 <div class="space-y-4 mb-8 text-sm">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500">Program Sertifikasi</span>
-                        <span class="font-semibold text-gray-800">Level {{ $payment->level->level_name ?? 'Sertifikasi Level' }}</span>
+                        <span class="font-semibold text-gray-800">
+                            @if ($payment->mode === 'custom')
+                                Satuan: 
+                                @if (is_array($payment->selected_categories))
+                                    {{ implode(', ', array_map('strtoupper', $payment->selected_categories)) }}
+                                @else
+                                    {{ strtoupper($payment->selected_categories) }}
+                                @endif
+                            @else
+                                Level {{ $payment->level->level_name ?? 'Sertifikasi Level' }}
+                            @endif
+                        </span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500">Nominal Transfer</span>
@@ -101,7 +112,18 @@
                 <div class="space-y-4 mb-8 text-sm">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500">Program Sertifikasi</span>
-                        <span class="font-semibold text-gray-800">{{ $payment->level->level_name ?? 'Sertifikasi Level' }}</span>
+                        <span class="font-semibold text-gray-800">
+                            @if ($payment->mode === 'custom')
+                                Satuan: 
+                                @if (is_array($payment->selected_categories))
+                                    {{ implode(', ', array_map('strtoupper', $payment->selected_categories)) }}
+                                @else
+                                    {{ strtoupper($payment->selected_categories) }}
+                                @endif
+                            @else
+                                Level {{ $payment->level->level_name ?? 'Sertifikasi Level' }}
+                            @endif
+                        </span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500">Nominal Transfer</span>

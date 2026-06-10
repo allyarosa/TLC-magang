@@ -43,6 +43,14 @@ class CountDownTimer extends Component
                 
                 // Redirect to result page
                 return redirect()->route('asesi.sertifikasi.level.a.result', $exam);
+            } else {
+                // If already finished, still redirect to results page
+                $finishedExam = ExamA::where('id', $this->examId)
+                    ->where('user_id', Auth::id())
+                    ->first();
+                if ($finishedExam) {
+                    return redirect()->route('asesi.sertifikasi.level.a.result', $finishedExam);
+                }
             }
         }
     }
@@ -55,17 +63,32 @@ class CountDownTimer extends Component
 
         $score = $totalQuestions > 0 ? round(($correctAnswers / $totalQuestions) * 100, 2) : 0;
 
+        $endTime = now();
+        $duration = 0;
+        if ($exam->start_time) {
+            $duration = ceil($exam->start_time->floatDiffInMinutes($endTime));
+        }
+
         // Update exam
         $exam->update([
             'status' => 'finished',
-            'end_time' => now(),
+            'end_time' => $endTime,
             'score' => $score,
             'is_passed' => $score >= ($category->passing_score ?? 75),
             'correct_answers' => $correctAnswers,
             'wrong_answers' => $exam->questionsA()->wherePivot('is_correct', false)->count(),
             'total_questions' => $totalQuestions,
             'unanswered_questions' => $totalQuestions - $exam->questionsA()->wherePivotNotNull('user_answer')->count(),
+            'duration' => (string) $duration,
         ]);
+
+        if ($category) {
+            $exam->user->givePermissionTo($category->name . '_LOCK');
+            
+            if ($exam->is_passed) {
+                event(new \App\Events\ExamCompleted($exam->user, $category));
+            }
+        }
     }
 
     public function render()

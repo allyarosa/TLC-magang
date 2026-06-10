@@ -17,7 +17,7 @@ class CategoryASeeders extends Seeder
             [
                 'name' => 'HOTS',
                 'description' => 'Higher Order Thinking Skills - Kemampuan berpikir tingkat tinggi',
-                'time_limit' => '30',
+                'time_limit' => '1',
                 'passing_score' => '75',
                 'banner_img'=> 'blankCategories.svg',
             ],

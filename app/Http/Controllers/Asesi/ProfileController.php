@@ -52,7 +52,9 @@ class ProfileController extends Controller
             $user->refresh();
         }
 
-        return view('dashboard.asesi.profile', compact('user', 'provinces'));
+        $hasCertificate = \App\Models\Certificate::where('user_id', $user->id)->exists();
+
+        return view('dashboard.asesi.profile', compact('user', 'provinces', 'hasCertificate'));
     }
 
 
@@ -71,6 +73,11 @@ class ProfileController extends Controller
 
 
         $user = Auth::user();
+
+        $hasCertificate = \App\Models\Certificate::where('user_id', $user->id)->exists();
+        if ($hasCertificate && $user->userProfile) {
+            $request->merge(['nama_depan' => $user->userProfile->nama_depan]);
+        }
 
         // Check if user comes from payment redirect
         $isFromPayment = session()->has('payment_redirect');

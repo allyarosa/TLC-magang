@@ -48,7 +48,7 @@
                 </div>
             @endif
             <form method="POST" action="{{ route('asesi.profile.update') }}" id="profileForm"
-                enctype="multipart/form-data" class="max-w-4xl space-y-12 pb-12">
+                enctype="multipart/form-data" class="max-w-4xl space-y-12 pb-12 bg-whit">
                 @csrf
                 @method('PUT')
 
@@ -103,10 +103,14 @@
                                     <label class="text-xs font-label font-bold text-gray-700 uppercase tracking-wider">Nama
                                         Lengkap + Gelar</label>
                                     <input
-                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400"
+                                        class="w-full bg-gray-200 border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-gray-200 transition-all placeholder:text-gray-400 {{ ($hasCertificate ?? false) ? 'cursor-not-allowed opacity-75' : '' }}"
                                         type="text" placeholder="Nama lengkap anda + gelar" name="nama_depan" required
-                                        value={{ old('nama_depan', auth()->user()->userProfile->nama_depan ?? auth()->user()->name) }}
-                                        oninput="this.value = this.value.replace(/[^a-zA-Z.,\s]/g, '')">
+                                        value="{{ auth()->user()->userProfile->nama_depan }}"
+                                        {{ ($hasCertificate ?? false) ? 'readonly' : '' }}
+                                        >
+                                    @if($hasCertificate ?? false)
+                                        <p class="text-xs text-gray-500 mt-1">Nama lengkap tidak dapat diubah karena Anda sudah memiliki sertifikat yang diterbitkan.</p>
+                                    @endif
                                     @error('nama_depan')
                                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                                     @enderror

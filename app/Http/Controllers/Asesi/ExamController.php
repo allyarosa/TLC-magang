@@ -139,6 +139,10 @@ class ExamController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
+        if ($exam->status === 'finished') {
+            return redirect()->route('asesi.sertifikasi.level.a.result', $exam);
+        }
+
         // Debug: Log exam data
         Log::info('Exam Data Debug', [
             'exam_id' => $exam->id,
@@ -206,6 +210,10 @@ class ExamController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
+        if ($exam->status === 'finished') {
+            return redirect()->route('asesi.sertifikasi.level.a.result', $exam);
+        }
+
         // Check if exam has expired
         if ($exam->end_time && now()->gt($exam->end_time)) {
             $this->autoFinishExpiredExam($exam);
@@ -261,16 +269,23 @@ class ExamController extends Controller
             $passing_score = $category->passing_score ?? 75;
         }
 
+        $endTime = now();
+        $duration = 0;
+        if ($exam->start_time) {
+            $duration = ceil($exam->start_time->floatDiffInMinutes($endTime));
+        }
+
         // Update exam
         $exam->update([
             'status' => 'finished',
-            'end_time' => now(),
+            'end_time' => $endTime,
             'score' => $score,
             'is_passed' => $score >= $passing_score,
             'correct_answers' => $correctAnswers,
             'wrong_answers' => $exam->questionsA()->wherePivot('is_correct', false)->count(),
             'total_questions' => $totalQuestions,
             'unanswered_questions' => $totalQuestions - $exam->questionsA()->wherePivotNotNull('user_answer')->count(),
+            'duration' => (string) $duration,
         ]);
 
         $exam->user->givePermissionTo($category->name . '_LOCK');

@@ -27,7 +27,7 @@ class TransactionController extends Controller
             ->where('status', 'pending')
             ->count();
         
-        return view('dashboard.asesi.transaksi', [
+        return view('dashboard.asesi.tranksaksiOLD', [
             'paymentCount' => $paymentCount,
             'paymentSuccessCount' => $paymentSuccessCount,
             'paymentPendingCount' => $paymentPendingCount,

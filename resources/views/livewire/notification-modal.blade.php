@@ -15,7 +15,7 @@
     @endif
 
     <!-- Modal -->
-    <div class="@if(!$isOpen) hidden @endif absolute right-0 top-12 mt-2 w-80 bg-white/95 backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 overflow-hidden z-[999]">
+    <div class="@if(!$isOpen) hidden @endif absolute right-0 top-12 mt-2 w-80 bg-white backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 overflow-hidden z-[999]">
         <div class="px-4 py-3 border-b border-gray-200">
             <h3 class="text-base font-semibold text-gray-800">Notifikasi</h3>
         </div>

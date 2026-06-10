@@ -66,15 +66,8 @@ class CertificateController extends Controller
             ->get()
             ->groupBy('category_a_id')
             ->map(function ($exams) {
-                return $exams->sortByDesc('score')->first();
-            })
-            ->values();
-
-        $backgroundPath = public_path('assets/sertifikat/sertifikat_tlc.png');
-        $backgroundImage = base64_encode(file_get_contents($backgroundPath));
-
-        $backgroundPath2 = public_path('assets/sertifikat/sertifikat_tlc2.png');
-        $backgroundImage2 = base64_encode(file_get_contents($backgroundPath2));
+                return collect($exams)->sortByDesc('score')->first();
+            });
 
         $formatted = $this->formatNamaSertifikat($userProfile->nama_depan ?? 'name not found');
         $sertifikatDate = $certificate->created_at ? $certificate->created_at->format('d F Y') : now()->format('d F Y');
@@ -86,28 +79,58 @@ class CertificateController extends Controller
         ];
         $levelName = $levels[$certificate->level_id] ?? null;
 
+        $type = null;
+        if (str_ends_with($certificate->name, 'Ctk.HOTS')) {
+            $type = 'HOTS';
+        } elseif (str_ends_with($certificate->name, 'Ctk.PCK')) {
+            $type = 'PCK';
+        } elseif (str_ends_with($certificate->name, 'Ctk.LN')) {
+            $type = 'LN';
+        }
+
+        // Tentukan background image berdasarkan tipe sertifikat
+        $depanFile = 'LEVEL-A-DEPAN.png';
+        $belakangFile = 'LEVEL-A-BELAKANG.png';
+
+        if ($type === 'HOTS') {
+            $depanFile = 'HOTS-DEPAN.png';
+            $belakangFile = 'HOTS-BELAKANG.png';
+        } elseif ($type === 'PCK') {
+            $depanFile = 'PCK-DEPAN.png';
+            $belakangFile = 'PCK-BELAKANG.png';
+        } elseif ($type === 'LN') {
+            $depanFile = 'LITNUM-DEPAN.png';
+            $belakangFile = 'LITNUM-BELAKANG.png';
+        }
+
+        $backgroundPath = public_path('assets/sertifikat/' . $depanFile);
+        $backgroundImage = base64_encode(file_get_contents($backgroundPath));
+
+        $backgroundPath2 = public_path('assets/sertifikat/' . $belakangFile);
+        $backgroundImage2 = base64_encode(file_get_contents($backgroundPath2));
 
         $data = [
             // Page 1
-            'name' => $userProfile->nama_depan ?? $user->name,  
+            'name' => $certificate->name,  
             'date' => $sertifikatDate,
             'backgroundImage' => $backgroundImage,
             'fontSize' => $formatted['fontSize'],
             'certificateNumber' => $certificate->certificate_number,
+            'certificateType' => $type,
 
             // Page 2
             'backgroundImage2' => $backgroundImage2,
-            'competency1' => 'Pedagogical Content Knowledge (PCK)',
-            'competency2' => 'High Order Thinking Skills (HOTS)',
+            'competency1' => 'High Order Thinking Skills (HOTS)',
+            'competency2' => 'Pedagogical Content Knowledge (PCK)',
             'competency3' => 'Literasi',
             'competency4' => 'Numerasi',
             'competency5' => 'Jam Pelatihan (JP)',
 
             // Nilai Teori Page 2
-            'theory1' => isset($examsA[0]) ? $this->convertScoreToGrade($examsA[0]->score) : 'Data not available',
-            'theory2' => isset($examsA[1]) ? $this->convertScoreToGrade($examsA[1]->score) : 'Data not available',
-            'theory3' => isset($examsA[2]) ? $this->convertScoreToGrade($examsA[2]->score) : 'Data not available',
-            'theory4' => isset($examsA[3]) ? $this->convertScoreToGrade($examsA[3]->score) : 'Data not available',
+            'theory1' => $examsA->has(1) ? $this->convertScoreToGrade($examsA->get(1)->score) : 'Data not available',
+            'theory2' => $examsA->has(2) ? $this->convertScoreToGrade($examsA->get(2)->score) : 'Data not available',
+            'theory3' => $examsA->has(3) ? $this->convertScoreToGrade($examsA->get(3)->score) : 'Data not available',
+            'theory4' => $examsA->has(4) ? $this->convertScoreToGrade($examsA->get(4)->score) : 'Data not available',
             'theory5' => '36',
         ];
 

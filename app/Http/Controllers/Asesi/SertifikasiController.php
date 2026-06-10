@@ -109,23 +109,88 @@ class SertifikasiController extends Controller
         }
 
         // userId
-        $id = $decoded[0];
+        $id = (int)$decoded[0];
+        $authUser = Auth::user();
+
+        // Security check
+        if ($authUser->id !== $id && !$authUser->hasAnyRole(['admin', 'asesor'])) {
+            abort(403, 'Akses ditolak');
+        }
+
+        // Survey check (kecuali untuk admin/asesor)
+        if (!$authUser->hasAnyRole(['admin', 'asesor'])) {
+            $hasSubmittedSurvey = \App\Models\SurveySubmission::where('user_id', $id)->exists();
+            if (!$hasSubmittedSurvey) {
+                abort(403, 'Anda harus mengisi survei terlebih dahulu sebelum dapat mengunduh sertifikat.');
+            }
+        }
+
         $userProfile = UserProfile::firstWhere('user_id', $id);
+        $user = User::find($id);
 
-        $formatted = $this->formatNamaSertifikat($userProfile->nama_depan ?? 'name not found');
-        $user = User::find($userProfile->user_id);
+        $type = request('type');
+        $suffix = '';
 
+        // Pemilik akses Level A tidak diperbolehkan mengunduh sub-sertifikat
+        if ($type && $authUser->hasPermissionTo('access_level_A') && !$authUser->hasAnyRole(['admin', 'asesor'])) {
+            abort(403, 'Pemilik akses Level A hanya berhak mengunduh Sertifikat Utama.');
+        }
+
+        // Query exams completed
         $examsA = ExamA::where('user_id', $id)
             ->get()
             ->groupBy('category_a_id')
             ->map(function ($exams) {
-                return $exams->sortByDesc('score')->first();
-            })
-            ->values();
+                return collect($exams)->sortByDesc('score')->first();
+            });
+
+        // Determine permission & suffix based on certificate type
+        if ($type === 'HOTS') {
+            if (!$authUser->hasPermissionTo('HOTS')) {
+                abort(403, 'Anda tidak memiliki akses untuk sub-sertifikat ini.');
+            }
+            if (!$examsA->has(1) || $examsA->get(1)->score < 75) {
+                abort(403, 'Anda belum menyelesaikan ujian HOTS dengan nilai KKM.');
+            }
+            $suffix = ', Ctk.HOTS';
+        } elseif ($type === 'PCK') {
+            if (!$authUser->hasPermissionTo('PCK')) {
+                abort(403, 'Anda tidak memiliki akses untuk sub-sertifikat ini.');
+            }
+            if (!$examsA->has(2) || $examsA->get(2)->score < 75) {
+                abort(403, 'Anda belum menyelesaikan ujian PCK dengan nilai KKM.');
+            }
+            $suffix = ', Ctk.PCK';
+        } elseif ($type === 'LN') {
+            if (!$authUser->hasPermissionTo('LITERASI') || !$authUser->hasPermissionTo('NUMERASI')) {
+                abort(403, 'Anda tidak memiliki akses untuk sub-sertifikat ini.');
+            }
+            $literasiPassed = $examsA->has(3) && $examsA->get(3)->score >= 75;
+            $numerasiPassed = $examsA->has(4) && $examsA->get(4)->score >= 75;
+            if (!$literasiPassed || !$numerasiPassed) {
+                abort(403, 'Anda belum menyelesaikan ujian Literasi dan Numerasi dengan nilai KKM.');
+            }
+            $suffix = ', Ctk.LN';
+        } else {
+            // Default to Level A Main Certificate
+            if (!$authUser->hasPermissionTo('access_level_A')) {
+                abort(403, 'Anda tidak memiliki akses untuk sertifikat Level A.');
+            }
+            $suffix = ', CTK';
+        }
+
+        $baseName = $userProfile->nama_depan ?? $user->name;
+        $formatted = $this->formatNamaSertifikat($baseName);
+        $certificateName = $formatted['nama'] . $suffix;
 
         try {
             DB::beginTransaction();
-            $certificate = Certificate::getByUserThisYear($id);
+
+            // Find existing certificate for this user, year, and matching suffix name
+            $certificate = Certificate::where('user_id', $id)
+                ->whereYear('issue_date', now()->year)
+                ->where('name', $certificateName)
+                ->first();
 
             if (!$certificate) {
                 $certificateNumber = Certificate::generateCertificateNumber();
@@ -133,7 +198,7 @@ class SertifikasiController extends Controller
                 $certificate = Certificate::create([
                     'user_id' => $id,
                     'certificate_number' => $certificateNumber,
-                    'name' => $formatted['nama'],
+                    'name' => $certificateName,
                     'issue_date' => now(),
                     'level_id' => 1,
                 ]);
@@ -146,33 +211,49 @@ class SertifikasiController extends Controller
             abort(500, 'Gagal generate nomor sertifikat: ' . $e->getMessage());
         }
 
-        $backgroundPath = public_path('assets/sertifikat/sertifikat_tlc.png');
+        // Tentukan background image berdasarkan tipe sertifikat
+        $depanFile = 'LEVEL-A-DEPAN.png';
+        $belakangFile = 'LEVEL-A-BELAKANG.png';
+
+        if ($type === 'HOTS') {
+            $depanFile = 'HOTS-DEPAN.png';
+            $belakangFile = 'HOTS-BELAKANG.png';
+        } elseif ($type === 'PCK') {
+            $depanFile = 'PCK-DEPAN.png';
+            $belakangFile = 'PCK-BELAKANG.png';
+        } elseif ($type === 'LN') {
+            $depanFile = 'LITNUM-DEPAN.png';
+            $belakangFile = 'LITNUM-BELAKANG.png';
+        }
+
+        $backgroundPath = public_path('assets/sertifikat/' . $depanFile);
         $backgroundImage = base64_encode(file_get_contents($backgroundPath));
 
-        $backgroundPath2 = public_path('assets/sertifikat/sertifikat_tlc2.png');
+        $backgroundPath2 = public_path('assets/sertifikat/' . $belakangFile);
         $backgroundImage2 = base64_encode(file_get_contents($backgroundPath2));
 
         $data = [
             // Page 1
-            'name' => ($userProfile->nama_depan ? $userProfile->nama_depan . ', CTK' : $user->name),
-            'date' => now()->format('d F Y'),
+            'name' => $certificate->name,
+            'date' => $certificate->issue_date->format('d F Y'),
             'backgroundImage' => $backgroundImage,
             'fontSize' => $formatted['fontSize'],
             'certificateNumber' => $certificate->certificate_number,
+            'certificateType' => $type,
 
             // Page 2
             'backgroundImage2' => $backgroundImage2,
-            'competency1' => 'Pedagogical Content Knowledge (PCK)',
-            'competency2' => 'High Order Thinking Skills (HOTS)',
+            'competency1' => 'High Order Thinking Skills (HOTS)',
+            'competency2' => 'Pedagogical Content Knowledge (PCK)',
             'competency3' => 'Literasi',
             'competency4' => 'Numerasi',
             'competency5' => 'Jam Pelatihan (JP)',
 
             // Nilai Teori Page 2
-            'theory1' => isset($examsA[0]) ? $this->convertScoreToGrade($examsA[0]->score) : 'Data not available',
-            'theory2' => isset($examsA[1]) ? $this->convertScoreToGrade($examsA[1]->score) : 'Data not available',
-            'theory3' => isset($examsA[2]) ? $this->convertScoreToGrade($examsA[2]->score) : 'Data not available',
-            'theory4' => isset($examsA[3]) ? $this->convertScoreToGrade($examsA[3]->score) : 'Data not available',
+            'theory1' => $examsA->has(1) ? $this->convertScoreToGrade($examsA->get(1)->score) : 'Data not available',
+            'theory2' => $examsA->has(2) ? $this->convertScoreToGrade($examsA->get(2)->score) : 'Data not available',
+            'theory3' => $examsA->has(3) ? $this->convertScoreToGrade($examsA->get(3)->score) : 'Data not available',
+            'theory4' => $examsA->has(4) ? $this->convertScoreToGrade($examsA->get(4)->score) : 'Data not available',
             'theory5' => '36',
         ];
 

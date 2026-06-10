@@ -25,6 +25,7 @@ use App\Http\Controllers\Asesi\ExamControllerC;
 use App\Http\Controllers\Asesi\LevelBController;
 use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\Asesi\SertifikasiController;
+use App\Http\Controllers\Asesi\SertifikatAndaController;
 use App\Http\Controllers\Asesi\TransactionController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Asesor\LevelBGradedController;
@@ -202,6 +203,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:asesi', 'last_seen', 'profile.complete'])->prefix('asesi')->group(function () {
     // Dashboard
     Route::get('/dashboard', [AsesiDashboardController::class, 'index'])->name('asesi.dashboard');
+    Route::get('/dashboard/sertifikat-anda', [SertifikatAndaController::class, 'index'])->name('asesi.sertifikat-anda');
     Route::get('/coming-soon', [AsesiDashboardController::class, 'comingSoon'])->name('asesi.coming-soon');
     Route::get('/testimonials/featured', [AsesiDashboardController::class, 'getFeaturedTestimonials'])->name('asesi.testimonials.featured');
 

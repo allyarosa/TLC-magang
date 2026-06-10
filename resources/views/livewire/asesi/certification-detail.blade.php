@@ -15,7 +15,7 @@
         animation: floating 2s ease-in-out infinite;
     }
 </style>
-<div id="detail_sertifikasi_page" class="min-h-screen bg-slate-50/50 py-10">
+<div id="detail_sertifikasi_page" class="min-h-screen bg-slate-50/50 py-10 md:ml-56">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="relative overflow-hidden rounded-2xl bg-slate-900 shadow-xl shadow-slate-200/50 mb-10 group">
@@ -45,7 +45,7 @@
                     @if ($hasAccessA)
                         @if (Auth::user()->hasPermissionTo('level_A_completed'))
                             @if (Auth::user()->hasFilledSurvey())
-                                <a href="{{ $hasSubmittedSurvey ? route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) : route('asesi.sertifikasi.survey') }}"
+                                <a href="{{ $hasSubmittedSurvey ? route('asesi.sertifikat-anda') : route('asesi.sertifikasi.survey') }}"
                                     class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 ring-offset-slate-900">
                                     <span>Download Sertifikat</span>
                                     <i
@@ -55,7 +55,7 @@
                                     </div>
                                 </a>
                             @else
-                                <a href="{{ $hasSubmittedSurvey ? route('asesi.downloadCertificate', Vinkla\Hashids\Facades\Hashids::encode(Auth::id())) : route('asesi.sertifikasi.survey') }}"
+                                <a href="{{ $hasSubmittedSurvey ? route('asesi.sertifikat-anda') : route('asesi.sertifikasi.survey') }}"
                                     class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-xl hover:from-amber-400 hover:to-yellow-500 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 animate-floating focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 ring-offset-slate-900">
                                     <span>Klaim Sertifikat</span>
                                     <i
