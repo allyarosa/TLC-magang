@@ -7,7 +7,7 @@
             'active_patterns' => ['asesi.dashboard'],
         ],
         [
-            'label' => 'Sertifikat',
+            'label' => 'Sertifikasi',
             'icon' => 'workspace_premium',
             'href' => route('asesi.sertifikasi'),
             'active_patterns' => ['asesi.sertifikasi*', 'asesi.sertifikat.*', 'asesi.nilai'],
