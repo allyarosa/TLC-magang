@@ -136,13 +136,35 @@ class SertifikasiController extends Controller
             abort(403, 'Pemilik akses Level A hanya berhak mengunduh Sertifikat Utama.');
         }
 
+        $categoriesMap = \App\Models\CategoryA::all()->keyBy(function ($cat) {
+            return strtoupper($cat->name);
+        });
+
         // Query exams completed
-        $examsA = ExamA::where('user_id', $id)
+        $examsARaw = ExamA::where('user_id', $id)
+            ->where('status', 'finished')
             ->get()
             ->groupBy('category_a_id')
             ->map(function ($exams) {
                 return collect($exams)->sortByDesc('score')->first();
             });
+
+        $examsA = collect();
+        $logicalMapping = [
+            'HOTS' => 1,
+            'PCK' => 2,
+            'LITERASI' => 3,
+            'NUMERASI' => 4
+        ];
+
+        foreach ($logicalMapping as $name => $logicalId) {
+            if (isset($categoriesMap[$name])) {
+                $dbId = $categoriesMap[$name]->id;
+                if ($examsARaw->has($dbId)) {
+                    $examsA->put($logicalId, $examsARaw->get($dbId));
+                }
+            }
+        }
 
         // Determine permission & suffix based on certificate type
         if ($type === 'HOTS') {

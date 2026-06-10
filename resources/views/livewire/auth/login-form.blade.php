@@ -1,4 +1,4 @@
-<div class="relative bg-gray-900 min-h-screen w-full flex items-center justify-center p-2 sm:p-2 overflow-hidden">
+<div class="relative bg-gray-900 min-h-screen w-full flex items-center justify-center p-0 md:p-4 overflow-y-auto">
     <!-- Background Image -->
     <div class="absolute inset-0 z-0">
         <img src="{{ asset('images/about-us.webp') }}" alt="Background TLC" class="w-full h-full object-cover opacity-70"
@@ -135,7 +135,7 @@
     </style>
 
     <div
-        class="relative z-10 bg-white shadow-2xl rounded-3xl overflow-hidden w-full max-w-md md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm animate-fadeIn">
+        class="relative z-10 bg-white shadow-2xl rounded-none md:rounded-3xl overflow-hidden w-full min-h-screen md:min-h-0 md:max-w-4xl flex flex-col md:flex-row backdrop-blur-sm animate-fadeIn">
         <!-- Left Section - Enhanced -->
         <div
             class="hidden md:flex flex-col justify-center items-center w-full md:w-1/2 bg-gradient-to-br from-[#A6BFCF] via-[#5F809C] to-[#2E4D69] p-10 relative overflow-hidden">
@@ -159,7 +159,7 @@
         </div>
 
         <!-- Right Section - Enhanced -->
-        <div class="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center bg-white">
+        <div class="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center bg-white flex-1">
             <!-- Mobile Header -->
             <div class="md:hidden text-center mb-6 animate-fadeIn">
                 <h1

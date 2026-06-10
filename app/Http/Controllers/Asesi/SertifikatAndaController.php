@@ -14,12 +14,13 @@ class SertifikatAndaController extends Controller
     {
         $user = Auth::user();
         
-        // Mengambil ujian terakhir untuk setiap kategori untuk asesi yang sedang login
+        // Mengambil ujian terbaik yang sudah selesai untuk setiap kategori
         $completedExams = ExamA::where('user_id', $user->id)
+            ->where('status', 'finished')
             ->get()
             ->groupBy('category_a_id')
             ->map(function ($exams) {
-                return collect($exams)->sortByDesc('end_time')->first();
+                return collect($exams)->sortByDesc('score')->first();
             });
         
         return view('dashboard.asesi.sertifikat-anda', compact('completedExams'));
