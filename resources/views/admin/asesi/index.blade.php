@@ -53,6 +53,7 @@
                         <select id="category_name" name="category_name"
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                             <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua Kategori --</option>
+                            <option value="fresh_user" {{ request('category_name') == 'fresh_user' ? 'selected' : '' }}>Belum Mendaftar (Fresh User)</option>
                             <option value="access_level_A" {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
                             <option value="access_level_B" {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
                             <option value="access_level_C" {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
@@ -60,7 +61,6 @@
                             <option value="PCK" {{ request('category_name') == 'PCK' ? 'selected' : '' }}>PCK</option>
                             <option value="LITERASI" {{ request('category_name') == 'LITERASI' ? 'selected' : '' }}>LITERASI</option>
                             <option value="NUMERASI" {{ request('category_name') == 'NUMERASI' ? 'selected' : '' }}>NUMERASI</option>
-                        </select>
                         </select>
                     </div>
                     <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded shadow-md">
@@ -88,7 +88,7 @@
                         <input type="date" id="date_to" name="date_to" value="{{ request('date_to') }}"
                             class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
-                    <button type="submit" class="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
+                    <button type="submit" class="px-3 py-1.5 bg-blue-700 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
                         Filter
                     </button>
                     @if(request('date_from') || request('date_to'))

@@ -126,9 +126,20 @@ class AdminDashboardController extends Controller
                     });
             })
             ->when($category && $category !== 'ALL', function ($query) use ($category) {
-                $query->whereHas('user.permissions', function ($q) use ($category) {
-                    $q->where('name', $category);
-                });
+                if ($category === 'fresh_user') {
+                    $query->whereHas('user.permissions', function ($q) {
+                        $q->where('name', 'fresh_user');
+                    })->whereDoesntHave('user.permissions', function ($q) {
+                        $q->whereIn('name', [
+                            'access_level_A', 'access_level_B', 'access_level_C',
+                            'HOTS', 'PCK', 'LITERASI', 'NUMERASI'
+                        ]);
+                    });
+                } else {
+                    $query->whereHas('user.permissions', function ($q) use ($category) {
+                        $q->where('name', $category);
+                    });
+                }
             })
             ->when($dateFrom, function ($query) use ($dateFrom) {
                 $query->whereHas('user', function ($q) use ($dateFrom) {

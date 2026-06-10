@@ -28,7 +28,7 @@
         <!-- Header Section -->
         <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div class="flex items-center gap-4">
-                <div class="p-3 bg-blue-200 text-blue-600 rounded-2xl border border-blue-100 flex-shrink-0">
+                <div class="p-3 bg-blue-200 text-brandBlue rounded-2xl border border-blue-100 flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -36,7 +36,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-700 tracking-tight mb-1">
+                    <h1 class="text-2xl font-bold text-gray-700 tracking-tight">
                         Transaksi
                     </h1>
                     <p class="text-lg text-gray-800">
@@ -61,61 +61,45 @@
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Total Spent Card -->
             <div
-                class="bg-white rounded-xl px-6 py-3 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
+                class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
                 <div
                     class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors duration-500">
                 </div>
-                <div class="flex justify-between items-start">
-                    <div class="p-3 bg-surface-container-low rounded-lg text-primary">
+                <div class="flex justify-between items-center mb-2">
+                    <p class="text-sm font-label text-on-surface-variant font-semibold tracking-wide uppercase">Total Transaksi</p>
+                    <div class="p-3 bg-brandBlue rounded-lg text-white flex-shrink-0">
                         <span class="material-symbols-outlined">account_balance_wallet</span>
                     </div>
                 </div>
-                <p class="text-sm font-label text-on-surface-variant font-semibold tracking-wide uppercase mb-1">Total
-                    Transaksi</p>
-                <p class="font-headline text-3xl font-bold text-gray-800">IDR 4,250,000</p>
-                <div class="mt-4 flex items-center gap-2 text-sm">
-                    <span class="flex items-center text-secondary font-medium">
-                        <span class="material-symbols-outlined text-sm mr-1">trending_up</span>
-                        12%
-                    </span>
-                    <span class="text-on-surface-variant">vs last year</span>
-                </div>
+                <p class="font-headline text-3xl font-bold text-gray-800">{{ $paymentCount }}</p>
             </div>
             <!-- Active Subscriptions -->
             <div
-                class="bg-white rounded-xl px-6 py-3 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
+                class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
                 <div
                     class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-colors duration-500">
                 </div>
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-3 bg-surface-container-low rounded-lg text-secondary">
-                        <span class="material-symbols-outlined">autorenew</span>
+                <div class="flex justify-between items-center mb-2">
+                    <p class="text-sm font-label text-on-surface-variant font-semibold tracking-wide uppercase">Transaksi Sukses</p>
+                    <div class="p-2.5 bg-teal-600 rounded-lg text-white flex-shrink-0">
+                        <span class="material-symbols-outlined">check_circle</span>
                     </div>
                 </div>
-                <p class="text-sm font-label text-on-surface-variant font-semibold tracking-wide uppercase mb-1">Transaksi
-                    Sukses</p>
-                <p class="font-headline text-3xl font-bold text-gray-800">3 Plans</p>
-                <div class="mt-4 flex items-center gap-2 text-sm text-on-surface-variant">
-                    Next billing: 15 Jan 2024
-                </div>
+                <p class="font-headline text-3xl font-bold text-gray-800">{{ $paymentSuccessCount ?? '0' }}</p>
             </div>
             <!-- Pending Payments -->
             <div
-                class="bg-white rounded-xl px-6 py-3 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
+                class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
                 <div
                     class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-colors duration-500">
                 </div>
-                <div class="flex justify-between items-start mb-4">
-                    <div class="p-3 bg-surface-container-low rounded-lg text-tertiary">
+                <div class="flex justify-between items-center mb-2">
+                    <p class="text-sm font-label text-on-surface-variant font-semibold tracking-wide uppercase">Menunggu Pembayaran</p>
+                    <div class="p-2.5 bg-brandOrange rounded-lg text-white flex-shrink-0">
                         <span class="material-symbols-outlined">pending_actions</span>
                     </div>
                 </div>
-                <p class="text-sm font-label text-on-surface-variant font-semibold tracking-wide uppercase mb-1">Menunggu
-                    Pembayaran</p>
-                <p class="font-headline text-3xl font-bold text-gray-800">IDR 150,000</p>
-                <div class="mt-4 flex items-center gap-2 text-sm text-tertiary font-medium">
-                    1 Invoice awaiting payment
-                </div>
+                <p class="font-headline text-3xl font-bold text-gray-800">{{ $paymentPendingCount ?? '0' }}</p>
             </div>
         </section>
         <!-- Transaction History Table Area -->
@@ -124,13 +108,14 @@
             <!-- Table Header/Search -->
             <div
                 class="p-6 border-b border-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
-                <h3 class="font-headline text-xl font-bold text-gray-800">History Transaksi</h3>
+                <h3 class="font-headline text-xl font-bold text-slate-800">Riwayat Transaksi</h3>
                 <div class="relative w-full sm:w-72">
                     <span
                         class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
                     <input
+                        id="search-input"
                         class="w-full bg-surface-container-highest border-0 rounded-md py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary focus:bg-white transition-colors text-on-surface placeholder-on-surface-variant/70"
-                        placeholder="Search transactions..." type="text">
+                        placeholder="Cari transaksi..." type="text">
                 </div>
             </div>
             <!-- Table Container -->
@@ -138,125 +123,89 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr
-                            class="bg-surface-container-low/50 text-on-surface-variant text-sm font-label font-semibold tracking-wide uppercase">
-                            <th class="p-4 whitespace-nowrap pl-6">Date</th>
-                            <th class="p-4 whitespace-nowrap">Transaction ID</th>
-                            <th class="p-4 whitespace-nowrap min-w-[200px]">Description</th>
-                            <th class="p-4 whitespace-nowrap text-right">Amount</th>
-                            <th class="p-4 whitespace-nowrap">Method</th>
+                            class="bg-surface-container-low/50 text-slate-700 text-xs font-label font-medium tracking-wide uppercase">
+                            <th class="p-4 whitespace-nowrap pl-6">Tanggal</th>
+                            <th class="p-4 whitespace-nowrap">ID Transaksi</th>
+                            <th class="p-4 whitespace-nowrap min-w-[200px]">Deskripsi</th>
+                            <th class="p-4 whitespace-nowrap text-right">Jumlah</th>
+                            <th class="p-4 whitespace-nowrap">Metode</th>
                             <th class="p-4 whitespace-nowrap">Status</th>
-                            <th class="p-4 whitespace-nowrap pr-6 text-center">Action</th>
+                            <th class="p-4 whitespace-nowrap pr-6 text-center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="text-sm font-body divide-y divide-surface-container-low">
-                        <!-- Row 1 -->
+                    <tbody id="transaction-rows" class="text-sm font-body divide-y divide-surface-container-low">
+                        @forelse ($pembayaran as $item)
                         <tr class="hover:bg-surface-bright transition-colors group">
-                            <td class="p-4 pl-6 text-on-surface-variant whitespace-nowrap">12 Dec 2023</td>
-                            <td class="p-4 font-medium text-primary whitespace-nowrap">#TLC-9821</td>
-                            <td class="p-4 text-on-surface">Level A Full Package</td>
-                            <td class="p-4 text-right font-medium text-gray-800 whitespace-nowrap">IDR 1,500,000
+                            <td class="p-4 pl-6 text-on-surface-variant whitespace-nowrap">
+                                {{ $item->payment_time ? \Carbon\Carbon::parse($item->payment_time)->translatedFormat('d F Y') : '-' }}
                             </td>
-                            <td class="p-4 text-on-surface-variant whitespace-nowrap">Virtual Account Mandiri</td>
+                            <td class="p-4 font-medium text-primary whitespace-nowrap">
+                                {{ $item->order_id ?? '#TLC-' . $item->id }}
+                            </td>
+                            <td class="p-4 text-on-surface">
+                                Level {{ $item->level->level_name }}
+                            </td>
+                            <td class="p-4 text-right font-medium text-gray-800 whitespace-nowrap">
+                                Rp {{ number_format($item->amount, 0, ',', '.') }}
+                            </td>
+                            <td class="p-4 text-on-surface-variant whitespace-nowrap">
+                                {{ $item->payment_method ?? $item->payment_type ?? '-' }}
+                            </td>
                             <td class="p-4 whitespace-nowrap">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-secondary-container text-on-secondary-container">
-                                    Paid
-                                </span>
+                                @if ($item->status === 'success')
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-green-100 text-green-800">
+                                        Success
+                                    </span>
+                                @elseif ($item->status === 'pending')
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-yellow-100 text-yellow-800">
+                                        Pending
+                                    </span>
+                                @elseif ($item->status === 'failed')
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-red-100 text-red-800">
+                                        Failed
+                                    </span>
+                                @else
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-gray-100 text-gray-800">
+                                        {{ $item->status }}
+                                    </span>
+                                @endif
                             </td>
                             <td class="p-4 pr-6 text-center whitespace-nowrap">
-                                <button
-                                    class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-full hover:bg-surface-container-low"
-                                    title="Download Receipt">
-                                    <span class="material-symbols-outlined text-[20px]">download</span>
-                                </button>
+                                <div class="flex items-center justify-center gap-2">
+                                    @if ($item->status === 'success')
+                                        <a href="{{ route('asesi.transaksi.invoice', \Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}" target="_blank"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-600 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold transition-all shadow-sm hover:shadow"
+                                            title="Download Receipt">
+                                            <span class="material-symbols-outlined text-sm">download</span>
+                                            Invoice
+                                        </a>
+                                    @elseif ($item->status === 'pending')
+                                        <a href="{{ route('payments.detail', \Vinkla\Hashids\Facades\Hashids::encode($item->id)) }}"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition-all shadow-sm hover:shadow"
+                                            title="Pay Now">
+                                            <span class="material-symbols-outlined text-sm">payment</span>
+                                            Pay
+                                        </a>
+                                    @else
+                                        <span class="text-xs text-gray-400">-</span>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
-                        <!-- Row 2 -->
-                        <tr class="hover:bg-surface-bright transition-colors group">
-                            <td class="p-4 pl-6 text-on-surface-variant whitespace-nowrap">05 Dec 2023</td>
-                            <td class="p-4 font-medium text-primary whitespace-nowrap">#TLC-9754</td>
-                            <td class="p-4 text-on-surface">Workshop Sesi 12</td>
-                            <td class="p-4 text-right font-medium text-gray-800 whitespace-nowrap">IDR 250,000
-                            </td>
-                            <td class="p-4 text-on-surface-variant whitespace-nowrap">GoPay</td>
-                            <td class="p-4 whitespace-nowrap">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-secondary-container text-on-secondary-container">
-                                    Paid
-                                </span>
-                            </td>
-                            <td class="p-4 pr-6 text-center whitespace-nowrap">
-                                <button
-                                    class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-full hover:bg-surface-container-low"
-                                    title="Download Receipt">
-                                    <span class="material-symbols-outlined text-[20px]">download</span>
-                                </button>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="p-8 text-center text-gray-500">
+                                Belum ada transaksi yang dilakukan.
                             </td>
                         </tr>
-                        <!-- Row 3 -->
-                        <tr class="hover:bg-surface-bright transition-colors group">
-                            <td class="p-4 pl-6 text-on-surface-variant whitespace-nowrap">28 Nov 2023</td>
-                            <td class="p-4 font-medium text-primary whitespace-nowrap">#TLC-9610</td>
-                            <td class="p-4 text-on-surface">Modul Ekstra Literasi</td>
-                            <td class="p-4 text-right font-medium text-gray-800 whitespace-nowrap">IDR 150,000
-                            </td>
-                            <td class="p-4 text-on-surface-variant whitespace-nowrap">Credit Card (Visa)</td>
-                            <td class="p-4 whitespace-nowrap">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-tertiary-container text-on-tertiary-container">
-                                    Pending
-                                </span>
-                            </td>
-                            <td class="p-4 pr-6 text-center whitespace-nowrap">
-                                <button
-                                    class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-full hover:bg-surface-container-low"
-                                    title="Retry Payment">
-                                    <span class="material-symbols-outlined text-[20px]">payment</span>
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Row 4 -->
-                        <tr class="hover:bg-surface-bright transition-colors group">
-                            <td class="p-4 pl-6 text-on-surface-variant whitespace-nowrap">15 Nov 2023</td>
-                            <td class="p-4 font-medium text-primary whitespace-nowrap">#TLC-9432</td>
-                            <td class="p-4 text-on-surface">Annual Subscription Renewal</td>
-                            <td class="p-4 text-right font-medium text-gray-800 whitespace-nowrap">IDR 2,000,000
-                            </td>
-                            <td class="p-4 text-on-surface-variant whitespace-nowrap">OVO</td>
-                            <td class="p-4 whitespace-nowrap">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-secondary-container text-on-secondary-container">
-                                    Paid
-                                </span>
-                            </td>
-                            <td class="p-4 pr-6 text-center whitespace-nowrap">
-                                <button
-                                    class="text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-full hover:bg-surface-container-low"
-                                    title="Download Receipt">
-                                    <span class="material-symbols-outlined text-[20px]">download</span>
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Row 5 (Failed Example) -->
-                        <tr class="hover:bg-surface-bright transition-colors group">
-                            <td class="p-4 pl-6 text-on-surface-variant whitespace-nowrap">02 Nov 2023</td>
-                            <td class="p-4 font-medium text-primary whitespace-nowrap">#TLC-9311</td>
-                            <td class="p-4 text-on-surface">Masterclass: Digital Pedagogy</td>
-                            <td class="p-4 text-right font-medium text-gray-800 whitespace-nowrap">IDR 500,000
-                            </td>
-                            <td class="p-4 text-on-surface-variant whitespace-nowrap">Bank Transfer BCA</td>
-                            <td class="p-4 whitespace-nowrap">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-error-container text-on-error-container">
-                                    Failed
-                                </span>
-                            </td>
-                            <td class="p-4 pr-6 text-center whitespace-nowrap">
-                                <button
-                                    class="text-on-surface-variant hover:text-error transition-colors p-1.5 rounded-full hover:bg-surface-container-low"
-                                    title="View Details">
-                                    <span class="material-symbols-outlined text-[20px]">info</span>
-                                </button>
+                        @endforelse
+                        <tr id="no-search-results" class="hidden">
+                            <td colspan="7" class="p-8 text-center text-gray-500">
+                                Tidak ada transaksi yang cocok dengan pencarian Anda.
                             </td>
                         </tr>
                     </tbody>
@@ -265,24 +214,40 @@
             <!-- Pagination Footer -->
             <div
                 class="p-4 border-t border-surface-container-low flex justify-between items-center text-sm text-on-surface-variant bg-surface-container-lowest">
-                <span>Showing 1 to 5 of 24 transactions</span>
-                <div class="flex gap-2">
-                    <button class="p-1 rounded hover:bg-surface-container-low transition-colors disabled:opacity-50"
-                        disabled="">
-                        <span class="material-symbols-outlined text-sm">chevron_left</span>
-                    </button>
-                    <button
-                        class="w-7 h-7 rounded bg-primary text-on-primary flex items-center justify-center font-medium">1</button>
-                    <button
-                        class="w-7 h-7 rounded hover:bg-surface-container-low transition-colors flex items-center justify-center font-medium">2</button>
-                    <button
-                        class="w-7 h-7 rounded hover:bg-surface-container-low transition-colors flex items-center justify-center font-medium">3</button>
-                    <span class="w-7 h-7 flex items-center justify-center">...</span>
-                    <button class="p-1 rounded hover:bg-surface-container-low transition-colors">
-                        <span class="material-symbols-outlined text-sm">chevron_right</span>
-                    </button>
-                </div>
+                <span>Menampilkan {{ $pembayaran->count() }} transaksi</span>
             </div>
         </section>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            const tableBody = document.getElementById('transaction-rows');
+            const rows = tableBody.querySelectorAll('tr:not(#no-search-results)');
+            const noResultsRow = document.getElementById('no-search-results');
+
+            if (searchInput && tableBody) {
+                searchInput.addEventListener('input', function() {
+                    const query = this.value.toLowerCase().trim();
+                    let visibleCount = 0;
+
+                    rows.forEach(row => {
+                        const text = row.textContent.toLowerCase();
+                        if (text.includes(query)) {
+                            row.classList.remove('hidden');
+                            visibleCount++;
+                        } else {
+                            row.classList.add('hidden');
+                        }
+                    });
+
+                    if (visibleCount === 0 && query !== '') {
+                        noResultsRow.classList.remove('hidden');
+                    } else {
+                        noResultsRow.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
