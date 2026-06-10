@@ -126,8 +126,8 @@
                             <div class="border-t border-gray-100 my-1"></div>
 
                             {{-- <div>
-                                <a href="{{ route('asesi.profile') }}"
-                                    class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
+                                <a href="{{ route('asesi.sertifikat-anda') }}"
+                                    class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.sertifikat-anda') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                     <div
                                         class="p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
                                         <!-- SVG Sertifikat (Award Ribbon) -->
@@ -142,27 +142,7 @@
                                 </a>
                             </div> --}}
 
-                            {{-- <a href="{{ route('asesi.profile') }}"
-                                    class="flex items-center space-x-3 px-4 py-3 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
-                                    <div
-                                        class="p-1.5 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="text-blue-600">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                            <line x1="16" y1="13" x2="8" y2="13">
-                                            </line>
-                                            <line x1="16" y1="17" x2="8" y2="17">
-                                            </line>
-                                            <polyline points="10 9 9 9 8 9"></polyline>
-                                        </svg>
-                                    </div>
-                                    <span class="font-medium">Sertifikat Saya</span>
-                                </a> --}}
-
-                            {{-- <div class="border-t border-gray-100 my-1"></div> --}}
+                            <div class="border-t border-gray-100 my-1"></div>
 
                             <div>
                                 <form method="POST" action="{{ route('logout') }}" class="w-full">
@@ -215,10 +195,10 @@
                         Profile
                     </a>
 
-                    {{-- <a href="{{ route('asesi.profile') }}"
-                        class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.profile') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
+                    <a href="{{ route('asesi.sertifikat-anda') }}"
+                        class="nav-link w-full text-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 {{ request()->routeIs('asesi.sertifikat-anda') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:text-blue-700 hover:bg-slate-100' }}">
                         Sertifikat Saya
-                    </a> --}}
+                    </a>
 
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
