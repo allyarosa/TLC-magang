@@ -26,9 +26,9 @@
         </script>
         <style>
             /* body {
-                                background-color: #f7f9fc;
-                                color: #181c1e;
-                            } */
+                                            background-color: #f7f9fc;
+                                            color: #181c1e;
+                                        } */
 
             .font-display {
                 font-family: 'Manrope', sans-serif;
@@ -52,7 +52,7 @@
         <section class=" text-on-surface selection:bg-secondary-container">
             <!-- Main Content -->
             <main class="py-6 md:py-12 px-6 md:ml-64 min-h-screen">
-                <div class="max-w-7xl mx-auto space-y-8">
+                <div class="max-w-7xl mx-auto space-y-4">
                     <!-- Welcome Hero & Stats -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                         {{-- @if ($profileCompletion >= 100 && !Auth::user()->hasPermissionTo('access_level_A'))
@@ -282,67 +282,12 @@
                         </div>
                     </div>
                     <!-- Bottom Sections: Certificates & Transactions -->
-                    {{-- <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <!-- Sertifikat Diraih -->
-                        <section class="lg:col-span-8">
-                            <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Sertifikat
-                                Diraih</h3>
-                            <div
-                                class="bg-white rounded-xl p-12 flex flex-col items-center justify-center text-center border-2 border-dashed border-outline-variant/30">
-                                <div
-                                    class="w-20 h-20 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-4">
-                                    <span class="material-symbols-outlined text-5xl" style="">card_membership</span>
-                                </div>
-                                <h4 class="font-bold text-on-surface" style="">Belum Ada Sertifikat</h4>
-                                <p class="text-sm text-on-surface-variant max-w-xs mt-2" style="">Selesaikan Level A
-                                    untuk mendapatkan sertifikat profesional pertamamu!</p>
-                                <button class="mt-6 text-primary font-bold text-sm flex items-center gap-2"
-                                    style="">
-                                    Lihat Syarat Sertifikasi
-                                    <span class="material-symbols-outlined text-sm" style="">open_in_new</span>
-                                </button>
-                            </div>
-                        </section>
+                        <livewire:asesi.dashboard.earned-certificates />
                         <!-- Riwayat Transaksi -->
-                        <div class="lg:col-span-4">
-                            <h3 class="text-xl font-display font-bold text-on-surface mb-6" style="">Riwayat
-                                Transaksi</h3>
-                            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                                <div class="divide-y divide-slate-100">
-                                    <div class="p-4 flex justify-between items-center">
-                                        <div>
-                                            <p class="text-sm font-bold" style="">Level A Full Package</p>
-                                            <p class="text-[10px] text-outline" style="">12 Des 2023 · #TLC-9821</p>
-                                        </div>
-                                        <span
-                                            class="px-2 py-1 rounded text-[10px] font-bold bg-secondary-container text-on-secondary-container"
-                                            style="">Paid</span>
-                                    </div>
-                                    <div class="p-4 flex justify-between items-center">
-                                        <div>
-                                            <p class="text-sm font-bold" style="">Modul Ekstra Literasi</p>
-                                            <p class="text-[10px] text-outline" style="">05 Des 2023 · #TLC-9102</p>
-                                        </div>
-                                        <span
-                                            class="px-2 py-1 rounded text-[10px] font-bold bg-secondary-container text-on-secondary-container"
-                                            style="">Paid</span>
-                                    </div>
-                                    <div class="p-4 flex justify-between items-center">
-                                        <div>
-                                            <p class="text-sm font-bold" style="">Workshop Sesi 12</p>
-                                            <p class="text-[10px] text-outline" style="">28 Nov 2023 · #TLC-8843</p>
-                                        </div>
-                                        <span
-                                            class="px-2 py-1 rounded text-[10px] font-bold bg-secondary-container text-on-secondary-container"
-                                            style="">Paid</span>
-                                    </div>
-                                </div>
-                                <button
-                                    class="w-full py-3 text-xs font-bold text-outline hover:bg-slate-50 transition-colors uppercase tracking-widest"
-                                    style="">Lihat Semua Transaksi</button>
-                            </div>
-                        </div>
-                    </section> --}}
+                        <livewire:asesi.dashboard.transaction-history />
+                    </section>
 
                     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                         <!-- Level A Card -->

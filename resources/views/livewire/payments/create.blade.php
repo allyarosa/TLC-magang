@@ -405,11 +405,11 @@
                                 </div>
                             @endif
                             <hr class="border-gray-200">
-                            <div class="flex justify-between text-lg font-bold">
+                            {{-- <div class="flex justify-between text-lg font-bold">
                                 <span class="text-gray-700">Total</span>
                                 <span class="gradient-text">Rp
                                     {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
-                            </div>
+                            </div> --}}
                         </div>
 
                         {{-- ============================================ --}}

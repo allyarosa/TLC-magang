@@ -36,7 +36,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-700 tracking-tight">
+                    <h1 class="text-3xl font-bold text-gray-700 tracking-tight">
                         Transaksi
                     </h1>
                     <p class="text-lg text-gray-800">
@@ -44,7 +44,7 @@
                     </p>
                 </div>
             </div>
-            <div class="flex gap-4 w-full md:w-auto">
+            {{-- <div class="flex gap-4 w-full md:w-auto">
                 <button
                     class="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 rounded-md font-medium text-sm transition-colors border border-gray-200">
                     <span class="material-symbols-outlined text-sm">filter_list</span>
@@ -55,7 +55,7 @@
                     <span class="material-symbols-outlined text-sm">download</span>
                     Export
                 </button>
-            </div>
+            </div> --}}
         </header>
         <!-- Financial Summary Cards (Bento style) -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -108,7 +108,7 @@
             <!-- Table Header/Search -->
             <div
                 class="p-6 border-b border-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
-                <h3 class="font-headline text-xl font-bold text-slate-800">Riwayat Transaksi</h3>
+                <h3 class="font-headline text-xl font-bold text-brandBlue">Riwayat Transaksi</h3>
                 <div class="relative w-full sm:w-72">
                     <span
                         class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>

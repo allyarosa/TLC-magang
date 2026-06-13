@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Enhanced Navbar with Glass Effect -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#1D4E89] to-brandGreen/95 backdrop-blur-md shadow-sm border-b border-gray-200">
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Left section - Logo and Category -->
@@ -11,13 +11,13 @@
                     <div class="flex-shrink-0 flex items-center group">
                         <img class="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
                             src="{{ asset('images/logoTlcPng.png') }}" alt="TLC Logo">
-                        <span class="ml-3 text-lg font-black text-gray-700 tracking-tight hidden sm:block">TLC Exam</span>
+                        <span class="ml-3 text-lg font-black text-white tracking-tight hidden sm:block">TLC Exam</span>
                     </div>
 
                     <!-- Enhanced Category Badge -->
                     <div class="hidden md:block border-l border-gray-200 pl-4">
                         <span
-                            class="inline-flex items-center px-3 py-1 rounded-md text-sm font-semibold bg-[#3A6EA5]/10 text-[#3A6EA5]">
+                            class="inline-flex items-center px-3 py-1 rounded-md text-sm font-semibold bg-white text-brandBlue">
                             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,12 +32,13 @@
                 <!-- Timer Section -->
                 <div class="flex items-center justify-center">
                     <div class="bg-gray-50 rounded-lg px-4 py-1.5 border border-gray-200 shadow-sm flex items-center gap-2 ">
-                        <img src="{{ asset('assets/icons/stopwatch.png') }}" 
-                                alt="Stopwatch Icon" 
-                                title="Durasi Pengerjaan" 
-                                loading="lazy" 
-                                draggable="false" 
-                                class="w-6 h-6">
+                        <svg class="w-6 h-6 text-[#3A6EA5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Durasi Pengerjaan"
+                            title="Durasi Pengerjaan">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 2h4m-2 4V3m5.657 3.343l1.414-1.414M18 10a6 6 0 11-12 0 6 6 0 0112 0zm-6-3v3l2 2">
+                            </path>
+                        </svg>
                         <div class="font-mono font-bold text-gray-800 text-lg tracking-wider">
                             @livewire('count-down-timer', ['endTime' => $endTime, 'examId' => $exam->id])
                         </div>
@@ -58,7 +59,7 @@
     </nav>
 
     <!-- Main Content Area -->
-    <div class="min-h-screen py-6 bg-gray-50 pt-[5.5rem]">
+    <div class="min-h-screen py-6 bg-blue-100/70 pt-[5.5rem]">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
@@ -156,19 +157,26 @@
                                                     <label for="answer_{{ $key }}"
                                                         class="flex items-start gap-4 p-4 border border-gray-200 rounded-xl cursor-pointer bg-white
                                                         hover:bg-gray-50 hover:border-gray-300 transition-all duration-200
-                                                        peer-checked:border-[#3A6EA5] peer-checked:bg-[#3A6EA5]/5 peer-checked:shadow-sm">
+                                                        peer-checked:border-[#3A6EA5] peer-checked:bg-[#3A6EA5]/8 peer-checked:shadow-sm peer-checked:ring-2 peer-checked:ring-[#3A6EA5]/20
+                                                        peer-checked:[&_.option-circle]:bg-[#3A6EA5] peer-checked:[&_.option-circle]:border-[#3A6EA5] peer-checked:[&_.option-circle]:scale-110 peer-checked:[&_.option-circle]:ring-4 peer-checked:[&_.option-circle]:ring-[#3A6EA5]/20
+                                                        peer-checked:[&_.option-dot]:scale-100
+                                                        peer-checked:[&_.option-letter]:text-[#3A6EA5]
+                                                        peer-checked:[&_.option-text]:text-gray-900">
 
                                                         <div
-                                                            class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors
-                                                            {{ $userAnswer == $key ? 'border-[#3A6EA5] border-[6px]' : 'border-gray-300' }}">
+                                                            class="option-circle mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200
+                                                            {{ $userAnswer == $key ? 'bg-[#3A6EA5] border-[#3A6EA5] scale-110 ring-4 ring-[#3A6EA5]/20' : 'bg-white border-gray-300' }}">
+                                                            <div class="option-dot w-2 h-2 rounded-full bg-white transition-transform duration-200 {{ $userAnswer == $key ? 'scale-100' : 'scale-0' }}"></div>
                                                         </div>
 
                                                         <div class="flex-grow">
                                                             <div class="flex items-baseline gap-2">
                                                                 <span
-                                                                    class="font-bold text-gray-400 text-sm select-none">{{ strtoupper($key) }}.</span>
+                                                                    class="option-letter font-bold text-gray-400 text-sm select-none transition-colors duration-200
+                                                                    {{ $userAnswer == $key ? 'text-[#3A6EA5]' : '' }}">{{ strtoupper($key) }}.</span>
                                                                 <span
-                                                                    class="text-gray-700 font-medium select-none peer-checked:text-gray-900 leading-snug">{{ $option }}</span>
+                                                                    class="option-text text-gray-700 font-medium select-none leading-snug transition-colors duration-200
+                                                                    {{ $userAnswer == $key ? 'text-gray-900' : '' }}">{{ $option }}</span>
                                                             </div>
                                                         </div>
                                                     </label>
@@ -284,11 +292,11 @@
                         <div class="bg-gray-50 p-5 border-t border-gray-100">
                             <div class="flex justify-between items-center mb-2">
                                 <span class="text-sm font-semibold text-gray-500">Progress</span>
-                                <span class="text-sm font-bold text-gray-800">{{ $answeredQuestions }} /
+                                <span class="text-sm font-bold text-gray-700">{{ $answeredQuestions }} /
                                     {{ $totalQuestions }} Terjawab</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-[#90BE6D] h-full rounded-full transition-all duration-300"
+                                <div class="bg-brandGreen-dark h-full rounded-full transition-all duration-300"
                                     style="width: {{ ($answeredQuestions / $totalQuestions) * 100 }}%"></div>
                             </div>
                         </div>
@@ -300,7 +308,7 @@
                                     id="finishExamForm">
                                     @csrf
                                     <button type="button" onclick="confirmFinish()"
-                                        class="w-full flex items-center justify-center gap-2 bg-[#90BE6D] hover:bg-[#7FA85C] text-white font-bold py-3.5 px-4 rounded-xl shadow-sm shadow-[#90BE6D]/30 transition-colors focus:ring-4 focus:ring-[#90BE6D]/30">
+                                        class="w-full flex items-center justify-center gap-2 bg-brandGreen hover:bg-brandGreen-dark text-white font-bold py-3.5 px-4 rounded-xl shadow-sm shadow-[#90BE6D]/30 transition-colors focus:ring-4 focus:ring-[#90BE6D]/30">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7"></path>
@@ -358,9 +366,54 @@
             // Auto-submit form when answer is selected
             document.querySelectorAll('input[name="user_answer"]').forEach(function(radio) {
                 radio.addEventListener('change', function() {
-                    // Add visual feedback
-                    const label = this.closest('label');
-                    label.classList.add('ring-2', 'ring-[#3A6EA5]', 'ring-opacity-50');
+                    // Update all option circles
+                    document.querySelectorAll('input[name="user_answer"]').forEach(function(r) {
+                        const label = r.nextElementSibling;
+                        if (!label) return;
+                        
+                        const circle = label.querySelector('.option-circle');
+                        const dot = label.querySelector('.option-dot');
+                        const letter = label.querySelector('.option-letter');
+                        const text = label.querySelector('.option-text');
+                        
+                        if (r.checked) {
+                            circle.classList.add('bg-[#3A6EA5]', 'border-[#3A6EA5]', 'scale-110', 'ring-4', 'ring-[#3A6EA5]/20');
+                            circle.classList.remove('bg-white', 'border-gray-300');
+                            if (dot) {
+                                dot.classList.add('scale-100');
+                                dot.classList.remove('scale-0');
+                            }
+                            if (letter) {
+                                letter.classList.add('text-[#3A6EA5]');
+                                letter.classList.remove('text-gray-400');
+                            }
+                            if (text) {
+                                text.classList.add('text-gray-900');
+                                text.classList.remove('text-gray-700');
+                            }
+                        } else {
+                            circle.classList.remove('bg-[#3A6EA5]', 'border-[#3A6EA5]', 'scale-110', 'ring-4', 'ring-[#3A6EA5]/20');
+                            circle.classList.add('bg-white', 'border-gray-300');
+                            if (dot) {
+                                dot.classList.add('scale-0');
+                                dot.classList.remove('scale-100');
+                            }
+                            if (letter) {
+                                letter.classList.add('text-gray-400');
+                                letter.classList.remove('text-[#3A6EA5]');
+                            }
+                            if (text) {
+                                text.classList.add('text-gray-700');
+                                text.classList.remove('text-gray-900');
+                            }
+                        }
+                    });
+                    
+                    // Add visual feedback ring to selected label
+                    const selectedLabel = this.nextElementSibling;
+                    if (selectedLabel) {
+                        selectedLabel.classList.add('ring-2', 'ring-[#3A6EA5]', 'ring-opacity-50');
+                    }
 
                     // Submit form after short delay for better UX
                     setTimeout(function() {

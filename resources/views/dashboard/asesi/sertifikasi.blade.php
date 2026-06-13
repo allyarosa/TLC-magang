@@ -61,7 +61,7 @@
                     <div>
                         <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
                             <span class="w-1.5 h-8 bg-blue-600 rounded-full"></span>
-                            Jalur Pembelajaran
+                            Jalur Sertifikasi
                         </h2>
                         <p class="text-slate-500 mt-2">
                             Pilih level untuk mengakses materi dan kuis. Selesaikan secara berurutan.
@@ -169,7 +169,6 @@
                 transform: translateY(0);
             }
         }
-
         .animate-fadeIn {
             animation: fadeIn 0.4s ease-out forwards;
         }
