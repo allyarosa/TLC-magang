@@ -5,6 +5,7 @@ namespace App\Livewire\Asesi\Dashboard;
 use App\Models\Certificate;
 use App\Models\ExamA;
 use App\Models\UserProfile;
+use App\Models\SurveySubmission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -18,6 +19,8 @@ class EarnedCertificates extends Component
 
     public function render()
     {
+        $hasSubmittedSurvey = SurveySubmission::where('user_id', Auth::id())->exists();
+
         $certificates = Certificate::with('level')
             ->where('user_id', Auth::id())
             ->orderBy('issue_date', 'desc')
@@ -25,6 +28,7 @@ class EarnedCertificates extends Component
 
         return view('livewire.asesi.dashboard.earned-certificates', [
             'certificates' => $certificates,
+            'hasSubmittedSurvey' => $hasSubmittedSurvey,
         ]);
     }
 

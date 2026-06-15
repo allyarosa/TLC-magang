@@ -40,7 +40,7 @@
             </div>
 
             <!-- Navigation Menu for Desktop - Centered -->
-            {{-- <div class="hidden lg:flex items-center justify-center gap-6 flex-1">
+        {{-- <div class="hidden lg:flex items-center justify-center gap-6 flex-1">
                 @php
                     $navs = [
                         ['name' => 'Dashboard', 'route' => 'asesi.dashboard'],
@@ -80,17 +80,6 @@
 
                 @livewire('notification-modal')
 
-                <a href="{{ route('asesi.sertifikat-anda') }}"
-                    class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#1D4E89] shadow-sm transition-all duration-300 hover:scale-105 hover:bg-white"
-                    aria-label="Sertifikat Saya" title="Sertifikat Saya">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="8" r="6"></circle>
-                        <path d="m8.21 13.89-1.21 8.11 5-3 5 3-1.21-8.12"></path>
-                    </svg>
-                </a>
-
                 <!-- Profile Dropdown -->
                 <div class="relative">
                     <button id="profile-button-asesi" onclick="event.stopPropagation(); window.toggleProfileMenu();"
@@ -125,7 +114,7 @@
 
                             <div class="border-t border-gray-100 my-1"></div>
 
-                            {{-- <div>
+                            <div>
                                 <a href="{{ route('asesi.sertifikat-anda') }}"
                                     class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.sertifikat-anda') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">
                                     <div
@@ -138,9 +127,9 @@
                                             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
                                         </svg>
                                     </div>
-                                    <span class="font-medium text-sm">Sertifikat Anda</span>
+                                    <span class="font-medium text-sm">Sertifikat Saya</span>
                                 </a>
-                            </div> --}}
+                            </div>
 
                             <div class="border-t border-gray-100 my-1"></div>
 

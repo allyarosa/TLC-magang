@@ -40,8 +40,16 @@
                 </div>
             @endforelse
         </div>
-        <div class="px-4 py-2 border-t border-gray-200">
-            <a href="#" class="text-sm font-medium text-brandBlue hover:text-blue-700 w-full text-center block">Lihat semua notifikasi</a>
+        <div class="px-4 py-2 border-t border-gray-200 flex justify-center">
+            @if ($unreadCount > 0)
+                <button wire:click.prevent="markAllAsRead" class="text-sm font-semibold text-brandBlue hover:text-blue-700 w-full text-center transition-colors">
+                    Tandai Semua sebagai Dibaca
+                </button>
+            @else
+                <span class="text-sm text-gray-400 w-full text-center select-none">
+                    Semua notifikasi telah dibaca
+                </span>
+            @endif
         </div>
     </div>
 </div>

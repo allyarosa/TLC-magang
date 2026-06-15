@@ -54,8 +54,8 @@
                     </div>
                 </a>
             @empty
-                <div class="p-8 text-center flex flex-col items-center justify-center py-12 flex-1">
-                    <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 mb-4 border border-dashed border-slate-200">
+                <div class="px-8 text-center flex flex-col items-center justify-center py-4 flex-1">
+                    <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 mb-4 border border-dashed border-slate-200">
                         <span class="material-symbols-outlined text-2xl text-gray-400">payments</span>
                     </div>
                     <h4 class="font-bold text-gray-700 text-sm">Belum Ada Transaksi</h4>

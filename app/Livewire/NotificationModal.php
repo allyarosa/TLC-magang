@@ -51,6 +51,15 @@ class NotificationModal extends Component
         }
     }
 
+    public function markAllAsRead()
+    {
+        $user = Auth::user();
+        if ($user) {
+            $user->unreadNotifications->markAsRead();
+            $this->loadNotifications();
+        }
+    }
+
     public function render()
     {
         return view('livewire.notification-modal');

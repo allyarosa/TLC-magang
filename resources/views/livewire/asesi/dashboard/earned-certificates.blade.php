@@ -8,22 +8,27 @@
                 $type = null;
                 $displayName = 'Sertifikat Level A';
                 $badgeText = 'Sertifikat Utama';
+                $depanFile = 'LEVEL-A-DEPAN.png';
                 
                 if (str_contains($certName, 'Ctk.HOTS')) {
                     $type = 'HOTS';
                     $displayName = 'Sub-Sertifikat: High Order Thinking Skills (HOTS)';
                     $badgeText = 'Sub-Sertifikat';
+                    $depanFile = 'HOTS-DEPAN.png';
                 } elseif (str_contains($certName, 'Ctk.PCK')) {
                     $type = 'PCK';
                     $displayName = 'Sub-Sertifikat: Pedagogical Content Knowledge (PCK)';
                     $badgeText = 'Sub-Sertifikat';
+                    $depanFile = 'PCK-DEPAN.png';
                 } elseif (str_contains($certName, 'Ctk.LN')) {
                     $type = 'LN';
                     $displayName = 'Sub-Sertifikat: Literasi & Numerasi (LN)';
                     $badgeText = 'Sub-Sertifikat';
+                    $depanFile = 'LITNUM-DEPAN.png';
                 } elseif (str_contains($certName, 'CTK')) {
                     $displayName = 'Sertifikat Utama: Level A';
                     $badgeText = 'Verified Professional';
+                    $depanFile = 'LEVEL-A-DEPAN.png';
                 }
                 
                 $issueDate = $item->issue_date ? $item->issue_date->translatedFormat('d F Y') : $item->created_at->translatedFormat('d F Y');
@@ -34,9 +39,9 @@
             @endphp
             
             <div class="bg-white rounded-xl p-6 py-8 flex flex-col md:flex-row items-center gap-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div class="w-full md:w-48 aspect-[1.4/1] bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-center relative overflow-hidden shrink-0">
-                    <span class="material-symbols-outlined text-6xl text-primary/20">workspace_premium</span>
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+                <div class="w-full md:w-48 aspect-[1.414/1] bg-slate-50 rounded-lg border border-slate-200 overflow-hidden relative shrink-0 shadow-sm">
+                    <img src="{{ asset('assets/sertifikat/' . $depanFile) }}" alt="Preview {{ $displayName }}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/5 hover:bg-transparent transition-colors duration-200"></div>
                 </div>
                 
                 <div class="flex-1 text-center md:text-left">
@@ -51,15 +56,22 @@
                     </div>
                     
                     <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                        <a href="{{ $downloadUrl }}" class="flex items-center gap-2 bg-brandBlue text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary-container transition-colors shadow-sm">
-                            <span class="material-symbols-outlined text-lg">download</span>
-                            Unduh Sertifikat
-                        </a>
-                        
-                        <button x-data="{ url: '{{ $downloadUrl }}' }" @click="navigator.clipboard.writeText(url); alert('Tautan unduhan sertifikat berhasil disalin ke papan klip!')" class="flex items-center gap-2 border border-outline text-gray-800 px-5 py-2 rounded-lg text-sm font-bold hover:bg-slate-50 transition-colors">
-                            <span class="material-symbols-outlined text-lg">share</span>
-                            Bagikan
-                        </button>
+                        @if ($hasSubmittedSurvey)
+                            <a href="{{ $downloadUrl }}" class="flex items-center gap-2 bg-brandBlue text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary-container transition-colors shadow-sm">
+                                <span class="material-symbols-outlined text-lg">download</span>
+                                Unduh Sertifikat
+                            </a>
+                            
+                            <button x-data="{ url: '{{ $downloadUrl }}' }" @click="navigator.clipboard.writeText(url); alert('Tautan unduhan sertifikat berhasil disalin ke papan klip!')" class="flex items-center gap-2 border border-outline text-gray-800 px-5 py-2 rounded-lg text-sm font-bold hover:bg-slate-50 transition-colors">
+                                <span class="material-symbols-outlined text-lg">share</span>
+                                Bagikan
+                            </button>
+                        @else
+                            <a href="{{ route('asesi.sertifikasi.survey') }}" class="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all hover:saturate-150 shadow-md">
+                                <span class="material-symbols-outlined text-lg">rate_review</span>
+                                Klaim Sertifikat (Isi Survei)
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
