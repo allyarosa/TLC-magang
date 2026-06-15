@@ -259,6 +259,15 @@
                                     <span class="font-medium text-sm">Transaksi</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.vouchers.index') }}"
+                                    class="flex items-center p-2 rounded-lg group transition-all duration-200 {{ Request::routeIs('admin.vouchers.*') ? 'text-emerald-700 bg-emerald-50' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}">
+                                    <div
+                                        class="w-1.5 h-1.5 rounded-full mr-3 {{ Request::routeIs('admin.vouchers.*') ? 'bg-emerald-500' : 'bg-gray-300 group-hover:bg-emerald-500' }}">
+                                    </div>
+                                    <span class="font-medium text-sm">Voucher</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif

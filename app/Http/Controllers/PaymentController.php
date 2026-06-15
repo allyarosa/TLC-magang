@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\PaymentSuccessful;
-use App\Events\PaymentSuccessfulManual;
-use App\Models\CategoryA;
 use App\Models\Level;
 use App\Models\Payment;
 use App\Models\SiteInfo;
 use App\Models\User;
-use App\Notifications\TransactionNotification;
+use App\Services\PaymentService;
+use App\Services\VoucherService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Midtrans\Snap;
 use Vinkla\Hashids\Facades\Hashids;
+use Exception;
 
 class PaymentController extends Controller
 {
-    public function __construct()
+    protected PaymentService $paymentService;
+    protected VoucherService $voucherService;
+
+    public function __construct(PaymentService $paymentService, VoucherService $voucherService)
     {
-        // Set Midtrans configuration
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        \Midtrans\Config::$clientKey = config('midtrans.client_key');
-        \Midtrans\Config::$isProduction = config('midtrans.is_production', false);
-        \Midtrans\Config::$isSanitized = config('midtrans.is_sanitized', true);
-        \Midtrans\Config::$is3ds = config('midtrans.is_3ds', true);
+        $this->paymentService = $paymentService;
+        $this->voucherService = $voucherService;
     }
 
     public function index()
@@ -68,7 +63,6 @@ class PaymentController extends Controller
         }
     }
 
-
     public function store(Request $request)
     {
         $user = User::with('userProfile')->where('id', Auth::id())->first();
@@ -82,44 +76,14 @@ class PaymentController extends Controller
             'level_id'            => 'required|exists:levels,id',
             'mode'                => 'required|in:bundle,custom',
             'selected_categories' => 'nullable|string',
+            'voucher_code'        => 'nullable|string'
         ]);
 
-        $orderId     = 'ORDER-' . time() . '-' . Str::random(5);
-        $siteInfo    = SiteInfo::getPaymentSettings();
+        $siteInfo = SiteInfo::getPaymentSettings();
         $paymentMode = $siteInfo->payment_method ?? 'midtrans';
 
-        // ---------------------------------------------------------
-        // SECURE CALCULATION FROM DATABASE
-        // ---------------------------------------------------------
-        $calculatedAmount = 0;
-        $selectedCategoriesArray = [];
+        $data = $request->only(['level_id', 'mode', 'selected_categories']);
 
-        if ($request->mode === 'bundle') {
-            $level = Level::findOrFail($request->level_id);
-            $calculatedAmount = $level->price ?? 150000;
-        } else {
-            if ($request->filled('selected_categories')) {
-                // explode "hots,literasi" into array ['hots', 'literasi']
-                $selectedCategoriesArray = explode(',', $request->selected_categories);
-                
-                // map to uppercase for matching db
-                $dbNames = array_map('strtoupper', $selectedCategoriesArray);
-                
-                $categories = CategoryA::whereIn('name', $dbNames)->get();
-                $calculatedAmount = $categories->sum('price');
-                
-                // Ensure at least one category was valid
-                if ($calculatedAmount <= 0) {
-                    return redirect()->back()->with('error', 'Kategori tidak valid.');
-                }
-            } else {
-                return redirect()->back()->with('error', 'Silakan pilih minimal satu kategori.');
-            }
-        }
-
-        // ================================================================
-        // MANUAL BANK TRANSFER FLOW
-        // ================================================================
         if ($paymentMode === 'manual') {
             $rules = [
                 'transfer_proof' => 'required|image|mimes:jpeg,png,jpg|max:3072',
@@ -131,97 +95,35 @@ class PaymentController extends Controller
 
             $request->validate($rules);
 
-            $proofPath = $request->file('transfer_proof')->store('transfer_proofs', 'public');
+            $data['proofPath'] = $request->file('transfer_proof')->store('transfer_proofs', 'public');
             
-            $igProofPath = null;
             if ($request->hasFile('ig_follow_proof')) {
-                $igProofPath = $request->file('ig_follow_proof')->store('ig_follow_proofs', 'public');
+                $data['igProofPath'] = $request->file('ig_follow_proof')->store('ig_follow_proofs', 'public');
             }
-
-            $payment = Payment::create([
-                'user_id'             => Auth::id(),
-                'order_id'            => $orderId,
-                'level_id'            => $request->level_id,
-                'amount'              => $calculatedAmount,
-                'mode'                => $request->mode,
-                'selected_categories' => $selectedCategoriesArray,
-                'status'              => 'waiting_confirmation',
-                'payment_method'      => 'manual',
-                'transfer_proof'      => $proofPath,
-                'ig_follow_proof'     => $igProofPath,
-            ]);
-
-            $user->notify(new TransactionNotification($payment));
-
-            Log::info('Manual payment submitted', [
-                'payment_id' => $payment->id,
-                'user_id'    => Auth::id(),
-                'amount'     => $calculatedAmount,
-            ]);
-
-            return redirect()->route('payments.detail', Hashids::encode($payment->id))
-                ->with('success', 'Bukti transfer berhasil dikirim. Menunggu konfirmasi admin.');
         }
 
-        // ================================================================
-        // MIDTRANS FLOW
-        // ================================================================
-        $this->setupMidtransConfig();
-
-        $params = [
-            'transaction_details' => [
-                'order_id'     => $orderId,
-                'gross_amount' => (int) $calculatedAmount,
-            ],
-            'customer_details' => [
-                'user_id'    => Auth::id(),
-                'first_name' => $user->name,
-                'email'      => $user->email,
-                'billing_address' => [
-                    'first_name'   => $user->name,
-                    'last_name'    => '',
-                    'email'        => $user->email,
-                    'phone'        => $user->userProfile->no_wa ?? '',
-                    'city'         => $user->userProfile->kabupaten ?? '',
-                    'country_code' => 'IDN',
-                ]
-            ],
-        ];
-
         try {
-            $snapToken = Snap::getSnapToken($params);
+            $result = $this->paymentService->processCheckout($user, $data, $request->voucher_code);
 
-            $payment = Payment::create([
-                'user_id'             => Auth::id(),
-                'order_id'            => $orderId,
-                'level_id'            => $request->level_id,
-                'amount'              => $calculatedAmount,
-                'mode'                => $request->mode,
-                'selected_categories' => $selectedCategoriesArray,
-                'snap_token'          => $snapToken,
-                'status'              => 'pending',
-                'payment_method'      => 'midtrans',
-            ]);
+            if ($result['type'] === 'success') {
+                return redirect()->route('asesi.transaksi')
+                    ->with('success', $result['message']);
+            }
 
-            $user->notify(new TransactionNotification($payment));
+            if ($result['type'] === 'manual') {
+                return redirect()->route('payments.detail', Hashids::encode($result['payment']->id))
+                    ->with('success', $result['message']);
+            }
 
-            return redirect()->route('payments.checkout', ['id' => $payment->id]);
-        } catch (\Exception $e) {
-            Log::error('Midtrans Error:', [
-                'message'  => $e->getMessage(),
-                'file'     => $e->getFile(),
-                'line'     => $e->getLine(),
-                'order_id' => $orderId,
-                'amount'   => $calculatedAmount,
-            ]);
-
-            return redirect()->back()->with('error', 'Error creating payment: ' . $e->getMessage());
+            if ($result['type'] === 'midtrans') {
+                return redirect()->route('payments.checkout', ['id' => $result['payment']->id]);
+            }
+            
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
-    /**
-     * Admin mengkonfirmasi pembayaran manual dan memberikan akses level ke user.
-     */
     public function confirmManual(Request $request, int $id)
     {
         $payment = Payment::with('user')->findOrFail($id);
@@ -241,17 +143,15 @@ class PaymentController extends Controller
             'payment_time' => now(),
             'payment_type' => 'bank_transfer',
         ]);
-        // MATIKAN SEMENTARA FITUR GRANT LEVEL UNTUK PEMBAYARAN MANUAL, KARENA ADA KEBIJAKAN BARU DARI ADMIN UNTUK MENGKONFIRMASI PEMBAYARAN MANUAL SECARA MANUAL JUGA, JADI TIDAK LANGSUNG GRANT AKSES SAAT KONFIRMASI, MELAINKAN ADMIN AKAN MENGKONFIRMASI PEMBAYARAN MANUAL TERLEBIH DAHULU, BARU SETELAH ITU BARU MEMBERIKAN AKSES LEVEL SECARA MANUAL PULA.
-        // $this->grantLevelAccess($payment);
 
-        $payment->user->notify(new TransactionNotification($payment));
+        $payment->user->notify(new \App\Notifications\TransactionNotification($payment));
         try {
             \Illuminate\Support\Facades\Mail::to($payment->user->email)->send(new \App\Mail\PaymentVerifiedMail($payment));
         } catch (\Exception $e) {
             Log::error('Failed to send Payment Verified email', ['error' => $e->getMessage()]);
         }
-        // setup pembayaran
-        $this->grantAsesiAccess($payment);
+        
+        $this->paymentService->grantAsesiAccess($payment);
 
         Log::info('Manual payment confirmed by admin', [
             'payment_id'   => $payment->id,
@@ -261,121 +161,25 @@ class PaymentController extends Controller
         return redirect()->back()->with('success', 'Pembayaran berhasil dikonfirmasi dan akses telah diberikan.');
     }
 
-    private function grantAsesiAccess( $payment): void
-    {
-        if ($payment->mode === 'bundle') {
-            event(new PaymentSuccessful($payment));
-        } else {
-            event(new PaymentSuccessfulManual($payment));
-        }
-    }
-
-    /**
-     * Berikan izin akses level berdasarkan level_id payment.
-     */
-    private function grantLevelAccess(Payment $payment): void
-    {
-        $user = User::find($payment->user_id);
-        if (!$user) return;
-
-        switch ($payment->level_id) {
-            case 1:
-                $user->givePermissionTo('access_level_A');
-                break;
-            case 2:
-                $user->givePermissionTo('access_level_B');
-                break;
-            case 3:
-                $user->givePermissionTo('access_level_C');
-                break;
-            case 4:
-                $user->givePermissionTo('access_level_A', 'access_level_B', 'access_level_C');
-                break;
-        }
-
-        if ($user->hasPermissionTo('fresh_user')) {
-            $user->revokePermissionTo('fresh_user');
-        }
-    }
-
-    private function setupMidtransConfig()
-    {
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        \Midtrans\Config::$clientKey = config('midtrans.client_key');
-        \Midtrans\Config::$isProduction = config('midtrans.is_production', false);
-        \Midtrans\Config::$isSanitized = config('midtrans.is_sanitized', true);
-        \Midtrans\Config::$is3ds = config('midtrans.is_3ds', true);
-    }
-
     public function checkout($id)
     {
         $payment = Payment::findOrFail($id);
 
-        // Pastikan payment milik user yang login
         if ($payment->user_id != Auth::id()) {
             abort(403);
         }
 
-        // Pastikan status masih pending
         if ($payment->status != 'pending') {
             return redirect()->route('payments.detail', Hashids::encode($payment->id))
                 ->with('error', 'Pembayaran ini sudah diproses sebelumnya');
         }
 
-        // Cek apakah snap_token valid
         if (!$payment->snap_token || $payment->snap_token === '...') {
-            // Regenerate snap token jika tidak valid
-            $this->setupMidtransConfig();
-
-            $user = $payment->user;
-
-            // Pastikan user profile sudah lengkap sebelum generate token
-            if (!$user->isProfileComplete()) {
-                return redirect()->route('asesi.profile')
-                    ->with('warning', 'Lengkapi profil Anda terlebih dahulu untuk melanjutkan pembayaran');
-            }
-
-            $params = [
-                'transaction_details' => [
-                    'order_id' => $payment->order_id,
-                    'gross_amount' => (int) $payment->amount,
-                ],
-                'customer_details' => [
-                    'user_id' => $user->id,
-                    'first_name' => $user->name,
-                    'email' => $user->email,
-                    'billing_address' => [
-                        'first_name' => $user->name,
-                        'last_name' => '',
-                        'email' => $user->email,
-                        'phone' => $user->userProfile->no_wa ?? '',
-                        'city' => $user->userProfile->kabupaten ?? '',
-                        'country_code' => 'IDN',
-                    ]
-                ],
-            ];
-
             try {
-                $snapToken = Snap::getSnapToken($params);
+                $snapToken = app(PaymentService::class)->regenerateSnapToken($payment);
                 $payment->update(['snap_token' => $snapToken]);
-
-                // Notify user about the new snap token
-                $user->notify(new TransactionNotification($payment));
-
-                \Log::info('Snap token regenerated successfully:', [
-                    'payment_id' => $payment->id,
-                    'order_id' => $payment->order_id,
-                    'new_token' => substr($snapToken, 0, 20) . '...' // Log partial token for security
-                ]);
-            } catch (\Exception $e) {
-                \Log::error('Error regenerating snap token:', [
-                    'payment_id' => $payment->id,
-                    'order_id' => $payment->order_id,
-                    'error' => $e->getMessage(),
-                    'file' => $e->getFile(),
-                    'line' => $e->getLine(),
-                ]);
-
+                $payment->user->notify(new \App\Notifications\TransactionNotification($payment));
+            } catch (Exception $e) {
                 return redirect()->route('asesi.transaksi')
                     ->with('error', 'Gagal memproses pembayaran. Silakan coba lagi.');
             }
@@ -389,39 +193,17 @@ class PaymentController extends Controller
     public function finish(string $id)
     {
         $payment = Payment::where('order_id', $id)->first();
-
-        //JIKA WEBHOOK TIDAK JALAN
-        $payment->update([
-            'status' => 'success'
-        ]);
-
-        // Grant access based on level_id
-        $user = User::firstWhere('id', $payment->user_id);
-
-        switch ($payment->level_id) {
-            case 1:
-                $user->givePermissionTo('access_level_A');
-                break;
-            case 2:
-                $user->givePermissionTo('access_level_B');
-                break;
-            case 3:
-                $user->givePermissionTo('access_level_C');
-                break;
-            case 4:
-                $user->givePermissionTo('access_level_C', 'access_level_B', 'access_level_A');
-                break;
-            default:
-                break;
-        }
-
-        $user->notify(new TransactionNotification($payment));
-
-        //JIKA WEBHOOK TIDAK JALAN
-
         if (!$payment) {
             abort(404);
         }
+
+        //JIKA WEBHOOK TIDAK JALAN
+        $payment->update(['status' => 'success']);
+
+        $this->paymentService->grantAsesiAccess($payment);
+
+        $user = User::firstWhere('id', $payment->user_id);
+        $user->notify(new \App\Notifications\TransactionNotification($payment));
 
         $level = Level::find($payment->level_id);
         $levelName = $level ? $level->level_name : '-';
@@ -431,10 +213,13 @@ class PaymentController extends Controller
         ]);
     }
 
-
     public function notification(Request $request)
     {
-        $this->setupMidtransConfig();
+        // Require manual setup because midtrans config wasn't initialized in constructor 
+        // since we bypassed it by placing it in PaymentService, but here we can just initialize it:
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        \Midtrans\Config::$clientKey = config('midtrans.client_key');
+        \Midtrans\Config::$isProduction = config('midtrans.is_production', false);
 
         $notif = new \Midtrans\Notification();
 
@@ -455,6 +240,9 @@ class PaymentController extends Controller
             $payment->status = 'success';
         } else if ($status == 'cancel' || $status == 'deny' || $status == 'expire') {
             $payment->status = 'failed';
+            if ($payment->voucher_id) {
+                $this->voucherService->refundUsage($payment->voucher_id);
+            }
         } else if ($status == 'pending') {
             $payment->status = 'pending';
         }
@@ -465,25 +253,13 @@ class PaymentController extends Controller
         $payment->payment_details = json_decode(json_encode($notif), true);
         $payment->save();
 
-
-        $payment->user->notify(new TransactionNotification($payment));
+        $payment->user->notify(new \App\Notifications\TransactionNotification($payment));
 
         if ($payment->status == 'success') {
-            event(new PaymentSuccessful($payment));
+            $this->paymentService->grantAsesiAccess($payment);
         }
 
         return response()->json(['status' => 'success']);
-    }
-
-    public function grandLevelAAccess($payment)
-    {
-        try {
-            $user = User::where('id', $payment->user_id)->first();
-            $user->givePermissionTo('access_level_a');
-            $user->revokePermissionTo('fresh_user');
-        } catch (\Exception $e) {
-            \Log::error('Error Granting Access Level A:', ['message' => $e->getMessage()]);
-        }
     }
 
     public function detail($id)

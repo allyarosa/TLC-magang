@@ -382,6 +382,34 @@
                             @endif
                         </div>
 
+                        <!-- PROMO CODE / VOUCHER -->
+                        <div class="mb-6">
+                            <label class="block text-gray-600 text-sm font-medium mb-2">Kode Voucher / Promo</label>
+                            <div class="flex space-x-2">
+                                <input type="text" wire:model="voucherCode" placeholder="Masukkan kode voucher"
+                                    class="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
+                                    @if($voucherSuccess) disabled @endif>
+                                
+                                @if($voucherSuccess)
+                                    <button type="button" wire:click="removeVoucher"
+                                        class="px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 text-sm font-medium transition-colors">
+                                        Hapus
+                                    </button>
+                                @else
+                                    <button type="button" wire:click="applyVoucher"
+                                        class="px-4 py-2 bg-teal-600 text-white rounded-xl hover:bg-teal-700 text-sm font-medium transition-colors">
+                                        Terapkan
+                                    </button>
+                                @endif
+                            </div>
+                            @if($voucherError)
+                                <p class="text-red-500 text-xs mt-2">{{ $voucherError }}</p>
+                            @endif
+                            @if($voucherSuccess)
+                                <p class="text-green-600 text-xs mt-2">{{ $voucherSuccess }}</p>
+                            @endif
+                        </div>
+
                         <!-- Price Summary -->
                         <div class="space-y-3 mb-6 border-t border-gray-100 pt-6">
                             @if ($mode === 'bundle')
@@ -404,12 +432,21 @@
                                         {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
                                 </div>
                             @endif
+
+                            @if($this->discountAmount > 0)
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500">Diskon Voucher</span>
+                                    <span class="text-green-600 font-medium">- Rp
+                                        {{ number_format($this->discountAmount, 0, ',', '.') }}</span>
+                                </div>
+                            @endif
+
                             <hr class="border-gray-200">
-                            {{-- <div class="flex justify-between text-lg font-bold">
-                                <span class="text-gray-700">Total</span>
+                            <div class="flex justify-between text-lg font-bold">
+                                <span class="text-gray-700">Total Pembayaran</span>
                                 <span class="gradient-text">Rp
-                                    {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
-                            </div> --}}
+                                    {{ number_format($this->finalPrice, 0, ',', '.') }}</span>
+                            </div>
                         </div>
 
                         {{-- ============================================ --}}
@@ -424,6 +461,7 @@
                             <input type="hidden" name="mode" value="{{ $mode }}">
                             <input type="hidden" name="selected_categories"
                                 value="{{ implode(',', $selectedCategories) }}">
+                            <input type="hidden" name="voucher_code" value="{{ $voucherCode }}">
 
                             @if ($paymentMode === 'manual')
                                 {{-- ===== MANUAL BANK TRANSFER UI ===== --}}

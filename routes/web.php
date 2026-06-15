@@ -506,6 +506,9 @@ Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(
     Route::patch('/payments/{id}/status', [PaymentDetailController::class, 'updateStatus'])->name('admin.payments.updateStatus');
     Route::post('/payments/{id}/confirm-manual', [PaymentController::class, 'confirmManual'])->name('admin.payments.confirmManual');
 
+    // Vouchers
+    Route::resource('/vouchers', \App\Http\Controllers\Admin\VoucherController::class)->names('admin.vouchers');
+
     // Profile / Settings
     Route::get('/profile', [AdminSettingsController::class, 'edit'])->name('admin.settings.edit');
     Route::patch('/profile', [AdminSettingsController::class, 'update'])->name('admin.settings.update');

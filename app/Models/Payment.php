@@ -26,6 +26,9 @@ class Payment extends Model
         'confirmed_by',
         'mode',
         'selected_categories',
+        'voucher_id',
+        'original_amount',
+        'discount_amount',
     ];
 
     protected $casts = [
@@ -59,9 +62,13 @@ class Payment extends Model
         return $this->belongsTo(Level::class);
     }
 
-    /** Admin yang mengkonfirmasi pembayaran manual */
     public function confirmedBy()
     {
         return $this->belongsTo(User::class, 'confirmed_by');
+    }
+
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
     }
 }

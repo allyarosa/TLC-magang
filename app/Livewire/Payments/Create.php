@@ -64,6 +64,43 @@ class Create extends Component
     public $hasPendingManualPayment = false;
     public $pendingPaymentId = null;
 
+    // Voucher logic
+    public $voucherCode = '';
+    public $discountAmount = 0;
+    public $voucherError = null;
+    public $voucherSuccess = null;
+
+    public function applyVoucher()
+    {
+        $this->reset(['voucherError', 'voucherSuccess', 'discountAmount']);
+        
+        if (empty($this->voucherCode)) {
+            return;
+        }
+
+        try {
+            $voucherService = app(\App\Services\VoucherService::class);
+            $voucher = $voucherService->validateVoucher($this->voucherCode);
+            
+            $this->discountAmount = $voucherService->calculateDiscount($voucher, $this->totalPrice);
+            $this->voucherSuccess = 'Voucher berhasil diaplikasikan!';
+        } catch (\Exception $e) {
+            $this->voucherError = $e->getMessage();
+            $this->voucherCode = '';
+            $this->discountAmount = 0;
+        }
+    }
+
+    public function removeVoucher()
+    {
+        $this->reset(['voucherCode', 'discountAmount', 'voucherError', 'voucherSuccess']);
+    }
+
+    public function getFinalPriceProperty()
+    {
+        return max(0, $this->totalPrice - $this->discountAmount);
+    }
+
     public function toggleExpand()
     {
         $this->expandDetail = !$this->expandDetail;
