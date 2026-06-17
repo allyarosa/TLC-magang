@@ -45,69 +45,53 @@ use App\Http\Controllers\WelcomeController;
 use App\Livewire\Asesi\CertificationDetail;
 use App\Livewire\Asesi\SurveyForm;
 use App\Livewire\Payments\Create;
-use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // =========================================================================
-// PUBLIC ROUTES
+// PUBLIC ROUTES // BISA DIAKSES OLEH SIAPAPUN
 // =========================================================================
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact-us');
 
-Route::get('/payment-view', function () {
-    return view('paymentView');
-})->name('payment.view');
-
-Route::prefix('demo')->name('demo.')->group(function () {
+// Route::prefix('demo')->name('demo.')->group(function () {
     // Pricing Concept (Bundle vs Terpisah)
-    Route::get('/pricing', function () {
-        return view('demo.pricing-concept');
-    })->name('pricing');
+    // Route::get('/pricing', function () {
+    //     return view('demo.pricing-concept');
+    // })->name('pricing');
 
     // Pricing Concept V2 (Kategori dalam Level)
-    Route::get('/pricing-v2', function () {
-        return view('demo.pricing-concept-v2');
-    })->name('pricing.v2');
+    // Route::get('/pricing-v2', function () {
+    //     return view('demo.pricing-concept-v2');
+    // })->name('pricing.v2');
 
     // Pricing Concept V3 (Step-by-step: Level → Mode → Detail)
-    Route::get('/pricing-v3', function () {
-        return view('demo.pricing-concept-v3');
-    })->name('pricing.v3');
+    // Route::get('/pricing-v3', function () {
+    //     return view('demo.pricing-concept-v3');
+    // })->name('pricing.v3');
 
-    Route::get('/pricing-v4', function () {
-        return view('demo.pricing-concept-v4');
-    })->name('pricing.v4');
+    // Route::get('/pricing-v4', function () {
+    //     return view('demo.pricing-concept-v4');
+    // })->name('pricing.v4');
 
     // Pricing Flow V4 (single-file flow: login -> pilih -> bayar)
-    Route::get('/pricing-flow-v4', function () {
-        return view('demo.pricing-flow-v4');
-    })->name('pricing.flow.v4');
+    // Route::get('/pricing-flow-v4', function () {
+    //     return view('demo.pricing-flow-v4');
+    // })->name('pricing.flow.v4');
 
     // Full Flow (Register → Buy → Payment → Dashboard → Exam)
-    Route::get('/full-flow', function () {
-        return view('demo.pricing-full-flow');
-    })->name('full-flow');
+    // Route::get('/full-flow', function () {
+    //     return view('demo.pricing-full-flow');
+    // })->name('full-flow');
 
     // Flow V2 (Tab Navigation Style - Level Tabs + Mode Toggle)
-    Route::get('/flow-v2', function () {
-        return view('demo.flow-v2');
-    })->name('flow-v2');
-});
+    // Route::get('/flow-v2', function () {
+    //     return view('demo.flow-v2');
+    // })->name('flow-v2');
+// });
 
 Route::get('/newsDetail/{slug}', [WelcomeController::class, 'show'])->name('newsDetail');
 
@@ -117,22 +101,21 @@ Route::get('/districts/{regencyId}', [IndoRegionController::class, 'getDistricts
 Route::get('/villages/{districtId}', [IndoRegionController::class, 'getVillages']);
 
 // Featured Testimonials API
-Route::get('/featured-testimonials', function () {
-    return response()->json(
-        Testimonial::with(['user', 'category'])
-            ->where('is_approved', true)
-            ->where('is_featured', true)
-            ->orderBy('approved_at', 'desc')
-            ->limit(10)
-            ->get()
-    );
-});
+// Route::get('/featured-testimonials', function () {
+//     return response()->json(
+//         Testimonial::with(['user', 'category'])
+//             ->where('is_approved', true)
+//             ->where('is_featured', true)
+//             ->orderBy('approved_at', 'desc')
+//             ->limit(10)
+//             ->get()
+//     );
+// });
 
 // Certificate Preview & Download (Public)
 Route::get('/certificate/preview-pdf/{id}', [SertifikasiController::class, 'previewCertificate'])->name('certificate.preview.pdf');
 Route::get('/certificate/preview/{id}', [SertifikasiController::class, 'previewCertificateHTML'])->name('certificate.preview');
 Route::get('/certificate/download/{id}', [SertifikasiController::class, 'downloadCertificate'])->name('certificate.download');
-
 
 // Public Checkout / Payment Page
 Route::get('/checkout/{id}', Create::class)->name('payments.create.public');
@@ -143,7 +126,7 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     ->name('verification.verify');
 
 // =========================================================================
-// AUTHENTICATION ROUTES (GUEST)
+// AUTHENTICATION ROUTES (GUEST) / MENGGUNAKAN SPATIE ROLE PERMISSION https://spatie.be/docs/laravel-permission/v8/introduction
 // =========================================================================
 
 Route::middleware('guest')->group(function () {
@@ -197,7 +180,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // =========================================================================
-// ASESI ROUTES
+// ASESI ROUTES / ROLE ASESI
 // =========================================================================
 
 Route::middleware(['auth', 'role:asesi', 'last_seen', 'profile.complete'])->prefix('asesi')->group(function () {
@@ -288,7 +271,7 @@ Route::middleware(['auth'])->prefix('asesi')->group(function () {
 
 
 // =========================================================================
-// ASESOR ROUTES
+// ASESOR ROUTES / ROLE ASESOR (BELUM DIGUNAKAN, NANTI DI NEXT FEATURE LEVEL B)
 // =========================================================================
 
 Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () {
@@ -338,7 +321,7 @@ Route::middleware(['auth', 'role:asesor'])->prefix('asesor')->group(function () 
 
 
 // =========================================================================
-// ADMIN ROUTES
+// ADMIN ROUTES / ROLE ADMIN
 // =========================================================================
 
 Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(function () {
@@ -348,13 +331,13 @@ Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    // --- User Management ---
-
     // Asesi
     Route::get('/dashboard/asesi', [AdminDashboardController::class, 'asesiIndex'])->name('admin.asesi.index');
+    //  Asesi - Excel Export
     Route::get('/dashboard/asesi/export', function () {
         return Excel::download(new AsesiExport, 'data_asesi.xlsx');
     })->name('dashboard.asesi.export');
+
     Route::get('/dashboard/asesi/import', [AdminDashboardController::class, 'showImportForm'])->name('dashboard.asesi.import');
     Route::post('/dashboard/asesi/import', [AdminDashboardController::class, 'importAsesi'])->name('dashboard.asesi.import.asesi');
     Route::get('/dashboard/asesi/create', [AdminDashboardController::class, 'asesiCreate'])->name('admin.asesi.create');

@@ -39,7 +39,7 @@ class AsesiRegisterTwoRequest extends FormRequest
             // no_wa sudah dikumpulkan di halaman register (Step 1)
 
             // Pekerjaan & Instansi
-            'instansi'                  => ['required', 'string'],
+            'instansi'                  => ['required', 'string', 'max:50'],
             'custom_instansi'           => ['nullable', 'string', 'max:255'],
             'profesi'                   => ['required', 'string', 'max:255'],
             'lama_masa_kerja'           => ['nullable', 'string', 'max:100'],
@@ -69,7 +69,7 @@ class AsesiRegisterTwoRequest extends FormRequest
             'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih.',
             'no_wa.required'         => 'Nomor WhatsApp wajib diisi.',
-            'instansi.required'      => 'Instansi wajib dipilih.',
+            'instansi.required'      => 'Instansi wajib diisi.',
             'profesi.required'       => 'Profesi wajib diisi.',
             'provinsi.required'      => 'Provinsi wajib dipilih.',
             'kabupaten.required'     => 'Kabupaten/Kota wajib dipilih.',

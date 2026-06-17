@@ -30,6 +30,29 @@
 
 <div class="max-w-3xl mx-auto py-10 px-4 sm:px-6">
 
+    {{-- Top Utility Bar --}}
+    <div class="flex justify-between items-center mb-6">
+        {{-- <a href="/" class="flex items-center gap-2 text-gray-500 hover:text-navy transition-colors text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Kembali ke Beranda
+        </a> --}}
+        
+        <div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                @csrf
+            </form>
+            <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                class="flex items-center gap-1.5 text-red-600 hover:text-red-700 hover:bg-red-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-150">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                Keluar
+            </button>
+        </div>
+    </div>
+
     {{-- Header --}}
     <div class="text-center mb-8">
         <img src="{{ asset('images/logoTlcPng.png') }}" alt="TLC" class="h-14 mx-auto mb-3">
@@ -202,7 +225,7 @@
                     <select name="lama_masa_kerja"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
                         <option value="">-- Pilih --</option>
-                        @foreach(['< 1 tahun', '1–3 tahun', '4–6 tahun', '7–10 tahun', '> 10 tahun'] as $lm)
+                        @foreach(['< 1 tahun', '1-3 tahun', '4-6 tahun', '7-10 tahun', '> 10 tahun'] as $lm)
                             <option value="{{ $lm }}" {{ old('lama_masa_kerja') == $lm ? 'selected' : '' }}>{{ $lm }}</option>
                         @endforeach
                     </select>
@@ -211,23 +234,10 @@
 
                 {{-- Instansi --}}
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Jenis Instansi <span class="text-red-500">*</span></label>
-                    <select id="instansi" name="instansi" onchange="showCustomInput()" required
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm bg-white transition-all duration-150 text-gray-700">
-                        <option value="" disabled {{ old('instansi') ? '' : 'selected' }}>-- Pilih Instansi --</option>
-                        @foreach(['Perguruan Tinggi', 'Pemerintah', 'Sekolah Menengah Atas', 'Sekolah Menengah Kejuruan', 'Sekolah Menengah Pertama', 'Sekolah Dasar', 'Lembaga Kursus', 'Lainnya'] as $inst)
-                            <option value="{{ $inst }}" {{ old('instansi') == $inst ? 'selected' : '' }}>{{ $inst }}</option>
-                        @endforeach
-                    </select>
-                    @error('instansi')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
-                </div>
-
-                {{-- Custom Instansi --}}
-                <div id="custom-instansi" class="md:col-span-2 {{ old('instansi') == 'Lainnya' ? '' : 'hidden' }}">
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Instansi (Lainnya)</label>
-                    <input type="text" name="custom_instansi" value="{{ old('custom_instansi') }}" placeholder="Tuliskan nama instansi Anda"
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Instansi / Sekolah <span class="text-red-500">*</span></label>
+                    <input type="text" id="instansi" name="instansi" value="{{ old('instansi') }}" placeholder="Tuliskan nama instansi atau sekolah Anda" maxlength="50" required
                         class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 placeholder:text-inputHint">
-                    @error('custom_instansi')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
+                    @error('instansi')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                 </div>
             </div>
         </div>
@@ -334,9 +344,16 @@
             Simpan & Lanjutkan ke Dashboard
         </button>
 
-        <p class="text-center text-xs text-gray-400 pb-6">
+        <p class="text-center text-xs text-gray-400 mt-4">
             Data Anda aman dan hanya digunakan untuk keperluan sertifikasi TLC.
         </p>
+
+        <div class="text-center text-sm text-gray-500 mt-4 pb-6">
+            Sudah memiliki akun lain? 
+            <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-primary hover:underline font-semibold focus:outline-none">
+                Keluar & Login di sini
+            </button>
+        </div>
     </form>
 </div>
 
@@ -349,19 +366,6 @@
         };
         if (event.target.files && event.target.files[0]) {
             reader.readAsDataURL(event.target.files[0]);
-        }
-    }
-
-    function showCustomInput() {
-        const val = document.getElementById("instansi").value;
-        const el = document.getElementById("custom-instansi");
-        const input = el.querySelector('input');
-        if (val === "Lainnya") {
-            el.classList.remove('hidden');
-            input.required = true;
-        } else {
-            el.classList.add('hidden');
-            input.required = false;
         }
     }
 

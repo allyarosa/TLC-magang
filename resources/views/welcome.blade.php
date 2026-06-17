@@ -453,34 +453,5 @@
 
         <x-faq-section />
         <x-hafecs-section />
-
-        {{-- testing --}}
-        {{-- <div class="flex items-center justify-center bg-gray-100 p-6">
-            <div
-                class="max-w-6xl w-full bg-[#1a4b90] rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-10 overflow-hidden">
-
-                <div class="w-full md:w-1/2 text-white space-y-8">
-                    <h2 class="text-2xl md:text-4xl font-bold leading-tight">
-                        Pelajari bagaimana Ruangkerja dapat mentransformasi pembelajaran dan meningkatkan kinerja karyawan
-                        untuk mencapai hasil bisnis yang Anda inginkan
-                    </h2>
-
-                    <div>
-                        <button
-                            class="bg-white text-[#1a4b90] font-bold py-4 px-10 rounded-2xl shadow-lg hover:bg-gray-100 transition duration-300">
-                            Dapatkan Demo GRATIS!
-                        </button>
-                    </div>
-                </div>
-
-                <div class="w-full md:w-1/2 flex justify-center">
-                    <div
-                        class="relative bg-white p-2 rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
-                        <img src="{{ asset('images/about-us.webp') }}" alt="App Mockup" class="rounded-xl">
-                    </div>
-                </div>
-
-            </div>
-        </div> --}}
     </div>
 @endsection

@@ -22,9 +22,6 @@
             <h1 class="text-4xl font-bold text-white text-center relative z-10 mb-4 animate-slideInUp">
                 Selamat Datang
             </h1>
-            {{-- <p class="text-white text-center mt-4 mb-8">
-                Welcome to our platform
-            </p> --}}
 
             <div class="mt-6 w-44 h-44 flex items-center justify-center animate-slideInUp animation-delay-500 group">
                 <div class="absolute w-44 h-44 bg-white/5 rounded-full animate-pulse"></div>
@@ -54,10 +51,10 @@
                         <input type="text" wire:model="name" placeholder="Masukkan nama lengkap"
                             class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint"
                             oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
-
                     </div>
-                    <p class="text-gray-500 text-xs mt-1">Masukkan nama asli anda, nama akan digunakan pada data
-                        sertifikat</p>
+                    {{-- <p class="text-gray-500 text-xs mt-1">
+                        Masukkan nama asli anda, nama akan digunakan pada data sertifikat
+                    </p> --}}
                     @error('name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -76,7 +73,7 @@
                         <input type="email" wire:model="email" placeholder="email@example.com"
                             class="w-full pl-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint">
                     </div>
-                    <p class="text-gray-500 text-xs mt-1">Gunakan alamat email aktif Anda</p>
+                    {{-- <p class="text-gray-500 text-xs mt-1">Gunakan alamat email aktif Anda</p> --}}
                     @error('email')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -96,8 +93,8 @@
                         <input type="password" wire:model="password" placeholder="Minimal 8 karakter"
                             class="w-full pl-10 pr-10 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 placeholder:text-inputHint">
                     </div>
-                    <p class="text-gray-500 text-xs mt-1">Gunakan minimal 8 karakter dengan kombinasi huruf dan angka
-                    </p>
+                    {{-- <p class="text-gray-500 text-xs mt-1">Gunakan minimal 8 karakter dengan kombinasi huruf dan angka
+                    </p> --}}
                     @error('password')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -112,7 +109,7 @@
                             class="flex-1 pl-3 p-3 text-sm border-0 focus:ring-0 focus:outline-none placeholder:text-inputHint"
                             oninput="this.value=this.value.replace(/\D/g,'')">
                     </div>
-                    <p class="text-gray-500 text-xs mt-1">Akan digunakan untuk komunikasi dan informasi sertifikasi</p>
+                    {{-- <p class="text-gray-500 text-xs mt-1">Akan digunakan untuk komunikasi dan informasi sertifikasi</p> --}}
                     @error('no_wa')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -140,7 +137,7 @@
                     <div class="w-full border-t border-gray-300"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-gray-500">atau daftar dengan</span>
+                    <span class="px-2 bg-white text-gray-500">Atau daftar dengan</span>
                 </div>
             </div>
 

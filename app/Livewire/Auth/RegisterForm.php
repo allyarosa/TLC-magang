@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use RealRashid\SweetAlert\Facades\Alert;
+use Throwable;
 
 class RegisterForm extends Component
 {
@@ -46,7 +47,6 @@ class RegisterForm extends Component
     {
         // Capture ?checkout= from the URL when the register page loads
         $this->checkout = request()->query('checkout');
-        Log::debug('[DEBUG-REGISTER-FORM] mount() - checkout param: ' . ($this->checkout ?? 'NONE'));
     }
 
     public function register()
@@ -83,17 +83,14 @@ class RegisterForm extends Component
 
             DB::commit();
 
-            Log::debug('[DEBUG-REGISTER-FORM] register() done - checkout: ' . ($this->checkout ?? 'NONE'));
-
             // Always go to Step 2 first; carry checkout param so Step 2 can redirect back to checkout after
             $stepTwoUrl = route('asesi.registerStepTwo') . ($this->checkout ? '?checkout=' . $this->checkout : '');
             return redirect($stepTwoUrl);
 
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             DB::rollBack();
-            Log::error('User registration failed', ['error' => $e->getMessage()]);
+            report($e);
             Alert::error('Gagal!', 'Akun gagal dibuat')->autoClose(3000);
-            session()->flash('error', 'Akun gagal dibuat');
         }
     }
 
