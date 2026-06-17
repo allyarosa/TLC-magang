@@ -120,7 +120,7 @@
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-orange-50 text-[#E76F51] group-hover:bg-[#E76F51] group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-[#E76F51] group-hover:bg-[#E76F51] group-hover:text-white">
                                 <i class="fas fa-users text-sm"></i>
                             </div>
 
@@ -168,7 +168,7 @@
                             aria-controls="dropdown-level" data-collapse-toggle="dropdown-level">
 
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-blue-50 text-[#1D4E89] group-hover:bg-[#1D4E89] group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-[#1D4E89] group-hover:bg-[#1D4E89] group-hover:text-white">
                                 <i class="fas fa-layer-group text-sm"></i>
                             </div>
 
@@ -241,7 +241,7 @@
                             aria-controls="dropdown-payment" data-collapse-toggle="dropdown-payment">
 
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white">
                                 <i class="fas fa-wallet text-sm"></i>
                             </div>
 
@@ -297,7 +297,7 @@
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.resulta.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
 
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 {{ Request::routeIs('admin.resulta.index') ? 'bg-white/20 text-white' : 'bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white' }}">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 {{ Request::routeIs('admin.resulta.index') ? 'bg-white/20 text-white' : ' text-purple-600 group-hover:bg-purple-600 group-hover:text-white' }}">
                                 <i class="fas fa-chart-pie text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Result Exam A</span>
@@ -322,7 +322,7 @@
                         <a href="{{ route('admin.certificate.index') }}"
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-yellow-50 text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white">
                                 <i class="fas fa-certificate text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Sertifikat</span>
@@ -335,7 +335,7 @@
                         <a href="{{ route('admin.news.index') }}"
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:shadow-md {{ Request::routeIs('admin.news.index') ? 'bg-gradient-to-r from-[#1D4E89] to-[#2B6CB0] text-white shadow-lg shadow-blue-900/20' : 'text-gray-600 hover:bg-gray-50' }}">
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 {{ Request::routeIs('admin.news.index') ? 'bg-white/20 text-white' : 'bg-pink-50 text-pink-600 group-hover:bg-pink-600 group-hover:text-white' }}">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 {{ Request::routeIs('admin.news.index') ? 'bg-white/20 text-white' : 'text-pink-600 group-hover:bg-pink-600 group-hover:text-white' }}">
                                 <i class="fas fa-newspaper text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Portal Berita</span>
@@ -348,7 +348,7 @@
                         <a href="{{ route('admin.testimonials.index') }}"
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-cyan-50 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white">
                                 <i class="fas fa-quote-right text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Testimonials</span>
@@ -358,7 +358,7 @@
                         <a href="{{ route('admin.site-info.index') }}"
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-slate-100 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
                                 <i class="fas fa-globe text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Site Info</span>
@@ -368,7 +368,7 @@
                         <a href="{{ route('admin.referral-banners.index') }}"
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white">
                                 <i class="fas fa-users-cog text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Referral Banners</span>
@@ -378,7 +378,7 @@
                         <a href="{{ route('admin.logs') }}"
                             class="flex items-center p-3 rounded-xl group transition-all duration-300 hover:bg-gray-50 text-gray-600">
                             <div
-                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 bg-slate-100 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
+                                class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 text-slate-600 group-hover:bg-slate-600 group-hover:text-white">
                                 <i class="fas fa-globe text-sm"></i>
                             </div>
                             <span class="ms-3 text-sm font-semibold">Logs</span>
