@@ -50,7 +50,6 @@ class AuthController extends Controller
             if ($request->filled('checkout')) {
                 return redirect()->route('payments.create.public', ['id' => $request->input('checkout')]);
             }
-
             return redirect($result['redirect']);
         } catch (Exception $e) {
             Alert::error('Gagal!', 'Terjadi kesalahan pada sistem')->autoClose(3000);

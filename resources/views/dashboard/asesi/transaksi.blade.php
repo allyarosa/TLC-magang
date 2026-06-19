@@ -197,11 +197,11 @@
                             </td>
                         </tr>
                         @empty
-                        <tr>
-                            <td colspan="7" class="p-8 text-center text-gray-500">
-                                Belum ada transaksi yang dilakukan.
-                            </td>
-                        </tr>
+                        @livewire('empty-state', [
+                            'title' => 'Tidak Ada Data',
+                            'colspan' => 7,
+                            'message' => 'Belum ada data transaksi yang tersedia.',
+                        ])
                         @endforelse
                         <tr id="no-search-results" class="hidden">
                             <td colspan="7" class="p-8 text-center text-gray-500">

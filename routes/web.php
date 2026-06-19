@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\PaymentDetailController;
 use App\Http\Controllers\Admin\ResultExamsAController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SurveySubmissionAController;
+use App\Http\Controllers\Admin\TaskBatchController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Asesi\ExamController;
 use App\Http\Controllers\Asesi\ExamControllerC;
@@ -27,6 +29,7 @@ use App\Http\Controllers\Asesi\ProfileController;
 use App\Http\Controllers\Asesi\SertifikasiController;
 use App\Http\Controllers\Asesi\SertifikatAndaController;
 use App\Http\Controllers\Asesi\TransactionController;
+use App\Http\Controllers\Asesi\TaskAsesiController;
 use App\Http\Controllers\Asesor\AsesorDashboardController;
 use App\Http\Controllers\Asesor\LevelBGradedController;
 use App\Http\Controllers\Asesor\LevelCGradedController;
@@ -237,6 +240,10 @@ Route::middleware(['auth', 'role:asesi', 'last_seen', 'profile.complete'])->pref
     // Transactions
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('asesi.transaksi');
     Route::get('/transaksi/invoice/{id}', [TransactionController::class, 'invoice'])->name('asesi.transaksi.invoice');
+
+    // Tugas
+    Route::get('/tugas', [TaskAsesiController::class, 'index'])->name('asesi.tugas');
+    Route::post('/tugas/{id}/submit', [TaskAsesiController::class, 'submit'])->name('asesi.tugas.submit');
 });
 
 // Asesi Routes that only require 'auth' (Not specifically 'role:asesi' in original, but grouped under 'asesi' prefix)
@@ -527,6 +534,12 @@ Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(
     Route::put('/referral-banners/{id}', [ReferralBannerController::class, 'update'])->name('admin.referral-banners.update');
     Route::delete('/referral-banners/{id}', [ReferralBannerController::class, 'destroy'])->name('admin.referral-banners.destroy');
     Route::patch('/referral-banners/{id}/toggle', [ReferralBannerController::class, 'toggleActive'])->name('admin.referral-banners.toggle');
+
+    // Tugas & Task Batches
+    Route::resource('/task-batches', TaskBatchController::class)->names('admin.task-batches');
+    Route::resource('/tasks', TaskController::class)->names('admin.tasks');
+    Route::get('/tasks/{id}/submissions', [TaskController::class, 'submissions'])->name('admin.tasks.submissions');
+    Route::get('/tasks/submissions/{submissionId}/download', [TaskController::class, 'downloadSubmission'])->name('admin.tasks.submissions.download');
 });
 
 // Test Notification Route

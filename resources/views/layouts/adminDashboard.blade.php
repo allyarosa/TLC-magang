@@ -157,6 +157,15 @@
                                     <span class="font-medium text-sm">Administrator</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.task-batches.index') }}"
+                                    class="flex items-center p-2 rounded-lg group transition-all duration-200 {{ Request::routeIs('admin.task-batches.index') ? 'text-[#1D4E89] bg-blue-50' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}">
+                                    <div
+                                        class="w-1.5 h-1.5 rounded-full mr-3 {{ Request::routeIs('admin.task-batches.index') ? 'bg-[#E76F51]' : 'bg-gray-300 group-hover:bg-[#E76F51]' }}">
+                                    </div>
+                                    <span class="font-medium text-sm">Batch</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif
@@ -218,6 +227,12 @@
                                         <a href="{{ route('admin.level.a.hasil-penilaian') }}"
                                             class="flex items-center p-2 text-gray-500 rounded-lg hover:text-[#1D4E89] hover:bg-blue-50 transition-all duration-200">
                                             <span class="text-xs mr-2">•</span> Hasil Penilaian
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.tasks.index') }}"
+                                            class="flex items-center p-2 text-gray-500 rounded-lg hover:text-[#1D4E89] hover:bg-blue-50 transition-all duration-200">
+                                            <span class="text-xs mr-2">•</span> Penugasan Asesi
                                         </a>
                                     </li>
                                 </ul>

@@ -1,7 +1,8 @@
 {{-- Navbar Component for Level A Admin Pages --}}
 <nav class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4 text-base">
     <ol class="flex items-center space-x-1 text-gray-600">
-        <nav class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
+        <nav
+            class="flex items-center space-x-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-lg shadow-md border border-gray-100">
 
             {{-- Kategori Soal --}}
             <a href="{{ route('admin.categories.a.index') }}"
@@ -39,6 +40,14 @@
             <a href="{{ route('admin.level.a.hasil-penilaian') }}"
                 class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.level.a.hasil-penilaian*') ? 'text-blue-600 font-semibold' : '' }}">
                 Score Result
+            </a>
+
+            <span class="text-gray-300">/</span>
+
+            {{-- Penugasan Asesi --}}
+            <a href="{{ route('admin.tasks.index') }}"
+                class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.task*') ? 'text-blue-600 font-semibold' : '' }}">
+                Penugasan Asesi
             </a>
 
         </nav>

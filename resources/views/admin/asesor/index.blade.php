@@ -31,6 +31,12 @@
                         class="transition-colors hover:text-indigo-600 {{ request()->routeIs('admin.admins.*') ? 'text-indigo-600 font-semibold' : '' }}">
                         Administrator
                     </a>
+                    <span class="text-gray-300">/</span>
+
+                    <a href="{{ route('admin.task-batches.index') }}"
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.task-batches.*') ? 'text-blue-600 font-semibold' : '' }}">
+                        Batch
+                    </a>
                 </nav>
             </ol>
 

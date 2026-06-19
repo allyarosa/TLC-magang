@@ -30,6 +30,12 @@
                         class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.admins.*') ? 'text-blue-600 font-semibold' : '' }}">
                         Administrator
                     </a>
+                    <span class="text-gray-300">/</span>
+
+                    <a href="{{ route('admin.task-batches.index') }}"
+                        class="transition-colors hover:text-blue-600 {{ request()->routeIs('admin.task-batches.*') ? 'text-blue-600 font-semibold' : '' }}">
+                        Batch
+                    </a>
                 </nav>
             </ol>
 
@@ -48,19 +54,27 @@
                     </div>
                 </form>
 
-                <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative flex items-center space-x-2">
+                <form action="{{ route('admin.asesi.index') }}" method="GET"
+                    class="relative flex items-center space-x-2">
                     <div>
                         <select id="category_name" name="category_name"
                             class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua Kategori --</option>
-                            <option value="fresh_user" {{ request('category_name') == 'fresh_user' ? 'selected' : '' }}>Belum Mendaftar (Fresh User)</option>
-                            <option value="access_level_A" {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
-                            <option value="access_level_B" {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
-                            <option value="access_level_C" {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
+                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua
+                                Kategori --</option>
+                            <option value="fresh_user" {{ request('category_name') == 'fresh_user' ? 'selected' : '' }}>
+                                Belum Mendaftar (Fresh User)</option>
+                            <option value="access_level_A"
+                                {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
+                            <option value="access_level_B"
+                                {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
+                            <option value="access_level_C"
+                                {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
                             <option value="HOTS" {{ request('category_name') == 'HOTS' ? 'selected' : '' }}>HOTS</option>
                             <option value="PCK" {{ request('category_name') == 'PCK' ? 'selected' : '' }}>PCK</option>
-                            <option value="LITERASI" {{ request('category_name') == 'LITERASI' ? 'selected' : '' }}>LITERASI</option>
-                            <option value="NUMERASI" {{ request('category_name') == 'NUMERASI' ? 'selected' : '' }}>NUMERASI</option>
+                            <option value="LITERASI" {{ request('category_name') == 'LITERASI' ? 'selected' : '' }}>
+                                LITERASI</option>
+                            <option value="NUMERASI" {{ request('category_name') == 'NUMERASI' ? 'selected' : '' }}>
+                                NUMERASI</option>
                         </select>
                     </div>
                     <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded shadow-md">
@@ -71,10 +85,10 @@
                 {{-- Filter Rentang Tanggal Pendaftaran --}}
                 <form action="{{ route('admin.asesi.index') }}" method="GET" class="flex items-center gap-2">
                     {{-- Preserve existing filters --}}
-                    @if(request('search'))
+                    @if (request('search'))
                         <input type="hidden" name="search" value="{{ request('search') }}">
                     @endif
-                    @if(request('category_name'))
+                    @if (request('category_name'))
                         <input type="hidden" name="category_name" value="{{ request('category_name') }}">
                     @endif
 
@@ -88,10 +102,11 @@
                         <input type="date" id="date_to" name="date_to" value="{{ request('date_to') }}"
                             class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
-                    <button type="submit" class="px-3 py-1.5 bg-blue-700 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
+                    <button type="submit"
+                        class="px-3 py-1.5 bg-blue-700 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
                         Filter
                     </button>
-                    @if(request('date_from') || request('date_to'))
+                    @if (request('date_from') || request('date_to'))
                         <a href="{{ route('admin.asesi.index', request()->only(['search', 'category_name'])) }}"
                             class="px-3 py-1.5 bg-gray-200 text-gray-700 text-sm rounded shadow-sm hover:bg-gray-300 transition-colors">
                             Reset
@@ -116,7 +131,7 @@
                 <div class="flex items-center gap-2">
                     <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
                         data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-[#1D4E89] text-white text-sm rounded hover:bg-[#0d2a4e] shadow-md">
+                        <button class="px-3 py-1.5 bg-brandBlue text-white text-sm rounded hover:bg-brandBlue-dark shadow-md">
                             + Tambah Asesi
                         </button>
                     </a>
@@ -315,8 +330,8 @@
                                         <button type="submit"
                                             class="p-2 text-green-600 bg-green-50 rounded-md hover:bg-green-100 transition-colors"
                                             title="Login as Asesi">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
                                                 </path>
