@@ -94,7 +94,7 @@
 
                     <!-- Dropdown Menu -->
                     <div id="profile-menu-asesi"
-                        class="absolute right-0 top-12 mt-2 w-48 bg-blue-50/95 rounded-b-xl shadow-lg hidden overflow-hidden z-[999]">
+                        class="absolute right-0 top-12 mt-2 w-48 bg-white border border-gray-300 rounded-xl shadow-xl hidden overflow-hidden z-[999]">
                         <div class="py-2">
                             <div>
                                 <a href="{{ route('asesi.profile') }}"
@@ -112,7 +112,7 @@
                                 </a>
                             </div>
 
-                            <div class="border-t border-gray-100 my-1"></div>
+                            {{-- <div class="border-t border-gray-100 my-1"></div> --}}
 
                             <div>
                                 <a href="{{ route('asesi.sertifikat-anda') }}"
