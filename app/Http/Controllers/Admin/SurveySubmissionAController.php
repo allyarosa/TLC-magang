@@ -26,8 +26,9 @@ class SurveySubmissionAController extends Controller
 
     public function index(Request $request, SurveySubmissionServiceA $surveyService)
     {
+        $type = $request->input('type', 'all');
         $data = $surveyService->getSurveySummaryData();
-        $surveySubmissions = $surveyService->getSurveySubmissions($request->input('search'));
+        $surveySubmissions = $surveyService->getSurveySubmissions($request->input('search'), $type);
 
 
         return view('admin.survey-result-a.index', [
@@ -37,6 +38,8 @@ class SurveySubmissionAController extends Controller
             'surveySubmissions' => $surveySubmissions,
             'hideDetailButton' => $surveyService->hideDetailButton(),
             'avgRatings' => $surveyService->getRatingAverage(),
+            'type' => $type,
+            'search' => $request->input('search'),
         ]);
     }
 
@@ -59,8 +62,9 @@ class SurveySubmissionAController extends Controller
         return view('admin.survey-result-a.show_questions');
     }
 
-    public function exportData(SurveySubmissionServiceA $surveyService)
+    public function exportData(Request $request, SurveySubmissionServiceA $surveyService)
     {
-        return $surveyService->exportDataLogic();
+        $type = $request->input('type', 'all');
+        return $surveyService->exportDataLogic($type);
     }
 }

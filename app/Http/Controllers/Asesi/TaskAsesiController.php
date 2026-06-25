@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Asesi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Level;
 use App\Models\Task;
 use App\Models\TaskBatch;
 use App\Models\TaskSubmission;
@@ -15,6 +16,21 @@ class TaskAsesiController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $levels = Level::all();
+        $userAccess = null;
+        $permissions = [
+            'access_level_A',
+            'HOTS',
+            'PCK',
+            'LITERASI',
+            'NUMERASI'
+        ];
+
+        if($user->hasAnyPermission($permissions)) {
+            $userAccess = true;
+        } else {
+            $userAccess = false;
+        }
 
         // Cari batch berdasarkan tanggal daftar user
         $batch = TaskBatch::where('start_date', '<=', $user->created_at)
@@ -62,7 +78,7 @@ class TaskAsesiController extends Controller
             ->get()
             ->keyBy('task_id');
 
-        return view('asesi.tugas.index', compact('tasks', 'batch', 'submissions'));
+        return view('asesi.tugas.index', compact('tasks', 'batch', 'submissions', 'userAccess', 'levels'));
     }
 
     public function submit(Request $request, $id)

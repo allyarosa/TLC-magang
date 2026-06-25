@@ -9,12 +9,7 @@ class TaskBatch extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'description',
-        'start_date',
-        'end_date',
-    ];
+    protected $fillable = ['name', 'description', 'start_date', 'end_date'];
 
     protected $casts = [
         'start_date' => 'datetime',
@@ -24,5 +19,10 @@ class TaskBatch extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class, 'batch_id');
+    }
+
+    public function scopeActiveForDate($query, $date)
+    {
+        return $query->where('start_date', '<=', $date)->where('end_date', '>=', $date);
     }
 }

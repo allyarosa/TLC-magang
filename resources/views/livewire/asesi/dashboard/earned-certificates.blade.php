@@ -1,5 +1,5 @@
 <div class="lg:col-span-8">
-    <h3 class="text-lg font-display font-bold text-gray-800 mb-6 tracking-wide">SERTIFIKAT DIRAIH</h3>
+    <h3 class="text-lg font-display font-bold text-gray-800 mb-2 tracking-wide">SERTIFIKAT DIRAIH</h3>
     
     <div class="space-y-4">
         @forelse ($certificates as $item)

@@ -9,7 +9,7 @@
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 mt-4">
             <div>
                 <h1 class="text-2xl font-bold text-brandBlue tracking-tight">
-                    Monitoring & Hasil Survey Level A
+                    Monitoring & Hasil Survey
                 </h1>
             </div>
             <div class="mt-4 md:mt-0 flex gap-3">
@@ -22,7 +22,7 @@
                     class="px-4 py-1.5 text-sm font-medium text-white bg-green-500 hover:bg-green-600 rounded-lg border border-transparent flex items-center">
                     Lihat Soal
                 </a>
-                <a href="{{ route('admin.survey-result.a.export') }}"
+                <a href="{{ route('admin.survey-result.a.export', ['type' => $type ?? 'all']) }}"
                     class="flex items-center px-4 py-2 bg-biru text-white rounded-lg text-sm font-medium hover:bg-brandBlue-dark transition-colors shadow-md">
                     <i class="fas fa-file-export mr-2"></i>
                     Export Data
@@ -209,22 +209,24 @@
                         <i class="fas fa-search text-gray-400"></i>
                     </div>
                     <form action="{{ route('admin.survey-result.a.index') }}" method="GET" class="relative">
-                        <input type="text" name="search" value="{{ request('search') }}"
+                        <input type="text" name="search" value="{{ $search ?? '' }}"
                             class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"
                             placeholder="Cari nama asesi atau email...">
+                        @if(isset($type) && $type)
+                            <input type="hidden" name="type" value="{{ $type }}">
+                        @endif
                     </form>
                 </div>
 
                 <div class="flex gap-2">
-                    {{-- <button
-                        class="px-4 py-1.5 font-medium text-indigo-700 bg-indigo-50 rounded-lg border border-indigo-100">
-                        Open All Remedial
-                    </button> --}}
-                    {{-- <button
-                        class="px-4 py-1.5 text-sm font-medium text-indigo-700 bg-indigo-50 rounded-lg border border-indigo-100">
+                    <a href="{{ route('admin.survey-result.a.index', ['search' => $search ?? '']) }}"
+                        class="px-4 py-1.5 text-sm font-medium rounded-lg border {{ !isset($type) || $type !== 'pck' ? 'text-white bg-[#1D4E89] border-[#1D4E89]' : 'text-indigo-700 bg-indigo-50 border-indigo-100 hover:bg-indigo-100' }}">
                         Semua
-                    </button> --}}
-
+                    </a>
+                    <a href="{{ route('admin.survey-result.a.index', ['type' => 'pck', 'search' => $search ?? '']) }}"
+                        class="px-4 py-1.5 text-sm font-medium rounded-lg border {{ isset($type) && $type === 'pck' ? 'text-white bg-[#1D4E89] border-[#1D4E89]' : 'text-indigo-700 bg-indigo-50 border-indigo-100 hover:bg-indigo-100' }}">
+                        PCK Only
+                    </a>
                 </div>
             </div>
 
@@ -243,6 +245,10 @@
                             <th scope="col"
                                 class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
                                 Range Umur
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
+                                Nilai PCK
                             </th>
                             <th scope="col"
                                 class="px-4 py-3 text-xs font-medium text-left text-white uppercase tracking-wider">
@@ -302,6 +308,20 @@
                                 {{-- RANGE UMUR --}}
                                 <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                                     {{ $data->umur_range }}
+                                </td>
+                                {{-- NILAI PCK --}}
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-sm font-bold">
+                                    @php
+                                        $pckExam = $data->user->examsA->first();
+                                        $pckScore = $pckExam ? $pckExam->score : null;
+                                    @endphp
+                                    @if ($pckScore !== null)
+                                        <span class="{{ $pckScore >= 75 ? 'text-green-600' : 'text-red-600' }}">
+                                            {{ $pckScore }}
+                                        </span>
+                                    @else
+                                        <span class="text-gray-400">-</span>
+                                    @endif
                                 </td>
 
                                 {{-- RATING MATERI --}}
@@ -389,34 +409,13 @@
                                             <i class="fas fa-eye"></i>
                                         </a>
 
-                                        {{-- <a href="#"
-                                            class="p-2 text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors"
-                                            title="Edit">
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
-                                                </path>
-                                            </svg>
-                                        </a> --}}
-
-                                        {{-- <form action="#" method="POST" onsubmit="return confirm('Yakin?')">
-                                            @csrf @method('DELETE')
-                                            <button type="submit"
-                                                class="p-2 text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors">
-                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </button>
-                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             @livewire('empty-state', [
                                 'title' => 'Tidak Ada Data',
-                                'colspan' => 9,
+                                'colspan' => 10,
                                 'message' => 'Data Survey belum tersedia.',
                             ])
                         @endforelse

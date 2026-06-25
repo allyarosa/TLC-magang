@@ -14,6 +14,8 @@ class TaskSubmission extends Model
         'user_id',
         'file_path',
         'submission_count',
+        'status',
+        'is_confirmed',
         'submitted_at',
     ];
 

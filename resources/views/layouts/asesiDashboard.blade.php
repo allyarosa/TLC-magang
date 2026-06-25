@@ -43,6 +43,8 @@
     <x-asesi.dashboard-mobile-navbar />
 
     {{-- @include('layouts.footer') --}}
+    {{-- WhatsApp Floating Button (hidden on mobile) --}}
+    <x-asesi.whatsapp-button />
     @livewireScripts
     @include('sweetalert::alert')
 </body>

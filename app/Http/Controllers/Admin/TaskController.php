@@ -93,10 +93,23 @@ class TaskController extends Controller
     {
         try {
             $submission = $this->taskService->getSubmissionFileForDownload($submissionId);
-            return Storage::disk('local')->download('private/' . $submission->file_path);
+            return Storage::disk('local')->download($submission->file_path);
         } catch (Throwable $e) {
             Log::error('Gagal mengunduh file jawaban di TaskController@downloadSubmission: ' . $e->getMessage());
             return back()->with('error', $e->getMessage());
         }
+    }
+
+    public function toggleConfirmSubmission($submissionId)
+    {
+        try {
+            $submission = $this->taskService->toggleConfirmSubmission($submissionId);
+            
+            Alert::toast($submission->is_confirmed ? 'Jawaban berhasil dikonfirmasi!' : 'Konfirmasi jawaban dibatalkan!', 'success')->autoClose(2500);
+        } catch (Throwable $e) {
+            Log::error('Gagal mengubah status konfirmasi di TaskController@toggleConfirmSubmission: ' . $e->getMessage());
+            Alert::toast('Terjadi kesalahan saat memperbarui status konfirmasi.', 'error')->autoClose(2500);
+        }
+        return back();
     }
 }

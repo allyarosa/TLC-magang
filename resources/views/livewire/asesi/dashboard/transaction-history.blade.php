@@ -1,5 +1,5 @@
 <div class="lg:col-span-4">
-    <h3 class="text-lg font-display font-bold text-gray-800 mb-6 tracking-wide">RIWAYAT TRANSAKSI</h3>
+    <h3 class="text-lg font-display font-bold text-gray-800 mb-2 tracking-wide">RIWAYAT TRANSAKSI</h3>
     <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-outline-variant/10">
         <div class="divide-y divide-slate-100 min-h-[200px] flex flex-col">
             @forelse ($transactions as $item)

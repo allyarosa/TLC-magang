@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('file_path');
+            $table->string('status');
+            $table->boolean('is_confirmed')->default(false);
             $table->integer('submission_count')->default(1);
             $table->timestamp('submitted_at')->nullable();
             $table->timestamps();

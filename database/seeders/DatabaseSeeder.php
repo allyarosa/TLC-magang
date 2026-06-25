@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
             QuestionSeeders::class,
             AdminPermissionSeeders::class,
             SiteInfoSeeder::class,
-            // TaskBatchSeeder::class,
+            TaskBatchSeeder::class,
                 // PaymentSeeders::class,
                 // LevelBSeeders::class,
             // LevelCQuestionSeeders::class, // PRODUCTION COMMENT INI

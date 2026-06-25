@@ -38,120 +38,108 @@
                     </a>
                 </nav>
             </ol>
+        </nav>
 
-            <!-- Search & Info -->
-            <div class="flex flex-wrap items-center gap-3">
-                <!-- Search -->
-                <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative">
-                    <input type="text" name="search"
-                        class="px-10 py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500"
-                        placeholder="Cari Asesi..." value="{{ request('search') }}">
-                    <div class="absolute left-2.5 top-2 text-gray-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-                        </svg>
-                    </div>
-                </form>
-
-                <form action="{{ route('admin.asesi.index') }}" method="GET"
-                    class="relative flex items-center space-x-2">
-                    <div>
-                        <select id="category_name" name="category_name"
-                            class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua
-                                Kategori --</option>
-                            <option value="fresh_user" {{ request('category_name') == 'fresh_user' ? 'selected' : '' }}>
-                                Belum Mendaftar (Fresh User)</option>
-                            <option value="access_level_A"
-                                {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
-                            <option value="access_level_B"
-                                {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
-                            <option value="access_level_C"
-                                {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
-                            <option value="HOTS" {{ request('category_name') == 'HOTS' ? 'selected' : '' }}>HOTS</option>
-                            <option value="PCK" {{ request('category_name') == 'PCK' ? 'selected' : '' }}>PCK</option>
-                            <option value="LITERASI" {{ request('category_name') == 'LITERASI' ? 'selected' : '' }}>
-                                LITERASI</option>
-                            <option value="NUMERASI" {{ request('category_name') == 'NUMERASI' ? 'selected' : '' }}>
-                                NUMERASI</option>
-                        </select>
-                    </div>
-                    <button class="px-3 py-1.5 bg-blue-600 text-white text-sm rounded shadow-md">
-                        Filter
-                    </button>
-                </form>
-
-                {{-- Filter Rentang Tanggal Pendaftaran --}}
-                <form action="{{ route('admin.asesi.index') }}" method="GET" class="flex items-center gap-2">
-                    {{-- Preserve existing filters --}}
-                    @if (request('search'))
-                        <input type="hidden" name="search" value="{{ request('search') }}">
-                    @endif
-                    @if (request('category_name'))
-                        <input type="hidden" name="category_name" value="{{ request('category_name') }}">
-                    @endif
-
-                    <div class="flex items-center gap-1.5">
-                        {{-- <label for="date_from" class="text-sm text-gray-600 whitespace-nowrap">Dari</label> --}}
-                        <input type="date" id="date_from" name="date_from" value="{{ request('date_from') }}"
-                            class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                        {{-- <label for="date_to" class="text-sm text-gray-600 whitespace-nowrap">Sampai</label> --}}
-                        <input type="date" id="date_to" name="date_to" value="{{ request('date_to') }}"
-                            class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                    </div>
-                    <button type="submit"
-                        class="px-3 py-1.5 bg-blue-700 text-white text-sm rounded shadow-md hover:bg-indigo-700 transition-colors">
-                        Filter
-                    </button>
-                    @if (request('date_from') || request('date_to'))
-                        <a href="{{ route('admin.asesi.index', request()->only(['search', 'category_name'])) }}"
-                            class="px-3 py-1.5 bg-gray-200 text-gray-700 text-sm rounded shadow-sm hover:bg-gray-300 transition-colors">
-                            Reset
-                        </a>
-                    @endif
-                </form>
-
-                <!-- Total Users -->
-                <div class="flex items-center text-sm p-1.5 bg-gray-50 rounded-lg border border-gray-200 w-fit">
-                    <span class="text-indigo-500 mr-1.5">
-                        <img src="{{ asset('assets/icons/user.png') }}" alt="user icon" class="w-4 h-4">
-                    </span>
-                    <span class="text-gray-700 font-semibold">
-                        {{ $userCount['user'] }}
-                    </span>
-                    <span class="text-gray-600 ml-1 font-semibold">
-                        Users
-                    </span>
+        <div class="flex flex-wrap items-center gap-3 mt-6">
+            <!-- Search -->
+            <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative">
+                <input type="text" name="search"
+                    class="px-10 py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    placeholder="Cari Asesi..." value="{{ request('search') }}">
+                <div class="absolute left-2.5 top-2 text-gray-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+                    </svg>
                 </div>
+            </form>
 
-                <!-- Actions -->
-                <div class="flex items-center gap-2">
-                    <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
-                        data-popover-trigger="hover">
-                        <button class="px-3 py-1.5 bg-brandBlue text-white text-sm rounded hover:bg-brandBlue-dark shadow-md">
-                            + Tambah Asesi
-                        </button>
+            <form action="{{ route('admin.asesi.index') }}" method="GET" class="relative flex items-center space-x-2">
+                <div>
+                    <select id="category_name" name="category_name"
+                        class="py-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="ALL" {{ request('category_name') == 'ALL' ? 'selected' : '' }}>-- Semua
+                            Kategori --</option>
+                        <option value="fresh_user" {{ request('category_name') == 'fresh_user' ? 'selected' : '' }}>
+                            Belum Mendaftar (Fresh User)</option>
+                        <option value="access_level_A"
+                            {{ request('category_name') == 'access_level_A' ? 'selected' : '' }}>Level A</option>
+                        <option value="access_level_B"
+                            {{ request('category_name') == 'access_level_B' ? 'selected' : '' }}>Level B</option>
+                        <option value="access_level_C"
+                            {{ request('category_name') == 'access_level_C' ? 'selected' : '' }}>Level C</option>
+                        <option value="HOTS" {{ request('category_name') == 'HOTS' ? 'selected' : '' }}>HOTS</option>
+                        <option value="PCK" {{ request('category_name') == 'PCK' ? 'selected' : '' }}>PCK</option>
+                        <option value="LITERASI" {{ request('category_name') == 'LITERASI' ? 'selected' : '' }}>
+                            LITERASI</option>
+                        <option value="NUMERASI" {{ request('category_name') == 'NUMERASI' ? 'selected' : '' }}>
+                            NUMERASI</option>
+                    </select>
+                </div>
+                <button class="px-3 py-1.5 bg-brandBlue hover:bg-brandBlue-dark transition-colors text-white text-sm rounded shadow-md">
+                    Filter
+                </button>
+            </form>
+
+            {{-- Filter Rentang Tanggal Pendaftaran --}}
+            <form action="{{ route('admin.asesi.index') }}" method="GET" class="flex items-center gap-2">
+                {{-- Preserve existing filters --}}
+                @if (request('search'))
+                    <input type="hidden" name="search" value="{{ request('search') }}">
+                @endif
+                @if (request('category_name'))
+                    <input type="hidden" name="category_name" value="{{ request('category_name') }}">
+                @endif
+
+                <div class="flex items-center gap-1.5">
+                    {{-- <label for="date_from" class="text-sm text-gray-600 whitespace-nowrap">Dari</label> --}}
+                    <input type="date" id="date_from" name="date_from" value="{{ request('date_from') }}"
+                        class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div class="flex items-center gap-1.5">
+                    {{-- <label for="date_to" class="text-sm text-gray-600 whitespace-nowrap">Sampai</label> --}}
+                    <input type="date" id="date_to" name="date_to" value="{{ request('date_to') }}"
+                        class="py-1.5 px-2 rounded-md border border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button type="submit"
+                    class="px-3 py-1.5 bg-brandBlue text-white text-sm rounded shadow-md hover:bg-brandBlue-dark transition-colors">
+                    Filter
+                </button>
+                @if (request('date_from') || request('date_to'))
+                    <a href="{{ route('admin.asesi.index', request()->only(['search', 'category_name'])) }}"
+                        class="px-3 py-1.5 bg-gray-200 text-gray-700 text-sm rounded shadow-sm hover:bg-gray-300 transition-colors">
+                        Reset
                     </a>
-                    <a href="{{ route('dashboard.asesi.export') }}"
-                        class="px-3 py-1.5 border text-white text-sm rounded bg-[#2563EB] hover:bg-blue-700 shadow-md"
-                        data-popover-target="popover-export" data-popover-trigger="hover">
-                        Export
-                    </a>
-                    <a href="{{ route('dashboard.asesi.import') }}"
-                        class="px-3 py-1.5 border text-white text-sm rounded bg-[#F59E0B] hover:bg-yellow-600 shadow-md"
-                        data-popover-target="popover-export" data-popover-trigger="hover">
-                        Import
-                    </a>
-                    {{-- <button class="p-2 border rounded text-gray-500 hover:bg-gray-100">
+                @endif
+            </form>
+
+           
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+                <a href="{{ route('admin.asesi.create') }}" data-popover-target="popover-addUser"
+                    data-popover-trigger="hover">
+                    <button class="px-3 py-1.5 bg-brandBlue text-white text-sm rounded hover:bg-brandBlue-dark shadow-md">
+                        + Tambah Asesi
+                    </button>
+                </a>
+                <a href="{{ route('dashboard.asesi.export') }}"
+                    class="px-3 py-1.5 border text-white text-sm rounded bg-brandGreen hover:bg-brandGreen-dark shadow-md"
+                    data-popover-target="popover-export" data-popover-trigger="hover">
+                    Export
+                </a>
+                <a href="{{ route('dashboard.asesi.import') }}"
+                    class="px-3 py-1.5 border text-white text-sm rounded bg-brandOrange hover:bg-brandOrange-dark shadow-md"
+                    data-popover-target="popover-export" data-popover-trigger="hover">
+                    Import
+                </a>
+                {{-- <button class="p-2 border rounded text-gray-500 hover:bg-gray-100">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                         </svg>
                     </button> --}}
-                    {{-- <button class="p-2 border rounded text-red-500 hover:bg-red-50" data-modal-toggle="popup-modal"
+                {{-- <button class="p-2 border rounded text-red-500 hover:bg-red-50" data-modal-toggle="popup-modal"
                         data-popover-target="popover-delete" data-popover-trigger="hover">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -159,9 +147,21 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button> --}}
-                </div>
             </div>
-        </nav>
+            
+             <!-- Total Users -->
+            <div class="flex items-center text-sm p-1.5 bg-gray-50 rounded-lg border border-gray-200 w-fit">
+                <span class="text-indigo-500 mr-1.5">
+                    <img src="{{ asset('assets/icons/user.png') }}" alt="user icon" class="w-4 h-4">
+                </span>
+                <span class="text-gray-700 font-semibold">
+                    {{ $userCount['user'] }}
+                </span>
+                <span class="text-gray-600 ml-1 font-semibold">
+                    Users
+                </span>
+            </div>
+        </div>
     </div>
     <!-- User Table -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -478,7 +478,7 @@
     <div data-popover id="popover-addUser" role="tooltip"
         class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
         <div class="px-3 py-2 bg-indigo-50 border-b border-gray-200 rounded-t-lg">
-            <h3 class="font-semibold text-indigo-600">Add Users</h3>
+            <h3 class="font-semibold text-brandBlue-dark">Add Users</h3>
         </div>
         <div class="px-3 py-2">
             <p>Tindakan ini akan menambahkan users baru kedalam database.</p>
@@ -489,7 +489,7 @@
     <div data-popover id="popover-export" role="tooltip"
         class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
         <div class="px-3 py-2 bg-blue-50 border-b border-gray-200 rounded-t-lg">
-            <h3 class="font-semibold text-blue-600">Import Asesi</h3>
+            <h3 class="font-semibold text-brandOrange-dark">Import Asesi</h3>
         </div>
         <div class="px-3 py-2">
             <p>Tindakan ini akan membuat menambahkan asesi menggunakan file excel.</p>

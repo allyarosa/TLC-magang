@@ -538,8 +538,9 @@ Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(
     // Tugas & Task Batches
     Route::resource('/task-batches', TaskBatchController::class)->names('admin.task-batches');
     Route::resource('/tasks', TaskController::class)->names('admin.tasks');
-    Route::get('/tasks/{id}/submissions', [TaskController::class, 'submissions'])->name('admin.tasks.submissions');
+    Route::get('/tasks/{task}/submissions', [TaskController::class, 'submissions'])->name('admin.tasks.submissions');
     Route::get('/tasks/submissions/{submissionId}/download', [TaskController::class, 'downloadSubmission'])->name('admin.tasks.submissions.download');
+    Route::patch('/tasks/submissions/{submissionId}/toggle-confirm', [TaskController::class, 'toggleConfirmSubmission'])->name('admin.tasks.submissions.toggle-confirm');
 });
 
 // Test Notification Route

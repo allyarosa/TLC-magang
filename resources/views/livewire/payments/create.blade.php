@@ -86,67 +86,49 @@
                         {{-- PAKET LENGKAP (BUNDLE) --}}
                         @if ($mode === 'bundle')
                             <div class="mb-8">
-                                <div
-                                    class="relative bg-gradient-to-br from-teal-500 via-teal-600 to-cyan-600 rounded-2xl p-6 text-white overflow-hidden">
-                                    {{-- Decorative Elements --}}
-                                    <div
-                                        class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2">
-                                    </div>
-                                    <div
-                                        class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2">
-                                    </div>
-
-                                    {{-- Badge --}}
-                                    <div class="absolute top-4 right-4">
-                                        <span
-                                            class="bg-amber-400 text-amber-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                                            HEMAT 23%
+                                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                                    {{-- Header Strip --}}
+                                    <div class="bg-teal-600 px-6 py-4 flex items-center justify-between">
+                                        <div>
+                                            <p class="text-teal-100 text-xs font-medium uppercase tracking-widest mb-0.5">Paket Lengkap</p>
+                                            <h3 class="text-white text-lg font-bold">Level A Bundling</h3>
+                                        </div>
+                                        <span class="text-teal-700 bg-white text-xs font-bold px-3 py-1 rounded-full">
+                                            Hemat 23%
                                         </span>
                                     </div>
 
-                                    <div class="relative z-10">
-                                        <div class="flex items-start gap-4 mb-4">
-                                            <div class="flex-1">
-                                                <h3 class="text-xl font-bold mb-1">Paket Level A Bundling</h3>
-                                                <p class="text-white/80 text-sm">Akses penuh ke semua kategori ujian
-                                                    Level A</p>
-                                            </div>
+                                    <div class="px-6 py-5">
+                                        {{-- Included Items --}}
+                                        <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-3">Termasuk dalam paket</p>
+                                        <div class="flex flex-wrap gap-2 mb-5">
+                                            @foreach ($categories as $cat)
+                                                <span class="inline-flex items-center gap-1.5 bg-teal-50 text-teal-700 text-sm font-medium px-3 py-1 rounded-full border border-teal-100">
+                                                    <svg class="w-3.5 h-3.5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    {{ $cat['name'] }}
+                                                </span>
+                                            @endforeach
                                         </div>
 
-                                        {{-- Included Items --}}
-                                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
-                                            <p class="text-xs text-white uppercase tracking-wide mb-3 font-semibold">
-                                                Termasuk dalam paket:
-                                            </p>
-                                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                                @foreach ($categories as $cat)
-                                                    <div class="flex items-center gap-2">
-                                                        <svg class="w-5 h-5 text-teal-200" fill="currentColor"
-                                                            viewBox="0 0 20 20">
-                                                            <path fill-rule="evenodd"
-                                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                        <span class="text-sm font-medium">{{ $cat['name'] }}</span>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
+                                        {{-- Divider --}}
+                                        <div class="border-t border-gray-100 mb-5"></div>
 
                                         {{-- Price --}}
-                                        <div class="flex items-end justify-between">
+                                        <div class="flex items-center justify-between">
                                             <div>
                                                 <div class="flex items-center gap-2 mb-1">
-                                                    <span class="text-white/60 line-through text-sm">Rp
-                                                        {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}</span>
-                                                    <span
-                                                        class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">-Rp
-                                                        {{ number_format($this->savings, 0, ',', '.') }}</span>
+                                                    <span class="text-gray-400 line-through text-sm">
+                                                        Rp {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}
+                                                    </span>
+                                                    <span class="bg-red-50 text-red-500 border border-red-100 text-xs font-semibold px-2 py-0.5 rounded-full">
+                                                        − Rp {{ number_format($this->savings, 0, ',', '.') }}
+                                                    </span>
                                                 </div>
                                                 <div class="flex items-baseline gap-1">
-                                                    <span class="text-3xl font-extrabold">Rp
-                                                        {{ number_format($bundlePrice, 0, ',', '.') }}</span>
-                                                    <span class="text-white/70 text-sm">/paket</span>
+                                                    <span class="text-2xl font-bold text-gray-800">Rp {{ number_format($bundlePrice, 0, ',', '.') }}</span>
+                                                    <span class="text-gray-400 text-sm">/paket</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -343,9 +325,9 @@
                     <div class="glass-effect rounded-3xl p-6 shadow-md border border-white/20">
                         <!-- Product Summary -->
                         <div class="mb-6">
-                            <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
+                            {{-- <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
                                 Ringkasan Pembelian
-                            </h3>
+                            </h3> --}}
 
                             @if ($mode === 'bundle')
                                 {{-- Bundle Mode Summary --}}
@@ -354,12 +336,12 @@
                                         <span class="text-gray-600">Paket Level A Bundling</span>
                                         <span class="font-medium text-gray-800">1x</span>
                                     </div>
-                                    <div class="flex flex-wrap gap-1.5">
+                                    {{-- <div class="flex flex-wrap gap-1.5">
                                         @foreach ($categories as $cat)
                                             <span
                                                 class="text-xs bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full">{{ $cat['name'] }}</span>
                                         @endforeach
-                                    </div>
+                                    </div> --}}
                                 </div>
                             @else
                                 {{-- Custom Mode Summary --}}

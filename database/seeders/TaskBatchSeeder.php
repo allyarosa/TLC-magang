@@ -9,19 +9,31 @@ class TaskBatchSeeder extends Seeder
 {
     public function run(): void
     {
-        $startDate = now()->subMonths(6); // Mulai dari 6 bulan yang lalu agar bervariasi
+        $startDate = now()->subDay();
+        $endDate = now()->addDay(10);
 
-        for ($i = 1; $i <= 30; $i++) {
-            $endDate = (clone $startDate)->addDays(7); // Durasi batch 7 hari
+        TaskBatch::create([
+            'name' => 'Batch 1',
+            'start_date' => $startDate,
+            'description' => 'deskripsi ini',
+            'end_date' => $endDate,
+        ]);
+        // $startDate = now()->subMonths(6); // Mulai dari 6 bulan yang lalu agar bervariasi
 
-            TaskBatch::create([
-                'name' => "Batch $i",
-                'start_date' => $startDate,
-                'end_date' => $endDate,
-            ]);
+        // for ($i = 1; $i <= 30; $i++) {
+        //     $endDate = (clone $startDate)->addDays(7); // Durasi batch 7 hari
 
-            // Setiap batch berikutnya berjarak 2 hari dari batch sebelumnya
-            $startDate = (clone $endDate)->addDays(2);
-        }
+        //     TaskBatch::create([
+        //         'name' => "Batch $i",
+        //         'start_date' => $startDate,
+        //         'end_date' => $endDate,
+        //     ]);
+
+        //     // Setiap batch berikutnya berjarak 2 hari dari batch sebelumnya
+        //     $startDate = (clone $endDate)->addDays(2);
+        // }
+
+     
+      
     }
 }

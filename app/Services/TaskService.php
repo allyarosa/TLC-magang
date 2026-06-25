@@ -147,7 +147,7 @@ class TaskService
         try {
             $submission = TaskSubmission::findOrFail($submissionId);
             
-            $filePath = 'private/' . $submission->file_path;
+            $filePath = $submission->file_path;
             if (!Storage::disk('local')->exists($filePath)) {
                 throw new \Exception('File tidak ditemukan.');
             }
@@ -155,6 +155,26 @@ class TaskService
             return $submission;
         } catch (Throwable $e) {
             Log::error('TaskService@getSubmissionFileForDownload Error: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Toggle status is_confirmed pada pengumpulan tugas.
+     */
+    public function toggleConfirmSubmission(int $submissionId)
+    {
+        DB::beginTransaction();
+        try {
+            $submission = TaskSubmission::findOrFail($submissionId);
+            $submission->is_confirmed = !$submission->is_confirmed;
+            $submission->save();
+
+            DB::commit();
+            return $submission;
+        } catch (Throwable $e) {
+            DB::rollBack();
+            Log::error('TaskService@toggleConfirmSubmission Error: ' . $e->getMessage());
             throw $e;
         }
     }
