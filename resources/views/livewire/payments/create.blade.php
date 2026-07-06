@@ -1,4 +1,4 @@
-<section>
+<section class="font-['Inter']">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -62,19 +62,22 @@
                     {{-- MODE PEMBELIAN --}}
                     <section>
                         <div class="flex items-center gap-3 mb-4">
+                            <div class="p-2.5 bg-teal-50 text-brandGreen-dark rounded-full">
+                                <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                            </div>
                             <div>
-                                <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Mode Pembelian</h2>
+                                <h2 class="text-xl font-bold text-gray-700">Keranjang Anda</h2>
                                 <p class="text-xs text-gray-400">Pilih paket lengkap atau kategori satuan</p>
                             </div>
                         </div>
                         <div class="mb-8">
-                            <div class="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm gap-1">
+                            <div class="inline-flex bg-white border border-gray-200 rounded-xl shadow-sm">
                                 <button id="mode-bundle" wire:click="switchMode('bundle')"
-                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'bundle' ? 'bg-brandBlue/90 text-white' : 'text-gray-500 hover:text-gray-700' }}">
                                     Paket Lengkap
                                 </button>
                                 <button id="mode-custom" wire:click="switchMode('custom')"
-                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-teal-600 text-white' : 'text-gray-500 hover:text-gray-700' }}">
+                                    class="mode-btn px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 {{ $mode === 'custom' ? 'bg-brandBlue/90 text-white' : 'text-gray-500 hover:text-gray-700' }}">
                                     Pilih Satuan
                                 </button>
                             </div>
@@ -86,52 +89,67 @@
                         {{-- PAKET LENGKAP (BUNDLE) --}}
                         @if ($mode === 'bundle')
                             <div class="mb-8">
-                                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                                    {{-- Header Strip --}}
-                                    <div class="bg-teal-600 px-6 py-4 flex items-center justify-between">
-                                        <div>
-                                            <p class="text-teal-100 text-xs font-medium uppercase tracking-widest mb-0.5">Paket Lengkap</p>
-                                            <h3 class="text-white text-lg font-bold">Level A Bundling</h3>
+                                <div class="rounded-2xl overflow-hidden transition-shadow duration-300 bg-gray-100">
+                                    {{-- Clean Header --}}
+                                    <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="rounded-lg flex items-center justify-center">
+                                                <img src="{{ asset('images/letter-a.png') }}" alt="icon_level_A" class="w-20 h-20">
+                                            </div>
+                                            <div>
+                                                <h3 class="text-gray-700 font-bold text-lg tracking-wide">Level A Bundling</h3>
+                                            </div>
                                         </div>
-                                        <span class="text-teal-700 bg-white text-xs font-bold px-3 py-1 rounded-full">
-                                            Hemat 23%
-                                        </span>
                                     </div>
 
                                     <div class="px-6 py-5">
                                         {{-- Included Items --}}
-                                        <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-3">Termasuk dalam paket</p>
-                                        <div class="flex flex-wrap gap-2 mb-5">
-                                            @foreach ($categories as $cat)
-                                                <span class="inline-flex items-center gap-1.5 bg-teal-50 text-teal-700 text-sm font-medium px-3 py-1 rounded-full border border-teal-100">
-                                                    <svg class="w-3.5 h-3.5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    {{ $cat['name'] }}
-                                                </span>
-                                            @endforeach
-                                        </div>
-
-                                        {{-- Divider --}}
-                                        <div class="border-t border-gray-100 mb-5"></div>
-
-                                        {{-- Price --}}
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <div class="flex items-center gap-2 mb-1">
-                                                    <span class="text-gray-400 line-through text-sm">
-                                                        Rp {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}
+                                        <div class="mb-5">
+                                            <p class="text-xs text-gray-600 font-medium tracking-wider uppercase mb-3">
+                                                Termasuk dalam paket</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                @foreach ($categories as $cat)
+                                                    <span
+                                                        class="inline-flex items-center gap-1.5 text-gray-700 text-sm bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
+                                                        <svg class="w-3.5 h-3.5 text-teal-500" fill="currentColor"
+                                                            viewBox="0 0 20 20">
+                                                            <path fill-rule="evenodd"
+                                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                        {{ $cat['name'] }}
                                                     </span>
-                                                    <span class="bg-red-50 text-red-500 border border-red-100 text-xs font-semibold px-2 py-0.5 rounded-full">
-                                                        − Rp {{ number_format($this->savings, 0, ',', '.') }}
-                                                    </span>
-                                                </div>
-                                                <div class="flex items-baseline gap-1">
-                                                    <span class="text-2xl font-bold text-gray-800">Rp {{ number_format($bundlePrice, 0, ',', '.') }}</span>
-                                                    <span class="text-gray-400 text-sm">/paket</span>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
+
+                                        {{-- Price Section --}}
+                                        {{-- <div class="pt-4 border-t border-gray-100">
+                                            <div
+                                                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                                <div>
+                                                    <div class="flex items-center gap-2 mb-1">
+                                                        <span class="text-gray-400 line-through text-sm">
+                                                            Rp
+                                                            {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}
+                                                        </span>
+                                                        <span
+                                                            class="text-red-500 text-xs font-medium bg-red-50 px-2 py-0.5 rounded">
+                                                            − Rp {{ number_format($this->savings, 0, ',', '.') }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex items-baseline gap-1.5">
+                                                        <span class="text-2xl font-bold text-gray-900">Rp
+                                                            {{ number_format($bundlePrice, 0, ',', '.') }}</span>
+                                                        <span class="text-gray-400 text-sm">/paket</span>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    class="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors duration-200 text-sm">
+                                                    Pilih Paket
+                                                </button>
+                                            </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +159,7 @@
                         @if ($mode === 'custom')
                             <div class="mb-8 space-y-4">
                                 {{-- Promo Banner --}}
-                                @if (count($selectedCategories) === 2)
+                                {{-- @if (count($selectedCategories) === 2)
                                     <div
                                         class="flex items-center justify-between bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4">
                                         <div class="flex items-center gap-3">
@@ -168,7 +186,7 @@
                                             Upgrade Paket
                                         </button>
                                     </div>
-                                @endif
+                                @endif --}}
 
                                 {{-- Category Cards Grid --}}
                                 <div
@@ -176,12 +194,12 @@
                                     @foreach ($categories as $index => $cat)
                                         <div wire:click="toggleCategory('{{ $cat['id'] }}')"
                                             class="relative bg-white rounded-2xl border-2 p-6 cursor-pointer transition-all duration-300 group shadow-md
-                                                {{ in_array($cat['id'], $selectedCategories) ? 'ring-2 border-' . $cat['color'] . '-500 bg-' . $cat['color'] . '-50/50' : 'border-gray-200 hover:border-' . $cat['color'] . '-300 hover:bg-gray-50' }}">
+                                                {{ in_array($cat['id'], $selectedCategories) ? ' ring-brandBlue border-brandBlue bg-blue-50/30' : 'border-gray-200 hover:border-brandBlue/50 hover:bg-gray-50' }}">
                                             <!-- Checkbox -->
                                             <div class="absolute top-4 right-4">
                                                 <div
                                                     class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors
-                                                        {{ in_array($cat['id'], $selectedCategories) ? 'bg-' . $cat['color'] . '-500 border-' . $cat['color'] . '-500' : 'border-gray-300 group-hover:border-' . $cat['color'] . '-400' }}">
+                                                        {{ in_array($cat['id'], $selectedCategories) ? 'bg-brandBlue border-brandBlue' : 'border-gray-300 group-hover:border-brandBlue/50' }}">
                                                     @if (in_array($cat['id'], $selectedCategories))
                                                         <svg class="w-4 h-4 text-white" fill="currentColor"
                                                             viewBox="0 0 20 20">
@@ -251,7 +269,7 @@
 
                                     @if (count($selectedCategories) > 0)
                                         <button wire:click="selectAllCategories"
-                                            class="flex items-center gap-2 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors">
+                                            class="flex items-center gap-2 text-sm text-brandBlue hover:opacity-80 font-medium transition-colors">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -287,7 +305,7 @@
                         <h3 class="text-lg font-medium text-gray-700 mb-6">Benefit Yang Akan Anda Dapatkan</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="flex items-center space-x-3">
-                                    <i class="fa-solid fa-circle-check text-brandBlue"></i>
+                                <i class="fa-solid fa-circle-check text-brandBlue"></i>
                                 <span class="text-gray-700 text-md">Sertifikat Kompetensi ber-NPSN</span>
                             </div>
                             <div class="flex items-center space-x-3">
@@ -333,7 +351,7 @@
                                 {{-- Bundle Mode Summary --}}
                                 <div class="space-y-3">
                                     <div class="flex justify-between items-center text-sm">
-                                        <span class="text-gray-600">Paket Level A Bundling</span>
+                                        <span class="text-gray-800">Paket Level A Bundling</span>
                                         <span class="font-medium text-gray-800">1x</span>
                                     </div>
                                     {{-- <div class="flex flex-wrap gap-1.5">
@@ -347,7 +365,7 @@
                                 {{-- Custom Mode Summary --}}
                                 <div class="space-y-2">
                                     @if (count($selectedCategories) === 0)
-                                        <p class="text-gray-400 italic text-sm">Pilih kategori untuk melihat ringkasan
+                                        <p class="text-gray-400 italic text-sm">
                                         </p>
                                     @else
                                         @foreach ($selectedCategories as $catId)
@@ -366,28 +384,28 @@
 
                         <!-- PROMO CODE / VOUCHER -->
                         <div class="mb-6">
-                            <label class="block text-gray-600 text-sm font-medium mb-2">Kode Voucher / Promo</label>
+                            <label class="block text-gray-800 text-sm font-medium mb-2">Kode Voucher / Promo</label>
                             <div class="flex space-x-2">
                                 <input type="text" wire:model="voucherCode" placeholder="Masukkan kode voucher"
-                                    class="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
-                                    @if($voucherSuccess) disabled @endif>
-                                
-                                @if($voucherSuccess)
+                                    class="flex-1 px-2 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm placeholder:text-inputHint"
+                                    @if ($voucherSuccess) disabled @endif>
+
+                                @if ($voucherSuccess)
                                     <button type="button" wire:click="removeVoucher"
                                         class="px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 text-sm font-medium transition-colors">
                                         Hapus
                                     </button>
                                 @else
                                     <button type="button" wire:click="applyVoucher"
-                                        class="px-4 py-2 bg-teal-600 text-white rounded-xl hover:bg-teal-700 text-sm font-medium transition-colors">
+                                        class="px-4 py-2 bg-brandGreen-dark text-white rounded-xl hover:bg-teal-700 text-sm font-medium transition-colors">
                                         Terapkan
                                     </button>
                                 @endif
                             </div>
-                            @if($voucherError)
+                            @if ($voucherError)
                                 <p class="text-red-500 text-xs mt-2">{{ $voucherError }}</p>
                             @endif
-                            @if($voucherSuccess)
+                            @if ($voucherSuccess)
                                 <p class="text-green-600 text-xs mt-2">{{ $voucherSuccess }}</p>
                             @endif
                         </div>
@@ -396,14 +414,14 @@
                         <div class="space-y-3 mb-6 border-t border-gray-100 pt-6">
                             @if ($mode === 'bundle')
                                 <div class="flex justify-between text-sm">
-                                    <span class="text-gray-500">Harga Normal ({{ count($categories) }}
+                                    <span class="text-gray-800">Harga Normal ({{ count($categories) }}
                                         kategori)</span>
                                     <span class="text-gray-400 line-through">Rp
                                         {{ number_format(collect($categories)->sum(fn($c) => $c['price'] ?? $categoryPrice), 0, ',', '.') }}</span>
                                 </div>
                                 <div class="flex justify-between text-sm">
-                                    <span class="text-gray-500">Diskon Paket</span>
-                                    <span class="text-green-600 font-medium">- Rp
+                                    <span class="text-gray-800">Diskon Paket</span>
+                                    <span class="text-gray-600 font-medium">- Rp
                                         {{ number_format($this->savings, 0, ',', '.') }}</span>
                                 </div>
                             @else
@@ -415,7 +433,7 @@
                                 </div>
                             @endif
 
-                            @if($this->discountAmount > 0)
+                            @if ($this->discountAmount > 0)
                                 <div class="flex justify-between text-sm">
                                     <span class="text-gray-500">Diskon Voucher</span>
                                     <span class="text-green-600 font-medium">- Rp
@@ -464,40 +482,40 @@
                                             </a>
                                         </div>
                                     @else
-                                        <div class="mb-4 border-2 bg-blue-50 border-gray-200 rounded-xl p-4">
+                                        <div class="mb-4 border-2 bg-gray-100 border-gray-200 rounded-xl p-4">
                                             <div class="flex items-center gap-2 mb-3">
-                                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none"
+                                                <svg class="w-5 h-5 text-gray-600 flex-shrink-0" fill="none"
                                                     stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                                                 </svg>
-                                                <span class="text-sm font-bold text-blue-800">Transfer Bank Manual</span>
+                                                <span class="text-sm font-bold text-gray-700">Transfer Bank Manual</span>
                                             </div>
                                             <div class="space-y-1.5 text-sm">
                                                 <div class="flex justify-between">
-                                                    <span class="text-blue-600">Bank</span>
+                                                    <span class="text-gray-700">Bank</span>
                                                     <span
-                                                        class="font-bold text-blue-900">{{ $siteInfo->bank_name ?? '-' }}</span>
+                                                        class="font-bold text-gray-800">{{ $siteInfo->bank_name ?? '-' }}</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-blue-600">No. Rekening</span>
+                                                    <span class="text-gray-700">No. Rekening</span>
                                                     <span
-                                                        class="font-bold text-blue-900 tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
+                                                        class="font-bold text-gray-800 tracking-widest">{{ $siteInfo->bank_account_number ?? '-' }}</span>
                                                 </div>
                                                 <div class="flex justify-between">
-                                                    <span class="text-blue-600">Atas Nama</span>
+                                                    <span class="text-gray-700">Atas Nama</span>
                                                     <span
-                                                        class="font-bold text-blue-900">{{ $siteInfo->bank_account_name ?? '-' }}</span>
+                                                        class="font-bold text-gray-800">{{ $siteInfo->bank_account_name ?? '-' }}</span>
                                                 </div>
                                                 <div
                                                     class="flex justify-between items-center border-t border-blue-200 pt-2 mt-2">
-                                                    <span class="text-blue-600 font-semibold">Jumlah Transfer</span>
-                                                    <span class="font-extrabold text-blue-900 text-base">Rp
+                                                    <span class="text-gray-700 font-semibold">Jumlah Transfer</span>
+                                                    <span class="font-extrabold text-gray-800 text-base">Rp
                                                         {{ number_format($this->totalPrice, 0, ',', '.') }}</span>
                                                 </div>
                                             </div>
                                             @if ($siteInfo->payment_instructions)
-                                                <p class="text-sm text-blue-600 mt-3 border-t border-blue-200 pt-2">
+                                                <p class="text-sm text-gray-700 mt-3 border-t border-blue-200 pt-2">
                                                     {{ $siteInfo->payment_instructions }}
                                                 </p>
                                             @endif
@@ -568,7 +586,6 @@
                                         </button>
                                     @endif
                                 @else
-
                                     <button type="button" wire:click="continueToRegister"
                                         @if ($mode === 'custom' && count($selectedCategories) === 0) disabled @endif
                                         class="w-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-teal-700 hover:to-cyan-700 smooth-transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">

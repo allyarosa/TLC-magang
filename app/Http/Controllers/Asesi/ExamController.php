@@ -8,7 +8,7 @@ use Barryvdh\DomPDF\PDF;
 use App\Models\CategoryA;
 use App\Models\QuestionA;
 use App\Models\Testimonial;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;    
 use App\Events\ExamCompleted;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\DB;

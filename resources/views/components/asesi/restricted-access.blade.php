@@ -9,7 +9,7 @@
 
         <!-- Judul Utama -->
         <h2 class="text-2xl font-bold text-gray-600 tracking-tight mb-3">
-            Akses Fitur Terbatas
+            Akses Fitur Terkunci
         </h2>
 
         <!-- Copywriting Penjelasan -->

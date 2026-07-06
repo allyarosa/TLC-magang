@@ -1,18 +1,21 @@
 <div class="relative">
-    <!-- Tombol Notifikasi -->
-    <button wire:click="toggle" class="p-2 text-white hover:text-gray-800 rounded-full hover:bg-white/80 hover:scale-105 transition-all duration-300 focus:outline-none">
-        <svg class="h-6 w-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
-            </path>
-        </svg>
-    </button>
+    <!-- Tooltip Component -->
+    <x-tooltip text="Notifikasi" position="bottom" :active="!$isOpen">
+        <!-- Tombol Notifikasi -->
+        <button wire:click="toggle" class="p-1.5 text-white rounded-full hover:bg-gray-100/20 hover:scale-105 transition-all duration-300 focus:outline-none">
+            <svg class="h-6 w-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
+                </path>
+            </svg>
+        </button>
 
-    <!-- Badge jumlah notifikasi -->
-    @if ($unreadCount > 0)
-        <span class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
-            {{ $unreadCount }}
-        </span>
-    @endif
+        <!-- Badge jumlah notifikasi -->
+        @if ($unreadCount > 0)
+            <span class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow-lg animate-pulse">
+                {{ $unreadCount }}
+            </span>
+        @endif
+    </x-tooltip>
 
     <!-- Modal -->
     <div class="@if(!$isOpen) hidden @endif absolute right-0 top-12 mt-2 w-80 bg-white backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 overflow-hidden z-[999]">

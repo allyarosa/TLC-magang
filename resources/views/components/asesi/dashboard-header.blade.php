@@ -96,6 +96,16 @@
                     <div id="profile-menu-asesi"
                         class="absolute right-0 top-12 mt-2 w-48 bg-white border border-gray-300 rounded-xl shadow-xl hidden overflow-hidden z-[999]">
                         <div class="py-2">
+                            <!-- User Info Header -->
+                            <div class="px-4 py-2.5 border-b border-gray-100 mb-1.5">
+                                <p class="text-sm font-semibold text-slate-800 truncate">
+                                    {{ Auth::user()->userProfile?->nama_depan ?? Auth::user()->userProfile?->namadepan ?? Auth::user()->name }}
+                                </p>
+                                <p class="text-xs text-slate-500 truncate">
+                                    {{ Auth::user()->email }}
+                                </p>
+                            </div>
+
                             <div>
                                 <a href="{{ route('asesi.profile') }}"
                                     class="flex items-center space-x-3 px-4 py-1 transition-all duration-300 group {{ request()->routeIs('asesi.profile') ? 'text-[#1D4E89] font-bold bg-gradient-to-r from-blue-50 to-purple-50' : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-[#1D4E89]' }}">

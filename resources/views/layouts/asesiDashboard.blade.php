@@ -37,7 +37,7 @@
 <body>
     <x-asesi.dashboard-header />
     <x-asesi.dashboard-sidebar />
-    <main class="bg-blue-100/60">
+    <main class="bg-blue-50">
         @yield('content')
     </main>
     <x-asesi.dashboard-mobile-navbar />

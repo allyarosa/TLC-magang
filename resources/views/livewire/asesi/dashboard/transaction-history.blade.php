@@ -30,7 +30,7 @@
                                 Rp {{ number_format($item->amount, 0, ',', '.') }}
                             </span>
                             @if ($item->status === 'success')
-                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 border border-green-200/50 uppercase">
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold text-brandGreen uppercase">
                                     Sukses
                                 </span>
                             @elseif ($item->status === 'pending')
