@@ -1,5 +1,13 @@
 <div
     class="lg:col-span-8 bg-white p-8 rounded-xl shadow-Ambient flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+    
+    <!-- Circular Background Ornaments -->
+    <div class="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-gradient-to-tr from-brandBlue/10 to-brandGreen/30 blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full border-[12px] border-brandBlue/[0.03] pointer-events-none"></div>
+    <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-brandGreen/[0.07] pointer-events-none"></div>
+    <div class="absolute -bottom-6 left-1/3 w-16 h-16 rounded-full border border-dashed border-brandOrange/20 pointer-events-none"></div>
+    <div class="absolute top-8 left-1/2 w-4 h-4 rounded-full bg-brandOrange/15 pointer-events-none"></div>
+
     <div class="flex-1 space-y-4 z-10">
         <div class="space-y-1">
             <span

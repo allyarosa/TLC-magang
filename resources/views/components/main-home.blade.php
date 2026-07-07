@@ -1,4 +1,4 @@
-        <main id="home" class="w-full scroll-mt-24 relative overflow-hidden min-h-screen">
+            <main id="home" class="w-full scroll-mt-24 relative overflow-hidden min-h-screen">
             <!-- Background Image (desktop only) -->
             <div class="absolute inset-0 hidden md:block">
                 <img src="{{ asset('images/about-us.webp') }}" alt="Background TLC" class="w-full h-full object-cover"
