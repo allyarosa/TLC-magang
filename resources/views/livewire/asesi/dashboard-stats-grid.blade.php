@@ -1,4 +1,3 @@
-@props(['daysSinceJoined' => 0])
 
 <div class="lg:col-span-4 grid grid-cols-1 gap-4">
 
@@ -17,8 +16,10 @@
             <x-icons iconName="task_alt" class="text-brandOrange-dark"/>
         </div>
         <div>
-            <p class="text-2xl font-display font-bold text-gray-700" style="">0/12</p>
-            <p class="text-xs text-gray-700 font-medium" style="">Tugas Selesai
+            <p class="text-2xl font-display font-bold text-gray-700">
+                {{ $hasAccess ? $completedTasks . '/' . $maxCompletedTasks : '-' }}
+            </p>
+            <p class="text-xs text-gray-700 font-medium">Tugas Selesai
             </p>
         </div>
     </div>
@@ -28,8 +29,10 @@
             <x-icons iconName="military_tech" class="text-brandGreen-dark"/>
         </div>
         <div>
-            <p class="text-2xl font-display font-bold text-gray-700" style="">0</p>
-            <p class="text-xs text-gray-700 font-medium" style="">Sertifikat Utama
+            <p class="text-2xl font-display font-bold text-gray-700" >
+                {{ $hasAccess ? '0': '-' }}
+            </p>
+            <p class="text-xs text-gray-700 font-medium" >Sertifikat Utama
             </p>
         </div>
     </div>

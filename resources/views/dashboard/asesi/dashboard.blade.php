@@ -62,7 +62,7 @@
                         @endif --}}
                         <livewire:asesi.dashboard.dashboard-info-card />
 
-                        <x-asesi.dashboard-stats-grid :days-since-joined="$daysSinceJoined" />
+                        <livewire:asesi.dashboard-stats-grid />
                     </section>
 
                     <!-- Journey Roadmap -->

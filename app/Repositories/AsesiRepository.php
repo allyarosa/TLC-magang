@@ -45,6 +45,10 @@ class AsesiRepository
         return ExamA::all();
     }
 
+    public function getAsesiAccess() {
+        
+    }
+
     public function countRemidialA($passingScore): mixed
     {
         return ExamA::where('score', '<=', $passingScore)
