@@ -1,5 +1,5 @@
 <div
-    class="lg:col-span-8 bg-white p-8 rounded-xl shadow-Ambient flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+    class="lg:col-span-8 bg-white p-8 rounded-xl shadow-md flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
     
     <!-- Circular Background Ornaments -->
     <div class="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-gradient-to-tr from-brandBlue/10 to-brandGreen/30 blur-3xl pointer-events-none"></div>

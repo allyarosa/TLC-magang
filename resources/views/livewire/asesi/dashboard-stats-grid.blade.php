@@ -1,7 +1,7 @@
 
 <div class="lg:col-span-4 grid grid-cols-1 gap-4">
 
-    <div class="bg-white p-6 rounded-xl flex items-center gap-4">
+    <div class="bg-white p-6 rounded-xl flex items-center gap-4 shadow-sm">
         <div class="w-10 h-10 flex items-center justify-center text-primary">
             {{-- <x-icons iconName="calendar_today" class="text-brandBlue-dark"/> --}}
             <img src="{{ asset('assets/icons/cloudy.png') }}" alt="icon hari bergabung">
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="bg-white p-6 rounded-xl flex items-center gap-4">
+    <div class="bg-white p-6 rounded-xl flex items-center gap-4 shadow-sm">
         <div class="w-10 h-10 flex items-center justify-center text-secondary">
             {{-- <x-icons iconName="task_alt" class="text-brandOrange-dark"/> --}}
             <img src="{{ asset('assets/icons/done.png') }}" alt="">
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="bg-white p-6 rounded-xl flex items-center gap-4">
+    <div class="bg-white p-6 rounded-xl flex items-center gap-4 shadow-sm">
         <div class="w-10 h-10 flex items-center justify-center text-tertiary">
             {{-- <x-icons iconName="military_tech" class="text-brandGreen-dark"/> --}}
             <img src="{{ asset('assets/icons/certificate.png') }}" alt="">
