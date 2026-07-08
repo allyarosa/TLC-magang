@@ -155,7 +155,7 @@
 
                     <!-- Security Info -->
                     <div class="bg-gray-50 rounded-xl p-6 mt-6">
-                        <div class="flex items-center justify-center mb-4">
+                        {{-- <div class="flex items-center justify-center mb-4">
                             <div class="flex items-center space-x-4">
                                 <div class="flex items-center">
                                     <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -174,8 +174,8 @@
                                     <span class="text-sm font-medium text-gray-700">Verified Secure</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-center">
+                        </div> --}}
+                        {{-- <div class="text-center">
                             <p class="text-gray-600 text-sm mb-2">
                                 <span class="font-medium">🔒 Pembayaran Aman:</span> Anda akan diarahkan ke halaman
                                 pembayaran Midtrans yang telah tersertifikasi.
@@ -184,7 +184,7 @@
                                 <span class="font-medium">↩️ Auto Return:</span> Setelah pembayaran selesai, Anda akan
                                 otomatis dikembalikan ke situs ini.
                             </p>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
