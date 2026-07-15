@@ -64,11 +64,11 @@ class DashboardStatsGrid extends Component
         }
 
         if ($user->hasPermissionTo('LITERASI')) {
-            $this->maxCompletedTasks += 4;
+            $this->maxCompletedTasks += 2;
         }
 
         if ($user->hasPermissionTo('NUMERASI')) {
-            $this->maxCompletedTasks += 4;
+            $this->maxCompletedTasks += 2;
         }
 
         if ($user->hasPermissionTo('PCK')) {
