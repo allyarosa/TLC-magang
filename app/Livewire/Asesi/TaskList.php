@@ -77,6 +77,7 @@ class TaskList extends Component
                 'file_path' => $path,
                 'submission_count' => $submissionCount + 1,
                 'submitted_at' => now(),
+                'is_confirmed' => false, // Reset konfirmasi saat asesi update jawaban
             ]);
         } else {
             TaskSubmission::create([
@@ -113,7 +114,8 @@ class TaskList extends Component
         $notDoneTask = $this->taskListService->getNotDoneTask();
         $doneTasks = $this->taskListService->getSubmissions('sudah_dikerjakan');
         $sentTasks = $this->taskListService->getSubmissions('sudah_dikirim');
+        $completionStats = $this->taskListService->getCompletionStats();
 
-        return view('livewire.asesi.task-list', compact('batch', 'notDoneTask', 'doneTasks', 'sentTasks'));
+        return view('livewire.asesi.task-list', compact('batch', 'notDoneTask', 'doneTasks', 'sentTasks', 'completionStats'));
     }
 }

@@ -100,6 +100,26 @@ class TaskController extends Controller
         }
     }
 
+    public function viewSubmission($submissionId)
+    {
+        try {
+            $submission = $this->taskService->getSubmissionFileForDownload($submissionId);
+            $path = Storage::disk('local')->path($submission->file_path);
+
+            if (!file_exists($path)) {
+                abort(404, 'File tidak ditemukan.');
+            }
+
+            return response()->file($path, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . basename($path) . '"'
+            ]);
+        } catch (Throwable $e) {
+            Log::error('Gagal menampilkan file jawaban di TaskController@viewSubmission: ' . $e->getMessage());
+            return abort(404, $e->getMessage());
+        }
+    }
+
     public function toggleConfirmSubmission($submissionId)
     {
         try {

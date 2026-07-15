@@ -53,6 +53,11 @@ class RolePermissionSeeders extends Seeder
             'NUMERASI_LOCK',
             'LITERASI_LOCK',
 
+            'DONE_HOTS_TASK',
+            'DONE_PCK_TASK',
+            'DONE_NUMERASI_TASK',
+            'DONE_LITERASI_TASK',
+
             'PPT_UPLOAD',
             'PPT_COMPLETED',
 

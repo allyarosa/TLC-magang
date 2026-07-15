@@ -540,6 +540,7 @@ Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(
     Route::resource('/tasks', TaskController::class)->names('admin.tasks');
     Route::get('/tasks/{task}/submissions', [TaskController::class, 'submissions'])->name('admin.tasks.submissions');
     Route::get('/tasks/submissions/{submissionId}/download', [TaskController::class, 'downloadSubmission'])->name('admin.tasks.submissions.download');
+    Route::get('/tasks/submissions/{submissionId}/view', [TaskController::class, 'viewSubmission'])->name('admin.tasks.submissions.view');
     Route::patch('/tasks/submissions/{submissionId}/toggle-confirm', [TaskController::class, 'toggleConfirmSubmission'])->name('admin.tasks.submissions.toggle-confirm');
 });
 

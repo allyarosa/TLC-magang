@@ -2,13 +2,23 @@
     <!-- Header Section -->
     @if ($batch)
         <div class="mb-10 max-w-8xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
                 <div class="rounded-md flex items-center gap-3">
                     <img src="{{ asset('assets/icons/done.png') }}" alt="Done Icon" class="w-8 h-8 object-contain">
                     <h1 class="text-3xl font-medium text-brandBlue-dark/90 tracking-tight">
                         {{ $batch->name }} : Implementasi HOTS di Kelas
                     </h1>
                 </div>
+                @if ($completionStats['hasAccess'])
+                    <span class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-full bg-gray-100 text-gray-800">
+                        <span class="w-2 h-2 rounded-full bg-gray-500 mr-2 animate-pulse"></span>
+                        Progres: {{ $completionStats['completedCount'] }}/{{ $completionStats['maxCount'] }} ({{ $completionStats['percentage'] }}%)
+                    </span>
+                @else
+                    <span class="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-full bg-gray-100 text-gray-800 shadow-sm border border-gray-200">
+                        Progres: -
+                    </span>
+                @endif
             </div>
 
             <!-- Status Tabs -->
@@ -75,28 +85,34 @@
                     @if ($activeTab === 'belum_dikerjakan')
                         @forelse ($notDoneTask as $data)
                             <div
-                                class="bg-white rounded-xl shadow-md p-8 border-ghost mb-10 border-2 border-brandBlue/30">
+                                class="bg-white rounded-xl p-4 border-ghost mb-2 border-2 border-brandBlue/30">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="w-10 h-10 rounded-full flex items-center justify-center text-brandBlue">
+                                            class="w-12 h-12 rounded-full flex items-center justify-center text-brandBlue">
                                             <span class="material-symbols-outlined"
                                                 data-icon="description">description</span>
                                         </div>
-                                        <h2 class="text-xl font-headline font-semibold text-brandBlue-dark/90">
-                                            Penugasan {{ $data->title }}
-                                        </h2>
+                                        <div>
+                                            <h2 class="text-md font-headline font-medium text-gray-700">
+                                                ADMIN
+                                                <span class="text-sm font-normal">menambahkan tugas</span> 
+                                                <span class="text-sm font-medium text-brandGreen">/ {{ $data->category }}</span>
+                                                <span class="text-sm font-medium text-brandGreen">/ {{ $data->title }}</span>
+                                            </h2>
+                                            <span class="text-xs text-gray-400 font-normal block mt-1">{{ $data->created_at->timezone('Asia/Makassar')->locale('id')->diffForHumans() }}</span>
+                                        </div>
                                     </div>
                                     <div
                                         class="flex items-center gap-2.5 bg-brandBlue-dark/90 px-4 py-2 rounded-lg w-fit shadow-md">
-                                        <p class="text-sm font-label text-white font-medium">
+                                        <p class="text-sm text-white font-normal">
                                             Batas Pengumpulan: <span
-                                                class="font-medium text-accent">{{ $data->ends_at->timezone('Asia/Makassar')->locale('id')->isoFormat('dddd, D MMMM YYYY, HH:mm') }}
+                                                class="font-normal text-accent">{{ $data->ends_at->timezone('Asia/Makassar')->locale('id')->isoFormat('dddd, D MMMM YYYY, HH:mm') }}
                                                 WITA</span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="max-w-none font-body leading-relaxed ">
+                                <div class="max-w-none">
 
                                     <p class="text-gray-800">
                                         {!! $data->body !!}
@@ -267,11 +283,11 @@
                                 message="Saat ini belum ada tugas baru yang diterbitkan untuk Anda. Silakan periksa kembali halaman ini secara berkala."
                                 icon="assignment_late" type="info" />
                         @endforelse
-                    @elseif ($activeTab === 'sudah_dikerjakan')
-                        @forelse ($doneTasks as $submission)
-                            <div class="bg-white rounded-xl shadow-ambient p-8 border-ghost mb-10">
+                    @elseif ($activeTab === 'sudah_dikirim')
+                        @forelse ($sentTasks as $submission)
+                            <div class="bg-white rounded-xl p-8 border-ghost mb-10">
                                 <!-- Banners Status: Berhasil Dikirim -->
-                                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 mb-6 rounded-r-xl">
+                                {{-- <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 mb-6 rounded-r-xl">
                                     <div class="flex items-center gap-3">
                                         <span
                                             class="material-symbols-outlined text-emerald-600 text-2xl">check_circle</span>
@@ -281,7 +297,7 @@
                                                 sebelum batas pengumpulan atau batas maksimal pengiriman tercapai.</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                                     <div class="flex items-center gap-3">
@@ -290,9 +306,15 @@
                                             <span class="material-symbols-outlined"
                                                 data-icon="description">description</span>
                                         </div>
-                                        <h2 class="text-xl font-headline font-semibold text-brandBlue-dark/90">
-                                            Penugasan {{ $submission->task->title }}
-                                        </h2>
+                                        <div>
+                                            <h2 class="text-md font-headline font-medium text-gray-700">
+                                                ADMIN
+                                                <span class="text-sm font-normal">menambahkan tugas</span> 
+                                                <span class="text-sm font-medium text-brandGreen">/ {{ $submission->task->category }}</span>
+                                                <span class="text-sm font-medium text-brandGreen">/ {{ $submission->task->title }}</span>
+                                            </h2>
+                                            <span class="text-xs text-gray-400 font-normal block mt-1">{{ $submission->task->created_at->timezone('Asia/Makassar')->locale('id')->diffForHumans() }}</span>
+                                        </div>
                                     </div>
                                     <div
                                         class="flex items-center gap-2.5 bg-brandBlue-dark/90 px-4 py-2 rounded-lg w-fit shadow-md">
@@ -329,11 +351,11 @@
                                 @endif
 
                                 <!-- Detail File Terkirim -->
-                                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
-                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wider">
-                                        Berkas Terkirim</h4>
+                                <div>
+                                    {{-- <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase tracking-wider">
+                                        Berkas Terkirim</h4> --}}
                                     <div
-                                        class="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-150">
+                                        class="flex items-center justify-between bg-gray-50 p-4 rounded-lg border border-gray-150">
                                         <div class="flex items-center gap-3">
                                             <div
                                                 class="w-10 h-10 bg-red-50 text-red-500 rounded flex items-center justify-center border border-red-100 font-bold text-xs uppercase">
@@ -419,9 +441,9 @@
                                         );
                                     }
                                 }">
-                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm">Ingin Memperbarui Jawaban?
-                                    </h4>
-                                    <div @click="triggerSelect" @dragover.prevent="isDragging = true"
+                                    {{-- <h4 class="font-semibold text-gray-800 mb-3 text-sm">Ingin Memperbarui Jawaban?
+                                    </h4> --}}
+                                    {{-- <div @click="triggerSelect" @dragover.prevent="isDragging = true"
                                         @dragleave.prevent="isDragging = false" @drop.prevent="handleDrop"
                                         :class="isDragging ? 'border-brandBlue bg-blue-100/50' : 'border-gray-300 bg-gray-50'"
                                         class="border-2 border-dashed rounded-xl flex flex-col items-center justify-center transition-colors cursor-pointer group p-6 hover:bg-blue-50/20 hover:border-brandBlue/50"
@@ -476,7 +498,7 @@
                                                 </template>
                                             </div>
                                         </template>
-                                    </div>
+                                    </div> --}}
                                     @error('files.' . $submission->task_id)
                                         <p class="text-red-500 text-xs mt-2 font-medium">{{ $message }}</p>
                                     @enderror
@@ -496,10 +518,10 @@
                                 message="Anda tidak memiliki tugas yang sudah dikerjakan namun masih dapat direvisi saat ini."
                                 icon="task" type="info" />
                         @endforelse
-                    @else
-                        <!-- TAMPILAN SUDAH DIKIRIM (TERKUNCI) -->
-                        @forelse ($sentTasks as $submission)
-                            <div class="bg-white rounded-xl shadow-ambient p-8 border-ghost mb-10">
+                    @elseif ($activeTab === 'sudah_dikerjakan')
+                        <!-- TAMPILAN SUDAH SELESAI (TERKUNCI) -->
+                        @forelse ($doneTasks as $submission)
+                            <div class="bg-white rounded-xl p-8 border-ghost mb-10">
                                 <!-- Banners Status: Terkunci/Final -->
                                 {{-- <div class="bg-blue-50 border-l-4 border-cyan-600 p-4 mb-6 rounded-r-xl">
                                     <div class="flex items-center gap-3">
@@ -518,9 +540,15 @@
                                             <span class="material-symbols-outlined"
                                                 data-icon="description">description</span>
                                         </div>
-                                        <h2 class="text-xl font-headline font-semibold text-brandBlue-dark/90">
-                                            Penugasan {{ $submission->task->title }} (Sudah Dikirim)
-                                        </h2>
+                                        <div>
+                                            <h2 class="text-md font-headline font-medium text-gray-700">
+                                                ADMIN
+                                                <span class="text-sm font-normal">menambahkan tugas</span> 
+                                                <span class="text-sm font-medium text-brandGreen">/ {{ $submission->task->category }}</span>
+                                                <span class="text-sm font-medium text-brandGreen">/ {{ $submission->task->title }}</span>
+                                            </h2>
+                                            <span class="text-xs text-gray-400 font-normal block mt-1">{{ $submission->task->created_at->timezone('Asia/Makassar')->locale('id')->diffForHumans() }}</span>
+                                        </div>
                                     </div>
                                     <div
                                         class="flex items-center gap-2.5 bg-brandBlue-dark/90 px-4 py-2 rounded-lg w-fit shadow-md">
@@ -574,7 +602,7 @@
                                         </div>
                                     </div>
                                     <button wire:click="download({{ $submission->id }})"
-                                        class="flex items-center gap-1.5 text-xs font-semibold text-brandGreen bg-white hover:bg-gray-50 transition-colors">
+                                        class="flex items-center gap-1.5 text-xs font-semibold text-gray-800 bg-white hover:bg-gray-50 transition-colors">
                                         <span class="material-symbols-outlined text-sm">download</span>
                                         Unduh File
                                     </button>

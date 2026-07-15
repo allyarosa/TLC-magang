@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('batch_id')->constrained('task_batches')->onDelete('cascade');
-            $table->enum('category', ['ALL', 'HOTS', 'PCK', 'LITERASI', 'NUMERASI']);
+            $table->enum('category', ['ALL', 'HOTS', 'PCK', 'LITERASI_NUMERASI']);
             $table->string('title');
             $table->text('body');
             $table->string('image_path')->nullable();

@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Events\CheckAsesiTask;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\TaskBatch;
 use App\Models\TaskSubmission;
 use Illuminate\Support\Facades\Storage;
@@ -130,13 +132,10 @@ class TaskService
     /**
      * Get submissions for a specific task.
      */
-    public function getTaskSubmissions(Task $task, int $perPage = 20)
+    public function getTaskSubmissions(Task $task, int $perPage = 10)
     {
         $task->load('batch');
-        return $task->submissions()
-            ->with('user.userProfile')
-            ->latest('submitted_at')
-            ->paginate($perPage);
+        return $task->submissions()->with('user.userProfile')->latest('submitted_at')->paginate($perPage);
     }
 
     /**
@@ -146,7 +145,7 @@ class TaskService
     {
         try {
             $submission = TaskSubmission::findOrFail($submissionId);
-            
+
             $filePath = $submission->file_path;
             if (!Storage::disk('local')->exists($filePath)) {
                 throw new \Exception('File tidak ditemukan.');
@@ -167,8 +166,13 @@ class TaskService
         DB::beginTransaction();
         try {
             $submission = TaskSubmission::findOrFail($submissionId);
+
             $submission->is_confirmed = !$submission->is_confirmed;
             $submission->save();
+
+            //check asesi task untuk penambahakan permission
+            $user = User::find($submission->user_id);
+            event(new CheckAsesiTask($user)); //Listerner : taskcheckPermission
 
             DB::commit();
             return $submission;

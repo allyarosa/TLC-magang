@@ -27,7 +27,7 @@ class TaskListService
         }
         $batchID = $batch->id;
         $category = [];
-        $categoryList = ['PCK', 'HOTS', 'LITERASI', 'NUMERASI', ];
+        $categoryList = ['PCK', 'HOTS', 'LITERASI_NUMERASI' ];
         $submittedTaskIDs = $this->submittedTask($user);
 
         if($user->hasPermissionTo('access_level_A')) {
@@ -69,24 +69,80 @@ class TaskListService
             ->get();
 
         if ($type === 'sudah_dikerjakan') {
+            // Hanya task yang sudah dikonfirmasi oleh admin
             return $submissions->filter(function($submission) {
-                $task = $submission->task;
-                if (!$task) return false;
-                return !$submission->is_confirmed 
-                    && $submission->submission_count < $task->max_submissions
-                    && $task->ends_at >= now();
+                return $submission->is_confirmed === true;
             });
         } elseif ($type === 'sudah_dikirim') {
+            // Semua submission yang belum dikonfirmasi admin
             return $submissions->filter(function($submission) {
-                $task = $submission->task;
-                if (!$task) return false;
-                return $submission->is_confirmed 
-                    || $submission->submission_count >= $task->max_submissions
-                    || $task->ends_at < now();
+                return !$submission->is_confirmed;
             });
         }
 
         return collect();
     }
-}
 
+    public function getCompletionStats()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return [
+                'hasAccess' => false,
+                'completedCount' => 0,
+                'maxCount' => 0,
+                'percentage' => 0,
+            ];
+        }
+
+        $permissions = config('AccessPermission.permissions') ?? [];
+        $hasAccess = false;
+        try {
+            $hasAccess = $user->hasAnyPermission($permissions);
+        } catch (\Exception $e) {
+            $hasAccess = false;
+        }
+
+        $maxCount = 0;
+        if ($hasAccess) {
+            if ($this->checkPermission($user, 'access_level_A')) {
+                $maxCount = 12;
+            } else {
+                if ($this->checkPermission($user, 'HOTS')) {
+                    $maxCount += 4;
+                }
+                if ($this->checkPermission($user, 'LITERASI')) {
+                    $maxCount += 4;
+                }
+                if ($this->checkPermission($user, 'NUMERASI')) {
+                    $maxCount += 4;
+                }
+                if ($this->checkPermission($user, 'PCK')) {
+                    $maxCount += 4;
+                }
+            }
+        }
+
+        $completedCount = TaskSubmission::where('user_id', $user->id)
+            ->where('is_confirmed', true)
+            ->count();
+
+        $percentage = $maxCount > 0 ? round(($completedCount / $maxCount) * 100) : 0;
+
+        return [
+            'hasAccess' => $hasAccess,
+            'completedCount' => $completedCount,
+            'maxCount' => $maxCount,
+            'percentage' => $percentage,
+        ];
+    }
+
+    private function checkPermission(User $user, $permissionName)
+    {
+        try {
+            return $user->hasPermissionTo($permissionName);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+}

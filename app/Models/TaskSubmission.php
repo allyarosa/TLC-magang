@@ -21,6 +21,7 @@ class TaskSubmission extends Model
 
     protected $casts = [
         'submitted_at' => 'datetime',
+        'is_confirmed' => 'boolean',
     ];
 
     public function task()

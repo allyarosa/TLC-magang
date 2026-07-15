@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CheckAsesiTask;
 use App\Events\ExamCompleted;
 use App\Listeners\SendExamCompletedNotification;
+use App\Listeners\TaskCheckPermission;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
@@ -15,12 +17,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        \Illuminate\Auth\Events\Registered::class => [
-            \Illuminate\Auth\Listeners\SendEmailVerificationNotification::class,
-        ],
-        ExamCompleted::class => [
-            SendExamCompletedNotification::class,
-        ],
+        \Illuminate\Auth\Events\Registered::class => [\Illuminate\Auth\Listeners\SendEmailVerificationNotification::class],
+        ExamCompleted::class => [SendExamCompletedNotification::class],
+        CheckAsesiTask::class => [TaskCheckPermission::class],
     ];
 
     /**

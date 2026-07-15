@@ -58,11 +58,11 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 space-y-8">
 
-                <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover-lift">
                     {{-- MODE PEMBELIAN --}}
                     <section>
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="p-2.5 bg-teal-50 text-brandGreen-dark rounded-full">
+                            <div class="p-2.5 bg-gray-100 text-gray-600 rounded-full">
                                 <i class="fa-solid fa-cart-shopping text-2xl"></i>
                             </div>
                             <div>
@@ -120,6 +120,9 @@
                                                         {{ $cat['name'] }}
                                                     </span>
                                                 @endforeach
+                                                <div class="flex justify-center items-center bg-red-600">
+
+                                                </div>
                                             </div>
                                         </div>
 
@@ -340,7 +343,7 @@
             <!-- Right Sidebar - Checkout (LIVEWIRE REACTIVE) -->
             <div class="lg:col-span-1">
                 <div class="sticky top-4 space-y-4">
-                    <div class="glass-effect rounded-3xl p-6 shadow-md border border-white/20">
+                    <div class="glass-effect rounded-xl p-6 shadow-md border border-white/20">
                         <!-- Product Summary -->
                         <div class="mb-6">
                             {{-- <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
@@ -397,7 +400,7 @@
                                     </button>
                                 @else
                                     <button type="button" wire:click="applyVoucher"
-                                        class="px-4 py-2 bg-brandGreen-dark text-white rounded-xl hover:bg-teal-700 text-sm font-medium transition-colors">
+                                        class="px-4 py-2 bg-brandBlue text-white rounded-xl hover:bg-teal-700 text-sm font-medium transition-colors">
                                         Terapkan
                                     </button>
                                 @endif

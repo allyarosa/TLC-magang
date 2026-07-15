@@ -50,7 +50,7 @@ class TaskAsesiController extends Controller
             $hasPck = $this->checkUserPermission($user, 'PCK');
             $hasLiterasi = $this->checkUserPermission($user, 'LITERASI_NUMERASI') || $this->checkUserPermission($user, 'LITERASI DAN NUMERASI');
 
-            if ($hasLevelA || $user->hasRole('admin')) {
+            if ($hasLevelA || $user->hasRole('asesi')) {
                 // Jika punya access_level_A, dapatkan 12 soal (gabungan)
                 $tasks = (clone $baseQuery)->limit(12)->get();
             } else {
@@ -132,7 +132,6 @@ class TaskAsesiController extends Controller
                 'submitted_at' => now(),
             ]);
         }
-
         return back()->with('success', 'Jawaban berhasil dikirim.');
     }
 

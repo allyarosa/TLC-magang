@@ -14,7 +14,7 @@ class SiteInfoSeeder extends Seeder
     public function run(): void
     {
         SiteInfo::create([
-            'payment_method' => 'manual',
+            'payment_method' => 'midtrans',
             'bank_name' => 'Bank Contoh',
             'bank_account_number' => '1234567890',
             'bank_account_name' => 'PT Contoh Perusahaan',

@@ -22,7 +22,6 @@ class grandLevelAAccess
      */
     public function handle(PaymentSuccessful $event): void
     {
-        Log::info('handling grandaccess');
         $user = $event->payment->user;
         $user->givePermissionTo('access_level_A');
         $user->revokePermissionTo('fresh_user');

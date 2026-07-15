@@ -60,7 +60,7 @@
                                             d="M5 13l4 4L19 7" />
                                     </svg>
                                 </button>
-                            @elseif (Auth::user()->hasAnyPermission(['access_level_A', $index['name']]) && $hasAccessCategory)
+                            @elseif (Auth::user()->hasAnyPermission('DONE_'.$index['name'].'_TASK') && $hasAccessCategory)
                                 {{-- Kalau belum selesai tapi sudah dapat akses --}}
                                 <button wire:click="openModal({{ $categoryId }})"
                                     class="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl text-sm font-medium shadow-md transform transition duration-100 hover:shadow-xl flex items-center">
