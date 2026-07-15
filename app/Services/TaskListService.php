@@ -36,6 +36,10 @@ class TaskListService
             $category = $user->getPermissionNames()
                         ->intersect($categoryList)
                         ->toArray();
+                        
+            if($user->hasAnyPermission(['LITERASI', 'NUMERASI'])) {
+                $category[] = 'LITERASI_NUMERASI';
+            }
         }
 
         $task = Task::where('batch_id', $batchID)

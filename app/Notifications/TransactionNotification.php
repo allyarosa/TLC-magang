@@ -13,9 +13,6 @@ class TransactionNotification extends Notification
 
     protected $transaction;
 
-    /**
-     * Create a new notification instance.
-     */
     public function __construct($transaction)
     {
         $this->transaction = $transaction;
