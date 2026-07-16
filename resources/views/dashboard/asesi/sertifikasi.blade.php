@@ -2,12 +2,12 @@
 
 @section('content')
     {{-- Wrapper Utama dengan background yang sedikit off-white agar konten pop-up --}}
-    <div class="min-h-screen pb-20 md:ml-64">
+    <div class="min-h-screen md:ml-64">
 
         {{-- SECTION 1: Status Sertifikasi (Hero Banner) --}}
-            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div class="relative overflow-hidden rounded-3xl bg-slate-900 shadow-xl shadow-slate-200/50 group">
-
+            <section class="max-w-7xl mx-auto">
+                <div class="relative overflow-hidden bg-slate-900 shadow-xl shadow-slate-200/50 group">
+                    
                     {{-- Abstract Background Shapes --}}
                     <div
                         class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-indigo-500/20 blur-3xl group-hover:bg-indigo-500/30 transition-all duration-700">
@@ -15,46 +15,19 @@
                     <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-amber-500/10 blur-3xl"></div>
 
                     {{-- Content --}}
-                    <div class="relative z-10 p-8 sm:p-10">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div>
-                                <div class="flex items-center gap-4 mb-4">
-                                    <div
-                                        class="flex-shrink-0 p-3 shadow-inner">
-                                        <img src="{{ asset('images/certification-badge.png') }}" alt=""
-                                            class="w-10 h-10">
-                                    </div>
-
-                                    <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                                        Status Sertifikasi Anda
-                                    </h1>
-                                </div>
-
-                                <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-                                    Pantau progres pembelajaran, akses materi, dan selesaikan ujian dalam
-                                    <br>
-                                    <span class="font-medium text-amber-200">Teaching & Learning Certification</span>.
-                                </p>
-                            </div>
-
-                            {{-- Decorative Icon (Optional) --}}
-                            <div class="hidden md:block opacity-20 transform rotate-12">
-                                <i class="fas fa-award text-9xl text-white"></i>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 {{-- Certification Cards Component --}}
-                <div class="mt-8">
+                {{-- <div class="mt-8">
                     <livewire:asesi.certification-card />
-                </div>
+                </div> --}}
             </section>
 
         {{-- SECTION 2: Kategori Level --}}
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <section class="max-w-7xl mx-auto">
 
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-10">
+            <div class="bg-white shadow-sm border border-slate-200 p-6 sm:p-10">
 
                 {{-- Header Section --}}
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -63,7 +36,7 @@
                             <span class="w-1.5 h-8 bg-blue-600 rounded-full"></span>
                             Jalur Sertifikasi
                         </h2>
-                        <p class="text-slate-500 mt-2">
+                        <p class="text-slate-500 mt-1 ml-3">
                             Pilih level untuk mengakses materi dan kuis. Selesaikan secara berurutan.
                         </p>
                     </div>

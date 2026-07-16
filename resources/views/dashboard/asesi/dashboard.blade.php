@@ -49,9 +49,9 @@
             }
         </style>
 
-        <section class=" text-on-surface selection:bg-secondary-container">
+        <section>
             <!-- Main Content -->
-            <main class="py-6 md:py-12 px-6 md:ml-64 min-h-screen">
+            <main class="py-6 md:py-6 px-6 md:ml-64 min-h-screen">
                 <div class="max-w-7xl mx-auto space-y-4">
                     <!-- Welcome Hero & Stats -->
                     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -73,7 +73,7 @@
                         <!-- Left Column -->
                         <div class="lg:col-span-8 space-y-8">
                             <!-- Current Level Detail -->
-                            {{-- <section>
+                            <section>
                                 <div class="flex items-center justify-between mb-6">
                                     <h3 class="text-xl font-display font-bold text-on-surface" style="">
                                         Sub-Kompetensi Level A</h3>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section> --}}
+                            </section>
                             <!-- Training Online -->
                             {{-- <section class="bg-slate-900 text-white p-8 rounded-xl overflow-hidden relative">
                                 <div
@@ -194,7 +194,7 @@
                         <!-- Right Column (Focused Rail) -->
                         <div class="lg:col-span-4 space-y-8">
                             <!-- Active Tasks -->
-                            {{-- <section class="bg-surface-container-low p-6 rounded-xl">
+                            <section class="bg-surface-container-low p-6 rounded-xl">
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">
                                     Tugas Hari Ini</h3>
                                 <div class="space-y-4">
@@ -244,7 +244,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </section> --}}
+                            </section>
                             <!-- Belajar Mandiri -->
                             {{-- <section>
                                 <h3 class="text-sm font-bold text-outline uppercase tracking-widest mb-4" style="">

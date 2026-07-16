@@ -20,7 +20,7 @@
                     </span>
                 @endif
             </div>
-
+            
             <!-- Status Tabs -->
             <div class="flex border-b border-gray-300 mb-8 overflow-x-auto hide-scrollbar">
                 <button wire:click="changeTab('belum_dikerjakan')"
@@ -28,7 +28,7 @@
                     <span>Belum Dikerjakan</span>
                     @if (count($notDoneTask) > 0)
                         <span
-                            class="px-2 py-0.5 text-xs rounded-full {{ $activeTab === 'belum_dikerjakan' ? 'bg-red-500 text-white font-bold' : 'bg-red-100 text-red-700 font-medium' }}">
+                            class="px-1 py-1 text-xs rounded-full {{ $activeTab === 'belum_dikerjakan' ? 'bg-red-200 text-red-700 font-bold' : 'bg-red-100 text-red-700 font-bold' }}">
                             {{ count($notDoneTask) }}
                         </span>
                     @endif
@@ -90,8 +90,9 @@
                                     <div class="flex items-center gap-3">
                                         <div
                                             class="w-12 h-12 rounded-full flex items-center justify-center text-brandBlue">
-                                            <span class="material-symbols-outlined"
-                                                data-icon="description">description</span>
+                                            <img src="{{ asset('assets/icons/blankProfile.png') }}" alt="" class="w-10 h-10">
+                                            {{-- <span class="material-symbols-outlined"
+                                                data-icon="description">description</span> --}}
                                         </div>
                                         <div>
                                             <h2 class="text-md font-headline font-medium text-gray-700">

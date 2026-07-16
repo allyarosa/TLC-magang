@@ -3,10 +3,11 @@
     <x-tooltip text="Notifikasi" position="bottom" :active="!$isOpen">
         <!-- Tombol Notifikasi -->
         <button wire:click="toggle" class="p-1.5 text-white rounded-full hover:bg-gray-100/20 hover:scale-105 transition-all duration-300 focus:outline-none">
-            <svg class="h-6 w-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {{-- <svg class="h-6 w-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0">
                 </path>
-            </svg>
+            </svg> --}}
+            <img src="{{ asset('assets/icons/bell.png') }}" class="h-6 w-6" alt="Notifikasi">
         </button>
 
         <!-- Badge jumlah notifikasi -->
@@ -19,10 +20,10 @@
 
     <!-- Modal -->
     <div class="@if(!$isOpen) hidden @endif absolute right-0 top-12 mt-2 w-80 bg-white backdrop-blur-[20px] rounded-xl shadow-xl border border-white/20 overflow-hidden z-[999]">
-        <div class="px-4 py-3 border-b border-gray-200">
-            <h3 class="text-base font-semibold text-gray-800">Notifikasi</h3>
+        <div class="px-4 py-3 border-b border-gray-100">
+            <h5 class="text-base font-bold text-gray-700 text-sm">Notifikasi</h3>
         </div>
-        <div class="divide-y divide-gray-100 max-h-80 overflow-y-auto">
+        <div class="divide-y divide-gray-100 max-h-80 overflow-y-auto py-8">
             @forelse ($notifications as $notification)
                 <div wire:click="markAsRead('{{ $notification->id }}')" class="cursor-pointer flex items-start space-x-3 px-4 py-3 hover:bg-gray-50/50 transition-colors duration-200 @if(!$notification->read_at) bg-blue-50 @endif">
                     <div class="flex-shrink-0 pt-1">
@@ -33,17 +34,20 @@
                         </div>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-800">{{ $notification->data['message'] ?? 'Notification message missing' }}</p>
+                        <p class="text-sm font-medium text-gray-600">{{ $notification->data['message'] ?? 'Notification message missing' }}</p>
                         <p class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
                     </div>
                 </div>
             @empty
                 <div class="px-4 py-12 text-center">
+                    <svg class="h-10 w-10 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.149.757-.405 1.035L4 17h5m6 0a3 3 0 11-6 0"></path>
+                    </svg>
                     <p class="text-sm text-gray-500">Tidak ada notifikasi baru.</p>
                 </div>
             @endforelse
         </div>
-        <div class="px-4 py-2 border-t border-gray-200 flex justify-center">
+        <div class="px-4 py-2 border-t border-gray-100 flex justify-center">
             @if ($unreadCount > 0)
                 <button wire:click.prevent="markAllAsRead" class="text-sm font-semibold text-brandBlue hover:text-blue-700 w-full text-center transition-colors">
                     Tandai Semua sebagai Dibaca

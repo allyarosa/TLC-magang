@@ -37,13 +37,14 @@
 <body>
     <x-asesi.dashboard-header />
     <x-asesi.dashboard-sidebar />
-    <main class="bg-blue-50">
+    <main class="bg-blue-100/60">
         @yield('content')
     </main>
     <x-asesi.dashboard-mobile-navbar />
 
     {{-- @include('layouts.footer') --}}
     {{-- WhatsApp Floating Button (hidden on mobile) --}}
+
     <x-asesi.whatsapp-button />
     @livewireScripts
     @include('sweetalert::alert')
