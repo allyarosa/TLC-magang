@@ -19,12 +19,17 @@ class EarnedCertificates extends Component
 
     public function render()
     {
-        $hasSubmittedSurvey = SurveySubmission::where('user_id', Auth::id())->exists();
+        $user = Auth::user();
+        $hasSubmittedSurvey = SurveySubmission::where('user_id', $user->id)->exists();
 
-        $certificates = Certificate::with('level')
-            ->where('user_id', Auth::id())
-            ->orderBy('issue_date', 'desc')
-            ->get();
+        $query = Certificate::with('level')
+            ->where('user_id', $user->id);
+
+        if ($user && $user->hasPermissionTo('access_level_A')) {
+            $query->where('name', 'NOT LIKE', '%Ctk.%');
+        }
+
+        $certificates = $query->orderBy('issue_date', 'desc')->get();
 
         return view('livewire.asesi.dashboard.earned-certificates', [
             'certificates' => $certificates,
@@ -66,25 +71,29 @@ class EarnedCertificates extends Component
         $pckPassed = $hasPck && $examPck && $examPck->score >= 75;
         $lnPassed = $hasLiterasi && $hasNumerasi && $examLiterasi && $examLiterasi->score >= 75 && $examNumerasi && $examNumerasi->score >= 75;
         $levelACompleted = $user->hasPermissionTo('level_A_completed');
+        $hasAccessLevelA = $user->hasPermissionTo('access_level_A');
 
         // 1. Level A Main Certificate
-        if ($user->hasPermissionTo('access_level_A') && $levelACompleted) {
+        if ($hasAccessLevelA && $levelACompleted) {
             $this->ensureCertificateRecord($user->id, $baseFormattedName . ', CTK', 1);
         }
 
-        // 2. HOTS Sub-certificate
-        if ($hotsPassed) {
-            $this->ensureCertificateRecord($user->id, $baseFormattedName . ', Ctk.HOTS', 1);
-        }
+        // Sub-sertifikat (HOTS, PCK, LN) hanya dibuat untuk user yang BELUM memiliki akses Level A
+        if (!$hasAccessLevelA) {
+            // 2. HOTS Sub-certificate
+            if ($hotsPassed) {
+                $this->ensureCertificateRecord($user->id, $baseFormattedName . ', Ctk.HOTS', 1);
+            }
 
-        // 3. PCK Sub-certificate
-        if ($pckPassed) {
-            $this->ensureCertificateRecord($user->id, $baseFormattedName . ', Ctk.PCK', 1);
-        }
+            // 3. PCK Sub-certificate
+            if ($pckPassed) {
+                $this->ensureCertificateRecord($user->id, $baseFormattedName . ', Ctk.PCK', 1);
+            }
 
-        // 4. LN Sub-certificate
-        if ($lnPassed) {
-            $this->ensureCertificateRecord($user->id, $baseFormattedName . ', Ctk.LN', 1);
+            // 4. LN Sub-certificate
+            if ($lnPassed) {
+                $this->ensureCertificateRecord($user->id, $baseFormattedName . ', Ctk.LN', 1);
+            }
         }
     }
 

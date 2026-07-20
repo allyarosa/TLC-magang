@@ -195,8 +195,11 @@ class SertifikasiController extends Controller
             $suffix = ', Ctk.LN';
         } else {
             // Default to Level A Main Certificate
-            if (!$authUser->hasPermissionTo('access_level_A')) {
+            if (!$authUser->hasPermissionTo('access_level_A') && !$authUser->hasAnyRole(['admin', 'asesor'])) {
                 abort(403, 'Anda tidak memiliki akses untuk sertifikat Level A.');
+            }
+            if (!$authUser->hasPermissionTo('level_A_completed') && !$authUser->hasAnyRole(['admin', 'asesor'])) {
+                abort(403, 'Anda belum menyelesaikan Sertifikat Utama Level A.');
             }
             $suffix = ', CTK';
         }
