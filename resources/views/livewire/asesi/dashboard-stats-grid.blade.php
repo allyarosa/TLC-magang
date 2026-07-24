@@ -1,4 +1,3 @@
-
 <div class="lg:col-span-4 grid grid-cols-1 gap-4">
 
     <div class="bg-white p-6 rounded-xl flex items-center gap-4 shadow-sm">

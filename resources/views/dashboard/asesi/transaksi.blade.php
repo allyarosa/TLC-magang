@@ -24,16 +24,17 @@
         }
     </script>
     <!-- Main Content Area -->
-    <div class="flex-1 md:ml-64 p-6 md:p-12 lg:p-16 max-w-7xl mx-auto w-full flex flex-col gap-10">
+    <div class="flex-1 md:ml-64 p-6  max-w-7xl mx-auto w-full flex flex-col gap-10">
         <!-- Header Section -->
         <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div class="flex items-center gap-4">
                 <div class="p-3 bg-blue-200 text-brandBlue rounded-2xl border border-blue-100 flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24"
+                    <img src="{{ asset('assets/icons/transaction.png') }}" alt="" class="h-9 w-9 object-contain">
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9h6m-6 4h6m-6-8h.01M9 16h.01" />
-                    </svg>
+                    </svg> --}}
                 </div>
                 <div>
                     <h1 class="text-3xl font-bold text-gray-700 tracking-tight">
@@ -60,8 +61,7 @@
         <!-- Financial Summary Cards (Bento style) -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Total Spent Card -->
-            <div
-                class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
+            <div class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
                 <div
                     class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors duration-500">
                 </div>
@@ -74,8 +74,7 @@
                 <p class="font-headline text-3xl font-bold text-gray-800">{{ $paymentCount }}</p>
             </div>
             <!-- Active Subscriptions -->
-            <div
-                class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
+            <div class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
                 <div
                     class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-colors duration-500">
                 </div>
@@ -88,8 +87,7 @@
                 <p class="font-headline text-3xl font-bold text-gray-800">{{ $paymentSuccessCount ?? '0' }}</p>
             </div>
             <!-- Pending Payments -->
-            <div
-                class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
+            <div class="bg-white rounded-xl px-6 py-4 relative overflow-hidden group hover:bg-surface-bright transition-colors shadow-[0px_4px_16px_rgba(24,28,30,0.04)] border border-outline-variant/10">
                 <div
                     class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-colors duration-500">
                 </div>
@@ -103,8 +101,7 @@
             </div>
         </section>
         <!-- Transaction History Table Area -->
-        <section
-            class="bg-white rounded-xl shadow-[0px_12px_32px_rgba(24,28,30,0.04)] overflow-hidden border border-outline-variant/10">
+        <section class="bg-white rounded-xl shadow-[0px_12px_32px_rgba(24,28,30,0.04)] overflow-hidden border border-outline-variant/10">
             <!-- Table Header/Search -->
             <div
                 class="p-6 border-b border-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4">
