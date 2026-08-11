@@ -18,7 +18,7 @@
                         <span
                             class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">{{ $asesor }}</span>
                     </div>
-
+                    
                     {{-- <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
                         <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
