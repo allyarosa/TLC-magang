@@ -21,6 +21,13 @@ class TaskBatch extends Model
         return $this->hasMany(Task::class, 'batch_id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'batch_user')
+            ->withPivot('assignment_type', 'assigned_at')
+            ->withTimestamps();
+    }
+
     public function scopeActiveForDate($query, $date)
     {
         return $query->where('start_date', '<=', $date)->where('end_date', '>=', $date);

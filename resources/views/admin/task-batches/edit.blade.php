@@ -39,6 +39,7 @@
 
         <div class="flex justify-end gap-2 mt-6">
             <a href="{{ route('admin.task-batches.index') }}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Batal</a>
+            <a href="{{ route('admin.task-batches.manage-users', $taskBatch->id) }}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Kelola Asesi</a>
             <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Update</button>
         </div>
     </form>

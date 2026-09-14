@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ResultExamsAController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SurveySubmissionAController;
 use App\Http\Controllers\Admin\TaskBatchController;
+use App\Http\Controllers\Admin\TaskBatchUserController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Asesi\AsesiDashboardController;
 use App\Http\Controllers\Asesi\ExamController;
@@ -537,6 +538,9 @@ Route::middleware(['auth', 'role:admin|administrator'])->prefix('admin')->group(
 
     // Tugas & Task Batches
     Route::resource('/task-batches', TaskBatchController::class)->names('admin.task-batches');
+    Route::get('/task-batches/{taskBatch}/manage-users', [TaskBatchUserController::class, 'manageUsers'])->name('admin.task-batches.manage-users');
+    Route::post('/task-batches/{taskBatch}/assign-users', [TaskBatchUserController::class, 'assignUsers'])->name('admin.task-batches.assign-users');
+    Route::delete('/task-batches/{taskBatch}/users/{user}', [TaskBatchUserController::class, 'removeUser'])->name('admin.task-batches.users.destroy');
     Route::resource('/tasks', TaskController::class)->names('admin.tasks');
     Route::get('/tasks/{task}/submissions', [TaskController::class, 'submissions'])->name('admin.tasks.submissions');
     Route::get('/tasks/submissions/{submissionId}/download', [TaskController::class, 'downloadSubmission'])->name('admin.tasks.submissions.download');

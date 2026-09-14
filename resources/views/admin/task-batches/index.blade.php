@@ -84,6 +84,7 @@
                         <x-table-th>Tanggal Mulai (Start)</x-table-th>
                         <x-table-th>Tanggal Berakhir (End)</x-table-th>
                         <x-table-th>Total Tugas</x-table-th>
+                        <x-table-th>Total Asesi</x-table-th>
                         <x-table-th>Actions</x-table-th>
                     </tr>
                 </thead>
@@ -115,9 +116,21 @@
                                 {{ $batch->tasks()->count() }}
                             </td>
 
+                            {{-- TOTAL ASESI --}}
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                {{ $batch->users()->count() }}
+                            </td>
+
                             {{-- ACTIONS --}}
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                                 <div class="flex space-x-2">
+                                    <a href="{{ route('admin.task-batches.manage-users', $batch->id) }}"
+                                        class="p-2 text-green-600 bg-green-50 rounded-md hover:bg-green-100"
+                                        title="Kelola Asesi">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17h.74c.789 0 1.42-.544 1.62-1.28C15.75 14.257 14.086 12.5 12 12.5c-.53 0-1.037.092-1.508.26A5.968 5.968 0 0112 15c0 1.08.334 2.076.93 2.86zM9 9a3 3 0 100 6 3 3 0 000-6zm-2.43 9.72c.196.736.831 1.28 1.62 1.28h.74c.596-.784.93-1.78.93-2.86 0-1.119.388-2.14 1.026-2.94C10.16 13.902 9.1 14 8 14c-2.086 0-3.75 1.757-3.23 3.72z"/>
+                                        </svg>
+                                    </a>
                                     <a href="{{ route('admin.task-batches.edit', $batch->id) }}"
                                         class="p-2 text-indigo-600 bg-indigo-50 rounded-md hover:bg-indigo-100"
                                         title="Edit">
@@ -146,7 +159,7 @@
                     @empty
                         @livewire('empty-state', [
                             'title' => 'Tidak Ada Data',
-                            'colspan' => 6,
+                            'colspan' => 7,
                             'message' => 'Data batch belum tersedia. Klik tombol "Tambah Batch" di kanan untuk membuat data batch baru.',
                         ])
                     @endforelse

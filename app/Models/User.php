@@ -144,4 +144,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->surveyKepuasan()->exists();
     }
+
+    public function assignedBatches()
+    {
+        return $this->belongsToMany(TaskBatch::class, 'batch_user')
+            ->withPivot('assignment_type', 'assigned_at')
+            ->withTimestamps();
+    }
 }

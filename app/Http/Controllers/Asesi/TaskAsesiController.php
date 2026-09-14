@@ -32,10 +32,12 @@ class TaskAsesiController extends Controller
             $userAccess = false;
         }
 
-        // Cari batch berdasarkan tanggal daftar user
-        $batch = TaskBatch::where('start_date', '<=', $user->created_at)
-            ->where('end_date', '>=', $user->created_at)
-            ->first();
+        $batch = $user->assignedBatches()->where('assignment_type', 'manual')->first();
+        if (!$batch) {
+            $batch = TaskBatch::where('start_date', '<=', $user->created_at)
+                ->where('end_date', '>=', $user->created_at)
+                ->first();
+        }
 
         $tasks = collect();
 

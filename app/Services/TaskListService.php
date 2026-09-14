@@ -15,6 +15,12 @@ class TaskListService
     public function getUserBatch()
     {
         $user = Auth::user();
+
+        $manualBatch = $user->assignedBatches()->where('assignment_type', 'manual')->first();
+        if ($manualBatch) {
+            return $manualBatch;
+        }
+
         return TaskBatch::activeForDate($user->created_at)->first();
     }
 
